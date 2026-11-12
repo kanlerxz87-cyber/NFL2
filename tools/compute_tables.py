@@ -253,3 +253,55 @@ for cid, qa, qb, x, y, read in [
                  "data/games_2026_wk1_9.csv", read])
 w("computed_correlation.csv", hdr, rows)
 print("done")
+
+
+# --------------------------------------- depth reach: who actually plays ------
+# Requirement R-20/R-21 asks specifically about 2nd/3rd/4th-string players replacing starters. The
+# repository holds verified club depth charts for four clubs (data/depth_charts.json) and the official
+# Week 10 practice report for those clubs' players. Joining them answers the question directly, and the
+# join is exact because it is a name match inside one club's own chart, not a cross-source inference.
+#
+# Rule, stated once so it can be argued with: a player is AVAILABLE if the official practice report
+# lists him as a full participant, or does not list him at all (the report covers players with a
+# reportable condition, so absence from it is not an injury claim). LIMITED and DNP players are treated
+# as not available to start, which is the conservative reading - a limited participant may well play.
+import json as _json
+with open(os.path.join(DATA, "depth_charts.json"), encoding="utf-8") as fh:
+    _dc = _json.load(fh)["depth_charts"]
+with open(os.path.join(DATA, "injuries_2026_wk10.csv"), encoding="utf-8") as fh:
+    _inj = list(_csv.DictReader(fh, delimiter="|"))
+_report = {(r["team"], r["player"]): r for r in _inj}
+_CODE = {"F": "full", "L": "limited", "D": "dnp", "": "not listed"}
+
+hdr = ["club", "unit", "position_group", "depth_reached", "projected_starter",
+       "starter_practice", "next_man_up", "next_man_practice", "chain_length",
+       "players_skipped", "chart_source"]
+rows = []
+for club in sorted(_dc):
+    chart = _dc[club]
+    for unit in ("offense", "defense"):
+        for grp in sorted(chart.get(unit, {})):
+            names = chart[unit][grp]
+            if not names:
+                continue
+            reach, who = 0, None
+            for i, nm in enumerate(names, 1):
+                rec = _report.get((club, nm))
+                st = rec["practice"] if rec else None
+                if st in (None, "F"):
+                    reach, who = i, nm
+                    break
+            if reach <= 1:
+                continue          # the starter is available; nothing replaced
+            starter = names[0]
+            srec = _report.get((club, starter))
+            nrec = _report.get((club, who)) if who else None
+            skipped = names[1:reach - 1]
+            rows.append([
+                club, unit, grp, str(reach), starter,
+                _CODE.get(srec["practice"] if srec else "", "not listed") if srec else "not listed",
+                who or "", (_CODE.get(nrec["practice"]) if nrec else "not listed") if who else "",
+                str(len(names)), "; ".join(skipped) if skipped else "none",
+                chart.get("club_site", ""),
+            ])
+w("computed_depth_reach.csv", hdr, rows)

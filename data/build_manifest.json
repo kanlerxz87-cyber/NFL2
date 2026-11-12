@@ -1,10 +1,10 @@
 {
   "blank_cells_rendered_as_not_published": 588,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "a72164192f0d3748e20e21c73f128b26980fdf42688fe8686fbc8c4695fdda51",
+  "inputs_sha256": "3dfea0beee67caba7a92eba6a784e31a34295bb3fc2bc465e74c00e2c3101c9e",
   "metrics": {
     "correlation": 12,
-    "data_files": 20,
+    "data_files": 21,
     "depth_rows": 227,
     "designations": 6,
     "dnp": 92,

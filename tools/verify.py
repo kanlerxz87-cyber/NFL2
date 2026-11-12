@@ -227,7 +227,7 @@ def no_invented_results():
             if v not in ("", "not published") and v != "1.00":
                 bad("correlation %s: an unmeasured rho value %r is present" % (r["id"], v))
     ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted rho is asserted")
-    measured_correlation_is_reproducible()
+    measured_correlation_is_reproducible(); depth_reach_is_reproducible()
 
 
 def measured_correlation_is_reproducible():
@@ -274,6 +274,65 @@ def measured_correlation_is_reproducible():
     else:
         ok("measured correlations reproduce from the game log (C-07 r=%+.4f, C-08 r=%+.4f, n=%d)"
            % (expect["C-07"], expect["C-08"], n))
+
+
+def depth_reach_is_reproducible():
+    """Every starter-to-backup cascade must equal a fresh join of the depth chart to the practice report.
+
+    R-20 and R-21 ask which clubs are down to a 2nd, 3rd or 4th string. data/computed_depth_reach.csv
+    answers that for the four clubs with a verified chart. This recomputes the join from
+    data/depth_charts.json + data/injuries_2026_wk10.csv and fails on any disagreement, so the published
+    cascades cannot drift away from the two sources they came from.
+    """
+    import json
+    chart_path = os.path.join(DATA, "depth_charts.json")
+    reach_path = os.path.join(DATA, "computed_depth_reach.csv")
+    if not (os.path.exists(chart_path) and os.path.exists(reach_path)):
+        warn("depth-reach computation absent; reproducibility check skipped"); return
+    charts = json.load(open(chart_path, encoding="utf-8"))["depth_charts"]
+    inj, _, _ = rows("injuries_2026_wk10.csv")
+    report = {(r["team"], r["player"]): r["practice"] for r in inj}
+    fresh = {}
+    for club in charts:
+        for unit in ("offense", "defense"):
+            for grp, names in charts[club].get(unit, {}).items():
+                if not names:
+                    continue
+                reach, who = 0, None
+                for i, nm in enumerate(names, 1):
+                    if report.get((club, nm)) in (None, "F"):
+                        reach, who = i, nm
+                        break
+                if reach > 1:
+                    fresh[(club, grp)] = (reach, names[0], who, len(names))
+    with open(reach_path, encoding="utf-8") as fh:
+        published = list(csv.DictReader(fh, delimiter="|"))
+    seen, problems = set(), []
+    for r in published:
+        key = (r["club"], r["position_group"])
+        seen.add(key)
+        if key not in fresh:
+            problems.append("%s %s is published but no longer reproduces" % key); continue
+        reach, starter, who, chain = fresh[key]
+        if int(r["depth_reached"]) != reach:
+            problems.append("%s %s: says %s string, recomputation says %d"
+                            % (key[0], key[1], r["depth_reached"], reach))
+        if r["projected_starter"] != starter:
+            problems.append("%s %s: starter disagrees" % key)
+        if r["next_man_up"] != who:
+            problems.append("%s %s: next man up disagrees" % key)
+        if int(r["chain_length"]) != chain:
+            problems.append("%s %s: chain length disagrees" % key)
+    for key in fresh:
+        if key not in seen:
+            problems.append("%s %s reproduces but is not published" % key)
+    if problems:
+        bad("depth reach does not reproduce: %s" % problems[:4])
+    else:
+        deepest = max((f[0] for f in fresh.values()), default=0)
+        third = sum(1 for f in fresh.values() if f[0] >= 3)
+        ok("depth reach reproduces for %d position groups across %d charted clubs; %d reach the 3rd string"
+           % (len(fresh), len(charts), third))
 
 
 def prose_counts_match_files():
@@ -383,9 +442,21 @@ def injury_coverage_is_measured_not_named():
         if not fn.endswith(".md"):
             continue
         text = open(os.path.join(ROOT, "content", fn), encoding="utf-8").read()
-        # "24 of the 28 clubs" and "25 of 28 clubs" are fine; a bare "28 clubs" coverage claim is not
-        if re.search(r"(?<![\w-])(?<!of )(?<!the )(?<!claims )\b28 clubs\b", text):
-            bad("content/%s claims 28 clubs as coverage; the file holds %d of %d" % (fn, len(present), len(playing)))
+        # A claim that the INJURY SNAPSHOT covers 28 clubs is false: it holds 24. A sentence about
+        # depth charts, rosters or the league is a different claim about a different file, so the
+        # check looks for sentence-level co-occurrence rather than a bare number.
+        for sent in re.split(r"(?<=[.!?])\s+|\n", text):
+            if not re.search(r"\b28 clubs\b", sent):
+                continue
+            # on the injury page every club-count claim is a coverage claim by definition
+            on_injury_page = fn in ("injuries.md", "executive-summary.md", "index.md")
+            if not on_injury_page and not re.search(r"injur|practice report|snapshot|hub", sent, re.I):
+                continue
+            # the corrected phrasing always qualifies the number against the full set
+            if re.search(r"\b(24|25|26|27) of (the )?28\b|of the 28 clubs|of 28 clubs", sent):
+                continue
+            bad("content/%s claims the injury snapshot covers 28 clubs; it holds %d of %d"
+                % (fn, len(present), len(playing)))
         if re.search(r"blank cells are rendered as .not published.", text):
             pass
     ok("injury coverage measured from the fixture list: %d of %d clubs present, %d absent (%s)"
