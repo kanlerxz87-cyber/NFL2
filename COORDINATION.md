@@ -383,3 +383,86 @@ Their code and data were neither deleted nor restated: `pipeline/**`, `site/**`,
   - Empirical Correlations (`n=32`) & Skill-vs-Luck: https://kanlerxz87-cyber.github.io/NFL2/analytics/correlations.html
   - Line-by-Line Repository & Source Audit: https://kanlerxz87-cyber.github.io/NFL2/analytics/repo-audit.html
   - Flagged for Review (`eaba7863`): https://kanlerxz87-cyber.github.io/NFL2/analytics/flagged.html
+## 15. Close-out of the integration branch — PR #15 merged, live-site findings, and where the numbers stand (session `bc4b47cf`, 2026-11-12T06:45Z)
+
+| Item | Value |
+|---|---|
+| PR | **#15** — https://github.com/kanlerxz87-cyber/NFL2/pull/15 · **MERGED** 2026-11-12T05:22:14Z as **`631b4da`** |
+| Checks on the PR | `audit` (root build + both auditors + drift gate), `Verify site data and links` (01b698ef's), `validate` = **lab-validate** (63ac21e9's pipeline rebuild) — all three green before merge |
+| CI on `main` at `631b4da` | `build-and-audit` · `Verify site data and links` · `GitHub Pages` · `pages build and deployment` — all **success**; Pages API `status=built`, `build_type=legacy`, source `main` / |
+| Live | https://kanlerxz87-cyber.github.io/NFL2/ serves the 21-page dashboard (+404); `/review/`, `/portal/`, `/docs/`, `/archive/session-009ec582/` all resolve and are labelled from the root page map |
+| Follows #8 | PR **#8** merged as `ccb8576` (§13); this PR carried the link-rendering fix, the `63ac21e9` pipeline integration, FL-21, S-29 and this record |
+
+**Two defects that only appeared once the site was read rather than built.** Both are the reason this board
+insists on fetching the published URL:
+
+1. **Relative markdown links reached readers as raw text** on 19 of 22 pages — the builder converted only
+   `https://` links. Fixed by two added `inline()` patterns (609 → 737 internal links published) and
+   guarded by a new `check_site.py` failure mode for any unrendered markdown link.
+2. **A register sentence contradicted the file beside it.** Reading the live Flagged page showed FL-02's
+   finding saying *six* designations while its evidence cell said *five non-empty status cells* — the
+   correction made earlier in this session had not reached that cell. `tools/verify.py` gained
+   `prose_counts_match_files()` (38 checks now), which fails on any "N of 254 players/rows" or
+   "N non-empty <col> cells" claim that does not match the measured file. The guard was tested by
+   re-introducing the wrong number and watching it fail with `FL-02.evidence: claims 5 non-empty
+   status cells, file has 6`, then restoring the correct value.
+
+**State of the registers as published** (each number measured by the builder, not typed): 254 injury
+rows · 6 designations · 227 depth/roster events · 32 reconciled standings rows · 136-game verified log ·
+40 requirements · 29 questions · 29 suggestions · 21 flags · 28 registered sources (17 tier A, official) ·
+18 signal families · 14 gates · 14 strategies · 12 correlation classes · 19 data files · 588 blank cells
+rendered as `not published`.
+
+**Open decision items for the owner, in the order they unblock things:** S-29 (price-data policy — the
+repo now contains third-party lines that stop in 2018 and 163 of 272 sparse 2026 moneylines; decide
+license / model-price-only / offline-exhibit before any backtest is published), S-28 (canonical club-key
+registry, so a LA-vs-LAR class of silent join drop fails the build), S-26 (register the game log by hash
+as the only permitted backtest window), S-27 (name one canonical layout among the five published trees),
+S-04 (pre-registration protocol the leaderboard depends on). None of them is blocked on a fact that
+cannot be found; each needs a decision, which is why they are on the Suggestions page rather than in the
+data.
+
+---
+
+## 16. Fifth integration step — `arena-eaba7863`'s analytics suite (session `bc4b47cf`, 2026-11-12T06:58Z)
+
+PR #14 published an 18-page suite under `analytics/` with its own assets, and did the integration
+the right way round: the cross-link to `analytics/index.html` was added to **`content/index.md`** —
+the source this site's generator reads — and the regenerated `index.html`, `404.html` and
+`data/build_manifest.json` were committed alongside it. That is why their CI drift gate passed and why
+the only real conflicts in this merge were the manifest digest and this file.
+
+| Shared file | Their change | Resolution here |
+|---|---|---|
+| `content/index.md` | page-map row describing their suite | kept as written, so the link stays in the generated output instead of in a hand-edited HTML file |
+| `404.html`, `index.html` | regenerated output of that row | consistent with the builder; this merge rebuilds and re-verifies rather than trusting the committed bytes |
+| `data/build_manifest.json` | their run's digest | generated artefact: the merged tree's own build wins, so the digest matches `content/*.md` + `data/*.csv` as they now stand |
+| `README.md`, `COORDINATION.md` | their session's records | union: their text verbatim, this session's §9–§16 preserved in order |
+
+**No data adopted from `analytics/`.** That is not a judgement about its quality: it is a sixth tree with
+its own conventions, and this site publishes only rows whose source link it can resolve for itself. Their
+suite claims 12-club depth cascades and 14 `n=32` correlations — the latter being precisely the kind of
+fitted number this site refuses to publish without a pre-registered protocol (see `correlation.html`,
+where every `rho` is blank by design except two that are 1.00 by construction). `FL-19` records the state
+of six published trees and six CI entry points; `S-27` is still the decision that settles which one is
+canonical.
+
+Verified in the merged tree: `tools/verify.py` 38 pass · `tools/check_site.py` 10 pass with 1 expected
+warning · `tools/review_verify.py` OK · `engine/verify_repo_and_site.py` PASS with 0 broken links across
+every build · root rebuild byte-identical · their `analytics/index.html` reachable from the published
+page map.
+
+---
+
+## 17. Sixth merge on this branch — one file, one line of consequence (session `bc4b47cf`, 2026-11-12T07:05Z)
+
+`eaba7863`'s record PR #17 touched only `COORDINATION.md`, so that is the whole conflict: their record
+kept verbatim, this session's §15 and §16 preserved, this note added. Nothing else in the repository
+changed in this merge, and no audit was re-opened on anyone's behalf: the root build, its registers and
+all four auditor suites are byte-for-byte what PR #16 carried, green.
+
+Six sessions have now merged into `main` while this branch was open, and every conflict has been resolved
+the same way — the root build stays generated and audited, each session's own tree stays published and
+labelled, and no session's numbers are adopted into another's registers without re-derivation. That
+pattern is worth freezing before the next session starts: `S-27` (canonical layout) and `S-28`
+(canonical club key) are the two decisions that would make the sixth integration smaller than the first.
