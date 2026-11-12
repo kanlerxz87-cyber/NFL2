@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-11-12T06:19:27+00:00",
+  "collector_version": "0.1.0",
+  "entries": [
+    {
+      "url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "kind": "injuries",
+      "retrieved_at": "2026-11-12T06:19:26+00:00",
+      "team": null,
+      "status": "failed",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    },
+    {
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+      "kind": "schedule",
+      "retrieved_at": "2026-11-12T06:19:27+00:00",
+      "team": null,
+      "status": "failed",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    },
+    {
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-1",
+      "kind": "results",
+      "retrieved_at": "2026-11-12T06:19:27+00:00",
+      "team": null,
+      "status": "failed",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    },
+    {
+      "url": "https://www.dallascowboys.com/team/depth-chart",
+      "kind": "depth",
+      "retrieved_at": "2026-11-12T06:19:27+00:00",
+      "team": "Dallas Cowboys",
+      "status": "failed",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    },
+    {
+      "url": "https://www.buffalobills.com/team/depth-chart",
+      "kind": "depth",
+      "retrieved_at": "2026-11-12T06:19:27+00:00",
+      "team": "Buffalo Bills",
+      "status": "failed",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    },
+    {
+      "url": "https://www.chiefs.com/team/depth-chart",
+      "kind": "depth",
+      "retrieved_at": "2026-11-12T06:19:27+00:00",
+      "team": "Kansas City Chiefs",
+      "status": "failed",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    },
+    {
+      "url": "https://www.patriots.com/team/depth-chart",
+      "kind": "depth",
+      "retrieved_at": "2026-11-12T06:19:27+00:00",
+      "team": "New England Patriots",
+      "status": "failed",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    }
+  ],
+  "successful": 0,
+  "failed": 7
+}

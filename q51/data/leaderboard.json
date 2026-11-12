@@ -1,0 +1,9 @@
+{
+  "boards": {
+    "single": [],
+    "parlay": [],
+    "player_prop_combo": []
+  },
+  "policy": "Only gate-eligible paper strategies rank. Rewards are virtual; no money or betting credits.",
+  "empty_reason": "No eligible historical market/strategy evidence has been supplied."
+}

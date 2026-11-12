@@ -1,0 +1,115 @@
+{
+  "status": "computed_from_supplied_observations",
+  "coefficients": [
+    {
+      "id": "home_points_away_points",
+      "source_url": "https://www.nfl.com/schedules/2026/REG/",
+      "n": 136,
+      "pearson": 0.07604457442368957,
+      "joint": null,
+      "bootstrap": {
+        "estimate": 0.07604457442368957,
+        "lower": null,
+        "upper": null,
+        "clusters": 9,
+        "iterations": 2000,
+        "seed": 20261112,
+        "confidence": 0.95
+      },
+      "label": "Home points vs away points",
+      "ci_status": "withheld_only_9_week_clusters"
+    },
+    {
+      "id": "home_points_total",
+      "source_url": "https://www.nfl.com/schedules/2026/REG/",
+      "n": 136,
+      "pearson": 0.6807771289951977,
+      "joint": null,
+      "bootstrap": {
+        "estimate": 0.6807771289951977,
+        "lower": null,
+        "upper": null,
+        "clusters": 9,
+        "iterations": 2000,
+        "seed": 20261112,
+        "confidence": 0.95
+      },
+      "label": "Home points vs game total",
+      "ci_status": "withheld_only_9_week_clusters"
+    },
+    {
+      "id": "away_points_total",
+      "source_url": "https://www.nfl.com/schedules/2026/REG/",
+      "n": 136,
+      "pearson": 0.7821390359687641,
+      "joint": null,
+      "bootstrap": {
+        "estimate": 0.7821390359687641,
+        "lower": null,
+        "upper": null,
+        "clusters": 9,
+        "iterations": 2000,
+        "seed": 20261112,
+        "confidence": 0.95
+      },
+      "label": "Away points vs game total",
+      "ci_status": "withheld_only_9_week_clusters"
+    },
+    {
+      "id": "total_absolute_margin",
+      "source_url": "https://www.nfl.com/schedules/2026/REG/",
+      "n": 136,
+      "pearson": -0.016220582472022453,
+      "joint": null,
+      "bootstrap": {
+        "estimate": -0.016220582472022453,
+        "lower": null,
+        "upper": null,
+        "clusters": 9,
+        "iterations": 2000,
+        "seed": 20261112,
+        "confidence": 0.95
+      },
+      "label": "Game total vs absolute margin",
+      "ci_status": "withheld_only_9_week_clusters"
+    },
+    {
+      "id": "home_margin_total",
+      "source_url": "https://www.nfl.com/schedules/2026/REG/",
+      "n": 136,
+      "pearson": -0.16079509514490906,
+      "joint": null,
+      "bootstrap": {
+        "estimate": -0.16079509514490906,
+        "lower": null,
+        "upper": null,
+        "clusters": 9,
+        "iterations": 2000,
+        "seed": 20261112,
+        "confidence": 0.95
+      },
+      "label": "Home margin vs game total",
+      "ci_status": "withheld_only_9_week_clusters"
+    },
+    {
+      "id": "home_points_home_win",
+      "source_url": "https://www.nfl.com/schedules/2026/REG/",
+      "n": 136,
+      "pearson": 0.45973543803416644,
+      "joint": null,
+      "bootstrap": {
+        "estimate": 0.45973543803416644,
+        "lower": null,
+        "upper": null,
+        "clusters": 9,
+        "iterations": 2000,
+        "seed": 20261112,
+        "confidence": 0.95
+      },
+      "label": "Home points vs home win indicator",
+      "ci_status": "withheld_only_9_week_clusters"
+    }
+  ],
+  "warning": "Raw association is not a parlay price or causal effect. Intervals resample entire game/week clusters.",
+  "interpretation": "Descriptive associations among official final scores. Not causal effects, not betting edges, and not same-game player-prop leg correlations."
+}

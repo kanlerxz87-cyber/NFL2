@@ -1,0 +1,292 @@
+{
+  "as_of": "2026-11-12",
+  "week": 10,
+  "rows": [
+    {
+      "team": "ATL",
+      "injury_listings": 6,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 9,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "AZ",
+      "injury_listings": 13,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 13,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "BAL",
+      "injury_listings": 0,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 5,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "BUF",
+      "injury_listings": 11,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 8,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "CAR",
+      "injury_listings": 12,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 5,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "CIN",
+      "injury_listings": 0,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 3,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "CLE",
+      "injury_listings": 11,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 12,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "DAL",
+      "injury_listings": 16,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 10,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "DET",
+      "injury_listings": 9,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 7,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "GB",
+      "injury_listings": 16,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 14,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "HOU",
+      "injury_listings": 13,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 10,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "IND",
+      "injury_listings": 11,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 8,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "JAX",
+      "injury_listings": 10,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 9,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "KC",
+      "injury_listings": 11,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 10,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "LAC",
+      "injury_listings": 0,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 3,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "LAR",
+      "injury_listings": 10,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 11,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "LV",
+      "injury_listings": 4,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 5,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "MIA",
+      "injury_listings": 10,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 8,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "MIN",
+      "injury_listings": 9,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 11,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "NE",
+      "injury_listings": 15,
+      "out": 3,
+      "questionable": 0,
+      "depth_events": 15,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "NO",
+      "injury_listings": 10,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 9,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "NYG",
+      "injury_listings": 11,
+      "out": 0,
+      "questionable": 1,
+      "depth_events": 3,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "NYJ",
+      "injury_listings": 7,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 8,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "PIT",
+      "injury_listings": 8,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 2,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "SEA",
+      "injury_listings": 0,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 14,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "SF",
+      "injury_listings": 10,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 7,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "TEN",
+      "injury_listings": 12,
+      "out": 0,
+      "questionable": 0,
+      "depth_events": 6,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "team": "WAS",
+      "injury_listings": 9,
+      "out": 2,
+      "questionable": 0,
+      "depth_events": 2,
+      "confirmed_replacement_impact": null,
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    }
+  ],
+  "limitations": [
+    "Practice participation is not game status.",
+    "Club depth charts are unofficial editorial ordering.",
+    "No snaps, routes, targets or replacement performance are inferred.",
+    "Week 10 snapshot is stale for Week 11 decisions."
+  ]
+}

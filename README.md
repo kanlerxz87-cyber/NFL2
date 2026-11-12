@@ -6,8 +6,11 @@ leaderboard that has to clear validation gates, and a published register of ques
 flags so that the owner can choose a path before anything is implemented.
 
 **Live site (GitHub Pages):** https://kanlerxz87-cyber.github.io/NFL2/
-**Executive summary (site):** [executive-summary.html](executive-summary.html) · **owner's brief from the earlier session:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
+**Independent Q51 evidence dashboard:** [q51/index.html](q51/index.html) · [Flagged for Review](q51/flagged.html)
+**Executive summary (site):** [executive-summary.html](executive-summary.html) · [Q51 executive summary](q51/executive-summary.html) · **owner's brief from the earlier session:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
 **Coordination board:** [COORDINATION.md](COORDINATION.md)
+
+> Q51 publishes current-snapshot research lines and descriptive correlations from the source-linked game log. They are **unvalidated, paper-only** outputs, not betting advice. No market/prop/settlement archive exists, the leaderboard is empty, and real-money execution is disabled.
 
 ## What is in here
 
@@ -30,6 +33,8 @@ flags so that the owner can choose a path before anything is implemented.
 | `docs/` | that session's earlier 18-page build, published at `/NFL2/docs/` |
 | `COORDINATION.md` | shared task board for concurrent agent sessions: claims, scopes, log, handoffs, integration record |
 | `.github/workflows/validate.yml` | CI: build, both audits, and a drift check that the committed HTML matches a rebuild |
+| `q51/`, `engine/q51/`, `collectors/q51/`, `tests/q51/`, `research/q51/` | independent Q51 evidence dashboard, tested paper-only engine, robots-aware collector, mutation tests and source-evidence audit; namespaced to preserve upstream work |
+| `.github/workflows/q51.yml` | CI: Q51 unit/mutation tests, deterministic research/site rebuild and strict row-source/link/safety verification |
 
 ## Rules this project does not bend
 
@@ -64,6 +69,10 @@ tools/review_*.py            arena-01b698ef generator + auditor (renamed, logic 
 python tools/build_site.py     # regenerate every page from data/ + content/
 python tools/verify.py         # audit the data       (exit 1 on any failure)
 python tools/check_site.py     # audit the site links (exit 1 on any failure)
+python -m engine.q51.build_research  # Q51 current-snapshot research artifacts
+python -m engine.q51.build_site      # Q51 evidence dashboard
+python -m unittest discover -s tests/q51 -v
+python scripts/verify_q51.py         # strict Q51 row-source, blank, link and safety gate
 ```
 
 No dependencies, no build tooling, no JavaScript. Editing a page means editing its markdown or its CSV,

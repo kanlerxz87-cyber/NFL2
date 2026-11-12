@@ -4,7 +4,7 @@
   "gates": [
     {"id": "G0", "name": "Pre-registration", "rule": "Strategy hypothesis, markets, staking, and stop-loss written BEFORE first graded bet. No retroactive edits."},
     {"id": "G1", "name": "Data integrity", "rule": "Every bet timestamped with model inputs + market price at bet time. Missing timestamps = void."},
-    {"id": "G2", "name": "Sample size", "rule": "Minimum 500 graded bets per market before 'live' status. Below 500 = 'paper' only."},
+    {"id": "G2", "name": "Sample size", "rule": "Paper-only policy minimums are necessary but never sufficient; require uncertainty, multiplicity, walk-forward and execution gates. No count guarantees skill or live status."},
     {"id": "G3", "name": "CLV gate", "rule": "Mean CLV > 0 vs closing line with 95% CI excluding 0 (primary skill signal)."},
     {"id": "G4", "name": "Calibration gate", "rule": "Log-loss / Brier beats no-vig market baseline out-of-sample. No calibration = no live."},
     {"id": "G5", "name": "ROI gate", "rule": "ROI > 0 after vig, with bootstrap CI reported. ROI alone never promotes a strategy."},

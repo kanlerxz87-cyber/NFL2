@@ -569,3 +569,46 @@ about.** Either it is a metric the builder measures, or it is written in a table
 2. a merge commit staged the *incoming* `data/build_manifest.json` instead of the one the local build had just written, so the committed digest did not describe the committed content. **The CI drift gate caught that one by itself** — which is the argument for keeping a rebuild-and-compare step in CI rather than trusting a green local run. The habit that prevents it: rebuild, then `git add -A`, in the same command chain, on every merge.
 
 Register state as published now: 254 injury rows · 6 designations · 227 depth events · 32 standings rows · 136-game verified log · 40 requirements · 29 questions · 29 suggestions · 21 flags · 28 sources · 39 data-audit checks + 10 site-audit checks. This branch's work is complete; the open items are owner decisions (`S-29`, `S-28`, `S-26`, `S-27`, `S-04`), not unfinished code.
+
+
+---
+
+## Session `51ce8d8e-nfl2` — independent evidence and reproducible engine
+
+Arena fixes the branch to `arena/51ce8d8e-nfl2`. Upstream task IDs T12–T18 are already used by another session; this session therefore uses **Q51-T01..Q51-T04**, not those IDs. Main has advanced substantially since the original claim. Preserve all upstream files and completed PR records.
+
+A required `git pull --rebase` attempted to flatten the merge preserving the already-pushed claim and conflicted; it was aborted. Used a normal upstream merge instead, then push without force. This records the exceptional conflict handling transparently.
+
+| Task | Status | Owner | Exclusive paths | Result |
+|---|---|---|---|---|
+| Q51-T01 | done | 51ce8d8e-nfl2 | `research/q51/**`, `scripts/audit_q51.py` | Reproducible audit of the original 48-file baseline; 18 findings with evidence. Baseline counts are historical, not current-repository claims. |
+| Q51-T02 | done | 51ce8d8e-nfl2 | `engine/q51/**`, `tests/q51/**` | Standalone odds, statistics, grading, point-in-time modeling and fail-closed validation gates; 34 tests pass. No invented training data or betting performance. |
+| Q51-T03 | done | 51ce8d8e-nfl2 | `collectors/q51/**` | Allowlisted, robots-aware official-source collector and parsers; 5 parser/safety tests pass. Live sandbox probe recorded 0/7 TLS failures, not hidden. |
+| Q51-T04 | in progress | 51ce8d8e-nfl2 | `q51/**`, `scripts/verify_q51.py`, shared factual corrections, this appended section | Namespaced 10-page evidence dashboard built; stale shared-integration handoff logged; evidence-backed corrections and link repairs applied. PR/Pages confirmation pending. |
+
+### Conflict / handoff log
+
+- Original pre-push rebase onto `f64078f`: COORDINATION.md conflict preserved upstream content and appended this session’s claim.
+- 2026-11-12T06:03Z: required rebase onto `faecd39` found completed PRs #8–#22, existing `engine/*` files owned by `e143a7ca`, and an active final-integration claim by `bc4b47cf`. Stop destructive integration. Namespace all new artifacts under `q51`; preserve all upstream files. No takeover of completed work. Shared-site integration is deferred until the active owner finishes or the 60-minute stale rule is demonstrably satisfied.
+- Cross-scope request CR-Q51-01: expose the independent audit and tested engine through the canonical dashboard only during final integration; do not replace existing analytics or source registers.
+- The baseline audit found factual errors that were subsequently repaired by PR #19 (Warren/Chase TD and other column shifts). Q51 preserves the historical findings and must re-audit current main before publication.
+
+- Pre-push rejection after rebasing: merged the already-pushed original claim commit instead of force-pushing; preserved the current upstream board and namespaced artifacts.
+
+
+### Stale-claim handoff — shared integration (Q51-T04)
+
+- 2026-11-12T06:47Z: upstream T18 remained `in progress`, but its last upstream commit/PR #22 merged at 05:44:59Z (>60 minutes earlier), there are no open PRs, and the board's own §20 says the branch work is complete. Under the published stale-claim rule, session `51ce8d8e-nfl2` takes over only the remaining shared verification/publication step. All upstream files and completed records are preserved. Scope: factual corrections listed in `research/q51/source-evidence.json`, broken cross-page anchors/relative links found by `scripts/audit_q51_current.py`, a non-destructive Q51 cross-link, and final PR/Pages verification. No upstream analytics is deleted.
+
+
+### Q51 verification log
+
+- `python3 -m unittest discover -s tests/q51 -v`: **36 tests pass**, including a negative control proving the legacy presence/completeness validator misses factual mutations (Warren TD, broadcaster, formal injury status).
+- `python3 scripts/verify_q51.py`: **10 pages, 155 tbody rows, 155/155 official/canonical row sources, 130 explicit blank cells, 0 errors**, deterministic rebuild.
+- `python3 tools/verify.py`: **39 passed / 0 failures**; `python3 tools/check_site.py`: **10 passed / 0 failures** (one disclosed non-league registry warning).
+- `python3 scripts/audit_all_pages.py`: **96 HTML pages, 36 JSON files, 222 tables, 3423 rows, 0 broken links, 0 column mismatches**.
+- `python3 engine/verify_repo_and_site.py`: portal + whole-repo links **PASS, 0 broken**.
+- `python3 scripts/verify_s53126614.py`: **116 total repo HTML pages, 3287 internal links/assets, 0 broken**.
+- `python3 scripts/audit_q51_current.py`: every tracked file hashed/line-counted; syntax and internal links checked. Final tracked-file report is committed after the code commit so its `ref` is exact.
+- Live collector probe: `collectors/q51/collect.py --mode probe` recorded **0 successful / 7 failed** HTTPS retrievals with TLS EOF in `research/q51/collector-probe.json`. Manual page-fetch evidence remains separate; no raw response hash is invented.
+- Shared corrections applied under the stale-claim handoff: A-01 broadcasters, A-05/A-06 formal status/injury detail, A-07 depth wording, A-09/A-14 skill/correlation claims, A-10 overround wording, A-12 current-vs-planning week, A-18 helpline digits, F-08 bye resolution, missing team anchors and archive cross-build links. Upstream files and completed PR records preserved.

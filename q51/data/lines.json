@@ -1,0 +1,511 @@
+{
+  "as_of": "2026-11-12T23:59:59+00:00",
+  "status": "research_lines_generated_unvalidated",
+  "real_money_enabled": false,
+  "lines": [
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "HOU",
+      "away": "IND",
+      "expected_home_margin": 3.102414869141758,
+      "expected_total": 42.48333324946633,
+      "fair_home_spread": -2.1651092037814688,
+      "fair_total": 47.82610184268882,
+      "home_win_probability": 0.5735294117647058,
+      "home_loss_probability": 0.4264705882352941,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-IND-HOU",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "BUF",
+      "away": "MIA",
+      "expected_home_margin": 5.156173397374631,
+      "expected_total": 41.544353766760324,
+      "fair_home_spread": -4.218867732014341,
+      "fair_total": 46.88712235998282,
+      "home_win_probability": 0.6544117647058824,
+      "home_loss_probability": 0.34558823529411764,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-MIA-BUF",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "CAR",
+      "away": "BAL",
+      "expected_home_margin": 1.2631397620186235,
+      "expected_total": 42.74988166910836,
+      "fair_home_spread": -0.3258340966583342,
+      "fair_total": 48.09265026233086,
+      "home_win_probability": 0.5073529411764706,
+      "home_loss_probability": 0.49264705882352944,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-BAL-CAR",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "CHI",
+      "away": "NO",
+      "expected_home_margin": 3.449405450875184,
+      "expected_total": 42.55337592448255,
+      "fair_home_spread": -2.5120997855148945,
+      "fair_total": 47.896144517705046,
+      "home_win_probability": 0.5808823529411765,
+      "home_loss_probability": 0.41911764705882354,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-NO-CHI",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "DAL",
+      "away": "TEN",
+      "expected_home_margin": 2.6507118993067817,
+      "expected_total": 42.119541640831,
+      "fair_home_spread": -1.7134062339464924,
+      "fair_total": 47.4623102340535,
+      "home_win_probability": 0.5735294117647058,
+      "home_loss_probability": 0.4264705882352941,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-TEN-DAL",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "DET",
+      "away": "TB",
+      "expected_home_margin": 0.4263127457833572,
+      "expected_total": 41.03342290608555,
+      "fair_home_spread": 0.5109929195769322,
+      "fair_total": 46.37619149930804,
+      "home_win_probability": 0.4852941176470588,
+      "home_loss_probability": 0.5147058823529411,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-TB-DET",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "KC",
+      "away": "AZ",
+      "expected_home_margin": 4.644794922788507,
+      "expected_total": 40.634517333553276,
+      "fair_home_spread": -3.7074892574282177,
+      "fair_total": 45.97728592677577,
+      "home_win_probability": 0.625,
+      "home_loss_probability": 0.375,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-AZ-KC",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "PHI",
+      "away": "PIT",
+      "expected_home_margin": -3.2945926505108094,
+      "expected_total": 37.466535162198326,
+      "fair_home_spread": 4.231898315871098,
+      "fair_total": 42.80930375542082,
+      "home_win_probability": 0.35294117647058826,
+      "home_loss_probability": 0.6470588235294118,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-PIT-PHI",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "LAC",
+      "away": "NYJ",
+      "expected_home_margin": -1.5675729849025721,
+      "expected_total": 39.20121401971472,
+      "fair_home_spread": 2.5048786502628615,
+      "fair_total": 44.543982612937214,
+      "home_win_probability": 0.4485294117647059,
+      "home_loss_probability": 0.5514705882352942,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-NYJ-LAC",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "DEN",
+      "away": "LV",
+      "expected_home_margin": 2.0098369412665837,
+      "expected_total": 43.05573419411969,
+      "fair_home_spread": -1.0725312759062944,
+      "fair_total": 48.39850278734218,
+      "home_win_probability": 0.5294117647058824,
+      "home_loss_probability": 0.47058823529411764,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-LV-DEN",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "NYG",
+      "away": "JAX",
+      "expected_home_margin": -3.295675793393108,
+      "expected_total": 39.23047018281244,
+      "fair_home_spread": 4.232981458753398,
+      "fair_total": 44.573238776034934,
+      "home_win_probability": 0.35294117647058826,
+      "home_loss_probability": 0.6470588235294118,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-JAX-NYG",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "SF",
+      "away": "MIN",
+      "expected_home_margin": 1.469233879045083,
+      "expected_total": 37.379690160641346,
+      "fair_home_spread": -0.5319282136847936,
+      "fair_total": 42.72245875386384,
+      "home_win_probability": 0.5147058823529411,
+      "home_loss_probability": 0.4852941176470588,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": true,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-MIN-SF",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    },
+    {
+      "model": "ridge-margin-total-v0",
+      "status": "RESEARCH ONLY — NOT VALIDATED",
+      "home": "WAS",
+      "away": "CIN",
+      "expected_home_margin": -3.110897944440336,
+      "expected_total": 42.59913735666697,
+      "fair_home_spread": 4.048203609800626,
+      "fair_total": 47.94190594988947,
+      "home_win_probability": 0.36764705882352944,
+      "home_loss_probability": 0.6323529411764706,
+      "tie_probability": 0.0,
+      "training_games": 136,
+      "ridge_penalty": 20.0,
+      "neutral_site": false,
+      "adjustments": {
+        "injuries": 0,
+        "lineups": 0,
+        "weather": 0,
+        "rest_travel": 0
+      },
+      "adjustments_note": "Zero means unavailable, not no effect.",
+      "limitations": [
+        "In-sample residual distribution; not out-of-sample calibration.",
+        "No market odds or execution feasibility.",
+        "No player-prop distribution or same-game joint model.",
+        "Regularization is a predeclared research setting, not an optimized profit claim."
+      ],
+      "game_id": "2026-R11-CIN-WAS",
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "market_price": null,
+      "edge": null,
+      "clv": null
+    }
+  ],
+  "gates": [
+    {
+      "id": "G00",
+      "name": "Official provenance"
+    },
+    {
+      "id": "G01",
+      "name": "Point-in-time integrity"
+    },
+    {
+      "id": "G02",
+      "name": "Pre-registration"
+    },
+    {
+      "id": "G03",
+      "name": "Chronological validation"
+    },
+    {
+      "id": "G04",
+      "name": "Baseline improvement"
+    },
+    {
+      "id": "G05",
+      "name": "Effective sample"
+    },
+    {
+      "id": "G06",
+      "name": "Uncertainty"
+    },
+    {
+      "id": "G07",
+      "name": "Multiplicity"
+    },
+    {
+      "id": "G08",
+      "name": "Calibration"
+    },
+    {
+      "id": "G09",
+      "name": "CLV and execution"
+    },
+    {
+      "id": "G10",
+      "name": "Joint probability"
+    },
+    {
+      "id": "G11",
+      "name": "Stability"
+    },
+    {
+      "id": "G12",
+      "name": "Risk and safety"
+    }
+  ],
+  "training_games": 136,
+  "provenance": {
+    "training_source": "https://www.nfl.com/schedules/2026/REG/",
+    "schedule_source": "https://www.nfl.com/news/week-11-schedule-change",
+    "batch_retrieved_at": "2026-11-12T04:45:00+00:00",
+    "input_sha256": "f0dffce05e79b5267318c444eb50ca151390480fbd6c10965290228995fb6f33"
+  },
+  "not_a_backtest": true
+}

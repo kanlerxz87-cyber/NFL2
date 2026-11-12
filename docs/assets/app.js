@@ -37,7 +37,7 @@
     var fa = a / total, fb = b / total;
     nvOut.innerHTML =
       "<p><strong>Side A implied:</strong> " + fmtPct(a) + " &nbsp;|&nbsp; <strong>Side B implied:</strong> " + fmtPct(b) + "</p>" +
-      "<p><strong>Overround:</strong> " + fmtPct(total) + " &nbsp;|&nbsp; <strong>Vig (hold):</strong> " + fmtPct(vig) + "</p>" +
+      "<p><strong>Overround:</strong> " + fmtPct(total) + " &nbsp;|&nbsp; <strong>Overround:</strong> " + fmtPct(vig) + "</p>" +
       "<p><strong>Fair (no-vig) A:</strong> " + fmtPct(fa) + " ≈ " + fmtOdds(probToAmerican(fa)) + " &nbsp;|&nbsp; <strong>Fair B:</strong> " + fmtPct(fb) + " ≈ " + fmtOdds(probToAmerican(fb)) + "</p>" +
       "<p class='small muted'>Formulas: negative odds → |odds|/(|odds|+100); positive → 100/(odds+100). Fair = implied / overround. See lines.html methodology.</p>";
   }

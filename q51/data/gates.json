@@ -1,0 +1,73 @@
+{
+  "market": "single",
+  "eligible": false,
+  "status": "not_eligible",
+  "gates": [
+    {
+      "id": "G00",
+      "passed": false,
+      "detail": "Explicit true evidence required; missing/unknown fails."
+    },
+    {
+      "id": "G01",
+      "passed": false,
+      "detail": "Explicit true evidence required; missing/unknown fails."
+    },
+    {
+      "id": "G02",
+      "passed": false,
+      "detail": "Explicit true evidence required; missing/unknown fails."
+    },
+    {
+      "id": "G03",
+      "passed": false,
+      "detail": "Explicit true evidence required; missing/unknown fails."
+    },
+    {
+      "id": "G04",
+      "passed": false,
+      "detail": "Explicit true evidence required; missing/unknown fails."
+    },
+    {
+      "id": "G05",
+      "passed": false,
+      "detail": "Minimum policy counts; not a guarantee of skill."
+    },
+    {
+      "id": "G06",
+      "passed": false,
+      "detail": "Both cluster-bootstrap lower bounds must be positive."
+    },
+    {
+      "id": "G07",
+      "passed": false,
+      "detail": "Complete trial family and registered index required."
+    },
+    {
+      "id": "G08",
+      "passed": false,
+      "detail": "Slope plus reviewed reliability evidence required."
+    },
+    {
+      "id": "G09",
+      "passed": false,
+      "detail": "Executable CLV and net paper ROI lower bounds required."
+    },
+    {
+      "id": "G10",
+      "passed": true,
+      "detail": "Combo joint-model/settlement evidence required."
+    },
+    {
+      "id": "G11",
+      "passed": false,
+      "detail": "Stability review must be explicitly passed."
+    },
+    {
+      "id": "G12",
+      "passed": false,
+      "detail": "Paper-only and frozen drawdown cap required."
+    }
+  ],
+  "real_money_enabled": false
+}
