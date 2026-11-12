@@ -90,11 +90,11 @@ Sources used, all fetched 2026-11-12 (UTC) from the official league site:
 
 | Data | Official URL | Verification performed | Result |
 | --- | --- | --- | --- |
-| Week 10 practice-snapshot injury report (254 player rows) | https://www.nfl.com/injuries/ | Row-by-row transcription from the rendered official tables; each row keeps the official player link; participation strings kept verbatim | 254 rows verified against the official page text; **injury column blank wherever the official table left it blank** (245 of 254) |
-| Week 10 game status (Out / Questionable) | https://www.nfl.com/injuries/ and https://www.nfl.com/news/nfl-week-10-injury-report-2026-season | Cross-checked the two official pages; the article lists designations only for the 12-Nov and 15-Patriots cases | 5 designations confirmed; Sunday/Monday designations **not yet published at fetch time** → flagged |
+| Week 10 practice-snapshot injury report (254 player rows) | https://www.nfl.com/injuries/ | Row-by-row transcription from the rendered official tables; each row keeps the official player link; participation strings kept verbatim | 254 rows verified against the official page text; **injury column blank wherever the official table left it blank** (246 of 254) |
+| Week 10 game status (Out / Questionable) | https://www.nfl.com/injuries/ and https://www.nfl.com/news/nfl-week-10-injury-report-2026-season | Cross-checked the two official pages; the article lists designations only for the 12-Nov and 15-Patriots cases | 6 designations confirmed (5 Out + 1 Questionable); Sunday/Monday designations **not yet published at fetch time** → flagged |
 | 2026 standings (32 teams, W/L/T, PF/PA, streak) | https://www.nfl.com/standings/ | Both chunks transcribed; win % and net points recomputed locally and compared to the published columns | 32/32 rows recomputed clean |
 | Week 10 schedule (14 games: date, kickoff, venue, TV) | https://www.nfl.com/news/nfl-week-10-injury-report-2026-season | Schedule block of the official article vs. the official injuries page header | 14/14 games agree |
-| Depth-chart / IR / roster moves (Wed 11-Nov) | https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11 | 4 chunks, transcribed per team | 4 confirmed QB changes, 11 designated-to-return, 2 activate-from-IR, plus signings/cuts |
+| Depth-chart / IR / roster moves (Wed 11-Nov) | https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11 | 4 chunks, transcribed per team | 3 confirmed QB changes + 1 unresolved + 1 backup assignment, 13 designated-to-return, 1 activated off IR, 6 ruled-out statements, plus signings and cuts |
 
 ### Irregularities found (published on *Flagged for Review*, not blocking)
 

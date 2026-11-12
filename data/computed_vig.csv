@@ -1,0 +1,6 @@
+market|price|implied_prob|two_sides_sum|overround_pct|no_vig_prob|read
+both sides -110|-110 / -110|0.5238 / 0.5238|1.0476|4.76|0.5000 / 0.5000|a bettor must clear 4.55% to break even on this pair
+both sides -115|-115 / -115|0.5349 / 0.5349|1.0698|6.98|0.5000 / 0.5000|a bettor must clear 6.52% to break even on this pair
+-105 / -115|-105 / -115|0.5122 / 0.5349|1.0471|4.71|0.4892 / 0.5108|a bettor must clear 4.50% to break even on this pair
+both sides -120|-120 / -120|0.5455 / 0.5455|1.0909|9.09|0.5000 / 0.5000|a bettor must clear 8.33% to break even on this pair
+-110 / -130|-110 / -130|0.5238 / 0.5652|1.0890|8.90|0.4810 / 0.5190|a bettor must clear 8.17% to break even on this pair

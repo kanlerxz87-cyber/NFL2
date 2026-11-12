@@ -1,0 +1,6 @@
+case|p_true|ev_per_bet_units|sd_units|n_95pct_confidence|n_95pct_80pct_power|bets_to_75pct_surely_ahead|weeks_to_power_target_15_per_week|read
+breakeven at -110|0.5238|+0.0000|0.9535|never|never|never|n/a|exactly breakeven: no sample size, however large, makes a zero edge provable
+thin 53%|0.5300|+0.0118|0.9528|17,590|40,205|2,958|2680|even at this edge, 2,958 bets to be 75% likely to be up
+genuine 55%|0.5500|+0.0500|0.9498|976|2,232|165|149|even at this edge, 165 bets to be 75% likely to be up
+strong 57%|0.5700|+0.0882|0.9451|311|711|53|47|even at this edge, 53 bets to be 75% likely to be up
+fantasy 60%|0.6000|+0.1455|0.9353|112|256|19|17|even at this edge, 19 bets to be 75% likely to be up

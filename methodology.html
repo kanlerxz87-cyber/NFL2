@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verification Method · NFL2</title>
+<meta name="description" content="The rules this project will not bend, the checks that run automatically, and exactly what the words "verified", "corroborated" and "unverified" mean here.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="kind-program">
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> <span>Decision dashboard</span></a>
+  <div class="asof">Data fetched <strong>2026-11-12 04:45 UTC</strong> · official league sources only · <a href="methodology.html">how this is verified</a></div>
+</header>
+<div class="shell">
+  <aside class="side">
+    <div class="navgroup"><span>Overview</span><a class="" href="index.html">Dashboard</a><a class="" href="executive-summary.html">Executive Summary</a><a class="" href="requirements.html">Requirements</a><a class="" href="roadmap.html">Build Plan &amp; Roadmap</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Open Questions</a><a class="" href="suggestions.html">Suggestion Register</a><a class="" href="flagged-for-review.html">Flagged for Review</a></div><div class="navgroup"><span>Origination</span><a class="" href="line-origination.html">Originate Our Own Lines</a><a class="" href="signals.html">Signal Catalogue</a><a class="" href="correlation.html">Correlation</a><a class="" href="bet-types.html">Bet Types</a><a class="" href="skill-vs-luck.html">Removing Luck</a></div><div class="navgroup"><span>Competition</span><a class="" href="strategies.html">Strategy Registry</a><a class="" href="leaderboard.html">Leaderboard &amp; Rewards</a><a class="" href="validation-gates.html">Validation Gates</a></div><div class="navgroup"><span>Data</span><a class="" href="injuries.html">Week 10 Injury Report</a><a class="" href="depth-impact.html">Depth &amp; Deficiencies</a><a class="" href="league-data.html">Standings &amp; Schedule</a><a class="" href="data-dictionary.html">Data Dictionary</a></div><div class="navgroup"><span>Governance</span><a class="on" href="methodology.html">Verification Method</a><a class="" href="sources.html">Source Registry</a></div>
+    <div class="sidefoot"><a href="flagged-for-review.html">16 open flags</a> · <a href="sources.html">26 sources</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge program">Policy</span>
+      <h1>Verification Method</h1>
+      The rules this project will not bend, the checks that run automatically, and exactly what the words "verified", "corroborated" and "unverified" mean here.
+    </div>
+    <nav class="toc"><span>On this page</span><a href="#the-rules">The rules</a><a href="#verification-vocabulary-frozen">Verification vocabulary (frozen)</a><a href="#what-actually-runs">What actually runs</a><a href="#reproducing-the-audit">Reproducing the audit</a></nav>
+    <div class="body"><h2 id="the-rules">The rules</h2>
+<ol>
+<li><strong>Every row that asserts a fact about the world cites an official league page.</strong> The generator refuses to build a table whose rows do not carry a resolvable source id, so this is not a convention that can be forgotten — it is a build failure.</li>
+<li><strong>Tier A = official.</strong> Only <code>nfl.com</code> (including <code>operations.nfl.com</code>) counts as a system-of-record source. Third-party sites — even accurate ones — are used for two things only: as a discrepancy exhibit, or as a pointer to a claim we then refuse to publish until the official text is found.</li>
+<li><strong>A blank is a blank.</strong> Unknown values are stored as an empty field and rendered as <code>not published</code>. Never <code>0</code>, never <code>N/A</code>, never "likely", never the value a third party reported.</li>
+<li><strong>No inference across sources.</strong> If the official table leaves an injury column empty and a prose article on the same site mentions an injury for a player with the same name, we do not merge them. Merging would be an assertion that the row and the sentence describe the same event, and we cannot verify that per row.</li>
+<li><strong>Recompute, then trust.</strong> Anything arithmetic in the published data is recomputed from the inputs — winning percentage, net points, league-wide balance — and a mismatch stops the build.</li>
+<li><strong>Verbatim first.</strong> Names, positions and status strings are stored as published, including two typos in the official source ("limted" twice), which are annotated rather than corrected.</li>
+<li><strong>Timeliness is stated, not implied.</strong> Every page shows the fetch time of the underlying pull, and no page claims to be live.</li>
+<h2 id="verification-vocabulary-frozen">Verification vocabulary (frozen)</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Word</th><th>Means</th><th>Never means</th></tr></thead><tbody><tr><td>verified</td><td>transcribed from a tier-A official page <strong>and</strong> passed a recomputation or cross-page check</td><td>"I believe this is right"</td></tr><tr><td>corroborated</td><td>two independent official pages say the same thing</td><td>an official page plus a third-party page</td></tr><tr><td>computed</td><td>arithmetic performed in-repo on verified rows, with the formula published</td><td>a model output</td></tr><tr><td>design</td><td>a proposal written in this session, with no measurement behind it</td><td>a finding</td></tr><tr><td>unverified</td><td>anything else, always with a flag link</td><td>a value we should have filled in anyway</td></tr></tbody></table></div>
+<h2 id="what-actually-runs">What actually runs</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Check</th><th>Where</th><th>What it catches</th></tr></thead><tbody><tr><td>Row-has-source enforcement</td><td><code>tools/build_site.py</code></td><td>a table row without a resolvable source id fails the build</td></tr><tr><td>URL-in-cell enforcement</td><td><code>tools/build_site.py</code></td><td>a flag row whose source cell has no link fails the build</td></tr><tr><td>Field-count enforcement</td><td><code>tools/build_site.py</code></td><td>a CSV row with a shifted column count fails the build — this caught six real defects in this dataset during this session</td></tr><tr><td>Standings reconciliation</td><td><code>tools/verify.py</code></td><td>pct formula, net points, ΣPF = ΣPA, Σnet = 0, W = L across 32 clubs</td></tr><tr><td>Injury-row integrity</td><td><code>tools/verify.py</code></td><td>valid practice codes, valid status codes, known game ids, unique player-per-game rows, blank census</td></tr><tr><td>Depth-log integrity</td><td><code>tools/verify.py</code></td><td>every change type in the controlled vocabulary, every src id resolving to an official row</td></tr><tr><td>Link and asset audit</td><td><code>tools/check_site.py</code></td><td>broken internal links, missing pages, pages not in navigation, non-official hosts used as system-of-record</td></tr><tr><td>CI</td><td><code>.github/workflows/validate.yml</code></td><td>the three above must pass on every push and pull request</td></tr></tbody></table></div>
+<h2 id="what-verification-did-not-cover-read-this-before-reusing-the-data">What verification did <em>not</em> cover — read this before reusing the data</h2>
+<ul>
+<li><strong>Point-in-time completeness.</strong> The injury hub was fetched once. It is a page that changes three times in a week; this snapshot is a faithful copy of one moment, not the week's history (FL-09).</li>
+<li><strong>Roster membership.</strong> We spot-checked one club's roster page, one chunk deep (FL-14). We did not verify all 32 rosters, so "player X is on team Y" is only as good as the hub's own table.</li>
+<li><strong>Headline-only rows.</strong> Three depth rows rest on an article headline without the body fetched (FL-13). They are marked and they feed no number.</li>
+<li><strong>No price data.</strong> Nothing on this site is a market statement of any kind (FL-10).</li>
+<li><strong>Egress limits.</strong> The sandbox blocks outbound access to the league from CI, so refresh is a deliberate operation here, not a background service (FL-11).</li>
+<h2 id="reproducing-the-audit">Reproducing the audit</h2>
+<pre><code>python3 tools/build_site.py &amp;&amp; python3 tools/verify.py &amp;&amp; python3 tools/check_site.py</code></pre>
+<p>The generator is deterministic: same inputs, same bytes out. If it fails, that is the intended behaviour — the site is not allowed to publish a table it cannot vouch for.</p></div>
+    <footer class="pagefoot">
+      <a class="pager" href="data-dictionary.html">&larr; Data Dictionary</a>
+      <a class="pager right" href="sources.html">Source Registry &rarr;</a>
+      <div class="foot-meta">Rendered from <code>data/</code> by <code>tools/build_site.py</code> — the build is byte-deterministic, so this page is exactly what the audited data says · <a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a></div>
+    </footer>
+  </main>
+</div>
+</body></html>
