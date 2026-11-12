@@ -1,5 +1,5 @@
 {
- "built_utc": "2026-11-12T04:53:56Z",
+ "built_utc": "2026-11-12T05:15:02Z",
  "pages": [
   "analysis.html",
   "flagged.html",
@@ -15,17 +15,17 @@
   "teams.html"
  ],
  "bytes": {
-  "index.html": 8255,
-  "results.html": 62838,
-  "standings.html": 25546,
-  "teams.html": 72412,
-  "injuries.html": 114340,
-  "analysis.html": 31637,
-  "strategies.html": 17771,
-  "method.html": 18010,
-  "sources.html": 18945,
-  "questions.html": 25969,
-  "suggestions.html": 19431,
-  "flagged.html": 14503
+  "index.html": 10567,
+  "results.html": 63167,
+  "standings.html": 25875,
+  "teams.html": 72741,
+  "injuries.html": 123842,
+  "analysis.html": 39900,
+  "strategies.html": 21567,
+  "method.html": 23136,
+  "sources.html": 22653,
+  "questions.html": 27072,
+  "suggestions.html": 20192,
+  "flagged.html": 19140
  }
 }
