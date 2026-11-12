@@ -1,0 +1,7 @@
+id|pair|n|pearson_r|recomputed_value|match|source
+AL-02|Home points vs away points|136|0.076045|0.076045|yes|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv
+AL-03|Home points vs game total|136|0.680777|0.680777|yes|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv
+AL-04|Away points vs game total|136|0.782139|0.782139|yes|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv
+AL-05|Game total vs absolute margin|136|-0.016221|-0.016221|yes|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv
+AL-06|Home margin vs game total|136|-0.160795|-0.160795|yes|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv
+AL-07|Home points vs home win|136|0.459735|0.459735|yes|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv

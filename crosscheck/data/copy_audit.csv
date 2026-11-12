@@ -1,0 +1,9 @@
+id|tree|page|published_text|measured_value|result|recommended_fix|source
+CA-01|analytics/|analytics/flagged.html|"Game status for 243 of 254 rows"|248 of 254 rows have no status|wrong|Change to 248 of 254, which the root tree publishes.|https://www.nfl.com/injuries/league/2026/REG10
+CA-02|analytics/|analytics/questions.html|"243 of 254"|248 of 254|wrong|Same correction as CA-01.|https://www.nfl.com/injuries/league/2026/REG10
+CA-03|/ (root)|injuries.html|"All 254 rows the league published for Week 10"|254 was what the hub showed at 04:45Z; the page now shows 279|needs-a-date|Add "as fetched 2026-11-12 04:45 UTC" to the phrase, or re-pull. The number is right for the instant, wrong for today.|https://www.nfl.com/injuries/
+CA-04|/ (root)|injuries.html|"six rows in 254 carried one"|6|correct|none|https://www.nfl.com/injuries/
+CA-05|/ (root)|injuries.html|"SEA, CIN, LAC, BAL published no rows"|SEA and CIN now publish rows; LAC and BAL still do not|correct-at-fetch|Keep the sentence but date it. The live page still shows "No Injuries Reported" for LAC and BAL only.|https://www.nfl.com/injuries/
+CA-06|README.md|paragraph on s53|"15 empirical 2026 correlations"|15|correct|none|https://github.com/kanlerxz87-cyber/NFL2/tree/main/data
+CA-07|README.md|paragraph on analytics|"12-club 1st-4th string depth cascades"|The analytics page itself says 12 clubs and 18 cascades|correct|none — but "club-verified" would be more accurate than "official"|https://www.nfl.com/teams/new-england-patriots/depth-chart/
+CA-08|README.md|line-origination section|"Spread MAE 10.25 vs the market's 9.94"|Not reproducible from the repository|unverifiable-here|Label it as that session's own backtest output until a price archive is committed.|https://github.com/kanlerxz87-cyber/NFL2/tree/main/site

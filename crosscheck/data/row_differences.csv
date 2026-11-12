@@ -1,0 +1,19 @@
+id|club|player|field|value_in_repo|value_live|class|explanation|action|source
+RD-01|IND|A.J. Haulcy|practice|D|F|stale|The league updated Indianapolis participation after the snapshot was taken. Direction is favourable (player upgraded from did-not-practice to full).|Re-pull before pricing any IND market|https://www.nfl.com/injuries/
+RD-02|IND|Charvarius Ward|practice|D|F|stale|Same filing: upgraded from did-not-practice to full participation.|Re-pull before pricing any IND market|https://www.nfl.com/injuries/
+RD-03|IND|Jerry Tillery|practice|L|D|lapsed|Downgraded from limited to did-not-practice.|Do not present the old cell as current|https://www.nfl.com/injuries/
+RD-04|IND|Jonathan Taylor|practice|L|F|lapsed|Upgraded from limited to full participation.|Do not present the old cell as current|https://www.nfl.com/injuries/
+RD-05|SEA|Sam Darnold|player row|(row absent)|present (D)|stale|The Seattle block was empty on the official hub when the snapshot was taken; it now lists 15 players including Darnold. This is the exact case FL-01 flagged.|The empty-club read must stay "missing", never "healthy"|https://www.nfl.com/injuries/
+RD-06|SEA|14 further players|player rows|(rows absent)|present|stale|Fourteen more Seattle players are now listed. Total Seattle rows live: 15.|Ingest per club rather than re-scraping the whole page|https://www.nfl.com/injuries/
+RD-07|CIN|Jonathan Allen|player row|(row absent)|present (D)|stale|The Cincinnati block was also empty at snapshot time and now lists four players.|Same treatment as Seattle|https://www.nfl.com/injuries/
+RD-08|CIN|Kyle Dugger|player row|(row absent)|present (D)|stale|See RD-07.|Same treatment as Seattle|https://www.nfl.com/injuries/
+RD-09|CIN|Dylan Fairchild|player row|(row absent)|present (L)|stale|See RD-07.|Same treatment as Seattle|https://www.nfl.com/injuries/
+RD-10|CIN|DJ Turner II|player row|(row absent)|present (L)|stale|See RD-07.|Same treatment as Seattle|https://www.nfl.com/injuries/
+RD-11|SF|Christian McCaffrey|player row|(row absent)|present (D)|stale|San Francisco gained two rows in the interval between the two fetches.|Re-pull before pricing SF|https://www.nfl.com/injuries/
+RD-12|SF|Dre Greenlaw|player row|(row absent)|present (D)|stale|See RD-11.|Re-pull before pricing SF|https://www.nfl.com/injuries/
+RD-13|SF|(club block)|row count|10|12|count|San Francisco is now 12 rows, up from 10.|Recompute availability load|https://www.nfl.com/injuries/
+RD-14|JAX|BJ Green II|player row|(row absent)|present (F)|stale|Jacksonville is now 11 rows, up from 10.|Re-pull|https://www.nfl.com/injuries/
+RD-15|AZ|Andrew Wingard|player row|(row absent)|present (L)|stale|Arizona is now 14 rows, up from 13.|Re-pull|https://www.nfl.com/injuries/
+RD-16|IND|CJ Allen|player row|(row absent)|present (F)|stale|Indianapolis is now 13 rows, up from 11.|Re-pull|https://www.nfl.com/injuries/
+RD-17|IND|Grover Stewart|player row|(row absent)|present (D)|stale|See RD-16.|Re-pull|https://www.nfl.com/injuries/
+RD-18|LV|(club block)|row count|4|4|none|Only club whose block is short in both snapshots, and the live block is the same four players.|none|https://www.nfl.com/injuries/
