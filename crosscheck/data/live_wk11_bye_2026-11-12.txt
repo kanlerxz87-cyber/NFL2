@@ -1,0 +1,2 @@
+bye_week11: ATL,CLE,GB,LAR,NE,SEA
+bye_week10: CHI,DEN,PHI,TB

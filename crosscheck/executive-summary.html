@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary · NFL2 crosscheck</title>
+<meta name="description" content="The state of the project as measured today: what is verified, what is stale, what blocks a decision, and the three decisions that unblock the most.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> <span>Crosscheck · session 2063673b</span></a>
+  <div class="asof">Official league sources fetched <strong>2026-11-12 22:35 UTC</strong> · every row carries its source · blanks are labelled</div>
+</header>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Start</span><a class="" href="index.html">Overview</a><a class="on" href="executive-summary.html">Executive Summary</a><a class="" href="method.html">How this was verified</a></div><div class="navgroup"><span>Verification</span><a class="" href="recheck.html">Live re-check, row by row</a><a class="" href="differences.html">What changed since the snapshot</a><a class="" href="schema.html">Files, counts and checks</a></div><div class="navgroup"><span>Repo audit</span><a class="" href="tree-claims.html">Cross-tree claim audit</a><a class="" href="copy-audit.html">Copy that aged</a><a class="" href="lineage.html">Number lineage &amp; recomputation</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Questions that block a decision</a><a class="" href="information.html">What we have / lack</a><a class="" href="suggestions.html">Suggestions — pick a path</a><a class="" href="decision-guide.html">How to choose</a></div><div class="navgroup"><span>Flagged</span><a class="" href="flagged.html">Flagged for review</a></div>
+    <div class="sidefoot">Sibling trees are evidence, not sources.<br><a href="flagged.html">Flagged for review</a> · <a href="../index.html">Root dashboard</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge info">Verified audit</span>
+      <h1>Executive summary</h1>
+      <p class="lead">The state of the project as measured today: what is verified, what is stale, what blocks a decision, and the three decisions that unblock the most.</p>
+    </div>
+    <div class="cardgrid"><div class="card ok"><div class="k">Live rows re-checked</div><div class="v">279</div><div class="s">Week 10 injury table, fetched 2026-11-12 22:35 UTC</div></div><div class="card ok"><div class="k">Rows still identical</div><div class="v">254</div><div class="s">player, club, position, practice joined on name</div></div><div class="card warn"><div class="k">Rows added since snapshot</div><div class="v">25</div><div class="s">published now, absent from this repo</div></div><div class="card warn"><div class="k">Practice cells that moved</div><div class="v">4</div><div class="s">same player, different participation</div></div><div class="card ok"><div class="k">Standings rows exact</div><div class="v">32 / 32</div><div class="s">all seven fields, all 32 clubs</div></div><div class="card ok"><div class="k">Recomputed coefficients</div><div class="v">6 / 6</div><div class="s">independent recomputation from the game log</div></div></div>
+<h2>1. What was verified today, and against what</h2>
+<p>Every claim below was checked against a live official league page on 12 November 2026. The sources are linked in each table on the pages that follow.</p>
+<div class="twrap"><table><thead><tr><th>Dataset</th><th>Committed here</th><th>Live today</th><th>Result</th></tr></thead><tbody><tr><td>Week 10 injury table</td><td>254 rows</td><td>279 rows</td><td><span class="tag warn">superseded</span></td></tr><tr><td>Week 10 standings</td><td>32 clubs</td><td>32 / 32 exact</td><td><span class="tag ok">verified</span></td></tr><tr><td>Week 10 schedule</td><td>14 games</td><td>14 / 14 exact</td><td><span class="tag ok">verified</span></td></tr><tr><td>Week 11 schedule</td><td>13 games</td><td>13 / 13 exact on opponent, date and kickoff</td><td><span class="tag ok">verified</span></td></tr><tr><td>Game log, weeks 1-9</td><td>136 results</td><td>13 spot-checked individually, 1 discrepancies</td><td><span class="tag warn">partial</span></td></tr><tr><td>Official depth-chart path</td><td>flagged as absent</td><td>returns the league 404 page</td><td><span class="tag ok">verified</span></td></tr></tbody></table></div>
+<h2>2. The one number that changes how you read this site</h2>
+<p>The repository's Week 10 injury figures were captured at 04:45 UTC. The same page, re-read at 22:35 UTC, carried <strong>25 more players</strong> and had <strong>4 changed participation cells</strong>. Two clubs that read "No Injuries Reported" in the morning — Seattle and Cincinnati — publish full blocks in the evening. Nothing was mis-transcribed. The snapshot simply went stale inside one day, and no page in the repository carried the capture time prominently enough for a reader to notice.</p>
+<p>That is why the first suggestion is not a model. It is a timestamp that the build refuses to omit.</p>
+
+<h2>3. What the repository can already prove</h2>
+<ul>
+<li><strong>Points are a closed system.</strong> Adding the 32 clubs' points for gives 6,246; points against gives 6,246. The game log reconciles to the standings on record, points and byes.</li>
+<li><strong>Home-field advantage is not visible in this season's outcomes</strong>: 67 home wins, 68 away wins, 1 tie across 136 games.</li>
+<li><strong>Team scores are close to independent within a game</strong>: home versus away points correlates at +0.076 over 136 games, recomputed here to six decimals and identical to the value published by another tree.</li>
+<li><strong>All 6 published game-level correlation coefficients recompute exactly</strong> from the committed game log. That is the strongest form of verification in the repository: an outsider can repeat it.</li>
+</ul>
+
+<h2>4. What the repository cannot prove, and should stop implying</h2>
+<ul>
+<li><strong>Any edge over a price.</strong> No price is committed. The one backtest comparison that exists cannot be reproduced from the repository.</li>
+<li><strong>Any depth rank.</strong> No league-wide depth chart exists. Club sites cover roughly a third of the league.</li>
+<li><strong>Any prop or parlay correlation.</strong> Team-level outcome correlation is measurable; player-level and same-game pricing need data that is not here.</li>
+<li><strong>Any ranked strategy.</strong> Zero settled bets exist across every strategy in every tree.</li>
+</ul>
+
+<h2>5. The three decisions that unblock the most</h2>
+<div class="twrap"><table><thead><tr><th>Order</th><th>Decision</th><th>Unblocks</th><th>Question</th></tr></thead><tbody><tr><td>1</td><td>Choose a price source, a capture timestamp and a licence</td><td>every edge, every CLV, 9 of 14 gates, the whole competition</td><td><a href="questions.html">XQ-01</a></td></tr><tr><td>2</td><td>Adopt the official game book as the availability and lineup record</td><td>the backup-replacement requirement, replacement cost, props baselines</td><td><a href="questions.html">XQ-02</a></td></tr><tr><td>3</td><td>Freeze the skill-versus-luck pass rule before more data arrives</td><td>any defensible leaderboard, any reward</td><td><a href="questions.html">XQ-13</a></td></tr></tbody></table></div>
+<h2>6. Flagged for review</h2>
+<p>0 items could not be verified to the standard this build sets, and 1 were verified as errors. They are published on the <a href="flagged.html">Flagged for review</a> page with their sources. None of them blocks publication; all of them change what a number means.</p>
+
+    <footer class="pagefoot"><a class="pager" href="index.html">&larr; Overview</a><a class="pager right" href="method.html">How this was verified &rarr;</a>
+      <div class="foot-meta">Generated by <code>crosscheck/build.py</code> from <code>crosscheck/data/*.csv</code>. Read the <a href="method.html">verification method</a>.</div>
+    </footer>
+  </main>
+</div>
+</body></html>
