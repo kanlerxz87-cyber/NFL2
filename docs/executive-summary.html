@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive Summary — NFL2</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">NFL<span>2</span> Dashboard</div>
+<nav class="nav"><a href="index.html">Dashboard</a><a class="active" href="executive-summary.html">Executive Summary</a><a href="teams.html">Teams</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries</a><a href="depth-charts.html">Depth Charts</a><a href="defense.html">Defense</a><a href="stats.html">Stats</a><a href="lines.html">Own Lines</a><a href="strategies.html">Leaderboard</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Q&amp;A Register</a><a href="methodology.html">Methodology</a><a href="flagged.html">Flagged ⚠</a><a href="sources.html">Sources</a></nav></div></header>
+<main class="wrap">
+<h1>Executive Summary</h1>
+<p class="muted">Snapshot 2026-11-12 · 2026 REG season · All factual claims below link to their official source. Analysis is labelled as analysis.</p>
+
+<h2>1 · What this project is</h2>
+<p>NFL2 collects, organizes, and analyzes NFL data from official sources to support better decisions, and builds toward <strong>originating our own fair lines</strong> with a <strong>skill-based strategy leaderboard</strong> (single bets, parlays, player props) where luck is systematically removed via validation gates, correlation accounting, and closing-line value (CLV). This page summarizes what is verified today, what is missing, and what must be decided before any line or strategy goes live.</p>
+
+<h2>2 · What is verified today <span class="badge b-verified">VERIFIED</span></h2>
+<div class="table-wrap"><table><thead><tr><th>Finding</th><th>Detail</th><th>Source</th></tr></thead><tbody>
+<tr><td>League structure</td><td>32 teams · AFC/NFC · 8 divisions (4 teams each)</td><td><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com Division Standings</a></td></tr>
+<tr><td>Standings (2026 REG)</td><td>All 32 rows transcribed. Leaders: BUF 7-1, SF 7-1; LAC 0-8 last. Full table on Standings page.</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com League Standings</a></td></tr>
+<tr><td>Week 11 schedule</td><td>13 games, Nov 19–23. TNF IND@HOU; SNF MIN@SF (Mexico City); MNF CIN@WAS. 6 bye teams as published.</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-11">NFL.com Week 11 Schedule</a></td></tr>
+<tr><td>Schedule change</td><td>JAX@NYG → 4:25pm ET; PIT@PHI → 1pm ET (both CBS), per Nov 9 release.</td><td><a href="https://media.nfl.com/news-and-releases/week-11-schedule-change--jaguars-giants-to-4-25-p-m--et--steeler">NFL Media Release</a></td></tr>
+<tr><td>Player leaders</td><td>Passing: Jordan Love 2,618 yds · Rushing: Bijan Robinson 880 yds · Receiving (rec): Trey McBride 73 · Tackles: Alex Singleton 107</td><td><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc">NFL.com Stats</a></td></tr>
+<tr><td>Defensive totals</td><td>Most PA: LV 268, AZ 255, IND 249 · Fewest PA: MIN 116, JAX 121, KC 143 · Most rush yds allowed: LV 1,361 · Most pass yds allowed: DET 2,265</td><td><a href="https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all">NFL.com Defense Stats</a></td></tr>
+<tr><td>Injury snapshot</td><td>Nov 11 roundup (Week 10): Beck starts for AZ; Watson starts for CLE; Cousins traded to MIN (starter undecided); Darnold out; Jacobs out (finger surgery).</td><td><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11">NFL.com News Roundup</a></td></tr>
+</tbody></table></div>
+
+<h2>3 · Key analysis (derived from verified inputs) <span class="badge b-info">DERIVED</span></h2>
+<ul class="tight">
+<li><strong>Defensive deficiencies are concentrated:</strong> LV, AZ, and IND allow the most points; LV/DAL/IND allow the most rushing yards; DET/NE/DEN allow the most passing yards. Full ranked tables + per-game derivations on the <a href="defense.html">Defense page</a>. These are <em>totals-based</em> signals — EPA/success-rate analysis (Q-15) is still needed before acting on them.</li>
+<li><strong>Offense–defense mismatch watch:</strong> JAX (+108 net, 121 PA) and SF (+79) combine elite defense with strong offense; LAC (−98), MIA (−74), PHI (−73) are negative on both sides. See <a href="standings.html">Standings</a> + <a href="defense.html">Defense</a>.</li>
+<li><strong>QB uncertainty is the #1 model risk:</strong> At least 3 teams had QB news in the Nov 11 snapshot alone (AZ, CLE, MIN), plus SEA (Darnold out). Backup-QB lists conflict across sources (F-03) — depth-chart page marks them UNVERIFIED until club-confirmed.</li>
+</ul>
+
+<h2>4 · What is NOT known (decision blockers) <span class="badge b-unverified">UNVERIFIED / TBD</span></h2>
+<div class="table-wrap"><table><thead><tr><th>Blocker</th><th>Why it blocks decisions</th><th>QIA</th></tr></thead><tbody>
+<tr><td>Week 11 injury statuses</td><td>Nov 11 snapshot is Week 10; statuses change daily. Any Week 11 line built on it would be stale.</td><td><a href="questions.html">Q-01</a></td></tr>
+<tr><td>Market odds (open/close)</td><td>No odds feed collected → no CLV, no edge measurement, no fair-vs-market comparison.</td><td><a href="questions.html">Q-03</a></td></tr>
+<tr><td>Play-by-play / EPA / snaps</td><td>Totals-only model cannot separate efficiency, pace, and garbage-time effects.</td><td><a href="questions.html">Q-11, Q-15</a></td></tr>
+<tr><td>Empirical correlations</td><td>Parlay/prop joint probabilities unknown; naive multiplication would misprice SGPs.</td><td><a href="questions.html">Q-07</a></td></tr>
+<tr><td>Backtest results</td><td>Zero graded bets exist → leaderboard empty; no strategy has passed any gate.</td><td><a href="strategies.html">Leaderboard</a></td></tr>
+<tr><td>Bankroll / staking / legal</td><td>No approved risk budget or legal review → no real-money use.</td><td><a href="questions.html">Q-08, Q-17</a></td></tr>
+</tbody></table></div>
+
+<h2>5 · Own-lines + leaderboard status</h2>
+<ul class="tight">
+<li><strong>Lines:</strong> Methodology, formulas (implied prob, no-vig, Kelly), and a working <em>illustrative</em> calculator are live on the <a href="lines.html">Own Lines page</a>. Week 11 fair lines are <span class="badge b-tbd">TBD</span> — publishing uncalibrated numbers as predictions would violate the no-hallucination rule.</li>
+<li><strong>Leaderboard:</strong> Competition design (single / parlay / props, gates G0–G7, correlation rules, skill-vs-luck scoring) is live on the <a href="strategies.html">Leaderboard page</a>. It is <strong>empty by design</strong> until strategies submit pre-registered, timestamped bets and pass gates.</li>
+</ul>
+
+<h2>6 · Decisions needed from reviewer (in order)</h2>
+<ol>
+<li><strong>Approve/reject suggestions S-01…S-12</strong> on the <a href="suggestions.html">Suggestions board</a> (esp. odds feed S-01, play-by-play S-02, staking cap S-12).</li>
+<li><strong>Answer QIA Q-01…Q-20</strong> on the <a href="questions.html">Q&amp;A Register</a> — Q-01 (fresh injuries), Q-03 (odds feed), Q-08 (bankroll) are the critical path.</li>
+<li><strong>Review flagged items F-01…F-09</strong> on the <a href="flagged.html">Flagged page</a> and request changes if needed.</li>
+<li>Only then: calibrate the model, publish Week 11 fair lines, and open leaderboard submissions.</li>
+</ol>
+<div class="callout"><strong>Bottom line:</strong> The foundation (verified standings/schedule/stats + honest TBDs) is solid. The next step is <em>data + decisions</em>, not more predictions. No line, tip, or strategy on this site should be acted on until its QIA blockers are cleared.</div>
+</main>
+<footer><div class="footer-inner"><a href="index.html">← Dashboard</a> · <a href="sources.html">Sources</a> · <a href="flagged.html">Flagged for Review</a></div></footer>
+<script src="assets/app.js"></script>
+</body></html>
