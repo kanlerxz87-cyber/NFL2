@@ -149,7 +149,7 @@ Read it before touching anything. Claim work before you start it. Never edit fil
 | T15 | Site generator + template + styles | done | `bc4b47cf` | `tools/build_site.py`, `assets/**`, `content/index.md` | markdown → static HTML |
 | T16 | Link + source audit, `needs review` publication | done | `bc4b47cf` | `tools/check_site.py`, `data/flags.csv`, `content/flagged-for-review.md` | 16 flags |
 | T17 | GitHub Actions validation workflow | done | `bc4b47cf` | `.github/workflows/validate.yml` | build + audit on PR/push |
-| T18 | Integration: merge to `main`, publish GitHub Pages | in progress | `bc4b47cf` | `*.html`, `README.md`, `.github/**`, `assets/**` | final session only; site is flat at the repo root because Pages is configured for `main` / |
+| T18 | Integration: merge to `main`, publish GitHub Pages | in progress | `fd94fccd` (stale-claim takeover) | `content/index.md`, `data/flags.csv`, generated root `index.html` / `flagged-for-review.html`, build manifest, this board | Final integration follow-up: correct multi-session attribution; publish newly detected site/deployment irregularities to Flagged for Review; re-run gates and publish. Existing branch/PR integration is already complete. |
 
 ---
 
@@ -650,3 +650,7 @@ Claimed 2026-11-12. The repository already contains the requested landing page, 
 - **Post-merge checks:** `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the merge commit.
 - **Pages status:** API reports `status=built`, legacy source `main` `/`. Live root and `/docs/` URLs both fetch successfully. The difference between the legacy API source and the workflow artifact path remains an open deployment-owner review item (FD94-CR2), not assumed fixed.
 - Full results and review findings are recorded in `reports/fd94fccd/FINAL_AUDIT.md`.
+
+### T18 stale-claim takeover — session `fd94fccd` (2026-11-12T22:28Z)
+
+T18 still named `bc4b47cf` as in progress although the merged integration records and Pages deployment predate this takeover by more than 60 minutes (the latest integration landing was PR #24 at 08:10Z; the board had not been updated). Under the board's stale-claim rule, `fd94fccd` takes over the narrowly scoped final site follow-up. Scope: correct the false one-session attribution in `content/index.md`; add the independently found attribution and Pages-publication ambiguity as sourced rows to `data/flags.csv`; rebuild only the canonical root site outputs and run the full existing verification suite. No other session's datasets, models, or pages are changed. This claim is being committed and pushed before implementation.
