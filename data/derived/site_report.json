@@ -2,7 +2,7 @@
  "checks": [
   {
    "id": "H0",
-   "name": "All 12 pages exist",
+   "name": "All 18 pages exist",
    "ok": true,
    "detail": "missing=[]"
   },
@@ -68,7 +68,7 @@
   },
   {
    "id": "H11",
-   "name": "Every factual table row carries a source link (42 tables fully linked; 11 explanation-only tables exempt by explicit decision)",
+   "name": "Every factual table row carries a source link (59 tables fully linked; 11 explanation-only tables exempt by explicit decision)",
    "ok": true,
    "detail": ""
   },
@@ -83,16 +83,22 @@
  "total": 13,
  "pages": [
   "index.html",
+  "executive-summary.html",
   "results.html",
+  "schedule.html",
   "standings.html",
   "teams.html",
   "injuries.html",
+  "depth-deficiencies.html",
+  "lines-lab.html",
   "analysis.html",
+  "correlations.html",
   "strategies.html",
   "method.html",
   "sources.html",
   "questions.html",
   "suggestions.html",
+  "repo-audit.html",
   "flagged.html"
  ]
 }

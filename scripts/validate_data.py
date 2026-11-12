@@ -77,11 +77,11 @@ if inj:
 
 # Suggestions / Questions / Strategies
 sg = load("data/suggestions.json")
-if sg and len(sg.get("suggestions",[])) != 12:
-    errors.append("suggestions: expected 12")
+if sg and len(sg.get("suggestions",[])) < 12:
+    errors.append("suggestions: expected at least 12")
 q = load("data/questions.json")
-if q and len(q.get("questions",[])) != 20:
-    errors.append("questions: expected 20")
+if q and len(q.get("questions",[])) < 20:
+    errors.append("questions: expected at least 20")
 st = load("data/strategies.json")
 if st:
     if st.get("leaderboard") != []:

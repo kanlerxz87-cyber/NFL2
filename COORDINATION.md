@@ -355,6 +355,24 @@ Their code and data were neither deleted nor restated: `pipeline/**`, `site/**`,
 
 ---
 
+## Session `eaba7863` (`arena/eaba7863-nfl2`) — 12-Club 1st–4th String Cascades, Reproducible Correlations (n=32), Full-Repo Row-Source Audit & Cross-Session Integration (`analytics/`)
+
+**Branch:** `arena/eaba7863-nfl2` (active single-branch session per Arena platform rule)
+**All prior sessions preserved 100% intact:**
+- Root `/` (`bc4b47cf`), `review/` (`01b698ef`), `portal/` (`e143a7ca`), `site/` (`63ac21e9`), `docs/` (`85d79210`), `archive/session-009ec582/` (`009ec582` / `194db560`).
+- `eaba7863` publishes its unified 18-page verified analytics dashboard under [`analytics/index.html`](analytics/index.html) (`analytics/depth-deficiencies.html`, `analytics/correlations.html`, `analytics/repo-audit.html`, `analytics/executive-summary.html`, `analytics/lines-lab.html`, `analytics/schedule.html`, plus all 12 core pages) and cross-links every sibling tree.
+
+| ID | Task | Status | Owner | Files Touched | Official Sources & Verification | Irregularities |
+|---|---|---|---|---|---|---|
+| E-01 | Line-by-line repo & upstream source audit + full-repo row-source auditor | **done** | `eaba7863` | `analytics/repo-audit.html`, `data/repo-audit-2026.json`, `scripts/audit_all_pages.py`, `scripts/build_new_pages.py` | Git commit history (`01f2271`..`52d6e17`) + official NFL.com / Operations cross-check | Fixed legacy `REG9` URL in `data/injuries-week10-2026.json` and 119 unlinked rows in `docs/*.html` |
+| E-02 | Full Week 10 Official Injury Report team summary & IR blindspot audit | **done** | `eaba7863` | `data/full-injuries-week10-2026.json`, `scripts/build_verified_datasets.py` | `https://www.nfl.com/injuries/league/2026/REG10` + NFL.com IR/starter news | `RA-05`: 4 clubs show "No Injuries Reported" on REG10 despite IR/ruled-out QBs (BAL Jackson/Huntley IR, SEA Darnold out, CIN Wed injuries) |
+| E-03 | Official NFL club 1st–4th string depth charts (12 clubs) & offense/defense replacement tracker | **done** | `eaba7863` | `analytics/depth-deficiencies.html`, `data/depth-charts-2026.json` | 12 official club depth charts (`commanders.com`, `giants.com`, `patriots.com`, `detroitlions.com`, `baltimoreravens.com`, `miamidolphins.com`, `49ers.com`, `azcardinals.com`, `seahawks.com`, `therams.com`, `packers.com`, `dallascowboys.com`) | `RA-06`: Club depth charts carry "Unofficial" PR disclaimers & roster lag (e.g. `therams.com` still lists retired DE Aaron Donald; `miamidolphins.com` blank Kicker); backup EPA point deltas left blank & flagged |
+| E-04 | 32-Team Offense/Defense Stats + Reproducible Correlations (`n=32`) + SGP Copula Blank Register + Luck Residuals | **done** | `eaba7863` | `analytics/correlations.html`, `data/team-stats-offense-defense-2026.json`, `data/correlations-2026.json`, `scripts/compute_correlations.py` | `nfl.com/stats/team-stats/{offense,defense}/{passing,rushing}/2026/reg/all`, `nfl.com/standings/division/2026/reg` | Play-level SGP/prop correlations (`U-C01`..`U-C06`) left blank & flagged |
+| E-05 | Official 2026 NFL Rulebook & Operations anchors (2026 kickoff/onside/disqualification changes, 48/47 active 8-OL rule, PS elevations, ATC spotters) | **done** | `eaba7863` | `data/nfl-rules-operations-2026.json` | `operations.nfl.com/rules-officiating/2026-nfl-rulebook`, `operations.nfl.com/calendar-events/nfl-free-agency/contract-language` | — |
+| E-06 | Final cross-session integration across root + `analytics/` + `docs/` + `review/` + `portal/` + `site/`, PR #14 + merge + live Pages confirmation | **in progress** | `eaba7863` | `analytics/**`, `content/index.md`, `README.md`, `COORDINATION.md` | All 8 repo verification suites pass with 0 broken links | Non-destructive merge of `main@52d6e17` |
+
+---
+
 ## 15. Close-out of the integration branch — PR #15 merged, live-site findings, and where the numbers stand (session `bc4b47cf`, 2026-11-12T06:45Z)
 
 | Item | Value |
@@ -393,3 +411,33 @@ as the only permitted backtest window), S-27 (name one canonical layout among th
 S-04 (pre-registration protocol the leaderboard depends on). None of them is blocked on a fact that
 cannot be found; each needs a decision, which is why they are on the Suggestions page rather than in the
 data.
+
+---
+
+## 16. Fifth integration step — `arena-eaba7863`'s analytics suite (session `bc4b47cf`, 2026-11-12T06:58Z)
+
+PR #14 published an 18-page suite under `analytics/` with its own assets, and did the integration
+the right way round: the cross-link to `analytics/index.html` was added to **`content/index.md`** —
+the source this site's generator reads — and the regenerated `index.html`, `404.html` and
+`data/build_manifest.json` were committed alongside it. That is why their CI drift gate passed and why
+the only real conflicts in this merge were the manifest digest and this file.
+
+| Shared file | Their change | Resolution here |
+|---|---|---|
+| `content/index.md` | page-map row describing their suite | kept as written, so the link stays in the generated output instead of in a hand-edited HTML file |
+| `404.html`, `index.html` | regenerated output of that row | consistent with the builder; this merge rebuilds and re-verifies rather than trusting the committed bytes |
+| `data/build_manifest.json` | their run's digest | generated artefact: the merged tree's own build wins, so the digest matches `content/*.md` + `data/*.csv` as they now stand |
+| `README.md`, `COORDINATION.md` | their session's records | union: their text verbatim, this session's §9–§16 preserved in order |
+
+**No data adopted from `analytics/`.** That is not a judgement about its quality: it is a sixth tree with
+its own conventions, and this site publishes only rows whose source link it can resolve for itself. Their
+suite claims 12-club depth cascades and 14 `n=32` correlations — the latter being precisely the kind of
+fitted number this site refuses to publish without a pre-registered protocol (see `correlation.html`,
+where every `rho` is blank by design except two that are 1.00 by construction). `FL-19` records the state
+of six published trees and six CI entry points; `S-27` is still the decision that settles which one is
+canonical.
+
+Verified in the merged tree: `tools/verify.py` 38 pass · `tools/check_site.py` 10 pass with 1 expected
+warning · `tools/review_verify.py` OK · `engine/verify_repo_and_site.py` PASS with 0 broken links across
+every build · root rebuild byte-identical · their `analytics/index.html` reachable from the published
+page map.

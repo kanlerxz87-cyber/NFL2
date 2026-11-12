@@ -129,3 +129,19 @@ python3 scripts/check_links.py # internal links + data references
 The two builds do not share a build system and must not be confused with each other: `tools/build_site.py`
 builds the root site from `data/`, while `pipeline.build` builds `/site/` from `pipeline/data/raw/`.
 Both are verified independently in CI.
+
+
+---
+
+## Verified 12-Club Depth Cascades, 32-Club Correlations & Repo Audit Suite (Session `eaba7863`)
+
+- **Live Analytics Suite (18 unified pages):** [`https://kanlerxz87-cyber.github.io/NFL2/analytics/index.html`](https://kanlerxz87-cyber.github.io/NFL2/analytics/index.html)
+  - [`analytics/depth-deficiencies.html`](analytics/depth-deficiencies.html): 12 official NFL club depth charts joined to Week 10 `REG10` & IR news across **18 verified 1st → 2nd → 3rd → 4th-string offense & defense cascades** + 2026 NFL roster/elevation/ATC spotter rules.
+  - [`analytics/correlations.html`](analytics/correlations.html): **14 reproducible 2026 NFL team correlations** across `n = 32` clubs, Fisher-*z* 95% CIs, Same-Game Parlay / prop copula blank register, and 32-club luck-vs.-skill residuals.
+  - [`analytics/repo-audit.html`](analytics/repo-audit.html): Line-by-line commit & upstream official-source audit (`RA-05` `REG10` IR blindspots, `RA-06` club depth-chart lag).
+  - [`analytics/lines-lab.html`](analytics/lines-lab.html) & [`analytics/schedule.html`](analytics/schedule.html): Interactive fair-line & correlation calculators + Week 11 MODEL v1 originated lines.
+- **Reproducible Build & Verification (`eaba7863`):**
+  ```sh
+  python3 scripts/build_site.py && python3 scripts/build_new_pages.py && python3 scripts/verify_site.py
+  python3 scripts/audit_all_pages.py
+  ```
