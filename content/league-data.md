@@ -1,11 +1,25 @@
-# Standings & Schedule
-> The two tables everything else joins to: 32 reconciled standings rows and the 14 Week 10 games, with the venue, kickoff and broadcast as the league published them.
+# Standings, Schedule & Game Log
+> The tables everything else joins to: 32 reconciled standings rows, the 14 Week 10 games, and a {{metric games_log}}-game completed-results log for weeks 1–9 that cross-checks the standings exactly.
 
 Standings rows are not simply copied — they were recomputed. Winning percentage in the NFL counts a tie as half a win, so a 5–2–1 club is listed at 0.688, not 0.625, and that formula reconciles for all 32 clubs. Net points reconciles to points for minus points against everywhere. Two league-wide checks then close the transcription: ΣPF equals ΣPA to the unit (6246 each) and Σnet points equals 0, which can only hold if every points value was read off the right row.
 
 The official standings page renders sixteen value columns and the fetched markup carries no header row. Seven columns have unambiguous meaning from their format and arithmetic and are published; the remaining split-record columns are **omitted rather than guessed** ([FL-07](flagged-for-review.html)).
 
 {{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak;;source=S-STAND;;caption=Division-view standings as published on 12 November 2026 (week 10 of the 2026 regular season, in progress).}}
+
+## Completed results, weeks 1–9
+
+This is the only historical corpus in the project, and it came from a **parallel session** (`arena-009ec582`) that transcribed the league's week-by-week schedule pages. It was not taken on trust: it was re-audited here, row by row, and then used as an independent check on the standings table above. Two pages fetched separately, transcribed separately, agreeing on all {{metric games_log_reconciled}} clubs' wins, losses, ties, points for and points against, is the strongest verification available without a second data vendor.
+
+The reconciliation is computed on every build (`tools/verify.py` → 37 checks) and published from the measurement, not from a note:
+
+- {{metric games_log}} rows, {{metric games_log_weeks}} weeks, **{{metric games_log_links}} of {{metric games_log}} rows carry an official nfl.com game URL** — the import refused to write a row without one.
+- Recounting the log gives ΣW = ΣL = 135, ΣT = 2, ΣPF = ΣPA = {{metric games_log_pf}} — identical to the standings table's own totals.
+- Per-club match: **{{metric games_log_reconciled}} of 32 clubs match exactly on W, L, T, PF and PA; {{metric games_log_mismatched}} mismatch**.
+- Bye arithmetic closes: {{metric games_log_byes}} clubs show 8 games and the rest show 9, and the empty game-slots (16 per week × 9 weeks − {{metric games_log}} games = 8) times two clubs equals the {{metric games_log_byes}} byes exactly.
+- {{metric games_log_neutral}} games are neutral-site/International Games; any home-field feature must exclude them, which is why the log carries the flag per row.
+
+{{csv data/games_2026_wk1_9.csv;;cols=week:Wk,date:Date,away:Away,away_pts:A,home:Home,home_pts:H,neutral:Ntr;;source_col=source;;group=week;;caption=Final scores as published on each game's official page. Weeks 1–9 only; week 10 is in progress and appears in the schedule table below. Away-at-home order follows the league's own fixture title.}}
 
 ## Week 10 slate
 
@@ -28,3 +42,6 @@ Two of these games are structural exceptions a model must not treat as ordinary,
 | Winning pct = (W + ½T) ÷ (W + L + T) | pass for all 32 rows |
 | Net = PF − PA | pass for all 32 rows |
 | Games played consistent with week 10 of the schedule | pass — 8 or 9 games per club depending on bye placement |
+| Game log ({{metric games_log}} games) implies the standings table | pass — {{metric games_log_reconciled}} of 32 clubs identical on W-L-T, PF, PA |
+| Every game-log row cites an official game page | pass — {{metric games_log_links}} of {{metric games_log}} |
+| Neutral-site count agrees with the international slate | pass — {{metric games_log_neutral}} games |

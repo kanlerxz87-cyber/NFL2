@@ -54,11 +54,11 @@ Four items sit in front of almost everything else. They are decisions and access
 | Category | Page | What you get |
 | --- | --- | --- |
 | Overview | [Executive summary](executive-summary.html) | the whole project in one read |
-| Overview | [Requirements](requirements.html) | 40 requirements, each traced to a page and a status |
+| Overview | [Requirements](requirements.html) | {{metric requirements}} requirements, each traced to a page and a status |
 | Overview | [Build plan](roadmap.html) | ordered work after your decisions |
-| Decisions | [Open questions](questions.html) | 28 questions with what we have / what we lack / how to close |
-| Decisions | [Suggestion register](suggestions.html) | 25 suggestions with impact, effort, risk, reversibility — pick a path |
-| Decisions | [Flagged for review](flagged-for-review.html) | 16 irregularities and unverifiable items, with source links |
+| Decisions | [Open questions](questions.html) | {{metric questions}} questions with what we have / what we lack / how to close |
+| Decisions | [Suggestion register](suggestions.html) | {{metric suggestions}} suggestions with impact, effort, risk, reversibility — pick a path |
+| Decisions | [Flagged for review](flagged-for-review.html) | {{metric flags}} irregularities and unverifiable items, with source links |
 | Origination | [Originate our own lines](line-origination.html) | model architecture, inputs, no-vig math, publication of residuals |
 | Origination | [Signals](signals.html) | 18 signal families with decay, capacity and blocking gate |
 | Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos |
@@ -69,7 +69,8 @@ Four items sit in front of almost everything else. They are decisions and access
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
 | Data | [Week 10 injury report](injuries.html) | all 254 official rows, per-row source links |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
-| Data | [Standings & schedule](league-data.html) | 32 reconciled rows, 14 games with venues and kickoff times |
+| Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |
-| Governance | [Source registry](sources.html) | 21 sources with tier, access time and what each was used for |
+| Governance | [Source registry](sources.html) → *Parallel-session build* | the other session's pages are archived at [archive/session-009ec582/index.html](archive/session-009ec582/index.html) and its earlier build is at [docs/index.html](docs/index.html); only its game log was adopted here, after re-audit |
+| Governance | [Source registry](sources.html) | {{metric sources}} sources with tier, access time and what each was used for |

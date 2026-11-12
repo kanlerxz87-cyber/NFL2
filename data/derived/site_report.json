@@ -1,0 +1,98 @@
+{
+ "checks": [
+  {
+   "id": "H0",
+   "name": "All 12 pages exist",
+   "ok": true,
+   "detail": "missing=[]"
+  },
+  {
+   "id": "H1",
+   "name": "Tags balanced on every page",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H2",
+   "name": "No double-escaped entities",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H3a",
+   "name": "No leaked None/null/nan in rendered text",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H3b",
+   "name": "No unrendered f-string placeholders",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H4",
+   "name": "Every internal link resolves to a real file",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H5",
+   "name": "Every page carries the shared nav and the Flagged-for-Review link",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H6",
+   "name": "Every external link is https and on an official host",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H7",
+   "name": "No page is empty or absurdly large",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H8",
+   "name": "Every page states the disclosures it is required to state",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H9",
+   "name": "No page shows a VALIDATED badge while the analysis says 0 of 6 are validated",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H11",
+   "name": "Every factual table row carries a source link (42 tables fully linked; 11 explanation-only tables exempt by explicit decision)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "H10",
+   "name": "Every page declares charset and viewport",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "passed": 13,
+ "total": 13,
+ "pages": [
+  "index.html",
+  "results.html",
+  "standings.html",
+  "teams.html",
+  "injuries.html",
+  "analysis.html",
+  "strategies.html",
+  "method.html",
+  "sources.html",
+  "questions.html",
+  "suggestions.html",
+  "flagged.html"
+ ]
+}

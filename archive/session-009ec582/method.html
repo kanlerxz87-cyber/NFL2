@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method · NFL 2026 Analytics</title>
+<meta name="description" content="Exactly how every number on this site is produced, and where the model is weak.">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html"><span class="dot"></span>NFL 2026 · Verified Analytics</a>
+<nav class="main"><a href="index.html">Overview</a><a href="results.html">Results</a><a href="standings.html">Standings</a><a href="teams.html">Team Stats</a><a href="injuries.html">Injuries &amp; Depth</a><a href="analysis.html">Analysis</a><a href="strategies.html">Strategies</a><a href="method.html" aria-current="page">Method</a><a href="sources.html">Data Sources</a><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a></nav>
+</div></header>
+<div class="pagehead"><div class="wrap"><span class="eyebrow">Method</span><h1>How every number on this site is produced — and where it is weak</h1><p>No figure on this site is typed by hand into a page. Pages are generated from JSON files, the JSON files are
+  checked by scripts, and the scripts fail loudly. This page states the rules the project follows, so that a reader
+  can decide whether to trust a number rather than having to take it on faith.</p></div></div><section><div class="wrap">
+<div class="grid g2">
+<div class="card"><h3>The five rules</h3>
+<p><b>1. Official sources only.</b> Every value traces to an NFL.com or NFL Football Operations page. No aggregator,
+no stats site, no model's memory.</p>
+<p><b>2. Never infer.</b> If an official source does not state a value, the cell is blank. A blank is information:
+it means nobody official said.</p>
+<p><b>3. Prove the mapping, don't assume it.</b> The league's team-stat pages have no header row. Column order is
+proven by reproducing a known player line and by exact league-wide conservation, not by eyeballing plausibility.</p>
+<p><b>4. Label the model.</b> Anything computed — power ratings, correlations, lines — carries a MODEL label and a
+formula. It is never dressed as a fact.</p>
+<p><b>5. Publish the failures.</b> Every irregularity goes to <a href="flagged.html">Flagged for Review</a> with a
+severity and a fix. Withheld data is named, not quietly dropped.</p></div>
+
+<div class="card"><h3>What the verifier actually checks</h3>
+<p><b>23 data checks</b>, of which 20 pass. The hard ones are structural:
+every row references two real distinct clubs; the log reproduces all 32 clubs' W-L-T, PF, PA, PCT and net points;
+streaks re-derive from a chronological scan; the eight conservation identities hold exactly.</p>
+<p><b>9 personnel checks</b>, all passing. These exist because a duplicate
+position label once caused a third-string player to be scored as a starter — the single most dangerous kind of bug in
+this project, because it produces a plausible answer rather than an error.</p>
+<p>Run them yourself: <code>python3 scripts/verify_data.py</code> and <code>python3 scripts/verify_personnel.py</code>.</p></div>
+</div>
+
+<h2 style="margin-top:34px">The verification log</h2>
+<p class="sub">Statuses are exactly as the script emits them. Soft failures are published rather than being reclassified
+as passes.</p><div class="tblwrap "><table><caption>20 of 23 pass. The failing three are soft: derived rates that the source itself publishes inconsistently.</caption><thead><tr><th class="">ID</th><th class="">Check</th><th class="">Status</th><th class="">Severity</th><th class="">Detail</th></tr></thead><tbody><tr><td class=""><b>V1</b></td><td class="">Every game row references two distinct, real NFL clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">136 game rows, 0 malformed</span></td></tr><tr><td class=""><b>V2</b></td><td class="">No club plays more than once in any week</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">duplicates=[]</span></td></tr><tr><td class=""><b>V3a</b></td><td class="">Points-for recomputed from the official game log equals official standings PF for all 32 clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]</span></td></tr><tr><td class=""><b>V3b</b></td><td class="">Points-against recomputed from the official game log equals official standings PA for all 32 clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]</span></td></tr><tr><td class=""><b>V7</b></td><td class="">League-wide points scored equals league-wide points allowed</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">PF total=6246 PA total=6246</span></td></tr><tr><td class=""><b>V8</b></td><td class="">W-L-T recomputed from the game log equals official standings W-L-T for all 32 clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]</span></td></tr><tr><td class=""><b>V4</b></td><td class="">Standings PCT equals (W + T/2)/(W+L+T) for all 32 clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]</span></td></tr><tr><td class=""><b>V5</b></td><td class="">Standings net points equals PF - PA for all 32 clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]</span></td></tr><tr><td class=""><b>V6</b></td><td class="">games played in standings equals game-log appearances</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]</span></td></tr><tr><td class=""><b>V10</b></td><td class="">Published streak equals the club&#x27;s trailing result string in the chronological game log (through week 9)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]</span></td></tr><tr><td class=""><b>V11</b></td><td class="">Team-stat table covers exactly the 32 NFL clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">rows=32</span></td></tr><tr><td class=""><b>V12a</b></td><td class="">League-total offense passing yards equals league-total defense passing yards allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=63556 defense=63556</span></td></tr><tr><td class=""><b>V12b</b></td><td class="">League-total offense rushing yards equals league-total defense rushing yards allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=30580 defense=30580</span></td></tr><tr><td class=""><b>V12c</b></td><td class="">League-total offense sacks equals league-total defense sacks allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=641 defense=641</span></td></tr><tr><td class=""><b>V12d</b></td><td class="">League-total offense passing touchdowns equals league-total defense passing touchdowns allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=411 defense=411</span></td></tr><tr><td class=""><b>V12e</b></td><td class="">League-total offense rushing touchdowns equals league-total defense rushing touchdowns allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=257 defense=257</span></td></tr><tr><td class=""><b>V12f</b></td><td class="">League-total offense interceptions equals league-total defense interceptions allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=197 defense=197</span></td></tr><tr><td class=""><b>V12g</b></td><td class="">League-total offense passing first downs equals league-total defense passing first downs allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=3006 defense=3006</span></td></tr><tr><td class=""><b>V12h</b></td><td class="">League-total offense rushing first downs equals league-total defense rushing first downs allowed (zero-sum conservation)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">offense=1757 defense=1757</span></td></tr><tr><td class=""><b>V13</b></td><td class="">Offense passing yards + rushing yards equals the &#x27;TOTAL OFFENSIVE YARDS&#x27; printed on the club page (KC cross-check)</td><td class=""><span class="b b-bad">FAIL</span></td><td class=""><span class="b b-dim">soft</span></td><td class=""><span class="tiny">computed=3139 (2037+1102) vs club-page total=3069; difference=70. Recorded as irregularity FL-05, not silently reconciled.</span></td></tr><tr><td class=""><b>V14a</b></td><td class="">Team rushing AVG equals YDS/CAR rounded half-up to 1dp, for all 32 clubs</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="b b-bad">hard</span></td><td class=""><span class="tiny">mismatches=[]; matching all 32 establishes the source&#x27;s rounding convention</span></td></tr><tr><td class=""><b>V14b</b></td><td class="">Team completion percentage equals 100*CMP/ATT rounded half-up to 1dp, for all 32 clubs</td><td class=""><span class="b b-bad">FAIL</span></td><td class=""><span class="b b-dim">soft</span></td><td class=""><span class="tiny">mismatches=[{&#x27;team&#x27;: &#x27;WAS&#x27;, &#x27;att&#x27;: 266, &#x27;cmp&#x27;: 164, &#x27;published&#x27;: 61.6, &#x27;computed&#x27;: 61.7}]; 31/32 agree, so this is a source-value irregularity (FL-06), not a transcription error</span></td></tr><tr><td class=""><b>V14c</b></td><td class="">Team yards-per-attempt equals YDS/ATT rounded half-up to 1dp, for all 32 clubs</td><td class=""><span class="b b-bad">FAIL</span></td><td class=""><span class="b b-dim">soft</span></td><td class=""><span class="tiny">mismatches=[{&#x27;team&#x27;: &#x27;KC&#x27;, &#x27;att&#x27;: 263, &#x27;yds&#x27;: 2037, &#x27;published&#x27;: 7.8, &#x27;computed&#x27;: 7.7}, {&#x27;team&#x27;: &#x27;JAX&#x27;, &#x27;att&#x27;: 227, &#x27;yds&#x27;: 1940, &#x27;published&#x27;: 8.6, &#x27;computed&#x27;: 8.5}, {&#x27;team&#x27;: &#x27;SEA&#x27;,</span></td></tr></tbody></table></div>
+<h2 style="margin-top:34px">Personnel checks</h2>
+<p class="sub">These guard the injury-to-depth-chart join, where a wrong answer looks right.</p><div class="tblwrap "><table><thead><tr><th class="">ID</th><th class="">Check</th><th class="">Status</th><th class="">Detail</th></tr></thead><tbody><tr><td class=""><b>P1</b></td><td class="">Every position-group key is unique within its side</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">[]</span></td></tr><tr><td class=""><b>P2a</b></td><td class="">No player appears twice at different depths of the SAME position group</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">[]</span></td></tr><tr><td class=""><b>P2b</b></td><td class="">7 players are legitimately listed at two different positions (real charts do this; each is declared, not merged away)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">[{&#x27;club&#x27;: &#x27;KC&#x27;, &#x27;player&#x27;: &#x27;joshua ezeudu&#x27;, &#x27;slots&#x27;: [(&#x27;LG&#x27;, 2), (&#x27;RT&#x27;, 2)]}, {&#x27;club&#x27;: &#x27;KC&#x27;, &#x27;player&#x27;: &#x27;jack cochrane&#x27;, &#x27;slots&#x27;: [(&#x27;LB_M&#x27;, 2)</span></td></tr><tr><td class=""><b>P3a</b></td><td class="">Every row marked &#x27;mapped&#x27; carries a depth position</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">[]</span></td></tr><tr><td class=""><b>P3b</b></td><td class="">Every row carries one of the three declared map statuses</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">[]</span></td></tr><tr><td class=""><b>P4</b></td><td class="">Every club with injury rows appears in the coverage table</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">missing=[]</span></td></tr><tr><td class=""><b>P5</b></td><td class="">No depth position is asserted for a club whose chart was not transcribed</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">[]</span></td></tr><tr><td class=""><b>P6</b></td><td class="">Starter/2nd/3rd/4th-string counts equal a fresh recount of the rows</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">[]</span></td></tr><tr><td class=""><b>P7</b></td><td class="">12 injured players are explicitly flagged as absent from their club&#x27;s published chart (not silently treated as backups)</td><td class=""><span class="b b-ok">PASS</span></td><td class=""><span class="tiny">NE:Carlton Davis III, NE:Kevin Byard, NE:Reggie Gilliam, NE:Greg Van Roten, NE:Charles Woods, NE:Brenden Schooler, DET:Kerby Joseph, KC:Omar</span></td></tr></tbody></table></div>
+<h2 style="margin-top:34px">The model, stated plainly</h2>
+<div class="card">
+<p><b>Power rating.</b> Each club's points scored and allowed per game, adjusted for the strength of the opponents it
+actually faced, shrunk toward the league mean by the number of games played. It is a club-strength number in points.</p>
+<p><b>Model line.</b> <code>home_margin = power(home) − power(away) + HFA</code>, with HFA = +0.50
+(the neutral-site-excluded estimate). Positive means the home club is expected to win. <b>Sign is asserted, not assumed</b>:
+the build checks that a power-rating line picks the home side well above 50% and aborts if it does not. Current check:
+66.0% correct, <span class="b b-ok">PASS</span>.</p>
+<p><b>Win probability.</b> A normal distribution over the model margin with the measured margin standard deviation
+of 13.27 points. This is a deliberate simplification: real margins are a little
+fat-tailed, so the model will slightly understate blowout probability.</p>
+<p><b>Pythagorean expectation.</b> Wins expected from points scored and allowed with exponent 2.37,
+computed per club. The gap to the actual record is the luck score.</p>
+<p><b>Backtest.</b> Walk-forward. For week W the ratings see only weeks &lt; W. Folds are weeks 5–9. Scored by Brier skill
+against a 50/50 baseline and by log loss; the gates do the rest.</p>
+<p><b>What the model does not do.</b> It does not know about injuries, weather, rest, travel or venue — except that
+neutral sites are excluded from the HFA estimate. It is a scoring-margin model and nothing more.</p>
+</div>
+
+<h2 style="margin-top:34px">Determinism</h2>
+<div class="note ok"><p>The analysis uses no random numbers and no clock-dependent logic in its arithmetic. Re-running
+<code>scripts/analyse.py</code> on the same inputs produces the same output — the build timestamp changes, nothing else.
+If two runs ever disagree, that is a bug and should be reported.</p></div>
+
+<h2 style="margin-top:34px">Known weaknesses</h2>
+<div class="grid g2">
+  <div class="card"><h3>Sample</h3><p>Nine weeks. 136 games. Thirty-two clubs. Every correlation on this site is
+  estimated on a sample small enough that a single club can move it. The gates exist because of this, and every
+  table prints its own n.</p></div>
+  <div class="card"><h3>No market</h3><p>Without odds there is no way to test whether any of this is profitable,
+  or even whether a model line is better than the market's. That distinction — good at predicting versus good at
+  betting — is the one most analytics projects blur.</p></div>
+  <div class="card"><h3>Depth coverage</h3><p>Four of thirty-two depth charts. The deficiency analysis is real
+  for those four and blank elsewhere, and the index is a transparent weighting rather than a measured effect.</p></div>
+  <div class="card"><h3>Transcription</h3><p>Values are read from rendered pages. The verifier catches arithmetic
+  inconsistency, not a single mistyped digit that happens to preserve an identity. The conservation checks make that
+  unlikely for the team stats and impossible for the game log, but not for every cell.</p></div>
+</div>
+</div></section>
+<footer><div class="wrap">
+<p><b>Every figure on this site is either transcribed from an official NFL source or is explicitly labelled MODEL output.</b>
+Nothing is inferred. Blank cells mean no official source confirms the value — see <a href="flagged.html">Flagged for Review</a>.</p>
+<p>Data through Week 9 results and Week 10 injury reports · built 2026-11-12T04:53:56Z · 
+<a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a> · <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md">coordination log</a> · 
+verification: 20/23 data checks, 9 personnel checks</p>
+</div></footer>
+<script src="assets/app.js"></script>
+</body></html>

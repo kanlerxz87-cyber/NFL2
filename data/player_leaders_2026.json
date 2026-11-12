@@ -1,0 +1,70 @@
+{
+  "season": 2026,
+  "season_type": "REG",
+  "snapshot": "2026-11-12 (fetched from NFL.com Stats)",
+  "note": "Top-10 per category as published. Columns vary by category; see site stats page for column definitions. Each category has its own source_url.",
+  "passing": {
+    "source_url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+    "columns": ["Player", "PassYds", "Yds/Att", "Att", "Cmp", "Cmp%", "TD", "INT", "Rate"],
+    "rows": [
+      ["Jordan Love", 2618, 7.7, 341, 215, 63.0, 19, 6, 97.9],
+      ["Joe Burrow", 2386, 8.1, 296, 219, 74.0, 23, 6, 114.8],
+      ["Dak Prescott", 2381, 7.1, 336, 218, 64.9, 16, 5, 95.4],
+      ["Matthew Stafford", 2374, 6.9, 346, 230, 66.5, 16, 9, 90.6],
+      ["Kirk Cousins", 2340, 7.4, 315, 202, 64.1, 20, 8, 97.1],
+      ["Drake Maye", 2282, 8.4, 272, 178, 65.4, 18, 11, 96.8],
+      ["C.J. Stroud", 2251, 8.0, 282, 181, 64.2, 16, 2, 104.8],
+      ["Bryce Young", 2197, 7.1, 308, 186, 60.4, 16, 6, 91.3],
+      ["Jared Goff", 2134, 7.8, 273, 185, 67.8, 15, 2, 106.4],
+      ["Geno Smith", 2078, 7.7, 271, 183, 67.5, 12, 3, 100.4]
+    ]
+  },
+  "rushing": {
+    "source_url": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc",
+    "columns": ["Player", "RushYds", "Att", "TD", "Lng", "Yds/Att"],
+    "rows": [
+      ["Bijan Robinson", 880, 169, 9, 59, 5.2],
+      ["Kenneth Walker III", 872, 159, 7, 76, 5.5],
+      ["Jahmyr Gibbs", 847, 177, 9, 30, 4.8],
+      ["Bucky Irving", 825, 167, 7, 72, 4.9],
+      ["James Cook", 814, 169, 8, 35, 4.8],
+      ["Jaylen Warren", 704, 119, 7, 51, 5.9],
+      ["Derrick Henry", 689, 175, 8, 32, 3.9],
+      ["Jonathan Taylor", 656, 161, 8, 38, 4.1],
+      ["Javonte Williams", 629, 154, 9, 34, 4.1],
+      ["Chuba Hubbard", 619, 134, 5, 32, 4.6]
+    ]
+  },
+  "receiving": {
+    "source_url": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc",
+    "columns": ["Player", "Rec", "Yds", "TD", "Yds/Rec", "Lng"],
+    "rows": [
+      ["Trey McBride", 73, 598, 5, 8.2, 41],
+      ["Jaxon Smith-Njigba", 71, 1036, 9, 14.6, 82],
+      ["CeeDee Lamb", 70, 904, 7, 12.9, 49],
+      ["Puka Nacua", 70, 715, 4, 10.2, 43],
+      ["Amon-Ra St. Brown", 61, 657, 5, 10.8, 40],
+      ["Chris Olave", 56, 734, 2, 13.1, 47],
+      ["Ja'Marr Chase", 53, 647, 8, 12.2, 47],
+      ["Matthew Golden", 53, 783, 5, 14.8, 50],
+      ["Malik Nabers", 53, 648, 2, 12.2, 46],
+      ["Michael Wilson", 51, 546, 2, 10.7, 27]
+    ]
+  },
+  "tackles": {
+    "source_url": "https://www.nfl.com/stats/player-stats/category/tackles/2026/reg/all/defensivecombinetackles/desc",
+    "columns": ["Player", "CombTackles", "Solo", "Ast", "Sacks"],
+    "rows": [
+      ["Alex Singleton", 107, 56, 50, 2.0],
+      ["Nakobe Dean", 99, 54, 42, 1.5],
+      ["Carson Schwesinger", 89, 49, 38, 3.0],
+      ["Ernest Jones", 88, 44, 44, 3.0],
+      ["Anthony Hill Jr.", 82, 47, 35, 0.0],
+      ["Nick Bolton", 80, 41, 38, 0.0],
+      ["Jacob Rodriguez", 79, 44, 34, 1.0],
+      ["Jamien Sherwood", 77, 40, 34, 0.0],
+      ["Fred Warner", 77, 41, 35, 0.5],
+      ["Dane Belton", 76, 36, 40, 1.0]
+    ]
+  }
+}

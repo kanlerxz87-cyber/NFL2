@@ -6,6 +6,8 @@ leaderboard that has to clear validation gates, and a published register of ques
 flags so that the owner can choose a path before anything is implemented.
 
 **Live site (GitHub Pages):** https://kanlerxz87-cyber.github.io/NFL2/
+**Executive summary (site):** [executive-summary.html](executive-summary.html) · **owner's brief from the earlier session:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
+**Coordination board:** [COORDINATION.md](COORDINATION.md)
 
 ## What is in here
 
@@ -14,11 +16,16 @@ flags so that the owner can choose a path before anything is implemented.
 | `index.html`, `*.html` | the published site — generated, never hand-edited |
 | `content/*.md` | the prose and directives for every page |
 | `data/*.csv` | the verified datasets and the registers (requirements, questions, suggestions, gates, signals, strategies, correlation, flags, sources) |
+| `data/games_2026_wk1_9.csv` | the 136 completed results of weeks 1–9, imported from a parallel session's fetch and re-audited here; each row cites its own official game page |
 | `tools/build_site.py` | markdown + CSV → static HTML; refuses to build a row without a source |
-| `tools/verify.py` | data audit: reconciliations, vocabularies, blank policy, no fabricated results |
-| `tools/check_site.py` | site audit: links, empty cells, template markers, official-source coverage |
+| `tools/verify.py` | data audit (37 checks): reconciliations, vocabularies, blank policy, no fabricated results, game-log cross-check |
+| `tools/check_site.py` | site audit: links, empty cells, template markers, official-source coverage, stale-output and input-digest guards |
 | `tools/compute_tables.py` | the analytic tables (vig, parlay coupling, sample sizes) — closed-form, no market data |
-| `COORDINATION.md` | shared task board for concurrent agent sessions: claims, scopes, log, handoffs |
+| `tools/import_parallel.py` | re-imports the game log from `data/games_2026.json` and prints the standings reconciliation |
+| `scripts/**`, `data/*.json`, `data/derived/**` | the parallel session (`arena-009ec582`) and its datasets: 136-game log, standings, team stats, player leaders, depth charts, derived analysis |
+| `archive/session-009ec582/` | that session's 15-page root build, preserved verbatim with its own stylesheet and script so it still renders |
+| `docs/` | that session's earlier 18-page build, published at `/NFL2/docs/` |
+| `COORDINATION.md` | shared task board for concurrent agent sessions: claims, scopes, log, handoffs, integration record |
 | `.github/workflows/validate.yml` | CI: build, both audits, and a drift check that the committed HTML matches a rebuild |
 
 ## Rules this project does not bend
@@ -28,14 +35,42 @@ flags so that the owner can choose a path before anything is implemented.
 3. Anything arithmetic is **recomputed** from the inputs on every build (league points reconcile to the unit; 6,246 for = 6,246 against).
 4. **No performance claim without a forward sample.** Backtests never appear on the leaderboard.
 5. Irregularities are **published**, not silently fixed: see *Flagged for Review*.
+6. **Another session's file is an input, not a source.** Importing it means re-deriving its per-row sources and reconciling it against data transcribed from a different official page; what cannot be re-derived stays labelled as that session's output.
+
+## Repository layout
+
+```
+*.html                      the published dashboard (generated)
+content/<slug>.md           page prose + {{csv ...}} directives
+data/<name>.csv             pipe-delimited, fixed field count
+data/build_manifest.json     inputs digest + measured counts (generated)
+tools/build_site.py          generator
+tools/verify.py              data auditor
+tools/check_site.py          site auditor
+tools/compute_tables.py      analytic exhibits
+tools/import_parallel.py     cross-session import + reconciliation
+scripts/ · data/*.json       parallel session's pipeline and datasets
+docs/ · archive/**           parallel session's published builds
+```
 
 ## Work with it
 
 ```
 python tools/build_site.py     # regenerate every page from data/ + content/
-python tools/verify.py         # audit the data      (exit 1 on any failure)
+python tools/verify.py         # audit the data       (exit 1 on any failure)
 python tools/check_site.py     # audit the site links (exit 1 on any failure)
 ```
 
 No dependencies, no build tooling, no JavaScript. Editing a page means editing its markdown or its CSV,
-then running the builder; CI fails if you forget.
+then running the builder; CI fails if you forget. **Do not hand-edit a root `*.html` file** — it is
+overwritten by the builder, and the CI drift check fails the commit.
+
+## Where the earlier session's pages went
+
+That session's root build moved intact to `archive/session-009ec582/`, so its tables are still readable
+at `https://kanlerxz87-cyber.github.io/NFL2/archive/session-009ec582/index.html` (results, standings,
+team stats, injuries & depth, analysis, strategies, method, data sources, questions, suggestions,
+flagged for review), and its previous build remains at `/NFL2/docs/`. Two of its numbers were adopted
+here after re-derivation — the 136-game log and the reconciliation against the standings table — and the
+rest of its derived analysis is deliberately **not** restated as this project's own; see `Q-29` and
+`S-26` in the registers, and §8 of `COORDINATION.md` for the full integration record.

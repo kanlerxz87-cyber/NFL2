@@ -229,8 +229,89 @@ def no_invented_results():
     ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted value is asserted")
 
 
+def gamelog():
+    """The week 1-9 game log came from a parallel session's fetch of the official schedule pages.
+    Importing someone else's file into the published site means re-auditing it from scratch:
+    every row must carry an official URL, and the log must imply the same records as the
+    standings table we transcribed independently from nfl.com/standings."""
+    import json
+    path = os.path.join(DATA, "games_2026_wk1_9.csv")
+    if not os.path.exists(path):
+        bad("data/games_2026_wk1_9.csv is missing; run tools/import_parallel.py")
+        return
+    data, hdr, _ = rows("games_2026_wk1_9.csv")
+    need = ["week", "date", "away", "home", "away_pts", "home_pts", "neutral", "source"]
+    if [c for c in need if c not in hdr]:
+        bad("game log: missing columns %s" % [c for c in need if c not in hdr]); return
+    nosrc = [r for r in data if not r["source"].startswith("https://www.nfl.com/games/")]
+    if nosrc:
+        bad("game log: %d rows without an official nfl.com/games URL (e.g. %s)"
+            % (len(nosrc), nosrc[0]))
+    else:
+        ok("game log: all %d rows carry an official nfl.com game URL" % len(data))
+    scores = [r for r in data if not (r["away_pts"].isdigit() and r["home_pts"].isdigit())]
+    if scores:
+        bad("game log: %d rows lack a numeric final score: %s" % (scores[0]["date"], len(scores)))
+    else:
+        ok("game log: every row has two numeric scores (no scheduled-but-unplayed rows imported)")
+    weeks = sorted({r["week"] for r in data}, key=int)
+    per = {w: sum(1 for r in data if r["week"] == w) for w in weeks}
+    if any(n < 14 for n in per.values()):
+        bad("game log: a week with fewer than 14 games suggests a dropped slate: %s" % per)
+    else:
+        ok("game log: %s games across weeks %s, none dropped"
+           % (len(data), ", ".join("W%d=%d" % (int(w), per[w]) for w in weeks)))
+    ALIAS = {"LA": "LAR"}
+    rec = {}
+    for r in data:
+        a, h = int(r["away_pts"]), int(r["home_pts"])
+        for club, pf, pa in ((r["away"], a, h), (r["home"], h, a)):
+            t = rec.setdefault(ALIAS.get(club, club), {"w": 0, "l": 0, "t": 0, "pf": 0, "pa": 0, "n": 0})
+            t["n"] += 1; t["pf"] += pf; t["pa"] += pa
+            t["w" if pf > pa else "l" if pf < pa else "t"] += 1
+    st, _, _ = rows("standings_2026.csv")
+    mism = []
+    for r in st:
+        got = rec.get(r["abbr"])
+        if not got:
+            mism.append("%s: no games" % r["abbr"]); continue
+        want = (int(r["w"]), int(r["l"]), int(r["t"]), int(r["pf"]), int(r["pa"]))
+        if (got["w"], got["l"], got["t"], got["pf"], got["pa"]) != want:
+            mism.append("%s: standings %s vs log %s" % (r["abbr"], want,
+                        (got["w"], got["l"], got["t"], got["pf"], got["pa"])))
+    if mism:
+        bad("game log disagrees with the independently transcribed standings table for %d clubs: %s"
+            % (len(mism), mism[:4]))
+    else:
+        ok("game log reconciles exactly with the standings table for all %d clubs "
+           "(W-L-T, points for, points against) after the LA/LAR alias" % len(st))
+    byes = sorted(c for c, t in rec.items() if t["n"] != 9)
+    eight = len([c for c, t in rec.items() if t["n"] == 8])
+    slots = sum(1 for w in weeks for _ in range(16 - per[w]))
+    if eight != len(byes) or 32 * 9 - len(byes) != sum(t["n"] for t in rec.values()) or slots * 2 != len(byes):
+        bad("game log: bye arithmetic does not close - %d clubs at 8 games, %d empty game-slots"
+            % (eight, slots))
+    else:
+        ok("game log: bye arithmetic closes exactly - %d clubs played 8, %d played 9, "
+           "%d empty game-slots x 2 = %d club-byes" % (eight, len(rec) - eight, slots, len(byes)))
+    neutral = sum(1 for r in data if r["neutral"] == "yes")
+    if neutral != 7:
+        warn("game log: %d neutral-site games flagged; the standings cross-check is unaffected" % neutral)
+    else:
+        ok("game log: %d neutral-site games marked, matching the international-slate count" % neutral)
+    man = os.path.join(DATA, "build_manifest.json")
+    if os.path.exists(man):
+        m = json.load(open(man, encoding="utf-8")).get("metrics", {})
+        if m.get("games_log") == len(data) and m.get("games_log_reconciled") == len(st) \
+                and m.get("games_log_mismatched") == 0:
+            ok("site manifest: published game-log counts match this recomputation")
+        else:
+            bad("site manifest is stale for the game log: %s vs %d rows"
+                % ({k: m.get(k) for k in ("games_log", "games_log_reconciled", "games_log_mismatched")}, len(data)))
+
+
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results()
+    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); gamelog()
     print("=" * 72)
     for m in PASS:
         print("  PASS  " + m)

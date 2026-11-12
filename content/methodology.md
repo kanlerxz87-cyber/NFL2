@@ -10,6 +10,7 @@
 5. **Recompute, then trust.** Anything arithmetic in the published data is recomputed from the inputs — winning percentage, net points, league-wide balance — and a mismatch stops the build.
 6. **Verbatim first.** Names, positions and status strings are stored as published, including two typos in the official source ("limted" twice), which are annotated rather than corrected.
 7. **Timeliness is stated, not implied.** Every page shows the fetch time of the underlying pull, and no page claims to be live.
+8. **Another session's file is an input, not a source.** Anything imported from a parallel session is re-audited here — per-row source links re-checked, totals recomputed, and reconciled against data we transcribed ourselves from a different official page — before it is published. Where it cannot be re-derived in the session that imports it, it stays that session's output and is labelled as such (see [S-PARALLEL](sources.html) and [Q-29](questions.html)).
 
 ## Verification vocabulary (frozen)
 
@@ -31,7 +32,9 @@
 | Standings reconciliation | `tools/verify.py` | pct formula, net points, ΣPF = ΣPA, Σnet = 0, W = L across 32 clubs |
 | Injury-row integrity | `tools/verify.py` | valid practice codes, valid status codes, known game ids, unique player-per-game rows, blank census |
 | Depth-log integrity | `tools/verify.py` | every change type in the controlled vocabulary, every src id resolving to an official row |
+| Game-log cross-check | `tools/verify.py` | every imported row carries an official game-page URL, every week's slate is complete, and the recount of 136 games implies the same W-L-T, PF and PA as the standings table for all 32 clubs |
 | Link and asset audit | `tools/check_site.py` | broken internal links, missing pages, pages not in navigation, non-official hosts used as system-of-record |
+| Stale-output guard | `tools/check_site.py` | a page left on disk by an earlier build after the current build refused to render it fails the audit, and the manifest's SHA-256 over `data/*.csv` + `content/*.md` must match what is on disk |
 | CI | `.github/workflows/validate.yml` | the three above must pass on every push and pull request |
 
 ## What verification did *not* cover — read this before reusing the data
@@ -41,6 +44,7 @@
 - **Headline-only rows.** Three depth rows rest on an article headline without the body fetched (FL-13). They are marked and they feed no number.
 - **No price data.** Nothing on this site is a market statement of any kind (FL-10).
 - **Egress limits.** The sandbox blocks outbound access to the league from CI, so refresh is a deliberate operation here, not a background service (FL-11).
+- **Imported files we did not re-derive.** The parallel session's team-stat, player-leader and depth-chart JSON is in the repository and is *not* published as this site's data, because their column mapping (proved by conservation identities on their side) was not re-run here; only the game log survived that bar (FL-18, Q-29).
 
 ## Reproducing the audit
 

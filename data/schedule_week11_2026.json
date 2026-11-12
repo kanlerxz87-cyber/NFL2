@@ -1,0 +1,25 @@
+{
+  "season": 2026,
+  "week": 11,
+  "snapshot": "2026-11-12 (fetched from NFL.com)",
+  "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "source_url_change": "https://media.nfl.com/news-and-releases/week-11-schedule-change--jaguars-giants-to-4-25-p-m--et--steeler",
+  "note": "All times ET as published. Schedule-change release (Nov 9, 2026): JAX@NYG moved to 4:25pm ET, PIT@PHI moved to 1pm ET, both remain CBS. Bye list transcribed as published on NFL.com schedule page (6 teams) — see Flagged F-08.",
+  "games": [
+    {"game": "Indianapolis Colts at Houston Texans", "away": "IND", "home": "HOU", "date": "Thursday, November 19", "time_et": "8:15 PM", "tv": "Prime Video", "tag": "Thursday Night Football"},
+    {"game": "Miami Dolphins at Buffalo Bills", "away": "MIA", "home": "BUF", "date": "Sunday, November 22", "time_et": "1:00 PM", "tv": "CBS"},
+    {"game": "Baltimore Ravens at Carolina Panthers", "away": "BAL", "home": "CAR", "date": "Sunday, November 22", "time_et": "1:00 PM", "tv": "FOX"},
+    {"game": "New Orleans Saints at Chicago Bears", "away": "NO", "home": "CHI", "date": "Sunday, November 22", "time_et": "1:00 PM", "tv": "FOX"},
+    {"game": "Tennessee Titans at Dallas Cowboys", "away": "TEN", "home": "DAL", "date": "Sunday, November 22", "time_et": "1:00 PM", "tv": "FOX"},
+    {"game": "Tampa Bay Buccaneers at Detroit Lions", "away": "TB", "home": "DET", "date": "Sunday, November 22", "time_et": "1:00 PM", "tv": "FOX"},
+    {"game": "Arizona Cardinals at Kansas City Chiefs", "away": "AZ", "home": "KC", "date": "Sunday, November 22", "time_et": "1:00 PM", "tv": "CBS"},
+    {"game": "Pittsburgh Steelers at Philadelphia Eagles", "away": "PIT", "home": "PHI", "date": "Sunday, November 22", "time_et": "1:00 PM", "tv": "CBS", "note": "Moved to 1pm ET per Nov 9 schedule-change release"},
+    {"game": "New York Jets at Los Angeles Chargers", "away": "NYJ", "home": "LAC", "date": "Sunday, November 22", "time_et": "4:05 PM", "tv": "FOX"},
+    {"game": "Jacksonville Jaguars at New York Giants", "away": "JAX", "home": "NYG", "date": "Sunday, November 22", "time_et": "4:25 PM", "tv": "CBS", "note": "Moved to 4:25pm ET per Nov 9 schedule-change release"},
+    {"game": "Las Vegas Raiders at Denver Broncos", "away": "LV", "home": "DEN", "date": "Sunday, November 22", "time_et": "4:25 PM", "tv": "CBS"},
+    {"game": "Minnesota Vikings at San Francisco 49ers (Mexico City)", "away": "MIN", "home": "SF", "date": "Sunday, November 22", "time_et": "8:20 PM", "tv": "NBC", "tag": "Sunday Night Football / International"},
+    {"game": "Cincinnati Bengals at Washington Commanders", "away": "CIN", "home": "WAS", "date": "Monday, November 23", "time_et": "8:15 PM", "tv": "ESPN", "tag": "Monday Night Football"}
+  ],
+  "bye": ["ATL", "CLE", "GB", "LAR", "NE", "SEA"],
+  "bye_note": "As published on NFL.com Week 11 schedule page. 6 bye teams is unusual (typical NFL week has 4); flagged F-08 for confirmation against official 2026 schedule PDF."
+}

@@ -1,4 +1,8 @@
+# local scratch
+.arena/
 __pycache__/
 *.py[cod]
+.venv/
+node_modules/
 .DS_Store
 *.tmp

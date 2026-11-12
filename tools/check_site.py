@@ -38,6 +38,30 @@ def main():
     extra = files - expected
     if extra:
         warn("html files not in the page list: %s" % sorted(extra))
+    # A page the builder failed to render leaves its previous build on disk: the links still
+    # resolve and the empty-cell scan stays clean, so nothing below would notice. Compare the
+    # manifest's written list and the input digest instead.
+    man_path = os.path.join(ROOT, "data", "build_manifest.json")
+    if os.path.exists(man_path):
+        man = json.load(open(man_path, encoding="utf-8"))
+        stale = sorted(expected - {os.path.basename(x) for x in man.get("pages", [])})
+        if stale:
+            bad("pages present on disk but not written by the last build (stale output: a render "
+                "error was survived): %s" % stale)
+        else:
+            ok("every page on disk was written by the latest build (no stale output)")
+        import hashlib
+        d = hashlib.sha256()
+        for dd in (os.path.join(ROOT, "data"), os.path.join(ROOT, "content")):
+            for f in sorted(os.listdir(dd)):
+                fp = os.path.join(dd, f)
+                if os.path.isfile(fp) and (f.endswith(".csv") or f.endswith(".md")):
+                    d.update(f.encode()); d.update(open(fp, "rb").read())
+        if d.hexdigest() == man.get("inputs_sha256"):
+            ok("manifest digest matches the current data + content inputs")
+        else:
+            bad("published HTML was built from different inputs than the data files on disk "
+                "(re-run tools/build_site.py)")
     assets_missing, broken, official_links, nonofficial, empties, unexpanded, anchors_bad = [], [], 0, set(), [], [], []
     for path in htmls:
         name = os.path.basename(path)

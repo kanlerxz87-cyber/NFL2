@@ -8,7 +8,8 @@ Every stage below is a specification with acceptance criteria. Nothing is schedu
 | Artefact | State | Acceptance evidence |
 | --- | --- | --- |
 | Verified Week 10 dataset (254 + 227 + 32 + 14 rows) | done | per-row sources; standings reconciled to the unit |
-| Requirement, question, suggestion, flag registers | done | 40 / 28 / 25 / 16 rows |
+| Requirement, question, suggestion, flag registers | done | 40 / {{metric questions}} / {{metric suggestions}} / {{metric flags}} rows |
+| Parallel-session integration (game log imported, standings cross-checked, their build archived) | done | 136 rows re-audited; {{metric games_log_reconciled}} of 32 clubs reconcile; two new flags published |
 | Site generator with source enforcement and field-count strictness | done | build fails on an unsourced row — demonstrated during this session |
 | GitHub Pages deployment from `main` | done | site reachable at the published URL |
 

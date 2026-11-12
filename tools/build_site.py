@@ -99,6 +99,21 @@ def urlify(cell):
     return " ".join(out)
 
 
+def source_ref(cell):
+    """Render whatever a row's source column holds: a registered source id, or a raw URL.
+
+    Raw URLs are allowed because a per-row game page is a stronger citation than a page-level
+    register entry, but the host is still judged by the same rule - anything that is not an
+    official league host is visibly marked non-official instead of being quietly trusted.
+    """
+    cell = (cell or "").strip()
+    if cell.startswith("http://") or cell.startswith("https://"):
+        host = re.sub(r"^https?://([^/]+).*", r"\1", cell)
+        mark = "" if host in OFFICIAL_HOSTS else ' <span class="tier src-other">non-official</span>'
+        return '<a class="src" href="%s" target="_blank" rel="noopener">%s</a>%s' % (cell, esc(host), mark)
+    return source_link(cell)
+
+
 def source_link(sid, tier_label=True):
     row = SOURCES.get(sid)
     if not row:
@@ -156,7 +171,7 @@ def render_md(text, ctx):
             flush_p(); quote = [stripped[2:]]
             while i + 1 < len(lines) and lines[i + 1].strip().startswith("> "):
                 i += 1; quote.append(lines[i].strip()[2:])
-            out.append("<blockquote>%s</blockquote>" % inline(" ".join(quote))); i += 1; continue
+            out.append("<blockquote>%s</blockquote>" % inline(expand_metric_refs(" ".join(quote)))); i += 1; continue
         stripped = expand_metric_refs(stripped)
         if stripped.startswith("|") and i + 1 < len(lines) and re.match(r"^\|?[\s:|-]+$", lines[i + 1].strip()) and "-" in lines[i + 1]:
             flush_p()
@@ -255,10 +270,60 @@ def build_metrics():
         "strategies": len(read_rows("strategies.csv")),
         "correlation": len(read_rows("correlation.csv")),
         "flags": len(read_rows("flags.csv")),
+        "pages": len(PAGES) + 1,          # + 404, which is generated from index
+        "data_files": len([f for f in sorted(os.listdir(DATA)) if f.endswith(".csv")]),
         "empty_clubs": ", ".join(sorted(empty)),
         "empty_club_count": len([t for t in empty if t not in agg]),
     }
+    m.update(gamelog_metrics(st))
     return m, inj, agg
+
+
+# Team codes are not stable across league pages; the schedule/game pages code the Rams LA while
+# the standings table codes them LAR. This alias is published as flag FL-17, not hidden.
+TEAM_ALIAS = {"LA": "LAR"}
+
+
+def gamelog_metrics(st):
+    """Cross-check the imported week 1-9 game log against the independently transcribed
+    standings table. Pure arithmetic over checked-in files, recomputed on every build, so the
+    number on the site is a measurement and not a claim copied from a note."""
+    path = os.path.join(DATA, "games_2026_wk1_9.csv")
+    if not os.path.exists(path):
+        return {"games_log": 0, "games_log_missing": 1}
+    rows = read_rows("games_2026_wk1_9.csv")
+    rec = {}
+    for g in rows:
+        a, h = int(g["away_pts"]), int(g["home_pts"])
+        for club, pf, pa in ((g["away"], a, h), (g["home"], h, a)):
+            club = TEAM_ALIAS.get(club, club)
+            t = rec.setdefault(club, {"w": 0, "l": 0, "t": 0, "pf": 0, "pa": 0, "n": 0})
+            t["n"] += 1; t["pf"] += pf; t["pa"] += pa
+            t["w" if pf > pa else "l" if pf < pa else "t"] += 1
+    matched = mismatched = 0
+    for row in st:
+        r = rec.get(row["abbr"])
+        same = r and (r["w"], r["l"], r["t"], r["pf"], r["pa"]) == (
+            int(row["w"]), int(row["l"]), int(row["t"]), int(row["pf"]), int(row["pa"]))
+        matched += 1 if same else 0
+        mismatched += 0 if same else 1
+    return {
+        "games_log": len(rows),
+        "games_log_missing": 0,
+        "games_log_weeks": len({g["week"] for g in rows}),
+        "games_log_neutral": sum(1 for g in rows if g["neutral"] == "yes"),
+        "games_log_links": sum(1 for g in rows if g["source"].startswith("https://www.nfl.com/games/")),
+        "games_log_pf": sum(int(g["away_pts"]) + int(g["home_pts"]) for g in rows),
+        "games_log_reconciled": matched,
+        "games_log_mismatched": mismatched,
+        "games_log_byes": sum(1 for r in rec.values() if r["n"] == 8),
+    }
+
+
+# Team codes are not stable across league pages: the schedule and game pages code the Rams LA while
+# the standings table codes them LAR. The alias is applied in the cross-check and published as flag
+# FL-17 - it is never used to edit a stored row.
+TEAM_ALIAS = {"LA": "LAR"}
 
 
 METRICS, INJURY_ROWS, AGG = build_metrics()
@@ -351,7 +416,7 @@ def render_csv_table(body):
                 out.append("<td>%s</td>" % inline(val))
         if opts.get("show_source", True):
             if src_col:
-                out.append("<td>%s</td>" % source_link(r[src_col]))
+                out.append("<td>%s</td>" % source_ref(r[src_col]))
             else:
                 out.append("<td>%s</td>" % source_link(src_default))
         out.append("</tr>")
@@ -527,7 +592,8 @@ def render_page(slug):
     body_md = "\n".join(lines).strip("\n")
     m = re.match(r"^>\s?(.*)\n", body_md)
     if m:
-        lead = m.group(1).strip()
+        # the lede is page furniture with real numbers in it: measure it like everything else
+        lead = expand_metric_refs(m.group(1).strip())
         body_md = body_md[m.end():]
     ctx = {"slug": slug}
     body = render_md(body_md, ctx)
@@ -553,6 +619,7 @@ def main():
         written.append(os.path.relpath(out, ROOT))
     with open(os.path.join(ROOT, "404.html"), "w", encoding="utf-8") as fh:
         fh.write(render_page("index").replace("<body", '<body', 1))
+    written.append("404.html")   # so the auditor can tell a written page from a stale one
     digest = hashlib.sha256()
     for d in (DATA, CONTENT):
         for f in sorted(os.listdir(d)):
@@ -577,7 +644,6 @@ def main():
     return 0
 
 
-import json
 
 
 
