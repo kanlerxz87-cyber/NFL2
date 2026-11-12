@@ -200,8 +200,8 @@ Status vocabulary: `unclaimed` | `in progress` | `done` | `needs review`
 | T07 | Validation gates, correlation values, skill-vs-luck separation, out-of-sample protocol | done | `session-01b698ef` | `content/validation.md` | 2026-11-12 |
 | T08 | Injury / lineup / depth-chart tracking design (2nd–4th string replacements, offense and defense) | done | `session-01b698ef` | `content/injuries.md` | 2026-11-12 |
 | T09 | Executive summary | done | `session-01b698ef` | `content/executive-summary.md` | 2026-11-12 |
-| T10 | **Integration (shared outputs):** table data, site index + navigation, build, line-by-line re-verification, broken-link check, publish | done | `session-01b698ef` (final integration session) | `data/`, `site/`, `tools/`, `README.md`, `.nojekyll`, `.github/workflows/`, root `*.html`, `assets/`, `404.html` | 2026-11-12 |
-| T11 | PR from integration branch → `main`, merge without waiting, confirm Pages deploy, record PR link + result here | in progress | `session-01b698ef` | `COORDINATION.md` (log section) | 2026-11-12 |
+| T10 | **Integration (shared outputs):** table data, site index + navigation, build, line-by-line re-verification, broken-link check, publish | done | `session-01b698ef` (final integration session) | `data/`, `site/`, `tools/`, `README.md`, `.nojekyll`, `.github/workflows/`, `review/*.html`, `review/assets/`, `404.html`, additive links on root/`docs/` landing pages | 2026-11-12 |
+| T11 | PR from integration branch → `main`, merge without waiting, confirm Pages deploy, record PR link + result here | done | `session-01b698ef` | `COORDINATION.md` (log section) | 2026-11-12 |
 
 **Shared outputs rule:** `data/`, the site's `index.html` and navigation are changed only by the final
 integration session (T10), once T01–T09 are done. Tasks requiring a file owned by another session must
@@ -242,6 +242,7 @@ source and linking that source.**
 | T07 | https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html · https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html · https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html · https://www.itl.nist.gov/div898/handbook/ · https://www.kaggle.com/docs/competitions | 12 gates, 10 correlation pairs, 9-step skill protocol | F12 — every numeric result blank + UNVERIFIED |
 | T08 | https://www.nfl.com/injuries/league/2026/REG10 · https://www.chiefs.com/team/depth-chart · https://operations.nfl.com/game-operations-logistics/preparation-safety/game-and-stadium-prep · https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693 | 20 injury rows and 10 depth rows copied verbatim; 11-field tracker schema | F03, F05, F07, F14; replacement_depth and deficiency_index UNVERIFIED |
 | T09 | all of the above | Executive summary cross-checked against every prior task | 14 flagged items summarised |
+| T11 | https://github.com/kanlerxz87-cyber/NFL2/pull/9 · https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages | PR #9 created/merged without approval; `gh pr view 9` MERGED; `gh api repos/kanlerxz87-cyber/NFL2/pages/builds/latest` status `built`; live fetches of the landing page and review subpages returned HTTP content | No deploy retries needed; `git pull --rebase` deviation logged in §8 |
 | T10 | `research/source-registry.json`, `data/content.py`, `data/records.json`, https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages | Namespaced under `review/` to preserve other sessions' builds; built 16 pages / 41 tables / 423 rows from one data file; `tools/verify.py` re-checked every record against the rendered HTML cell by cell (423/423 rows carry an official source link; 230 blank cells are genuinely empty; 94 UNVERIFIED rows each have a blank cell and a flag; 292 internal links and 562 external links checked; 0 broken links); CI workflow `.github/workflows/verify.yml` re-runs build reproducibility + verification | F10 (single-branch environment), F11 (baseline hygiene now fixed), F14 (point-in-time snapshots) |
 
 ## Handoff / conflict notes
@@ -279,7 +280,38 @@ No files were deleted or overwritten. This is flagged for review rather than hid
 
 ### PR & merge record (this session)
 
-- PR: _pending at time of writing_
-- Merge result: _pending_
-- Pages deploy: _pending_
+- PR: **#9** — https://github.com/kanlerxz87-cyber/NFL2/pull/9
+  "Final integration: verification-review dashboard, full requirements register, 423 sourced rows, cross-build link audit"
+  (base `main`, head `arena/01b698ef-nfl2`; opened from the fixed branch because separate
+  integration branches were unavailable — noted in the PR body).
+- Merge result: **MERGED 2026-11-12T04:59:40Z**, merge commit
+  **`4d11d0c6611ce2568a0900739b75d3147d9033f5`**, via `gh pr merge 9 --merge --admin`.
+  `gh pr view 9` state `MERGED`. No approval wait.
+- CI on the PR and on `main` after merge: `Verify site data and links` **success** on the PR,
+  the four branch pushes, and the `main` push; `GitHub Pages` workflow **success**;
+  `pages-build-deployment` **success**.
+- Pages deploy: `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`,
+  `build_type: legacy`, `source: main /`, `https_enforced: true`,
+  `html_url: https://kanlerxz87-cyber.github.io/NFL2/`.
+  `gh api repos/kanlerxz87-cyber/NFL2/pages/builds/latest` → `status: built`, error `null`
+  (a `building` status was observed immediately after the merge and re-checked once;
+  **no retry or fix was required**).
+- Live fetches confirmed after merge (all returned page content, not 404):
+  https://kanlerxz87-cyber.github.io/NFL2/ (root build, shows the additive
+  "Verification Review Dashboard" card/link),
+  https://kanlerxz87-cyber.github.io/NFL2/docs/index.html (prior docs build preserved),
+  https://kanlerxz87-cyber.github.io/NFL2/review/index.html (this build's dashboard,
+  24 dashboard rows with official source links),
+  https://kanlerxz87-cyber.github.io/NFL2/review/requirements.html (52 requirements),
+  https://kanlerxz87-cyber.github.io/NFL2/review/suggestions.html (path chooser + blank
+  decision record), and
+  https://kanlerxz87-cyber.github.io/NFL2/review/flagged.html (14 irregularities F01–F14
+  published with official source links, clearly labelled non-blocking).
+- Final local verification on the merged tree: `python3 tools/build_site.py &&
+  python3 tools/verify.py` → **OK**, 16 pages / 41 tables / 423 rows, 423/423 source links,
+  230 blank cells, 94 flagged UNVERIFIED rows, 0 broken links; combined cross-build link
+  audit 1,518 internal links on 48 pages with 0 broken. `python3 scripts/verify_site.py`
+  (other session's suite) → 13/13 checks passed. Build is byte-identical on rerun.
+- All tasks T00–T11 are `done`. Flagged items remain published for post-merge review;
+  they never blocked the build, the check, the PR or the merge.
 
