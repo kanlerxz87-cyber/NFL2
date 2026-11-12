@@ -72,5 +72,5 @@ Four items sit in front of almost everything else. They are decisions and access
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |
-| Governance | [Source registry](sources.html) → *Parallel-session build* | the other session's pages are archived at [archive/session-009ec582/index.html](archive/session-009ec582/index.html) and its earlier build is at [docs/index.html](docs/index.html); only its game log was adopted here, after re-audit |
+| Governance | [Source registry](sources.html) → *Parallel builds* | three other trees exist and are labelled: this session's audited dashboard is the root; [review/index.html](review/index.html) is session `01b698ef`'s register dashboard (16 pages, own CI); [archive/session-009ec582/index.html](archive/session-009ec582/index.html) and [docs/index.html](docs/index.html) are `009ec582`'s two builds. Only the game log was adopted here, after re-audit |
 | Governance | [Source registry](sources.html) | {{metric sources}} sources with tier, access time and what each was used for |

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Determining a correlation value requires a joint dataset of signal, outcome and market price across many games. No such dataset is available from a fe">
+<title>Correlation values | NFL2</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="correlations.html">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><a href="index.html"><span class="brand-mark">NFL2</span><span class="brand-sub">decision dashboard</span></a></div>
+  <div class="topbar-meta">
+    <span class="chip chip-ok">Verified sources only</span>
+    <span class="chip">Captured 2026-11-12 (UTC)</span>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav class="nav" aria-label="Site navigation">
+<div class="nav-group"><h3>Overview</h3><ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="executive-summary.html">Executive summary</a></li>
+<li><a href="requirements.html">Requirements</a></li>
+<li><a href="repo-review.html">Repo review</a></li>
+</ul></div>
+<div class="nav-group"><h3>Decisions</h3><ul>
+<li><a href="decisions.html">Questions &amp; answers</a></li>
+<li><a href="suggestions.html">Suggestions / choose a path</a></li>
+</ul></div>
+<div class="nav-group"><h3>Research</h3><ul>
+<li><a href="sources.html">Official sources</a></li>
+<li><a href="data.html">Verified data</a></li>
+<li><a href="strategies.html">Strategies &amp; signals</a></li>
+</ul></div>
+<div class="nav-group"><h3>Validation</h3><ul>
+<li><a href="validation.html">Validation gates</a></li>
+<li><a href="correlations.html" class="active" aria-current="page">Correlation values</a></li>
+<li><a href="leaderboard.html">Leaderboard &amp; rewards</a></li>
+</ul></div>
+<div class="nav-group"><h3>Tracking</h3><ul>
+<li><a href="injuries.html">Injuries &amp; depth</a></li>
+</ul></div>
+<div class="nav-group"><h3>Governance</h3><ul>
+<li><a href="methodology.html">Methodology</a></li>
+<li><a href="flagged.html">Flagged for review</a></li>
+</ul></div>
+</nav></aside>
+  <main id="main" class="main">
+    <div class="page-head">
+      <p class="eyebrow">Determined only from data</p>
+      <h1>Correlation values</h1>
+      <p class="lede">Determining a correlation value requires a joint dataset of signal, outcome and market price across many games. No such dataset is available from a fetch-verified official source in this repository. Therefore every numeric cell below is blank and flagged UNVERIFIED. The table defines exactly what must be computed; it does not invent a coefficient.</p>
+    </div>
+    <div class="toolbar">
+      <label class="filter-label" for="rowFilter">Filter rows
+        <input type="search" id="rowFilter" class="filter" placeholder="Type to filter every table on this page…" autocomplete="off">
+      </label>
+      <span id="rowCount" class="filter-count"></span>
+      <span class="legend-inline"><span class="dot dot-verified"></span> verified <span class="dot dot-proposal"></span> proposal <span class="dot dot-unverified"></span> unverified <span class="dot dot-review"></span> needs review</span>
+    </div>
+<section class="card">
+<h2>Correlation pairs to be determined</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Pair</th><th scope="col" tabindex="0">Variable A</th><th scope="col" tabindex="0">Variable B</th><th scope="col" tabindex="0">Method</th><th scope="col" tabindex="0">Pearson r</th><th scope="col" tabindex="0">Spearman rho</th><th scope="col" tabindex="0">95% CI</th><th scope="col" tabindex="0">p (corrected)</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="correlations.html::corr-matrix:000" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C01</td><td>Model spread</td><td>Market closing spread</td><td>Pearson + bootstrap CI</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S14</td><td class="src-cell"><a class="src-link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html" target="_blank" rel="noopener noreferrer" title="pearsonr - SciPy v1.18.0 Manual">S14 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:001" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C02</td><td>Model total</td><td>Market closing total</td><td>Pearson + bootstrap CI</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S15</td><td class="src-cell"><a class="src-link" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html" target="_blank" rel="noopener noreferrer" title="brier_score_loss - scikit-learn 1.9.1 documentation">S15 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:002" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C03</td><td>QB starter depth rank</td><td>Team points</td><td>Spearman (ordinal)</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S17</td><td class="src-cell"><a class="src-link" href="https://www.itl.nist.gov/div898/handbook/" target="_blank" rel="noopener noreferrer" title="NIST/SEMATECH e-Handbook of Statistical Methods">S17 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:003" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C04</td><td>Defensive backup count</td><td>Opponent passing yards</td><td>Pearson</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:004" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C05</td><td>OL backup chain length</td><td>Sacks allowed</td><td>Pearson</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S09</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/next-gen-stats-new-advanced-metrics-you-need-to-know-for-the-2026-nfl-season" target="_blank" rel="noopener noreferrer" title="Next Gen Stats: New advanced metrics you NEED to know for the 2026 NFL season | NFL.com">S09 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:005" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C06</td><td>WR1 availability</td><td>WR1 receiving props</td><td>Point-biserial / phi</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:006" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C07</td><td>Game total</td><td>Two same-game prop legs</td><td>Joint binary-leg correlation</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S22</td><td class="src-cell"><a class="src-link" href="https://massgaming.com/wp-content/uploads/BetMGM-House-Rules-8.10.23.pdf" target="_blank" rel="noopener noreferrer" title="BetMGM Massachusetts House Rules (approved, hosted by Massachusetts Gaming Commission)">S22 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:007" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C08</td><td>Spread leg</td><td>Total leg (same game)</td><td>Joint binary-leg correlation</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S22</td><td class="src-cell"><a class="src-link" href="https://massgaming.com/wp-content/uploads/BetMGM-House-Rules-8.10.23.pdf" target="_blank" rel="noopener noreferrer" title="BetMGM Massachusetts House Rules (approved, hosted by Massachusetts Gaming Commission)">S22 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:008" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C09</td><td>Cross-game leg A</td><td>Cross-game leg B</td><td>Measured, never assumed</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-matrix:009" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>C10</td><td>Injury signal</td><td>Line movement</td><td>Pearson on time-stamped pairs</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S18</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners" target="_blank" rel="noopener noreferrer" title="NFL announces official partnerships with three leading sports betting operators | NFL.com">S18 ↗</a></td>
+</tr>
+</tbody></table></div>
+<p class="analysis"><strong>Analysis:</strong> The blank coefficients are the required output of the verification rule: no official source, no value.</p>
+</section>
+<section class="card">
+<h2>Why leg correlation controls parlays</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">#</th><th scope="col" tabindex="0">Official rule / fact</th><th scope="col" tabindex="0">Effect on strategy design</th><th scope="col" tabindex="0">Correlation value</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="correlations.html::corr-why:000" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>1</td><td>Approved house rules prohibit parlays with two or more related outcomes</td><td>Reject prohibited combinations before scoring</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S22</td><td class="src-cell"><a class="src-link" href="https://massgaming.com/wp-content/uploads/BetMGM-House-Rules-8.10.23.pdf" target="_blank" rel="noopener noreferrer" title="BetMGM Massachusetts House Rules (approved, hosted by Massachusetts Gaming Commission)">S22 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-why:001" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>2</td><td>Same Game Parlay is a separately priced, explicitly carved-out product</td><td>Use the operator&#x27;s own correlated price</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S22</td><td class="src-cell"><a class="src-link" href="https://massgaming.com/wp-content/uploads/BetMGM-House-Rules-8.10.23.pdf" target="_blank" rel="noopener noreferrer" title="BetMGM Massachusetts House Rules (approved, hosted by Massachusetts Gaming Commission)">S22 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-why:002" class="row-unverified" data-status="unverified" data-flags="F07 F12">
+<td>3</td><td>NFL integrity policy prohibits injury-linked and knowable-in-advance wagers</td><td>Exclude non-executable injury signals</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S18</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners" target="_blank" rel="noopener noreferrer" title="NFL announces official partnerships with three leading sports betting operators | NFL.com">S18 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-why:003" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>4</td><td>Pearson r measures linear association and provides a p-value for non-correlation</td><td>Primary numeric method once data exists</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S14</td><td class="src-cell"><a class="src-link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html" target="_blank" rel="noopener noreferrer" title="pearsonr - SciPy v1.18.0 Manual">S14 ↗</a></td>
+</tr>
+<tr data-row-id="correlations.html::corr-why:004" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>5</td><td>Multiple-test correction controls FWER/FDR across many candidate strategies</td><td>Prevents a lucky correlation from looking like skill</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S16</td><td class="src-cell"><a class="src-link" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html" target="_blank" rel="noopener noreferrer" title="statsmodels.stats.multitest.multipletests - statsmodels 0.15.0">S16 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+    <footer class="footer">
+      <p>NFL2 · Static GitHub Pages dashboard · 2026-11-12 (UTC) ·
+         <a href="methodology.html">Verification methodology</a> ·
+         <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">Repository ↗</a></p>
+      <p class="muted">Research and validation framework only. No wagering, accounts or payments.
+         Legal sports betting is age- and jurisdiction-restricted; help resources:
+         <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.
+         Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.</p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

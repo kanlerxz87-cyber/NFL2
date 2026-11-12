@@ -19,10 +19,12 @@ flags so that the owner can choose a path before anything is implemented.
 | `data/games_2026_wk1_9.csv` | the 136 completed results of weeks 1–9, imported from a parallel session's fetch and re-audited here; each row cites its own official game page |
 | `tools/build_site.py` | markdown + CSV → static HTML; refuses to build a row without a source |
 | `tools/verify.py` | data audit (37 checks): reconciliations, vocabularies, blank policy, no fabricated results, game-log cross-check |
+| `tools/review_build_site.py`, `tools/review_verify.py` | the *other* session's generator and auditor, kept running under renamed paths and checked by `.github/workflows/verify.yml` |
 | `tools/check_site.py` | site audit: links, empty cells, template markers, official-source coverage, stale-output and input-digest guards |
 | `tools/compute_tables.py` | the analytic tables (vig, parlay coupling, sample sizes) — closed-form, no market data |
 | `tools/import_parallel.py` | re-imports the game log from `data/games_2026.json` and prints the standings reconciliation |
 | `scripts/**`, `data/*.json`, `data/derived/**` | the parallel session (`arena-009ec582`) and its datasets: 136-game log, standings, team stats, player leaders, depth charts, derived analysis |
+| `review/`, `review/content/`, `research/**`, `tools/review_*.py`, `.github/workflows/verify.yml` | session `arena-01b698ef`'s register dashboard (16 pages) with its own generator, its own row-level auditor and its own CI gate; the tool names `tools/build_site.py` and `tools/verify.py` were claimed by this root build, so their copies were renamed and left otherwise untouched |
 | `archive/session-009ec582/` | that session's 15-page root build, preserved verbatim with its own stylesheet and script so it still renders |
 | `docs/` | that session's earlier 18-page build, published at `/NFL2/docs/` |
 | `COORDINATION.md` | shared task board for concurrent agent sessions: claims, scopes, log, handoffs, integration record |
@@ -50,7 +52,9 @@ tools/check_site.py          site auditor
 tools/compute_tables.py      analytic exhibits
 tools/import_parallel.py     cross-session import + reconciliation
 scripts/ · data/*.json       parallel session's pipeline and datasets
-docs/ · archive/**           parallel session's published builds
+review/ · research/**        session arena-01b698ef's register dashboard and its notes
+docs/ · archive/**           session arena-009ec582's published builds
+tools/review_*.py            arena-01b698ef generator + auditor (renamed, logic unchanged)
 ```
 
 ## Work with it
@@ -64,6 +68,15 @@ python tools/check_site.py     # audit the site links (exit 1 on any failure)
 No dependencies, no build tooling, no JavaScript. Editing a page means editing its markdown or its CSV,
 then running the builder; CI fails if you forget. **Do not hand-edit a root `*.html` file** — it is
 overwritten by the builder, and the CI drift check fails the commit.
+
+## Four published trees, one audited
+
+| Tree | Owner | Audited by | Status |
+| --- | --- | --- | --- |
+| `/` (repository root) | `bc4b47cf` | `tools/verify.py` + `tools/check_site.py` + drift check, in `.github/workflows/validate.yml` | **canonical** — this is what https://kanlerxz87-cyber.github.io/NFL2/ serves |
+| `review/` | `arena-01b698ef` | their own `tools/review_verify.py` (row-level, 423 rows) in `.github/workflows/verify.yml` | live, labelled, not merged into the root registers |
+| `archive/session-009ec582/` | `arena-009ec582` | their 12 build checks at the time they wrote it | archived; carries a banner pointing at the root |
+| `docs/` | `arena-009ec582` | as above | live at `/NFL2/docs/`, unchanged |
 
 ## Where the earlier session's pages went
 

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The site is generated from one data file. Every rendered row is written to data/records.json and checked again by tools/verify.py against the generate">
+<title>Verification methodology | NFL2</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="methodology.html">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><a href="index.html"><span class="brand-mark">NFL2</span><span class="brand-sub">decision dashboard</span></a></div>
+  <div class="topbar-meta">
+    <span class="chip chip-ok">Verified sources only</span>
+    <span class="chip">Captured 2026-11-12 (UTC)</span>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav class="nav" aria-label="Site navigation">
+<div class="nav-group"><h3>Overview</h3><ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="executive-summary.html">Executive summary</a></li>
+<li><a href="requirements.html">Requirements</a></li>
+<li><a href="repo-review.html">Repo review</a></li>
+</ul></div>
+<div class="nav-group"><h3>Decisions</h3><ul>
+<li><a href="decisions.html">Questions &amp; answers</a></li>
+<li><a href="suggestions.html">Suggestions / choose a path</a></li>
+</ul></div>
+<div class="nav-group"><h3>Research</h3><ul>
+<li><a href="sources.html">Official sources</a></li>
+<li><a href="data.html">Verified data</a></li>
+<li><a href="strategies.html">Strategies &amp; signals</a></li>
+</ul></div>
+<div class="nav-group"><h3>Validation</h3><ul>
+<li><a href="validation.html">Validation gates</a></li>
+<li><a href="correlations.html">Correlation values</a></li>
+<li><a href="leaderboard.html">Leaderboard &amp; rewards</a></li>
+</ul></div>
+<div class="nav-group"><h3>Tracking</h3><ul>
+<li><a href="injuries.html">Injuries &amp; depth</a></li>
+</ul></div>
+<div class="nav-group"><h3>Governance</h3><ul>
+<li><a href="methodology.html" class="active" aria-current="page">Methodology</a></li>
+<li><a href="flagged.html">Flagged for review</a></li>
+</ul></div>
+</nav></aside>
+  <main id="main" class="main">
+    <div class="page-head">
+      <p class="eyebrow">Line by line</p>
+      <h1>Verification methodology</h1>
+      <p class="lede">The site is generated from one data file. Every rendered row is written to data/records.json and checked again by tools/verify.py against the generated HTML. This is what &#x27;verify line by line&#x27; means operationally here.</p>
+    </div>
+    <div class="toolbar">
+      <label class="filter-label" for="rowFilter">Filter rows
+        <input type="search" id="rowFilter" class="filter" placeholder="Type to filter every table on this page…" autocomplete="off">
+      </label>
+      <span id="rowCount" class="filter-count"></span>
+      <span class="legend-inline"><span class="dot dot-verified"></span> verified <span class="dot dot-proposal"></span> proposal <span class="dot dot-unverified"></span> unverified <span class="dot dot-review"></span> needs review</span>
+    </div>
+<section class="card">
+<h2>Verification protocol</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Step</th><th scope="col" tabindex="0">Check</th><th scope="col" tabindex="0">Enforced by</th><th scope="col" tabindex="0">Failure behaviour</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="methodology.html::protocol:000" class="row-verified" data-status="verified" data-flags="">
+<td>1</td><td>Only official first-party domains may appear as sources</td><td>Domain allowlist in source-registry.json</td><td>Verifier fails</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Registry</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:001" class="row-verified" data-status="verified" data-flags="">
+<td>2</td><td>Each URL must be opened and matched to a title and excerpt</td><td>research/source-registry.json</td><td>Not marked verified</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Registry</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:002" class="row-verified" data-status="verified" data-flags="">
+<td>3</td><td>Every table row carries at least one official source link</td><td>tools/verify.py</td><td>Build fails</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Verifier</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:003" class="row-verified" data-status="verified" data-flags="">
+<td>4</td><td>Unconfirmable values are blank cells, not estimates</td><td>data/content.py + CSS blank class</td><td>Build fails if text appears</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Generator</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:004" class="row-verified" data-status="verified" data-flags="">
+<td>5</td><td><span class="badge badge-unverified">Unverified rows carry an UNVERIFIED badge and a flag ID</span></td><td>Generator</td><td>Build fails</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Generator</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:005" class="row-verified" data-status="verified" data-flags="">
+<td>6</td><td>Every internal link resolves to a file that exists</td><td>tools/verify.py link check</td><td>Build fails</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Verifier</td><td>S27</td><td class="src-cell"><a class="src-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer" title="What is GitHub Pages? - GitHub Docs">S27 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:006" class="row-verified" data-status="verified" data-flags="">
+<td>7</td><td>Every page uses identical navigation</td><td>Generator + verifier</td><td>Build fails</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Generator</td><td>S27</td><td class="src-cell"><a class="src-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer" title="What is GitHub Pages? - GitHub Docs">S27 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:007" class="row-proposal" data-status="proposal" data-flags="">
+<td>8</td><td>CI reruns the verifier on every push and PR</td><td>.github/workflows/verify.yml</td><td>Check fails</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>GitHub Docs</td><td>S28</td><td class="src-cell"><a class="src-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener noreferrer" title="Configuring a publishing source for your GitHub Pages site - GitHub Docs">S28 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:008" class="row-proposal" data-status="proposal" data-flags="">
+<td>9</td><td>Pages deployment is confirmed after merge</td><td>Official Pages build API + live fetch</td><td>Retry until live</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>GitHub Docs</td><td>S28</td><td class="src-cell"><a class="src-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener noreferrer" title="Configuring a publishing source for your GitHub Pages site - GitHub Docs">S28 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:009" class="row-verified" data-status="verified" data-flags="">
+<td>10</td><td>Flagged items are published and explicitly non-blocking</td><td>flagged.html</td><td>Does not block merge</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Flagged page</td><td>S18</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners" target="_blank" rel="noopener noreferrer" title="NFL announces official partnerships with three leading sports betting operators | NFL.com">S18 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:010" class="row-verified" data-status="verified" data-flags="">
+<td>11</td><td>No third-party blog, tip site or search snippet supplies a value</td><td>research/sources.md exclusion list</td><td>Value stays blank</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Registry</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::protocol:011" class="row-verified" data-status="verified" data-flags="">
+<td>12</td><td>All live-data snapshots carry a captured-at timestamp</td><td>Page intro + this document</td><td>Flag F14</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com</td><td>S32</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer" title="Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S32 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<h2>Reading the tables</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Badge / marker</th><th scope="col" tabindex="0">Meaning</th><th scope="col" tabindex="0">What to do</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="methodology.html::legend:000" class="row-verified" data-status="verified" data-flags="">
+<td><span class="badge badge-verified">VERIFIED</span></td><td>Value copied from a fetch-verified official page</td><td>Use it, and click the source to review</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Source registry</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::legend:001" class="row-verified" data-status="verified" data-flags="">
+<td><span class="badge badge-proposal">PROPOSAL</span></td><td>Design or analysis, not a sourced NFL fact</td><td>Review and choose a path before implementing</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Project brief</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::legend:002" class="row-verified" data-status="verified" data-flags="">
+<td><span class="badge badge-unverified">UNVERIFIED</span></td><td>No official source confirms the value; cell is blank</td><td>Complete the discovery suggestion, then re-source</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Verification rule</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::legend:003" class="row-verified" data-status="verified" data-flags="">
+<td><span class="badge badge-review">NEEDS REVIEW</span></td><td>Published on Flagged for Review; does not block anything</td><td>Review after launch and request changes</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Project brief</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::legend:004" class="row-verified" data-status="verified" data-flags="">
+<td>Blank cell</td><td>Deliberately empty, never inferred</td><td>Do not fill in without an official source</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Verification rule</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="methodology.html::legend:005" class="row-verified" data-status="verified" data-flags="">
+<td>↗</td><td>Opens the official source in a new tab</td><td>Manual review</td><td><span class="badge badge-verified">VERIFIED</span></td><td>GitHub Docs</td><td>S27</td><td class="src-cell"><a class="src-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer" title="What is GitHub Pages? - GitHub Docs">S27 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+    <footer class="footer">
+      <p>NFL2 · Static GitHub Pages dashboard · 2026-11-12 (UTC) ·
+         <a href="methodology.html">Verification methodology</a> ·
+         <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">Repository ↗</a></p>
+      <p class="muted">Research and validation framework only. No wagering, accounts or payments.
+         Legal sports betting is age- and jurisdiction-restricted; help resources:
+         <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.
+         Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.</p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

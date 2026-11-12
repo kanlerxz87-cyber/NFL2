@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A clean, read-only dashboard of verified NFL research, decision prerequisites, suggestions, strategy design, validation gates and injury/depth trackin">
+<title>NFL2 decision dashboard | NFL2</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="index.html">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><a href="index.html"><span class="brand-mark">NFL2</span><span class="brand-sub">decision dashboard</span></a></div>
+  <div class="topbar-meta">
+    <span class="chip chip-ok">Verified sources only</span>
+    <span class="chip">Captured 2026-11-12 (UTC)</span>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav class="nav" aria-label="Site navigation">
+<div class="nav-group"><h3>Overview</h3><ul>
+<li><a href="index.html" class="active" aria-current="page">Dashboard</a></li>
+<li><a href="executive-summary.html">Executive summary</a></li>
+<li><a href="requirements.html">Requirements</a></li>
+<li><a href="repo-review.html">Repo review</a></li>
+</ul></div>
+<div class="nav-group"><h3>Decisions</h3><ul>
+<li><a href="decisions.html">Questions &amp; answers</a></li>
+<li><a href="suggestions.html">Suggestions / choose a path</a></li>
+</ul></div>
+<div class="nav-group"><h3>Research</h3><ul>
+<li><a href="sources.html">Official sources</a></li>
+<li><a href="data.html">Verified data</a></li>
+<li><a href="strategies.html">Strategies &amp; signals</a></li>
+</ul></div>
+<div class="nav-group"><h3>Validation</h3><ul>
+<li><a href="validation.html">Validation gates</a></li>
+<li><a href="correlations.html">Correlation values</a></li>
+<li><a href="leaderboard.html">Leaderboard &amp; rewards</a></li>
+</ul></div>
+<div class="nav-group"><h3>Tracking</h3><ul>
+<li><a href="injuries.html">Injuries &amp; depth</a></li>
+</ul></div>
+<div class="nav-group"><h3>Governance</h3><ul>
+<li><a href="methodology.html">Methodology</a></li>
+<li><a href="flagged.html">Flagged for review</a></li>
+</ul></div>
+</nav></aside>
+  <main id="main" class="main">
+    <div class="page-head">
+      <p class="eyebrow">Live dashboard</p>
+      <h1>NFL2 decision dashboard</h1>
+      <p class="lede">A clean, read-only dashboard of verified NFL research, decision prerequisites, suggestions, strategy design, validation gates and injury/depth tracking. Every table row links to an official source. Values that cannot be confirmed from an official source are blank and flagged UNVERIFIED.</p>
+    </div>
+    <div class="toolbar">
+      <label class="filter-label" for="rowFilter">Filter rows
+        <input type="search" id="rowFilter" class="filter" placeholder="Type to filter every table on this page…" autocomplete="off">
+      </label>
+      <span id="rowCount" class="filter-count"></span>
+      <span class="legend-inline"><span class="dot dot-verified"></span> verified <span class="dot dot-proposal"></span> proposal <span class="dot dot-unverified"></span> unverified <span class="dot dot-review"></span> needs review</span>
+    </div>
+
+    <section class="hero card">
+      <h2>What this site is</h2>
+      <p>A read-only research and decision dashboard. It does not place wagers, handle money or
+         offer betting advice. Numerical results that cannot be confirmed from an official source
+         are shown as blank cells with an <span class="badge badge-unverified">UNVERIFIED</span> flag.</p>
+      <div class="hero-actions">
+        <a class="btn" href="decisions.html">Start with the questions</a>
+        <a class="btn btn-secondary" href="suggestions.html">Choose a path</a>
+        <a class="btn btn-secondary" href="flagged.html">Flagged for Review</a>
+      </div>
+    </section>
+<section class="card">
+<h2>Site at a glance</h2>
+<p class="intro">Counts describe this site&#x27;s own content, not NFL statistics. They are generated from the same data file that renders every table.</p>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Metric</th><th scope="col" tabindex="0">Value</th><th scope="col" tabindex="0">Meaning</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="index.html::dash-status:000" class="row-verified" data-status="verified" data-flags="">
+<td>Official sources fetch-verified</td><td>33</td><td>URLs opened and matched to a recorded title and excerpt</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Source registry, 2026-11-12</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:001" class="row-verified" data-status="verified" data-flags="">
+<td>Atomic requirements</td><td>52</td><td>Line-by-line trace to the project brief</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Requirements register</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:002" class="row-verified" data-status="verified" data-flags="">
+<td>Blocking decision questions</td><td>17</td><td>Must be answered before implementation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Decision gates page</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:003" class="row-verified" data-status="verified" data-flags="">
+<td>Open improvement paths</td><td>5</td><td>Reviewer chooses one before any change is implemented</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Suggestions page</td><td>S11</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener noreferrer" title="Big Data Bowl | NFL Football Operations">S11 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:004" class="row-verified" data-status="verified" data-flags="">
+<td>Validation gates</td><td>12</td><td>Each strategy must pass all gates</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Validation page</td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:005" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>Correlation pairs defined</td><td>10</td><td>All numeric values blank until a licensed dataset exists</td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>S14</td><td class="src-cell"><a class="src-link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html" target="_blank" rel="noopener noreferrer" title="pearsonr - SciPy v1.18.0 Manual">S14 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:006" class="row-verified" data-status="verified" data-flags="">
+<td><span class="badge badge-verified">Verified injury report rows</span></td><td>20</td><td>Week 10, Commanders at Giants, verbatim from NFL.com</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Injuries page</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:007" class="row-verified" data-status="verified" data-flags="">
+<td><span class="badge badge-verified">Verified depth-chart rows</span></td><td>10</td><td>Chiefs offense/defense, First through Fourth</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Club depth chart is labelled unofficial</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:008" class="row-needs-review" data-status="needs-review" data-flags="F01 F13">
+<td>Flagged irregularities</td><td>14</td><td>Published on Flagged for Review; non-blocking</td><td><span class="badge badge-review">NEEDS REVIEW</span></td><td>See flagged.html</td><td>S18</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners" target="_blank" rel="noopener noreferrer" title="NFL announces official partnerships with three leading sports betting operators | NFL.com">S18 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-status:009" class="row-verified" data-status="verified" data-flags="">
+<td>Live-money features</td><td>0</td><td>No wagering, accounts or payments</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Legal jurisdiction unresolved</td><td>S30</td><td class="src-cell"><a class="src-link" href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" title="Home - National Council on Problem Gambling">S30 ↗</a></td>
+</tr>
+</tbody></table></div>
+<p class="analysis"><strong>Analysis:</strong> The dashboard is deliberately a decision tool, not a tip sheet: unresolved items are visible, sourced and non-blocking, so a reviewer can see exactly what is known and what is not.</p>
+</section>
+<section class="card">
+<h2>Pages by category</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Category</th><th scope="col" tabindex="0">Page</th><th scope="col" tabindex="0">What you will find</th><th scope="col" tabindex="0">Rows of data</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="index.html::dash-index:000" class="row-verified" data-status="verified" data-flags="">
+<td>Overview</td><td>Executive summary</td><td>Important details, findings and recommended path</td><td>22</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Repository brief</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:001" class="row-verified" data-status="verified" data-flags="">
+<td>Overview</td><td>Requirements</td><td>52 atomic requirements with acceptance criteria</td><td>52</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Repository brief</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:002" class="row-verified" data-status="verified" data-flags="">
+<td>Overview</td><td>Repo review</td><td>Line-by-line audit of the original repository</td><td>14</td><td><span class="badge badge-verified">VERIFIED</span></td><td>GitHub API + local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:003" class="row-verified" data-status="verified" data-flags="">
+<td>Decisions</td><td>Questions &amp; answers</td><td>Information we have / do not have / answers / discovery</td><td>39</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Official NFL sources</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:004" class="row-verified" data-status="verified" data-flags="">
+<td>Decisions</td><td>Suggestions</td><td>Ranked paths and the pre-implementation chooser</td><td>20</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Official competition design</td><td>S11</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener noreferrer" title="Big Data Bowl | NFL Football Operations">S11 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:005" class="row-verified" data-status="verified" data-flags="">
+<td>Research</td><td>Official sources</td><td>36 registry rows: 33 fetch-verified / local-git-verified official URLs and 3 explicitly excluded entries</td><td>36</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Source registry</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:006" class="row-verified" data-status="verified" data-flags="">
+<td>Research</td><td><span class="badge badge-verified">Verified data</span></td><td>Standings, schedule, game metrics, injury and depth snapshots</td><td>31</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com / club site</td><td>S03</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener noreferrer" title="2026 NFL League Standings | NFL.com">S03 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:007" class="row-verified" data-status="verified" data-flags="">
+<td>Research</td><td>Strategies &amp; signals</td><td>15 candidate strategies across singles, parlays, prop combos</td><td>35</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Official data inputs</td><td>S20</td><td class="src-cell"><a class="src-link" href="https://support.nfl.com/hc/en-us/articles/35869698780564-If-I-place-a-bet-on-NFL-com-or-the-NFL-app-am-I-betting-with-the-NFL" target="_blank" rel="noopener noreferrer" title="If I place a bet on NFL.com or the NFL app, am I betting with the NFL? - NFL Support">S20 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:008" class="row-verified" data-status="verified" data-flags="">
+<td>Validation</td><td>Validation gates</td><td>12 gates + 9-step skill-vs-luck protocol</td><td>27</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Official method documentation</td><td>S15</td><td class="src-cell"><a class="src-link" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html" target="_blank" rel="noopener noreferrer" title="brier_score_loss - scikit-learn 1.9.1 documentation">S15 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:009" class="row-verified" data-status="verified" data-flags="">
+<td>Validation</td><td>Correlation values</td><td>10 pairs with blank coefficients</td><td>15</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Row count from local data file</td><td>S14</td><td class="src-cell"><a class="src-link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html" target="_blank" rel="noopener noreferrer" title="pearsonr - SciPy v1.18.0 Manual">S14 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:010" class="row-verified" data-status="verified" data-flags="">
+<td>Validation</td><td>Leaderboard &amp; rewards</td><td>Public/private split, reward tiers, integrity limits</td><td>19</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>Official Big Data Bowl</td><td>S11</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener noreferrer" title="Big Data Bowl | NFL Football Operations">S11 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:011" class="row-verified" data-status="verified" data-flags="">
+<td>Tracking</td><td>Injuries &amp; depth</td><td>Injury snapshot, depth snapshot, tracker schema</td><td>49</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com + club site</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:012" class="row-verified" data-status="verified" data-flags="">
+<td>Governance</td><td>Methodology</td><td>Verification protocol and blank-value policy</td><td>18</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>GitHub Docs</td><td>S27</td><td class="src-cell"><a class="src-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer" title="What is GitHub Pages? - GitHub Docs">S27 ↗</a></td>
+</tr>
+<tr data-row-id="index.html::dash-index:013" class="row-needs-review" data-status="needs-review" data-flags="F01 F02 F13">
+<td>Governance</td><td>Flagged for review</td><td>14 irregularities with source links</td><td>19</td><td><span class="badge badge-review">NEEDS REVIEW</span></td><td>Published non-blocking</td><td>S18</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners" target="_blank" rel="noopener noreferrer" title="NFL announces official partnerships with three leading sports betting operators | NFL.com">S18 ↗</a></td>
+</tr>
+</tbody></table></div>
+<p class="analysis"><strong>Analysis:</strong> Categories are fixed across all pages so navigation never changes shape. Every subpage repeats the same sidebar.</p>
+</section>
+    <footer class="footer">
+      <p>NFL2 · Static GitHub Pages dashboard · 2026-11-12 (UTC) ·
+         <a href="methodology.html">Verification methodology</a> ·
+         <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">Repository ↗</a></p>
+      <p class="muted">Research and validation framework only. No wagering, accounts or payments.
+         Legal sports betting is age- and jurisdiction-restricted; help resources:
+         <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.
+         Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.</p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
