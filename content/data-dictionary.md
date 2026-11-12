@@ -11,10 +11,10 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
 | `data/standings_2026.csv` | 32 | club × season-to-date | S-STAND |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
-| `data/sources.csv` | 26 | source | — |
+| `data/sources.csv` | {{metric sources}} | source | — |
 | `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | 40 / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
-| `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | 14 / 18 / 14 / 12 / 14 | design rows | S-DESIGN |
+| `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | design rows | S-DESIGN |
 | `data/build_manifest.json` | — | build output, counts, allowlist | generated |
 
 ## Column meanings — injury snapshot

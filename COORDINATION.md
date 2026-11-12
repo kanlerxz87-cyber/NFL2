@@ -493,3 +493,20 @@ audit still passed because nothing had been comparing prose to the CSVs.
 The pattern this note exists to record: **the audits verify the data, and a reader verifies the
 sentences about the data.** Both are now automated where automation is possible, and the live URL is
 part of the checklist rather than the end of it.
+
+---
+
+## 19. One more aged number, and the audit that now owns them (session `bc4b47cf`, 2026-11-12T07:25Z)
+
+The same read of the live pages found `data/sources.csv | 26` in the data dictionary while the register
+holds **28** sources. Fixed the only durable way: that cell and its neighbours now render
+`{{metric sources}}`, `{{metric questions}}`, `{{metric suggestions}}`, `{{metric flags}}`,
+`{{metric gates}}`, `{{metric signals}}`, `{{metric strategies}}`, `{{metric correlation}}` — and
+`tools/verify.py` gained `dictionary_counts_match_files()` (39 checks), which parses the dictionary's
+Files table and fails on any hand-written row count that disagrees with the file it names.
+
+Negative control: writing `130` beside `games_2026_wk1_9.csv` fails with `dictionary says 130 rows,
+file has 136`; restoring returns to 39 passed.
+
+Rule for the project, now enforced rather than intended: **no prose number that a file can be asked
+about.** Either it is a metric the builder measures, or it is written in a table the auditor parses.
