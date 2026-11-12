@@ -1,0 +1,17 @@
+id|information|status|value_if_known|what_it_unlocks|source
+IN-01|Week 10 injury participation (all clubs)|have, dated|254 rows at 04:45Z; 279 rows at 22:35Z|Availability load per club per week|https://www.nfl.com/injuries/
+IN-02|Week 10 game-status designations|have, mostly missing|6 designations of 279 live rows|The actual who-is-out input|https://www.nfl.com/news/nfl-week-10-injury-report-2026-season
+IN-03|Game-time inactive lists|have, not yet ingested|Published per game inside each game book|The definitive who-did-not-dress list|https://static.www.nfl.com/image/upload/v1791805923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf
+IN-04|Starting lineups, both sides, every completed game|have, not yet ingested|Published per game inside each game book|Who replaced whom, measured|https://static.www.nfl.com/image/upload/v1791805923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf
+IN-05|Season-long per-game statistics for players|have, not yet ingested|Rushing, passing, receiving with targets, per game book|Prop baselines|https://static.www.nfl.com/image/upload/v1791805923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf
+IN-06|League-wide depth chart|not published|The league depth-chart path returns its 404 page|Nothing directly; superseded by IN-04|https://www.nfl.com/teams/new-england-patriots/depth-chart/
+IN-07|Club depth charts|partly have|12 to 13 clubs publish one on their own site|A cross-check on IN-04, not an input|https://www.patriots.com/
+IN-08|Opening and closing prices, any market|do not have|Nothing reachable|Edge, CLV, every gate|https://operations.nfl.com/
+IN-09|Snap counts, routes run, coverage|do not have|Nothing at a league address|Prop modelling and prop correlation|https://www.nfl.com/injuries/
+IN-10|32-club standings, 2026 through week 10|have, verified|Identical to the live page on all seven fields|Ratings and reconciliation|https://www.nfl.com/standings/
+IN-11|136 completed game results, weeks 1-9|have, verified|Points reconcile to the league unit exactly|Rating input, correlation input|https://www.nfl.com/schedules/2026/REG/
+IN-12|Week 11 slate and bye list|have, verified|13 games, 6 byes|Line pre-registration|https://www.nfl.com/news/week-11-schedule-change
+IN-13|Same-game correlation among outcomes|have, measured|r = +0.076 home vs away points on 136 games|Whether parlays can be priced as independent|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv
+IN-14|Parlay price error versus independence|do not have|Nothing: needs IN-08|The parlay half of the brief|https://arxiv.org/abs/2607.14430
+IN-15|Injured-reserve return rule text|not confirmed at a league address|No citable page located in this session|Settlement of reserve-related depth changes|https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11
+IN-16|Whether each of the 25 newly-listed players is a starter|do not have yet|Derivable once IN-04 is parsed|Which new injuries move a number|https://www.nfl.com/injuries/

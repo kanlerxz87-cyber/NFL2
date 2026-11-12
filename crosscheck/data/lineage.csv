@@ -1,0 +1,13 @@
+id|calculation|input|value|recomputed_here|matches|note|source
+AL-01|Pearson r, net points per game vs win percentage, n = 32|Standings file in this repo|0.876|0.876|yes|The same number appears in analytics C-01, s53 C-01 and portal CORR-01.|https://www.nfl.com/standings/
+AL-02|Pearson r, home points vs away points, n = 136|Game log, weeks 1-9|0.076045|0.076045|yes|Six decimal places identical to the q51 file. An outside party can repeat this in one line.|https://www.nfl.com/schedules/2026/REG/
+AL-03|Pearson r, home points vs game total, n = 136|Game log|0.680777|0.680777|yes|Mechanical: the home score is inside the total, so most of this is arithmetic, not insight. Published here so nobody reads it as a finding.|https://www.nfl.com/schedules/2026/REG/
+AL-04|Pearson r, away points vs game total, n = 136|Game log|0.782139|0.782139|yes|Same caveat as AL-03.|https://www.nfl.com/schedules/2026/REG/
+AL-05|Pearson r, game total vs absolute margin, n = 136|Game log|-0.016221|-0.016221|yes|Close to zero, which is the interesting part: a high total does not imply a blowout.|https://www.nfl.com/schedules/2026/REG/
+AL-06|Pearson r, home margin vs game total, n = 136|Game log|-0.160795|-0.160795|yes|Small negative.|https://www.nfl.com/schedules/2026/REG/
+AL-07|Pearson r, home points vs home win, n = 136|Game log|0.459735|0.459735|yes|By construction positive.|https://www.nfl.com/schedules/2026/REG/
+AL-08|League points for and against|Standings file|6246 / 6246|6246 / 6246|yes|Every point scored is a point allowed; confirms the 32 rows are a closed system.|https://www.nfl.com/standings/
+AL-09|Home win rate, weeks 1-9|Game log|67-68-1 (49.6%)|67-68-1|yes|No home-field advantage is visible in outcomes this season to date.|https://www.nfl.com/schedules/2026/REG/
+AL-10|Mean game total and margin|Game log|45.93 total, 10.62 absolute margin|45.93 / 10.62|yes|The only two numbers a totals or spread model has to reproduce before it earns a comparison.|https://www.nfl.com/schedules/2026/REG/
+AL-11|ROI confidence half-width at n settled bets, 52.38% break-even|Arithmetic|-|see table|n/a|Derived here, not sourced. At n=100 the band is +-8.9 points; at n=1000, +-2.8; at n=3000, +-1.6.|https://github.com/kanlerxz87-cyber/NFL2/blob/main/crosscheck/data/sample_size_math.csv
+AL-12|Total score standard deviation, 1 game|Game log|14.26|14.26|yes|Compare against any model's residual standard deviation; a model must beat this to add nothing.|https://www.nfl.com/schedules/2026/REG/

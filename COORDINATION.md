@@ -671,6 +671,7 @@ T18 still named `bc4b47cf` as in progress although the merged integration record
 - **Live review:** https://kanlerxz87-cyber.github.io/NFL2/ · https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html
 - Full final audit: `reports/fd94fccd/FINAL_AUDIT.md`.
 
+
 ---
 
 ## Session `8361cc7a-nfl2` — independent line-by-line re-verification against live official sources
@@ -786,6 +787,73 @@ Post-merge state of the combined tree: all eight suites pass (47 data checks, 10
 suite OK, 96 pages / 230 tables / 3,500 rows / 0 broken links, 116 pages / 3,310 internal links / 0 broken,
 portal 0 broken, Q51 10 pages / 155 rows / 0 errors, 36 unit tests OK).
 
+
+---
+
+## Session `2063673b` — live re-verification & cross-tree reconciliation (`crosscheck/`)
+
+**Session ID:** `2063673b` · **Branch:** `arena/2063673b-nfl2` (fixed by Arena) · **Opened:** 2026-11-12T22:30Z
+**Base:** `25d88a9` (main, after PR #24)
+
+### Claim (written before any file creation, pushed immediately)
+
+| ID | Task | Status | Owner | Exclusive paths |
+|---|---|---|---|---|
+| X1 | Fresh live re-verification of the Week 10 official injury table, row by row, against `nfl.com/injuries/` fetched today | in progress | `2063673b` | `crosscheck/**` |
+| X2 | Fresh live verification of the Week 10 + Week 11 schedule and the 32-club standings page against `nfl.com` | in progress | `2063673b` | `crosscheck/**` |
+| X3 | Cross-tree reconciliation: every headline number asserted by the eight published trees, compared to each other and to its source | in progress | `2063673b` | `crosscheck/**` |
+| X4 | Decision-readiness register (have / lack / how to close) + suggestions review board with a recommended path | in progress | `2063673b` | `crosscheck/**` |
+| X5 | `crosscheck/` dashboard — landing page + category subpages, every table row carrying an official `https://` source, blanks flagged | in progress | `2063673b` | `crosscheck/**` |
+| X6 | Final integration: link from the root page map, rebuild root site, re-run all audits, PR → `main`, confirm Pages | unclaimed | — | `content/index.md` (one row), `COORDINATION.md`, `crosscheck/**` |
+
+**Files this session will touch:** `crosscheck/**` (new), `COORDINATION.md` (this appended section only),
+and — only at X6, as a single added page-map row — `content/index.md` plus the regenerated root `*.html`.
+No other session's file is edited. No root data register (`data/*.csv`) is modified.
+
+**Cross-scope request CR-2063673b-01** (logged, not executed): the root page map should carry one row
+pointing at `crosscheck/index.html`. Deferred to X6 so that shared navigation is changed once, at integration.
+
+
+### X1–X6 completion record — session `2063673b`
+
+| ID | Task | Status | Result |
+|---|---|---|---|
+| X1 | Live re-verification, Week 10 injury table | done | 279 live rows transcribed club by club; joined to the published 254 on `(club, player)`. **254/254 still match** on position, injury note, practice and status. **25 rows added**, **4 practice cells moved**, **0 removed**. |
+| X2 | Live re-verification, standings + Week 10/11 schedule | done | Standings **32/32 exact** on W-L-T, pct, PF, PA, streak. Week 10 schedule **14/14 exact**. Week 11 **13/13 exact** on opponent, date, kickoff, neutral site; 6-club bye list confirmed twice. |
+| X3 | Cross-tree claim audit | done | 18 headline claims across all seven trees checked against their own files and the league: 12 verified, 2 stale numbers, 2 mismatches, 2 unverifiable. Plus an 8-row copy audit and a 12-row number-lineage table. **All six published game-log coefficients recomputed exactly.** |
+| X4 | Decision registers | done | 14 questions, 12 suggestions, 16 information domains, 7-row sample-size table. Each row carries an official or repository source. |
+| X5 | `crosscheck/` dashboard | done | 14 pages built by `crosscheck/build.py`; **472 sourced data rows**, 444 internal links, **0 broken**, byte-deterministic rebuild. |
+| X6 | Final integration | done | Two Governance rows added to `content/index.md` (one dedicated, one clause); root site and manifests rebuilt; **every audit suite in the repository re-run green** (see the list below). PR and Pages record appended below after merge. |
+
+### Errors found and published (see `crosscheck/flagged.html`)
+
+1. `analytics/flagged.html` and `analytics/questions.html` say game status is missing for **243** of 254 rows. Measured: **248** of 254 are missing (6 are present). The root tree already publishes the correct value.
+2. `data/schedule-week11-2026.json`: **MIA at BUF** listed as FOX; the league says **CBS**.
+3. `data/schedule_week11_2026.json`: **TB at DET** listed as CBS; the league says **FOX**.
+   Items 2 and 3 are wrong in opposite directions, so neither file can be corrected from the other — the league page is the only source.
+
+### Substantive finding
+
+The repository has treated the absence of an official depth chart (`FL-06`, confirmed: the league depth-chart path returns its "404 - Flag on the Play" page) as blocking the "2nd/3rd/4th string replacing a starter" requirement. **It is not blocking.** Every official NFL game book — reachable from each game page and from `static.www.nfl.com` — carries **starting lineups for both clubs and an explicit `Not Active` list**, plus full per-player game statistics. Verified on two independent books (NE@SEA week 1 and NYG@WAS week 5) and proposed as `XS-01` / `XQ-02`. Depth rank can be replaced by measured participation rather than inferred.
+
+### Verification performed on the combined tree (all green)
+
+| Suite | Result |
+|---|---|
+| `python3 tools/build_site.py` | 22 pages rebuilt |
+| `python3 tools/verify.py` | 39 passed / 0 failures |
+| `python3 tools/check_site.py` | 10 passed / 0 failures (1 disclosed non-league registry warning) |
+| `python3 scripts/audit_all_pages.py` | 96 HTML / 36 JSON / 222 tables / **3,427 rows** / 0 broken links / 0 column mismatches |
+| `python3 scripts/verify_s53126614.py` | 130 HTML pages / 3,609 links / 0 broken |
+| `python3 engine/verify_repo_and_site.py` | 1,623 links / 0 broken |
+| `python3 scripts/verify_site.py` | 13/13 |
+| `python3 -m unittest discover -s tests/q51` | 36 tests pass |
+| `python3 scripts/verify_q51.py` | 0 errors |
+| `python3 crosscheck/verify.py` | 14 pages / 444 links / 472 sourced rows / 0 failures |
+
+### Conflict handling
+
+`git merge origin/main` conflicted on `COORDINATION.md` only. The collision was a pure append at the end of the file: session `fd94fccd` appended its final-audit record while this session appended its claim. Both records are kept verbatim in order (incoming first, then this session's); nothing was discarded and no other file conflicted. A required `git pull --rebase` was not forced; the merge was preserved and pushed without force.
 ### RV-T05 — PR, merge and GitHub Pages record
 
 - **Pull request:** [#29](https://github.com/kanlerxz87-cyber/NFL2/pull/29) — `arena/8361cc7a-nfl2` → `main`.

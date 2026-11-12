@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this was verified · NFL2 crosscheck</title>
+<meta name="description" content="The rules this build follows, the tools it refuses to use, and the one test anyone can run to falsify its numbers.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> <span>Crosscheck · session 2063673b</span></a>
+  <div class="asof">Official league sources fetched <strong>2026-11-12 22:35 UTC</strong> · every row carries its source · blanks are labelled</div>
+</header>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Start</span><a class="" href="index.html">Overview</a><a class="" href="executive-summary.html">Executive Summary</a><a class="on" href="method.html">How this was verified</a></div><div class="navgroup"><span>Verification</span><a class="" href="recheck.html">Live re-check, row by row</a><a class="" href="differences.html">What changed since the snapshot</a><a class="" href="schema.html">Files, counts and checks</a></div><div class="navgroup"><span>Repo audit</span><a class="" href="tree-claims.html">Cross-tree claim audit</a><a class="" href="copy-audit.html">Copy that aged</a><a class="" href="lineage.html">Number lineage &amp; recomputation</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Questions that block a decision</a><a class="" href="information.html">What we have / lack</a><a class="" href="suggestions.html">Suggestions — pick a path</a><a class="" href="decision-guide.html">How to choose</a></div><div class="navgroup"><span>Flagged</span><a class="" href="flagged.html">Flagged for review</a></div>
+    <div class="sidefoot">Sibling trees are evidence, not sources.<br><a href="flagged.html">Flagged for review</a> · <a href="../index.html">Root dashboard</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge info">Verified audit</span>
+      <h1>How this was verified</h1>
+      <p class="lead">The rules this build follows, the tools it refuses to use, and the one test anyone can run to falsify its numbers.</p>
+    </div>
+    
+<h2>The rules</h2>
+<ol>
+<li><strong>Only a league page counts as a source.</strong> A row may cite nfl.com, operations.nfl.com or static.www.nfl.com. A club site is evidence, and is labelled as such. A sibling tree in this repository is an input, never a source.</li>
+<li><strong>A blank is a value.</strong> Where the league published nothing, the cell renders as <em>not published</em>. It is never zero and never an estimate.</li>
+<li><strong>Prose counts are measured.</strong> Every number in a sentence is computed from the file it describes at build time. If the prose and the file disagree after an edit, the build is what changes.</li>
+<li><strong>Nothing is inferred across a gap.</strong> If a player row is absent, the player is <em>unreported</em>, not healthy. Seattle's missing block is the case that proves why.</li>
+<li><strong>Unverifiable stays flagged.</strong> It does not get dropped quietly; it goes on the <a href="flagged.html">Flagged for review</a> page with the reason it could not be closed.</li>
+</ol>
+
+<h2>How the injury re-check actually worked</h2>
+<p>The live table was transcribed club by club into <code>crosscheck/data/live_wk10_injuries_2026-11-12.csv</code> — every player, position, injury note, participation string and game status, exactly as printed. The published file and the live transcript were then joined on the pair <em>(club, player)</em> and compared field by field. No fuzzy matching, no name normalisation beyond the league's own spelling. The result is reproducible by opening the same page and counting.</p>
+<p>That join is why the difference report can name players rather than report a total. It is also why the 25 added rows are a list, not an inference: each is a player the live page prints and the published file does not.</p>
+
+<h2>The one test that falsifies this build</h2>
+<p>Take <code>data/games_2026_wk1_9.csv</code> out of the repository root, compute a Pearson correlation between home and away points, and compare it to the number on the <a href="lineage.html">lineage page</a>. If they differ, this build is wrong. All 6 published coefficients were recomputed this way and 6 matched to six decimal places.</p>
+
+<h2>What this build did not do</h2>
+<ul>
+<li>It did not re-open all 136 game pages individually. It re-opened 13 and relied on the repository's own arithmetic reconciliation for the rest. That is stated on the page rather than glossed.</li>
+<li>It did not attempt to reach a price feed. None is reachable from this environment, and none is licensed.</li>
+<li>It did not modify any file owned by another session. The claim and the scope are recorded in <code>COORDINATION.md</code>.</li>
+</ul>
+
+    <footer class="pagefoot"><a class="pager" href="executive-summary.html">&larr; Executive Summary</a><a class="pager right" href="recheck.html">Live re-check, row by row &rarr;</a>
+      <div class="foot-meta">Generated by <code>crosscheck/build.py</code> from <code>crosscheck/data/*.csv</code>. Read the <a href="method.html">verification method</a>.</div>
+    </footer>
+  </main>
+</div>
+</body></html>

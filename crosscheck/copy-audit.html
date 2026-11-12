@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copy that aged · NFL2 crosscheck</title>
+<meta name="description" content="Published sentences checked against the file each one describes. Prose drifts; these are the instances.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> <span>Crosscheck · session 2063673b</span></a>
+  <div class="asof">Official league sources fetched <strong>2026-11-12 22:35 UTC</strong> · every row carries its source · blanks are labelled</div>
+</header>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Start</span><a class="" href="index.html">Overview</a><a class="" href="executive-summary.html">Executive Summary</a><a class="" href="method.html">How this was verified</a></div><div class="navgroup"><span>Verification</span><a class="" href="recheck.html">Live re-check, row by row</a><a class="" href="differences.html">What changed since the snapshot</a><a class="" href="schema.html">Files, counts and checks</a></div><div class="navgroup"><span>Repo audit</span><a class="" href="tree-claims.html">Cross-tree claim audit</a><a class="on" href="copy-audit.html">Copy that aged</a><a class="" href="lineage.html">Number lineage &amp; recomputation</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Questions that block a decision</a><a class="" href="information.html">What we have / lack</a><a class="" href="suggestions.html">Suggestions — pick a path</a><a class="" href="decision-guide.html">How to choose</a></div><div class="navgroup"><span>Flagged</span><a class="" href="flagged.html">Flagged for review</a></div>
+    <div class="sidefoot">Sibling trees are evidence, not sources.<br><a href="flagged.html">Flagged for review</a> · <a href="../index.html">Root dashboard</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge info">Verified audit</span>
+      <h1>Copy that aged</h1>
+      <p class="lead">Published sentences checked against the file each one describes. Prose drifts; these are the instances.</p>
+    </div>
+    <div class="twrap"><table><thead><tr><th>id</th><th>tree</th><th>page</th><th>published_text</th><th>measured_value</th><th>result</th><th>recommended_fix</th><th>source</th></tr></thead><tbody><tr id="ca-01"><td>CA-01</td><td>analytics/</td><td>analytics/flagged.html</td><td>Game status for 243 of 254 rows</td><td>248 of 254 rows have no status</td><td><span class="tag bad">wrong</span></td><td>Change to 248 of 254, which the root tree publishes.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr id="ca-02"><td>CA-02</td><td>analytics/</td><td>analytics/questions.html</td><td>243 of 254</td><td>248 of 254</td><td><span class="tag bad">wrong</span></td><td>Same correction as CA-01.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr id="ca-03"><td>CA-03</td><td>/ (root)</td><td>injuries.html</td><td>All 254 rows the league published for Week 10</td><td>254 was what the hub showed at 04:45Z; the page now shows 279</td><td><span class="tag warn">needs-a-date</span></td><td>Add "as fetched 2026-11-12 04:45 UTC" to the phrase, or re-pull. The number is right for the instant, wrong for today.</td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr id="ca-04"><td>CA-04</td><td>/ (root)</td><td>injuries.html</td><td>six rows in 254 carried one</td><td>6</td><td><span class="tag ok">correct</span></td><td>none</td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr id="ca-05"><td>CA-05</td><td>/ (root)</td><td>injuries.html</td><td>SEA, CIN, LAC, BAL published no rows</td><td>SEA and CIN now publish rows; LAC and BAL still do not</td><td><span class="tag info">correct-at-fetch</span></td><td>Keep the sentence but date it. The live page still shows "No Injuries Reported" for LAC and BAL only.</td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr id="ca-06"><td>CA-06</td><td>README.md</td><td>paragraph on s53</td><td>15 empirical 2026 correlations</td><td>15</td><td><span class="tag ok">correct</span></td><td>none</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/tree/main/data" target="_blank" rel="noopener">github.com</a> <span class="tag warn">non-league</span></td></tr><tr id="ca-07"><td>CA-07</td><td>README.md</td><td>paragraph on analytics</td><td>12-club 1st-4th string depth cascades</td><td>The analytics page itself says 12 clubs and 18 cascades</td><td><span class="tag ok">correct</span></td><td>none — but "club-verified" would be more accurate than "official"</td><td><a href="https://www.nfl.com/teams/new-england-patriots/depth-chart/" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr id="ca-08"><td>CA-08</td><td>README.md</td><td>line-origination section</td><td>Spread MAE 10.25 vs the market's 9.94</td><td>Not reproducible from the repository</td><td><span class="tag warn">unverifiable-here</span></td><td>Label it as that session's own backtest output until a price archive is committed.</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/tree/main/site" target="_blank" rel="noopener">github.com</a> <span class="tag warn">non-league</span></td></tr></tbody></table></div>
+<h2>Why this page exists</h2>
+<p>Every one of these is a sentence that was true, or nearly true, when written. The repository already contains a guard that compares prose counts to files — and it caught six of these in an earlier session. These 8 slipped past it because they live in a sibling tree that the guard does not cover, or because they describe a count the guard does not know about.</p>
+<p>The fix is not vigilance. It is extending the guard's scope to every tree, which is what this build's own generator does by construction: it cannot print a count it did not measure.</p>
+
+    <footer class="pagefoot"><a class="pager" href="tree-claims.html">&larr; Cross-tree claim audit</a><a class="pager right" href="lineage.html">Number lineage &amp; recomputation &rarr;</a>
+      <div class="foot-meta">Generated by <code>crosscheck/build.py</code> from <code>crosscheck/data/*.csv</code>. Read the <a href="method.html">verification method</a>.</div>
+    </footer>
+  </main>
+</div>
+</body></html>
