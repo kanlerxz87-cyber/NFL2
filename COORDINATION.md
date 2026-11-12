@@ -34,8 +34,8 @@ Read it before touching anything. Claim work before you start it. Never edit fil
 | T4 | Ingestion: roster moves / depth-chart changes (official news roundup) | done | `bc4b47cf` | `data/depth_changes_2026_wk10.csv` | nfl.com Wed 11-Nov-2026 roundup, 4 chunks |
 | T5 | Source registry + verification tooling | done | `bc4b47cf` | `data/sources.csv`, `tools/verify.py` | every table row must carry a source id |
 | T6 | Requirements register (reconstructed from brief) | done | `bc4b47cf` | `data/requirements.csv` | 34 requirements, traceable to site sections |
-| T7 | Questions / known-unknowns / missing information | done | `bc4b47cf` | `data/questions.csv` | 31 decision-blocking questions |
-| T8 | Suggestion register (review & choose path) | done | `bc4b47cf` | `data/suggestions.csv` | 25 suggestions, none implemented yet — decision required |
+| T7 | Questions / known-unknowns / missing information | done | `bc4b47cf` | `data/questions.csv` | 28 decision-blocking questions |
+| T8 | Suggestion register (review & choose path) | done | `bc4b47cf` | `data/suggestions.csv` | 25 suggestions, none implemented that the brief did not require — decision pending |
 | T9 | Line-origination methodology + signal catalogue | done | `bc4b47cf` | `content/line-origination.md`, `content/signals.md`, `data/signals.csv` | design only, no model output yet |
 | T10 | Strategy registry + leaderboard + reward rules | done | `bc4b47cf` | `content/strategies.md`, `content/leaderboard.md`, `data/strategies.csv` | zero strategies have live results; all rows unranked by design |
 | T11 | Validation gates definition + current status | done | `bc4b47cf` | `content/validation-gates.md`, `data/gates.csv` | 12 gates; status = blocked pending data |
@@ -43,9 +43,9 @@ Read it before touching anything. Claim work before you start it. Never edit fil
 | T13 | Skill-vs-luck / sample-size math | done | `bc4b47cf` | `content/skill-vs-luck.md` | analytic formulas, computed locally, no external claims |
 | T14 | Bet-type economics (single / parlay / prop combo) | done | `bc4b47cf` | `content/bet-types.md` | math derived, no live odds captured (no verified source) |
 | T15 | Site generator + template + styles | done | `bc4b47cf` | `tools/build_site.py`, `assets/**`, `content/index.md` | markdown → static HTML |
-| T16 | Link + source audit, `needs review` publication | done | `bc4b47cf` | `tools/check_site.py`, `data/flags.csv`, `content/flagged-for-review.md` | 14 flags |
+| T16 | Link + source audit, `needs review` publication | done | `bc4b47cf` | `tools/check_site.py`, `data/flags.csv`, `content/flagged-for-review.md` | 16 flags |
 | T17 | GitHub Actions validation workflow | done | `bc4b47cf` | `.github/workflows/validate.yml` | build + audit on PR/push |
-| T18 | Integration: merge to `main`, publish GitHub Pages | in progress | `bc4b47cf` | `index.html`, `pages/**`, `README.md` | final session only |
+| T18 | Integration: merge to `main`, publish GitHub Pages | in progress | `bc4b47cf` | `*.html`, `README.md`, `.github/**`, `assets/**` | final session only; site is flat at the repo root because Pages is configured for `main` / |
 
 ---
 
@@ -81,6 +81,9 @@ Read it before touching anything. Claim work before you start it. Never edit fil
 | 1 | 2026-11-12 04:3x | `bc4b47cf` | Repo review: single 6-byte README, no code/data; claimed T1–T18 (sole session so far) |
 | 2 | 2026-11-12 04:4x | `bc4b47cf` | Pulled official Week 10 injury report (nfl.com/injuries/, 7 chunks), standings (2 chunks), week-10 status article, Wed 11-Nov roundup (4 chunks) |
 | 3 | 2026-11-12 04:4x | `bc4b47cf` | Bash egress to nfl.com blocked by sandbox allowlist → all external data obtained through the fetch/search tools; recorded as a constraint in `data/questions.csv` (Q-24) |
+| 4 | 2026-11-12 05:0x | `bc4b47cf` | Audit caught 3 real defects before publishing: (a) 6 shifted rows in `suggestions.csv` + 5 in `requirements.csv` (short rows silently moving columns) → strict field-count check added to the builder and `verify.py`; (b) my own prose said "5 designations" and "9 injury cells" where the data says 6 and 6 → corrected at every occurrence; (c) `nfl.com` player-slug/name mismatches enumerated and turned into FL-15 rather than silently "fixed" |
+| 5 | 2026-11-12 05:1x | `bc4b47cf` | CI `build-and-audit` failed on the drift step. Root cause: a `tools/__pycache__/*.pyc` file had been committed by an earlier `git add -A` and `check_site.py` rewrote it. Fix: `.gitignore` for bytecode, `git rm --cached`, `sys.dont_write_bytecode` in the auditor, and the build made byte-deterministic (no wall-clock stamp in any page). Verified by a clean `git clone` + rebuild + `git diff --cached` showing nothing |
+| 6 | 2026-11-12 05:2x | `bc4b47cf` | Final state before PR: `tools/verify.py` 29 pass / 0 warn / 0 fail; `tools/check_site.py` 8 pass / 1 warn (non-league hosts appear only on the Source Registry, by design) / 0 fail; 22 HTML pages, 588 blank cells rendered as `not published` |
 
 ---
 

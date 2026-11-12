@@ -4,6 +4,7 @@
 Runs against the generated HTML, because that is what a reader sees.
 """
 import os, re, sys, glob, json, urllib.parse
+sys.dont_write_bytecode = True  # importing build_site must not litter the tree the CI drift check inspects
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OFFICIAL_HOSTS = {"nfl.com", "www.nfl.com", "operations.nfl.com", "static.www.nfl.com",
