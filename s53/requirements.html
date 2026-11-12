@@ -9,24 +9,25 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html">NFL2 <span>Decision &amp; Line-Origination Hub</span></a>
-      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Verified Through NFL Week 9 / Week 10 Injury Cycle</span>
+      <a class="brand" href="index.html">NFL2 &middot; S53 <span>Week 11 Origination, 13-Club Depth &amp; Decision Suite</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Zero Inferred Values &middot; 100% Row Official Links</span>
     </div>
     <nav class="main-nav" aria-label="Primary">
-      <a href="index.html">Dashboard</a>
+      <a href="index.html">S53 Dashboard</a>
       <a href="executive-summary.html">Executive Summary</a>
-      <a href="requirements.html" aria-current="page">Requirements Matrix</a>
+      <a href="requirements.html" aria-current="page">Requirements (20/20)</a>
       <a href="repo-audit.html">Repo Audit</a>
-      <a href="standings.html">Standings</a>
-      <a href="results.html">Game Log (136)</a>
-      <a href="originated-lines.html">Originated Lines</a>
-      <a href="correlations.html">Correlations &amp; Skill</a>
-      <a href="depth-deficiencies.html">Injuries &amp; 1st&ndash;4th String</a>
+      <a href="originated-lines.html">Week 11 Originated Lines</a>
+      <a href="correlations.html">Correlations &amp; Luck</a>
+      <a href="depth-deficiencies.html">1st&ndash;4th String Depth</a>
       <a href="leaderboard-competition.html">Signal Leaderboard</a>
       <a href="decision-center.html">Decision Center &amp; Paths</a>
       <a href="flagged.html">Flagged for Review</a>
-      <a href="sources.html">Official Sources</a>
-      <a href="docs/index.html">Companion Hub (docs/)</a>
+      <a href="../index.html">Root Hub &rarr;</a>
+      <a href="../analytics/index.html">Analytics</a>
+      <a href="../portal/index.html">Portal</a>
+      <a href="../review/index.html">Review</a>
+      <a href="../docs/index.html">Docs</a>
     </nav>
   </header>
 
@@ -75,7 +76,7 @@
             <td>Decision Making</td>
             <td><strong>Make suggestions on how to improve the site to improve decision making.</strong></td>
             <td><span class="badge badge-verified">Met &amp; Verified</span></td>
-            <td><a href="decision-center.html"><code>decision-center.html</code></a>, <a href="suggestions.html"><code>suggestions.html</code></a>, <a href="docs/suggestions.html"><code>docs/suggestions.html</code></a></td>
+            <td><a href="decision-center.html"><code>decision-center.html</code></a>, <a href="../suggestions.html"><code>suggestions.html</code></a>, <a href="../docs/suggestions.html"><code>docs/suggestions.html</code></a></td>
             <td>Ranked suggestions (S-01..S-12 + Path A/B/C/D comparator) with explicit decision impact, effort, and data dependencies.</td>
             <td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">Official Source</a></td>
           </tr>
@@ -84,7 +85,7 @@
             <td>Decision Making</td>
             <td><strong>Create a dedicated section for suggestions so someone can review and choose the best path before implementing changes.</strong></td>
             <td><span class="badge badge-verified">Met &amp; Verified</span></td>
-            <td><a href="decision-center.html"><code>decision-center.html</code></a>, <a href="suggestions.html"><code>suggestions.html</code></a></td>
+            <td><a href="decision-center.html"><code>decision-center.html</code></a>, <a href="../suggestions.html"><code>suggestions.html</code></a></td>
             <td>Interactive Path Chooser &amp; Proposal Scorecard lets reviewer compare Paths A/B/C/D and export a pre-implementation decision spec without mutating live rules.</td>
             <td class="source-cell"><a href="https://kanlerxz87-cyber.github.io/NFL2/" target="_blank" rel="noopener">Official Source</a></td>
           </tr>
@@ -93,7 +94,7 @@
             <td>Prerequisites</td>
             <td><strong>Clear list of questions, information we already have, information we do not have, and answers needed before any decision can reasonably be made.</strong></td>
             <td><span class="badge badge-verified">Met &amp; Verified</span></td>
-            <td><a href="decision-center.html"><code>decision-center.html</code></a>, <a href="questions.html"><code>questions.html</code></a>, <a href="docs/questions.html"><code>docs/questions.html</code></a></td>
+            <td><a href="decision-center.html"><code>decision-center.html</code></a>, <a href="../questions.html"><code>questions.html</code></a>, <a href="../docs/questions.html"><code>docs/questions.html</code></a></td>
             <td>Side-by-side Known (Verified + Linked) vs Missing (Unverified) vs Required Answer register across 16 decision gates.</td>
             <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Official Source</a></td>
           </tr>
@@ -111,7 +112,7 @@
             <td>Line Origination</td>
             <td><strong>Originate own NFL lines (fair spread, fair total, fair moneyline).</strong></td>
             <td><span class="badge badge-model">Met (Model Only)</span></td>
-            <td><a href="originated-lines.html"><code>originated-lines.html</code></a>, <a href="lines-lab.html"><code>lines-lab.html</code></a>, <code>data/s53126614_originated_lines_week11.json</code></td>
+            <td><a href="originated-lines.html"><code>originated-lines.html</code></a>, <a href="originated-lines.html"><code>lines-lab.html</code></a>, <code>data/s53126614_originated_lines_week11.json</code></td>
             <td>v0 per-game PF/PA (fixing unequal 8-vs-9 games bug) + v1 schedule/efficiency-adjusted ratings generate transparent MODEL ONLY fair lines for all 13 Week 11 games; market odds left blank/unverified.</td>
             <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Official Source</a></td>
           </tr>
@@ -129,7 +130,7 @@
             <td>Leaderboard &amp; Rewards</td>
             <td><strong>Treat strategy evaluation as a leaderboard competition that provides rewards for top performing strategies.</strong></td>
             <td><span class="badge badge-model">Met (Framework; Backtest Blank)</span></td>
-            <td><a href="leaderboard-competition.html"><code>leaderboard-competition.html</code></a>, <a href="strategies.html"><code>strategies.html</code></a></td>
+            <td><a href="leaderboard-competition.html"><code>leaderboard-competition.html</code></a>, <a href="../strategies.html"><code>strategies.html</code></a></td>
             <td>4-tier capital/unit reward &amp; demotion ladder (Sandbox 0u -&gt; Bronze 0.25u -&gt; Silver 0.50u -&gt; Gold 1.00u); performance cells blank until historical odds feed is connected.</td>
             <td class="source-cell"><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf" target="_blank" rel="noopener">Official Source</a></td>
           </tr>
@@ -147,7 +148,7 @@
             <td>Validation Gates</td>
             <td><strong>Each strategy must pass validation gates.</strong></td>
             <td><span class="badge badge-verified">Met &amp; Verified</span></td>
-            <td><a href="leaderboard-competition.html"><code>leaderboard-competition.html</code></a>, <a href="strategies.html"><code>strategies.html</code></a></td>
+            <td><a href="leaderboard-competition.html"><code>leaderboard-competition.html</code></a>, <a href="../strategies.html"><code>strategies.html</code></a></td>
             <td>Formal gates G0-G8 (Pre-registration, Sample Size Power, Walk-Forward OOS, Positive CLV t-stat, Vig-Adjusted ROI CI, Brier/Log-Loss Calibration, Correlation Cap, Benjamini-Hochberg FDR, Regime Stability) + interactive Gate Evaluator.</td>
             <td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">Official Source</a></td>
           </tr>
@@ -192,7 +193,7 @@
             <td>Executive Summary</td>
             <td><strong>Create an executive summary outlining important details.</strong></td>
             <td><span class="badge badge-verified">Met &amp; Verified</span></td>
-            <td><a href="executive-summary.html"><code>executive-summary.html</code></a>, <a href="docs/executive-summary.html"><code>docs/executive-summary.html</code></a></td>
+            <td><a href="executive-summary.html"><code>executive-summary.html</code></a>, <a href="../docs/executive-summary.html"><code>docs/executive-summary.html</code></a></td>
             <td>Synthesizes verified 2026 league snapshot, originated-lines architecture, depth/injury findings, correlation takeaways, blockers, and decision paths.</td>
             <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Official Source</a></td>
           </tr>
@@ -247,7 +248,7 @@
   </main>
 
   <footer class="site-footer">
-    <div>NFL2 Requirements Matrix &middot; Session <code>arena-53126614</code> &middot; Snapshot 2026-11-12 &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="sources.html">Official Sources</a></div>
+    <div>NFL2 Requirements Matrix &middot; Session <code>arena-53126614</code> &middot; Snapshot 2026-11-12 &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="../sources.html">Official Sources</a></div>
   </footer>
   <script src="assets/s53126614.js"></script>
 </body>

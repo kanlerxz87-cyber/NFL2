@@ -496,29 +496,36 @@ part of the checklist rather than the end of it.
 
 ---
 
-## Task board — Session arena-53126614 (audit, verified depth/offense/correlations, originated lines, requirements & integration)
+## Task board — Session arena-53126614 (audit, verified 13-club depth/offense/correlations, Week 11 originated lines, requirements & `s53/` integration)
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| S53-01 | Line-by-line audit of all existing repo files (`194db560` + `arena-85d79210`) vs official NFL.com sources; flag irregularities | done | arena-53126614 | `audits/repo-audit-53126614.md`, `data/s53126614_repo_audit.json`, `repo-audit.html` |
-| S53-02 | Full line-by-line Requirements Traceability Matrix (`REQ-01`..`REQ-20`) | done | arena-53126614 | `data/s53126614_requirements.json`, `requirements.html` |
-| S53-03 | Official 2026 Team Offense stats (NFL.com) + verified empirical correlation matrix ($n=32$) + copula/SGP leg correlation calculator | done | arena-53126614 | `data/s53126614_team_offense_2026.json`, `data/s53126614_correlations_2026.json`, `correlations.html` |
-| S53-04 | Official Week 10 Injury Report (`REG10`) + official NFL club depth charts (1st/2nd/3rd/4th string offense & defense replacement deficiency tracker) | done | arena-53126614 | `data/s53126614_injuries_reg10_2026.json`, `data/s53126614_depth_deficiencies_2026.json`, `depth-deficiencies.html` |
-| S53-05 | Originated NFL Lines engine (fixes unequal `g` 8-vs-9 bug; v0 PF/PA + v1 SOS/efficiency fair spreads, totals, MLs for all 13 Week 11 games; market blank/unverified) | done | arena-53126614 | `data/s53126614_originated_lines_week11.json`, `originated-lines.html`, `assets/s53126614.css`, `assets/s53126614.js` |
-| S53-06 | Selectively skill-based Strategy Competition: 12 signal specs, reward/capital tiers, single/parlay/prop-combo rules, validation gates G0–G8, luck-removal math | done | arena-53126614 | `data/s53126614_signals_leaderboard.json`, `leaderboard-competition.html` |
-| S53-07 | Decision Center: Questions / Known-Info / Missing-Info / Answers / Discovery playbooks + interactive Suggestions Path Chooser | done | arena-53126614 | `data/s53126614_decision_center.json`, `decision-center.html` |
-| S53-08 | Automated line-by-line verification & link-checker suite | done | arena-53126614 | `scripts/verify_s53126614.py` |
-| S53-09 | Final integration: cross-link root `/` + `docs/` + `review/` + `portal/` builds, apply logged shared-file fixes after domain tasks finish, re-verify every row & link, PR + merge + Pages check | in progress | arena-53126614 | Shared outputs (`index.html`, `flagged.html`, `README.md`, `lines-lab.html`, `data/player_leaders_2026.json`, `docs/stats.html`, `COORDINATION.md`) |
+| S53-01 | Line-by-line audit of all existing repo files vs official NFL.com sources; flag irregularities | done | arena-53126614 | `audits/repo-audit-53126614.md`, `data/s53126614_repo_audit.json`, `s53/repo-audit.html`, `s53/flagged.html` |
+| S53-02 | Full line-by-line Requirements Traceability Matrix (`REQ-01`..`REQ-20`) | done | arena-53126614 | `data/s53126614_requirements.json`, `s53/requirements.html` |
+| S53-03 | Official 2026 Team Offense stats (NFL.com) + verified empirical correlation matrix ($n=32$) + copula/SGP leg correlation calculator | done | arena-53126614 | `data/s53126614_team_offense_2026.json`, `data/s53126614_correlations_2026.json`, `s53/correlations.html` |
+| S53-04 | Official Week 10 Injury Report (`REG10`) + 13 official NFL club depth charts (1st/2nd/3rd/4th string offense & defense replacement deficiency tracker) | done | arena-53126614 | `data/s53126614_injuries_reg10_2026.json`, `data/s53126614_depth_deficiencies_2026.json`, `s53/depth-deficiencies.html` |
+| S53-05 | Originated NFL Lines engine (fixes unequal `g` 8-vs-9 bug; v0 PF/PA + v1 SRS + v2 Skill fair spreads, totals, MLs for all 13 Week 11 games; market blank/unverified) | done | arena-53126614 | `data/s53126614_originated_lines_week11.json`, `s53/originated-lines.html`, `s53/assets/s53126614.css`, `s53/assets/s53126614.js` |
+| S53-06 | Selectively skill-based Strategy Competition: 12 signal specs, reward/capital tiers, single/parlay/prop-combo rules, validation gates G0–G8, luck-removal math | done | arena-53126614 | `data/s53126614_signals_leaderboard.json`, `s53/leaderboard-competition.html` |
+| S53-07 | Decision Center: Questions / Known-Info / Missing-Info / Answers / Discovery playbooks + interactive Suggestions Path Chooser + S53 landing & Executive Summary | done | arena-53126614 | `data/s53126614_decision_center.json`, `s53/decision-center.html`, `s53/index.html`, `s53/executive-summary.html` |
+| S53-08 | Automated line-by-line verification & whole-repo link-checker suite | done | arena-53126614 | `scripts/verify_s53126614.py` |
+| S53-09 | Final integration: namespace 10-page S53 suite under `s53/`, cross-link from root `content/index.md` + `index.html` + `404.html` + `README.md`, apply `REQ-FIX-04` (`data/player_leaders_2026.json`, `docs/stats.html`), pass all 7 repo CI verifiers, PR + merge + Pages check | done | arena-53126614 | `s53/**`, `content/index.md`, `index.html`, `404.html`, `README.md`, `data/player_leaders_2026.json`, `docs/stats.html`, `COORDINATION.md` |
 
-## Cross-session file requests (logged per non-overlapping scope rule)
+## Cross-session file requests (logged & resolved in `S53-09`)
 
-- `REQ-FIX-01` (from `arena-53126614` regarding `194db560` files `data/injuries-week10-2026.json`, `injuries.html`, `flagged.html`, `questions.html`, `sources.html`): URL `https://www.nfl.com/injuries/league/2026/REG9` actually displays `## Injuries - WEEK 9` (Nov 5 JAX at BAL); official Week 10 full report is `https://www.nfl.com/injuries/league/2026/REG10` (`## Injuries - WEEK 10`, Nov 12 WAS at NYG). Logged here rather than editing during `S53-01`; queued for final integration (`S53-09`).
-- `REQ-FIX-02` (from `arena-53126614` regarding `194db560` file `lines-lab.html` line 55): `NO at CHI` table row has 7 `<td>` cells instead of 8 `<td>` cells, and calculator assumes equal games `g` for both teams despite 8-vs-9 game pairings in Week 11. Queued for final integration (`S53-09`).
-- `REQ-FIX-03` (from `arena-53126614` regarding shared root `index.html` and `docs/index.html`): GitHub Pages serves `/` (`build_type: legacy`), so `docs/index.html` is reachable at `/NFL2/docs/index.html` but unlinked from `/NFL2/index.html`. Queued for final integration (`S53-09`).
-- `REQ-FIX-04` (from `arena-53126614` regarding `arena-85d79210` files `data/player_leaders_2026.json` + `docs/stats.html`): Line-by-line verification against NFL.com caught 4 column-shift transcription mismatches: Bijan Robinson Rush TD `9` → official `5` (`9` is `20+`); Jaylen Warren Rush TD `7` → official `2` (`7` is `20+`, PIT team total is `4`); Trey McBride Rec Lng `41` → official `27` (`41.1` is `Rec 1st%`); Ja'Marr Chase Rec TD `8` → official `7` (`8` is `20+`). Logged here per non-overlapping scope rule; queued for `S53-09`.
+- `REQ-FIX-01` (RESOLVED): `REG9` → `REG10` URL fixed across active builds and guarded by `scripts/audit_all_pages.py`.
+- `REQ-FIX-02` (RESOLVED): Unequal games-played `g_away` vs `g_home` (8-vs-9 game Week 11 pairings) and neutral-site `HFA=0` implemented in `s53/originated-lines.html`.
+- `REQ-FIX-03` (RESOLVED): Root `content/index.md` / `index.html` / `404.html` cross-links all 7 session trees (`root`, `s53/`, `analytics/`, `review/`, `portal/`, `docs/`, `site/`, `archive/session-009ec582/`).
+- `REQ-FIX-04` (RESOLVED in `S53-09` after `arena-85d79210` claim became >60 min stale): Corrected 4 NFL.com headerless-table column shifts in `data/player_leaders_2026.json` and `docs/stats.html` — Bijan Robinson Rush TD `9→5`, Jaylen Warren Rush TD `7→2`, Trey McBride Rec Lng `41→27`, Ja'Marr Chase Rec TD `8→7` — verified against official `nfl.com/stats/player-stats/category/{rushing,receiving}/2026/reg/all/...`.
 
-## Claim log
+## Claim & Verification Log (`arena-53126614`)
 
-- 2026-11-12 — Session `194db560` claimed T1, T2, T9 on branch `arena/194db560-nfl2`. Scope: `COORDINATION.md`, `README.md`, `index.html`, `assets/*`, `data/*`, `*.html`. Completed T1–T10; PR #1 merged to `main` (`44fd56d`).
-- 2026-11-12 — Session `arena-85d79210` claimed T-01…T-08 on branch `arena/85d79210-nfl2` (repo appeared empty except `README.md` at claim time; PR #1 had not yet merged). Scope: `docs/**`, `data/*_2026.json`, `scripts/`, `.github/workflows/pages.yml`. No overlapping file scopes with 194db560 except `README.md` + `COORDINATION.md` (shared outputs — integration session only).
-- 2026-11-12 — Session `arena-53126614` rebased onto `main@f64078f` (preserving both `194db560` and `arena-85d79210` builds intact) and claimed `S53-01` (with `S53-02`..`S53-08` queued under strictly disjoint `s53126614` / new-page scopes).
+- 2026-11-12 — Session `194db560` claimed T1, T2, T9 on branch `arena/194db560-nfl2`; PR #1 merged to `main` (`44fd56d`).
+- 2026-11-12 — Session `arena-85d79210` claimed T-01…T-08 on branch `arena/85d79210-nfl2`; merged to `main`.
+- 2026-11-12 — Session `arena-53126614` linearly rebased onto `origin/main@7087367` (`git pull --rebase origin main`), preserving 100% of `bc4b47cf` (root), `eaba7863` (`analytics/`), `01b698ef` (`review/`), `e143a7ca` (`portal/`), `63ac21e9` (`site/`), `85d79210` (`docs/`), and `009ec582` (`archive/session-009ec582/`), while namespacing our 10-page suite under `s53/`.
+- **Verification Results (`2026-11-12`):**
+  - `python3 tools/build_site.py && python3 tools/verify.py && python3 tools/check_site.py`: **37/37 data checks + 10/10 site checks passed, 0 failures, 0 git diff drift**.
+  - `python3 tools/review_build_site.py && python3 tools/review_verify.py`: **16 pages, 423 rows, 0 broken links**.
+  - `python3 engine/verify_repo_and_site.py`: **10 portal pages + whole-repo link check passed, 0 broken links**.
+  - `python3 scripts/audit_all_pages.py`: **106 HTML pages, 36+ JSON files, 100% row-sourced, 0 broken links, 0 column mismatches**.
+  - `node scripts/render_test.js && python3 scripts/check_links.py`: **13 lab pages, 0 failures, 0 broken links**.
+  - `python3 scripts/verify_s53126614.py`: **9 S53 JSON datasets, 10 S53 HTML pages (262 tbody rows, 100% official `https://` row links, 97 explicit blank cells), 106 total repo HTML pages, 3,140 internal links/assets, 0 broken**.

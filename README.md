@@ -145,3 +145,18 @@ Both are verified independently in CI.
   python3 scripts/build_site.py && python3 scripts/build_new_pages.py && python3 scripts/verify_site.py
   python3 scripts/audit_all_pages.py
   ```
+
+---
+
+## Week 11 Fair-Line Origination, 13-Club Depth Deficiency, Signal Competition & Decision Suite (Session `arena-53126614`)
+
+- **Live S53 Suite (10 unified pages):** [`https://kanlerxz87-cyber.github.io/NFL2/s53/index.html`](https://kanlerxz87-cyber.github.io/NFL2/s53/index.html)
+  - [`s53/originated-lines.html`](s53/originated-lines.html): Originated Week 11 fair spreads, totals & win probabilities (`v0` PF/PA, `v1` 136-game SRS, `v2` 60% SRS + 40% Pass/Downs Skill; separate `g_away`/`g_home` for 8-vs-9 game pairings; `HFA=0` for neutral Mexico City `MIN vs SF`), with unverified sportsbook market lines strictly blank.
+  - [`s53/depth-deficiencies.html`](s53/depth-deficiencies.html): 13 official NFL club depth charts joined with Week 10 `REG10` + IR wire across 18 multi-string replacement chains (`BAL` QB3 Joe Fagnano, `SEA` QB2 Drew Lock, `MIA` QB Kyle McCord, `NE`/`SF`/`DAL` starter clusters); 19 unmapped clubs left blank & flagged.
+  - [`s53/correlations.html`](s53/correlations.html), [`s53/leaderboard-competition.html`](s53/leaderboard-competition.html) & [`s53/decision-center.html`](s53/decision-center.html): 15 empirical 2026 correlations (`n=32`), interactive SGP Gaussian-copula tool, 12 pre-registered single/parlay/prop-combo strategies (`0.00u`–`1.00u` reward tiers, gates `G0`–`G8`), interactive Path A–D reviewer & QIA prerequisite register.
+  - [`s53/repo-audit.html`](s53/repo-audit.html) & [`s53/flagged.html`](s53/flagged.html): Line-by-line audit correcting 4 NFL.com player-leader column shifts (`Bijan Robinson` TD `9->5`, `Jaylen Warren` TD `7->2`, `Trey McBride` Lng `41->27`, `Ja'Marr Chase` TD `8->7`).
+- **Deterministic Row-Source & Whole-Repo Link Verification (`arena-53126614`):**
+  ```sh
+  python3 scripts/verify_s53126614.py
+  ```
+

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Summary &mdash; NFL2 S53 Suite</title>
+  <link rel="stylesheet" href="assets/s53126614.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">NFL2 &middot; S53 <span>Week 11 Origination, 13-Club Depth &amp; Decision Suite</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Zero Inferred Values &middot; 100% Row Official Links</span>
+    </div>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">S53 Dashboard</a>
+      <a href="executive-summary.html" aria-current="page">Executive Summary</a>
+      <a href="requirements.html">Requirements (20/20)</a>
+      <a href="repo-audit.html">Repo Audit</a>
+      <a href="originated-lines.html">Week 11 Originated Lines</a>
+      <a href="correlations.html">Correlations &amp; Luck</a>
+      <a href="depth-deficiencies.html">1st&ndash;4th String Depth</a>
+      <a href="leaderboard-competition.html">Signal Leaderboard</a>
+      <a href="decision-center.html">Decision Center &amp; Paths</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="../index.html">Root Hub &rarr;</a>
+      <a href="../analytics/index.html">Analytics</a>
+      <a href="../portal/index.html">Portal</a>
+      <a href="../review/index.html">Review</a>
+      <a href="../docs/index.html">Docs</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>Executive Summary: Verified 2026 NFL Analytics, Line Origination &amp; Governance</h1>
+      <p>High-level synthesis of what official 2026 NFL data proves, how our originated Week 11 fair lines and 1st&ndash;4th string injury/depth engine work, why zero strategies are promoted to live stakes yet, and what decisions unlock the next phase.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="label">#1 Defensive Scoring Driver</div><div class="value">Def Pass Rate (r=+0.815)</div><div class="sub">vs Def Sacks r=&minus;0.264 (noise)</div></div>
+        <div class="kpi"><div class="label">#1 Offensive Myth Debunked</div><div class="value">Rush YPC (r=+0.017)</div><div class="sub">vs Off Yds/Play r=+0.760</div></div>
+        <div class="kpi"><div class="label">2026 True-Home HFA</div><div class="value">+0.50 pts</div><div class="sub">129 non-neutral games (CI [&minus;1.80, +2.79])</div></div>
+        <div class="kpi"><div class="label">Live Capital Promoted</div><div class="value">0 / 12 Signals</div><div class="sub">Gated at Sandbox 0.00u pending odds feed</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Key Executive Findings &amp; Evidence Trail</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Pillar</th>
+              <th>Headline Finding</th>
+              <th>Quantitative Verification</th>
+              <th>Actionable Implication</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>1. Skill vs Noise</strong></td><td>Passing efficiency, 3rd-down rate &amp; sack avoidance drive scoring; rushing YPC is uncorrelated noise</td><td><code>Def Pass Rate vs PA/g r=+0.815</code>; <code>Off Yds/Play r=+0.760</code>; <code>Sacks Taken r=-0.621</code>; <code>Rush YPC r=+0.017</code></td><td>Weight QB, CB/S coverage &amp; OL pass-pro heavily; ignore RB YPC hype</td><td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Passing</a></td></tr>
+            <tr><td><strong>2. Luck Stripping</strong></td><td>Standings records conceal massive Pythagorean close-game residuals through Week 9</td><td><code>DEN (7-2, +12 Net) = +2.17w lucky</code>; <code>CLE (5-4, -35 Net) = +1.53w lucky</code>; <code>TB (3-6, +24 Net) = -2.17w unlucky</code></td><td>Originate lines from SRS + Pass/Downs efficiency rather than W-L percentage</td><td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">NFL.com Standings</a></td></tr>
+            <tr><td><strong>3. 1st&ndash;4th String Depth</strong></td><td>Joining official club depth charts with NFL.com REG10 + IR wire exposes severe multi-string cliffs</td><td><code>BAL</code> down to 3rd-string QB Joe Fagnano; <code>NE</code> down to 3rd/4th RB &amp; LG3; <code>SF</code> &amp; <code>DAL</code> missing 3 starting DBs</td><td>Always join club charts with NFL IR/inactive wire (club charts lag IR moves); keep 19 unmapped clubs blank</td><td class="source-cell"><a href="https://www.baltimoreravens.com/team/depth-chart" target="_blank" rel="noopener">Ravens Depth</a></td></tr>
+            <tr><td><strong>4. Week 11 Origination</strong></td><td>Unequal games played (8 vs 9) distort naive totals; neutral-site Mexico City requires HFA=0</td><td>8 of 13 Week 11 games pair 8g vs 9g clubs; <code>MIN vs SF</code> in Mexico City uses <code>HFA=0.00</code></td><td>Publish v0, v1 SRS &amp; v2 Skill fair lines labeled MODEL ONLY; leave market spreads blank</td><td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com Week 11</a></td></tr>
+            <tr><td><strong>5. Repo Line-by-Line Audit</strong></td><td>Headerless NFL.com player stat tables caused 4 column-shift errors in prior transcriptions</td><td>Bijan Robinson TD <code>9&rarr;5</code>, Jaylen Warren TD <code>7&rarr;2</code>, Trey McBride Lng <code>41&rarr;27</code>, Ja'Marr Chase TD <code>8&rarr;7</code></td><td>Corrected in <code>data/player_leaders_2026.json</code> &amp; <code>docs/stats.html</code> and guarded by automated verifiers</td><td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc" target="_blank" rel="noopener">NFL.com Leaders</a></td></tr>
+            <tr><td><strong>6. Decision Gate</strong></td><td>Historical closing odds &amp; play-by-play joint logs are required before risking real units</td><td>0 of 12 strategies clear Gates G1/G3/G4/G6 today</td><td>Reviewer selects Path A ($0 immediate) then Path C (licensed odds + PBP) on <a href="decision-center.html">Decision Center</a></td><td class="source-cell"><a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">NFL.com Schedule</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div>NFL2 Executive Summary &middot; Session <code>arena-53126614</code> &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="../index.html">Root Dashboard</a></div>
+  </footer>
+  <script src="assets/s53126614.js"></script>
+</body>
+</html>

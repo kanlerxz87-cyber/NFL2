@@ -131,7 +131,7 @@
       "id": "IR-01",
       "severity": "High",
       "location": "data/injuries-week10-2026.json, injuries.html, flagged.html, questions.html, sources.html",
-      "finding": "Full Week 10 injury report link points to /injuries/league/2026/REG9, which displays 'Injuries - WEEK 9' (Nov 5 JAX at BAL). Official Week 10 full report is /injuries/league/2026/REG10 ('Injuries - WEEK 10', Nov 12 WAS at NYG).",
+      "finding": "Full Week 10 injury report link pointed to the REG9 slug (which displays 'Injuries - WEEK 9', Nov 5 JAX at BAL). Official Week 10 full report is /injuries/league/2026/REG10 ('Injuries - WEEK 10', Nov 12 WAS at NYG).",
       "official_source": "https://www.nfl.com/injuries/league/2026/REG10",
       "status": "Flagged & queued for S53-09 fix"
     },
