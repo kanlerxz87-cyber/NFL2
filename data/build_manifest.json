@@ -1,7 +1,7 @@
 {
   "blank_cells_rendered_as_not_published": 590,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "c27e1a97a81357a6c528e5b8008c0079e077dab3647644517413a6524a05f0a5",
+  "inputs_sha256": "ce4f193c44f13b0536b008d3da644f8000e75955260fd79753a02b8bb24c65f7",
   "metrics": {
     "correlation": 12,
     "data_files": 22,
@@ -11,7 +11,7 @@
     "dtr_rows": 13,
     "empty_club_count": 4,
     "empty_clubs": "BAL, CIN, LAC, SEA",
-    "flags": 23,
+    "flags": 25,
     "full": 73,
     "games": 14,
     "games_log": 136,

@@ -66,7 +66,7 @@ gap by hand, once, and recorded the result here so the claim is auditable rather
 | --- | --- | --- |
 | [nfl.com/standings](https://www.nfl.com/standings/) (division view, both chunks) | 32 clubs × W-L-T, PCT, PF, PA, net, streak | **32 / 32 exact.** No correction needed. |
 | [nfl.com/schedules/2026/by-week/week-10](https://www.nfl.com/schedules/2026/by-week/week-10) | 14 fixtures × date, time ET, broadcaster, venue | **14 / 14 exact.** No correction needed. |
-| [nfl.com/injuries](https://www.nfl.com/injuries/) (Week 10, all 7 chunks) | every club block, every player, position, practice status, game status | **25 of 28 clubs exact.** Three differed: SEA absent, CIN absent, IND 11 of 13 rows. Published as [FL-22](flagged-for-review.html) and [FL-01](flagged-for-review.html). |
+| [nfl.com/injuries](https://www.nfl.com/injuries/) (Week 10, all 7 chunks) | every club block, every player, position, practice status, game status | **25 of 28 clubs exact.** Three differed: SEA absent, CIN absent, IND 11 of 13 rows. Published as [FL-24](flagged-for-review.html) and [FL-01](flagged-for-review.html). |
 
 **What that comparison found in our own prose** — all corrected in this session, all listed on
 [Flagged for Review](flagged-for-review.html):

@@ -30,6 +30,8 @@ reader can tell what was inherited from what was added.
 | Verifiers | eight suites on disk, all green before this session changed anything | `tools/verify.py`, `tools/check_site.py`, `tools/review_verify.py`, `tests/q51`, `scripts/audit_all_pages.py`, `scripts/verify_s53126614.py`, `engine/verify_repo_and_site.py`, `scripts/verify_q51.py` |
 | GitHub Pages | configured: legacy build, branch `main`, path `/` | GitHub Pages API |
 
+The original repository held only a README; the current site was built across multiple documented sessions. Their scoped work, sources, verification and integration history are recorded in the [coordination log](https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md). The requirement list reconstructed from the brief is now [a tracked file](requirements.html) so it stops living only in chat.
+
 The eight verifiers all pass, but they are **self-referential**: they prove the published HTML matches
 `data/*.csv`. They do not prove `data/*.csv` still matches the league. This session therefore re-fetched
 `nfl.com` and compared row by row. That found published prose which contradicted the repository's own

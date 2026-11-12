@@ -257,7 +257,7 @@ def build_metrics():
     # Which clubs should have an injury block is a fact about the Week 10 slate, so derive it from the
     # fixture list instead of naming clubs by hand. A hand-written list silently stops being true the
     # moment the source page changes: the list that used to live here named four clubs as empty and
-    # was wrong for two of them, which the league does populate. See FL-22.
+    # was wrong for two of them, which the league does populate. See FL-24.
     playing = set()
     for g in sched:
         playing.add(g["away"])
@@ -514,7 +514,7 @@ def directive(body, ctx):
             rows.append("<tr><td>%s</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td>%s</td></tr>"
                         % (t, a["reported"], a["dnp"], a["lim"], a["full"], a["dnp_off"], a["dnp_def"], blank_cell()))
         # Absent clubs are derived from the Week 10 fixture list, so this table can never again name
-        # a club by hand that the league actually publishes. See FL-22.
+        # a club by hand that the league actually publishes. See FL-24.
         for t in METRICS["empty_clubs"].split(", "):
             if t and t not in agg:
                 rows.append("<tr class=\"flagrow\"><td>%s</td><td colspan=\"6\">%s</td><td>%s</td></tr>"
@@ -522,7 +522,7 @@ def directive(body, ctx):
         caption = ('Counts are arithmetic over the official rows only. "Offence"/"defence" use the position mapping in the '
                    '<a href="data-dictionary.html">data dictionary</a>. Clubs with no rows in this snapshot are listed at the '
                    'foot of the table as not published rather than zero. Two of them (LAC, BAL) read "No Injuries Reported" on '
-                   'the hub; the others are a collection gap (<a href="flagged-for-review.html">FL-22</a>).')
+                   'the hub; the others are a collection gap (<a href="flagged-for-review.html">FL-24</a>).')
         return ('<div class="tablewrap"><table class="data"><thead><tr><th>Club</th><th>Reported</th><th>Did not practice</th><th>Limited</th>'
                 '<th>Full</th><th>DNP offence</th><th>DNP defence</th><th>Source</th></tr></thead><tbody>%s</tbody></table></div>'
                 '<p class="caption">%s</p>' % ("".join(rows), caption))

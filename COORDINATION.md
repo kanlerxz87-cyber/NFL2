@@ -149,7 +149,7 @@ Read it before touching anything. Claim work before you start it. Never edit fil
 | T15 | Site generator + template + styles | done | `bc4b47cf` | `tools/build_site.py`, `assets/**`, `content/index.md` | markdown → static HTML |
 | T16 | Link + source audit, `needs review` publication | done | `bc4b47cf` | `tools/check_site.py`, `data/flags.csv`, `content/flagged-for-review.md` | 16 flags |
 | T17 | GitHub Actions validation workflow | done | `bc4b47cf` | `.github/workflows/validate.yml` | build + audit on PR/push |
-| T18 | Integration: merge to `main`, publish GitHub Pages | in progress | `bc4b47cf` | `*.html`, `README.md`, `.github/**`, `assets/**` | final session only; site is flat at the repo root because Pages is configured for `main` / |
+| T18 | Integration: merge to `main`, publish GitHub Pages | done | `fd94fccd` (stale-claim takeover) | `content/index.md`, `data/flags.csv`, generated root `index.html` / `flagged-for-review.html`, build manifest, this board | Final integration follow-up completed: corrected multi-session attribution, published FL-22/FL-23, rebuilt and verified the canonical site. Existing branch/PR integration was already complete. |
 
 ---
 
@@ -622,6 +622,54 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 - **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`. Live-fetched and confirmed: https://kanlerxz87-cyber.github.io/NFL2/ , https://kanlerxz87-cyber.github.io/NFL2/q51/index.html , and https://kanlerxz87-cyber.github.io/NFL2/q51/flagged.html .
 - **Conflict handling:** repeated required pre-push `git pull --rebase` attempts tried to flatten the already-pushed claim merge and conflicted on COORDINATION.md; each was aborted and the branch was preserved without force. Final publication used the clean merged PR; no upstream work was discarded.
 
+---
+
+## Session `fd94fccd` — independent final audit of published NFL decision site
+
+| Task | Status | Owner | Exclusive files | Scope |
+|---|---|---|---|---|
+| FD94-T01 | done | `fd94fccd` | `reports/fd94fccd/**`; this appended coordination entry | Independent build/source/row/link audits and live deployment review completed; details in `reports/fd94fccd/FINAL_AUDIT.md`. No other session's data, generated pages, or tooling changed. |
+
+Claimed 2026-11-12. The repository already contains the requested landing page, category pages, suggestions, questions, line-originating research, leaderboard, validation gates, correlation framework, injury/depth analysis, executive summary and Flagged for Review pages. This task is an independent audit, not a duplicate implementation. No shared site/data files will be edited. Sources and verification results will be recorded here and in the exclusive `reports/fd94fccd/` namespace.
+
+### FD94-T01 completion log (2026-11-12)
+
+- **Sources reviewed:** official NFL injury hub (https://www.nfl.com/injuries/), official NFL Week 10 injury report (https://www.nfl.com/news/nfl-week-10-injury-report-2026-season), official NFL Nov. 11 roundup (https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11), NFL standings (https://www.nfl.com/standings/), NFL 2026 schedule pages (https://www.nfl.com/schedules/2026/REG/), NFL Football Operations (https://operations.nfl.com/). Source verification status and gaps remain as represented in `data/sources.csv` / `data/flags.csv`; no unsupported value was promoted.
+- **Verification:** root build succeeded; root data audit 39/39; root site audit 10 pass / 0 fail (one disclosed source-registry warning); whole-repository audit 96 HTML / 36 JSON / 222 tables / 3,423 rows / 0 broken links / 0 column mismatches; Q51 36 unit tests pass and 155/155 rows sourced; portal and S53 checks pass; branch CI (`build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`) passed; Pages API reports legacy `main` `/` and the live root page fetched successfully. Full detail: `reports/fd94fccd/FINAL_AUDIT.md`.
+- **Initial audit findings:** the provenance sentence, Pages API/workflow ambiguity, non-league source-registry warning, and stale T18 status were recorded in the audit report. During the later stale-T18 takeover, the provenance issue was corrected and the provenance + Pages-mode issues were added to the canonical Flagged for Review register as FL-22/FL-23. The Pages workflow itself remains unchanged pending its owner decision.
+
+| # | Requested by | Owned by | File | Request | Status |
+|---|---|---|---|---|---|
+| FD94-CR1 | fd94fccd | Shared site integration owner | `content/index.md` → generated root `index.html` | Correct the sentence implying one session created the final multi-session site; rebuild and run the existing auditors. | done — corrected and published; FL-22 remains open for reader review |
+| FD94-CR2 | fd94fccd | Pages/deployment owner | `.github/workflows/pages.yml` / Pages settings | Reconcile/document why Pages API reports legacy `main` `/` while the workflow artifact path is `docs/`; verify intended tree and deployment end-to-end before changing configuration. | published as FL-23; configuration owner decision remains open |
+| FD94-CR3 | fd94fccd | Coordination board owner | Task board T18 | Reconcile the stale `in progress` status with the later integration/PR #24 records and successful deployment evidence. | done — stale-claim takeover documented; T18 marked done |
+
+### FD94 publication close-out
+
+- **Audit PR:** [#25](https://github.com/kanlerxz87-cyber/NFL2/pull/25), merged at `2026-11-12T22:25:38Z` as `d2c0af0e7c2008ba4b64a7c1dcd03c44a6b4293e`.
+- **Post-merge checks:** `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the merge commit.
+- **Pages status:** API reports `status=built`, legacy source `main` `/`. Live root and `/docs/` URLs both fetch successfully. The difference between the legacy API source and the workflow artifact path remains an open deployment-owner review item (FD94-CR2), not assumed fixed.
+- Full results and review findings are recorded in `reports/fd94fccd/FINAL_AUDIT.md`.
+
+### T18 stale-claim takeover — session `fd94fccd` (2026-11-12T22:28Z)
+
+T18 still named `bc4b47cf` as in progress although the merged integration records and Pages deployment predate this takeover by more than 60 minutes (the latest integration landing was PR #24 at 08:10Z; the board had not been updated). Under the board's stale-claim rule, `fd94fccd` takes over the narrowly scoped final site follow-up. Scope: correct the false one-session attribution in `content/index.md`; add the independently found attribution and Pages-publication ambiguity as sourced rows to `data/flags.csv`; rebuild only the canonical root site outputs and run the full existing verification suite. No other session's datasets, models, or pages are changed. This claim is being committed and pushed before implementation.
+
+### T18 stale-claim follow-up completion — session `fd94fccd` (2026-11-12)
+
+- Corrected the canonical landing-page attribution in `content/index.md`: it now states that the site was built across documented sessions and links to this coordination log.
+- Added FL-22 and FL-23 to `data/flags.csv`, regenerated the root site, and published both on `flagged-for-review.html` with source links. FL-22 records the correction; FL-23 remains open for the Pages/deployment owner to reconcile the API's `legacy main /` source with `.github/workflows/pages.yml` uploading `docs/`.
+- Official NFL evidence streams were not changed; FL-23 is a GitHub deployment/configuration finding, and the GitHub API link is intentionally identified as non-NFL evidence.
+- Verification after the changes: `tools/verify.py` 39 passed / 0 failures; `tools/check_site.py` 10 passed / 0 failures (one disclosed warning now includes api.github.com on the new review row); `scripts/audit_all_pages.py` 96 HTML / 36 JSON / 222 tables / 3,425 rows / 0 broken links / 0 column mismatches; Q51 36 tests pass and 155/155 rows sourced; portal and S53 checks pass. Full report: `reports/fd94fccd/FINAL_AUDIT.md`.
+- Source references: GitHub Pages API https://api.github.com/repos/kanlerxz87-cyber/NFL2/pages and checked-in deployment workflow https://github.com/kanlerxz87-cyber/NFL2/blob/main/.github/workflows/pages.yml. These support only the deployment finding; NFL facts remain linked to NFL.com/operations.nfl.com in the datasets.
+
+### T18 publication result — session `fd94fccd`
+
+- **Final integration PR:** [#27](https://github.com/kanlerxz87-cyber/NFL2/pull/27) merged `2026-11-12T22:30:56Z` as `5906ed26f02b5326a2d63536760d954ebc641f97`.
+- **Main-branch checks:** `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded for `5906ed2`.
+- **Pages:** latest API build reports `built` at `5906ed2`; the refreshed live root page and Flagged for Review page were fetched after deploy and show the corrected provenance copy plus 23 flags, including FL-22/FL-23. Pages settings remain legacy `main` `/`; FL-23 retains the unresolved workflow artifact `docs/` ambiguity for owner review.
+- **Live review:** https://kanlerxz87-cyber.github.io/NFL2/ · https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html
+- Full final audit: `reports/fd94fccd/FINAL_AUDIT.md`.
 
 ---
 
@@ -720,3 +768,20 @@ tools/compute_tables.py        byte-identical on rerun (deterministic)
 
 Every new check was exercised with a negative control (tamper, observe failure, restore, observe pass);
 the controls are recorded on the methodology page.
+
+### Merge conflict at publication — resolved without discarding work
+
+`git pull --rebase origin main` failed: `main` had advanced to `93ad22b` (PRs #25–#28 from session
+`fd94fccd`), which conflicted on `COORDINATION.md`. Per the board's own rule the rebase was **aborted**
+rather than forced, and `origin/main` was merged in normally. Conflicts and their resolution:
+
+| File | Conflict | Resolution |
+|---|---|---|
+| `data/flags.csv` | both sessions independently used the IDs **FL-22** and **FL-23**, for four different findings | `fd94fccd`'s flags keep FL-22 (site provenance) and FL-23 (Pages config) because they are already on `main`; this session's were renumbered **FL-24** (Week 10 coverage) and **FL-25** (KC chart indexing trap). All cross-references in this session's files were updated. **No finding was dropped**: the register holds 25 flags. |
+| `COORDINATION.md` | both appended a session section | upstream text kept in place, this session's section appended after it; both sessions' records intact |
+| `content/index.md` | same paragraph rewritten by both sessions for the same reason (the false "one tracked file / one session" claim) | merged into one paragraph keeping upstream's coordination-log link and this session's re-verification sentence |
+| generated HTML (`index/404/data-dictionary/flagged-for-review/roadmap`), `data/build_manifest.json` | both sides rebuilt from their own data | regenerated from resolved sources with `tools/compute_tables.py && tools/build_site.py`; never hand-merged |
+
+Post-merge state of the combined tree: all eight suites pass (47 data checks, 10 site checks, review
+suite OK, 96 pages / 230 tables / 3,500 rows / 0 broken links, 116 pages / 3,310 internal links / 0 broken,
+portal 0 broken, Q51 10 pages / 155 rows / 0 errors, 36 unit tests OK).

@@ -5,7 +5,7 @@ This is the **practice** report, not an availability answer. Each club files par
 
 **How to read the codes.** `Full` / `Limited` / `Did not practice` map to the league's strings "Full Participation in Practice", "Limited Participation in Practice" and "Did Not Participate In Practice". `Out` / `Questionable` are the filed game statuses. Position is the league's abbreviation. Every player name links to that player's official page; every row's Source cell links the official hub page it was transcribed from.
 
-{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;group=game;;caption=Grouped by game in the order the official page lists them. Club abbreviations are the league's own. Rows are stored verbatim; nothing was corrected, added or removed. Club coverage is stated in the table above the find-out list; SEA, CIN and IND are partial or absent, a collection gap published as FL-22 rather than a claim that those clubs are healthy.}}
+{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;group=game;;caption=Grouped by game in the order the official page lists them. Club abbreviations are the league's own. Rows are stored verbatim; nothing was corrected, added or removed. Club coverage is stated in the table above the find-out list; SEA, CIN and IND are partial or absent, a collection gap published as FL-24 rather than a claim that those clubs are healthy.}}
 
 ## What this snapshot already tells us
 
@@ -13,7 +13,7 @@ This is the **practice** report, not an availability answer. Each club files par
 | --- | --- | --- |
 | Designations published at fetch time | 6 of 254 (2 Commanders OUT, 1 Giant QUESTIONABLE, 3 Patriots OUT) | availability features must be built on participation *trend*, not on the status column, until designations land |
 | Injury detail published in the hub table | 6 of 254 | body-part features have to come from the prose feed with an explicit join, not from this table |
-| Clubs with no row in this snapshot | {{metric injury_clubs_missing}} of the {{metric injury_clubs_playing}} playing Week 10 — {{metric empty_clubs}} | must be read as "not published", never as "healthy". LAC and BAL show "No Injuries Reported" on the hub; SEA and CIN publish full blocks and their rows are a known gap here ([FL-22](flagged-for-review.html)) |
+| Clubs with no row in this snapshot | {{metric injury_clubs_missing}} of the {{metric injury_clubs_playing}} playing Week 10 — {{metric empty_clubs}} | must be read as "not published", never as "healthy". LAC and BAL show "No Injuries Reported" on the hub; SEA and CIN publish full blocks and their rows are a known gap here ([FL-24](flagged-for-review.html)) |
 | Rows marked "did not practice" | {{metric dnp}} | the single strongest pre-designation availability signal we can compute today |
 | Rows marked "limited" | {{metric limited}} | the ambiguous middle; the transition matters more than the level ([SIG-02](signals.html)) |
 | Rows marked "full" | {{metric full}} | near-noise for availability, but useful as the denominator |
