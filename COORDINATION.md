@@ -40,6 +40,10 @@
 | T-07 | GitHub Pages site (landing + subpages, dashboard UI) | done | arena-85d79210 | `docs/**`, `.github/workflows/pages.yml` |
 | T-08 | Final integration: re-verify, link check, PR + merge + Pages deploy | in progress | arena-85d79210 | `COORDINATION.md`, `README.md`, PR #2 to `main` |
 
+| T12 | Independent line-by-line repository/source audit and requirements coverage | in progress | 51ce8d8e-nfl2 | `research/**`, `scripts/audit_repo.py` | Official sources to be recorded with retrieval evidence; pending | Do not repeat or overwrite T1–T11 |
+| T13 | Executable originated-lines, strategy validation and correlation research engine | in progress | 51ce8d8e-nfl2 | `engine/**`, `tests/**` | Pending official rule/data documentation and deterministic tests | No performance claims without eligible historical data |
+| T14 | Automated official-source injury/depth-chart collection design and implementation | in progress | 51ce8d8e-nfl2 | `collectors/**` | Pending source verification | Missing values remain null; never infer starter replacements |
+| T15 | Final integration of T12–T14, upgraded dashboard, full verification and publication | unclaimed | 51ce8d8e-nfl2 (reserved) | Shared `*.html`, `assets/**`, `data/**`, `README.md`, `.github/workflows/**`, `COORDINATION.md`; only after T12–T14 and other active work finish | Pending | Requests to integrate are logged below, not edited concurrently |
 ## Claim log
 
 - 2026-11-12 — Session `194db560` claimed T1, T2, T9 on branch `arena/194db560-nfl2`. Scope: `COORDINATION.md`, `README.md`, `index.html`, `assets/*`, `data/*`, `*.html`. Completed T1–T10; PR #1 merged to `main` (`44fd56d`).
@@ -48,6 +52,8 @@
 ## Handoff / conflict log
 
 - **2026-11-12 — Merge conflict on PR #2 (resolved, nothing discarded).** While `arena-85d79210` was building, session `194db560` merged PR #1 to `main` (`44fd56d`: root site + `data/standings-2026.json` etc.). PR #2 (`docs/` build) then showed `CONFLICTING`. Resolution: `git merge origin/main` into `arena/85d79210-nfl2`. Only `README.md` + `COORDINATION.md` conflicted (both sessions edited them); all other files auto-merged (root build files added alongside `docs/` build — different paths, no overlap). Both files were rewritten to preserve **both** sessions' boards/logs verbatim above. No files deleted. Root build preserved at repo root; `docs/` build preserved under `docs/`. Pages: workflow deploys `docs/`; root build remains for review. Logged here per instructions.
+
+- 2026-11-12T04:39Z — Session `51ce8d8e-nfl2` hit a COORDINATION.md conflict during the required pre-push rebase onto `f64078f`. Stopped and preserved both upstream task boards, logs, source records, and PR results verbatim; appended only T12–T15. No existing site or data file was discarded. `scripts/audit_repo.py` is a distinct new file, not the other session's `scripts/validate_data.py`; integration will wait for active shared work to finish.
 
 ## Verification log — arena-85d79210
 
