@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions Board — NFL2</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">NFL<span>2</span> Dashboard</div>
+<nav class="nav"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="teams.html">Teams</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries</a><a href="depth-charts.html">Depth Charts</a><a href="defense.html">Defense</a><a href="stats.html">Stats</a><a href="lines.html">Own Lines</a><a href="strategies.html">Leaderboard</a><a class="active" href="suggestions.html">Suggestions</a><a href="questions.html">Q&amp;A Register</a><a href="methodology.html">Methodology</a><a href="flagged.html">Flagged ⚠</a><a href="sources.html">Sources</a></nav></div></header>
+<main class="wrap">
+<h1>Suggestions Board — Review Before Anything Changes</h1>
+<p class="muted">Dedicated section for suggestions. <strong>No suggestion is implemented until the reviewer marks it Accepted</strong> (here + <code>data/suggestions.json</code> + <code>COORDINATION.md</code>). Workflow: <code>Proposed → Under Review → Accepted / Rejected / Deferred</code>.</p>
+
+<h2>How to review (decision criteria)</h2>
+<ul class="tight">
+<li><strong>Evidence:</strong> Does it unlock a QIA blocker (Q-01…Q-20)? Higher priority if yes.</li>
+<li><strong>Cost/risk:</strong> Effort + licensing/legal risk stated per suggestion. High-risk items need explicit approval.</li>
+<li><strong>Reversibility:</strong> Prefer low-risk, reversible steps first (governance, templates) before data purchases.</li>
+<li><strong>Verification:</strong> Any data suggestion must name its official source + timestamp policy. No source = no approval.</li>
+</ul>
+
+<h2>Suggestions (S-01…S-12) — all Proposed</h2>
+<div class="toolbar"><input type="text" placeholder="Filter suggestions… (e.g. Data, Model)" data-filter-target="sug-table" style="min-width:300px"></div>
+<div class="table-wrap"><table id="sug-table"><thead><tr><th>ID</th><th>Suggestion</th><th>Category</th><th>Rationale</th><th>Effort / Risk</th><th>Decision Needed</th><th>Status</th></tr></thead><tbody>
+<tr><td>S-01</td><td>Add licensed market-odds feed (closing lines) for CLV tracking</td><td>Data</td><td>Without closing lines, skill vs luck cannot be separated (no CLV).</td><td>Medium · Cost/licensing; timestamp every snapshot</td><td>Approve vendor + budget; define “closing” books</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-02</td><td>Add play-by-play + snap-count data (nflverse / official)</td><td>Data</td><td>Enables EPA/success-rate ratings + usage models; totals-only is too coarse.</td><td>High · Volume; reproducible pipeline needed</td><td>Approve source + storage; verify terms</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-03</td><td>Automated daily injury/depth-chart refresh (NFL.com + clubs)</td><td>Automation</td><td>Manual snapshots go stale in hours (F-02).</td><td>Medium · Scraping fragility; keep human verification</td><td>Approve scheduler + official sources list</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-04</td><td>Build Elo-style team ratings as model baseline (before ML)</td><td>Model</td><td>Auditable baseline; fancier models must beat it out-of-sample.</td><td>Medium · Ignores injuries unless layered</td><td>Approve K-factor, HFA, MOV handling</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-05</td><td>Require 500+ graded bets + CLV gate before “live”</td><td>Governance</td><td>Small samples are luck-dominated (Gates G0–G7).</td><td>Low · Slow to first live — by design</td><td>Confirm thresholds or adjust</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-06</td><td>Separate single / parlay / prop leaderboards (never mix ROI)</td><td>Governance</td><td>Parlay variance dwarfs singles; mixing hides skill/luck.</td><td>Low · More tables; shared grading code</td><td>Approve separate bankrolls/caps</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-07</td><td>Add weather + stadium data (roof/outdoor, wind, temp)</td><td>Data</td><td>Totals/passing props are weather-sensitive.</td><td>Low · Forecast vs actual gap</td><td>Approve source + timestamp policy</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-08</td><td>Publish model cards (inputs, weights, calibration) per line</td><td>Transparency</td><td>Know WHY a line moved. No black boxes.</td><td>Low · None material</td><td>Approve template</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-09</td><td>Responsible-gambling guardrails (caps, limits, helpline)</td><td>Safety</td><td>Protect operator + users. Required pre real-money.</td><td>Low · None</td><td>Approve caps + NCPG placement</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-10</td><td>Freeze Week 11 lines as TBD until Q-01…Q-10 answered</td><td>Governance</td><td>Uncalibrated lines as predictions = hallucination.</td><td>Low · Looks unfinished (mitigated)</td><td>Confirm TBD policy</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-11</td><td>Add betting-splits / line-movement tracking (open vs close)</td><td>Data</td><td>Movement reveals information flow (sharp vs public).</td><td>Medium · Licensing; definitions vary</td><td>Approve source + definitions</td><td><span class="badge b-info">Proposed</span></td></tr>
+<tr><td>S-12</td><td>Quarter-Kelly cap (max 1%/bet until 500 graded bets)</td><td>Risk</td><td>Full Kelly on uncertain edges destroys bankrolls.</td><td>Low · Slower growth (acceptable)</td><td>Approve cap + n=500 review</td><td><span class="badge b-info">Proposed</span></td></tr>
+</tbody></table></div>
+
+<h2>Reviewer actions</h2>
+<ul class="tight">
+<li>For each S-ID: mark <strong>Accepted / Rejected / Deferred</strong> with a one-line reason. Accepted items get a COORDINATION.md task + owner.</li>
+<li>Rejected/Deferred items stay on this board (audit trail) — never silently deleted.</li>
+<li>New suggestions: add as S-13+ with category, rationale, effort/risk, decision needed. No implementation without acceptance.</li>
+</ul>
+<div class="callout info"><strong>Recommended order (analysis):</strong> S-10 (TBD freeze) + S-09 (safety) + S-12 (staking cap) first (low-risk governance) → S-01/S-02 (data unlocks) → S-04 (baseline model) → S-03/S-07/S-11 (automation/context). This is a recommendation, not a decision — reviewer chooses.</div>
+</main>
+<footer><div class="footer-inner"><a href="index.html">← Dashboard</a> · <a href="questions.html">Q&amp;A Register →</a></div></footer>
+<script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,21 @@
+{
+  "note": "Leaderboard is SEEDED EMPTY by design. No strategy has submitted graded bets, so no strategy has passed any gate. Do not invent performance. See docs/strategies.html for gates G0-G7, scoring, and submission template.",
+  "markets": ["single", "parlay", "player_prop"],
+  "gates": [
+    {"id": "G0", "name": "Pre-registration", "rule": "Strategy hypothesis, markets, staking, and stop-loss written BEFORE first graded bet. No retroactive edits."},
+    {"id": "G1", "name": "Data integrity", "rule": "Every bet timestamped with model inputs + market price at bet time. Missing timestamps = void."},
+    {"id": "G2", "name": "Sample size", "rule": "Minimum 500 graded bets per market before 'live' status. Below 500 = 'paper' only."},
+    {"id": "G3", "name": "CLV gate", "rule": "Mean CLV > 0 vs closing line with 95% CI excluding 0 (primary skill signal)."},
+    {"id": "G4", "name": "Calibration gate", "rule": "Log-loss / Brier beats no-vig market baseline out-of-sample. No calibration = no live."},
+    {"id": "G5", "name": "ROI gate", "rule": "ROI > 0 after vig, with bootstrap CI reported. ROI alone never promotes a strategy."},
+    {"id": "G6", "name": "Correlation gate (parlays/props)", "rule": "Joint probabilities estimated from data; naive multiplication prohibited for SGPs."},
+    {"id": "G7", "name": "Risk gate", "rule": "Max drawdown + staking within approved caps (S-12). Breach = suspension pending review."}
+  ],
+  "leaderboard": [],
+  "scoring": {
+    "primary": "CLV (mean, CI) — skill signal",
+    "secondary": "Log-loss vs market — calibration",
+    "tertiary": "ROI (CI) — outcome, luck-contaminated",
+    "tiebreak": "Lower max drawdown, then earlier pre-registration"
+  }
+}
