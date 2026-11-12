@@ -1,31 +1,123 @@
 {
-  "reviewed_at_utc": "2026-11-12T06:50:00Z",
+  "reviewed_at_utc": "2026-11-12T07:55:00Z",
   "baseline_ref": "f64078fcb36271554d7ec032386ea4101ba4d859",
-  "current_ref": "faecd39ddbcc9902d3586d08d3ab6c80b701ab66 plus Q51 integration",
+  "current_ref": "45ea5f399b09480c644ea111ba71ecb11379411a",
   "method": "Re-read the affected current files after upstream PRs #8–#22, applied only evidence-backed corrections, and reran structural/source checks. Historical findings are retained; resolved does not mean the underlying data gap disappeared.",
   "findings": [
-    {"id":"A-01","status":"resolved_with_source_conflict_flag","action":"Canonical root/docs Week 11 broadcasters now follow the dated Nov 9 NFL release; dynamic-page disagreement remains flagged."},
-    {"id":"A-02","status":"resolved_upstream","action":"PR #19 corrected Jaylen Warren rushing TD to 2."},
-    {"id":"A-03","status":"resolved_upstream","action":"PR #19 corrected Ja'Marr Chase receiving TD to 7."},
-    {"id":"A-04","status":"resolved_upstream","action":"Active Week 10 injury links use REG10; REG9 remains only as historical evidence."},
-    {"id":"A-05","status":"resolved","action":"Nacua/Adams formal game-status cells are blank; coach outlooks remain separate narrative."},
-    {"id":"A-06","status":"resolved","action":"Unsupported knee detail removed from Parsons item; illness and limited participation retained."},
-    {"id":"A-07","status":"resolved_wording_lineups_still_unverified","action":"Club-hosted charts are described as unofficial editorial ordering, not confirmed lineups."},
-    {"id":"A-08","status":"mitigated","action":"Q51 uses stable LAR internal key; upstream LA/LAR aliases are preserved and joined explicitly."},
-    {"id":"A-09","status":"resolved","action":"Fixed-count skill claim replaced with uncertainty/multiplicity/walk-forward requirements."},
-    {"id":"A-10","status":"resolved","action":"Overround distinguished from balanced normalized margin and actual hold."},
-    {"id":"A-11","status":"mitigated","action":"New Q51 tests and structural audits supplement the legacy presence/completeness validator; factual agreement still requires source evidence."},
-    {"id":"A-12","status":"resolved","action":"Docs landing page distinguishes current Week 10 from planning Week 11."},
-    {"id":"A-13","status":"open_source_inconsistency","action":"Official tackle components preserved as published; derived sum checks suppressed pending clarification."},
-    {"id":"A-14","status":"resolved_as_hypotheses","action":"Qualitative correlation mechanisms labelled unmeasured hypotheses; third-party explainers replaced with official context and code."},
-    {"id":"A-15","status":"open_data_gap","action":"No licensed market/prop/settlement archive; ROI, CLV, prop-leg correlations and reward eligibility remain blank."},
-    {"id":"A-16","status":"mitigated","action":"Root dashboard is the canonical entry and cross-links preserved builds; Q51 is namespaced rather than overwriting them."},
-    {"id":"A-17","status":"partial","action":"Robots-aware collector and parsers implemented and unit-tested; live sandbox probe failed at TLS boundary. No scheduled ingestion is claimed."},
-    {"id":"A-18","status":"resolved_digits_legal_question_open","action":"US helpline digits corrected; Netherlands legality is not inferred. Competition remains paper-only with virtual badges."},
-    {"id":"Q51-F19","status":"resolved","action":"Added missing team anchor targets and repaired archive cross-build links found by the current-tree audit."},
-    {"id":"Q51-F20","status":"open_environment","action":"Collector probe recorded 0/7 successful HTTPS retrievals due sandbox TLS EOF; manual page-fetch evidence is kept separate."},
-    {"id":"Q51-F21","status":"open_method_limit","action":"The 136-game log was retrieved as a batch after completion. Q51 lines are current-snapshot research, not a historical point-in-time backtest."},
-    {"id":"Q51-F22","status":"open_legacy_design_rows","action":"Several inherited design/proposal pages have no NFL/club row link; they are flagged as internal design, not factual measurements. Q51 pages enforce row-level official/canonical links."},
-    {"id":"Q51-F23","status":"open_deployment_topology","action":"Pages is legacy main/root while a docs-only Actions workflow also exists. Root legacy deployment is the confirmed public entry; do not assume the Actions artifact is the live site."}
+    {
+      "id": "A-01",
+      "status": "resolved_with_source_conflict_flag",
+      "action": "Canonical root/docs Week 11 broadcasters now follow the dated Nov 9 NFL release; dynamic-page disagreement remains flagged."
+    },
+    {
+      "id": "A-02",
+      "status": "resolved_upstream",
+      "action": "PR #19 corrected Jaylen Warren rushing TD to 2."
+    },
+    {
+      "id": "A-03",
+      "status": "resolved_upstream",
+      "action": "PR #19 corrected Ja'Marr Chase receiving TD to 7."
+    },
+    {
+      "id": "A-04",
+      "status": "resolved_upstream",
+      "action": "Active Week 10 injury links use REG10; REG9 remains only as historical evidence."
+    },
+    {
+      "id": "A-05",
+      "status": "resolved",
+      "action": "Nacua/Adams formal game-status cells are blank; coach outlooks remain separate narrative."
+    },
+    {
+      "id": "A-06",
+      "status": "resolved",
+      "action": "Unsupported knee detail removed from Parsons item; illness and limited participation retained."
+    },
+    {
+      "id": "A-07",
+      "status": "resolved_wording_lineups_still_unverified",
+      "action": "Club-hosted charts are described as unofficial editorial ordering, not confirmed lineups."
+    },
+    {
+      "id": "A-08",
+      "status": "mitigated",
+      "action": "Q51 uses stable LAR internal key; upstream LA/LAR aliases are preserved and joined explicitly."
+    },
+    {
+      "id": "A-09",
+      "status": "resolved",
+      "action": "Fixed-count skill claim replaced with uncertainty/multiplicity/walk-forward requirements."
+    },
+    {
+      "id": "A-10",
+      "status": "resolved",
+      "action": "Overround distinguished from balanced normalized margin and actual hold."
+    },
+    {
+      "id": "A-11",
+      "status": "mitigated",
+      "action": "New Q51 tests and structural audits supplement the legacy presence/completeness validator; factual agreement still requires source evidence."
+    },
+    {
+      "id": "A-12",
+      "status": "resolved",
+      "action": "Docs landing page distinguishes current Week 10 from planning Week 11."
+    },
+    {
+      "id": "A-13",
+      "status": "open_source_inconsistency",
+      "action": "Official tackle components preserved as published; derived sum checks suppressed pending clarification."
+    },
+    {
+      "id": "A-14",
+      "status": "resolved_as_hypotheses",
+      "action": "Qualitative correlation mechanisms labelled unmeasured hypotheses; third-party explainers replaced with official context and code."
+    },
+    {
+      "id": "A-15",
+      "status": "open_data_gap",
+      "action": "No licensed market/prop/settlement archive; ROI, CLV, prop-leg correlations and reward eligibility remain blank."
+    },
+    {
+      "id": "A-16",
+      "status": "mitigated",
+      "action": "Root dashboard is the canonical entry and cross-links preserved builds; Q51 is namespaced rather than overwriting them."
+    },
+    {
+      "id": "A-17",
+      "status": "partial",
+      "action": "Robots-aware collector and parsers implemented and unit-tested; live sandbox probe failed at TLS boundary. No scheduled ingestion is claimed."
+    },
+    {
+      "id": "A-18",
+      "status": "resolved_digits_legal_question_open",
+      "action": "US helpline digits corrected; Netherlands legality is not inferred. Competition remains paper-only with virtual badges."
+    },
+    {
+      "id": "Q51-F19",
+      "status": "resolved",
+      "action": "Added missing team anchor targets and repaired archive cross-build links found by the current-tree audit."
+    },
+    {
+      "id": "Q51-F20",
+      "status": "open_environment",
+      "action": "Collector probe recorded 0/7 successful HTTPS retrievals due sandbox TLS EOF; manual page-fetch evidence is kept separate."
+    },
+    {
+      "id": "Q51-F21",
+      "status": "open_method_limit",
+      "action": "The 136-game log was retrieved as a batch after completion. Q51 lines are current-snapshot research, not a historical point-in-time backtest."
+    },
+    {
+      "id": "Q51-F22",
+      "status": "open_legacy_design_rows",
+      "action": "Several inherited design/proposal pages have no NFL/club row link; they are flagged as internal design, not factual measurements. Q51 pages enforce row-level official/canonical links."
+    },
+    {
+      "id": "Q51-F23",
+      "status": "open_deployment_topology",
+      "action": "Pages is legacy main/root while a docs-only Actions workflow also exists. Root legacy deployment is the confirmed public entry; do not assume the Actions artifact is the live site."
+    }
   ]
 }
