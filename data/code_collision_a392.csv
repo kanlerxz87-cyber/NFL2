@@ -1,0 +1,3 @@
+join|games_dropped|games_joined|detail|fix|source
+official log (nfl.com codes: AZ, LAR) -> archive games.csv (ARI, LA), no alias table|9|127|the nine dropped rows are every Arizona Cardinals game in weeks 1-9; a model fitted through this join loses a whole club and still reports an error rate|ARCHIVE_ALIAS in this script; the same map is what data/teams.csv needs to join the archive's roster and price files|S-REPO
+same join, with the alias table applied|0|136|136 of 136 scores agree cell-for-cell with the official transcription, 0 disagree, 0 have no archive score|published as the cross-source check on the game log|S-REPO

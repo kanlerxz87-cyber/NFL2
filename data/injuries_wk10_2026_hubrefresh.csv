@@ -1,0 +1,280 @@
+game|team|player|slug|pos|side|injury|practice|status|fetched_utc|source
+W10-01|NYG|Abdul Carter|abdul-carter|LB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Andrew Thomas|andrew-thomas|T|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Cam Skattebo|cam-skattebo|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Charlie Jones|charlie-jones-3|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Colton Hood|colton-hood|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Darnell Mooney|darnell-mooney|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|J.J. McCarthy|j-j-mccarthy|QB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Jermaine Eluemunor|jermaine-eluemunor|T|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Malik Harrison|malik-harrison|LB|defence|Groin|L|Q|2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Malik Nabers|malik-nabers|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|NYG|Theo Johnson|theo-johnson|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Amik Robertson|amik-robertson|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Chig Okonkwo|chigoziem-okonkwo|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Colson Yankoff|colson-yankoff|TE|offence|Knee|D|OUT|2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Jayden Daniels|jayden-daniels|QB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|WAS|John Bates|john-bates|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Lucas Patrick|lucas-patrick|C|offence|Concussion|D|OUT|2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Matt Gulbin|matt-gulbin|C|offence||F||2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Shy Tuttle|shy-tuttle|DT|defence||F||2026-11-12T22:35Z|S-INJ
+W10-01|WAS|Treylon Burks|treylon-burks|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-02|DET|Amon-Ra St. Brown|amon-ra-st-brown|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-02|DET|Brian Branch|brian-branch|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-02|DET|Cade Mays|cade-mays|C|offence||D||2026-11-12T22:35Z|S-INJ
+W10-02|DET|D.J. Reed|d-j-reed|CB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-02|DET|DJ Wonnum|d-j-wonnum|DE|defence||F||2026-11-12T22:35Z|S-INJ
+W10-02|DET|Jacob Saylors|jacob-saylors|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-02|DET|Jared Goff|jared-goff|QB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-02|DET|Kerby Joseph|kerby-joseph|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-02|DET|Sione Vaki|sione-vaki|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-02|NE|A.J. Brown|a-j-brown|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Ben Brown|ben-brown-2|C|offence|Knee|D|OUT|2026-11-12T22:35Z|S-INJ
+W10-02|NE|Brenden Schooler|brenden-schooler|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Cameron Latu|cameron-latu|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Carlton Davis III|carlton-davis|CB|defence|Knee|D|OUT|2026-11-12T22:35Z|S-INJ
+W10-02|NE|Charles Woods|charles-woods|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Drake Maye|drake-maye|QB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Greg Van Roten|greg-van-roten|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Hunter Henry|hunter-henry|TE|offence||L||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Kevin Byard|kevin-byard|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Morgan Moses|morgan-moses|T|offence||L||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Reggie Gilliam|reggie-gilliam|FB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-02|NE|Rhamondre Stevenson|rhamondre-stevenson|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-02|NE|TreVeyon Henderson|treveyon-henderson|RB|offence|Illness|D|OUT|2026-11-12T22:35Z|S-INJ
+W10-02|NE|Walter Rouse|walter-rouse|T|offence||D||2026-11-12T22:35Z|S-INJ
+W10-03|ATL|Divine Deablo|divine-deablo|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-03|ATL|Gervon Dexter Sr.|gervon-dexter|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-03|ATL|James Pearce Jr.|james-pearce-jr|DE|defence||D||2026-11-12T22:35Z|S-INJ
+W10-03|ATL|Josh Woods|josh-woods|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-03|ATL|Za'Darius Smith|za-darius-smith|DE|defence||D||2026-11-12T22:35Z|S-INJ
+W10-03|ATL|Zachariah Branch|zachariah-branch|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Jaden Hicks|jaden-hicks|S|defence||F||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Jaylon Moore|jaylon-moore-2|T|offence||D||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Jeffrey Bassa|jeffrey-bassa|LB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Justin Fields|justin-fields|QB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Mansoor Delane|mansoor-delane|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Omarr Norman-Lott|omarr-norman-lott|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Patrick Mahomes|patrick-mahomes|QB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Peter Woods|peter-woods|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Rashee Rice|rashee-rice|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Travis Kelce|travis-kelce|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-03|KC|Xavier Worthy|xavier-worthy|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Aaron Banks|aaron-banks|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Bo Melton|bo-melton|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Chris Brooks|christopher-brooks|RB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Javon Bullard|javon-bullard|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Josh Jacobs|josh-jacobs-x3315|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Josh Whyle|josh-whyle|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Kevin Zeitler|kevin-zeitler|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Lukas Van Ness|lukas-van-ness|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Micah Parsons|micah-parsons|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Savion Williams|savion-williams|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Sean Rhyan|sean-rhyan|C|offence||D||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Skyy Moore|skyy-moore|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Travis Glover|travis-glover|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Trey Smack|trey-smack|K|special teams||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Ty'Ron Hopper|ty-ron-hopper|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-04|GB|Zaire Franklin|zaire-franklin|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Blake Cashman|blake-cashman|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Carson Wentz|carson-wentz|QB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Jauan Jennings|jauan-jennings|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Jay Ward|jay-ward|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Kyle Van Noy|kyle-van-noy|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Kyler Murray|kyler-murray|QB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|T.J. Hockenson|t-j-hockenson|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Theo Jackson|theo-jackson|S|defence||F||2026-11-12T22:35Z|S-INJ
+W10-04|MIN|Tyrion Ingram-Dawkins|tyrion-ingram-dawkins|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Antonio Johnson|antonio-johnson-3|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|BJ Green II|bj-green-ii|DE|defence||F||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Bhayshul Tuten|bhayshul-tuten|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Branson Combs|branson-combs|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Chris Rodriguez Jr.|chris-rodriguez-jr|RB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Ezra Cleveland|ezra-cleveland|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Jakobi Meyers|jakobi-meyers|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Jessie Bates|jessie-bates|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Jordan Davis|jordan-davis|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Robert Hainsey|robert-hainsey|C|offence||L||2026-11-12T22:35Z|S-INJ
+W10-05|JAX|Travon Walker|travon-walker|DE|defence||D||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Anthony Hill Jr.|anthony-hill-jr|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Carnell Tate|carnell-tate|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Cody Barton|cody-barton|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|JC Latham|jc-latham|T|offence||F||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Jaylon Jones|jaylon-jones-2|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|John Franklin-Myers|john-franklin-myers|DE|defence||F||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Kevin Winston Jr.|kevin-winston-jr|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Marcus Harris|marcus-harris-4|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Peter Skoronski|peter-skoronski|G|offence||D||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Tommy Townsend|tommy-townsend|P|special teams||F||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Tony Pollard|tony-pollard|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-05|TEN|Tyjae Spears|tyjae-spears|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-06|IND|A.J. Haulcy|a-j-haulcy|S|defence||F||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Akeem Davis-Gaither|akeem-davis-gaither|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Arden Key|arden-key|DE|defence||F||2026-11-12T22:35Z|S-INJ
+W10-06|IND|CJ Allen|cj-allen|LB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Charvarius Ward|charvarius-ward|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Grover Stewart|grover-stewart|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Jalen Travis|jalen-travis|T|offence||D||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Jaylon Carlies|jaylon-carlies|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Jerry Tillery|jerry-tillery|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Jonathan Taylor|jonathan-taylor|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Justin Walley|justin-walley|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Luke Rhodes|luke-rhodes|LS|special teams||D||2026-11-12T22:35Z|S-INJ
+W10-06|IND|Mo Alie-Cox|mo-alie-cox|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Aaron Brewer|aaron-brewer-2|C|offence||D||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Chris Bell|chris-bell-2|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Dante Trader Jr.|dante-trader-jr|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Darrell Baker Jr.|darrell-baker-jr|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Jaylen Wright|jaylen-wright|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Kaytron Allen|kaytron-allen|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Malik Herring|malik-herring|DE|defence||L||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Michael Taaffe|michael-taaffe|S|defence||F||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Tucker Addington|tucker-addington|LS|special teams||L||2026-11-12T22:35Z|S-INJ
+W10-06|MIA|Will Kacmarek|will-kacmarek|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Bobby Okereke|bobby-okereke|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Brady Christensen|brady-christensen|G|offence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Chuba Hubbard|chuba-hubbard|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Damien Lewis|damien-lewis|G|offence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Jaelan Phillips|jaelan-phillips|LB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Jonathon Brooks|jonathon-brooks|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Lee Hunter|lee-hunter|DT|defence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Mike Jackson|mike-jackson|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Torricelli Simpkins III|torricelli-simpkins-iii|G|offence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Trevor Etienne|trevor-etienne|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Will Lee III|will-lee-iii|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-07|CAR|Xavier Legette|xavier-legette|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Alvin Kamara|alvin-kamara|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Asim Richards|asim-richards|T|offence||F||2026-11-12T22:35Z|S-INJ
+W10-07|NO|CJ Donaldson|cj-donaldson|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Christen Miller|christen-miller|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-07|NO|David Edwards|david-edwards-x1290|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Erik McCoy|erik-mccoy|C|offence||D||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Kelvin Banks Jr.|kelvin-banks-jr|T|offence||L||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Martin Emerson|martin-emerson|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Noah Fant|noah-fant-x4946|TE|offence||L||2026-11-12T22:35Z|S-INJ
+W10-07|NO|Travis Etienne|travis-etienne|RB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Alec Anderson|alec-anderson-2|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Ar'maj Reed-Adams|ar-maj-reed-adams|G|offence||F||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Christian Benford|christian-benford|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Connor McGovern|connor-mcgovern-2|C|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Dalton Kincaid|dalton-kincaid|TE|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Dion Dawkins|dion-dawkins|T|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Greg Gaines|greg-gaines|DT|defence||F||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Jordan Hancock|jordan-hancock|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Spencer Brown|spencer-brown|T|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|T.J. Sanders|t-j-sanders|DE|defence||F||2026-11-12T22:35Z|S-INJ
+W10-08|BUF|Tyrell Shavers|tyrell-shavers|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-08|NYJ|Garrett Wilson|garrett-wilson|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|NYJ|Harrison Phillips|harrison-phillips|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-08|NYJ|Joseph Ossai|joseph-ossai|DE|defence||L||2026-11-12T22:35Z|S-INJ
+W10-08|NYJ|Nahshon Wright|nahshon-wright|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-08|NYJ|Omar Cooper Jr.|omar-cooper-jr|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-08|NYJ|Trevin Wallace|trevin-wallace|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-08|NYJ|VJ Payne|vj-payne|S|defence||F||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Austin Barber|austin-barber|T|offence||L||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Carson Schwesinger|carson-schwesinger|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Denzel Boston|denzel-boston|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Denzel Ward|denzel-ward|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Elgton Jenkins|elgton-jenkins|C|offence||D||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Harold Fannin Jr.|harold-fannin-jr|TE|offence||L||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Maliek Collins|maliek-collins|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Michael Burton|michael-burton|FB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Quincy Williams|quincy-williams|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Ronnie Hickman Jr.|ronnie-hickman-jr|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-09|CLE|Tytus Howard|tytus-howard-x1979|T|offence||L||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Azeez Al-Shaair|azeez-al-shaair|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Blake Fisher|blake-fisher|T|offence||F||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Brevin Jordan|brevin-jordan|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|David Montgomery|david-montgomery|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Jacob Hummel|jake-hummel|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Jaylin Smith|jaylin-smith|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Keylan Rutledge|keylan-rutledge|G|offence||D||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Marvin Harrison Jr.|marvin-harrison-jr|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Reed Blankenship|reed-blankenship|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Tank Dell|tank-dell|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Tommy Togiai|tommy-togiai|DT|defence||F||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Woody Marks|woody-marks|RB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-09|HOU|Wyatt Teller|wyatt-teller|G|offence||D||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Andrew Wingard|andrew-wingard|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Bam Knight|bam-knight|RB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Budda Baker|budda-baker|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Dante Stills|dante-stills|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Hjalte Froholdt|hjalte-froholdt|C|offence||D||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Hunter Long|hunter-long|TE|offence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Isaac Seumalo|isaac-seumalo|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Jayden Williams|jayden-williams|T|offence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Jon Gaines II|jon-gaines-ii|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Josh Sweat|josh-sweat|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Mack Wilson|mack-wilson|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Max Melton|max-melton|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Roy Lopez|roy-lopez|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|AZ|Zachary Carter|zachary-carter-x9168|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Colby Parkinson|colby-parkinson|TE|offence||L||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Davis Allen|davis-allen|TE|offence||L||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Joe Cardona|joe-cardona|LS|special teams||L||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Kam Curl|kamren-curl|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Matthew Stafford|matthew-stafford|QB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Myles Garrett|myles-garrett|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Puka Nacua|puka-nacua|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Steve Avila|steve-avila|G|offence||D||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Terrance Ferguson|terrance-ferguson-2|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-10|LAR|Trent McDuffie|trent-mcduffie|CB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-11|LV|Foley Fatukasi|foley-fatukasi|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-11|LV|Ian Thomas|ian-thomas|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-11|LV|Thomas Booker|thomas-booker|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-11|LV|Trey Zuhn III|trey-zuhn-iii|C|offence||L||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|AJ Barner|aj-barner|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Anthony Bradford|anthony-bradford|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Brandon Pili|brandon-pili|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Charles Cross|charles-cross-2|T|offence||D||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Connor O'Toole|connor-o-toole|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Derick Hall|derick-hall|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Drew Lock|drew-lock|QB|offence||L||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Jarran Reed|jarran-reed|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Jaxon Smith-Njigba|jaxon-smith-njigba|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Leonard Williams|leonard-williams|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Patrick O'Connell|patrick-o-connell|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Quenton Nelson|quenton-nelson|G|offence||D||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Rashid Shaheed|rashid-shaheed|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Sam Darnold|sam-darnold|QB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-11|SEA|Uchenna Nwosu|uchenna-nwosu|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Brevyn Spann-Ford|brevyn-spann-ford|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|DeMarvion Overshown|demarvion-overshown|LB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Devin Moore|devin-moore-2|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Donovan Ezeiruaku|donovan-ezeiruaku|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|George Pickens|george-pickens|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Jake Ferguson|jake-ferguson|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Joey Porter Jr.|joey-porter-jr|CB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Jonathan Bullard|jonathan-bullard|DT|defence||F||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Jonathan Mingo|jonathan-mingo|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|KaVontae Turpin|kavontae-turpin|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Luke Schoonmaker|luke-schoonmaker|TE|offence||F||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Malik Hooker|malik-hooker|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Marist Liufau|marist-liufau|LB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|P.J. Locke|p-j-locke|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Tyler Goodson|tyler-goodson|RB|offence||F||2026-11-12T22:35Z|S-INJ
+W10-12|DAL|Von Miller|von-miller|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|SF|C.J. West|cj-west|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Christian McCaffrey|christian-mccaffrey|RB|offence||D||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Deebo Samuel Sr.|deebo-samuel|WR|offence||L||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Demarcus Robinson|demarcus-robinson|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Deommodore Lenoir|deommodore-lenoir|CB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Dre Greenlaw|dre-greenlaw-x9042|LB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Mike Evans|mike-evans|WR|offence||D||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Nate Hobbs|nate-hobbs|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Renardo Green|renardo-green|CB|defence||D||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Siran Neal|siran-neal|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Trent Williams|trent-williams|T|offence||D||2026-11-12T22:35Z|S-INJ
+W10-12|SF|Upton Stout|upton-stout|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-13|CIN|DJ Turner II|dj-turner-2|CB|defence||L||2026-11-12T22:35Z|S-INJ
+W10-13|CIN|Dylan Fairchild|dylan-fairchild|G|offence||L||2026-11-12T22:35Z|S-INJ
+W10-13|CIN|Jonathan Allen|jonathan-allen|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-13|CIN|Kyle Dugger|kyle-dugger|S|defence||D||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|Ben Skowronek|ben-skowronek|WR|offence||F||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|Brandin Echols|brandin-echols|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|Cameron Heyward|cameron-heyward|DT|defence||D||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|Darnell Washington|darnell-washington|TE|offence||D||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|DeShon Elliott|deshon-elliott|S|defence||L||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|Derrick Harmon|derrick-harmon-2|DT|defence||L||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|Doneiko Slaughter|doneiko-slaughter|CB|defence||F||2026-11-12T22:35Z|S-INJ
+W10-13|PIT|T.J. Watt|t-j-watt|LB|defence||D||2026-11-12T22:35Z|S-INJ
