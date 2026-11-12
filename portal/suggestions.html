@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suggestions &amp; Decision-Path Review Hub — NFL2 Quantitative Decision Portal</title>
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-head">
+        <div class="brand">
+          <span class="brand-mark">NFL2</span>
+          <span>Verified Line Origination, Depth Deficiency &amp; Strategy Portal</span>
+        </div>
+        <div class="meta-pills">
+          <span class="meta-pill">Snapshot: 2026-11-12 (Week 10)</span>
+          <span class="meta-pill">Zero-Sum Verified: 11/11</span>
+          <a href="../index.html" class="meta-pill" style="color:#93c5fd;">&larr; Root Site</a>
+        </div>
+      </div>
+      <nav class="nav-bar" aria-label="Portal Navigation">
+        <a href="index.html" class="">Overview</a>
+<a href="executive-summary.html" class="">Executive Summary</a>
+<a href="suggestions.html" class="active">Suggestions Hub</a>
+<a href="questions-discovery.html" class="">Questions &amp; Missing Info</a>
+<a href="line-origination.html" class="">Originate NFL Lines</a>
+<a href="leaderboard-gates.html" class="">Leaderboard &amp; Gates</a>
+<a href="correlations-skill.html" class="">Correlations &amp; Skill</a>
+<a href="injuries-depth.html" class="">Injuries &amp; 1st–4th Depth</a>
+<a href="repo-audit.html" class="">Repo Line-by-Line Audit</a>
+<a href="flagged-review.html" class="">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-header">
+      <h1>Suggestions &amp; Decision-Path Review Hub</h1>
+      <p>Dedicated review section presenting strategic paths and concrete site improvements so a reviewer can evaluate trade-offs and choose the best path before any implementation.</p>
+    </div>
+    
+    <div class="callout warn">
+      <strong>Governance Policy — Review Before Implementing:</strong> All suggestions below are in &#x27;PROPOSED — AWAITING REVIEW&#x27; status. Review the Strategic Paths and individual suggestions, resolve prerequisite Questions (Q-E01..Q-E07), and approve a path BEFORE implementing production changes.
+    </div>
+    <section class="section-card">
+      <h2>1. Strategic Implementation Paths (Choose Best Path Before Implementing Changes)</h2>
+      <p class="section-desc">Compare four coherent roadmap sequences side by side depending on whether market CLV measurement, 32-club personnel depth, pricing precision, or zero-cost UI hygiene is the top priority.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-paths" placeholder="Search strategic paths..." aria-label="Search strategic paths...">
+      <span class="kpi-sub">4 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-paths" data-sortable="true">
+        <thead><tr><th>Path ID</th><th>Strategic Path</th><th>Implementation Sequence</th><th>Decision-Making Benefit</th><th>Effort</th><th>Prerequisite Qs</th><th>Review State</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>PATH-ALPHA</strong></td><td>Market &amp; Validation Infrastructure First (Recommended)</td><td>SUG-03 (Odds &amp; CLV Ledger) -&gt; SUG-12 (Pre-Kickoff Hash Log) -&gt; SUG-04 (Play-by-Play EPA &amp; Prop Copula Engine)</td><td>Unlocks Validation Gates G3, G4, and G6 immediately so strategies can be ranked by true Out-of-Sample CLV rather than staying quarantined in Tier 0.</td><td>Medium-High</td><td>Q-E01, Q-E02, Q-E03</td><td><span class="badge model">AWAITING CHOICE</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Reference &#8599;</a></td></tr>
+<tr><td><strong>PATH-BETA</strong></td><td>32-Club Injury &amp; Backup String Advantage First</td><td>SUG-02 (32-Club Depth-Chart Crawler) -&gt; SUG-09 (PS 3-Elevation Cap Tracker) -&gt; SUG-01 (Friday/90-Min Inactive Diff Banner)</td><td>Captures early-week line movement caused by 2nd/3rd/4th-string OL and CB cascades (where 2026 Def Passer Rtg vs PA/G r=+0.8151 and Sack Rate vs PF/G r=-0.6353).</td><td>Medium</td><td>Q-E02, Q-E05</td><td><span class="badge model">AWAITING CHOICE</span></td><td><a href="https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language" target="_blank" rel="noopener">Reference &#8599;</a></td></tr>
+<tr><td><strong>PATH-GAMMA</strong></td><td>Pricing Precision &amp; Situational Edge First</td><td>SUG-06 (Discrete Key-Number 3/7 Pricing) -&gt; SUG-07 (NOAA/NWS Stadium Wind Overlay) -&gt; SUG-08 (SGP Vig-Tax Auditor)</td><td>Eliminates Gaussian push mispricing around key numbers 3 &amp; 7, prices outdoor wind totals, and blocks negative-EV SGP parlay markups.</td><td>Low-Medium</td><td>Q-E04, Q-E07</td><td><span class="badge model">AWAITING CHOICE</span></td><td><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf" target="_blank" rel="noopener">Reference &#8599;</a></td></tr>
+<tr><td><strong>PATH-DELTA</strong></td><td>UI Decision-Safety &amp; Repo Hygiene First</td><td>SUG-05 (Go/No-Go Pre-Bet Checklist Drawer) -&gt; SUG-10 (Calibration Reliability Curves) -&gt; SUG-11 (Cross-Session CR-01/CR-02 Cleanup)</td><td>Hardens operator decision workflow against stale data, cognitive bias, and HTML/URL inconsistencies with zero external API cost.</td><td>Low</td><td>Q-E06</td><td><span class="badge model">AWAITING CHOICE</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">Reference &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    <section class="section-card">
+      <h2>2. Individual Site &amp; Decision-Support Suggestions Catalog (SUG-01 – SUG-12)</h2>
+      <p class="section-desc">Granular improvements across data freshness, 32-club depth crawling, CLV auditing, discrete NFL key-number math, NOAA wind overlays, and SGP vig inspection.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-sug" placeholder="Filter suggestions by category or impact..." aria-label="Filter suggestions by category or impact...">
+      <span class="kpi-sub">12 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-sug" data-sortable="true">
+        <thead><tr><th>ID</th><th>Category</th><th>Suggestion Title</th><th>How It Improves Decision-Making</th><th>Impact</th><th>Effort</th><th>Depends On</th><th>Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SUG-01</strong></td><td>UI / Data Freshness</td><td>Automated Data-Staleness Banner &amp; Wed/Thu/Fri Injury Diff View</td><td>Highlights player practice upgrades/downgrades (e.g., DNP -&gt; Limited or Questionable -&gt; Out) and blocks line use if snapshot &gt;24h old.</td><td>High</td><td>Low</td><td>Q-E05</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-02</strong></td><td>Personnel / Depth Tracking</td><td>All-32 Official Club Depth-Chart Archiver (1st–4th String Offense &amp; Defense)</td><td>Expands our verified 4-club depth-chart proof-of-concept (NE, DET, GB, WAS) to all 32 official club domains with weekly diffs.</td><td>Very High</td><td>Medium</td><td>Q-E05</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://www.packers.com/team/depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-03</strong></td><td>Market / CLV Measurement</td><td>Timestamped Multi-Book Open/Close Odds Ledger &amp; Shin Vig Stripper</td><td>Computes exact vig-free market probabilities and Closing Line Value (CLV) so strategies can pass Gate G4 scientifically.</td><td>Critical</td><td>Medium</td><td>Q-E01</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-04</strong></td><td>Modeling / Calibration</td><td>Multi-Season Play-by-Play EPA &amp; On/Off Replacement-Value Engine</td><td>Replaces blank injury point-deltas and blank SGP game-level correlations with empirical snap-weighted estimates.</td><td>Critical</td><td>High</td><td>Q-E02, Q-E03</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-05</strong></td><td>UI / Decision Workflow</td><td>Interactive Pre-Decision Go/No-Go Gate Checklist on Every Matchup Row</td><td>Requires checking 6 mandatory boxes (Freshness, 90-min Inactives, Neutral/Weather, Key #3/#7, Gate Pass, Kelly Cap) before marking a play actionable.</td><td>High</td><td>Low</td><td>Q-E06</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://operations.nfl.com/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-06</strong></td><td>Line Origination Math</td><td>Discrete NFL Key-Number Margin Distribution (3, 7, 6, 10, 4, 14)</td><td>Prices buying/selling half-points across -2.5/-3/-3.5 and -6.5/-7/-7.5 using empirical NFL scoring quanta instead of smooth Normal CDF.</td><td>High</td><td>Medium</td><td>Q-E04</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-07</strong></td><td>Situational / Totals</td><td>NOAA / National Weather Service Stadium Wind &amp; Roof-Status Feed</td><td>Automatically flags outdoor games with &gt;=15 mph sustained wind or precipitation where passing YPA and FG % drop sharply.</td><td>Medium-High</td><td>Low-Medium</td><td>Q-E07</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-08</strong></td><td>Parlays &amp; Player Props</td><td>Same-Game Parlay (SGP) Hidden Vig-Tax &amp; Copula Fair-Odds Inspector</td><td>Compares sportsbook SGP payout against bivariate copula joint probability so users reject heavily taxed correlated parlays.</td><td>High</td><td>Medium</td><td>Q-E01, Q-E03</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-09</strong></td><td>Roster / Depth Rules</td><td>Practice-Squad 3-Elevation Cap &amp; &lt;8-OL Penalty Alert Tracker</td><td>Tracks official NFL Operations 3-elevation player limits and 8-OL gameday active minimums to spot forced 4th-string street signings early.</td><td>Medium-High</td><td>Low-Medium</td><td>Q-E05, Q-E08</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-10</strong></td><td>UI / Model Diagnostics</td><td>Out-of-Sample Reliability Diagram &amp; Rolling CLV Control Chart</td><td>Visualizes model overconfidence and detects strategy decay early via cumulative sum (CUSUM) CLV control limits.</td><td>Medium</td><td>Low-Medium</td><td>Q-E01</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-11</strong></td><td>Repository Hygiene</td><td>Apply Logged Cross-Session Patches CR-01 &amp; CR-02 to Legacy Root Pages</td><td>Fixes legacy REG9 link mismatch, Ben Brown C position, lines-lab.html:56 missing &lt;td&gt;, and unsourced legacy rows.</td><td>Medium</td><td>Low</td><td>Owner approval of CR-01 / CR-02</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>SUG-12</strong></td><td>Leaderboard Integrity</td><td>Cryptographic Pre-Kickoff Strategy Pick Hash Ledger (Gate G1)</td><td>Commits SHA-256 hashes of timestamped strategy picks prior to kickoff so no strategy can retroactively cherry-pick results.</td><td>High</td><td>Low</td><td>Q-E06</td><td><span class="badge model">Proposed — Awaiting Review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/commits/main" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    
+  </main>
+  <footer>
+    <div class="container">
+      <strong>NFL2 Quantitative Decision &amp; Verification Portal</strong> &bull;
+      Repository: <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">kanlerxz87-cyber/NFL2</a> &bull;
+      Every table row cites an official source (<code>nfl.com</code>, <code>operations.nfl.com</code>, official NFL club sites, <code>github.com</code>). Unconfirmed values remain strictly blank and flagged on <a href="flagged-review.html">Flagged for Review</a>.
+    </div>
+  </footer>
+  <script src="assets/portal.js"></script>
+</body>
+</html>

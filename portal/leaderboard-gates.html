@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strategy Leaderboard, Rewards &amp; Validation Gates — NFL2 Quantitative Decision Portal</title>
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-head">
+        <div class="brand">
+          <span class="brand-mark">NFL2</span>
+          <span>Verified Line Origination, Depth Deficiency &amp; Strategy Portal</span>
+        </div>
+        <div class="meta-pills">
+          <span class="meta-pill">Snapshot: 2026-11-12 (Week 10)</span>
+          <span class="meta-pill">Zero-Sum Verified: 11/11</span>
+          <a href="../index.html" class="meta-pill" style="color:#93c5fd;">&larr; Root Site</a>
+        </div>
+      </div>
+      <nav class="nav-bar" aria-label="Portal Navigation">
+        <a href="index.html" class="">Overview</a>
+<a href="executive-summary.html" class="">Executive Summary</a>
+<a href="suggestions.html" class="">Suggestions Hub</a>
+<a href="questions-discovery.html" class="">Questions &amp; Missing Info</a>
+<a href="line-origination.html" class="">Originate NFL Lines</a>
+<a href="leaderboard-gates.html" class="active">Leaderboard &amp; Gates</a>
+<a href="correlations-skill.html" class="">Correlations &amp; Skill</a>
+<a href="injuries-depth.html" class="">Injuries &amp; 1st–4th Depth</a>
+<a href="repo-audit.html" class="">Repo Line-by-Line Audit</a>
+<a href="flagged-review.html" class="">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-header">
+      <h1>Strategy Leaderboard, Rewards &amp; Validation Gates</h1>
+      <p>Competitive leaderboard architecture for single bets, parlays, and player prop combos with strict anti-luck validation gates.</p>
+    </div>
+    
+    <div class="callout warn">
+      <strong>Strict Anti-Fabrication Leaderboard Rule:</strong> All 9 competing strategies across Singles, Parlays, and Player Prop Combos remain in <strong>Tier 0 (0.00% Sandbox Allocation)</strong> with Realized Sample N, Mean CLV, Realized ROI, and Leaderboard Score left <strong>blank</strong> until timestamped closing odds (Q-E01) and play-by-play logs (Q-E02/Q-E03) are connected.
+    </div>
+    <section class="section-card">
+      <h2>1. Strategy Leaderboard Competition (Singles, Parlays &amp; Player Prop Combos)</h2>
+      <p class="section-desc">Each candidate strategy eliminates close-game luck via regression/shrinkage and competes for capital &amp; reward-pool multipliers by clearing Gates G1–G7.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-strats" placeholder="Filter strategies by Single, Parlay, or Prop Combo..." aria-label="Filter strategies by Single, Parlay, or Prop Combo...">
+      <span class="kpi-sub">9 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-strats" data-sortable="true">
+        <thead><tr><th>ID</th><th>Bet Class</th><th>Strategy Name</th><th>Verified Signal Inputs</th><th>Current Gate Stage</th><th>Reward Tier</th><th class="num">Sample N</th><th class="num">Mean CLV %</th><th class="num">Realized ROI %</th><th class="num">Score</th><th>Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>STRAT-S01</strong></td><td>Single Bet (Spread / Total)</td><td>Shrunk Efficiency + Net-YPP Line Originator</td><td>Bayesian-shrunk PF/PA + Net Yds/Dropback (CORR-03 r=+0.8049) + 3rd-Down % (CORR-06 r=+0.7074) + Key-Number 3/7 filter</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical odds archive</span></td><td><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-S02</strong></td><td>Single Bet (Spread / Moneyline)</td><td>Pythagorean Luck-Regression Contrarian Filter</td><td>Fade clubs with Luck Residual &gt;= +1.25 wins vs Pythagorean Skill Win % (CORR-02); buy clubs &lt;= -1.25 wins</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical odds archive</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-S03</strong></td><td>Single Bet (Team Total Under / Spread)</td><td>Offensive Line 2nd/3rd-String Cascade Mismatch</td><td>&gt;=2 starting/backup OL OUT/DNP on club depth chart vs Top-10 Def Sack Rate opponent (CORR-05)</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical odds &amp; snap-EPA archive</span></td><td><a href="https://www.patriots.com/team/depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-S04</strong></td><td>Single Bet (Spread / Team Total)</td><td>Emergency / Backup QB Early-Market Repricing Signal</td><td>Verified starter-&gt;2nd/3rd string QB change (e.g. MIA, SEA Week 10) + Offensive Passer Rating delta (CORR-04)</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical odds archive</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-P01</strong></td><td>Parlay (2-Leg Cross-Game)</td><td>Orthogonal 2-Leg High-CLV Key-Number Parlay</td><td>Two independent games (r ~ 0) each crossing key number 3 or 7 with independent model edge &gt; 3.5%</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical odds archive</span></td><td><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-P02</strong></td><td>Parlay (2-Leg Neutral/Weather Totals)</td><td>International Neutral-Site &amp; Outdoor Wind Total Pair</td><td>HFA=0 international adjustment (Munich / Mexico City) paired with verified NWS &gt;15 mph wind outdoor total</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical odds &amp; NWS archive</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-C01</strong></td><td>Player Prop Combo (Cross-Team SGP)</td><td>Trailing-Script Opposing QB Attempts OVER + Favorite Cover</td><td>Favorite spread cover + trailing opponent QB Pass Attempts OVER exploiting game-script divergence (CORR-10 / CORR-11)</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical prop odds &amp; PBP archive</span></td><td><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-C02</strong></td><td>Player Prop Combo (Matchup SGP)</td><td>Boundary CB 2nd/3rd-String Deficiency + WR1 Receiving OVER</td><td>Verified CB1 OUT/DNP on club depth chart (e.g. NE, DET, DAL, SF) + opposing WR1 target/yardage prop + QB Pass Yds</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical prop odds &amp; PBP archive</span></td><td><a href="https://www.detroitlions.com/team/depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>STRAT-C03</strong></td><td>Player Prop Combo (Trench SGP)</td><td>Interior OL Backup Cascade + Opposing Pass-Rusher Sack Prop</td><td>Starting C/G OUT/DNP + backup OL DNP (e.g. NE, GB, WAS) paired with opposing EDGE Sack OVER &amp; QB Passing Under</td><td>G1 Registered (Quarantined in Tier 0)</td><td>Tier 0 — Sandbox (0.00% Capital)</td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td class="blank-cell num"></td><td><span class="badge unverified">UNVERIFIED — Blank pending historical prop odds &amp; PBP archive</span></td><td><a href="https://www.packers.com/team/depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    <section class="section-card">
+      <h2>2. Leaderboard Reward &amp; Capital Allocation Tiers (Tier 0 – Tier 3)</h2>
+      <p class="section-desc">Selective skill-based capital scaling rewards out-of-sample Closing Line Value (CLV) and proper probability calibration rather than short-term win-streak luck.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-tiers" placeholder="Search reward tiers..." aria-label="Search reward tiers...">
+      <span class="kpi-sub">4 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-tiers" data-sortable="true">
+        <thead><tr><th>Tier</th><th>Gate Eligibility</th><th>Bankroll Cap</th><th>Kelly Multiplier</th><th>Compute / Syndicate Reward</th><th>Demotion Trigger</th><th>Status</th><th>Official Reference</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tier 0 — Sandbox / Paper Quarantine</strong></td><td>Any newly submitted or unvalidated strategy (&lt;7 gates passed)</td><td>0.00% (Paper ledger only)</td><td>0.00x</td><td>Baseline public NFL.com + Operations feed access</td><td>Remains quarantined until Gates G1-G7 all pass out-of-sample</td><td><span class="badge model">GOVERNANCE SPEC</span></td><td><a href="https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Tier 1 — Bronze Seed Allocation</strong></td><td>Passes all Gates G1-G7; n &gt;= 200 (Singles) or &gt;= 150 (Parlays/Props); OOS CLV t-stat &gt;= 2.0</td><td>Max 0.50% bankroll risk per ticket</td><td>0.15x Fractional Kelly</td><td>1.0x research budget + automated pre-kickoff injury diff alerts</td><td>Rolling 100-bet CLV drops below 0.0% or calibration p &lt; 0.05</td><td><span class="badge model">GOVERNANCE SPEC</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Tier 2 — Silver Core Allocation</strong></td><td>Passes G1-G7; OOS CLV &gt;= +1.5%; Brier Skill Score &gt;= +0.020; FDR q-value &lt; 0.05</td><td>Max 1.00% bankroll risk per ticket</td><td>0.25x Fractional Kelly</td><td>1.5x capital pool weight + priority line-shopping execution slot</td><td>Drawdown exceeds 95th-pct bootstrap envelope or 75-bet CLV &lt; +0.25%</td><td><span class="badge model">GOVERNANCE SPEC</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Tier 3 — Gold Syndicate Champion</strong></td><td>Multi-season walk-forward stability (&gt;=2 seasons); CLV t-stat &gt;= 3.0; positive edge across &gt;=3 bookmakers</td><td>Max 1.75% bankroll risk per ticket</td><td>0.35x Fractional Kelly</td><td>2.5x capital pool share + highest execution priority + syndicate fee bonus</td><td>Regime-shift structural break (e.g. NFL rule change) or rolling CLV &lt; +0.75%</td><td><span class="badge model">GOVERNANCE SPEC</span></td><td><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    <section class="section-card">
+      <h2>3. Seven Anti-Luck Validation Gates (G1 – G7)</h2>
+      <p class="section-desc">Mandatory sequential hurdles preventing data-mined, small-sample, or vig-taxed strategies from receiving capital.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-gates" placeholder="Search validation gates..." aria-label="Search validation gates...">
+      <span class="kpi-sub">7 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-gates" data-sortable="true">
+        <thead><tr><th>Gate</th><th>Gate Name</th><th>Quantitative Threshold</th><th>Luck-Removal Mechanism</th><th>Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>G1</strong></td><td>Point-in-Time Leakage &amp; Pre-Registration Audit</td><td>Zero post-kickoff data leakage; immutable git commit hash before OOS window</td><td>Eliminates look-ahead bias (e.g. using final Sunday status on Wednesday opening lines) and hindsight parameter tuning.</td><td><span class="badge verified">ACTIVE GATE</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/commits/main" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>G2</strong></td><td>Minimum Independent Effective Sample Size (n_eff)</td><td>n_eff &gt;= 200 single bets; &gt;= 150 parlay/prop tickets adjusted for intra-week correlation</td><td>At -110 odds, n=30 has +/-17.9% 95% win-rate noise; n&gt;=200 shrinks standard error to &lt;=3.5%.</td><td><span class="badge verified">ACTIVE GATE</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>G3</strong></td><td>Walk-Forward Out-of-Sample Proper Scoring (Brier &amp; Log-Loss)</td><td>OOS Brier Score &amp; Log-Loss strictly beat vig-stripped closing market baseline</td><td>Evaluates probability calibration on every play rather than noisy binary 0/1 fumble/overtime outcomes.</td><td><span class="badge verified">ACTIVE GATE</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>G4</strong></td><td>Closing Line Value (CLV) Skill Gate</td><td>Mean vig-free CLV &gt; +1.0% with one-sided t-stat &gt;= 2.0 (p &lt;= 0.023)</td><td>Closing NFL lines aggregate sharp syndicate information; beating the close proves genuine price-discovery skill.</td><td><span class="badge verified">ACTIVE GATE</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>G5</strong></td><td>Multiple-Testing &amp; Data-Snooping Control (Benjamini-Hochberg FDR)</td><td>FDR-adjusted q-value &lt;= 0.05 across all N candidate strategies tested on the board</td><td>Testing 50 random strategies yields ~2.5 false &#x27;winners&#x27; at p&lt;0.05 by pure luck; FDR penalizes strategy mining.</td><td><span class="badge verified">ACTIVE GATE</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>G6</strong></td><td>Joint Correlation &amp; SGP Vig-Tax Verification</td><td>Empirical copula/Pearson r estimated OOS; ticket EV &gt; +3.0% over correlated joint fair probability</td><td>Prevents double-counting correlated legs (CORR-10 / CORR-11) or paying hidden sportsbook SGP correlation markups.</td><td><span class="badge verified">ACTIVE GATE</span></td><td><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>G7</strong></td><td>Regime Stability &amp; Bootstrap Drawdown Stress Gate</td><td>Positive CLV in both halves of season, indoor/outdoor, and 95th-pct 10,000-run bootstrap max DD &lt; 20%</td><td>Rejects fragile strategies driven by a single outlier week, team, or weather freak event.</td><td><span class="badge verified">ACTIVE GATE</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    <section class="section-card">
+      <h2>4. Vig Compounding &amp; Selective Parlay / Prop-Combo Breakeven Economics</h2>
+      <p class="section-desc">Exact mathematical proof of why unselective parlays destroy bankrolls while orthogonal positive-EV legs and underpriced cross-team scripts create selective edge.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-vig" placeholder="Search bet structures..." aria-label="Search bet structures...">
+      <span class="kpi-sub">4 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-vig" data-sortable="true">
+        <thead><tr><th>Bet Structure</th><th class="num">Legs</th><th class="num">Payout Mult</th><th class="num">Leg Breakeven %</th><th class="num">Ticket Breakeven %</th><th class="num">House Hold %</th><th>Selective Skill Requirement</th><th>Status</th><th>Official Reference</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Single Bet (-110 Standard Juice)</strong></td><td class="num">1</td><td class="num">1.9091x (+0.9091u)</td><td class="num">52.381</td><td class="num">52.381</td><td class="num">4.545</td><td>Must originate true win prob &gt; 52.381% (or beat no-vig closing line &gt; +2.38%)</td><td><span class="badge verified">EXACT MATH</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><strong>2-Leg Uncorrelated Parlay (-110 per leg, +2644 true -&gt; 3.6446x)</strong></td><td class="num">2</td><td class="num">3.6446x (+2.6446u)</td><td class="num">52.381</td><td class="num">27.438</td><td class="num">8.884</td><td>Vig compounds multiplicatively: 8.88% hold on 50/50 legs; BOTH legs need &gt;52.381% skill edge.</td><td><span class="badge verified">EXACT MATH</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><strong>3-Leg Uncorrelated Parlay (-110 per leg -&gt; 6.9579x)</strong></td><td class="num">3</td><td class="num">6.9579x (+5.9579u)</td><td class="num">52.381</td><td class="num">14.372</td><td class="num">13.026</td><td>13.03% house hold on coin-flip legs; amplifies +EV only if every leg is independently +CLV.</td><td><span class="badge verified">EXACT MATH</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><strong>2-Leg Positively Correlated SGP (P(A)=0.50, P(B)=0.50, r=+0.35 Gaussian Copula)</strong></td><td class="num">2</td><td class="num">Book-dependent SGP quote</td><td class="num">50.0</td><td class="num">30.654</td><td class="num">0.0</td><td>True joint hit rate rises from 25.00% to ~30.65% (fair +226); profitable ONLY if book quotes &gt; +226.</td><td><span class="badge verified">EXACT MATH</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    
+  </main>
+  <footer>
+    <div class="container">
+      <strong>NFL2 Quantitative Decision &amp; Verification Portal</strong> &bull;
+      Repository: <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">kanlerxz87-cyber/NFL2</a> &bull;
+      Every table row cites an official source (<code>nfl.com</code>, <code>operations.nfl.com</code>, official NFL club sites, <code>github.com</code>). Unconfirmed values remain strictly blank and flagged on <a href="flagged-review.html">Flagged for Review</a>.
+    </div>
+  </footer>
+  <script src="assets/portal.js"></script>
+</body>
+</html>
