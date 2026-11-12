@@ -25,7 +25,21 @@ jobs:
         run: python3 -m pipeline.build
 
       - name: Verify the committed data reproduces exactly (ignoring timestamps)
-        run: python3 scripts/check_reproducible.py
+        run: |
+          set +e
+          python3 scripts/check_reproducible.py 2>&1 | tee /tmp/repro.log
+          code=${PIPESTATUS[0]}
+          if [ "$code" -ne 0 ]; then
+            echo "::error::reproducibility check failed"
+            while IFS= read -r line; do
+              case "$line" in
+                *DIFF*|*first*difference*|*BAD*|*"do not reproduce"*)
+                  echo "::error::$line" ;;
+              esac
+            done < /tmp/repro.log
+            git status --porcelain site/data | head -20
+          fi
+          exit "$code"
 
       - name: Render every page against the real JSON
         run: node scripts/render_test.js
