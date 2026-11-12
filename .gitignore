@@ -1,0 +1,6 @@
+# local scratch
+.arena/
+__pycache__/
+*.pyc
+.venv/
+node_modules/
