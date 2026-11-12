@@ -621,3 +621,24 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 - **Post-merge CI:** `Q51 evidence and engine verification`, `build-and-audit`, `Verify site data and links`, `lab-validate`, `GitHub Pages`, and `pages build and deployment` completed successfully at `45ea5f3`.
 - **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`. Live-fetched and confirmed: https://kanlerxz87-cyber.github.io/NFL2/ , https://kanlerxz87-cyber.github.io/NFL2/q51/index.html , and https://kanlerxz87-cyber.github.io/NFL2/q51/flagged.html .
 - **Conflict handling:** repeated required pre-push `git pull --rebase` attempts tried to flatten the already-pushed claim merge and conflicted on COORDINATION.md; each was aborted and the branch was preserved without force. Final publication used the clean merged PR; no upstream work was discarded.
+
+---
+
+## Session `a392a193` (`arena/a392a193-nfl2`) — price-archive reconciliation, 2026 point-in-time origination lab, measured correlations, two-sided depth register
+
+**Session ID:** `a392a193` · **Branch:** `arena/a392a193-nfl2` · **Started:** 2026-11-12T22:30Z · **Base:** `25d88a9` (current `main`, PRs #1–#24 all merged, no open PRs, no other live `arena/*` branches at claim time)
+
+### Claim — exclusive scope (nothing else is edited except the additive register rows listed under "shared files")
+
+| Task | Status | Owner | Exclusive paths |
+|---|---|---|---|
+| A1 Re-verify the canonical data layer row-by-row against live official sources (standings 32, Week 10 slate 14, injury club blocks, game-log sample) and publish the re-verification register | in progress | `a392a193` | `data/reverification_a392.csv`, `scripts/reverify_a392.py` |
+| A2 Reconcile the price-archive contradiction: the root register asserts "no price data of any kind" (FL-10) while `pipeline/data/raw/closing_lines.csv` + `games.csv` carry 2013–2026 market prices used by the `site/` tree. Verify what those columns actually are against the upstream schema and publish the correction | in progress | `a392a193` | `data/price_archive_a392.csv`, `content/price-archive.md`, `price-archive.html` |
+| A3 Point-in-time line origination on the officially-verified 136-game 2026 log: ratings, HFA, backtest vs result and vs the archive price, honest verdict | in progress | `a392a193` | `scripts/origination_lab.py`, `data/model_backtest_2026.csv`, `data/originated_lines_2026.csv`, `data/ratings_2026.csv`, `content/model-lab.md`, `model-lab.html` |
+| A4 Measured correlations from the same log (parlay/SGP pricing implications) with bootstrap CIs and small-n honesty | in progress | `a392a193` | `data/measured_correlations_2026.csv`, `content/measured-correlations.md`, `measured-correlations.html` |
+| A5 Two-sided (offence **and** defence) 2nd/3rd/4th-string deficiency register for the Week 10 slate, built only from club-published depth charts + the official injury report | in progress | `a392a193` | `data/deficiency_wk10_2026.csv`, `content/deficiencies.md`, `deficiencies.html` |
+| A6 Decision layer: new suggestions, questions, flags and requirement rows raised by A1–A5; executive-summary refresh | in progress | `a392a193` | see "shared files" |
+
+**Shared files touched additively (no other session is active on them; T18 integration was closed out in §20 and PR #24):** `COORDINATION.md`, `data/flags.csv` (FL-22+), `data/suggestions.csv` (S-30+), `data/questions.csv` (Q-30+), `data/sources.csv` (S-A392* ), `data/requirements.csv` (status updates only), `data/leaderboard.csv` (lab-ledger note column only), `content/executive-summary.md`, `content/index.md`, `tools/build_site.py` (NAV + new directives), `tools/verify.py` (new checks), `tools/check_site.py` (new checks), `EXECUTIVE_SUMMARY.md`, `README.md` (one pointer line).
+
+**Not touched:** `pipeline/**`, `site/**`, `docs/**`, `portal/**`, `analytics/**`, `s53/**`, `q51/**`, `review/**`, `archive/**`, `datasets/e143a7ca/**`, `engine/**`, `collectors/**`, `research/**`, `tests/**` — other sessions' trees are preserved intact; this session reads them and links to them, it does not edit them.
