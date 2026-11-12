@@ -674,6 +674,122 @@ T18 still named `bc4b47cf` as in progress although the merged integration record
 
 ---
 
+## Session `8361cc7a-nfl2` — independent line-by-line re-verification against live official sources
+
+**Session ID:** `arena/8361cc7a-nfl2` · **Branch:** `arena/8361cc7a-nfl2` · **Started:** 2026-11-12T22:30Z
+**Branch base:** `25d88a9` (merge of PR #24 — the current tip of `main`)
+
+Upstream task IDs T0–T18, Q51-T01..T04 and E1–E8 are already used by prior sessions. This session
+therefore uses **RV-T01..RV-T05** and touches only the files listed below. Every upstream file, PR
+record and published tree is preserved. No other session is active: `gh pr list --state all` shows
+every PR merged or closed, and the newest upstream merge (#24) landed 14 h before this claim.
+
+### Why this session exists
+
+All eight in-repo verifiers pass (see the verification log below), but they are **self-referential**:
+they check that the site is consistent with `data/*.csv`, not that `data/*.csv` still matches the
+official pages it cites. This session re-fetched the official pages and compared them row by row.
+That check found published prose that contradicts the repository's own data. Those are the tasks.
+
+| Task | Status | Owner | Exclusive paths | Notes |
+|---|---|---|---|---|
+| RV-T01 | done | 8361cc7a-nfl2 | `data/flags.csv`, `content/injuries.md`, `content/flagged-for-review.md` | Week 10 injury snapshot: club coverage claim and the FL-01 "empty block" finding re-verified against `nfl.com/injuries/` |
+| RV-T02 | done | 8361cc7a-nfl2 | `content/index.md`, `content/executive-summary.md`, `content/suggestions.md`, `content/questions.md`, `data/requirements.csv` | Stale prose counts: "28 clubs", "25 suggestions", "28 questions", "15 flags" and the session-start inventory paragraph |
+| RV-T03 | done | 8361cc7a-nfl2 | `tools/verify.py`, `tests/session_8361cc7a/**` | Add a repo-wide guard so a prose club count and a prose register count can never age away again |
+| RV-T04 | done | 8361cc7a-nfl2 | `content/methodology.md` (additive section only) | Publish the independent live-source re-verification result so the owner can see what was re-checked |
+| RV-T05 | pending (final integration) | 8361cc7a-nfl2 | this file | Re-verify combined data, confirm build + links, PR to `main`, merge, confirm Pages |
+
+### Sources used for this re-verification
+
+`https://www.nfl.com/injuries/` (Week 10, 2026 — all 7 rendered chunks read), `https://www.nfl.com/standings/`
+(division view, both chunks), `https://www.nfl.com/schedules/2026/by-week/week-10`, and the repository's
+own `data/*.csv` as the thing being audited. Every finding below cites the official URL and the exact rows.
+
+### Findings requiring code or prose change (verified this session)
+
+| ID | What was found | Official evidence | Action |
+|---|---|---|---|
+| RV-F01 | `content/index.md`, `content/executive-summary.md` and `data/sources.csv` say the Week 10 snapshot covers **28 clubs**. The file holds **24** clubs across 254 rows. The page's own "Availity load" table is derived from the file, so the page contradicted itself. | `nfl.com/injuries/` — 28 clubs play Week 10; per-club blocks counted | correct to 24, and state 24 of 28 explicitly |
+| RV-F02 | `content/injuries.md` says the four empty hub blocks are **BAL, CIN, LAC, SEA** and that Seattle is the worked counter-example. On the live page **SEA is fully populated (14 rows)** and **CIN has 4 rows**; only **LAC and BAL** read "No Injuries Reported". | `nfl.com/injuries/` Monday block: "Chargers / No Injuries Reported / Ravens / No Injuries Reported"; SEA block lists AJ Barner … Leonard Williams; Bengals block lists Jonathan Allen, Kyle Dugger, Dylan Fairchild, DJ Turner II | re-fetch SEA + CIN rows, then correct FL-01 and the page |
+| RV-F03 | `content/suggestions.md` says **25** suggestions; the register holds **29** (S-01..S-29). `data/requirements.csv` R-03 repeats "25 suggestions S-01…S-25". | `data/suggestions.csv` row count | correct both |
+| RV-F04 | `data/requirements.csv` R-05 says **28** questions; the register holds **29** (Q-01..Q-29). | `data/questions.csv` row count | correct |
+| RV-F05 | `data/requirements.csv` R-25 says **15** flags published; the register holds **21** (FL-01..FL-21). | `data/flags.csv` row count | correct |
+| RV-F06 | `content/index.md` opens with a table headed "What the repository held at the start of this session" stating **1 tracked file** and, under it, the sentence "Everything on this site was therefore created in this session". Both are false for the published site: the repository has tracked 384 files across seven merged sessions. | `git ls-files \| wc -l` = 384; PRs #1–#24 merged | replace with an accurate, dated state-of-repo table |
+| RV-F07 | `content/index.md` says the signal catalogue has **6 blocked** on data; `data/signals.csv` has **5** with status `blocked on data` (13 `specified`). | `data/signals.csv` status column | correct to 5 |
+
+Nothing above is a data fabrication: every figure in `data/*.csv` that this session re-derived matched the
+official page exactly (all 32 standings rows, all 14 Week 10 fixtures, all 254 ingested injury rows for the
+24 clubs present). The defects are **stale prose and one stale finding**, which is precisely the failure mode
+`COORDINATION.md` §19 warned about: a number that a file can be asked about was written by hand instead.
+
+### Verification log — session `arena/8361cc7a-nfl2`
+
+| UTC | Entry |
+|---|---|
+| 22:30Z | Branch cut from `25d88a9`. No open PRs; prior sessions complete. Claimed RV-T01..RV-T05. |
+| 22:35Z | Ran all eight in-repo verifiers on the untouched tree: `tools/verify.py` 39/0, `tools/check_site.py` 10 passed/1 disclosed warning, `tools/review_verify.py` OK, `tests/q51` 36 tests OK, `scripts/audit_all_pages.py` 96 pages/0 broken, `scripts/verify_s53126614.py` 116 pages/0 broken, `engine/verify_repo_and_site.py` 0 broken, `scripts/audit_q51_current.py`. **All pass — none of them catches RV-F01..F07**, because they compare the site to `data/`, not `data/` to the league. |
+| 22:40Z | Re-read all 7 chunks of `nfl.com/injuries/` and both chunks of `nfl.com/standings/`. Standings: all 32 rows match `data/standings_2026.csv` exactly on W-L-T, PCT, PF, PA, net, streak. |
+| 22:50Z | RV-F01..RV-F07 recorded above with exact evidence. |
+
+### RV-T01..RV-T04 completion record
+
+All seven findings in the table above were corrected and verified. Beyond the corrections, this session
+closed three gaps where the repository held the data but had never computed the answer:
+
+| Deliverable | What it establishes | Reproducibility gate |
+|---|---|---|
+| `data/computed_fair_lines.csv` (14 rows) | stages 1-2 of the origination pipeline run end to end; all 14 Week 10 games priced | `fair_lines_are_reproducible()` recomputes every game and rejects any market-relative column |
+| `data/computed_correlation.csv` (2 rows) | C-07 r=+0.076, C-08 r=-0.161 on 136 settled games; both 95% intervals include zero | `measured_correlation_is_reproducible()` re-derives both from the game log and forbids a measured r in the rho column |
+| `data/computed_depth_reach.csv` (18 rows) | 18 starter-to-backup cases across 4 charted clubs; 3 reach a 3rd string; 1 is a vacancy | `depth_reach_is_reproducible()` re-derives the whole join and checks vacancies too |
+
+Plus 5 suggestions (S-30..S-34), 4 questions (Q-30..Q-33, one P0) and 1 flag (FL-23), all sourced.
+
+### Second defect found by re-checking the source, not the file
+
+Re-fetching all four charted clubs' own depth chart pages (GB 22/22 groups exact, NE 11/11, DET 21/21,
+KC 19/22) confirmed the transcription but exposed a bug in **this session's own** first computation: a
+position group where *no* player at any depth was available was silently dropped, so New England's
+vacancy at left guard (Ben Brown Out, Walter Rouse also did not practise) was missing from a table whose
+entire purpose is to surface that case. Fixed, published as `depth_reached=vacant`, and the verifier now
+re-derives vacancies. Recorded on the methodology page and as FL-23 (KC latent indexing trap).
+
+### Final verification run (combined tree, before PR)
+
+```
+tools/build_site.py            22 pages, 590 blank cells as 'not published'
+tools/verify.py                47 passed / 0 warnings / 0 failures   (was 39 before this session)
+tools/check_site.py            10 passed / 1 disclosed warning / 0 failures
+tools/review_verify.py         all rows, sources, blanks and links OK
+scripts/audit_all_pages.py     96 pages, 230 tables, 3498 rows, 0 broken, 0 column mismatches
+scripts/verify_s53126614.py    116 pages, 3308 internal links, 0 broken
+engine/verify_repo_and_site.py 0 broken links across all repo builds
+tests/q51                      36 tests OK
+tools/compute_tables.py        byte-identical on rerun (deterministic)
+```
+
+Every new check was exercised with a negative control (tamper, observe failure, restore, observe pass);
+the controls are recorded on the methodology page.
+
+### Merge conflict at publication — resolved without discarding work
+
+`git pull --rebase origin main` failed: `main` had advanced to `93ad22b` (PRs #25–#28 from session
+`fd94fccd`), which conflicted on `COORDINATION.md`. Per the board's own rule the rebase was **aborted**
+rather than forced, and `origin/main` was merged in normally. Conflicts and their resolution:
+
+| File | Conflict | Resolution |
+|---|---|---|
+| `data/flags.csv` | both sessions independently used the IDs **FL-22** and **FL-23**, for four different findings | `fd94fccd`'s flags keep FL-22 (site provenance) and FL-23 (Pages config) because they are already on `main`; this session's were renumbered **FL-24** (Week 10 coverage) and **FL-25** (KC chart indexing trap). All cross-references in this session's files were updated. **No finding was dropped**: the register holds 25 flags. |
+| `COORDINATION.md` | both appended a session section | upstream text kept in place, this session's section appended after it; both sessions' records intact |
+| `content/index.md` | same paragraph rewritten by both sessions for the same reason (the false "one tracked file / one session" claim) | merged into one paragraph keeping upstream's coordination-log link and this session's re-verification sentence |
+| generated HTML (`index/404/data-dictionary/flagged-for-review/roadmap`), `data/build_manifest.json` | both sides rebuilt from their own data | regenerated from resolved sources with `tools/compute_tables.py && tools/build_site.py`; never hand-merged |
+
+Post-merge state of the combined tree: all eight suites pass (47 data checks, 10 site checks, review
+suite OK, 96 pages / 230 tables / 3,500 rows / 0 broken links, 116 pages / 3,310 internal links / 0 broken,
+portal 0 broken, Q51 10 pages / 155 rows / 0 errors, 36 unit tests OK).
+
+
+---
+
 ## Session `2063673b` — live re-verification & cross-tree reconciliation (`crosscheck/`)
 
 **Session ID:** `2063673b` · **Branch:** `arena/2063673b-nfl2` (fixed by Arena) · **Opened:** 2026-11-12T22:30Z
@@ -738,3 +854,4 @@ The repository has treated the absence of an official depth chart (`FL-06`, conf
 ### Conflict handling
 
 `git merge origin/main` conflicted on `COORDINATION.md` only. The collision was a pure append at the end of the file: session `fd94fccd` appended its final-audit record while this session appended its claim. Both records are kept verbatim in order (incoming first, then this session's); nothing was discarded and no other file conflicted. A required `git pull --rebase` was not forced; the merge was preserved and pushed without force.
+

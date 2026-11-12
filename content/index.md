@@ -15,30 +15,41 @@ This site has two kinds of pages and they never mix on one page without a divide
 
 The root register remains design-only. Independent Q51 research outputs are labelled unvalidated and paper-only; no betting edge is claimed. Blank cells are rendered as `not published` rather than filled with an estimate — see [verification method](methodology.html).
 
-## What the repository held at the start of this session
+## What this session found when it re-opened the repository
 
-| Item | State found | Where checked |
+This dashboard is the product of several concurrent workstreams that have each been merged to `main`.
+The table below is the state of the repository as this session received it on **12 November 2026**, so a
+reader can tell what was inherited from what was added.
+
+| Item | State received | Where checked |
 | --- | --- | --- |
-| Tracked files | 1 (`README.md`, 6 bytes, contents `# NFL2`) | [repository root](https://github.com/kanlerxz87-cyber/NFL2) |
-| Commits | 1 — `01f2271 Initial commit` | `git log` |
-| Requirements document | none | repository root |
-| Code, data, tests, CI | none | repository root |
-| GitHub Pages | already configured: legacy build, branch `main`, path `/` | GitHub Pages API |
+| Tracked files | 384, across seven merged session trees | `git ls-files`, counted |
+| Commits | `25d88a9`, the merge of pull request #24 | `git log --oneline` |
+| Published trees | `/` (canonical, audited), plus `q51/`, `portal/`, `analytics/`, `s53/`, `review/`, `site/`, `docs/`, `archive/session-009ec582/` | [source registry](sources.html) |
+| Requirements document | present — {{metric requirements}} traced requirements | [requirements](requirements.html) |
+| Verifiers | eight suites on disk, all green before this session changed anything | `tools/verify.py`, `tools/check_site.py`, `tools/review_verify.py`, `tests/q51`, `scripts/audit_all_pages.py`, `scripts/verify_s53126614.py`, `engine/verify_repo_and_site.py`, `scripts/verify_q51.py` |
+| GitHub Pages | configured: legacy build, branch `main`, path `/` | GitHub Pages API |
 
 The original repository held only a README; the current site was built across multiple documented sessions. Their scoped work, sources, verification and integration history are recorded in the [coordination log](https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md). The requirement list reconstructed from the brief is now [a tracked file](requirements.html) so it stops living only in chat.
+
+The eight verifiers all pass, but they are **self-referential**: they prove the published HTML matches
+`data/*.csv`. They do not prove `data/*.csv` still matches the league. This session therefore re-fetched
+`nfl.com` and compared row by row. That found published prose which contradicted the repository's own
+data — the counts, the club coverage and one flag — and those are corrected here and listed on the
+[Flagged for Review](flagged-for-review.html) page rather than quietly edited.
 
 ## State of the workstreams
 
 | Workstream | State | Evidence in repo | Blocking |
 | --- | --- | --- | --- |
-| Injury and availability collection | running — 254 rows, 28 clubs, Week 10 | `data/injuries_2026_wk10.csv` | one filing per week, not three (FL-09) |
+| Injury and availability collection | running — 254 rows, 24 of the 28 clubs playing Week 10 | `data/injuries_2026_wk10.csv` | one filing per week, not three (FL-09) |
 | Depth, IR and roster events | running — 227 rows | `data/depth_changes_2026_wk10.csv` | no official depth chart exists (FL-06) |
 | Standings and schedule | running — 32 + 14 rows, reconciled | `data/standings_2026.csv`, `data/schedule_2026_wk10.csv` | seven official columns left out (FL-07) |
 | Line origination | specified only | `content/line-origination.md` | no price data of any kind (FL-10) |
-| Signal catalogue | specified — 18 families, 6 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
+| Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
 | Strategy registry | 14 entries, none tracked | `data/strategies.csv` | pre-registration + tracking ledger |
 | Validation gates | 14 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |
-| Correlation | method defined; 12 pair classes; **no rho asserted** | `data/correlation.csv` | joint-outcome data (Q-12) |
+| Correlation | method defined; 12 pair classes; **no rho asserted**; 2 measured as Pearson *r* on game scores | `data/correlation.csv`, `data/computed_correlation.csv` | joint bet-settlement data (Q-12) for any rho |
 | Skill-vs-luck protocol | derived and computed in-repo | `content/skill-vs-luck.md` | sample must still be collected |
 | Competition and rewards | tiers and rules written; payout mechanism unfunded | `content/leaderboard.md` | owner decision (Q-26) |
 
@@ -63,7 +74,7 @@ Four items sit in front of almost everything else. They are decisions and access
 | Decisions | [Flagged for review](flagged-for-review.html) | {{metric flags}} irregularities and unverifiable items, with source links |
 | Origination | [Originate our own lines](line-origination.html) | model architecture, inputs, no-vig math, publication of residuals |
 | Origination | [Signals](signals.html) | 18 signal families with decay, capacity and blocking gate |
-| Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos |
+| Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos, and 2 measured from the game log |
 | Origination | [Bet types](bet-types.html) | singles, parlays and prop combos priced consistently |
 | Origination | [Removing luck](skill-vs-luck.html) | sample sizes, CLV, bootstrap, split-half, luck-adjusted P&L |
 | Competition | [Strategy registry](strategies.html) | 14 entries including two negative controls |

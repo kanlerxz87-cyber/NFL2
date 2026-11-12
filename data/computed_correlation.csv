@@ -1,0 +1,3 @@
+id|quantity_a|quantity_b|n|r|r_squared|t|ci_low|ci_high|p_value_two_sided|source_file|read
+C-07|home team points|away team points|136|+0.0760|0.0058|+0.883|-0.0935|+0.2413|0.3789|data/games_2026_wk1_9.csv|same-game coupled scoring: measured effect is small and the 95% interval spans zero
+C-08|margin (home - away)|total (home + away)|136|-0.1608|0.0259|-1.886|-0.3205|+0.0078|0.0615|data/games_2026_wk1_9.csv|near-zero to slightly negative as the sign argument predicted; interval spans zero at n=136, so the magnitude is not established
