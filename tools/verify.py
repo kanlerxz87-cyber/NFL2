@@ -226,7 +226,180 @@ def no_invented_results():
             v = r[k].strip()
             if v not in ("", "not published") and v != "1.00":
                 bad("correlation %s: an unmeasured rho value %r is present" % (r["id"], v))
-    ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted value is asserted")
+    ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted rho is asserted")
+    measured_correlation_is_reproducible(); depth_reach_is_reproducible(); fair_lines_are_reproducible()
+
+
+def measured_correlation_is_reproducible():
+    """The two empirically measured correlations must equal a fresh recomputation from the game log.
+
+    C-07 and C-08 are the only register rows that quote a measured statistic. Rather than trusting the
+    number written into the register, this recomputes Pearson r from data/games_2026_wk1_9.csv and fails
+    if the published value disagrees beyond rounding. It also enforces the distinction the register
+    makes: r is not rho, so a measured r may never be written into the rho column.
+    """
+    import math
+    games, _, _ = rows("games_2026_wk1_9.csv")
+    home = [int(g["home_pts"]) for g in games]
+    away = [int(g["away_pts"]) for g in games]
+    margin = [h - a for h, a in zip(home, away)]
+    total = [h + a for h, a in zip(home, away)]
+    n = len(games)
+
+    def pearson(x, y):
+        mx, my = sum(x) / len(x), sum(y) / len(y)
+        sxy = sum((a - mx) * (b - my) for a, b in zip(x, y))
+        sxx = sum((a - mx) ** 2 for a in x)
+        syy = sum((b - my) ** 2 for b in y)
+        return sxy / math.sqrt(sxx * syy)
+
+    expect = {"C-07": pearson(home, away), "C-08": pearson(margin, total)}
+    corr, _, _ = rows("correlation.csv")
+    problems = []
+    for r in corr:
+        if r["id"] not in expect:
+            if "measured - Pearson r" in r["verification"]:
+                problems.append("%s claims a measured r that no computation supports" % r["id"])
+            continue
+        m = re.search(r"Pearson r = ([+-]\d+\.\d+)", r["verification"])
+        if not m:
+            problems.append("%s quotes no measured r" % r["id"]); continue
+        claimed, fresh = float(m.group(1)), expect[r["id"]]
+        if abs(claimed - fresh) > 0.0001:
+            problems.append("%s says r=%+.4f, the game log gives %+.4f" % (r["id"], claimed, fresh))
+        if r["rho"].strip() not in ("", "not published"):
+            problems.append("%s puts a measured r into the rho column" % r["id"])
+    if problems:
+        bad("measured correlations do not reproduce: %s" % problems[:4])
+    else:
+        ok("measured correlations reproduce from the game log (C-07 r=%+.4f, C-08 r=%+.4f, n=%d)"
+           % (expect["C-07"], expect["C-08"], n))
+
+
+def depth_reach_is_reproducible():
+    """Every starter-to-backup cascade must equal a fresh join of the depth chart to the practice report.
+
+    R-20 and R-21 ask which clubs are down to a 2nd, 3rd or 4th string. data/computed_depth_reach.csv
+    answers that for the four clubs with a verified chart. This recomputes the join from
+    data/depth_charts.json + data/injuries_2026_wk10.csv and fails on any disagreement, so the published
+    cascades cannot drift away from the two sources they came from.
+    """
+    import json
+    chart_path = os.path.join(DATA, "depth_charts.json")
+    reach_path = os.path.join(DATA, "computed_depth_reach.csv")
+    if not (os.path.exists(chart_path) and os.path.exists(reach_path)):
+        warn("depth-reach computation absent; reproducibility check skipped"); return
+    charts = json.load(open(chart_path, encoding="utf-8"))["depth_charts"]
+    inj, _, _ = rows("injuries_2026_wk10.csv")
+    report = {(r["team"], r["player"]): r["practice"] for r in inj}
+    fresh = {}
+    for club in charts:
+        for unit in ("offense", "defense"):
+            for grp, names in charts[club].get(unit, {}).items():
+                if not names:
+                    continue
+                reach, who = 0, None
+                for i, nm in enumerate(names, 1):
+                    if report.get((club, nm)) in (None, "F"):
+                        reach, who = i, nm
+                        break
+                if reach == 1:
+                    continue
+                # reach == 0 means no body at any depth is available: a vacancy
+                fresh[(club, grp)] = (reach, names[0], who, len(names))
+    with open(reach_path, encoding="utf-8") as fh:
+        published = list(csv.DictReader(fh, delimiter="|"))
+    seen, problems = set(), []
+    for r in published:
+        key = (r["club"], r["position_group"])
+        seen.add(key)
+        if key not in fresh:
+            problems.append("%s %s is published but no longer reproduces" % key); continue
+        reach, starter, who, chain = fresh[key]
+        claimed = r["depth_reached"]
+        if reach == 0:
+            if claimed != "vacant":
+                problems.append("%s %s: recomputation finds a vacancy, row says %r"
+                                % (key[0], key[1], claimed))
+            if r["next_man_up"].strip():
+                problems.append("%s %s: a vacancy cannot have a next man up" % key)
+            continue
+        if claimed != str(reach):
+            problems.append("%s %s: says %r, recomputation says %d"
+                            % (key[0], key[1], r["depth_reached"], reach))
+        if r["projected_starter"] != starter:
+            problems.append("%s %s: starter disagrees" % key)
+        if r["next_man_up"] != who:
+            problems.append("%s %s: next man up disagrees" % key)
+        if int(r["chain_length"]) != chain:
+            problems.append("%s %s: chain length disagrees" % key)
+    for key in fresh:
+        if key not in seen:
+            problems.append("%s %s reproduces but is not published" % key)
+    if problems:
+        bad("depth reach does not reproduce: %s" % problems[:4])
+    else:
+        third = sum(1 for f in fresh.values() if f[0] >= 3)
+        vacant = sum(1 for f in fresh.values() if f[0] == 0)
+        ok("depth reach reproduces for %d position groups across %d charted clubs; %d reach the 3rd string, %d are vacant"
+           % (len(fresh), len(charts), third, vacant))
+
+
+def fair_lines_are_reproducible():
+    """The originated Week 10 lines must equal a fresh computation from the game log and the fixture list.
+
+    Stage 1-2 of the origination pipeline. Because no market price exists in this repository (FL-10),
+    these lines have no residual to publish and are not a betting recommendation. What must hold is that
+    each number is arithmetic a reviewer can redo, so this recomputes all 14 games and fails on any drift.
+    """
+    path = os.path.join(DATA, "computed_fair_lines.csv")
+    if not os.path.exists(path):
+        warn("fair-line computation absent; skip"); return
+    log, _, _ = rows("games_2026_wk1_9.csv")
+    sched, _, _ = rows("schedule_2026_wk10.csv")
+    alias = {"LA": "LAR"}
+    pf, pa, gp = {}, {}, {}
+    for g in log:
+        a, h = alias.get(g["away"], g["away"]), alias.get(g["home"], g["home"])
+        ap, hp = int(g["away_pts"]), int(g["home_pts"])
+        for t, f, ag in ((a, ap, hp), (h, hp, ap)):
+            pf[t] = pf.get(t, 0) + f
+            pa[t] = pa.get(t, 0) + ag
+            gp[t] = gp.get(t, 0) + 1
+    off = {t: pf[t] / gp[t] for t in gp}
+    dfn = {t: pa[t] / gp[t] for t in gp}
+    with open(path, encoding="utf-8") as fh:
+        published = {r["game_id"]: r for r in csv.DictReader(fh, delimiter="|")}
+    problems = []
+    for s in sched:
+        a, h = s["away"], s["home"]
+        neutral = "yes" if any(k in s["venue"] for k in ("Munich", "Mexico", "Tottenham", "Wembley")) else "no"
+        hfa = 0.0 if neutral == "yes" else 2.5
+        fa = (off[a] + dfn[h]) / 2.0
+        fh = (off[h] + dfn[a]) / 2.0 + hfa
+        r = published.get(s["game_id"])
+        if not r:
+            problems.append("%s missing" % s["game_id"]); continue
+        for label, mine, theirs in (("away_pts", fa, r["fair_away_pts"]),
+                                    ("home_pts", fh, r["fair_home_pts"]),
+                                    ("total", fa + fh, r["fair_total"]),
+                                    ("spread", fh - fa, r["fair_spread_home"])):
+            if abs(mine - float(theirs)) > 0.005:
+                problems.append("%s %s: says %s, recomputation %.2f" % (s["game_id"], label, theirs, mine))
+        if r["neutral_site"] != neutral:
+            problems.append("%s neutral flag disagrees" % s["game_id"])
+    if len(published) != len(sched):
+        problems.append("%d lines published for %d fixtures" % (len(published), len(sched)))
+    # a line with no market to compare against must never carry a residual or an edge claim
+    for r in published.values():
+        for k, v in r.items():
+            if re.search(r"residual|edge|ev_|roi|clv|vig", k, re.I) and v.strip():
+                problems.append("%s carries a market-relative column %r" % (r["game_id"], k))
+    if problems:
+        bad("originated fair lines do not reproduce: %s" % problems[:4])
+    else:
+        ok("originated fair lines reproduce for all %d Week 10 fixtures; no market-relative column exists"
+           % len(published))
 
 
 def prose_counts_match_files():
@@ -274,6 +447,92 @@ def prose_counts_match_files():
     else:
         ok("every count quoted in the registers matches the file it describes "
            "(%d designations, %d injury cells, %d rows)" % (measured["status"], measured["injury"], measured["rows"]))
+
+
+def register_counts_match_files():
+    """Every register row that quotes the size of another register must quote the real size.
+
+    Added after a live re-verification found R-03 claiming "25 suggestions S-01…S-25" while the
+    register held 29 (S-01…S-29), R-05 claiming 28 questions against 29, and R-25 claiming 15 flags
+    against 21. Those were hand-maintained numbers that stopped being true as other sessions appended
+    rows. A pattern like "N <noun>" is a claim about a file, so it is checked against the file.
+    """
+    noun_file = {
+        "suggestion": "suggestions.csv", "suggestions": "suggestions.csv",
+        "question": "questions.csv", "questions": "questions.csv",
+        "flag": "flags.csv", "flags": "flags.csv",
+        "requirement": "requirements.csv", "requirements": "requirements.csv",
+        "gate": "gates.csv", "gates": "gates.csv",
+        "signal": "signals.csv", "signals": "signals.csv",
+        "strategy": "strategies.csv", "strategies": "strategies.csv",
+        "source": "sources.csv", "sources": "sources.csv",
+    }
+    sizes = {fn: len(rows(fn)[0]) for fn in set(noun_file.values())}
+    wrong = []
+    for fn in ("requirements.csv", "questions.csv", "suggestions.csv", "flags.csv"):
+        data, _, _ = rows(fn)
+        for r in data:
+            for k, cell in r.items():
+                # "25 suggestions" / "21 flags published" — but not "S-25" ids or "14-entry"
+                # a count inside backticks is a quotation of a defect, not an assertion
+                scan = re.sub(r"`[^`]*`", "", cell)
+                for n, noun in re.findall(r"(?<![\w-])(\d+) (suggestions?|questions?|flags?|requirements?|gates?|signals?|strategies|sources)\b", scan):
+                    target = noun_file[noun]
+                    if int(n) != sizes[target]:
+                        wrong.append("%s.%s: says %s %s, %s holds %d"
+                                     % (r.get("id", "?"), k, n, noun, target, sizes[target]))
+    if wrong:
+        bad("a register row quotes the wrong size of another register: %s" % wrong[:5])
+    else:
+        ok("register size claims match the files (%s)"
+           % ", ".join("%s %d" % (f.replace(".csv", ""), n) for f, n in sorted(sizes.items())))
+
+
+def injury_coverage_is_measured_not_named():
+    """The set of clubs with no injury rows must be derived from the fixture list, not hand-named.
+
+    tools/build_site.py once carried ["SEA","CIN","LAC","BAL"] as the empty-club list. On the live hub
+    SEA and CIN publish full blocks, so that constant was wrong in both directions and the site
+    published "28 clubs" for a 24-club file. This check fails if a hand-written club list appears in
+    the builder or if a page hard-codes the coverage count instead of using the metric.
+    """
+    src = open(os.path.join(ROOT, "tools", "build_site.py"), encoding="utf-8").read()
+    hard = re.findall(r'\[\s*"(SEA|CIN|LAC|BAL)"\s*,\s*"(SEA|CIN|LAC|BAL)"', src)
+    if hard:
+        bad("build_site.py still hand-names the empty-club list %s; derive it from schedule_2026_wk10.csv" % hard[:3])
+    inj, _, _ = rows("injuries_2026_wk10.csv")
+    sched, _, _ = rows("schedule_2026_wk10.csv")
+    playing = {g["away"] for g in sched} | {g["home"] for g in sched}
+    present = {r["team"] for r in inj}
+    missing = sorted(playing - present)
+    if not present <= playing:
+        bad("injury file names a club that is not playing Week 10: %s" % sorted(present - playing))
+    for fn in sorted(os.listdir(os.path.join(ROOT, "content"))):
+        if not fn.endswith(".md"):
+            continue
+        text = open(os.path.join(ROOT, "content", fn), encoding="utf-8").read()
+        # A claim that the INJURY SNAPSHOT covers 28 clubs is false: it holds 24. A sentence about
+        # depth charts, rosters or the league is a different claim about a different file, so the
+        # check looks for sentence-level co-occurrence rather than a bare number.
+        # a value inside backticks is a quotation of a claim (usually of a defect being reported),
+        # not an assertion by this page, so strip code spans before scanning
+        scan = re.sub(r"`[^`]*`", "", text)
+        for sent in re.split(r"(?<=[.!?])\s+|\n", scan):
+            if not re.search(r"\b28 clubs\b", sent):
+                continue
+            # on the injury page every club-count claim is a coverage claim by definition
+            on_injury_page = fn in ("injuries.md", "executive-summary.md", "index.md")
+            if not on_injury_page and not re.search(r"injur|practice report|snapshot|hub", sent, re.I):
+                continue
+            # the corrected phrasing always qualifies the number against the full set
+            if re.search(r"\b(24|25|26|27) of (the )?28\b|of the 28 clubs|of 28 clubs", sent):
+                continue
+            bad("content/%s claims the injury snapshot covers 28 clubs; it holds %d of %d"
+                % (fn, len(present), len(playing)))
+        if re.search(r"blank cells are rendered as .not published.", text):
+            pass
+    ok("injury coverage measured from the fixture list: %d of %d clubs present, %d absent (%s)"
+       % (len(present), len(playing), len(missing), ", ".join(missing)))
 
 
 def dictionary_counts_match_files():
@@ -390,7 +649,7 @@ def gamelog():
 
 
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); dictionary_counts_match_files(); gamelog()
+    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named(); dictionary_counts_match_files(); gamelog()
     print("=" * 72)
     for m in PASS:
         print("  PASS  " + m)
