@@ -30,6 +30,7 @@ import numpy as np
 import pandas as pd
 
 from pipeline.engine.sklearn_lite import wilson_interval
+from pipeline.engine.strategies import _canon
 
 
 def variance_test(wins: int, legs: int, p0: float) -> dict:
@@ -39,7 +40,7 @@ def variance_test(wins: int, legs: int, p0: float) -> dict:
     theo_sd = math.sqrt(legs * p * (1 - p))
     obs_sd = math.sqrt(legs * (wins / legs) * (1 - wins / legs)) if 0 < wins < legs else 0.0
     return {"legs": legs, "wins": wins, "theoretical_sd": theo_sd, "observed_sd": obs_sd,
-            "sd_ratio": (obs_sd / theo_sd) if theo_sd else None,
+            "sd_ratio": _canon(obs_sd / theo_sd) if theo_sd else None,
             "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"}
 
 

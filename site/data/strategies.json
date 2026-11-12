@@ -153,12 +153,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.7706498372090642,
+     "value": 0.770649837209,
      "detail": "p=0.7706 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.32673201960653764,
+     "value": 0.326732019607,
      "detail": "z=0.33 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -317,12 +317,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.48800295888102796,
+     "value": 0.488002958881,
      "detail": "p=0.488 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.917662935482246,
+     "value": 0.917662935482,
      "detail": "z=0.92 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -480,12 +480,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.5041176237177061,
+     "value": 0.504117623718,
      "detail": "p=0.5041 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.7216878364870313,
+     "value": 0.721687836487,
      "detail": "z=0.72 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -644,12 +644,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9243276604794681,
+     "value": 0.924327660479,
      "detail": "p=0.9243 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.3084568544674611,
+     "value": -0.308456854467,
      "detail": "z=-0.31 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -808,12 +808,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9962463582905756,
+     "value": 0.996246358291,
      "detail": "p=0.9962 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -1.7405705383053485,
+     "value": -1.74057053831,
      "detail": "z=-1.74 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -972,12 +972,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9910251715453836,
+     "value": 0.991025171545,
      "detail": "p=0.991 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -1.3832519028621117,
+     "value": -1.38325190286,
      "detail": "z=-1.38 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1136,12 +1136,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9118450534285923,
+     "value": 0.911845053429,
      "detail": "p=0.9118 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.8307471607356971,
+     "value": -0.830747160736,
      "detail": "z=-0.83 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1301,12 +1301,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.86091908957305,
+     "value": 0.860919089573,
      "detail": "p=0.8609 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.5241424183609594,
+     "value": -0.524142418361,
      "detail": "z=-0.52 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1466,12 +1466,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9760601655322928,
+     "value": 0.976060165532,
      "detail": "p=0.9761 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -1.4000000000000001,
+     "value": -1.4,
      "detail": "z=-1.40 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1630,12 +1630,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9886957398444111,
+     "value": 0.988695739844,
      "detail": "p=0.9887 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -10.944303439588,
+     "value": -10.9443034396,
      "detail": "z=-10.94 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1764,7 +1764,7 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.3426573143793712,
+     "value": 0.342657314379,
      "detail": "p=0.3427 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
@@ -1928,12 +1928,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.08580471508951486,
+     "value": 0.0858047150895,
      "detail": "p=0.0858 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 1.9188064472004942,
+     "value": 1.9188064472,
      "detail": "z=1.92 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2091,12 +2091,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9473589837208225,
+     "value": 0.947358983721,
      "detail": "p=0.9474 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.9203579866168441,
+     "value": -0.920357986617,
      "detail": "z=-0.92 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2255,7 +2255,7 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.7088600856761949,
+     "value": 0.708860085676,
      "detail": "p=0.7089 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
@@ -2420,7 +2420,7 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.8295921800304258,
+     "value": 0.82959218003,
      "detail": "p=0.8296 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
@@ -2584,12 +2584,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.7656507314094968,
+     "value": 0.765650731409,
      "detail": "p=0.7657 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.3651483716701095,
+     "value": 0.36514837167,
      "detail": "z=0.37 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2748,12 +2748,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9491020801848655,
+     "value": 0.949102080185,
      "detail": "p=0.9491 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.7278602642426104,
+     "value": -0.727860264243,
      "detail": "z=-0.73 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2912,12 +2912,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.6343087803813906,
+     "value": 0.634308780381,
      "detail": "p=0.6343 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.49236596391733045,
+     "value": 0.492365963917,
      "detail": "z=0.49 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3076,12 +3076,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9203277309732454,
+     "value": 0.920327730973,
      "detail": "p=0.9203 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.7526178090063814,
+     "value": -0.752617809006,
      "detail": "z=-0.75 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3240,12 +3240,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.9726347687612465,
+     "value": 0.972634768761,
      "detail": "p=0.9726 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": -10.766108438479101,
+     "value": -10.7661084385,
      "detail": "z=-10.77 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3404,12 +3404,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.8005909398862785,
+     "value": 0.800590939886,
      "detail": "p=0.8006 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.19289712886816426,
+     "value": 0.192897128868,
      "detail": "z=0.19 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3568,12 +3568,12 @@
     },
     "G5_multiplicity": {
      "pass": false,
-     "value": 0.11011737928536904,
+     "value": 0.110117379285,
      "detail": "p=0.1101 vs 0.00083 (Bonferroni 60 tests)"
     },
     "G6_skill": {
      "pass": false,
-     "value": 1.9379255804998168,
+     "value": 1.9379255805,
      "detail": "z=1.94 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3595,7 +3595,7 @@
   "rejected": 22,
   "best_holdout_roi": 0.43181818181818177
  },
- "generated_utc": "2026-11-12T05:00:38Z",
+ "generated_utc": "2026-11-12T05:09:05Z",
  "gate_definitions": {
   "G1_sample": ">= 100 settled legs",
   "G2_statistical": "Wilson 95% lower bound on hit rate > break-even rate",

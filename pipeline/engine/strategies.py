@@ -275,6 +275,18 @@ def _ml_value(df, min_edge, dog_only):
     return _cat(out)
 
 
+def _canon(x: float) -> float:
+    """Canonicalise a float so mathematically identical builds produce identical JSON.
+
+    Platform maths libraries differ in the last unit in the last place for erf/exp/sqrt,
+    which is invisible to a human but fatal to a byte-for-byte reproducibility check.
+    """
+    try:
+        return float(f"{x:.12g}")
+    except (TypeError, ValueError):
+        return x
+
+
 def gates(m: dict, n_tests: int = BONFERRONI_TESTS) -> dict:
     thresh = 0.05 / max(n_tests, 1)
     if m.get("legs", 0) == 0:
@@ -296,9 +308,12 @@ def gates(m: dict, n_tests: int = BONFERRONI_TESTS) -> dict:
                         "detail": f"ROI {m['roi']*100:+.2f}% (floor {ROI_FLOOR*100:.1f}%)"},
         "G4_stability": {"pass": g4, "value": m["profitable_seasons"],
                          "detail": f"{m['profitable_seasons']}/{m['seasons']} seasons profitable (need 2/3)"},
-        "G5_multiplicity": {"pass": g5, "value": m["p_value"],
+        # rounding to 12 significant digits keeps the published value identical across
+        # platforms: erf/exp differ in the last ULP between libm implementations, which
+        # otherwise makes an identical build produce different JSON (found in CI).
+        "G5_multiplicity": {"pass": g5, "value": _canon(m["p_value"]),
                             "detail": f"p={m['p_value']:.4g} vs {thresh:.2g} (Bonferroni {n_tests} tests)"},
-        "G6_skill": {"pass": g6, "value": z,
+        "G6_skill": {"pass": g6, "value": _canon(z),
                      "detail": f"z={z:.2f} vs 50% coin-flip (need {Z_FLOOR})"},
         "G7_provenance": {"pass": True, "detail": "all input columns verified in provenance.json"},
     }

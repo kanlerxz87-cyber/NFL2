@@ -20,7 +20,7 @@
     "wins": 233,
     "theoretical_sd": 10.69999046347086,
     "observed_sd": 10.710896860059897,
-    "sd_ratio": 1.0010192903093018,
+    "sd_ratio": 1.00101929031,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -62,7 +62,7 @@
     "wins": 160,
     "theoretical_sd": 8.707908152885684,
     "observed_sd": 8.70571500132014,
-    "sd_ratio": 0.9997481425473215,
+    "sd_ratio": 0.999748142547,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -104,7 +104,7 @@
     "wins": 101,
     "theoretical_sd": 6.920343666508552,
     "observed_sd": 6.918799871846755,
-    "sd_ratio": 0.9997769193646742,
+    "sd_ratio": 0.999776919365,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -146,7 +146,7 @@
     "wins": 254,
     "theoretical_sd": 11.333933557535147,
     "observed_sd": 11.345757515134588,
-    "sd_ratio": 1.0010432351256886,
+    "sd_ratio": 1.00104323513,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -188,7 +188,7 @@
     "wins": 153,
     "theoretical_sd": 9.18196003164225,
     "observed_sd": 9.151098488722315,
-    "sd_ratio": 0.9966388937859039,
+    "sd_ratio": 0.996638893786,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -230,7 +230,7 @@
     "wins": 177,
     "theoretical_sd": 9.748539049798293,
     "observed_sd": 9.735073371233884,
-    "sd_ratio": 0.9986186977868559,
+    "sd_ratio": 0.998618697787,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -272,7 +272,7 @@
     "wins": 32,
     "theoretical_sd": 4.208295446721086,
     "observed_sd": 4.192548722284857,
-    "sd_ratio": 0.9962581704075703,
+    "sd_ratio": 0.996258170408,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -311,7 +311,7 @@
     "wins": 43,
     "theoretical_sd": 4.764285119345052,
     "observed_sd": 4.762490806428783,
-    "sd_ratio": 0.9996233825492552,
+    "sd_ratio": 0.999623382549,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -350,7 +350,7 @@
     "wins": 43,
     "theoretical_sd": 4.994327848429293,
     "observed_sd": 4.950757517794625,
-    "sd_ratio": 0.9912760371451445,
+    "sd_ratio": 0.991276037145,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -389,7 +389,7 @@
     "wins": 242,
     "theoretical_sd": 13.363226688010121,
     "observed_sd": 12.963624321753372,
-    "sd_ratio": 0.9700968654063704,
+    "sd_ratio": 0.970096865406,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -431,7 +431,7 @@
     "wins": 3,
     "theoretical_sd": 0.9988655696858586,
     "observed_sd": 0.8660254037844386,
-    "sd_ratio": 0.867008965037009,
+    "sd_ratio": 0.867008965037,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -470,7 +470,7 @@
     "wins": 53,
     "theoretical_sd": 4.685094809999559,
     "observed_sd": 4.591246612255266,
-    "sd_ratio": 0.979968772981074,
+    "sd_ratio": 0.979968772981,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -509,7 +509,7 @@
     "wins": 79,
     "theoretical_sd": 6.511806824370163,
     "observed_sd": 6.502940511346974,
-    "sd_ratio": 0.9986384250543171,
+    "sd_ratio": 0.998638425054,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -551,7 +551,7 @@
     "wins": 43,
     "theoretical_sd": 4.631549110776316,
     "observed_sd": 4.636809247747852,
-    "sd_ratio": 1.001135718707872,
+    "sd_ratio": 1.00113571871,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -590,7 +590,7 @@
     "wins": 178,
     "theoretical_sd": 9.423278937877361,
     "observed_sd": 9.433981132056603,
-    "sd_ratio": 1.0011357187078718,
+    "sd_ratio": 1.00113571871,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -632,7 +632,7 @@
     "wins": 244,
     "theoretical_sd": 10.942024088643864,
     "observed_sd": 10.952929592883663,
-    "sd_ratio": 1.0009966624229165,
+    "sd_ratio": 1.00099666242,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -674,7 +674,7 @@
     "wins": 153,
     "theoretical_sd": 8.920154763104305,
     "observed_sd": 8.92286696409479,
-    "sd_ratio": 1.0003040531316456,
+    "sd_ratio": 1.00030405313,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -716,7 +716,7 @@
     "wins": 136,
     "theoretical_sd": 8.114822249196493,
     "observed_sd": 8.120307502760836,
-    "sd_ratio": 1.0006759548633226,
+    "sd_ratio": 1.00067595486,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -758,7 +758,7 @@
     "wins": 67,
     "theoretical_sd": 5.972347464805008,
     "observed_sd": 5.96727673301579,
-    "sd_ratio": 0.9991509650402794,
+    "sd_ratio": 0.99915096504,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -800,7 +800,7 @@
     "wins": 153,
     "theoretical_sd": 10.947763852749564,
     "observed_sd": 10.54858887589839,
-    "sd_ratio": 0.9635382181950409,
+    "sd_ratio": 0.963538218195,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -842,7 +842,7 @@
     "wins": 217,
     "theoretical_sd": 10.356458652824545,
     "observed_sd": 10.367772068984667,
-    "sd_ratio": 1.001092402001435,
+    "sd_ratio": 1.001092402,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -884,7 +884,7 @@
     "wins": 103,
     "theoretical_sd": 6.7005939426048995,
     "observed_sd": 6.637854405687964,
-    "sd_ratio": 0.990636720049843,
+    "sd_ratio": 0.99063672005,
     "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
    },
    "split_half": {
@@ -913,5 +913,5 @@
    "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
   }
  ],
- "generated_utc": "2026-11-12T05:00:39Z"
+ "generated_utc": "2026-11-12T05:09:06Z"
 }
