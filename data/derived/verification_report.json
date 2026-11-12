@@ -1,0 +1,198 @@
+{
+  "generated_utc": "2026-11-12T04:40:21Z",
+  "purpose": "Deterministic re-derivation of every transcribed NFL value against the official source. No network access; no inference.",
+  "sources": {
+    "games": "https://www.nfl.com/schedules/2026/by-week/week-<N>",
+    "standings": "https://www.nfl.com/standings/",
+    "team_stats": {
+      "off_passing": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all",
+      "off_rushing": "https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all",
+      "off_scoring": "https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all",
+      "def_passing": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all",
+      "def_rushing": "https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all",
+      "def_scoring": "https://www.nfl.com/stats/team-stats/defense/scoring/2026/reg/all"
+    }
+  },
+  "totals": {
+    "checks": 23,
+    "pass": 20,
+    "fail": 3,
+    "game_rows": 136,
+    "weeks": [
+      1,
+      9
+    ],
+    "clubs": 32,
+    "league_points": 6246
+  },
+  "withheld_from_source": {
+    "team_scoring_tables": {
+      "offense_scoring": "https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all",
+      "defense_scoring": "https://www.nfl.com/stats/team-stats/defense/scoring/2026/reg/all",
+      "reason": "Both pages render 4 header-less columns. Columns 1-2 reconcile exactly with rushing TD and passing TD that appear on the offense passing/rushing pages (checked for all 32 clubs), but NO arithmetic identity held for columns 3-4 (e.g. SF 12+17=29 but col3=31; TB 11+6=17 vs 19; ATL 9+11=20 vs 21; DEN 9+11=20 vs 21). Defensive identity also fails (CIN 1+1+0=2 but published total column = 0). Column meaning cannot be established from the source, so these values are NOT published or used. Flagged for Review FL-04."
+    }
+  },
+  "checks": [
+    {
+      "id": "V1",
+      "name": "Every game row references two distinct, real NFL clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "136 game rows, 0 malformed"
+    },
+    {
+      "id": "V2",
+      "name": "No club plays more than once in any week",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "duplicates=[]"
+    },
+    {
+      "id": "V3a",
+      "name": "Points-for recomputed from the official game log equals official standings PF for all 32 clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]"
+    },
+    {
+      "id": "V3b",
+      "name": "Points-against recomputed from the official game log equals official standings PA for all 32 clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]"
+    },
+    {
+      "id": "V7",
+      "name": "League-wide points scored equals league-wide points allowed",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "PF total=6246 PA total=6246"
+    },
+    {
+      "id": "V8",
+      "name": "W-L-T recomputed from the game log equals official standings W-L-T for all 32 clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]"
+    },
+    {
+      "id": "V4",
+      "name": "Standings PCT equals (W + T/2)/(W+L+T) for all 32 clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]"
+    },
+    {
+      "id": "V5",
+      "name": "Standings net points equals PF - PA for all 32 clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]"
+    },
+    {
+      "id": "V6",
+      "name": "games played in standings equals game-log appearances",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]"
+    },
+    {
+      "id": "V10",
+      "name": "Published streak equals the club's trailing result string in the chronological game log (through week 9)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]"
+    },
+    {
+      "id": "V11",
+      "name": "Team-stat table covers exactly the 32 NFL clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "rows=32"
+    },
+    {
+      "id": "V12a",
+      "name": "League-total offense passing yards equals league-total defense passing yards allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=63556 defense=63556"
+    },
+    {
+      "id": "V12b",
+      "name": "League-total offense rushing yards equals league-total defense rushing yards allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=30580 defense=30580"
+    },
+    {
+      "id": "V12c",
+      "name": "League-total offense sacks equals league-total defense sacks allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=641 defense=641"
+    },
+    {
+      "id": "V12d",
+      "name": "League-total offense passing touchdowns equals league-total defense passing touchdowns allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=411 defense=411"
+    },
+    {
+      "id": "V12e",
+      "name": "League-total offense rushing touchdowns equals league-total defense rushing touchdowns allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=257 defense=257"
+    },
+    {
+      "id": "V12f",
+      "name": "League-total offense interceptions equals league-total defense interceptions allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=197 defense=197"
+    },
+    {
+      "id": "V12g",
+      "name": "League-total offense passing first downs equals league-total defense passing first downs allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=3006 defense=3006"
+    },
+    {
+      "id": "V12h",
+      "name": "League-total offense rushing first downs equals league-total defense rushing first downs allowed (zero-sum conservation)",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "offense=1757 defense=1757"
+    },
+    {
+      "id": "V13",
+      "name": "Offense passing yards + rushing yards equals the 'TOTAL OFFENSIVE YARDS' printed on the club page (KC cross-check)",
+      "status": "FAIL",
+      "severity": "soft",
+      "detail": "computed=3139 (2037+1102) vs club-page total=3069; difference=70. Recorded as irregularity FL-05, not silently reconciled."
+    },
+    {
+      "id": "V14a",
+      "name": "Team rushing AVG equals YDS/CAR rounded half-up to 1dp, for all 32 clubs",
+      "status": "PASS",
+      "severity": "hard",
+      "detail": "mismatches=[]; matching all 32 establishes the source's rounding convention"
+    },
+    {
+      "id": "V14b",
+      "name": "Team completion percentage equals 100*CMP/ATT rounded half-up to 1dp, for all 32 clubs",
+      "status": "FAIL",
+      "severity": "soft",
+      "detail": "mismatches=[{'team': 'WAS', 'att': 266, 'cmp': 164, 'published': 61.6, 'computed': 61.7}]; 31/32 agree, so this is a source-value irregularity (FL-06), not a transcription error"
+    },
+    {
+      "id": "V14c",
+      "name": "Team yards-per-attempt equals YDS/ATT rounded half-up to 1dp, for all 32 clubs",
+      "status": "FAIL",
+      "severity": "soft",
+      "detail": "mismatches=[{'team': 'KC', 'att': 263, 'yds': 2037, 'published': 7.8, 'computed': 7.7}, {'team': 'JAX', 'att': 227, 'yds': 1940, 'published': 8.6, 'computed': 8.5}, {'team': 'SEA', 'att': 288, 'yds': 2089, 'published': 7.2, 'computed': 7.3}, {'team': 'PIT', 'att': 290, 'yds': 1871, 'published': 6.4, 'computed': 6.5}]; 28/32 agree. Tested and rejected alternative denominators: (YDS+SACK_YDS)/(ATT+SACKS) fails 22/32, YDS/(ATT+SACKS) fails 32/32. Hence a source-value irregularity (FL-07), not a transcription error."
+    }
+  ]
+}
