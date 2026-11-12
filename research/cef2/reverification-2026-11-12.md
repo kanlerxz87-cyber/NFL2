@@ -42,3 +42,15 @@ This session publishes **no new analytical opinion**; it re-runs, re-checks, and
 3. **CE-03 — "28 clubs" vs 24**: the register's own page says 254 rows span the 28-club Week-10 slate; 24 clubs actually filed rows (BAL, CIN, LAC, SEA showed "No Injuries Reported"). Consistent, but the phrasing reads as a row-count claim. Logged as a change request to the root-build owner (see COORDINATION.md), not edited here.
 
 Machine-readable version: `research/cef2/reverification-2026-11-12.json`.
+
+## 5. Post-merge addendum (published tree = `f048a5d` + this session)
+
+While this sweep ran, session `8361cc7a` merged PRs #25–#29 into `main`: the root registers grew
+(33 questions · 34 suggestions · 25 flags), a coverage-wording fix landed for CE-03 (now closed), and
+two computed tables were added — `data/computed_correlation.csv` (measured r for C-07/C-08 with CI and
+p-value, `rho` left "not fitted") and `data/computed_fair_lines.csv` (points-only Week-10 baseline,
+explicitly "no market comparison"). Everything was re-run on the merged tree: root suite 47/0,
+site 10+1warn/0, census 11/11 under the new counts, all sibling verifiers green. CE-01 and CE-02 are
+unaffected by their merge and stay open. Their `FL-24` independently re-derives this session's IND
+finding (11-of-13 rows vs the rolling hub) — same drift, two directions, one conclusion: captures must
+be dated (S-26/CEF2-S1).

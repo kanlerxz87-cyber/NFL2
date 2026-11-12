@@ -16,6 +16,55 @@ To originate means: we produce a distribution over scoring outcomes for each gam
 | 7 | Market conversion | any distribution | spread, total, ML, team totals, props — each with a no-vig target and a price to quote | needs a vig convention (Q-09) |
 | 8 | Residual publication | stage 7 vs the consensus benchmark | our number, the market, the difference, and a verdict | needs prices (Q-01) — the single largest gap in the project |
 
+## The lines themselves: stages 1–2, computed for all 14 Week 10 games
+
+The pipeline above has eight stages. Stages 1 and 2 need nothing this project does not already have, so
+there is no honest reason to leave them unwritten. Below is a full set of originated Week 10 numbers built
+from two verified inputs only: the 136 settled results of weeks 1–9, and the Week 10 fixture list.
+
+**The model, stated completely so it can be attacked.**
+
+1. **Strength.** Each club gets points scored per game and points allowed per game over the 136-game
+   sample. The game log is used rather than the season-to-date standings because the standings have since
+   absorbed Week 10 results — using them would leak the outcome of the games being priced.
+2. **Projection.** Our expected points for a team = the average of its own scoring rate and its opponent's
+   concession rate. This is the standard two-way baseline and it deliberately does **no** opponent-strength
+   adjustment, so it is a first-order estimate, not a good model.
+3. **Home field.** A published parameter, not a fitted one: **+2.5 points** to the home side, and **zero** at
+   a neutral site. Week 10 has one neutral fixture (NE at DET in Munich), so that game is priced level.
+4. **Output.** Fair total = sum of the two projections. Fair spread = home projection minus away projection,
+   signed so that a positive number means the home side is favoured by that many points.
+
+{{csv data/computed_fair_lines.csv;;cols=game_id:Game,kickoff_et:ET,away:Away,home:Home,away_off_ppg:Away off,away_def_ppg:Away def,home_off_ppg:Home off,home_def_ppg:Home def,home_field_pts:HFA,fair_away_pts:Away pts,fair_home_pts:Home pts,fair_total:Total,fair_spread_home:Spread (home),neutral_site:Neutral;;source=S-CALC;;caption=Recomputed on every build from data/games_2026_wk1_9.csv and data/schedule_2026_wk10.csv, and re-derived independently by tools/verify.py, which fails if any of the 14 games stops reproducing. "Away off/def" and "Home off/def" are points per game allowed and scored over 8-9 games each.}}
+
+### What these numbers are, and what they are not
+
+| They are | They are not |
+| --- | --- |
+| Arithmetic over 136 verified official results, reproducible byte for byte | a prediction anyone should bet on |
+| The first two stages of the documented pipeline, running end to end | the finished model — stages 3–8 are still absent |
+| Published so the residual can be computed the moment a price exists | a comparison to any sportsbook, because no price exists here ([FL-10](flagged-for-review.html)) |
+
+**The residual column is absent on purpose.** The whole objective is to compare our number to the market
+and publish the difference even when it is negative. There is no market number in this repository — not
+one opening line, closing line, spread, total, moneyline or prop price — so a residual would have to be
+invented, and an invented residual is the single most damaging thing this project could publish. The
+column stays off the page until [Q-01](questions.html) closes. That is the honest state of the objective:
+**the machinery to originate a line exists and runs; the benchmark to beat it against does not.**
+
+**Two sanity checks a reviewer can run by hand.** Mean fair total across the 14 games is **48.64 points**,
+against a mean of **45.93** in the 136-game sample. That is a real and slightly uncomfortable result: with a
+fixed 2.5-point home-field allowance the model projects the Week 10 slate about 2.7 points higher-scoring
+than the season has actually been, so a reviewer should treat every total above as biased high until stage 5
+replaces this baseline. Publishing that bias rather than tuning it away is the point.
+
+The widest spread the model produces is **7.69 points**, on JAX at TEN — a 6–2 Jaguars side favoured by that
+much over a 1–7 Titans team. Nothing here reaches the 10-plus point spreads real markets quote, which tells
+you the two-way points baseline compresses extremes: it has no opponent adjustment and no injury weighting,
+so it cannot separate a good team beating weak opponents from a genuinely strong one. That compression is
+the most useful diagnostic on this page, and it is the concrete argument for building stages 3 onward rather
+than shipping a points-only line.
+
 ## Where the injury work actually enters the line
 
 This is the design decision that makes the availability data worth having. Do not subtract a fixed penalty for a missing starter. Instead enumerate the lineup states the club could field, price each state, and mix:

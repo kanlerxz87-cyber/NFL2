@@ -77,8 +77,21 @@ entry("Week-10 injury snapshot: player rows / clubs / published game designation
 
 # ---------- 2. correlations ----------
 rootcor = csv_rows("data/correlation.csv")
-rho_col = [r for r in rootcor if "rho" in r]
-root_filled = sum(1 for r in rootcor for k, v in r.items() if k.lower().startswith("rho") and (v or "").strip())
+
+
+def is_num(v):
+    try:
+        float(v)
+        return True
+    except (TypeError, ValueError):
+        return False
+
+
+root_filled = sum(1 for r in rootcor for k, v in r.items() if k.lower().startswith("rho") and is_num(v))
+try:
+    rootmeas = csv_rows("data/computed_correlation.csv")
+except FileNotFoundError:
+    rootmeas = []
 eabcor = jload("data/correlations-2026.json")
 s53cor = jload("data/s53126614_correlations_2026.json")
 e14cor = jload("datasets/e143a7ca/computed_correlations_and_lines.json")
@@ -86,8 +99,9 @@ sitedcor = jload("site/data/correlation.json")
 ver = eabcor.get("verified_team_correlations")
 entry("2026 team-stat correlation figures (same league table, different trees quoting r values)", [
     cell("root (bc4b47cf)", "data/correlation.csv",
-         {"pair_classes": len(rootcor), "rho_cells_filled": root_filled},
-         note="root deliberately publishes no rho without a pre-registered protocol (correlation.html)"),
+         {"pair_classes": len(rootcor), "rho_cells_numeric": root_filled,
+          "measured_r_after_PR29": [(c.get("id"), c.get("r"), c.get("n")) for c in rootmeas]},
+         note="root publishes no fitted rho; since main@f048a5d it carries measured r with CI/p-value for C-07/C-08 from the 136-game settled log (data/computed_correlation.csv), labelled 'rho not fitted'"),
     cell("analytics (eaba7863)", "data/correlations-2026.json",
          {"pairs": len(ver), "r_values_present": sum(1 for c in ver if c.get("pearson_r") not in (None, ""))}),
     cell("s53 (53126614)", "data/s53126614_correlations_2026.json",
@@ -182,6 +196,16 @@ entry("Week-11 originated lines (who publishes what, and against what benchmark)
          note="historical model residuals vs vendored closing lines 2006-2018; zero 2026 coverage (FL-21)"),
     cell("root (bc4b47cf)", "content/line-origination.md", {"value": "specification only - no published model line"}, status="stated"),
 ])
+try:
+    rootlines = csv_rows("data/computed_fair_lines.csv")
+except FileNotFoundError:
+    rootlines = []
+if rootlines:
+    CENSUS["objects"].append({"object": "Root fair-line table added at main@f048a5d (PR #25-29)", "claims": [
+        cell("root", "data/computed_fair_lines.csv",
+             {"rows": len(rootlines), "note": rootlines[0].get("input_note")},
+             note="points-only baseline for the Week 10 slate with explicit 'no market comparison' caveat; this changes the root from spec-only to baseline-bearing")
+    ]})
 
 # ---------- 4. depth charts ----------
 dc12 = jload("data/depth-charts-2026.json")

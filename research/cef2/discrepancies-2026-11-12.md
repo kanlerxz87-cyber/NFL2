@@ -44,7 +44,11 @@ problem, and it is invisible in the files: the fix is a `units`/`denominator` fi
 correlation record (suggested below).
 Root (`data/correlation.csv`) remains the dissenting *methodology*: 12 pair-classes, **zero** fitted
 rhos, pending a pre-registered protocol (its `correlation.html`). That is a policy disagreement about
-publishing fitted numbers from an unregistered sample, not a numeric conflict.
+publishing fitted numbers from an unregistered sample, not a numeric conflict. Update after merging
+`main@f048a5d` (session `8361cc7a`, PRs #25–#29): the root now carries two **measured** pair
+correlations in `data/computed_correlation.csv` (C-07 r = +0.0760, C-08 r = −0.1608; n = 136 settled
+games; intervals and p-values printed; `rho` explicitly "not published / not fitted") — measured on the
+dated game log rather than fitted into a model, which is the distinction its method page draws.
 
 ## 3. Week-11 originated lines (the actual competition object)
 
@@ -59,7 +63,10 @@ Both trees originate the same slate model-only, with **different home-field assu
 2.0 points) producing a one-point spread divergence**, and both honestly carry no market edge. The
 one-point HFA gap on the *same* object is the clearest available demonstration of why the leaderboard
 must score **lines against a frozen benchmark**, not against each other: two defensible models are
-already a point apart before any skill enters. (Site (`site/`, 63ac21e9) offers the only *validated*
+already a point apart before any skill enters. Post-merge the root itself joined the table with a
+deliberately crude reference sheet — `data/computed_fair_lines.csv`, 14 Week-10 games, points-only
+baseline, "no opponent adjustment, no availability weighting, no market comparison" — which is exactly
+the frozen-benchmark artifact CEF2-S3 asks for, published with its limitations on its face. (Site (`site/`, 63ac21e9) offers the only *validated*
 line work in the repo — on 2006–2018 vendored data, where its own report says the model loses to the
 closing line, MAE 10.25 vs 9.94 — the discipline of publishing that negative is the standard for any
 fitted model here.)
@@ -90,10 +97,14 @@ unofficial disclaimers and roster lag. The owner decision (S-28 adjacent): defin
 authority chain (official club chart snapshot + injury report + roster transactions) with a stated
 reliability tier, and have every tree's counts roll up to it.
 
-## 6. Root self-consistency (11/11 clean)
+## 6. Root self-consistency (11/11 clean, measured on the merged tree at `f048a5d`)
 
-File counts vs `data/build_manifest.json` metrics, measured by this session: requirements 40,
-questions 29, suggestions 29, flags 21, sources 28, standings 32, games log 136, injury games 14,
-depth events 227, injury rows 254, designations 6 — **every published register matches its file.**
-The site's own arithmetic is sound; the discrepancies that exist are *between* trees (§1–§5) or
-*between the site and the moving league page* (see `freshness-2026-11-12.md`).
+File counts vs `data/build_manifest.json` metrics, measured by this session **after merging
+`8361cc7a`'s PRs #25–#29** (which grew the registers): requirements 40, questions 33, suggestions 34,
+flags 25, sources 28, standings 32, games log 136, injury games 14, depth events 227, injury rows 254,
+designations 6 — **every published register matches its file.** The pre-merge snapshot of this same
+check, at `25d88a9`, read 29/29/21 for questions/suggestions/flags and was equally exact; the merge
+itself added four questions, five suggestions and four flags, which is why this census records the
+counts as *measured at a commit* rather than as constants. The site's own arithmetic is sound; the
+discrepancies that exist are *between* trees (§1–§5) or *between the site and the moving league page*
+(see `freshness-2026-11-12.md`).

@@ -325,12 +325,24 @@
       "claims": [
         {
           "file": "data/correlation.csv",
-          "note": "root deliberately publishes no rho without a pre-registered protocol (correlation.html)",
+          "note": "root publishes no fitted rho; since main@f048a5d it carries measured r with CI/p-value for C-07/C-08 from the 136-game settled log (data/computed_correlation.csv), labelled 'rho not fitted'",
           "status": "stated",
           "tree": "root (bc4b47cf)",
           "value": {
+            "measured_r_after_PR29": [
+              [
+                "C-07",
+                "+0.0760",
+                "136"
+              ],
+              [
+                "C-08",
+                "-0.1608",
+                "136"
+              ]
+            ],
             "pair_classes": 12,
-            "rho_cells_filled": 12
+            "rho_cells_numeric": 2
           }
         },
         {
@@ -529,6 +541,21 @@
     {
       "claims": [
         {
+          "file": "data/computed_fair_lines.csv",
+          "note": "points-only baseline for the Week 10 slate with explicit 'no market comparison' caveat; this changes the root from spec-only to baseline-bearing",
+          "status": "stated",
+          "tree": "root",
+          "value": {
+            "note": "points-only baseline; no opponent adjustment, no availability weighting, no market comparison",
+            "rows": 14
+          }
+        }
+      ],
+      "object": "Root fair-line table added at main@f048a5d (PR #25-29)"
+    },
+    {
+      "claims": [
+        {
           "file": "content/flagged-for-review.md FL-06",
           "note": "",
           "status": "stated",
@@ -690,8 +717,8 @@
             },
             "flags": {
               "agree": true,
-              "file": 21,
-              "manifest": 21
+              "file": 25,
+              "manifest": 25
             },
             "game_log_wk1_9": {
               "agree": true,
@@ -710,8 +737,8 @@
             },
             "questions": {
               "agree": true,
-              "file": 29,
-              "manifest": 29
+              "file": 33,
+              "manifest": 33
             },
             "requirements": {
               "agree": true,
@@ -730,8 +757,8 @@
             },
             "suggestions": {
               "agree": true,
-              "file": 29,
-              "manifest": 29
+              "file": 34,
+              "manifest": 34
             }
           }
         }
