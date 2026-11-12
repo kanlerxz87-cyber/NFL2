@@ -227,7 +227,7 @@ def no_invented_results():
             if v not in ("", "not published") and v != "1.00":
                 bad("correlation %s: an unmeasured rho value %r is present" % (r["id"], v))
     ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted rho is asserted")
-    measured_correlation_is_reproducible(); depth_reach_is_reproducible(); fair_lines_are_reproducible()
+    measured_correlation_is_reproducible(); depth_reach_is_reproducible(); fair_lines_are_reproducible(); publication_manifest_matches_tree()
 
 
 def measured_correlation_is_reproducible():
@@ -400,6 +400,44 @@ def fair_lines_are_reproducible():
     else:
         ok("originated fair lines reproduce for all %d Week 10 fixtures; no market-relative column exists"
            % len(published))
+
+
+def publication_manifest_matches_tree():
+    """The deployed artifact root must be the canonical dashboard, not the docs/ archive.
+
+    Two deploy mechanisms run on every push to main: the Actions workflow and the legacy Pages build.
+    Until this fix they disagreed about which directory is the website -- pages.yml uploaded docs/,
+    which is an older 16-page archive, while CI audited the 22-page root build. The archive won and the
+    canonical pages 404'd live (FL-26). This check compares the two directory listings so the mismatch
+    cannot come back unnoticed.
+    """
+    root = ROOT
+    wf = os.path.join(root, ".github", "workflows", "pages.yml")
+    if not os.path.exists(wf):
+        warn("pages.yml absent; publication check skipped"); return
+    text = open(wf, encoding="utf-8").read()
+    m = re.search(r"upload-pages-artifact@v\d+\s*\n\s*with:\s*\n\s*path:\s*(\S+)", text)
+    if not m:
+        bad("pages.yml: cannot find the artifact path; the publication target is unverified"); return
+    target = m.group(1).strip().strip("'\"")
+    canonical = sorted(f for f in os.listdir(root)
+                       if f.endswith(".html") and os.path.isfile(os.path.join(root, f)))
+    docs_dir = os.path.join(root, "docs")
+    docs_pages = sorted(f for f in os.listdir(docs_dir) if f.endswith(".html")) if os.path.isdir(docs_dir) else []
+    if target in ("docs", "docs/", "./docs"):
+        bad("pages.yml publishes docs/ (%d archived pages) instead of the audited root build (%d pages): FL-26"
+            % (len(docs_pages), len(canonical)))
+        return
+    # the artifact root must be the root, and must carry the pages CI audits
+    missing = [p for p in ("index.html", "line-origination.html", "depth-impact.html",
+                           "correlation.html", "flagged-for-review.html") if p not in canonical]
+    if missing:
+        bad("artifact root is missing canonical pages: %s" % missing)
+        return
+    # and it must not be the archive: a docs-only page name must not appear at the root
+    docs_only = sorted(set(docs_pages) - set(canonical))
+    ok("publication target is the repository root (%d canonical pages); docs/ keeps %d archived pages, %d of them docs-only"
+       % (len(canonical), len(docs_pages), len(docs_only)))
 
 
 def prose_counts_match_files():
