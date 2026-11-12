@@ -643,3 +643,10 @@ Claimed 2026-11-12. The repository already contains the requested landing page, 
 | FD94-CR1 | fd94fccd | Shared site integration owner | `content/index.md` → generated root `index.html` | Correct the sentence implying one session created the final multi-session site; rebuild and run the existing auditors. | pending — surfaced in audit report |
 | FD94-CR2 | fd94fccd | Pages/deployment owner | `.github/workflows/pages.yml` / Pages settings | Reconcile/document why Pages API reports legacy `main` `/` while the workflow artifact path is `docs/`; verify intended tree and deployment end-to-end before changing configuration. | pending — surfaced in audit report |
 | FD94-CR3 | fd94fccd | Coordination board owner | Task board T18 | Reconcile the stale `in progress` status with the later integration/PR #24 records and successful deployment evidence. | pending — surfaced in audit report |
+
+### FD94 publication close-out
+
+- **Audit PR:** [#25](https://github.com/kanlerxz87-cyber/NFL2/pull/25), merged at `2026-11-12T22:25:38Z` as `d2c0af0e7c2008ba4b64a7c1dcd03c44a6b4293e`.
+- **Post-merge checks:** `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the merge commit.
+- **Pages status:** API reports `status=built`, legacy source `main` `/`. Live root and `/docs/` URLs both fetch successfully. The difference between the legacy API source and the workflow artifact path remains an open deployment-owner review item (FD94-CR2), not assumed fixed.
+- Full results and review findings are recorded in `reports/fd94fccd/FINAL_AUDIT.md`.
