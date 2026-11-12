@@ -1,0 +1,339 @@
+{
+  "season": 2026,
+  "week": 10,
+  "asOf": "2026-11-12",
+  "verified_club_depth_charts_fetched": [
+    {
+      "team": "Arizona Cardinals",
+      "url": "https://www.azcardinals.com/team/depth-chart",
+      "label_on_page": "Official Depth Chart"
+    },
+    {
+      "team": "Baltimore Ravens",
+      "url": "https://www.baltimoreravens.com/team/depth-chart",
+      "label_on_page": "Baltimore Ravens Depth Chart"
+    },
+    {
+      "team": "Dallas Cowboys",
+      "url": "https://www.dallascowboys.com/team/depth-chart",
+      "label_on_page": "Unofficial 2026 Dallas Cowboys Depth Chart"
+    },
+    {
+      "team": "Detroit Lions",
+      "url": "https://www.detroitlions.com/team/depth-chart",
+      "label_on_page": "2026 Unofficial Depth Chart Compiled by Lions Football Communications"
+    },
+    {
+      "team": "Green Bay Packers",
+      "url": "https://www.packers.com/team/depth-chart",
+      "label_on_page": "Green Bay Packers Depth Chart (Unofficial, Nov. 10, 2026)"
+    },
+    {
+      "team": "Los Angeles Rams",
+      "url": "https://www.therams.com/team/depth-chart",
+      "label_on_page": "Rams Unofficial Depth Chart"
+    },
+    {
+      "team": "Miami Dolphins",
+      "url": "https://www.miamidolphins.com/team/depth-chart",
+      "label_on_page": "Dolphins Depth Chart"
+    },
+    {
+      "team": "New England Patriots",
+      "url": "https://www.patriots.com/team/depth-chart",
+      "label_on_page": "Patriots Unofficial Depth Chart"
+    },
+    {
+      "team": "New York Giants",
+      "url": "https://www.giants.com/team/depth-chart",
+      "label_on_page": "Giants Team Depth Chart"
+    },
+    {
+      "team": "San Francisco 49ers",
+      "url": "https://www.49ers.com/team/depth-chart",
+      "label_on_page": "San Francisco 49ers Depth Chart (Updated as of 11/10/26)"
+    },
+    {
+      "team": "Seattle Seahawks",
+      "url": "https://www.seahawks.com/team/depth-chart/",
+      "label_on_page": "Seattle Seahawks Depth Chart"
+    },
+    {
+      "team": "Washington Commanders",
+      "url": "https://www.commanders.com/team/depth-chart",
+      "label_on_page": "Washington Commanders Team Depth Chart"
+    }
+  ],
+  "cascades": [
+    {
+      "id": "DC-01",
+      "team": "Baltimore Ravens",
+      "side": "Offense",
+      "unit": "QB",
+      "string_1_starter": "Lamar Jackson (Placed on IR \u2014 right thumb)",
+      "string_2_backup": "Tyler Huntley (Out for season \u2014 turf toe)",
+      "string_3_backup": "Joe Fagnano (Undrafted rookie \u2014 listed 3rd string; Kedon Slovis signed to active roster)",
+      "string_4_emergency": "Austin Reed (Signed to Practice Squad)",
+      "active_deficiency_tier": "3rd / 4th-String Emergency QB Cascade",
+      "epa_drop_pts": "",
+      "verification_status": "Names & IR Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/news/ravens-qb-tyler-huntley-out-for-season-turf-toe-injury",
+      "depth_source": "https://www.baltimoreravens.com/team/depth-chart"
+    },
+    {
+      "id": "DC-02",
+      "team": "Miami Dolphins",
+      "side": "Offense",
+      "unit": "QB",
+      "string_1_starter": "Malik Willis (Placed on IR Nov 10 \u2014 groin; misses Weeks 10\u201313)",
+      "string_2_backup": "Kyle McCord (Listed 1st on updated Dolphins.com chart; 0 career NFL pass attempts)",
+      "string_3_backup": "Brady Cook (Practice Squad \u2014 slated for gameday elevation)",
+      "string_4_emergency": "\u2014 (None listed on Dolphins.com depth chart)",
+      "active_deficiency_tier": "2nd-String First-Time Starter + PS Elevation Backup",
+      "epa_drop_pts": "",
+      "verification_status": "Names & IR Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+      "depth_source": "https://www.miamidolphins.com/team/depth-chart"
+    },
+    {
+      "id": "DC-03",
+      "team": "Miami Dolphins",
+      "side": "Offense",
+      "unit": "Center (OL)",
+      "string_1_starter": "Aaron Brewer (DNP \u2014 Week 10 Injury Report)",
+      "string_2_backup": "Andrew Meyer (2nd-string C on Dolphins.com)",
+      "string_3_backup": "\u2014 (No 3rd-string C listed)",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "Compound QB + Center Exchange Risk (Backup QB + Backup C if Brewer sits)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.miamidolphins.com/team/depth-chart"
+    },
+    {
+      "id": "DC-04",
+      "team": "Seattle Seahawks",
+      "side": "Offense",
+      "unit": "QB",
+      "string_1_starter": "Sam Darnold (Ruled OUT Week 10 \u2014 quad/rib per Coach Mike Macdonald)",
+      "string_2_backup": "Drew Lock (2nd-string QB \u2014 expected to start despite elbow/oblique)",
+      "string_3_backup": "Jalen Milroe (3rd-string rookie QB \u2014 slated as gameday backup)",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "2nd-String Starter (Playing Through Injury) + 3rd-String Rookie Backup",
+      "epa_drop_pts": "",
+      "verification_status": "Names & Ruling Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+      "depth_source": "https://www.seahawks.com/team/depth-chart/"
+    },
+    {
+      "id": "DC-05",
+      "team": "Arizona Cardinals",
+      "side": "Offense",
+      "unit": "QB + Interior OL Cluster",
+      "string_1_starter": "QB Carson Beck (1st career NFL start); LG Isaac Seumalo (DNP); C Hjalte Froholdt (DNP); LT Jayden Williams (LP)",
+      "string_2_backup": "QB2 Josh Johnson; LG2 Hayden Conner; C2 Kingsley Eguakun; RG2 Jon Gaines II (ALSO DNP); LT2 Jedrick Wills",
+      "string_3_backup": "QB3 Joey Aguilar; RT3 Albert Reese (Jamaree Salyer signed to PS)",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "Severe Multi-OL String Cascade (C1 + LG1 + RG2 all DNP) Ahead of Rookie QB Debut",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+      "depth_source": "https://www.azcardinals.com/team/depth-chart"
+    },
+    {
+      "id": "DC-06",
+      "team": "New England Patriots",
+      "side": "Offense",
+      "unit": "Left Guard / Interior OL",
+      "string_1_starter": "Ben Brown (1st-string LG & 2nd-string C \u2014 OUT, Knee, DNP)",
+      "string_2_backup": "Walter Rouse (2nd-string LG & 2nd-string RG \u2014 ALSO DNP); Greg Van Roten (G \u2014 LP)",
+      "string_3_backup": "Cross-positional OL rotation required (RT1 Morgan Moses also LP; RT2 Caleb Lomu / LT2 Dametrious Crownover)",
+      "string_4_emergency": "LT3 Marcus Bryant",
+      "active_deficiency_tier": "3rd-String / Cross-Positional Guard Deficiency (LG1 OUT + LG2 DNP)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & OUT/DNP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "id": "DC-07",
+      "team": "New England Patriots",
+      "side": "Offense",
+      "unit": "Running Back",
+      "string_1_starter": "Rhamondre Stevenson (1st-string RB \u2014 DNP)",
+      "string_2_backup": "TreVeyon Henderson (2nd-string RB \u2014 OUT, Illness, DNP)",
+      "string_3_backup": "Corey Kiner (3rd-string RB on Patriots.com)",
+      "string_4_emergency": "Lan Larison (4th-string RB on Patriots.com)",
+      "active_deficiency_tier": "3rd & 4th-String RB Exposure (RB2 OUT + RB1 DNP)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & OUT/DNP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "id": "DC-08",
+      "team": "New England Patriots",
+      "side": "Defense",
+      "unit": "Cornerback / Secondary",
+      "string_1_starter": "Carlton Davis III (1st-string CB \u2014 OUT, Knee, DNP); S1 Kevin Byard III (LP)",
+      "string_2_backup": "Channing Canada (2nd-string CB behind Davis); Charles Woods (2nd-string CB behind Marcus Jones \u2014 ALSO LP)",
+      "string_3_backup": "Karon Prunty (2nd-string CB behind Christian Gonzalez); S3 Brenden Schooler (DNP)",
+      "string_4_emergency": "Practice-squad DB elevation candidate",
+      "active_deficiency_tier": "2nd/3rd-String Perimeter Coverage Deficiency vs. Lions Passing Offense",
+      "epa_drop_pts": "",
+      "verification_status": "Names & OUT/LP/DNP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "id": "DC-09",
+      "team": "Detroit Lions",
+      "side": "Defense",
+      "unit": "Cornerback & Safety",
+      "string_1_starter": "D.J. Reed (1st-string CB \u2014 DNP); S1 Brian Branch (LP); S Kerby Joseph (LP \u2014 not shown on Lions.com 2-deep)",
+      "string_2_backup": "Rock Ya-Sin (2nd-string CB behind Reed); S2 Christian Izien",
+      "string_3_backup": "Khalil Dorsey (3rd-string CB behind Reed)",
+      "string_4_emergency": "Nick Whiteside (4th-string CB behind Reed)",
+      "active_deficiency_tier": "2nd/3rd/4th-String CB Ladder Activated if D.J. Reed Inactive",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP/LP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.detroitlions.com/team/depth-chart"
+    },
+    {
+      "id": "DC-10",
+      "team": "Detroit Lions",
+      "side": "Offense",
+      "unit": "Center & Running Back",
+      "string_1_starter": "C1 Cade Mays (DNP); RB1 Jahmyr Gibbs (Healthy)",
+      "string_2_backup": "C2 Juice Scruggs; RB2 Sione Vaki (DNP)",
+      "string_3_backup": "RB3 Jacob Saylors (FP)",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "2nd-String Center (Juice Scruggs) + 3rd-String Change-of-Pace RB (Jacob Saylors)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.detroitlions.com/team/depth-chart"
+    },
+    {
+      "id": "DC-11",
+      "team": "San Francisco 49ers",
+      "side": "Defense",
+      "unit": "Cornerback / Nickel Secondary",
+      "string_1_starter": "LCB1 Renardo Green (DNP); RCB1 Deommodore Lenoir (DNP); NB1 Upton Stout (LP)",
+      "string_2_backup": "RCB2 Ephesians Prysock; CB Nate Hobbs (FP on REG10; unslotted on 11/10 49ers.com chart); FS2 Siran Neal (LP)",
+      "string_3_backup": "LCB2 & NB2 cells blank on 49ers.com 11/10 depth chart",
+      "string_4_emergency": "Safety/PS cross-training (SS2 Marques Sigle / SS3 Ashtyn Davis)",
+      "active_deficiency_tier": "Critical Defensive Backfield Cluster (All 3 Starting CB/NB Spots DNP/LP)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP/LP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.49ers.com/team/depth-chart"
+    },
+    {
+      "id": "DC-12",
+      "team": "San Francisco 49ers",
+      "side": "Offense",
+      "unit": "Left Tackle & Wide Receiver",
+      "string_1_starter": "LT1 Trent Williams (DNP); WR1 Mike Evans (DNP); WR1 Deebo Samuel Sr. (LP)",
+      "string_2_backup": "LT2 Vederian Lowe; WR2 Jordan Watkins; WR2 Demarcus Robinson (FP)",
+      "string_3_backup": "LT3 Enrique Cruz Jr.; WR3 Brandin Cooks; WR3 Jacob Cowing",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "Blindside Protection & Perimeter WR1->WR2/WR3 Drop-Off Watch",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP/LP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.49ers.com/team/depth-chart"
+    },
+    {
+      "id": "DC-13",
+      "team": "Dallas Cowboys",
+      "side": "Defense",
+      "unit": "Secondary (CB + Both Safeties) & Edge/LB",
+      "string_1_starter": "CB1 Joey Porter Jr. (DNP); S1 Malik Hooker (DNP); S1 P.J. Locke (DNP); OLB1 Donovan Ezeiruaku (DNP); LB1 DeMarvion Overshown (LP)",
+      "string_2_backup": "CB2 Shavon Revel Jr.; S1-co Markquese Bell / S2 Juanyeh Thomas; S2 Alijah Clark; OLB2 James Houston; OLB2 Von Miller (ALSO DNP); LB2 Dee Winters",
+      "string_3_backup": "CB3 Ameer Speed; OLB3 Tyrus Wheat; OLB3 Marist Liufau (FP); LB3 Justin Barron",
+      "string_4_emergency": "DB Caleb Downs rotational coverage",
+      "active_deficiency_tier": "Multi-Level Defensive Cluster (CB1 + Both Starting Safeties + OLB1/OLB2 DNP)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP/LP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.dallascowboys.com/team/depth-chart"
+    },
+    {
+      "id": "DC-14",
+      "team": "Los Angeles Rams",
+      "side": "Offense & Defense",
+      "unit": "WR1, LG1, CB1, S1",
+      "string_1_starter": "WR1 Puka Nacua (DNP \u2014 likely IR per NFL.com); LG1 Steve Avila (DNP); CB1 Trent McDuffie (DNP); S1 Kam Curl (DNP)",
+      "string_2_backup": "WR2 Jordan Whittington; LG2 Bill Murray; CB2 Cam Lampkin; S2 Jaylen McCollough",
+      "string_3_backup": "WR3 Tutu Atwell",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "Dual-Side Star Drop-Off (All-Pro-Caliber WR1 + CB1 + LG1 + S1 all DNP)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.therams.com/team/depth-chart"
+    },
+    {
+      "id": "DC-15",
+      "team": "Green Bay Packers",
+      "side": "Offense & Defense",
+      "unit": "RB1, C1/OGs, LB1, EDGE1, NB1",
+      "string_1_starter": "RB1 Josh Jacobs (DNP \u2014 finger surgery); C1 Sean Rhyan (DNP); LG1 Aaron Banks (LP); EDGE1 Lukas Van Ness (DNP); LB1 Zaire Franklin (DNP); NB1 Javon Bullard (DNP)",
+      "string_2_backup": "RB2 MarShawn Lloyd; C2 Jager Burton; LG2 Travis Glover (LP); RG2 Kevin Zeitler (LP); EDGE2 Brenton Cox Jr.; LB2 Ty'Ron Hopper (LP); NB2 Kamal Hadden",
+      "string_3_backup": "RB3 Pierre Strong Jr.; LG3 Donovan Jennings; LB3 Kristian Welch",
+      "string_4_emergency": "RB4 Kaleb Johnson",
+      "active_deficiency_tier": "2nd/3rd/4th-String RB + Interior OL + Spine-of-Defense (C, MLB, Slot) Cascade",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP/LP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.packers.com/team/depth-chart"
+    },
+    {
+      "id": "DC-16",
+      "team": "Arizona Cardinals",
+      "side": "Defense",
+      "unit": "Front-7 & Safety Spine",
+      "string_1_starter": "NT1 Roy Lopez (DNP); OLB1 Josh Sweat (DNP); ILB1 Mack Wilson Sr. (DNP); S1 Budda Baker (DNP); DT1 Dante Stills (LP); CB1 Max Melton (LP)",
+      "string_2_backup": "NT2 Andrew Billings; OLB2 Jordan Burch; ILB2 Cody Simon; S2 Dadrion Taylor-Demerson; DT2 Darius Robinson; CB2 Kei'Trel Clark",
+      "string_3_backup": "OLB3 Eku Leota",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "4-Starter Defensive Spine Replacement (NT1 + OLB1 + ILB1 + S1 all DNP)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & DNP/LP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.azcardinals.com/team/depth-chart"
+    },
+    {
+      "id": "DC-17",
+      "team": "Washington Commanders",
+      "side": "Offense & Defense",
+      "unit": "TE2, C, WR2, CB1",
+      "string_1_starter": "CB1 Amik Robertson (LP); C1 Nick Allegretti (Healthy \u2014 note C Lucas Patrick OUT on REG10)",
+      "string_2_backup": "CB2 Rasul Douglas; TE2 Colson Yankoff (OUT \u2014 Knee); WR2 Treylon Burks (DNP); C2 Matt Gulbin (FP)",
+      "string_3_backup": "PR3 Treylon Burks (DNP \u2014 behind Jaylin Lane & Luke McCaffrey)",
+      "string_4_emergency": "\u2014 (Lucas Patrick OUT on NFL.com REG10 but omitted from Commanders.com C depth chart \u2014 roster lag flagged)",
+      "active_deficiency_tier": "2nd-String TE/WR Depth Reduction + CB1 Limited Watch",
+      "epa_drop_pts": "",
+      "verification_status": "Names & OUT/DNP/LP Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.commanders.com/team/depth-chart"
+    },
+    {
+      "id": "DC-18",
+      "team": "New York Giants",
+      "side": "Defense",
+      "unit": "Linebacker",
+      "string_1_starter": "MLB1 Micah McFadden (Healthy); WLB1 Arvell Reese (Healthy); SAM1 Abdul Carter (FP)",
+      "string_2_backup": "MLB2 Zaire Barnes; WLB2 Jack Kelly; LB Malik Harrison (QUESTIONABLE, Groin, LP \u2014 omitted from Giants.com 2-deep)",
+      "string_3_backup": "\u2014",
+      "string_4_emergency": "\u2014",
+      "active_deficiency_tier": "Rotational Sub-Package LB Depth Uncertainty (Club Depth Chart Lag Flagged)",
+      "epa_drop_pts": "",
+      "verification_status": "Names & Questionable Status Verified; Point Delta Unverified (Blank)",
+      "injury_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "depth_source": "https://www.giants.com/team/depth-chart"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "asOf": "2026-11-12",
+  "season": 2026,
+  "rules": [
+    {
+      "id": "R-01",
+      "rule_ref": "2026 NFL Rulebook \u00b7 Scoring Values",
+      "category": "Line Origination (Key Numbers)",
+      "verified_fact": "Touchdown = 6 pts; Field Goal = 3 pts; Safety = 2 pts; Try = 1 pt (kick or safety) or 2 pts (touchdown).",
+      "modeling_impact": "Creates discrete margin clustering at 3, 6, 7, 10, 14 pts; continuous normal approximations misprice push rates at key numbers.",
+      "source": "https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf",
+      "source_label": "2026 NFL Official Playing Rules (PDF)"
+    },
+    {
+      "id": "R-02",
+      "rule_ref": "Rule 6-1-3 & Rule 6-1-5 (2026 Rule Changes)",
+      "category": "Line Origination (Totals & Starting Field Position)",
+      "verified_fact": "Modifies alignment requirements for receiving team players in the setup zone on a kickoff/safety kick (6-1-3) and modifies the dead ball spot after a touchback when the kickoff is from the 50-yard line (6-1-5).",
+      "modeling_impact": "Changes average drive starting field position and expected points per drive; pre-2025/2026 historical totals priors must be recalibrated.",
+      "source": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "source_label": "NFL Football Operations \u2014 2026 NFL Rulebook"
+    },
+    {
+      "id": "R-03",
+      "rule_ref": "Rule 6-1-6 (2026 Rule Changes \u2014 Onside Kick)",
+      "category": "Late-Game Win Probability & Backdoor Covers",
+      "verified_fact": "Permits the kicking team to declare an onside kick at any time during the game.",
+      "modeling_impact": "Alters trailing-team comeback variance and late-game spread cover tail probabilities compared to fourth-quarter-only declaration rules.",
+      "source": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "source_label": "NFL Football Operations \u2014 2026 NFL Rulebook"
+    },
+    {
+      "id": "R-04",
+      "rule_ref": "Rule 19-2 (2026 Rule Changes \u2014 Player Disqualification)",
+      "category": "In-Game Depth-Chart Shock Risk",
+      "verified_fact": "Permits League personnel to consult with on-field officials when considering potential disqualification of a player for both flagrant football and non-football acts, even if not called on the field.",
+      "modeling_impact": "Increases mid-game ejection exposure forcing sudden 2nd/3rd-string replacements without injury warning.",
+      "source": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "source_label": "NFL Football Operations \u2014 2026 NFL Rulebook"
+    },
+    {
+      "id": "R-05",
+      "rule_ref": "CBA & NFL Roster Rules \u2014 Gameday Active List (48 / 47 Rule)",
+      "category": "Offensive Line Depth & Active Roster",
+      "verified_fact": "Maximum gameday Active List is 48 players ONLY if the team has a minimum of 8 active offensive linemen (primary position C, G, or OT); if fewer than 8 OL are active, maximum gameday roster drops to 47.",
+      "modeling_impact": "Forces clubs to dress at least 3 backup OL (8 total OL for 5 starting spots), directly governing 2nd/3rd-string OL availability on gameday.",
+      "source": "https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language",
+      "source_label": "NFL Football Operations \u2014 Roster Sizes & Contract Language (2026)"
+    },
+    {
+      "id": "R-06",
+      "rule_ref": "53-Man Active/Inactive List & Standard Elevation Addendum",
+      "category": "3rd/4th-String Practice Squad Replacements",
+      "verified_fact": "Active/Inactive List is 53 players, expandable to 54 or 55 for one week by elevating 1 or 2 Practice Squad players (16-player PS, or 17 with an International Player Pathway player in 2026). Max 3 regular-season elevations per PS player per League Year before requiring a 53-man contract.",
+      "modeling_impact": "Saturday afternoon Practice Squad elevations are a high-signal indicator that a Questionable/DNP starter or 2nd-string backup will not play or is on snap count.",
+      "source": "https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language",
+      "source_label": "NFL Football Operations \u2014 Standard Elevation Addendum (2026)"
+    },
+    {
+      "id": "R-07",
+      "rule_ref": "Official NFL Injury Report Scale (Practice & Game Status)",
+      "category": "Injury & Lineup Tracking",
+      "verified_fact": "Practice Statuses: Did Not Participate In Practice (DNP), Limited Participation in Practice (LP), Full Participation in Practice (FP). Game Statuses: Out, Doubtful, Questionable.",
+      "modeling_impact": "Players on Injured Reserve (minimum 4 games missed) do NOT appear on the weekly active-roster practice report \u2014 models must join IR transactions with weekly injury reports.",
+      "source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "source_label": "NFL.com Official Week 10 Injury Report (2026)"
+    },
+    {
+      "id": "R-08",
+      "rule_ref": "On-Field Injury Detection \u2014 Independent ATC Spotters",
+      "category": "In-Game Concussion & Removal Protocol",
+      "verified_fact": "League assigns two independently certified athletic trainers (AT spotters) per game monitoring broadcast video; player evaluations after medical timeout must last at least one play unless team takes a timeout, period ends, two-minute warning occurs, or foul caused injury.",
+      "modeling_impact": "Mandatory removal windows create abrupt mid-drive backup snaps (especially QB2, backup C, and backup Green-Dot LB).",
+      "source": "https://operations.nfl.com/gameday/behind-the-scenes/at-spotters",
+      "source_label": "NFL Football Operations \u2014 AT Spotters & Concussion Protocol"
+    }
+  ]
+}

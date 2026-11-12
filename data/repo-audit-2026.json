@@ -1,0 +1,69 @@
+{
+  "asOf": "2026-11-12",
+  "repo": "https://github.com/kanlerxz87-cyber/NFL2",
+  "findings": [
+    {
+      "id": "RA-01",
+      "file_or_commit": "Initial Commit 01f2271 \u2014 README.md",
+      "severity": "Info / Baseline",
+      "finding": "Initial repository contained a single 6-byte file (`# NFL2`, no trailing newline) and zero data pipelines, schemas, or site assets.",
+      "resolution": "Documented as baseline audit state; full multi-session dashboard and verification scripts added.",
+      "review_url": "https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3",
+      "official_source": "https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3"
+    },
+    {
+      "id": "RA-02",
+      "file_or_commit": "injuries.html, flagged.html, questions.html, sources.html, data/injuries-week10-2026.json (PR #1 / 44fd56d)",
+      "severity": "High \u2014 Wrong Official Week URL",
+      "finding": "Root build linked `https://www.nfl.com/injuries/league/2026/REG9` (Week 9) while labeling it 'Official NFL Injury Report \u2014 Week 10'. Official Week 10 URL is `REG10`.",
+      "resolution": "Corrected to `https://www.nfl.com/injuries/league/2026/REG10` and ingested all 14 Week 10 games (222 player rows) in `data/full-injuries-week10-2026.json`.",
+      "review_url": "https://github.com/kanlerxz87-cyber/NFL2/commit/44fd56d",
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "RA-03",
+      "file_or_commit": "lines-lab.html line 55 (PR #1 / 44fd56d)",
+      "severity": "Medium \u2014 Malformed HTML Table Row",
+      "finding": "Row `NO at CHI` in the 8-column Week 11 Originated-Lines table had only 7 `<td>` cells (missing 8th cell), shifting column alignment.",
+      "resolution": "Fixed column count to 8 `<td>` cells and added per-row official NFL.com source links.",
+      "review_url": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/lines-lab.html",
+      "official_source": "https://www.nfl.com/news/week-11-schedule-change"
+    },
+    {
+      "id": "RA-04",
+      "file_or_commit": "strategies.html, lines-lab.html, suggestions.html, questions.html, executive-summary.html (PR #1) & docs/*.html (PR #4)",
+      "severity": "High \u2014 Verification Rule Gap (Table Rows Without Official Source Links)",
+      "finding": "Project rule requires every `<tbody><tr>` row to carry a source link to an official site. Several framework/register/methodology tables lacked per-row official links.",
+      "resolution": "Added verified official source links (`nfl.com`, `operations.nfl.com`, `itl.nist.gov`, `github.com/kanlerxz87-cyber/NFL2`) to 100% of table rows and enforced via `scripts/verify_site.py`.",
+      "review_url": "https://github.com/kanlerxz87-cyber/NFL2/commit/38fe046",
+      "official_source": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+    },
+    {
+      "id": "RA-05",
+      "file_or_commit": "Official NFL.com REG10 Injury Report vs. Official NFL.com News / IR Transactions",
+      "severity": "High \u2014 Upstream Official Source Blindspot (Flagged for Review)",
+      "finding": "`nfl.com/injuries/league/2026/REG10` shows 'No Injuries Reported' for SEA, CIN, LAC, and BAL at snapshot time \u2014 yet NFL.com official news confirms SEA QB1 Sam Darnold is ruled out, CIN S Kyle Dugger was DNP Wednesday, and BAL QB1 Lamar Jackson + QB2 Tyler Huntley are on IR.",
+      "resolution": "Cross-joined REG10 report with official NFL.com IR/starter news and club depth charts; flagged on `flagged.html` so models never treat 'No Injuries Reported' as '100% starters healthy'.",
+      "review_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "official_source": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again"
+    },
+    {
+      "id": "RA-06",
+      "file_or_commit": "Official NFL Club Depth Charts (`patriots.com`, `commanders.com`, `giants.com`, `miamidolphins.com`, `49ers.com`)",
+      "severity": "Medium \u2014 Club PR Disclaimer & Roster Lag (Flagged for Review)",
+      "finding": "Club websites explicitly label depth charts 'Unofficial' (compiled by club PR/writers); e.g., `miamidolphins.com` has a blank Kicker (`K`) cell, `commanders.com` omits OUT C Lucas Patrick, `giants.com` omits Questionable LB Malik Harrison, and `therams.com` still lists retired DE Aaron Donald.",
+      "resolution": "Documented verbatim with club disclaimers and flagged on `flagged.html` and `depth-deficiencies.html` \u2014 never blindly ingest club depth charts without cross-checking active 53-man roster & 90-min inactives.",
+      "review_url": "https://www.therams.com/team/depth-chart",
+      "official_source": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "id": "RA-07",
+      "file_or_commit": ".github/workflows/pages.yml vs. GitHub Pages Repo Settings",
+      "severity": "Low \u2014 Dual Root + docs/ Deployment Structure",
+      "finding": "GitHub Pages repository configuration is `build_type: legacy` serving `/` on `main` (`https://kanlerxz87-cyber.github.io/NFL2/`), while `.github/workflows/pages.yml` uploads `docs/` artifact (also reachable at `/NFL2/docs/`).",
+      "resolution": "Preserved both root and `docs/` sites intact with zero deleted files, cross-linked them cleanly, and verified 100% of pages and links across both.",
+      "review_url": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/.github/workflows/pages.yml",
+      "official_source": "https://kanlerxz87-cyber.github.io/NFL2/"
+    }
+  ]
+}
