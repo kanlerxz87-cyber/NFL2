@@ -1157,3 +1157,20 @@ The branch base was `25d88a9`; `main` had moved eleven merges forward, so this b
 
 **Post-merge audit on this tree:** `tools/build_site.py` → 26 pages · 934 blank cells; `tools/verify.py` → **65 passed · 0 warnings · 0 failures**; `tools/check_site.py` → **11 passed · 1 warning · 0 failures** (the warning is the allowlist note about club-domain and registry links, including the two intentional `seahawks.com` / `therams.com` depth-chart citations added by this session); `scripts/audit_all_pages.py`, `scripts/verify_q51.py`, `scripts/verify_s53126614.py`, `engine/verify_repo_and_site.py`, `scripts/check_reproducible.py` re-run after the merge — results recorded in the PR body.
 
+### Publication record for session `a392a193`
+
+| Item | Value |
+|---|---|
+| Pull request | **#37** `feat(a392): computed origination lab, measured correlations, two-sided depth register - plus a fix for three silently-unfiltered site tables` |
+| Merged | **2026-11-12T22:57Z**, merge commit `57e6888`, `--merge` (no squash, no force), branch `arena/a392a193-nfl2` head `7dc5d63` |
+| CI on the merged head | `build-and-audit` ✅ · `Verify site data and links` ✅ · `Q51 evidence and engine verification` ✅ · `GitHub Pages` ❌ (see the note below — it is not this branch) |
+| Pages | `pages-build-deployment` for `57e6888` → **built** at 22:58:23Z, so all 26 root pages including the four new ones (`model-lab.html`, `measured-correlations.html`, `deficiencies.html`, `price-archive.html`) are on `main` at the artifact root — verified with `git ls-tree origin/main --name-only`, counting files ending in .html, which returns **26** |
+| Site audit at merge time | `tools/verify.py` **65 passed · 0 warnings · 0 failures**; `tools/check_site.py` **11 passed · 1 warning · 0 failures** (disclosed allowlist warning: club-domain and registry citations, including this session's two intentional `seahawks.com` / `therams.com` depth-chart links); `scripts/audit_all_pages.py` 100 pages / 252 tables / 3,848 rows all row-sourced, 0 broken links; `scripts/check_reproducible.py`, `engine/verify_repo_and_site.py`, `scripts/verify_s53126614.py`, `scripts/verify_q51.py`, `scripts/reverify_a392.py` all green |
+| Registers after the union | `flags.csv` 34 rows · `questions.csv` 38 · `suggestions.csv` 42 · `requirements.csv` 45 · `sources.csv` 42 |
+
+**Deployment note, recorded honestly rather than smoothed over.** The `GitHub Pages` workflow failed on this merge commit while succeeding on the four pushes before it. Every step passed, including `actions/upload-pages-artifact@v3`; only `actions/deploy-pages@v4` failed, with `Error: No artifacts named "github-pages" were found for this workflow run` and the action's own advice to re-run later. I could not test whether it is transient: `gh run rerun` and `gh workflow run pages.yml` are both refused from this sandbox (`HTTP 403: Resource not accessible by integration`), so a failed deploy run cannot be retried by an agent here — only by a push or by you. The site itself is not affected, because Pages is in legacy mode and the legacy build for `57e6888` succeeded; the episode is written into **FL-34** together with the standing design question that FL-23 on `main` already carries (two deploy mechanisms, one load-bearing).
+
+**Scope note for the next session:** `datasets/e143a7ca/verification_manifest.json` is rewritten by `engine/verify_repo_and_site.py` on every local run (the repo-wide link and page counts drift as trees are added). I ran their verifier, it dirtied the file, and I restored it rather than commit another session's artifact — if that scan count is meant to be current, its owner should regenerate it in their own build step, not in a verifier with a side effect.
+
+**Handoff:** A1–A6 closed; open items are decisions, not gaps — Q-36/S-35 (start the stored injury history), Q-35/S-36 (price vintage + the alias table), S-38 (paired-MAE admission gate), Q-37/S-39 (how many club charts we transcribe). Read `content/suggestions.md` → "Revised order of first moves" first.
+

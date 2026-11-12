@@ -18,6 +18,10 @@ OFFICIAL_HOSTS = {"nfl.com", "www.nfl.com", "operations.nfl.com", "static.www.nf
 PLAYER_URL = "https://www.nfl.com/players/{}/"
 BLANKS = {"", "not published", "n/a", "N/A"}
 DATA_FETCHED = "2026-11-12 04:45 UTC"
+# The hub and the standings were read a second time the same evening, and the difference is itself a
+# finding (FL-27). The header therefore names both moments rather than letting one date stand for a
+# register that is demonstrably a rolling document.
+DATA_REFRESHED = "2026-11-12 22:35 UTC"
 
 NAV = [
     ("Overview", [("index", "Dashboard"), ("executive-summary", "Executive Summary"),
@@ -304,6 +308,21 @@ def team_availability(injury_rows):
     return teams
 
 
+def _safe_rows(name):
+    try:
+        return read_rows(name)
+    except Exception:
+        return []
+
+
+def _safe_len(name):
+    return len(_safe_rows(name))
+
+
+def _safe_clubs(name, col):
+    return len({r.get(col, "").strip() for r in _safe_rows(name) if r.get(col, "").strip()})
+
+
 def build_metrics():
     inj = read_rows("injuries_2026_wk10.csv")
     depth = read_rows("depth_changes_2026_wk10.csv")
@@ -320,6 +339,10 @@ def build_metrics():
         playing.add(g["home"])
     empty = sorted(playing - set(agg))
     m = {
+        # the second read of the same official page, so the landing tiles can state the drift
+        # instead of a reader having to open the deficiencies page to find it
+        "hub2_rows": _safe_len("injuries_wk10_2026_hubrefresh.csv"),
+        "hub2_clubs": _safe_clubs("injuries_wk10_2026_hubrefresh.csv", "team"),
         "injury_rows": len(inj),
         "injury_teams": len(agg),
         "injury_clubs_playing": len(playing),
@@ -652,7 +675,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
 <body class="kind-%(kind)s">
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">NFL</span> <span>Decision dashboard</span></a>
-  <div class="asof">Data fetched <strong>%(fetched)s</strong> · official league sources only · <a href="methodology.html">how this is verified</a></div>
+  <div class="asof">Data fetched <strong>%(fetched)s</strong> · injury hub and standings re-read <strong>%(refreshed)s</strong> · official league sources only · <a href="methodology.html">how this is verified</a></div>
 </header>
 <div class="shell">
   <aside class="side">
@@ -675,7 +698,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
   </main>
 </div>
 </body></html>
-""" % dict(title=esc(title), lead=esc(lead) if lead else "", css=CSS_HREF, fetched=DATA_FETCHED, nav=navhtml,
+""" % dict(title=esc(title), lead=esc(lead) if lead else "", css=CSS_HREF, fetched=DATA_FETCHED, refreshed=DATA_REFRESHED, nav=navhtml,
            kind=kind, kind_label=esc(kind_label), toc=toc_html, body=body, prev=prevn, next=nextlink,
            flags=metric("flags"), sources=metric("sources"))
 
@@ -752,7 +775,7 @@ def main():
 
 KPIS = [
     ("injury_rows", "Injury rows ingested", "injuries",
-     lambda m: "%d players across %d of the %d clubs playing Week 10" % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"])),
+     lambda m: "%d players across %d of the %d clubs playing Week 10 at 04:45Z; the 22:35Z re-read of the same page holds %d rows across %d clubs" % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["hub2_rows"], m["hub2_clubs"])),
     ("designations", "Designations published", "injuries",
      lambda m: "%d of %d rows carry a game status; the rest are not published" % (m["designations"], m["injury_rows"])),
     ("depth_rows", "Depth & roster events", "depth-impact",
