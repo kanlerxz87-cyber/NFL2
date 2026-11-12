@@ -1,0 +1,227 @@
+{
+  "audit_id": "S53-01",
+  "session": "arena-53126614",
+  "as_of": "2026-11-12",
+  "audited_commit_on_main": "f64078fc",
+  "summary": "Line-by-line verification of every dataset and HTML page in kanlerxz87-cyber/NFL2 against official NFL.com, NFL Official Playing Rules, official NFL club websites, and GitHub API state.",
+  "file_audits": [
+    {
+      "file": "data/standings-2026.json + standings.html",
+      "owner_session": "194db560",
+      "rows_checked": 32,
+      "rows_verified": 32,
+      "mismatches": 0,
+      "status": "VERIFIED",
+      "detail": "All 32 teams (W, L, T, PCT, PF, PA, Net, Home, Road, Div, Conf, Strk, Last5) match NFL.com 2026 regular-season division standings word-for-word.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "file": "data/standings_2026.json + docs/standings.html",
+      "owner_session": "arena-85d79210",
+      "rows_checked": 32,
+      "rows_verified": 32,
+      "mismatches": 0,
+      "status": "VERIFIED",
+      "detail": "All 32 teams reconcile identically with data/standings-2026.json and NFL.com 2026 division/league standings.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "file": "data/schedule-week11-2026.json + schedule.html",
+      "owner_session": "194db560",
+      "rows_checked": 19,
+      "rows_verified": 19,
+      "mismatches": 0,
+      "status": "VERIFIED",
+      "detail": "13 Week 11 games (dates, away/home, kickoff ET, TV, flex notes, Mexico City venue) + 6 Week 11 bye teams (ATL, CLE, GB, LAR, NE, SEA) = 32 teams accounted for.",
+      "official_source": "https://www.nfl.com/news/week-11-schedule-change"
+    },
+    {
+      "file": "data/schedule_week11_2026.json + docs/schedule.html",
+      "owner_session": "arena-85d79210",
+      "rows_checked": 19,
+      "rows_verified": 19,
+      "mismatches": 0,
+      "status": "VERIFIED",
+      "detail": "13 Week 11 games + 6 bye teams match NFL.com Nov 9 schedule-change announcement and May 15 bye-week release.",
+      "official_source": "https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week"
+    },
+    {
+      "file": "data/injuries-week10-2026.json + injuries.html",
+      "owner_session": "194db560",
+      "rows_checked": 6,
+      "rows_verified": 6,
+      "mismatches": 1,
+      "status": "NEEDS REVIEW (IR-01, IR-10)",
+      "detail": "The 6 game-status rows match the NFL.com Week 10 summary article, EXCEPT fullReport URL points to /REG9 (Week 9, Nov 5 JAX@BAL) instead of /REG10 (Week 10, Nov 12 WAS@NYG), and Ben Brown is listed OL in summary vs C on /REG10 and LG1/C2 on Patriots.com.",
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "file": "data/injuries_2026-11-11.json + docs/injuries.html",
+      "owner_session": "arena-85d79210",
+      "rows_checked": 35,
+      "rows_verified": 35,
+      "mismatches": 0,
+      "status": "VERIFIED (SNAPSHOT)",
+      "detail": "Wednesday Nov 11 roundup items verified against NFL.com news roundup; properly labelled as a Week 10 snapshot.",
+      "official_source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"
+    },
+    {
+      "file": "data/team_stats_defense_2026.json + docs/defense.html",
+      "owner_session": "arena-85d79210",
+      "rows_checked": 32,
+      "rows_verified": 32,
+      "mismatches": 0,
+      "status": "VERIFIED",
+      "detail": "All 32 teams' pass_att_allowed, pass_yds_allowed, rush_att_allowed, rush_yds_allowed, rush_ypa_allowed, PF, and PA match NFL.com 2026 Defense Passing, Defense Rushing, and Standings pages.",
+      "official_source": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+    },
+    {
+      "file": "data/player_leaders_2026.json + docs/stats.html (Passing & Tackles)",
+      "owner_session": "arena-85d79210",
+      "rows_checked": 20,
+      "rows_verified": 20,
+      "mismatches": 0,
+      "status": "VERIFIED (NOTE IR-11)",
+      "detail": "All 10 passing rows and all 10 tackles rows match NFL.com exactly. Note IR-11: on NFL.com itself, Solo + Ast < Comb for 7 of top 10 tacklers due to special-teams tackles.",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+    },
+    {
+      "file": "data/player_leaders_2026.json + docs/stats.html (Rushing & Receiving)",
+      "owner_session": "arena-85d79210",
+      "rows_checked": 20,
+      "rows_verified": 16,
+      "mismatches": 4,
+      "status": "FLAGGED MISMATCHES (IR-04..IR-08)",
+      "detail": "4 column-shift transcription errors caught: Bijan Robinson Rush TD recorded as 9 (official TD=5, 20+=9); Jaylen Warren Rush TD recorded as 7 (official TD=2, 20+=7; PIT team Rush TD=4); Trey McBride Rec Lng recorded as 41 (official Lng=27, Rec 1st%=41.1); Ja'Marr Chase Rec TD recorded as 8 (official TD=7, 20+=8).",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc"
+    },
+    {
+      "file": "lines-lab.html + assets/app.js",
+      "owner_session": "194db560",
+      "rows_checked": 13,
+      "rows_verified": 12,
+      "mismatches": 2,
+      "status": "NEEDS REVIEW (IR-02, IR-03)",
+      "detail": "Row 'NO at CHI' has 7 <td> cells instead of 8; baseline v0 calculator uses a single shared 'Games played' input g for both teams, whereas 8 of 13 Week 11 games pair an 8-game team against a 9-game team.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "file": "teams.html + data/teams.json",
+      "owner_session": "194db560 / arena-85d79210",
+      "rows_checked": 32,
+      "rows_verified": 32,
+      "mismatches": 0,
+      "status": "VERIFIED",
+      "detail": "All 32 team names, conferences, divisions, and official nfl.com/teams/<slug> URLs verified.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "file": ".github/workflows/pages.yml + GitHub Pages API",
+      "owner_session": "194db560 / arena-85d79210",
+      "rows_checked": 2,
+      "rows_verified": 2,
+      "mismatches": 1,
+      "status": "NEEDS REVIEW (IR-09)",
+      "detail": "GitHub Pages API reports build_type='legacy' serving '/' on main, while .github/workflows/pages.yml uploads 'docs/'. Both URLs resolve (/NFL2/ and /NFL2/docs/index.html) when cross-linked.",
+      "official_source": "https://github.com/kanlerxz87-cyber/NFL2"
+    }
+  ],
+  "irregularities": [
+    {
+      "id": "IR-01",
+      "severity": "High",
+      "location": "data/injuries-week10-2026.json, injuries.html, flagged.html, questions.html, sources.html",
+      "finding": "Full Week 10 injury report link points to /injuries/league/2026/REG9, which displays 'Injuries - WEEK 9' (Nov 5 JAX at BAL). Official Week 10 full report is /injuries/league/2026/REG10 ('Injuries - WEEK 10', Nov 12 WAS at NYG).",
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10",
+      "status": "Flagged & queued for S53-09 fix"
+    },
+    {
+      "id": "IR-02",
+      "severity": "Low",
+      "location": "lines-lab.html (Week 11 template table, row 'NO at CHI')",
+      "finding": "HTML table row for 'NO at CHI' contains 7 <td> cells in an 8-column table (missing final Source/time cell).",
+      "official_source": "https://www.nfl.com/news/week-11-schedule-change",
+      "status": "Flagged & queued for S53-09 fix"
+    },
+    {
+      "id": "IR-03",
+      "severity": "High",
+      "location": "lines-lab.html + assets/app.js",
+      "finding": "Baseline v0 calculator assumes equal games played g for home and away teams. In official 2026 standings (as of Nov 12), 16 teams have played 8 games and 16 have played 9 games; 8 of 13 Week 11 games pair an 8-game team vs a 9-game team (e.g. IND 2-7 [9g] at HOU 3-5 [8g]). Fixed in originated-lines.html with separate g_away and g_home.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg",
+      "status": "Addressed in originated-lines.html + queued for S53-09"
+    },
+    {
+      "id": "IR-04",
+      "severity": "High",
+      "location": "data/player_leaders_2026.json + docs/stats.html (Rushing row 1: Bijan Robinson)",
+      "finding": "Bijan Robinson rushing TD recorded as 9; official NFL.com Player Rushing table lists RushYds=880, Att=169, TD=5, 20+=9, 40+=2, Lng=59. Column '20+' (9) was misread as 'TD' (5).",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc",
+      "status": "Flagged & queued for S53-09 fix"
+    },
+    {
+      "id": "IR-05",
+      "severity": "High",
+      "location": "data/player_leaders_2026.json + docs/stats.html (Rushing row 6: Jaylen Warren)",
+      "finding": "Jaylen Warren rushing TD recorded as 7; official NFL.com Player Rushing table lists RushYds=704, Att=119, TD=2, 20+=7, 40+=2, Lng=51 (and PIT entire team rushing TD total is 4).",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc",
+      "status": "Flagged & queued for S53-09 fix"
+    },
+    {
+      "id": "IR-06",
+      "severity": "High",
+      "location": "data/player_leaders_2026.json + docs/stats.html (Receiving row 1: Trey McBride)",
+      "finding": "Trey McBride longest reception (Lng) recorded as 41; official NFL.com Player Receiving table lists Rec=73, Yds=598, TD=5, 20+=4, 40+=0, Lng=27, Rec 1st=30, Rec 1st%=41.1. 'Rec 1st%' (41.1) was misread as 'Lng' (27).",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc",
+      "status": "Flagged & queued for S53-09 fix"
+    },
+    {
+      "id": "IR-07",
+      "severity": "High",
+      "location": "data/player_leaders_2026.json + docs/stats.html (Receiving row 7: Ja'Marr Chase)",
+      "finding": "Ja'Marr Chase receiving TD recorded as 8; official NFL.com Player Receiving table lists Rec=53, Yds=647, TD=7, 20+=8, 40+=2, Lng=47. Column '20+' (8) was misread as 'TD' (7).",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc",
+      "status": "Flagged & queued for S53-09 fix"
+    },
+    {
+      "id": "IR-08",
+      "severity": "Low",
+      "location": "data/player_leaders_2026.json (Rushing Yds/Att & Receiving Yds/Rec)",
+      "finding": "NFL.com Player Rushing and Player Receiving category pages do not display Yds/Att or Yds/Rec columns directly; those two ratios were derived from Yds/Att and Yds/Rec without a 'derived' label.",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc",
+      "status": "Flagged for transparency"
+    },
+    {
+      "id": "IR-09",
+      "severity": "Medium",
+      "location": "Repo root (/) vs docs/ + .github/workflows/pages.yml",
+      "finding": "Two parallel sessions created two complete dashboards (root / and docs/). GitHub Pages serves root '/' via legacy build_type, so docs/index.html was not linked from root index.html.",
+      "official_source": "https://kanlerxz87-cyber.github.io/NFL2/",
+      "status": "Cross-linked in S53-09 integration"
+    },
+    {
+      "id": "IR-10",
+      "severity": "Low",
+      "location": "NFL.com summary vs NFL.com REG10 vs Patriots.com depth chart (Ben Brown)",
+      "finding": "Official sources use different position granularity for Ben Brown (NE): 'OL' in NFL.com Week 10 summary, 'C' on NFL.com REG10 injury report, and 1st-string 'LG' + 2nd-string 'C' on Patriots.com depth chart.",
+      "official_source": "https://www.patriots.com/team/depth-chart",
+      "status": "Documented across sources"
+    },
+    {
+      "id": "IR-11",
+      "severity": "Low",
+      "location": "NFL.com Player Tackles table (upstream official source note)",
+      "finding": "On NFL.com's official Tackles page, CombTackles != Solo + Ast for 7 of the top 10 tacklers (e.g. Alex Singleton 107 Comb vs 56 Solo + 50 Ast = 106; Nakobe Dean 99 Comb vs 54 + 42 = 96) because NFL.com includes special-teams tackles in Comb.",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/tackles/2026/reg/all/defensivecombinetackles/desc",
+      "status": "Verified upstream behavior"
+    },
+    {
+      "id": "IR-12",
+      "severity": "Low",
+      "location": "COORDINATION.md / parallel branch naming",
+      "finding": "Project prompt specifies session-<id>/<task> branches, whereas the execution environment fixes each session to a single branch arena/<id>-nfl2. Non-overlapping file scopes + rebase serialization enforce conflict-free parallel execution.",
+      "official_source": "https://github.com/kanlerxz87-cyber/NFL2/branches",
+      "status": "Documented environment constraint"
+    }
+  ]
+}
