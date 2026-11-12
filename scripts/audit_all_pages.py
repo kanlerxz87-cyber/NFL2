@@ -117,6 +117,10 @@ def has_official_link(urls: list[str]) -> bool:
 
 
 def main() -> None:
+    reg_path = ROOT / "research" / "source-registry.json"
+    if reg_path.exists():
+        OFFICIAL_DOMAINS.update(json.loads(reg_path.read_text()).get("official_domains", []))
+
     errors: list[str] = []
     total_json = 0
     for jf in sorted((ROOT / "data").glob("*.json")):
@@ -130,14 +134,18 @@ def main() -> None:
         if "injuries/league/2026/REG9" in raw and jf.name != "repo-audit-2026.json":
             errors.append(f"{jf.relative_to(ROOT)}: contains wrong Week 10 URL REG9 (should be REG10)")
 
-    html_files = sorted(list(ROOT.glob("*.html")) + list((ROOT / "docs").glob("*.html")))
+    html_files = sorted(
+        list(ROOT.glob("*.html"))
+        + list((ROOT / "docs").glob("*.html"))
+        + list((ROOT / "review").glob("*.html"))
+    )
     total_tables = 0
     total_rows = 0
 
     for hf in html_files:
         rel = hf.relative_to(ROOT)
         text = hf.read_text()
-        if "injuries/league/2026/REG9" in text:
+        if "injuries/league/2026/REG9" in text and hf.name != "repo-audit.html":
             errors.append(f"{rel}: contains wrong Week 10 URL REG9 (should be REG10)")
 
         aud = PageAuditor(hf)

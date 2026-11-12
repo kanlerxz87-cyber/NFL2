@@ -67,14 +67,20 @@
    "detail": ""
   },
   {
+   "id": "H11",
+   "name": "Every factual table row carries a source link (59 tables fully linked; 11 explanation-only tables exempt by explicit decision)",
+   "ok": true,
+   "detail": ""
+  },
+  {
    "id": "H10",
    "name": "Every page declares charset and viewport",
    "ok": true,
    "detail": ""
   }
  ],
- "passed": 12,
- "total": 12,
+ "passed": 13,
+ "total": 13,
  "pages": [
   "index.html",
   "executive-summary.html",

@@ -78,7 +78,7 @@ NAV = [
  ("strategies.html","Strategies"),("method.html","Method"),
  ("suggestions.html","Suggestions"),("questions.html","Questions"),
  ("repo-audit.html","Repo Audit"),("flagged.html","Flagged for Review"),
- ("sources.html","Sources"),
+ ("sources.html","Sources"),("review/index.html","Review Build"),
 ]
 
 def page(fname, title, body, active=None, desc=""):
@@ -258,6 +258,8 @@ that the table cannot be read as a recommendation.</p>
   {card("Repo audit", "Line-by-line audit of commits, upstream source blindspots, and verification gates", "repo-audit.html")}
   {card("Flagged for Review", "Every irregularity, severity-rated, with what would fix it", "flagged.html")}
   {card("Data sources", "The full register of official pages used, and what each one supplied", "sources.html")}
+  {card("Verification Review Dashboard", "Parallel 15-page build (session 01b698ef): requirements register, decision gates, path chooser & 423 sourced rows", "review/index.html")}
+  {card("Parallel docs/ Dashboard", "Parallel 16-page build (session 85d79210): player leaders, defense breakdown & interactive calculators", "docs/index.html")}
   {card("Repository", "Source, data files, verifiers and the coordination log", SRC['repo'])}
 </div>
 </div></section>"""
@@ -667,7 +669,7 @@ for s in AN["strategies"]:
       s["n"], num(s["hit_rate"]*100,1),
       num(s["brier_skill"],4,True), num(s["brier"],4), num(s["mean_abs_line_error"],2),
       f'{gp}/7 {bar}', b(s["status"], kind), b("UNPAID","dim"),
-      src(SRC["repo"]+"/blob/main/scripts/strategy_engine.py","code"),
+      src(SRC["schedule"], "backtest") + " · " + src(SRC["repo"]+"/blob/main/scripts/strategy_engine.py","code"),
     ])
 body += tbl([("ID",0),("Strategy",0),("Legs",1),("Hit %",1),("Brier skill",1),("Brier",1),("Mean line err",1),("Gates",0),("Status",0),("Reward",0),("Source",0)],
             srows, caption="Reward points are earned by passing gates, not by winning bets — that is the point of a "
@@ -933,7 +935,8 @@ for cat in ["Data integrity","Rules","Injuries","Model","Player stats","Player p
           f'<b>{E(q["id"])}</b>',
           f'<b>{E(q["question"])}</b><div class="tiny" style="color:var(--dim);margin-top:4px">{ans}</div>',
           b(q["status"], STATUS_KIND.get(q["status"],"dim")),
-          (src(q["source"], "source") if q["source"] else f'<span class="blank">none exists</span> · {src(SRC["repo"]+"/blob/main/data/questions.json","register")}'),
+          (src(q["source"], "source") if q["source"]
+            else f'<span class="blank" title="No official source publishes this">no source exists</span> · {src(SRC["repo"]+"/blob/main/data/questions.json","register")}'),
           f'<span class="tiny">{E(q["discovery"])}</span>',
           f'<span class="tiny" style="color:var(--dim)">{E(q["evidence"])}</span>',
         ])
@@ -1048,11 +1051,23 @@ body += ('<div class="note bad"><p><b>This page is part of the deliverable, not 
          'claims 100% completeness on a partial season is either not checking or not telling you. The items below '
          'are the difference between those two.</p></div>')
 
+IRR_SRC = {
+ "IR-01":"https://www.detroitlions.com/team/depth-chart",
+ "IR-02":"https://www.packers.com/team/depth-chart",
+ "IR-03":SRC["standings"],
+ "IR-04":SRC["schedule"],
+ "IR-05":SRC["club_stats"].format(slug="kansas-city-chiefs"),
+ "IR-06":SRC["ts_off_pass"],
+ "IR-07":SRC["ts_off_pass"],
+ "IR-08":"https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all",
+ "IR-09":"https://www.nfl.com/injuries/",
+}
 rows = []
 for iid, sev, title, what, does, fix, s_url in IRR:
     kind = {"High":"bad","Medium":"warn","Low":"dim"}[sev]
     rows.append([f'<b>{E(iid)}</b>', b(sev, kind), f'<b>{E(title)}</b><div class="tiny" style="color:var(--dim);margin-top:4px">{E(what)}</div>',
-                 f'<span class="tiny">{E(does)}</span>', f'<span class="tiny">{E(fix)}</span>', src(s_url, "source")])
+                 f'<span class="tiny">{E(does)}</span>', f'<span class="tiny">{E(fix)}</span>',
+                 src(IRR_SRC.get(iid, s_url), "source")])
 body += tbl([("ID",0),("Severity",0),("Irregularity",0),("What the site does",0),("What would fix it",0),("Source",0)], rows,
             caption="Severity High = a reader could reach a wrong conclusion if this were hidden. Medium = a value is missing or contested. Low = a labelling or convention difference.")
 
