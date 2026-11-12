@@ -42,6 +42,13 @@ The machine-readable source register and row-level audits are in `data/sources.c
 - Injury/practice data are point-in-time snapshots with incomplete published designations. The root flags report that only 6 of 254 rows had game-status values in the captured Week 10 snapshot. The official NFL hub is the source of record: https://www.nfl.com/injuries/ . Do not treat missing rows/fields as “healthy.”
 - The official depth-chart evidence needed to label second-/third-/fourth-string replacements is incomplete; the project flags the gap rather than infer ranks. NFL news and injury evidence cited in the register include https://www.nfl.com/news/nfl-week-10-injury-report-2026-season and https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11 .
 
+## Publication record
+
+- Audit PR: [#25](https://github.com/kanlerxz87-cyber/NFL2/pull/25), merged 2026-11-12T22:25:38Z as `d2c0af0e7c2008ba4b64a7c1dcd03c44a6b4293e`.
+- Post-merge CI: `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the merge commit.
+- GitHub Pages API after deployment: `status=built`, `build_type=legacy`, `source=main /`.
+- Both the canonical root dashboard (https://kanlerxz87-cyber.github.io/NFL2/) and the separate `/docs/` site were fetched successfully after deployment. The API/workflow destination mismatch remains reported above rather than silently treated as resolved.
+
 ## Scope boundary
 
 No facts, source values, generated pages, datasets, models, or other sessions' tools were altered. The only code-repository additions for this task are this report and the appended coordination log/change requests. The canonical-site wording and Pages configuration findings are requests for the shared site/deployment owner, not unreviewed changes.
