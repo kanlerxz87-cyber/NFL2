@@ -28,6 +28,7 @@ import content  # noqa: E402
 REGISTRY_PATH = ROOT / "research" / "source-registry.json"
 RECORDS_PATH = ROOT / "data" / "records.json"
 REPORT_PATH = ROOT / "data" / "verification-report.json"
+PAGE_DIR = ROOT / "review"
 
 REG = json.loads(REGISTRY_PATH.read_text())
 ALLOWED_DOMAINS = set(REG["official_domains"]) | {"kanlerxz87-cyber.github.io"}
@@ -183,9 +184,9 @@ def main() -> int:
                 ERRORS.append(f"row {r['row_id']}: UNVERIFIED but has no flag")
 
     # ---- required files ----------------------------------------------------
-    for f in (".nojekyll", "404.html", "assets/style.css", "assets/site.js",
-              ".github/workflows/verify.yml", "README.md", "COORDINATION.md",
-              "research/source-registry.json"):
+    for f in (".nojekyll", "review/404.html", "review/assets/style.css",
+              "review/assets/site.js", ".github/workflows/verify.yml",
+              "README.md", "COORDINATION.md", "research/source-registry.json"):
         if not (ROOT / f).exists():
             ERRORS.append(f"required file missing: {f}")
 
@@ -200,7 +201,7 @@ def main() -> int:
     # ---- per-page checks ---------------------------------------------------
     for page in content.PAGES:
         f = page["file"]
-        path = ROOT / f
+        path = PAGE_DIR / f
         if not path.exists():
             ERRORS.append(f"page missing: {f}")
             continue
@@ -246,13 +247,13 @@ def main() -> int:
             else:
                 STATS["internal_links"] += 1
                 target = href.split("#", 1)[0].split("?", 1)[0]
-                if target and not (ROOT / target).exists():
+                if target and not (PAGE_DIR / target).exists():
                     STATS["broken_links"] += 1
                     ERRORS.append(f"{f}: broken internal link {href}")
         for src in p.all_srcs:
             if is_external(src):
                 ERRORS.append(f"{f}: external script/image {src}")
-            elif src.split("#", 1)[0] and not (ROOT / src).exists():
+            elif src.split("#", 1)[0] and not (PAGE_DIR / src).exists():
                 ERRORS.append(f"{f}: broken local asset {src}")
 
         # navigation consistency

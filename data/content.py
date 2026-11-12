@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = json.loads((ROOT / "research" / "source-registry.json").read_text())
 SOURCES = {s["id"]: s for s in REGISTRY["sources"]}
 
-SITE_URL = "https://kanlerxz87-cyber.github.io/NFL2/"
+SITE_URL = "https://kanlerxz87-cyber.github.io/NFL2/review/"
 CAPTURED = "2026-11-12 (UTC)"
 
 

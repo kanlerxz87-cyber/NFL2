@@ -15,7 +15,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "data"))
 import content  # noqa: E402
 
-OUT = ROOT
+# The final integration output lives under review/ so that the pre-existing
+# dashboards published by the other parallel sessions (repo root and docs/) are
+# preserved untouched. GitHub Pages publishes main:/ so review/ is reachable at
+# https://kanlerxz87-cyber.github.io/NFL2/review/.
+OUT = ROOT / "review"
 RECORDS: list[dict] = []
 
 
@@ -244,13 +248,13 @@ def main() -> None:
     for page in content.PAGES:
         text = render_page(page)
         (OUT / page["file"]).write_text(text, encoding="utf-8")
-    (OUT / "data").mkdir(exist_ok=True)
-    (OUT / "data" / "records.json").write_text(
+    (ROOT / "data").mkdir(exist_ok=True)
+    (ROOT / "data" / "records.json").write_text(
         json.dumps({"records": RECORDS, "registry_version": content.REGISTRY["registry_version"]},
                    indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Built {len(content.PAGES)} pages, "
           f"{sum(len(p['sections']) for p in content.PAGES)} tables, {len(RECORDS)} rows.")
-    print(f"Wrote {OUT / 'data' / 'records.json'}")
+    print(f"Wrote {ROOT / 'data' / 'records.json'}")
 
 
 if __name__ == "__main__":
