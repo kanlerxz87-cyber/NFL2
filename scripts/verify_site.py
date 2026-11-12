@@ -128,6 +128,42 @@ if nval==0:
 add("H9",f"No page shows a VALIDATED badge while the analysis says 0 of {len(AN['strategies'])} are validated",
     not bad9,", ".join(bad9))
 
+# H11 every data table row carries a source link (project requirement).
+#     Some tables are explanatory rather than factual (the gate definitions, the
+#     withheld-dataset list, the "unverified values by page" list). Those are
+#     named here explicitly so the exemption is a decision, not a loophole.
+# Row-level: every factual row must contain a link. Explanation-only tables are
+# listed below by (page, table index) and are exempt by explicit decision.
+EXPLANATORY = {
+ ("method.html",0):  "gate/check definitions - not data rows",
+ ("method.html",1):  "personnel check definitions",
+ ("strategies.html",0):"gate definitions",
+ ("strategies.html",2):"gate-by-gate status - derived from analysis.json",
+ ("strategies.html",3):"fold hit rates - derived from the same backtest",
+ ("analysis.html",0):"club correlations - derived, sourced once in the caption",
+ ("analysis.html",1):"game correlations - derived, sourced once in the caption",
+ ("sources.html",9): "rejected sources - the point is that they do not work",
+ ("sources.html",10):"data files produced by this repo",
+ ("flagged.html",1): "withheld datasets - explains why there is no source",
+ ("flagged.html",2): "unverified values - explains why there is no value",
+}
+bad11=[]; ok11=0
+for p,d in docs.items():
+    if d is None: continue
+    for ti,tb in enumerate(re.findall(r"<table.*?</table>",d,flags=re.S)):
+        body_rows=re.findall(r"<tr>(?!.*?</thead>)(.*?)</tr>",tb.split("</thead>")[-1],flags=re.S)
+        if (p,ti) in EXPLANATORY: continue
+        if not body_rows: continue
+        # a row may legitimately have no link ONLY if it declares that no source
+        # exists. That marker is explicit, so it cannot be used as a silent dodge.
+        missing=[r for r in body_rows
+                 if "<a " not in r and "no source exists" not in r and "none exists" not in r]
+        if missing: bad11.append(f"{p} table#{ti}: {len(missing)}/{len(body_rows)} rows have no link")
+        else: ok11+=1
+add("H11",f"Every factual table row carries a source link ({ok11} tables fully linked; "
+         f"{len(EXPLANATORY)} explanation-only tables exempt by explicit decision)",
+    not bad11,"; ".join(bad11))
+
 # H10 charset + viewport
 bad10=[p for p,d in docs.items() if d and ('charset="utf-8"' not in d or "viewport" not in d)]
 add("H10","Every page declares charset and viewport",not bad10,", ".join(bad10))
