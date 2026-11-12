@@ -369,10 +369,20 @@ Their code and data were neither deleted nor restated: `pipeline/**`, `site/**`,
 | E-03 | Official NFL club 1st–4th string depth charts (12 clubs) & offense/defense replacement tracker | **done** | `eaba7863` | `analytics/depth-deficiencies.html`, `data/depth-charts-2026.json` | 12 official club depth charts (`commanders.com`, `giants.com`, `patriots.com`, `detroitlions.com`, `baltimoreravens.com`, `miamidolphins.com`, `49ers.com`, `azcardinals.com`, `seahawks.com`, `therams.com`, `packers.com`, `dallascowboys.com`) | `RA-06`: Club depth charts carry "Unofficial" PR disclaimers & roster lag (e.g. `therams.com` still lists retired DE Aaron Donald; `miamidolphins.com` blank Kicker); backup EPA point deltas left blank & flagged |
 | E-04 | 32-Team Offense/Defense Stats + Reproducible Correlations (`n=32`) + SGP Copula Blank Register + Luck Residuals | **done** | `eaba7863` | `analytics/correlations.html`, `data/team-stats-offense-defense-2026.json`, `data/correlations-2026.json`, `scripts/compute_correlations.py` | `nfl.com/stats/team-stats/{offense,defense}/{passing,rushing}/2026/reg/all`, `nfl.com/standings/division/2026/reg` | Play-level SGP/prop correlations (`U-C01`..`U-C06`) left blank & flagged |
 | E-05 | Official 2026 NFL Rulebook & Operations anchors (2026 kickoff/onside/disqualification changes, 48/47 active 8-OL rule, PS elevations, ATC spotters) | **done** | `eaba7863` | `data/nfl-rules-operations-2026.json` | `operations.nfl.com/rules-officiating/2026-nfl-rulebook`, `operations.nfl.com/calendar-events/nfl-free-agency/contract-language` | — |
-| E-06 | Final cross-session integration across root + `analytics/` + `docs/` + `review/` + `portal/` + `site/`, PR #14 + merge + live Pages confirmation | **in progress** | `eaba7863` | `analytics/**`, `content/index.md`, `README.md`, `COORDINATION.md` | All 8 repo verification suites pass with 0 broken links | Non-destructive merge of `main@52d6e17` |
+| E-06 | Final cross-session integration across root + `analytics/` + `docs/` + `review/` + `portal/` + `site/`, PR #14 + merge + live Pages confirmation | **done** | `eaba7863` | `analytics/**`, `content/index.md`, `README.md`, `COORDINATION.md` | PR **#14** merged (`7087367c6e994dc64cbb41b61ace07439463ada4`); all 8 repo verification suites & 3 GitHub Actions workflows (`build-and-audit`, `Verify site data and links`, `lab-validate`) PASS; GitHub Pages build `1362228332` `built` and live-fetched | Non-destructive merge of `main@631b4da` |
 
----
+### Session `eaba7863` PR & Live GitHub Pages Deployment Record
 
+- **Pull Request**: **#14** — https://github.com/kanlerxz87-cyber/NFL2/pull/14 (`arena/eaba7863-nfl2` → `main`)
+- **Merge Result**: `MERGED` at `2026-11-12T05:24:14Z`, merge commit `7087367c6e994dc64cbb41b61ace07439463ada4` (CI checks `Verify site data and links`, `build-and-audit`, and `lab-validate`: all **SUCCESS**)
+- **GitHub Pages Build**: `status: "built"`, `error: null`, build ID `1362228332` on commit `7087367c6e994dc64cbb41b61ace07439463ada4` (`https_enforced: true`)
+- **Live URLs Confirmed (HTTP 200)**:
+  - Root Decision Dashboard: https://kanlerxz87-cyber.github.io/NFL2/
+  - Verified Analytics Suite (`eaba7863`, 18 pages): https://kanlerxz87-cyber.github.io/NFL2/analytics/index.html
+  - 1st–4th String Replacement Deficiencies: https://kanlerxz87-cyber.github.io/NFL2/analytics/depth-deficiencies.html
+  - Empirical Correlations (`n=32`) & Skill-vs-Luck: https://kanlerxz87-cyber.github.io/NFL2/analytics/correlations.html
+  - Line-by-Line Repository & Source Audit: https://kanlerxz87-cyber.github.io/NFL2/analytics/repo-audit.html
+  - Flagged for Review (`eaba7863`): https://kanlerxz87-cyber.github.io/NFL2/analytics/flagged.html
 ## 15. Close-out of the integration branch — PR #15 merged, live-site findings, and where the numbers stand (session `bc4b47cf`, 2026-11-12T06:45Z)
 
 | Item | Value |
@@ -441,3 +451,18 @@ Verified in the merged tree: `tools/verify.py` 38 pass · `tools/check_site.py` 
 warning · `tools/review_verify.py` OK · `engine/verify_repo_and_site.py` PASS with 0 broken links across
 every build · root rebuild byte-identical · their `analytics/index.html` reachable from the published
 page map.
+
+---
+
+## 17. Sixth merge on this branch — one file, one line of consequence (session `bc4b47cf`, 2026-11-12T07:05Z)
+
+`eaba7863`'s record PR #17 touched only `COORDINATION.md`, so that is the whole conflict: their record
+kept verbatim, this session's §15 and §16 preserved, this note added. Nothing else in the repository
+changed in this merge, and no audit was re-opened on anyone's behalf: the root build, its registers and
+all four auditor suites are byte-for-byte what PR #16 carried, green.
+
+Six sessions have now merged into `main` while this branch was open, and every conflict has been resolved
+the same way — the root build stays generated and audited, each session's own tree stays published and
+labelled, and no session's numbers are adopted into another's registers without re-derivation. That
+pattern is worth freezing before the next session starts: `S-27` (canonical layout) and `S-28`
+(canonical club key) are the two decisions that would make the sixth integration smaller than the first.
