@@ -25,7 +25,7 @@ The root register remains design-only. Independent Q51 research outputs are labe
 | Code, data, tests, CI | none | repository root |
 | GitHub Pages | already configured: legacy build, branch `main`, path `/` | GitHub Pages API |
 
-Everything on this site was therefore created in this session, in one branch, against the brief you wrote. The requirement list in the brief is now [a tracked file](requirements.html) so it stops living only in chat.
+The original repository held only a README; the current site was built across multiple documented sessions. Their scoped work, sources, verification and integration history are recorded in the [coordination log](https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md). The requirement list reconstructed from the brief is now [a tracked file](requirements.html) so it stops living only in chat.
 
 ## State of the workstreams
 

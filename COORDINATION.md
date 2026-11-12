@@ -149,7 +149,7 @@ Read it before touching anything. Claim work before you start it. Never edit fil
 | T15 | Site generator + template + styles | done | `bc4b47cf` | `tools/build_site.py`, `assets/**`, `content/index.md` | markdown → static HTML |
 | T16 | Link + source audit, `needs review` publication | done | `bc4b47cf` | `tools/check_site.py`, `data/flags.csv`, `content/flagged-for-review.md` | 16 flags |
 | T17 | GitHub Actions validation workflow | done | `bc4b47cf` | `.github/workflows/validate.yml` | build + audit on PR/push |
-| T18 | Integration: merge to `main`, publish GitHub Pages | in progress | `bc4b47cf` | `*.html`, `README.md`, `.github/**`, `assets/**` | final session only; site is flat at the repo root because Pages is configured for `main` / |
+| T18 | Integration: merge to `main`, publish GitHub Pages | done | `fd94fccd` (stale-claim takeover) | `content/index.md`, `data/flags.csv`, generated root `index.html` / `flagged-for-review.html`, build manifest, this board | Final integration follow-up completed: corrected multi-session attribution, published FL-22/FL-23, rebuilt and verified the canonical site. Existing branch/PR integration was already complete. |
 
 ---
 
@@ -636,13 +636,13 @@ Claimed 2026-11-12. The repository already contains the requested landing page, 
 
 - **Sources reviewed:** official NFL injury hub (https://www.nfl.com/injuries/), official NFL Week 10 injury report (https://www.nfl.com/news/nfl-week-10-injury-report-2026-season), official NFL Nov. 11 roundup (https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11), NFL standings (https://www.nfl.com/standings/), NFL 2026 schedule pages (https://www.nfl.com/schedules/2026/REG/), NFL Football Operations (https://operations.nfl.com/). Source verification status and gaps remain as represented in `data/sources.csv` / `data/flags.csv`; no unsupported value was promoted.
 - **Verification:** root build succeeded; root data audit 39/39; root site audit 10 pass / 0 fail (one disclosed source-registry warning); whole-repository audit 96 HTML / 36 JSON / 222 tables / 3,423 rows / 0 broken links / 0 column mismatches; Q51 36 unit tests pass and 155/155 rows sourced; portal and S53 checks pass; branch CI (`build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`) passed; Pages API reports legacy `main` `/` and the live root page fetched successfully. Full detail: `reports/fd94fccd/FINAL_AUDIT.md`.
-- **Irregularities / change requests (not marked as published review flags):** (1) `content/index.md` contains a sentence attributing the final multi-session site to “this session, in one branch”; (2) Pages API says legacy `main` `/` while `.github/workflows/pages.yml` uploads `docs/`; (3) one expected non-league-source warning on `sources.html`; (4) original T18 status is stale relative to PR #24 and successful post-merge records. These are surfaced in the audit report; no shared generated page/config was edited.
+- **Initial audit findings:** the provenance sentence, Pages API/workflow ambiguity, non-league source-registry warning, and stale T18 status were recorded in the audit report. During the later stale-T18 takeover, the provenance issue was corrected and the provenance + Pages-mode issues were added to the canonical Flagged for Review register as FL-22/FL-23. The Pages workflow itself remains unchanged pending its owner decision.
 
 | # | Requested by | Owned by | File | Request | Status |
 |---|---|---|---|---|---|
-| FD94-CR1 | fd94fccd | Shared site integration owner | `content/index.md` → generated root `index.html` | Correct the sentence implying one session created the final multi-session site; rebuild and run the existing auditors. | pending — surfaced in audit report |
-| FD94-CR2 | fd94fccd | Pages/deployment owner | `.github/workflows/pages.yml` / Pages settings | Reconcile/document why Pages API reports legacy `main` `/` while the workflow artifact path is `docs/`; verify intended tree and deployment end-to-end before changing configuration. | pending — surfaced in audit report |
-| FD94-CR3 | fd94fccd | Coordination board owner | Task board T18 | Reconcile the stale `in progress` status with the later integration/PR #24 records and successful deployment evidence. | pending — surfaced in audit report |
+| FD94-CR1 | fd94fccd | Shared site integration owner | `content/index.md` → generated root `index.html` | Correct the sentence implying one session created the final multi-session site; rebuild and run the existing auditors. | done — corrected and published; FL-22 remains open for reader review |
+| FD94-CR2 | fd94fccd | Pages/deployment owner | `.github/workflows/pages.yml` / Pages settings | Reconcile/document why Pages API reports legacy `main` `/` while the workflow artifact path is `docs/`; verify intended tree and deployment end-to-end before changing configuration. | published as FL-23; configuration owner decision remains open |
+| FD94-CR3 | fd94fccd | Coordination board owner | Task board T18 | Reconcile the stale `in progress` status with the later integration/PR #24 records and successful deployment evidence. | done — stale-claim takeover documented; T18 marked done |
 
 ### FD94 publication close-out
 
@@ -650,3 +650,15 @@ Claimed 2026-11-12. The repository already contains the requested landing page, 
 - **Post-merge checks:** `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the merge commit.
 - **Pages status:** API reports `status=built`, legacy source `main` `/`. Live root and `/docs/` URLs both fetch successfully. The difference between the legacy API source and the workflow artifact path remains an open deployment-owner review item (FD94-CR2), not assumed fixed.
 - Full results and review findings are recorded in `reports/fd94fccd/FINAL_AUDIT.md`.
+
+### T18 stale-claim takeover — session `fd94fccd` (2026-11-12T22:28Z)
+
+T18 still named `bc4b47cf` as in progress although the merged integration records and Pages deployment predate this takeover by more than 60 minutes (the latest integration landing was PR #24 at 08:10Z; the board had not been updated). Under the board's stale-claim rule, `fd94fccd` takes over the narrowly scoped final site follow-up. Scope: correct the false one-session attribution in `content/index.md`; add the independently found attribution and Pages-publication ambiguity as sourced rows to `data/flags.csv`; rebuild only the canonical root site outputs and run the full existing verification suite. No other session's datasets, models, or pages are changed. This claim is being committed and pushed before implementation.
+
+### T18 stale-claim follow-up completion — session `fd94fccd` (2026-11-12)
+
+- Corrected the canonical landing-page attribution in `content/index.md`: it now states that the site was built across documented sessions and links to this coordination log.
+- Added FL-22 and FL-23 to `data/flags.csv`, regenerated the root site, and published both on `flagged-for-review.html` with source links. FL-22 records the correction; FL-23 remains open for the Pages/deployment owner to reconcile the API's `legacy main /` source with `.github/workflows/pages.yml` uploading `docs/`.
+- Official NFL evidence streams were not changed; FL-23 is a GitHub deployment/configuration finding, and the GitHub API link is intentionally identified as non-NFL evidence.
+- Verification after the changes: `tools/verify.py` 39 passed / 0 failures; `tools/check_site.py` 10 passed / 0 failures (one disclosed warning now includes api.github.com on the new review row); `scripts/audit_all_pages.py` 96 HTML / 36 JSON / 222 tables / 3,425 rows / 0 broken links / 0 column mismatches; Q51 36 tests pass and 155/155 rows sourced; portal and S53 checks pass. Full report: `reports/fd94fccd/FINAL_AUDIT.md`.
+- Source references: GitHub Pages API https://api.github.com/repos/kanlerxz87-cyber/NFL2/pages and checked-in deployment workflow https://github.com/kanlerxz87-cyber/NFL2/blob/main/.github/workflows/pages.yml. These support only the deployment finding; NFL facts remain linked to NFL.com/operations.nfl.com in the datasets.
