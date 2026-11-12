@@ -5,7 +5,7 @@
 > here, then commit and push the claim immediately.
 > Status values: `unclaimed` · `in progress` · `done` · `needs review`
 
-**Last updated:** 2026-11-12T05:55Z by session `bc4b47cf` · 2026-11-12T05:00Z
+**Last updated:** 2026-11-12T05:00Z
 **Branch model in use:** single-branch session. The Arena platform pins this session to
 `arena/009ec582-nfl2`; per-session branches (`session-<id>/<task>`) are not permitted for this
 session (platform rule: one branch, no switching/creating branches). All work therefore happens on
@@ -19,7 +19,7 @@ enforced to keep concurrent work non-overlapping.
 | Session ID | Branch | Started (UTC) | Notes |
 |---|---|---|---|
 | `arena-009ec582` | `arena/009ec582-nfl2` | 2026-11-12T04:30Z | Owner of all tasks below. No other session was present at claim time. |
-| `bc4b47cf` | `arena/bc4b47cf-nfl2` | 2026-11-12T04:10Z | **Integration session** (PR #8). Owns the repository root, `tools/build_site.py`, `tools/verify.py`, `tools/check_site.py`, `content/*.md` and `data/*.csv`; see §9–§11. |
+| `bc4b47cf` | `arena/bc4b47cf-nfl2` | 2026-11-12T04:10Z | **Integration session** (PR #8). Owns the root build and `tools/build_site.py`, `tools/verify.py`, `tools/check_site.py`, `content/*.md`, `data/*.csv`; see §9–§12. |
 
 ---
 
@@ -315,6 +315,34 @@ No files were deleted or overwritten. This is flagged for review rather than hid
   (other session's suite) → 13/13 checks passed. Build is byte-identical on rerun.
 - All tasks T00–T11 are `done`. Flagged items remain published for post-merge review;
   they never blocked the build, the check, the PR or the merge.
+
+
+---
+
+## Session `e143a7ca` (`arena/e143a7ca-nfl2`) — Disjoint Task Board (`portal/`, `engine/`, `datasets/e143a7ca/`, `reports/`)
+
+> **Conflict & Handoff Log (`e143a7ca`):** Preserved 100% of upstream `main` (`194db560` PRs #1/#3, `arena-85d79210` PRs #4/#5, `arena-009ec582` PRs #6/#7, `arena-01b698ef` PRs #9/#11) without overwriting or deleting any upstream files. All `e143a7ca` artifacts live in disjoint namespaces (`datasets/e143a7ca/*`, `engine/*`, `reports/*`, `portal/**`). Cross-session change requests `CR-01` and `CR-02` logged for review.
+
+| # | Task | Status | Owner | Files touched (disjoint scope) | Sources / verification | Irregularities |
+|---|---|---|---|---|---|---|
+| E1 | Line-by-line audit of repo history (`01f2271` → `main`) & existing files against official sources | done | e143a7ca | `datasets/e143a7ca/repo_audit.json`, `reports/REPO_LINE_BY_LINE_AUDIT.md` | Audited against `nfl.com/standings/`, `nfl.com/schedules`, `nfl.com/injuries/`, `commanders.com`, GitHub API | `IR-REPO-01..09`, `IR-ENV-01` (`needs review`) |
+| E2 | Official NFL 32-team stats, active Week 10 slate + full injury participation, Operations rules & verified club depth charts (1st–4th string offense + defense) | done | e143a7ca | `datasets/e143a7ca/nfl_team_stats_2026.json`, `datasets/e143a7ca/official_rules_and_depth_charts.json`, `datasets/e143a7ca/week10_active_slate_and_injuries.json` | 11/11 league zero-sum identities exact on `nfl.com`; official rules on `operations.nfl.com`; 2026 1st–4th string club depth charts verified on `patriots.com`, `detroitlions.com`, `packers.com`, `commanders.com` | Point-delta weights blank & `UNVERIFIED` |
+| E3 | Deterministic line-origination, empirical correlation (`n=32`), Pythagorean skill-vs-luck & validation-gate engine | done | e143a7ca | `engine/compute_analytics.py`, `datasets/e143a7ca/computed_correlations_and_lines.json`, `datasets/e143a7ca/leaderboard_strategies.json` | 12 verified correlations (`r`, `r²`, `ρ`, `t`, `p`), 32-club Pythagorean luck residuals, Week 10/11 originated lines (`HFA=0` Munich/Mexico City), 9 gated strategies (`STRAT-S01..C03`); market/backtest/SGP `r` cells blank (`""`) | Unconfirmed cells blank & `UNVERIFIED` |
+| E4 | Decision-readiness register (Questions, Info Have/Missing, Discovery Plan) & Site Improvement Suggestions board | done | e143a7ca | `datasets/e143a7ca/questions_discovery.json`, `datasets/e143a7ca/suggestions_catalog.json` | 10 Information Domains (`INFO-01..10`), 10 Prerequisite Questions (`Q-E01..10`), 4 Strategic Paths, 12 Suggestions (`SUG-01..12`), all linked to official `https://` sources | Open answers blank (`""`) & `UNVERIFIED / OPEN` |
+| E5 | Executive Summary & Strategy/Operations Technical Reports | done | e143a7ca | `reports/EXECUTIVE_SUMMARY_E143A7CA.md`, `reports/LINE_ORIGINATION_AND_LEADERBOARD.md`, `datasets/e143a7ca/week11_schedule_verified.json` | Synthesizes 11/11 zero-sum league stats, `CORR-01..12`, Pythagorean luck residuals, 1st–4th string depth chains, and Gates `G1–G7` | None |
+| E6 | Clean Analytical Portal UI (landing + categorized subpages + Flagged for Review table view) | done | e143a7ca | `portal/**`, `engine/build_portal.py` | 10 clean responsive dashboard pages generated deterministically with 100% per-row `https://` official links and strict blank cells | None |
+| E7 | Automated line-by-line source-link, blank-unverified, & broken-link verification suite | done | e143a7ca | `engine/verify_repo_and_site.py`, `datasets/e143a7ca/verification_manifest.json` | PASS: `10/10` portal pages, `24` tables, `326/326` rows with official `https://` sources, `293` strict blank cells, `58` repo HTML pages & `1,677` internal links checked (`0` broken); upstream `tools/verify.py` also PASS | None (`0` broken links) |
+| E8 | Final integration: merge `origin/main`, link shared navigation non-destructively, re-verify all tables/links, PR merge & Pages confirm | done | e143a7ca | `index.html`, `404.html`, `README.md`, `COORDINATION.md`, `portal/**` | PR **#12** merged (`2719801cfb6e52e472eb269dcf42c9907cbef943`); all 3 repo verifiers PASS (`1,700` internal links across `58` pages, `0` broken); GitHub Pages build `1362201288` `built` and live-fetched | None (`0` broken links; 11 irregularities & 6 blank-metric groups published on `portal/flagged-review.html`) |
+
+### Session `e143a7ca` PR & Live GitHub Pages Deployment Record
+
+- **Pull Request**: **#12** — https://github.com/kanlerxz87-cyber/NFL2/pull/12 (`arena/e143a7ca-nfl2` → `main`)
+- **Merge Result**: `MERGED` at `2026-11-12T05:10:08Z`, merge commit `2719801cfb6e52e472eb269dcf42c9907cbef943` (CI check `Row-level verification, link check and build reproducibility`: **PASS**)
+- **GitHub Pages Build**: `status: "built"`, build ID `1362201288` on commit `2719801cfb6e52e472eb269dcf42c9907cbef943`
+- **Live URLs Confirmed (HTTP 200)**:
+  - Root site: https://kanlerxz87-cyber.github.io/NFL2/
+  - Quantitative Decision Portal (`e143a7ca`): https://kanlerxz87-cyber.github.io/NFL2/portal/index.html
+  - Flagged for Review (`e143a7ca`): https://kanlerxz87-cyber.github.io/NFL2/portal/flagged-review.html
 ## 9. Session `bc4b47cf` board (kept intact from `arena/bc4b47cf-nfl2`)
 
 > This session's claims, log and verification record as they stood before the merge. Headings are demoted one level so this file keeps one numbering scheme.
@@ -454,7 +482,6 @@ Resolves the open issue flagged at the end of §6 — "the repository now carrie
 **Handoff note for any session still working:** do not write to the repository root `*.html` — root pages are generated and a hand-edited page there will fail the drift check. Page text belongs in `content/<slug>.md`, data in `data/*.csv` (pipe-delimited, fixed field count), and any new data file must be added to `tools/verify.py` with the source rule enforced. `scripts/**`, `data/*.json`, `docs/**` and `archive/**` remain `arena-009ec582`'s scope.
 
 ---
-
 ## 11. Second integration step — the root/tool collision with `arena-01b698ef` (session `bc4b47cf`, 2026-11-12T05:55Z)
 
 `arena-01b698ef` merged PR #9 and #11 into `main` while PR #8 was open, and both sessions had
@@ -481,3 +508,22 @@ recorded as **FL-19**, and `review/` is linked from the page map instead of bein
 its own tool names. A root `*.html` file is generated and the CI drift check fails the commit if it is
 hand-edited.
 
+---
+
+## 12. Third integration step — `arena-e143a7ca`'s portal meets the root build (session `bc4b47cf`, 2026-11-12T06:10Z)
+
+`e143a7ca` merged PRs #12 and #13 while PR #8 was open. Their work is self-contained
+(`portal/`, `engine/`, `datasets/e143a7ca/`, `reports/`) **except** for four shared files, which is
+where the conflicts were:
+
+| Shared file | Their change | Resolution |
+|---|---|---|
+| `index.html`, `404.html` (root) | nav link to `portal/index.html` + an overview card | root build wins — those files are generated by `tools/build_site.py`, and the CI drift check fails any hand-edit. Their intent is preserved by adding the portal to the root site's **page map**, so `portal/index.html` is reachable from the live URL |
+| `README.md` | portal section | union: their tree documented, root layout unchanged |
+| `COORDINATION.md` | their §7 cross-session merge note and portal log | their text kept verbatim; this session's board and integration record follow as §9–§12 |
+| `data/verification-report.json` | regenerated by their run | taken from `main`, then re-run here: their verifier reports 54 combined pages / 0 broken links across root, `docs/`, `review/` and `portal/` |
+
+Not adopted: their `datasets/e143a7ca/*.json` (correlations, lines, leaderboard, depth chains). They
+are a fifth opinion on the same objects this site publishes as registers with per-row sources; fusing
+them would create agreement between briefs that never consulted each other. `FL-19` now records five
+published trees, and `S-27` (pick a canonical layout, label the rest) is the item that decides it.

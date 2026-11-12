@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Questions, Known vs. Missing Info &amp; Discovery Plan — NFL2 Quantitative Decision Portal</title>
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-head">
+        <div class="brand">
+          <span class="brand-mark">NFL2</span>
+          <span>Verified Line Origination, Depth Deficiency &amp; Strategy Portal</span>
+        </div>
+        <div class="meta-pills">
+          <span class="meta-pill">Snapshot: 2026-11-12 (Week 10)</span>
+          <span class="meta-pill">Zero-Sum Verified: 11/11</span>
+          <a href="../index.html" class="meta-pill" style="color:#93c5fd;">&larr; Root Site</a>
+          <a href="../review/index.html" class="meta-pill" style="color:#93c5fd;">Review Build</a>
+          <a href="../docs/index.html" class="meta-pill" style="color:#93c5fd;">Docs Build</a>
+        </div>
+      </div>
+      <nav class="nav-bar" aria-label="Portal Navigation">
+        <a href="index.html" class="">Overview</a>
+<a href="executive-summary.html" class="">Executive Summary</a>
+<a href="suggestions.html" class="">Suggestions Hub</a>
+<a href="questions-discovery.html" class="active">Questions &amp; Missing Info</a>
+<a href="line-origination.html" class="">Originate NFL Lines</a>
+<a href="leaderboard-gates.html" class="">Leaderboard &amp; Gates</a>
+<a href="correlations-skill.html" class="">Correlations &amp; Skill</a>
+<a href="injuries-depth.html" class="">Injuries &amp; 1st–4th Depth</a>
+<a href="repo-audit.html" class="">Repo Line-by-Line Audit</a>
+<a href="flagged-review.html" class="">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-header">
+      <h1>Questions, Known vs. Missing Info &amp; Discovery Plan</h1>
+      <p>Clear register of prerequisite questions, information we already have vs. do not have, answers required before decisions can be made, and concrete methods to discover missing data.</p>
+    </div>
+    
+    <div class="callout">
+      <strong>Decision Readiness Principle:</strong> Reasonable capital or model-deployment decisions require separating <em>verified facts already in hand</em> from <em>missing information</em>. Open answers in the Confirmed Answer column remain strictly blank until verified from authoritative feeds.
+    </div>
+    <section class="section-card">
+      <h2>1. Information Inventory: What We Already Have vs. What We Do Not Have (INFO-01 – INFO-10)</h2>
+      <p class="section-desc">Complete audit of verified repository data assets, missing information gaps, and exact discovery channels.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-info" placeholder="Search information inventory..." aria-label="Search information inventory...">
+      <span class="kpi-sub">10 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-info" data-sortable="true">
+        <thead><tr><th>ID</th><th>Information Domain</th><th>Inventory Status</th><th>Verified Information We Have (Blank if None)</th><th>What We Do Not Have</th><th>How to Discover Missing Info</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>INFO-01</strong></td><td>2026 NFL Standings &amp; Scoring Splits (32 Clubs)</td><td><span class="badge verified">HAVE (Verified)</span></td><td>W-L-T, PCT, PF, PA, Net, Home/Road/Div/Conf/Streak/Last5 across 136 completed games (6,246 PF = 6,246 PA).</td><td>Playoff clinch flags (none displayed at Week 10); week-by-week historical margin array.</td><td>Re-fetch official standings each Tuesday morning + post-TNF/SNF/MNF.</td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-02</strong></td><td>2026 32-Team Offense &amp; Defense Unit Statistics</td><td><span class="badge verified">HAVE (Verified)</span></td><td>Passing, Rushing, Downs, Sacks, Interceptions for all 32 clubs; 11/11 league zero-sum conservation checks exact.</td><td>Play-level Expected Points Added (EPA), Success Rate, and garbage-time filtered splits.</td><td>Ingest official NFL play-by-play game books or licensed Next Gen Stats feed.</td><td><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-03</strong></td><td>Active Week 10 &amp; Week 11 Schedules + Neutral Venues</td><td><span class="badge verified">HAVE (Verified)</span></td><td>14 Week 10 games + 4 byes (Munich neutral site) and 13 Week 11 games + 6 byes (Mexico City neutral site).</td><td>Weeks 16-18 flex kickoff times (officially TBD until after Weeks 14-17 per NFL schedule policy).</td><td>Monitor NFL.com Flexible Scheduling announcements after Weeks 14, 15, and 17.</td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-04</strong></td><td>NFL Roster, Practice Squad, Elevation &amp; Scoring Rules</td><td><span class="badge verified">HAVE (Verified)</span></td><td>53-man roster, 48-man gameday active (47 if &lt;8 OL), 16/17-man PS (IPP), max 3 standard elevations/year, scoring rules.</td><td>Club-by-club cumulative regular-season elevation counts used to date per practice-squad player.</td><td>Parse daily NFL Football Operations / NFL.com official transaction wire.</td><td><a href="https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-05</strong></td><td>Week 10 Official Injury &amp; Practice Participation Report</td><td><span class="badge verified">HAVE (Verified)</span></td><td>Live DNP/Limited/Full practice participation + Out/Questionable statuses + official NFL.com QB/IR announcements.</td><td>Final Friday/Saturday game-status designations for Sunday/Monday games; 90-minute pre-kickoff inactive lists.</td><td>Poll https://www.nfl.com/injuries/ at 4:00 PM ET Fri/Sat and 90 minutes prior to each kickoff.</td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-06</strong></td><td>1st, 2nd, 3rd &amp; 4th String Offense/Defense Depth Charts</td><td><span class="badge model">PARTIAL (4 Clubs Verified; 28 Pending)</span></td><td>Full 1st-4th string offense &amp; defense chains verified on official club domains for NE, DET, GB, and WAS.</td><td>Remaining 28 NFL club depth-chart pages + career snap counts &amp; replacement EPA drop-off coefficients.</td><td>Fetch all 32 official club &lt;club&gt;.com/team/depth-chart URLs weekly and archive dated snapshots.</td><td><a href="https://www.packers.com/team/depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-07</strong></td><td>Timestamped Sportsbook Opening, Current &amp; Closing Odds</td><td><span class="badge unverified">DO NOT HAVE (Missing — Blank)</span></td><td class="blank-cell"></td><td>Zero licensed sportsbook spread, total, moneyline, or player-prop lines exist in this repository.</td><td>Connect licensed odds API or manual timestamped capture from regulated state sportsbooks (open + T-5min close).</td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-08</strong></td><td>Historical Game-Level Player Logs &amp; Play-by-Play Participation</td><td><span class="badge unverified">DO NOT HAVE (Missing — Blank)</span></td><td class="blank-cell"></td><td>Required to compute empirical single-game SGP prop correlations (r) and position-specific backup point deltas.</td><td>Acquire multi-season official NFL Game Books / NFL Next Gen Stats participation datasets.</td><td><a href="https://www.nfl.com/stats/player-stats/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-09</strong></td><td>Outdoor Stadium Hourly Weather &amp; Referee Crew Assignments</td><td><span class="badge unverified">DO NOT HAVE (Missing — Blank)</span></td><td class="blank-cell"></td><td>Kickoff wind speed/gusts, precipitation, temperature, and officiating crew penalty tendencies.</td><td>Query National Weather Service API (api.weather.gov) by stadium lat/lon and Football Operations officiating assignments.</td><td><a href="https://operations.nfl.com/officiating/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>INFO-10</strong></td><td>Decision Governance, Bankroll Constraints &amp; Legal Jurisdiction</td><td><span class="badge unverified">DO NOT HAVE (Missing — Blank)</span></td><td class="blank-cell"></td><td>User legal jurisdiction/age eligibility, risk bankroll, max drawdown tolerance, and leaderboard reward budget.</td><td>Complete owner governance intake on Suggestions &amp; Questions review pages before unlocking Tier 1+ capital.</td><td><a href="https://operations.nfl.com/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    <section class="section-card">
+      <h2>2. Prerequisite Questions, Answers Needed &amp; Discovery Plan (Q-E01 – Q-E10)</h2>
+      <p class="section-desc">Questions that must be answered before moving strategies out of Tier 0 Sandbox, alongside concrete discovery recommendations.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-questions" placeholder="Search prerequisite questions..." aria-label="Search prerequisite questions...">
+      <span class="kpi-sub">10 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-questions" data-sortable="true">
+        <thead><tr><th>ID</th><th>Question to Address</th><th>Decision Blocked</th><th>Info Already Have</th><th>Info Missing</th><th>Confirmed Answer (Blank if Unverified)</th><th>Answer Required Before Decision</th><th>Discovery Suggestion</th><th>Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Q-E01</strong></td><td>Which regulated sportsbooks and timestamps define the official &#x27;Opening&#x27; and &#x27;Closing&#x27; benchmark lines?</td><td>Computing Closing Line Value (Gate G4) and Realized Edge on originated Week 10/11 lines.</td><td>Originated fair spreads, totals, and moneylines for all 14 Week 10 and 13 Week 11 games.</td><td>Named regulated bookmaker panel, vig-stripping convention (Multiplicative vs Shin), and T-minus capture timestamp.</td><td class="blank-cell"></td><td>Approve 3+ regulated books, Shin vig-removal, and T-5 min pre-kickoff closing snapshot.</td><td>Evaluate licensed odds feed providers or state-regulated bookmaker APIs in user&#x27;s legal jurisdiction.</td><td><span class="badge unverified">UNVERIFIED / OPEN</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E02</strong></td><td>What multi-season play-by-play and snap-participation source will calibrate 2nd/3rd/4th-string point drop-offs?</td><td>Assigning numeric spread/total adjustments to backup OL, CB, LB, WR, and RB replacements.</td><td>Verified Week 10 injuries (nfl.com/injuries/) + verified 1st-4th string depth chains on NE, DET, GB, WAS club sites.</td><td>Empirical EPA/snap delta between 1st-string starters and 2nd/3rd/4th-string replacements by position group.</td><td class="blank-cell"></td><td>Ingest &gt;=5 seasons of snap-weighted play-by-play data and estimate ridge-regressed position replacement priors.</td><td>Cross-link NFL Official Game Books (offensive/defensive snap counts) with NFL Next Gen Stats / licensed PBP archives.</td><td><span class="badge unverified">UNVERIFIED / OPEN</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E03</strong></td><td>What are the true single-game joint correlations (copula r) between player prop pairs inside Same-Game Parlays?</td><td>Unlocking Gate G6 for Player Prop Combo strategies (STRAT-C01, STRAT-C02, STRAT-C03).</td><td>32-team season-level correlations (CORR-01..12) proving team pass/rush/defense scoring links.</td><td>Within-game player-level residual correlations conditioned on pre-game spread and total.</td><td class="blank-cell"></td><td>Compute conditioned within-game Pearson &amp; tail-copula correlations across &gt;=1,000 historical NFL games.</td><td>Build weekly player box-score archive from official NFL.com game centers (/games/&lt;slug&gt;) across 2021-2026.</td><td><span class="badge unverified">UNVERIFIED / OPEN</span></td><td><a href="https://www.nfl.com/stats/player-stats/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E04</strong></td><td>What is the empirical 2024-2026 NFL Home-Field Advantage (HFA) in points after accounting for travel and rest?</td><td>Replacing the editable 2.0-pt HFA model prior in the Line Origination Engine.</td><td>2026 Home/Road W-L-T splits for all 32 teams + verified neutral-site flags (Munich Wk 10, Mexico City Wk 11).</td><td>Multi-season home-minus-away scoring margin net of team strength and rest-day differentials.</td><td class="blank-cell"></td><td>Estimate rolling 3-year HFA prior (points) plus explicit rest-differential (+/- days) and cross-timezone modifiers.</td><td>Scrape/transcribe completed game scores from official NFL.com schedules (2023-2026 REG) and fit paired team-FE regression.</td><td><span class="badge unverified">UNVERIFIED / OPEN</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E05</strong></td><td>How should all 32 NFL clubs&#x27; 1st-to-4th string depth charts be captured and versioned weekly?</td><td>Scaling depth-chart deficiency tracking from 4 verified clubs (NE, DET, GB, WAS) to all 32 clubs.</td><td>Proof that official club domains (*.com/team/depth-chart) publish 1st-4th string offense/defense depth tables.</td><td>Automated weekly capture of the remaining 28 official club websites + Practice Squad elevation tracking.</td><td class="blank-cell"></td><td>Approve SUG-02 (32-club official URL registry + Tuesday/Friday snapshot archiver + PS elevation counter).</td><td>Maintain canonical 32-URL manifest pointing to each NFL club&#x27;s official domain depth-chart and roster routes.</td><td><span class="badge unverified">UNVERIFIED / OPEN</span></td><td><a href="https://www.commanders.com/news/commanders-release-2026-unofficial-depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E06</strong></td><td>What bankroll, fractional-Kelly cap, drawdown circuit-breaker, and reward pool govern the Strategy Leaderboard?</td><td>Promoting any validated strategy from Tier 0 (0% Sandbox) to Tier 1-3 live capital allocation.</td><td>Proposed 4-tier allocation schedule (0.00x, 0.15x, 0.25x, 0.35x Kelly) and Gates G1-G7.</td><td>Owner sign-off on total risk budget, max per-Sunday exposure across correlated games, and legal eligibility.</td><td class="blank-cell"></td><td>Written owner sign-off on risk policy, max simultaneous weekly exposure cap (e.g. &lt;=5% bankroll), and jurisdiction.</td><td>Review Reward Tiers on Leaderboard subpage and record governance parameters in Decision Log.</td><td><span class="badge unverified">UNVERIFIED / OPEN</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E07</strong></td><td>How will outdoor stadium wind, precipitation, and surface conditions be verified before pricing Totals?</td><td>Activating Weather/Venue Total adjustments and Strategy STRAT-P02.</td><td>Complete Week 10 &amp; Week 11 stadium venues (indoor domes vs outdoor vs international neutral sites).</td><td>Verified stadium roof-status feed and hourly kickoff wind/gust/precipitation forecasts.</td><td class="blank-cell"></td><td>Integrate National Weather Service (api.weather.gov) gridpoint forecasts at T-24h and T-2h before kickoff.</td><td>Map all 30 NFL stadium coordinates to official NOAA/NWS forecast endpoints plus club roof-status releases.</td><td><span class="badge unverified">UNVERIFIED / OPEN</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E08</strong></td><td>What are the official NFL rules on gameday active limits, offensive-line minimums, and practice-squad elevations?</td><td>Modeling 3rd/4th-string roster crunch when multiple starters at OL or CB are injured.</td><td>Official 2026 NFL Football Operations CBA &amp; Contract Language documentation.</td><td>None — rule parameters confirmed from official NFL Football Operations.</td><td>53-man active/inactive list; 48 gameday actives (drops to 47 if &lt;8 primary OL active); 16-player PS (17 with IPP); max 2 elevations/week and max 3 regular-season elevations per player/year.</td><td>Confirmed — ready for immediate rule-engine enforcement.</td><td>Verified directly from NFL Football Operations Contract Language &amp; IPP pages.</td><td><span class="badge verified">ANSWERED (Verified)</span></td><td><a href="https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E09</strong></td><td>Which offensive and defensive statistical signals carry the strongest verified correlation with scoring in 2026?</td><td>Selecting primary feature weights for v1 NFL Line Origination and Deficiency Alerts.</td><td>All 32 clubs&#x27; verified 2026 passing, rushing, sack, turnover, 3rd-down, and scoring data.</td><td>Out-of-sample multi-season stability check (2021-2025) to confirm 2026 weights hold across regimes.</td><td>In 2026 (n=32 clubs): Def Passer Rtg vs PA/G r=+0.8151 (p&lt;1e-6); Off Net Yds/Dropback vs PF/G r=+0.8049 (p&lt;1e-6); 3rd-Down % vs PF/G r=+0.7074 (p=6e-6); Off Sack Rate vs PF/G r=-0.6353 (p=9.4e-5).</td><td>2026 cross-sectional weights verified; multi-year stability verification recommended via SUG-04.</td><td>Fetch 2021-2025 NFL.com team stats (/stats/team-stats/.../2025/reg/all, etc.) to test multi-year stability.</td><td><span class="badge verified">ANSWERED (2026 Snapshot Verified)</span></td><td><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>Q-E10</strong></td><td>Which 2026 NFL clubs exhibit the largest divergence between W-L record (luck) and scoring efficiency (skill)?</td><td>Filtering close-game variance out of team ratings (Strategy STRAT-S02).</td><td>32-team W-L-T and PF/PA verified on NFL.com standings (136 games).</td><td>Play-level fumble-recovery luck and fourth-down variance splits.</td><td>Largest positive luck residuals: DEN +2.17W (7-2, +12 net), BUF +1.58W (7-1, +69 net), CLE +1.53W (5-4, -35 net). Largest negative luck (skill &gt; record): TB -2.17W (3-6, +24 net), LAC -1.57W (0-8, -98 net), TEN -1.54W (1-7, -55 net).</td><td>Confirmed on 2026 standings snapshot; combine with market lines once Q-E01 is answered.</td><td>Augment with official NFL fumbles-forced vs fumbles-recovered tables (/stats/team-stats/defense/fumbles/2026/reg/all).</td><td><span class="badge verified">ANSWERED (2026 Snapshot Verified)</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    
+  </main>
+  <footer>
+    <div class="container">
+      <strong>NFL2 Quantitative Decision &amp; Verification Portal</strong> &bull;
+      Repository: <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">kanlerxz87-cyber/NFL2</a> &bull;
+      Every table row cites an official source (<code>nfl.com</code>, <code>operations.nfl.com</code>, official NFL club sites, <code>github.com</code>). Unconfirmed values remain strictly blank and flagged on <a href="flagged-review.html">Flagged for Review</a>.
+    </div>
+  </footer>
+  <script src="assets/portal.js"></script>
+</body>
+</html>

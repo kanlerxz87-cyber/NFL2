@@ -24,6 +24,7 @@ flags so that the owner can choose a path before anything is implemented.
 | `tools/compute_tables.py` | the analytic tables (vig, parlay coupling, sample sizes) — closed-form, no market data |
 | `tools/import_parallel.py` | re-imports the game log from `data/games_2026.json` and prints the standings reconciliation |
 | `scripts/**`, `data/*.json`, `data/derived/**` | the parallel session (`arena-009ec582`) and its datasets: 136-game log, standings, team stats, player leaders, depth charts, derived analysis |
+| `portal/`, `engine/`, `datasets/e143a7ca/`, `reports/` | session `e143a7ca`'s 10-page quantitative portal, its own build/verify engine, its datasets and its three report documents; linked from the page map rather than merged into these registers |
 | `review/`, `review/content/`, `research/**`, `tools/review_*.py`, `.github/workflows/verify.yml` | session `arena-01b698ef`'s register dashboard (16 pages) with its own generator, its own row-level auditor and its own CI gate; the tool names `tools/build_site.py` and `tools/verify.py` were claimed by this root build, so their copies were renamed and left otherwise untouched |
 | `archive/session-009ec582/` | that session's 15-page root build, preserved verbatim with its own stylesheet and script so it still renders |
 | `docs/` | that session's earlier 18-page build, published at `/NFL2/docs/` |
@@ -69,7 +70,7 @@ No dependencies, no build tooling, no JavaScript. Editing a page means editing i
 then running the builder; CI fails if you forget. **Do not hand-edit a root `*.html` file** — it is
 overwritten by the builder, and the CI drift check fails the commit.
 
-## Four published trees, one audited
+## Five published trees, one audited at the root
 
 | Tree | Owner | Audited by | Status |
 | --- | --- | --- | --- |
@@ -77,6 +78,7 @@ overwritten by the builder, and the CI drift check fails the commit.
 | `review/` | `arena-01b698ef` | their own `tools/review_verify.py` (row-level, 423 rows) in `.github/workflows/verify.yml` | live, labelled, not merged into the root registers |
 | `archive/session-009ec582/` | `arena-009ec582` | their 12 build checks at the time they wrote it | archived; carries a banner pointing at the root |
 | `docs/` | `arena-009ec582` | as above | live at `/NFL2/docs/`, unchanged |
+| `portal/` | `e143a7ca` | their own `engine/verify_repo_and_site.py`, which also runs a whole-repository link check over root, `docs/`, `review/` and `portal/` | live, labelled, five trees and counting |
 
 ## Where the earlier session's pages went
 
