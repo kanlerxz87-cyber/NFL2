@@ -89,11 +89,28 @@ charts, so each was re-fetched from the club that publishes it and compared posi
 | GB | [packers.com/team/depth-chart](https://www.packers.com/team/depth-chart) (labelled "Unofficial, Nov. 10, 2026") | **22 of 22 groups exact**, including the three-deep LG (Banks / Glover / Jennings) and LB (Franklin / Hopper / Welch) rows that produce two of the three third-string cases |
 | NE | [patriots.com/team/depth-chart](https://www.patriots.com/team/depth-chart) | **11 offensive groups exact**, including the four-deep RB (Stevenson / Henderson / Kiner / Larison) that produces the third-string case |
 | DET | [detroitlions.com/team/depth-chart](https://www.detroitlions.com/team/depth-chart) | **21 of 21 groups exact** |
+| KC | [chiefs.com/team/depth-chart](https://www.chiefs.com/team/depth-chart) | **19 of 22 groups exact.** Three gaps, all listed below |
 
 Every chart is labelled **unofficial** by the club that publishes it — Green Bay stamps a date on it, New
 England states it reflects the opinions of Patriots.com writers rather than the organisation. That caveat is
 published next to the table rather than buried, because a chart can lag a coaching decision and nothing in
 this dataset would reveal that.
+
+**The three KC gaps, stated rather than smoothed over.** The Kansas City transcription is materially
+complete but not perfect, and the differences are of two kinds:
+
+1. **The LT starter is deliberately unasserted.** The club's chart names Kahlil Benson there; the dataset
+   records only Diego Pounds (2nd string) and states why in its own correction note. That is a defensible
+   conservative call about a name collision, but it has a side effect this session noticed: any code that
+   treats the first name in a group as the starter will read **Pounds as the KC left-tackle starter**, which
+   he is not. No published cascade is affected, because Pounds is not on the practice report and the group
+   therefore produces no row — but it is a latent trap for the next consumer of `depth_charts.json`.
+2. **Two third-string entries were not transcribed**: Josh Downs at WR and Marcus Harris at DT. Neither
+   changes a published row, because no injury reaches that deep on those groups this week, but both would
+   matter in a week that did.
+
+The honest reading of all four charts: the transcription is reliable at the top of each group, which is
+where the cascades come from, and slightly incomplete at the third and fourth string.
 
 **A defect this re-check found in our own analysis.** The first version of the depth-reach table silently
 dropped any position group where *no* player at any depth was available, because the loop only recorded a
