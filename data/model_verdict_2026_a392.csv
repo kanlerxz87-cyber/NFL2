@@ -1,0 +1,15 @@
+metric|value|method|read|source
+games used|136|official 2026 game log, weeks 1-9|one season; nothing here clears gate G-08 (n>=400)|S-GAMES26
+walk-forward weeks evaluated|6|weeks 4-9, each fitted on prior weeks only|training windows are 48, 62, 78, 92, 106, 121 games|S-GAMES26
+spread MAE - our model (pts)|9.278|mean absolute error vs the final margin|not published|S-GAMES26
+spread MAE - do-nothing baseline|10.455|league-average home margin, no team information|not published|S-GAMES26
+spread MAE - last-week persistence|9.994|half of last week's margin|not published|S-GAMES26
+spread MAE - archive price|8.983|the community archive's 2026 line vs the official result|the number a real market beats us by|S-GAMES26
+total MAE - our model / baseline / archive|11.165 / 11.078 / 10.318|mean absolute error vs the final combined score|not published|S-GAMES26
+mean gap between our line and the archive line (pts)|2.92|how far our origination sits from the archived price, averaged over games where both exist|a disagreement is not an edge; it is a hypothesis that has to survive the gates|S-GAMES26
+paired spread error - our model minus the archive price, same 88 games|+0.295 pts (95% CI -0.409 to 1.011)|bootstrap on the mean absolute-error difference, computed only on games where both exist, so the two predictors are never scored on different slates|positive means our line is worse by that many points on average; the interval is what decides whether that gap is a real deficit or one season of noise - the interval spans zero|S-GAMES26
+paired total error - our model minus the archive price, same 88 games|+0.847 pts (95% CI 0.153 to 1.580)|same construction, totals|a positive value with an interval above zero means our totals are worse than the archived price and the naive league-mean baseline at the same time - the pace half of this model earns nothing|S-GAMES26
+games where our line beat the do-nothing baseline|54 of 88 (61.4%)|per-game absolute-error comparison against the league-average home margin|accuracy on a majority of games is not the target - beating a benchmark by enough to clear the vig is|S-GAMES26
+home cover rate on our line / on the archive line|39.8% / 36.4%|share of games where the home team beat the line by more than zero|both should sit near 50%|S-GAMES26
+ridge penalty lambda|5.0|chosen by walk-forward spread MAE over 5.0, 20.0, 60.0|selection is done on the evaluation window, which is a mild optimism; the honest read is that the three lambdas differ by less than the sampling noise: 9.278, 9.824, 10.205|S-GAMES26
+official log vs archive transcription - scores that agree|136 of 136 (0 rows the archive has no score for)|row-by-row score comparison, two independent transcriptions of the same games|the disagreement count is 0 - a non-zero value here would have stopped the import|S-GAMES26

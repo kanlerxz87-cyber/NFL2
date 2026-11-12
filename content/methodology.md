@@ -39,10 +39,10 @@
 
 ## What verification did *not* cover — read this before reusing the data
 
-- **Point-in-time completeness.** The injury hub was fetched once. It is a page that changes three times in a week; this snapshot is a faithful copy of one moment, not the week's history (FL-09).
+- **Point-in-time completeness.** The injury hub was fetched twice on 12 November, at 04:45Z and again at 22:35Z, and the two reads differ by 25 rows and 15 practice codes — which is the finding, not an error: the page is a rolling document and every published row is labelled with the moment it was true. There is still no stored history, so nothing on this site is an availability *time series* (FL-09, FL-27, Q-36).
 - **Roster membership.** We spot-checked one club's roster page, one chunk deep (FL-14). We did not verify all 32 rosters, so "player X is on team Y" is only as good as the hub's own table.
 - **Headline-only rows.** Three depth rows rest on an article headline without the body fetched (FL-13). They are marked and they feed no number.
-- **No price data.** Nothing on this site is a market statement of any kind (FL-10).
+- **No price data we can stand behind as a market statement.** The repository does hold market prices — `pipeline/data/raw/` carries 20,490 rows of archived lines and 163 priced 2026 rows in `games.csv` — which is why FL-10 as originally written ("no price data of any kind") is recorded as wrong-scope and corrected by FL-29. What is still true is the operative part: no *vintage-documented* closing price exists, so no page on this site may be read as a market statement and close-vs-open cannot be resolved from the upstream schema (FL-30, Q-35, [Price archive](price-archive.html)).
 - **Egress limits.** The sandbox blocks outbound access to the league from CI, so refresh is a deliberate operation here, not a background service (FL-11).
 - **Imported files we did not re-derive.** The parallel session's team-stat, player-leader and depth-chart JSON is in the repository and is *not* published as this site's data, because their column mapping (proved by conservation identities on their side) was not re-run here; only the game log survived that bar (FL-18, Q-29).
 
@@ -134,3 +134,21 @@ with `claims 28 clubs as coverage; the file holds 24 of 28`. Both revert to `41 
 **What this does *not* establish.** A one-off manual re-fetch is not a substitute for scheduled ingest
 (FL-11) and it cannot establish point-in-time completeness (FL-09). It establishes that on 12 November 2026
 the standings and fixtures matched the league exactly, and that the injury snapshot's coverage claim did not.
+
+### How a table is produced, and how to break one
+
+Every table on the site is generated, never hand-written: a page in `content/*.md` holds a directive naming the file, the columns and the row source, and the builder renders it.
+
+```
+{{csv data/<file>.csv;;cols=<key>:<Label>[:<value-map>],...;;source=<S-id>|source_col=<key>
+        ;;filter=<key>=<substring>|<key>=!<substring>|<key>=*;;group=<key>;;show_source=0
+        ;;link_player=1;;caption=<one sentence a reader needs>}}
+```
+
+Three rules worth knowing before editing a page, each of them learned from a defect that reached the published site:
+
+| Rule | Why it exists |
+| --- | --- |
+| A filter clause is `key=value`, never `key:value`; `value` may be prefixed with `!` for "does not contain", or be `*` for "the cell is filled in" | A colon-spelled clause used to be dropped without complaint, which silently unfiltered three tables at once, including the injury-designations table and both suggestion tiers (FL-33). The builder now raises `BuildError`, and `verify.py` recomputes every filter clause and fails if it matches nothing or everything |
+| Every row must resolve to a source | `source=S-id` (one source for the table) or `source_col=<key>` (a per-row source id or URL). A table that declares neither fails the build — there is no configuration that publishes an uncited row |
+| A gap is an empty cell, never a word | The builder renders empty cells as `not published`; `0` means zero and `n/a` means "does not apply". Writing a filler into the CSV is the one edit that cannot be caught downstream, which is why `verify.py` treats it as fabrication |

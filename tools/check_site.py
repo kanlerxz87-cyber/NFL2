@@ -14,6 +14,25 @@ NAV_PAGES = None
 FAIL, WARN, PASS = [], [], []
 
 
+def site_trees_registered():
+    """A parallel session publishes a tree at the repo root; if the canonical index does not list it,
+    a reader cannot find it and nobody can tell whether it is current. So the map is checked against
+    the filesystem instead of against someone's memory."""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import build_site as bs
+    listed = {("." if t == "." else t) for t, *_ in bs.SITE_TREES}
+    on_disk = set()
+    for f in glob.glob(os.path.join(ROOT, "*", "*.html")):
+        on_disk.add(os.path.basename(os.path.dirname(f)))
+    for f in glob.glob(os.path.join(ROOT, "archive", "*", "*.html")):
+        on_disk.add("archive/" + os.path.basename(os.path.dirname(f)))
+    missing = sorted(on_disk - listed)
+    if missing:
+        bad("published trees absent from the repository map: %s" % missing)
+    else:
+        ok("repository map lists every published tree on disk (%d trees)" % len(listed))
+
+
 def pages_list():
     sys.path.insert(0, os.path.join(ROOT, "tools"))
     import build_site
@@ -71,7 +90,12 @@ def main():
         if leaks:
             bad("%s: %d markdown link(s) never rendered into an <a> tag: %s"
                 % (name, len(leaks), leaks[:3]))
-        for m in re.finditer(r"\{\{[^}]{0,120}\}\}", text):
+        # Any "{{" left in the page is an unexpanded directive. The pattern is deliberately
+        # permissive: an EARLIER audit required a closing "}}", which meant a directive whose
+        # terminator had been lost in an edit rendered as raw template text on the live page and
+        # still passed. Code samples are stripped so documenting the syntax is not a failure.
+        plain = re.sub(r"<code>.*?</code>", "", visible, flags=re.S)
+        for m in re.finditer(r"\{\{[^\n]{0,160}", plain):
             unexpanded.append("%s: %s" % (name, m.group(0)[:60]))
         for m in re.finditer(r'(?:href|src)="([^"]+)"', text):
             u = m.group(1)
@@ -131,6 +155,7 @@ def main():
         ok("all measured-data pages carry official source links")
     if nonofficial:
         warn("links to non-league hosts (fine on registry/research pages, not on data pages): %s" % sorted(nonofficial)[:8])
+    site_trees_registered()
     manifest = os.path.join(ROOT, "data", "build_manifest.json")
     if os.path.exists(manifest):
         json.load(open(manifest))

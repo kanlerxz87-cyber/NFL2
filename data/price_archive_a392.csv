@@ -1,0 +1,6 @@
+asset|rows_2026|seasons|what_it_proves|what_it_does_not_prove|official|source
+pipeline/data/raw/games.csv - spread_line, total_line, away/home moneyline and spread odds|272|2006-2026 (documented coverage)|a price existed for 136 completed 2026 games and 27 scheduled ones|the vintage. The upstream schema (nfldata DATASETS.md, last updated 2020-05-13) defines spread_line and total_line but never says whether they are opening or closing, and does not document the moneyline/odds columns at all|no - community archive, non-official by rule|S-REPO
+pipeline/data/raw/closing_lines.csv|0|2006-2018|20490 rows across 3415 games (MONEYLINE/SPREAD/TOTAL, both sides)|anything about 2026: the file stops before the current season, so the file the pipeline calls 'closing lines' cannot price this slate|no - community archive, non-official by rule|S-REPO
+pipeline/data/raw/initial_lines.csv|0|documented in file|1088 rows|single-season file (2021) keyed by sportsbook; one book, not a consensus|no - community archive, non-official by rule|S-REPO
+pipeline/data/raw/sc_lines.csv|0|documented in file|4092 rows|sportsbook-consensus file for 2013; no 2026 rows|no - community archive, non-official by rule|S-REPO
+league-official prices (nfl.com, operations.nfl.com)|0|none|nothing - the league publishes no betting lines|n/a|yes - and empty|S-OPS

@@ -30,7 +30,7 @@ reader can tell what was inherited from what was added.
 | Verifiers | eight suites on disk, all green before this session changed anything | `tools/verify.py`, `tools/check_site.py`, `tools/review_verify.py`, `tests/q51`, `scripts/audit_all_pages.py`, `scripts/verify_s53126614.py`, `engine/verify_repo_and_site.py`, `scripts/verify_q51.py` |
 | GitHub Pages | configured: legacy build, branch `main`, path `/` | GitHub Pages API |
 
-The original repository held only a README; the current site was built across multiple documented sessions. Their scoped work, sources, verification and integration history are recorded in the [coordination log](https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md). The requirement list reconstructed from the brief is now [a tracked file](requirements.html) so it stops living only in chat.
+The original repository held only a README; the current site was built across multiple documented sessions. Their scoped work, sources, verification and integration history are recorded in the [coordination log](https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md). The requirement list reconstructed from the brief is now [a tracked file](requirements.html) so it stops living only in chat. The table above describes the repository as the *first* session found it; the map below says which of the ten published trees holds what, and it is generated from the filesystem so it cannot drift.
 
 The eight verifiers all pass, but they are **self-referential**: they prove the published HTML matches
 `data/*.csv`. They do not prove `data/*.csv` still matches the league. This session therefore re-fetched
@@ -42,10 +42,11 @@ data — the counts, the club coverage and one flag — and those are corrected 
 
 | Workstream | State | Evidence in repo | Blocking |
 | --- | --- | --- | --- |
-| Injury and availability collection | running — 254 rows, 24 of the 28 clubs playing Week 10 | `data/injuries_2026_wk10.csv` | one filing per week, not three (FL-09) |
+| Injury and availability collection | running — 254 rows snapshotted at 04:45Z, **re-read at 22:35Z: 279 rows across 26 clubs** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/injury_delta_a392.csv` | no stored history, so no availability signal can be backtested (FL-27, Q-36) |
 | Depth, IR and roster events | running — 227 rows | `data/depth_changes_2026_wk10.csv` | no official depth chart exists (FL-06) |
 | Standings and schedule | running — 32 + 14 rows, reconciled | `data/standings_2026.csv`, `data/schedule_2026_wk10.csv` | seven official columns left out (FL-07) |
-| Line origination | specified only | `content/line-origination.md` | no price data of any kind (FL-10) |
+| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; verified 1st-to-4th string chains for the 2 clubs whose charts were transcribed | [Depth Deficiencies](deficiencies.html), `data/deficiency_by_club_a392.csv` | 30 club charts not transcribed (Q-37, S-39) |
+| Line origination | **computed** — walk-forward ridge ratings on 136 official games: spread MAE 9.278 vs a 10.455 do-nothing baseline, paired +0.295 pts against the archived price | [Fair-Line Lab](model-lab.html), `data/model_backtest_2026_a392.csv` | totals are worse than a league mean and are published as a diagnostic, not a line (S-37, FL-32) |
 | Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
 | Strategy registry | 14 entries, none tracked | `data/strategies.csv` | pre-registration + tracking ledger |
 | Validation gates | 14 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |
@@ -61,6 +62,10 @@ Four items sit in front of almost everything else. They are decisions and access
 2. **Player-level entitlement.** Snaps, routes and targets are what turn "a starter is out" into "the replacement costs 2.1 yards per carry". This is [Q-02](questions.html).
 3. **A defensible depth answer.** The league publishes no depth chart, so "2nd/3rd/4th string replacing a starter" must be reconstructed from roster status, participation, designations and actual playing time ([S-06](suggestions.html), [FL-06](flagged-for-review.html)).
 4. **Point-in-time storage.** Three filings a week and a dated event log, or the availability signals cannot be built at all ([FL-09](flagged-for-review.html)).
+
+## Repository map
+
+{{site_map}}
 
 ## Page map
 
@@ -85,6 +90,7 @@ Four items sit in front of almost everything else. They are decisions and access
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |
-| Governance | [Source registry](sources.html) → *Parallel builds* | parallel session trees are preserved intact and cross-linked: this session's audited dashboard is the root; [s53/index.html](s53/index.html) is session `arena-53126614`'s 10-page Week 11 fair-line origination, 13-club depth-deficiency, signal leaderboard & interactive decision-path suite; [analytics/index.html](analytics/index.html) is session `eaba7863`'s 18-page verified analytics dashboard (12-club 1st–4th string depth cascades, 14 `n=32` correlations, repo audit & interactive fair-line calculators); [review/index.html](review/index.html) is session `01b698ef`'s register dashboard (16 pages, own CI); [archive/session-009ec582/index.html](archive/session-009ec582/index.html) and [docs/index.html](docs/index.html) are `009ec582` / `85d79210` builds; [portal/index.html](portal/index.html) is session `e143a7ca`'s 10-page quantitative portal; [site/index.html](site/index.html) is session `63ac21e9`'s walk-forward lab; [research/cef2/index.html](research/cef2/index.html) is session `cef2b11f`'s independent re-verification brief — all suites re-run, official row-by-row re-checks, the first cross-tree discrepancy census and an 18-hour source-freshness measurement.  Only the game log was adopted here, after re-audit · [crosscheck/index.html](crosscheck/index.html) is session `2063673b`'s independent live re-verification: it re-opened the league pages on 12 November 2026, diffed them row by row against what this repository publishes, audited every tree's headline claims, and publishes the decision register with a source on every row |
+| Governance | *Repository map* (below) | ten published trees, their owner sessions, their page counts and what each uniquely holds, generated at build time; only the game log was adopted into this register, after re-audit |
 | Governance | [Crosscheck: live re-verification](crosscheck/index.html) | A second, independent re-check against the official league pages on 12 November 2026: what still matches, what moved since the snapshot, a claim-by-claim audit of every tree in this repository, and the questions / information / suggestions register to review before anything is implemented. Every row carries its official source; anything unverifiable is published as flagged |
+| Governance | [Price archive](price-archive.html) | what market data the repository actually holds, what each column proves, and what it cannot be used for (FL-29, FL-30) |
 | Governance | [Source registry](sources.html) | {{metric sources}} sources with tier, access time and what each was used for |

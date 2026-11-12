@@ -720,6 +720,10 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 
 ---
 
+Resolution note (session `a392a193`, merge of PR #25): both sections were appended at the end of this file by two branches, so the merge conflicted textually and **both were kept in full** — the independent audit section first, then this session's claim. No line of `fd94fccd`'s audit or change requests was discarded, and its three cross-session change requests (FD94-CR1/CR2/CR3) are accepted into this session's scope below.
+
+---
+
 ## Session `fd94fccd` — independent final audit of published NFL decision site
 
 | Task | Status | Owner | Exclusive files | Scope |
@@ -736,6 +740,67 @@ Claimed 2026-11-12. The repository already contains the requested landing page, 
 
 | # | Requested by | Owned by | File | Request | Status |
 |---|---|---|---|---|---|
+| FD94-CR1 | fd94fccd | Shared site integration owner | `content/index.md` → generated root `index.html` | Correct the sentence implying one session created the final multi-session site; rebuild and run the existing auditors. | pending — surfaced in audit report |
+| FD94-CR2 | fd94fccd | Pages/deployment owner | `.github/workflows/pages.yml` / Pages settings | Reconcile/document why Pages API reports legacy `main` `/` while the workflow artifact path is `docs/`; verify intended tree and deployment end-to-end before changing configuration. | pending — surfaced in audit report |
+| FD94-CR3 | fd94fccd | Coordination board owner | Task board T18 | Reconcile the stale `in progress` status with the later integration/PR #24 records and successful deployment evidence. | pending — surfaced in audit report |
+
+---
+
+## Session `a392a193` (`arena/a392a193-nfl2`) — price-archive reconciliation, 2026 point-in-time origination lab, measured correlations, two-sided depth register
+
+**Session ID:** `a392a193` · **Branch:** `arena/a392a193-nfl2` · **Started:** 2026-11-12T22:30Z · **Base:** `25d88a9` (current `main`, PRs #1–#24 all merged, no open PRs, no other live `arena/*` branches at claim time)
+
+### Claim — exclusive scope (nothing else is edited except the additive register rows listed under "shared files")
+
+| Task | Status | Owner | Exclusive paths |
+|---|---|---|---|
+| A1 Re-verify the canonical data layer row-by-row against live official sources (standings 32, Week 10 slate 14, injury club blocks, game-log sample) and publish the re-verification register | **done** | `a392a193` | `data/reverification_a392.csv`, `scripts/reverify_a392.py` |
+| A2 Reconcile the price-archive contradiction: the root register asserts "no price data of any kind" (FL-10) while `pipeline/data/raw/closing_lines.csv` + `games.csv` carry 2013–2026 market prices used by the `site/` tree. Verify what those columns actually are against the upstream schema and publish the correction | **done** | `a392a193` | `data/price_archive_a392.csv`, `content/price-archive.md`, `price-archive.html` |
+| A3 Point-in-time line origination on the officially-verified 136-game 2026 log: ratings, HFA, backtest vs result and vs the archive price, honest verdict | **done** | `a392a193` | `scripts/origination_lab.py`, `data/model_backtest_2026.csv`, `data/originated_lines_2026.csv`, `data/ratings_2026.csv`, `content/model-lab.md`, `model-lab.html` |
+| A4 Measured correlations from the same log (parlay/SGP pricing implications) with bootstrap CIs and small-n honesty | **done** | `a392a193` | `data/measured_correlations_2026.csv`, `content/measured-correlations.md`, `measured-correlations.html` |
+| A5 Two-sided (offence **and** defence) 2nd/3rd/4th-string deficiency register for the Week 10 slate, built only from club-published depth charts + the official injury report | **done** | `a392a193` | `data/deficiency_wk10_2026.csv`, `content/deficiencies.md`, `deficiencies.html` |
+| A6 Decision layer: new suggestions, questions, flags and requirement rows raised by A1–A5; executive-summary refresh | **done** | `a392a193` | see "shared files" |
+
+**Shared files touched additively (no other session is active on them; T18 integration was closed out in §20 and PR #24):** `COORDINATION.md`, `data/flags.csv` (FL-27+), `data/suggestions.csv` (S-35+), `data/questions.csv` (Q-35+), `data/sources.csv` (S-A392* ), `data/requirements.csv` (status updates only), `data/leaderboard.csv` (lab-ledger note column only), `content/executive-summary.md`, `content/index.md`, `tools/build_site.py` (NAV + new directives), `tools/verify.py` (new checks), `tools/check_site.py` (new checks), `EXECUTIVE_SUMMARY.md`, `README.md` (one pointer line).
+
+**Not touched:** `pipeline/**`, `site/**`, `docs/**`, `portal/**`, `analytics/**`, `s53/**`, `q51/**`, `review/**`, `archive/**`, `datasets/e143a7ca/**`, `engine/**`, `collectors/**`, `research/**`, `tests/**` — other sessions' trees are preserved intact; this session reads them and links to them, it does not edit them.
+
+
+### Completion log (2026-11-12, 22:30Z–23:59Z)
+
+| Task | Result published | Files |
+|---|---|---|
+| A1 re-verification | 9 checks against the live official pages at 22:35Z: standings 32×8 columns and the 14 Week 10 fixtures (date, kickoff, rightsholder) match cell-for-cell; **0 rows withdrawn, 0 slug changes, same 6 designations**; superseded by a later official read: 15 practice codes re-filed and 279 rows / 26 clubs vs the 254 / 24 snapshot | `scripts/reverify_a392.py`, `data/reverification_a392.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/injury_delta_a392.csv`, `research/a392/hub_2026-11-12T2235Z.csv` |
+| A2 price archive | FL-10's "no price data of any kind" is false as written and true as scoped: 272 2026 regular-season rows in `games.csv` of which 136 scored and 163 priced, `closing_lines.csv` 20,490 rows / 3,415 games but ending in 2018, `initial_lines.csv` 1,088 (2021), `sc_lines.csv` 4,092 (2013); upstream `DATASETS.md` (last edited 2020-05-13) documents no open/close vintage, so **no CLV anchor exists** | `data/price_archive_a392.csv`, `data/code_collision_a392.csv`, `content/price-archive.md`, FL-29, FL-30, Q-35 |
+| A3 origination lab | Walk-forward ridge ratings (weeks 4–9, λ∈{5,20,60}, half-point rounding): spread MAE **9.278** vs do-nothing 10.455 vs archived 8.983; totals **11.165** vs 11.078 vs 10.318 — totals earn nothing and are published as a diagnostic, not a line. Paired on the 88 games with an archived price: spreads +0.295 pts (CI −0.409 to +1.011, spans zero), totals +0.847 pts (CI +0.153 to +1.580, worse). n=136 is ~1/25 of the archive's 3,404, so **no edge is provable and none is claimed** | `scripts/origination_lab.py`, `data/ratings_2026_a392.csv`, `data/model_backtest_2026_a392.csv`, `data/model_verdict_2026_a392.csv`, `data/originated_lines_wk10_a392.csv`, `content/model-lab.md` |
+| A4 measured correlations | 8 measurements with seeded 4,000-resample bootstrap intervals, no p-values: M-01 away×home pts 0.076 [−0.088, 0.244]; M-03 margin→next margin 0.088 [−0.030, 0.201] (backing the last winner buys noise); M-04 W-L×Pythagorean 0.863; M-06 HFA **+0.50 pts [−1.80, +2.80]** — the conventional 2.5 sits outside the interval; M-08 φ(our cover × our over) −0.240 [−0.447, −0.024] on archive lines, where independence overprices the joint hit rate by **42.4%** (14.4% on our lines). M-05 rest ρ 0.426 published as a **schedule artefact**, not a signal; the +12.8 / −9.2 bye buckets are a selection effect, coefficient kept at 0 | `data/measured_correlations_a392.csv`, `data/rest_and_hfa_2026_a392.csv`, `content/measured-correlations.md`, S-40, Q-38 |
+| A5 depth deficiencies | Two-sided counts for all 26 clubs with a published filing (78 club×side rows) and verified 1st→4th string chains for the 2 clubs whose charts were transcribed (22 rows): SEA QB Darnold out with Lock limited behind him, LAR WR1 Nacua DNP, LAR long snapper Cardona limited with **no backup on the club chart**. Everywhere the club prints no string, the cell says `not published` | `scripts/deficiency_register.py`, `data/deficiency_by_club_a392.csv`, `data/deficiency_chains_a392.csv`, `content/deficiencies.md`, S-39, Q-37 |
+| A6 decision layer | 7 suggestions (S-35…S-41), S-42, 5 requirement rows (R-41…R-45), 8 flags (FL-27…FL-34), 5 questions (Q-35…Q-39); landing page, exec summary, requirements page, leaderboard and suggestions page refreshed with computed numbers instead of prose | `data/suggestions.csv`, `data/requirements.csv`, `data/flags.csv`, `data/questions.csv`, `content/index.md`, `content/executive-summary.md`, `content/leaderboard.md`, `content/suggestions.md` |
+
+**Site:** 4 new pages registered in `tools/build_site.py` (`model-lab`, `measured-correlations`, `deficiencies`, `price-archive`) and a generated **repository map** table (`{{site_map}}`, `SITE_TREES`) so page counts cannot drift from the tree; `data-dictionary.md` extended with all 17 undocumented data files; `requirements.md` count made a `{{metric}}`. `python3 tools/build_site.py` → 26 pages · 932 blanks; `tools/verify.py` → **56 passed · 0 warnings · 0 failures**; `tools/check_site.py` → **11 passed · 1 warning · 0 failures** (the one warning is the intentional club-chart citations to `seahawks.com` / `therams.com`, which are not in `OFFICIAL_HOSTS` by design — the allowlist was **not** widened for them); `scripts/audit_all_pages.py` → 100 HTML pages / 3,765 rows, 100% row-sourced, 0 broken links; the four sibling verifiers (`verify_q51`, `verify_s53126614`, `engine/verify_repo_and_site`, `scripts/check_reproducible`) all pass.
+
+**Three new permanent checks, each born from a defect found in this build:**
+- `verify.py :: datasets_documented` — every `data/*.csv` must be named in the data dictionary (17 orphans found).
+- `verify.py :: reverification_holds` — the re-verification register may report `SUPERSEDED`, never `MISMATCH`.
+- `verify.py :: filter_clauses_do_something` + `build_site.py` filter validation + `check_site.py` marker test — see FL-33.
+
+### Irregularities found (published, not silently fixed)
+
+- **FL-33 (high, fixed here).** Three published tables were **unfiltered** because their `{{csv}}` filter clauses were spelled `key:value` where the builder accepts only `key=value` and silently discarded anything else. `injuries.html`'s "six designations that were published" listed all 254 rows (its directive had additionally lost its closing `}}`, so for a period the page printed raw template text instead of a table), and `suggestions.html` showed the **same 36 rows under both Tier 1 and Tier 2** — the page the owner reads to choose a path. Repaired: terminator restored, a `field=*` "cell is filled in" operator added, tiers re-filtered on `decision` (19 / 17), the builder now raises `BuildError` on a malformed filter or a missing column, `check_site.py` fails on any stray `{{` (its old regex required a closing `}}`, which is exactly what let a truncated directive pass CI), and `verify.py` recomputes every filter clause from the data.
+- **FL-34 (medium, open — resolves FD94-CR2).** `.github/workflows/pages.yml` uploads the `docs` tree as the Pages artifact while Pages is configured `build_type: legacy`, `source: main` `/`. What serves the site is a legacy build of the repository **root**; the workflow publishes session `85d79210`'s superseded 16-page tree. Proof it is decoupled: the Pages run for PR #30 head `7963d2b7` **failed** at 22:40Z while the root site kept updating. Consequence for this board: no session here has ever confirmed the served bytes, because sandbox egress excludes `github.io`; the only verifiable evidence is the Pages API build list (`gh api repos/…/pages`, `…/pages/builds`). Deliberately **not** edited — deploy config is outside my claimed scope; routed instead as Q-39 / S-42.
+- **Manifest drift (low).** `data/build_manifest.json` reported `injury_teams: 24` against the landing page's "28 clubs" before this pass; both are now regenerated from the same build, and the register states the 24-vs-26 difference explicitly (clubs with a filing vs clubs in the Week 10 slate).
+- **Club vs league disagreements left alone (FL-06 pattern).** `seahawks.com` and `therams.com` publish the same cross-team entries the injury hub does (Garrett on the Rams chart, Nelson/Lock on Seattle's). Both clubs label their chart "Unofficial" and neither carries an as-of date, so string claims are capped at "the club printed it in column 2". Nothing was corrected to match the league's roster.
+
+### Cross-file change requests
+
+| # | Requested by | Owned by | File | Request | Status |
+|---|---|---|---|---|---|
+| a392-CR1 | `a392a193` | root builder owner (currently `a392a193`) | `tools/build_site.py`, `tools/verify.py`, `tools/check_site.py` | The filter-clause validation and the widened marker test change audit behaviour for **every** page and every sibling session: a malformed `filter=` now fails the build instead of rendering the whole table, and any stray `{{` in generated HTML fails `check_site.py`. All 26 root pages pass; if a future branch trips one of these, the correct fix is the directive, not the check | **done in this branch** — `fd2be07`..`a2054ec`+; needs the same treatment in the sibling trees if their builders copy the pattern (`site/`, `s53/` have their own renderers) |
+| a392-CR2 | `a392a193` | `data/build_manifest.json` owner (any session running a build) | `data/build_manifest.json` | Do not hand-edit; it is regenerated only by `tools/build_site.py`, and a merge that takes a stale copy fails the CI drift check. Always `python3 tools/build_site.py && git add -A && git commit` as one chain | acknowledged, recorded for the next session |
+| a392-CR3 | `a392a193` | deployment owner | `.github/workflows/pages.yml`, Pages settings | See FL-34 / Q-39 / S-42: point the artifact at the root or delete the workflow, and record which mechanism is canonical | **open — owner decision, not blocked on this branch** |
+
+**Handoff state:** nothing left in progress on this branch. A1–A6 are done and published; the open items are decisions (Q-35 price vintage, Q-36 cadence, Q-37 chart coverage, Q-39 deploy path), not collection gaps. Next session should start from `content/suggestions.md` "Revised order of first moves" (S-35 → S-36 → S-37 → S-38 → S-39) rather than from the injury collection, which is complete for the moment it describes.
+
 | FD94-CR1 | fd94fccd | Shared site integration owner | `content/index.md` → generated root `index.html` | Correct the sentence implying one session created the final multi-session site; rebuild and run the existing auditors. | done — corrected and published; FL-22 remains open for reader review |
 | FD94-CR2 | fd94fccd | Pages/deployment owner | `.github/workflows/pages.yml` / Pages settings | Reconcile/document why Pages API reports legacy `main` `/` while the workflow artifact path is `docs/`; verify intended tree and deployment end-to-end before changing configuration. | published as FL-23; configuration owner decision remains open |
 | FD94-CR3 | fd94fccd | Coordination board owner | Task board T18 | Reconcile the stale `in progress` status with the later integration/PR #24 records and successful deployment evidence. | done — stale-claim takeover documented; T18 marked done |
@@ -1069,3 +1134,26 @@ CE-03 is closed by their work (see CR-CEF2-01). Their added tables were reviewed
 site: `data/computed_correlation.csv` (two measured r with CI/p, "rho not fitted") and
 `data/computed_fair_lines.csv` (14-game points-only Week-10 baseline, caveated on its face) — recorded
 into this session's brief so no page contradicts the merged tree.
+
+### Merge of `origin/main` at `2386c51` (PRs #25–#34) — conflicts and how they were resolved
+
+The branch base was `25d88a9`; `main` had moved eleven merges forward, so this branch met a large `main`. **31 files conflicted.** Nothing from any other session was discarded; the resolution was:
+
+| File | How it was resolved |
+|---|---|
+| 21 generated `*.html`, `data/build_manifest.json`, `datasets/e143a7ca/verification_manifest.json` | taken from `main`, then regenerated with `python3 tools/build_site.py` on the merged tree — generated files are never hand-merged |
+| `data/flags.csv`, `data/questions.csv`, `data/suggestions.csv` | **union with renumbering**, following the convention `fd94fccd` established at this same collision. `main` held FL-22…FL-26, Q-30…Q-33, S-30…S-34; this session's eight flags, five questions and eight suggestions were appended as **FL-27…FL-34, Q-35…Q-39, S-35…S-42**, and every cross-reference inside this session's own rows and pages was renumbered with them. Registers now hold 34 flags, 38 questions, 42 suggestions. No finding from either side was dropped or overwritten. |
+| `content/index.md` | rebuilt from `main`'s version with this session's four edits re-applied on top (provenance sentence, refreshed workstream rows, the two new workstream rows, and the pointer to the generated Repository map). `main`'s wording about the multi-session build was kept over this session's, and `main`'s signal-catalogue count (5 blocked) was kept because it matches the merged `data/signals.csv` |
+| `content/methodology.md` | both sections kept: `8361cc7a`'s independent live re-verification table first, then this session's directive-syntax contract |
+| `tools/verify.py` | call-list union — `main`'s `register_counts_match_files()` and `injury_coverage_is_measured_not_named()` plus this session's `filter_clauses_do_something()`, `datasets_documented()`, `reverification_holds()`; no duplicate definitions, 65 checks green |
+| `COORDINATION.md` | both sections kept in full |
+
+**Three collisions turned into confirmations rather than duplicates:**
+
+- `8361cc7a`'s hub re-read found SEA, CIN and IND differing from the snapshot; this session's independent 22:35Z read found the same three clubs plus LAC and others, as part of a +25-row shift concentrated on defence. Same defect, two passes, no contradiction — recorded once as FL-27 (this session's) alongside their FL-24.
+- `cef2b11f` / `8361cc7a` measured a 17h54m gap between hub renders; this session's two reads were 17h50m apart. The freshness number is theirs and it corroborates the register's "point-in-time" language.
+- The Pages/delivery defect: this session wrote it as a flag (FL-29 at the time, `docs` uploaded while Pages served the root); `main` proved it from the live site (200 on `/defense.html`, 404 on `/line-origination.html`) and **fixed it in PR #34**. This session's row is therefore kept but re-typed as `process` and closed as a duplicate — its residual is the part nobody has covered: the two mechanisms still both run, `FL-23` is still open, and no session in this sandbox has ever seen the served bytes because egress excludes `github.io`. That limitation is now written into the question (Q-39) and the flag (FL-34) so a later session stops implying it verified the live site.
+- `R-03`, `R-05`, `R-25` in `data/requirements.csv` had hand-written register counts that the union made stale. They now read `{{metric suggestions}}` / `{{metric questions}}` / `{{metric flags}}`, which the builder expands — the class of bug `main`'s `register_counts_match_files()` was written to catch, permanently fixed at the source instead of re-patched.
+
+**Post-merge audit on this tree:** `tools/build_site.py` → 26 pages · 934 blank cells; `tools/verify.py` → **65 passed · 0 warnings · 0 failures**; `tools/check_site.py` → **11 passed · 1 warning · 0 failures** (the warning is the allowlist note about club-domain and registry links, including the two intentional `seahawks.com` / `therams.com` depth-chart citations added by this session); `scripts/audit_all_pages.py`, `scripts/verify_q51.py`, `scripts/verify_s53126614.py`, `engine/verify_repo_and_site.py`, `scripts/check_reproducible.py` re-run after the merge — results recorded in the PR body.
+

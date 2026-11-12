@@ -78,3 +78,26 @@ the data is still true — only that the site still agrees with it.
 ## Standing risk to name plainly
 
 Everything on the blue pages is a specification written before the data existed. Specifications are cheap in this domain and the record of betting models is poor; the gates and the negative controls (ST-12 do-nothing, ST-13 public-news echo) exist precisely so that a specification has to survive contact with results. Until then the correct posture toward any number on the origination pages is scepticism, and the site is built so that the blanks are visible rather than hidden.
+
+
+---
+
+## Added in the second verification pass, 12 Nov 2026 22:35–23:30Z (session `a392a193`)
+
+The site you are reading was re-checked against the live official pages rather than against its own notes. Four things changed as a result, and all four are decision-relevant.
+
+| What changed | The measured result | Where |
+| --- | --- | --- |
+| **The injury register is a timestamp, and it had moved.** A second read of the same official hub 18 hours later held 279 rows instead of 254, 26 clubs with entries instead of 24, and 15 re-filed practice codes. No row was withdrawn, no player URL key changed, and the six game-status designations were identical. | 0 retracted rows · 25 added · 15 re-coded | [Depth deficiencies](deficiencies.html), [FL-27](flagged-for-review.html) |
+| **Standings and the Week 10 slate re-verified clean.** 32 clubs × 8 published columns matched the live page exactly, including streaks; all 14 fixtures, dates and kickoff times matched the hub's own slate headers. | 9 re-verification checks, 0 mismatches | [data/reverification_a392.csv](https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/reverification_a392.csv) |
+| **Origination stopped being a specification.** A ridge ratings model fitted only on the officially sourced 136-game log, walked forward week by week, beats every no-information baseline on spreads and does not beat the archived price by enough to call either way: paired error +0.295 pts (CI −0.409 to +1.011) on spreads, +0.847 (CI +0.153 to +1.580) on totals. Totals are therefore published as a diagnostic, not a line. | spread MAE 9.278 vs 10.455 baseline vs 8.983 archived price | [Fair-Line Lab](model-lab.html) |
+| **Correlations became numbers.** Eight measurements with seeded bootstrap intervals, including the same-game coupling a parlay is priced on: against the archived lines, home-spread-cover and game-over have a phi of −0.241, and a ticket priced by multiplying the marginals overstates the joint hit rate by 42.4%. Home-field advantage this season is 0.50 pts with an interval spanning zero, so the conventional 2.5 is now visibly a prior rather than a measurement. | [Measured correlations](measured-correlations.html) | |
+
+Two defects found while doing it are worth reading before any next step, because both are the kind that survive a passing test:
+
+- **A cross-source join silently dropped a whole club.** The community archive writes `ARI` and `LA` where the league writes `AZ` and `LAR`; without an alias table the join loses all nine Arizona games and the model still reports an error rate ([FL-28](flagged-for-review.html), [S-36](suggestions.html)).
+- **The register asserted something the repository contradicted.** "No price data of any kind" sat next to 20,490 rows of vendored prices, and the file named `closing_lines.csv` stops in 2018 while the only 2026 prices live in `games.csv`. The upstream schema that is supposed to define those columns was last edited 13 May 2020 and never says whether the price is an open or a close ([FL-29](flagged-for-review.html), [FL-30](flagged-for-review.html), [Price archive](price-archive.html)).
+
+**The requirement that is still not met, stated plainly:** 2nd/3rd/4th-string deficiency tracking works — for two clubs. The join pattern is proven end to end on Seattle and Los Angeles (a first-string quarterback out with a limited second-stringer and an unreserved third-stringer behind him; a second-string nose tackle out and a third in; a long snapper with no backup listed on the club's own chart), and it produces the deficiency signal the standings cannot see. Scaling it is a transcription cadence decision ([Q-37](questions.html), [S-39](suggestions.html)), not a research problem.
+
+**What to decide now, in order:** (1) start the daily stored injury snapshot so availability signals have a history — it is worth more every day it runs and it unblocks the largest part of the brief ([S-35](suggestions.html), [Q-36](questions.html)); (2) adopt the alias table plus a join-row-count check ([S-36](suggestions.html)); (3) admit the paired-error rule to the gates so a strategy cannot promote itself on an easy slate ([S-38](suggestions.html)); (4) decide the price-vintage question, because it changes the wording of every CLV claim in the project ([Q-35](questions.html)).

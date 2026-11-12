@@ -1,0 +1,41 @@
+kind|team|player|pos|side|practice_at_2235|status_at_2235|injury|game|source|note
+added-after-snapshot|AZ|Andrew Wingard|S|defence|L|not published|not published|W10-10|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|CIN|DJ Turner II|CB|defence|L|not published|not published|W10-13|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|CIN|Dylan Fairchild|G|offence|L|not published|not published|W10-13|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|CIN|Jonathan Allen|DT|defence|D|not published|not published|W10-13|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|CIN|Kyle Dugger|S|defence|D|not published|not published|W10-13|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|IND|CJ Allen|LB|defence|F|not published|not published|W10-06|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|IND|Grover Stewart|DT|defence|D|not published|not published|W10-06|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|JAX|BJ Green II|DE|defence|F|not published|not published|W10-05|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|AJ Barner|TE|offence|F|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Anthony Bradford|G|offence|L|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Brandon Pili|DT|defence|D|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Charles Cross|T|offence|D|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Connor O'Toole|LB|defence|L|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Derick Hall|LB|defence|L|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Drew Lock|QB|offence|L|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Jarran Reed|DT|defence|D|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Jaxon Smith-Njigba|WR|offence|D|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Leonard Williams|DT|defence|D|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Patrick O'Connell|LB|defence|L|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Quenton Nelson|G|offence|D|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Rashid Shaheed|WR|offence|F|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Sam Darnold|QB|offence|D|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SEA|Uchenna Nwosu|LB|defence|L|not published|not published|W10-11|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SF|Christian McCaffrey|RB|offence|D|not published|not published|W10-12|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+added-after-snapshot|SF|Dre Greenlaw|LB|defence|D|not published|not published|W10-12|S-INJ|on the hub at 22:35Z, absent at 04:45Z
+changed|AZ|Isaac Seumalo|G|offence|L|not published|not published|W10-10|S-INJ|practice F -> L, status - -> -
+changed|AZ|Jon Gaines II|G|offence|L|not published|not published|W10-10|S-INJ|practice D -> L, status - -> -
+changed|AZ|Josh Sweat|LB|defence|L|not published|not published|W10-10|S-INJ|practice D -> L, status - -> -
+changed|AZ|Mack Wilson|LB|defence|L|not published|not published|W10-10|S-INJ|practice D -> L, status - -> -
+changed|AZ|Roy Lopez|DT|defence|L|not published|not published|W10-10|S-INJ|practice D -> L, status - -> -
+changed|CLE|Quincy Williams|LB|defence|D|not published|not published|W10-09|S-INJ|practice L -> D, status - -> -
+changed|DAL|Tyler Goodson|RB|offence|F|not published|not published|W10-12|S-INJ|practice D -> F, status - -> -
+changed|HOU|Wyatt Teller|G|offence|D|not published|not published|W10-09|S-INJ|practice L -> D, status - -> -
+changed|IND|A.J. Haulcy|S|defence|F|not published|not published|W10-06|S-INJ|practice D -> F, status - -> -
+changed|IND|Charvarius Ward|CB|defence|L|not published|not published|W10-06|S-INJ|practice D -> L, status - -> -
+changed|IND|Jerry Tillery|DT|defence|D|not published|not published|W10-06|S-INJ|practice L -> D, status - -> -
+changed|IND|Jonathan Taylor|RB|offence|F|not published|not published|W10-06|S-INJ|practice L -> F, status - -> -
+changed|MIA|Dante Trader Jr.|S|defence|D|not published|not published|W10-06|S-INJ|practice F -> D, status - -> -
+changed|MIA|Jaylen Wright|RB|offence|D|not published|not published|W10-06|S-INJ|practice F -> D, status - -> -
+changed|TEN|Kevin Winston Jr.|S|defence|D|not published|not published|W10-05|S-INJ|practice F -> D, status - -> -

@@ -26,12 +26,16 @@ NAV = [
                    ("flagged-for-review", "Flagged for Review")]),
     ("Origination", [("line-origination", "Originate Our Own Lines"), ("signals", "Signal Catalogue"),
                      ("correlation", "Correlation"), ("bet-types", "Bet Types"),
-                     ("skill-vs-luck", "Removing Luck")]),
+                     ("skill-vs-luck", "Removing Luck"),
+                     ("model-lab", "Fair-Line Lab (computed)"),
+                     ("measured-correlations", "Measured Correlations")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
-              ("league-data", "Standings & Schedule"), ("data-dictionary", "Data Dictionary")]),
-    ("Governance", [("methodology", "Verification Method"), ("sources", "Source Registry")]),
+              ("league-data", "Standings & Schedule"), ("deficiencies", "Depth Deficiencies by Side"),
+                   ("data-dictionary", "Data Dictionary")]),
+    ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
+                   ("sources", "Source Registry")]),
 ]
 PAGES = [slug for _, items in NAV for slug, _ in items]
 
@@ -220,6 +224,58 @@ def html_table(header, body):
     return '<div class="tablewrap"><table class="data"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (th, "".join(trs))
 
 
+# ------------------------------------------------------- repository map ----
+# Every tree the parallel sessions published is listed here, and the page counts are measured from
+# the filesystem at build time rather than remembered in prose: a session that adds or removes a page
+# changes the table without anyone having to edit a sentence (and check_site.py fails if a tree with
+# pages in it is missing from this list).
+SITE_TREES = [
+    (".", "canonical — `bc4b47cf` integration, extended by `a392a193`",
+     "#8 #15 #16 #18 #20 #24", "current", "the register, the verified data layer, the origination lab and the review queue"),
+    ("crosscheck", "`2063673b`", "#30", "as authored",
+     "independent live re-verification of every dataset, cross-tree claim audit, decision registers"),
+    ("s92", "`8b4bdcb3`", "#31", "as authored",
+     "evidence dashboard: 21-row official-source audit, Week 11 lines with backtest, availability depth"),
+    ("research/cef2", "`cef2b11f`", "#33", "as authored",
+     "independent re-verification brief, cross-tree census and the 18-hour source-freshness measurement"),
+    ("q51", "`51ce8d8e`", "#23 #24", "current",
+     "independent evidence dashboard, tested paper-only engine, fail-closed gates"),
+    ("s53", "`53126614`", "#19 #20", "as authored",
+     "Week 11 fair-line origination, 13-club depth deficiency, interactive decision paths"),
+    ("analytics", "`eaba7863`", "#14 #16", "as authored",
+     "12-club 1st-4th string cascades, n=32 correlations, fair-line calculators"),
+    ("portal", "`e143a7ca`", "#12", "as authored", "quantitative portal, 11/11 zero-sum league reconciliation"),
+    ("site", "`63ac21e9`", "#10 #15", "as authored",
+     "multi-season walk-forward lab; the calibration every other tree defers to; reads pipeline/data/raw"),
+    ("review", "`01b698ef`", "#9 #11", "as authored", "verification-review dashboard and the 423-row register"),
+    ("docs", "`85d79210`", "#4 #5", "superseded", "the earliest category dashboard; kept for provenance"),
+    ("archive/session-009ec582", "`009ec582`", "#6 #7", "archived", "first 12-page build, kept intact by request"),
+]
+
+
+def render_site_map():
+    import glob
+    head = ["Tree", "Owner session", "Merged as", "State", "Pages", "What it uniquely holds"]
+    out = ['<div class="tablewrap"><table class="data"><thead><tr>']
+    out += ["<th>%s</th>" % inline(h) for h in head]
+    out.append("</tr></thead><tbody>")
+    for path, owner, prs, state, what in SITE_TREES:
+        n = len(glob.glob(os.path.join(ROOT, path, "*.html")))
+        href = "index.html" if path == "." else "%s/index.html" % path
+        link = ('<a href="%s">open</a>' % href) if os.path.exists(os.path.join(ROOT, path, "index.html")) else "not published"
+        out.append('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td class="num">%d</td><td>%s %s</td></tr>'
+                   % (inline("/ (root)" if path == "." else "/%s/" % path), inline(owner), inline(prs),
+                      inline(state), n, link, inline(what)))
+    out.append("</tbody></table></div>")
+    out.append("<p class=\"caption\">Page counts are files ending in .html in that directory, counted when this page was "
+               "built, so they cannot drift from the tree. \"as authored\" means the build is published and verified but "
+               "its numbers are that session&#39;s snapshot, not this register&#39;s; anything the canonical site adopted "
+               "from it is re-audited here and says so. The nine trees are the output of nine parallel agent sessions "
+               "working to the same brief - <a href=\"https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md\">"
+               "COORDINATION.md</a> is the log of who built what and which claims were cross-checked.</p>")
+    return "".join(out)
+
+
 # ---------------------------------------------------------------- metrics ----
 OFF_POS = {"QB", "RB", "FB", "WR", "TE", "T", "G", "C", "OT", "OL", "OG"}
 DEF_POS = {"DE", "DT", "LB", "CB", "S", "FS", "SS", "Edge", "DB", "DL", "OLB"}
@@ -401,11 +457,26 @@ def render_csv_table(body):
         raise BuildError("%s has no source column %r" % (name, src_col))
     group = opts.get("group", "")
     link_player = "link_player" in opts
-    filters = [f.split("=", 1) for f in opts.get("filter", "").split(",") if "=" in f]
+    # A filter clause must be key=value. The old parser dropped anything else on the floor, which is
+    # how three tables on the live site ended up unfiltered: a colon instead of an equals sign reads
+    # fine to a human ("status:!recommended") and silently means "no filter at all" to the builder.
+    raw_filters = [f for f in opts.get("filter", "").split(",") if f.strip()]
+    for f in raw_filters:
+        if "=" not in f:
+            raise BuildError("table %s: filter clause %r is not key=value and would be ignored" % (name, f))
+        if f.split("=", 1)[0].strip() not in rows[0]:
+            raise BuildError("table %s: filter key %r is not a column of %s" % (name, f.split("=", 1)[0], name))
+    filters = [f.split("=", 1) for f in raw_filters]
     for k, v in filters:
+        k, v = k.strip(), v.strip()
         neg = v.startswith("!")
         v = v[1:] if neg else v
-        if v == "":
+        if v == "*":
+            # "*" means "this cell is filled in". Written out explicitly because "field:!" reads as
+            # "not blank" to a human and means "is blank" to the negation branch below - an
+            # inverted filter once put 248 rows in a section captioned "the six designations".
+            keep = lambda cell: cell.strip() != ""
+        elif v == "":
             keep = (lambda cell: cell.strip() == "") if neg else (lambda cell: cell.strip() != "")
         else:
             keep = (lambda cell: v.lower() not in cell.lower()) if neg else (lambda cell: v.lower() in cell.lower())
@@ -505,6 +576,8 @@ def directive(body, ctx):
     m = re.match(r"^metric (\w+)$", body)
     if m:
         return metric(m.group(1))
+    if body == "site_map":
+        return render_site_map()
     if body == "team_availability":
         agg = AGG
         rows = []
@@ -545,6 +618,8 @@ PAGE_KIND = {
     "injuries": ("measured", "Measured data"), "depth-impact": ("measured", "Measured data"),
     "league-data": ("measured", "Measured data"), "data-dictionary": ("measured", "Schema"),
     "methodology": ("program", "Policy"), "sources": ("program", "Register"),
+    "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
+    "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
 }
 
 CSS_HREF = "assets/style.css"
