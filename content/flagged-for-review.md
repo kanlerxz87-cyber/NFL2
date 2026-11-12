@@ -13,8 +13,8 @@ The brief said: if a value cannot be confirmed from an official source, leave it
 
 | Blank | Where it appears | What would fill it |
 | --- | --- | --- |
-| Game status for 249 of 254 Week 10 players | [injury report](injuries.html) | Sunday and Monday designations, published later in the week than our fetch (FL-02) |
-| Injury body part for 246 of 254 rows | [injury report](injuries.html) | the hub table does not populate it; the prose feed does, with an explicit join (FL-08) |
+| Game status for {{metric status_blank_rows}} of {{metric injury_rows}} Week 10 players | [injury report](injuries.html) | Sunday and Monday designations, published later in the week than our fetch (FL-02) |
+| Injury body part for {{metric injury_blank_rows}} of {{metric injury_rows}} rows | [injury report](injuries.html) | the hub table does not populate it; the prose feed does, with an explicit join (FL-08) |
 | Depth rank (1st / 2nd / 3rd / 4th string) | [depth & deficiencies](depth-impact.html) | no official depth chart exists; reconstruct from roster status, participation and playing time (FL-06) |
 | Replacement effect in points or yards | [depth & deficiencies](depth-impact.html) | licensed player-level data (Q-02) |
 | Every correlation value ρ | [correlation](correlation.html) | joint-outcome history we have not fitted; only two arithmetic cases are 1.00 by construction |

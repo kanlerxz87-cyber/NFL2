@@ -1,7 +1,7 @@
 {
   "blank_cells_rendered_as_not_published": 588,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "0254fb5a4bcaf7619c0ad3c7a67cc24250aa5734767a92f017a6adb51fdae42b",
+  "inputs_sha256": "75e44b0829b72fdc6bd52830d27c96bc8519581cb355b36fcf334555678084dc",
   "metrics": {
     "correlation": 12,
     "data_files": 19,
@@ -24,6 +24,7 @@
     "games_log_reconciled": 32,
     "games_log_weeks": 9,
     "gates": 14,
+    "injury_blank_rows": 248,
     "injury_detail_cells": 6,
     "injury_rows": 254,
     "injury_teams": 24,
@@ -39,6 +40,7 @@
     "signals_blocked": 5,
     "sources": 28,
     "standings_teams": 32,
+    "status_blank_rows": 248,
     "strategies": 14,
     "suggestions": 29
   },

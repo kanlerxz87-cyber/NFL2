@@ -263,6 +263,9 @@ def build_metrics():
         "full": sum(1 for r in inj if r["practice"] == "F"),
         "designations": sum(1 for r in inj if r["status"].strip()),
         "injury_detail_cells": sum(1 for r in inj if r["injury"].strip()),
+        # the blank side of the same two counts, so prose never has to subtract by hand
+        "status_blank_rows": len(inj) - sum(1 for r in inj if r["status"].strip()),
+        "injury_blank_rows": len(inj) - sum(1 for r in inj if r["injury"].strip()),
         "depth_rows": len(depth),
         "dtr_rows": sum(1 for r in depth if r["change"] == "IR-RETURN-DESIG"),
         "ruled_out_rows": sum(1 for r in depth if r["change"] in ("RULED-OUT", "RULED-OUT-WK9")),

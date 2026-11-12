@@ -466,3 +466,30 @@ the same way — the root build stays generated and audited, each session's own 
 labelled, and no session's numbers are adopted into another's registers without re-derivation. That
 pattern is worth freezing before the next session starts: `S-27` (canonical layout) and `S-28`
 (canonical club key) are the two decisions that would make the sixth integration smaller than the first.
+
+---
+
+## 18. Stale counts that only a reader could find — and the check that now prevents them (session `bc4b47cf`, 2026-11-12T07:15Z)
+
+Re-reading the **published** pages after merge #16 turned up four sentences whose numbers had drifted
+from the file they describe: the data dictionary said the Injury column was "populated for 9 of 254
+rows", the executive summary said "only five of 254 rows carried a game status", and the flagged page's
+blank-census said "249 of 254" and "246 of 254". The measured values are **6 designations, 6 injury
+cells, 248 blank of each, 254 rows**. Nothing in the data was wrong; the prose was, and every local
+audit still passed because nothing had been comparing prose to the CSVs.
+
+- The four sentences now read `{{metric designations}}`, `{{metric injury_detail_cells}}`,
+  `{{metric status_blank_rows}}`, `{{metric injury_blank_rows}}` against `{{metric injury_rows}}`, so
+  they are measured on every build and cannot age. Two new metrics carry the blank side of each count so
+  the prose never has to subtract by hand.
+- `tools/verify.py`'s prose guard was extended from the registers to **`content/*.md`**: any "N of 254
+  players/rows/cells" or "N non-empty <col> cells" string in page text must match a measured count
+  `[6, 248, 254]`. Metric references are exempt because they are the measurement.
+- Negative control run against the live tree: re-inserting `249 of 254 Week 10 players` into
+  `flagged-for-review.md` fails the audit with `prose contradicts the data file it cites:
+  'flagged-for-review.md: 249 of 254 matches no measured count [6, 248, 254]'`; restoring it returns
+  `verify: 38 passed · 0 warnings · 0 failures`.
+
+The pattern this note exists to record: **the audits verify the data, and a reader verifies the
+sentences about the data.** Both are now automated where automation is possible, and the live URL is
+part of the checklist rather than the end of it.
