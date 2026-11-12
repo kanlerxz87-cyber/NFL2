@@ -1,0 +1,94 @@
+{
+ "outcomes": {
+  "source": "pipeline/out/backtest.csv (2013-2025 completed regular-season games)",
+  "note": "phi = Pearson correlation between two binary leg outcomes. 0 means the parlay's independence assumption holds; anything else means a same-game parlay is mispriced relative to its own legs.",
+  "pairs": [
+   {
+    "leg_a": "spread_home",
+    "leg_b": "total_over",
+    "n": 3289,
+    "phi": 0.0188,
+    "p_a": 0.4791,
+    "p_b": 0.4856,
+    "p_joint_observed": 0.2451,
+    "p_joint_independent": 0.2327,
+    "parlay": {
+     "independent_decimal": 3.6446,
+     "independent_american": 264,
+     "implied_prob_independent": 0.2744,
+     "implied_prob_from_observed": 0.2451,
+     "fair_american_if_observed": 308,
+     "price_error_pct": -10.67,
+     "comment": "the book's independent pricing overstates this parlay"
+    }
+   },
+   {
+    "leg_a": "spread_home",
+    "leg_b": "home_ml",
+    "n": 3320,
+    "phi": 0.6685,
+    "p_a": 0.4791,
+    "p_b": 0.5496,
+    "p_joint_observed": 0.4349,
+    "p_joint_independent": 0.2634,
+    "parlay": {
+     "independent_decimal": 3.6446,
+     "independent_american": 264,
+     "implied_prob_independent": 0.2744,
+     "implied_prob_from_observed": 0.4349,
+     "fair_american_if_observed": 130,
+     "price_error_pct": 58.505,
+     "comment": "the book's independent pricing understates this parlay"
+    }
+   },
+   {
+    "leg_a": "total_over",
+    "leg_b": "home_ml",
+    "n": 3373,
+    "phi": 0.013,
+    "p_a": 0.4856,
+    "p_b": 0.5496,
+    "p_joint_observed": 0.2728,
+    "p_joint_independent": 0.2669,
+    "parlay": {
+     "independent_decimal": 3.6446,
+     "independent_american": 264,
+     "implied_prob_independent": 0.2744,
+     "implied_prob_from_observed": 0.2728,
+     "fair_american_if_observed": 267,
+     "price_error_pct": -0.575,
+     "comment": "the book's independent pricing overstates this parlay"
+    }
+   },
+   {
+    "leg_a": "spread_home",
+    "leg_b": "away_ml",
+    "n": 3320,
+    "phi": -0.6691,
+    "p_a": 0.4791,
+    "p_b": 0.4468,
+    "p_joint_observed": 0.0545,
+    "p_joint_independent": 0.2141,
+    "parlay": {
+     "independent_decimal": 3.6446,
+     "independent_american": 264,
+     "implied_prob_independent": 0.2744,
+     "implied_prob_from_observed": 0.0545,
+     "fair_american_if_observed": 1735,
+     "price_error_pct": -80.137,
+     "comment": "the book's independent pricing overstates this parlay"
+    }
+   }
+  ]
+ },
+ "signals": {
+  "n": 3404,
+  "spread_edge_vs_total_edge": -0.0088,
+  "interpretation": "A spread edge and a total edge are close to independent, so combining them in one parlay genuinely diversifies risk."
+ },
+ "limitations": [
+  "Only game-level markets are measured here; player-prop outcomes need player-week data that is not available in this sandbox, so prop-to-prop correlations are published as UNVERIFIED rather than estimated.",
+  "Correlations are measured on closing lines, which is the fairest post-hoc benchmark but is not the price every bettor actually got."
+ ],
+ "generated_utc": "2026-11-12T05:11:10Z"
+}

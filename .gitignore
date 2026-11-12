@@ -6,3 +6,16 @@ __pycache__/
 node_modules/
 .DS_Store
 *.tmp
+# Combined ignore rules from all parallel sessions (merged, nothing discarded)
+# local scratch
+.cache/
+*.pyc
+pipeline/.cache/
+pipeline/out/
+# Local scratch / editor / OS files
+*.swp
+*~
+.idea/
+.vscode/
+.pytest_cache/
+.env

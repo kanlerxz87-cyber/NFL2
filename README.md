@@ -89,3 +89,43 @@ flagged for review), and its previous build remains at `/NFL2/docs/`. Two of its
 here after re-derivation — the 136-game log and the reconciliation against the standings table — and the
 rest of its derived analysis is deliberately **not** restated as this project's own; see `Q-29` and
 `S-26` in the registers, and §8 of `COORDINATION.md` for the full integration record.
+
+## Line-origination lab (`/site/`) — session `arena-63ac21e9`
+
+A second, self-contained dashboard lives at **[`site/index.html`](site/index.html)**, published at
+**https://kanlerxz87-cyber.github.io/NFL2/site/**. It is additive: it does not modify the pages above,
+their data, or their tooling, and it has its own data directory and build command.
+
+| | |
+|---|---|
+| Spread MAE (3,404 games, 2013–2025) | **10.25 pts** vs the market's **9.94** (+0.31 worse) |
+| Total MAE | **10.87 pts** vs **10.50** (+0.37 worse) |
+| Strategies certified | **0 of 22** |
+
+The lab originates its own spread/total/moneyline from time-decayed offence and defence ratings,
+then holds 22 candidate strategies to seven gates on a locked holdout (2021–2025) after a
+development window (2013–2020). It stops at the same wall every honest build does: the closing
+line is a better forecast than the model, and the site says so on the landing page.
+
+What it adds beyond a benchmark:
+
+* **Developer/holdout discipline with Bonferroni correction** across 60 tests, plus Wilson bounds,
+  chronological split-half and season-to-season persistence tests — four independent luck filters.
+* **Measured correlation values.** Spread vs total φ = +0.019 (genuinely independent) against
+  spread vs home moneyline φ = +0.669 (one bet counted twice). The book prices both as if
+  independent, which understates the correlated parlay by 58.5%.
+* **Depth-chart vacancy index.** For 2024, 45 position-weeks where a depth-1 starter was ruled Out
+  with no depth-2 body available — the concrete "down to a third-stringer" case.
+* **Every unverifiable value left blank**, with the reason printed on
+  [`site/flagged.html`](site/flagged.html).
+
+```sh
+pip install numpy pandas scipy pyarrow
+python3 -m pipeline.build      # regenerates site/data/*.json from vendored, hashed sources
+node scripts/render_test.js    # executes every page module against the real JSON
+python3 scripts/check_links.py # internal links + data references
+```
+
+The two builds do not share a build system and must not be confused with each other: `tools/build_site.py`
+builds the root site from `data/`, while `pipeline.build` builds `/site/` from `pipeline/data/raw/`.
+Both are verified independently in CI.
