@@ -621,3 +621,29 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 - **Post-merge CI:** `Q51 evidence and engine verification`, `build-and-audit`, `Verify site data and links`, `lab-validate`, `GitHub Pages`, and `pages build and deployment` completed successfully at `45ea5f3`.
 - **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`. Live-fetched and confirmed: https://kanlerxz87-cyber.github.io/NFL2/ , https://kanlerxz87-cyber.github.io/NFL2/q51/index.html , and https://kanlerxz87-cyber.github.io/NFL2/q51/flagged.html .
 - **Conflict handling:** repeated required pre-push `git pull --rebase` attempts tried to flatten the already-pushed claim merge and conflicted on COORDINATION.md; each was aborted and the branch was preserved without force. Final publication used the clean merged PR; no upstream work was discarded.
+
+
+---
+
+## Session `2063673b` — live re-verification & cross-tree reconciliation (`crosscheck/`)
+
+**Session ID:** `2063673b` · **Branch:** `arena/2063673b-nfl2` (fixed by Arena) · **Opened:** 2026-11-12T22:30Z
+**Base:** `25d88a9` (main, after PR #24)
+
+### Claim (written before any file creation, pushed immediately)
+
+| ID | Task | Status | Owner | Exclusive paths |
+|---|---|---|---|---|
+| X1 | Fresh live re-verification of the Week 10 official injury table, row by row, against `nfl.com/injuries/` fetched today | in progress | `2063673b` | `crosscheck/**` |
+| X2 | Fresh live verification of the Week 10 + Week 11 schedule and the 32-club standings page against `nfl.com` | in progress | `2063673b` | `crosscheck/**` |
+| X3 | Cross-tree reconciliation: every headline number asserted by the eight published trees, compared to each other and to its source | in progress | `2063673b` | `crosscheck/**` |
+| X4 | Decision-readiness register (have / lack / how to close) + suggestions review board with a recommended path | in progress | `2063673b` | `crosscheck/**` |
+| X5 | `crosscheck/` dashboard — landing page + category subpages, every table row carrying an official `https://` source, blanks flagged | in progress | `2063673b` | `crosscheck/**` |
+| X6 | Final integration: link from the root page map, rebuild root site, re-run all audits, PR → `main`, confirm Pages | unclaimed | — | `content/index.md` (one row), `COORDINATION.md`, `crosscheck/**` |
+
+**Files this session will touch:** `crosscheck/**` (new), `COORDINATION.md` (this appended section only),
+and — only at X6, as a single added page-map row — `content/index.md` plus the regenerated root `*.html`.
+No other session's file is edited. No root data register (`data/*.csv`) is modified.
+
+**Cross-scope request CR-2063673b-01** (logged, not executed): the root page map should carry one row
+pointing at `crosscheck/index.html`. Deferred to X6 so that shared navigation is changed once, at integration.
