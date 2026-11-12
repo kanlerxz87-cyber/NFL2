@@ -633,12 +633,49 @@ eight published trees; this session audits what they say against official source
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| CEF2-T01 | Independent re-verification sweep: rebuild + all 7 repo verifier suites re-run on this tree; live Pages URLs fetched through the page reader (sandbox curl egress is allowlist-blocked); spot re-verification of core registers against official NFL sources (standings reconciliation, injury register rows, schedule rows) | in progress | `cef2b11f` | `research/cef2/reverification-2026-11-12.json`, `research/cef2/reverification-2026-11-12.md` |
-| CEF2-T02 | Cross-tree discrepancy census: enumerate every place the eight published trees report conflicting numbers for the same object (correlations, strategy counts, register totals, blank-cell censuses), each row sourced to both sides | in progress | `cef2b11f` | `research/cef2/discrepancies-2026-11-12.json`, `research/cef2/discrepancies-2026-11-12.md` |
-| CEF2-T03 | Freshness check of the official Week 11 injury/designation state vs the published Week 10 registers; record drift and what it implies for decision timing | in progress | `cef2b11f` | `research/cef2/freshness-2026-11-12.json`, `research/cef2/freshness-2026-11-12.md` |
-| CEF2-T04 | Final integration: one cross-link row in `content/index.md` to this session's re-verification brief (rebuilt via `tools/build_site.py`, CI drift gate respected), COORDINATION close-out, PR → merge → Pages confirmation | unclaimed→in progress | `cef2b11f` | `content/index.md`, regenerated root `index.html`/`404.html`/`data/build_manifest.json`, `README.md`, `COORDINATION.md` |
+| CEF2-T01 | Independent re-verification sweep: rebuild + all 7 repo verifier suites re-run on this tree; live Pages URLs fetched through the page reader (sandbox curl egress is allowlist-blocked); spot re-verification of core registers against official NFL sources (standings reconciliation, injury register rows, schedule rows) | **done** | `cef2b11f` | `research/cef2/reverification-2026-11-12.json`, `research/cef2/reverification-2026-11-12.md` |
+| CEF2-T02 | Cross-tree discrepancy census: enumerate every place the eight published trees report conflicting numbers for the same object (correlations, strategy counts, register totals, blank-cell censuses), each row sourced to both sides | **done** | `cef2b11f` | `research/cef2/discrepancies-2026-11-12.json`, `research/cef2/discrepancies-2026-11-12.md` |
+| CEF2-T03 | Freshness check of the official Week 11 injury/designation state vs the published Week 10 registers; record drift and what it implies for decision timing | **done** | `cef2b11f` | `research/cef2/freshness-2026-11-12.json`, `research/cef2/freshness-2026-11-12.md` |
+| CEF2-T04 | Final integration: one cross-link row in `content/index.md` to this session's re-verification brief (rebuilt via `tools/build_site.py`, CI drift gate respected), COORDINATION close-out, PR → merge → Pages confirmation | **done** | `cef2b11f` | `content/index.md`, regenerated root `index.html`/`404.html`/`data/build_manifest.json`, `README.md`, `COORDINATION.md` |
 
 Rules this session follows: edits confined to the scopes above; `tools/**`, root `data/*.csv`,
 `analytics/**`, `review/**`, `portal/**`, `site/**`, `s53/**`, `q53`-family files, `docs/**`,
 `engine/**`, `pipeline/**` and `archive/**` are **not touched**; if a defect is found in another
 tree's file it is logged here as a change request, not fixed.
+
+### Session `cef2b11f` verification record (2026-11-12T22:2x–22:5xZ)
+
+| Check | Result |
+|---|---|
+| All 9 repo verifier suites re-run on `25d88a9` | **all green** (root 39+10/1-expected-warn; review OK; engine 64p/1,619L/0 broken; q51 0 errors + 36 tests; s53 262 rows 100% sourced; analytics-audit 96p/222t/3,423r/0 broken; site render 13/13, links 128/0, artefacts reproduce) |
+| Standings re-verified line-by-line vs https://www.nfl.com/standings/ (fetched 22:35Z) | **32/32 exact** incl. pct/net/streak recomputation; zero-sum identities hold (135=135 W/L, 2 ties, PF=PA, 136 games); LA↔LAR key = FL-17 mapped, not silently rewritten |
+| Injury register re-verified vs https://www.nfl.com/injuries/ (fetched 22:38Z, 7 chunks) | **254/254 rows located, 0 missing** (`research/cef2/check_injuries_official.py`, committed); the six published game designations identical; Sunday/Monday designation cells still blank on the hub → register's flags stay accurate |
+| Freshness measurement | hub rolled forward between capture and re-check: **+25 rows** (SEA+15, CIN+4, IND+2, SF+2, JAX+1, AZ+1) with **0 deletions** — quantifies FL-09/S-26; Thursday Nov 12 roundup now exists → depth register lags one day (published as a horizon, not back-filled into another session's capture) |
+| League depth chart path | https://www.nfl.com/teams/new-england-patriots/depth-chart/ re-fetched: still 404 → **FL-06 re-confirmed live** |
+| GitHub Pages at claim time | API `built`, build on `25d88a9` @ 08:10:44Z; CI all success; live fetches of root + `/portal/` + `/q51/` resolve with register-matching values (sandbox curl to github.io is allowlist-blocked; page reader used, per Q-24) |
+| New cross-tree findings (published, non-blocking) | **CE-01** analytics injury totals 253 (D93/L88/F72) vs root/s53 254 (D92/L89/F73), unresolvable from the live hub — needs dated mirror; **CE-02** off pass-vs-rush correlation −0.263 (s53, totals) vs −0.314 (portal, /game), neither states denominators — needs a `units` field; **CE-03** "254 rows across 28 clubs" reads as a filing count but is the slate count (24 clubs filed) — wording change request below |
+| Cross-tree concordance | correlation tables of 3 independent trees agree to 3 decimals on **10 of 12** matched pairs (extracted by id, zero hand-typing: `research/cef2/build_discrepancy_census.py` → `discrepancies-2026-11-12.json`) |
+| Week-11 originated lines census | s53 vs portal on the same 13-game slate: HOU −9.0 vs −8.0 driven entirely by the HFA constant (0.5 vs 2.0); both MLs internally consistent with own win prob; both carry blank market cells |
+| Root register self-consistency | 11/11 file-count vs build-manifest checks exact |
+
+### Change requests logged by `cef2b11f` (not edited — other sessions' scopes)
+
+| # | Requested by | Owned by | File | Request | Status |
+|---|---|---|---|---|---|
+| CR-CEF2-01 | cef2b11f | root build | `content/index.md`, `content/executive-summary.md` | CE-03: render the injury card line from manifest metrics as "28-club slate · 24 clubs filed · 254 rows" | open |
+| CR-CEF2-02 | cef2b11f | analytics tree (eaba7863) | `data/full-injuries-week10-2026.json` | CE-01: reconcile 253-vs-254 against the dated capture; record which filing day the 93/88/72 split refers to | open |
+| CR-CEF2-03 | cef2b11f | s53 + portal owners | `data/s53126614_correlations_2026.json`, `datasets/e143a7ca/computed_correlations_and_lines.json` | CE-02: add an explicit units/denominator field to correlation records; until then the two pass-yards values are not comparable despite the shared label | open |
+| CR-CEF2-04 | cef2b11f | root build | `data/suggestions.csv` | merge `CEF2-S1…S5` (dated-capture gate; units field; frozen benchmark sheet; canonical ledger; capture-age labels) at the owner's discretion | open |
+
+### Session `cef2b11f` — handoff notes for the next session
+
+1. **The basename quirk is a trap worth knowing:** the root auditor resolves every `.html` link by basename at repo root (`tools/check_site.py:97`), so links to sibling trees only pass when the target is named `index.html`. Naming `research/cef2/index.html` is what makes this brief linkable from the root page map.
+2. **Verifier side effects:** `scripts/audit_all_pages.py`, `engine/verify_repo_and_site.py`, `scripts/verify_q51.py` and the analytics suite **rewrite tracked artifacts** (`data/verification-report.json`, `datasets/e143a7ca/verification_manifest.json`, `research/q51/current-audit.json`). Run them, then `git checkout --` those three unless you are their owner — this session did, so no cross-scope diff entered the PR.
+3. **fetch_page calls must always pass the canonical URL** (nfl.com / github.io); an internal proxy URL from a prior result returns a signature error and looks like a site failure but isn't one.
+
+### Session `cef2b11f` PR & Pages record
+
+- **Pull Request:** _created below_
+- **Merge result:** _recorded below_
+- **Pages deploy:** _recorded below_
+- **Brief published at:** https://kanlerxz87-cyber.github.io/NFL2/research/cef2/index.html
