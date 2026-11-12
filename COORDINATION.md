@@ -622,7 +622,101 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 - **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`. Live-fetched and confirmed: https://kanlerxz87-cyber.github.io/NFL2/ , https://kanlerxz87-cyber.github.io/NFL2/q51/index.html , and https://kanlerxz87-cyber.github.io/NFL2/q51/flagged.html .
 - **Conflict handling:** repeated required pre-push `git pull --rebase` attempts tried to flatten the already-pushed claim merge and conflicted on COORDINATION.md; each was aborted and the branch was preserved without force. Final publication used the clean merged PR; no upstream work was discarded.
 
+
 ---
+
+## Session `8b4bdcb3-nfl2` — evidence dashboard, official-source review, decision register
+
+**Session ID:** `8b4bdcb3` · **Branch:** `arena/8b4bdcb3-nfl2` · **Base:** `25d88a9` · **Claimed:** 2026-11-12T22:25Z
+**Merged into this branch:** `origin/main` at `93ad22b` (PRs #25–#28 from session `fd94fccd`), resolve-by-keeping-both on `COORDINATION.md`.
+
+### Scope (additive; no file owned by another session is modified)
+
+| Path | What it is |
+|---|---|
+| `s92/**` | 14-page evidence + decision dashboard, `s92/build.py` generator, `s92/data/**` (16 machine files), `s92/raw/**` (verbatim official extracts), `s92/README.md` |
+| `tools/verify_s92.py` | row-source, official-host, link, blank, arithmetic and prose-vs-data gate |
+| `.github/workflows/s92.yml` | CI: rebuild, drift check, gate, then re-run the root audits |
+| this section of `COORDINATION.md` | claim, log, verification, PR/Pages record |
+
+**Request to the integration owner (not done here):** the root dashboard's page map should gain one link to `s92/index.html`. Root `index.html`, `content/**`, `data/**`, `tools/build_site.py`, `tools/verify.py`, `tools/check_site.py` were **not** modified by this session; verified by `git diff --stat 25d88a9..HEAD` showing only `s92/**`, `tools/verify_s92.py`, `.github/workflows/s92.yml`, `COORDINATION.md`.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| S92-T01 | Line-by-line review of the repository against official NFL sources | done | 8b4bdcb3 | `s92/data/repo_audit.csv` (21 rows), `s92/raw/**` |
+| S92-T02 | Decision-readiness layer: questions, information have/lack, missing-information discovery, assumptions & bounds | done | 8b4bdcb3 | `questions.csv` (15), `assumptions.csv` (10), `suggestions.csv` (20) |
+| S92-T03 | Line origination, signals, correlation, luck removal, gates, leaderboard rules | done | 8b4bdcb3 | `week11_lines.csv` (13), `strategies.csv` (10), `gates.csv` (11), `signals.csv` (10), `correlation` page |
+| S92-T04 | Injury + 1st–4th string depth-deficiency tracking | done | 8b4bdcb3 | `injuries_official.json` (277), `depth_charts_official.csv` (152), `depth_deficiency.csv` (12) |
+| S92-T05 | Executive summary, publish dashboard, PR, merge, Pages confirmation | done | 8b4bdcb3 | `s92/**`, this section |
+
+### Verification performed
+
+| Check | Result |
+|---|---|
+| `python3 s92/build.py` | 14 pages, deterministic |
+| `python3 tools/verify_s92.py` | **13 passed · 0 warnings · 0 failures** (253 source references across 7 tables, 273 internal links, every anchor, prose numbers vs data files, injury-diff arithmetic, standings arithmetic) |
+| `python3 tools/build_site.py` | 22 pages, no drift |
+| `python3 tools/verify.py` | 39 passed · 0 failures |
+| `python3 tools/check_site.py` | 10 passed · 1 pre-existing warning · 0 failures |
+| `python3 scripts/verify_q51.py` | 0 errors |
+
+### Official sources used (all fetched 2026-11-12, 22:27–22:35Z)
+
+`nfl.com/standings/league/2026/reg` · `nfl.com/injuries/` (Thursday 12 Nov filing, 277 rows) · `nfl.com/schedules/2026/by-week/week-11` · `operations.nfl.com/rules-officiating/2026-nfl-rulebook` · `patriots.com/team/depth-chart` · `detroitlions.com/team/depth-chart` · `commanders.com/team/depth-chart` · `nfl.com/players/justin-fields/` · `nfl.com/players/myles-garrett/` · two `nfl.com/games/...` pages (negative result).
+
+**Session limitation, recorded rather than hidden:** bash-level HTTPS to `www.nfl.com` fails in this sandbox with `SSL_ERROR_SYSCALL` (the same TLS failure Q51 recorded). Every official page here was retrieved through the session's page-fetch path. That path renders tables and prose but returns `Hidden Score` for game score boxes, which is why audit row RA-21 is `NOT-RE-VERIFIABLE` rather than green.
+
+### Findings (published, not silently fixed)
+
+21 audit rows: **7 VERIFIED**, 14 flagged. The material ones:
+
+1. **RA-01/02/03/04 — the stored injury table is a filing behind.** Official hub: 277 rows, 26 clubs. Stored: 254 rows, 24 clubs. SEA and CIN absent entirely; 5 players disagree on practice status; 2 stored rows (BUF Alec Anderson, KC Rashee Rice) are no longer on the official page.
+2. **RA-06 — two Week 11 TV cells differ** (MIA@BUF, TB@DET are swapped CBS/FOX). 11 of 13 match; low-value field, flagged not corrected.
+3. **RA-09 — every club depth chart inspected is labelled unofficial by the club.**
+4. **RA-05/16/19 — the standings and game log reconcile exactly**: 32 clubs, 224 shared cells, 6,246 for = 6,246 against, 136 games.
+5. **RA-12 — the root site's "fetched 04:45 UTC" banner does not describe the injury table it renders.**
+6. **RA-21 — individual game scores cannot be re-verified** through this fetch path.
+
+### Computed results the owner can act on
+
+| Quantity | Value | Basis |
+|---|---|---|
+| Spread model MAE (leave-one-week-out) | 10.55 vs 10.62 zero-line baseline | 136 games; difference interval **includes zero** |
+| Total model MAE | 12.86 vs 11.62 league-average baseline | **worse than naive** |
+| Margin correlation, predicted vs actual | 0.331 | 136 games |
+| Margin vs total correlation | −0.161 | 136 games |
+| Home vs away score correlation | +0.076 | 136 games |
+| Split-half point-differential persistence | r = 0.186 | 32 clubs, weeks 1–4 vs 5–9 |
+| One-score record, league-wide | 76–76 | 152 club-games |
+| Largest Pythagorean luck residual | +2.17 wins (DEN), −2.17 (TB) | convention exponent 2.37 |
+| Home-field for 2026 | set to **0** by policy | +0.50 pts over 129 games is not an estimate |
+
+### PR & merge record
+
+- **PR:** [#31](https://github.com/kanlerxz87-cyber/NFL2/pull/31) — `arena/8b4bdcb3-nfl2` → `main`
+- **Merge result:** _recorded after merge_
+- **Pages:** _recorded after deploy_
+- **Published at:** https://kanlerxz87-cyber.github.io/NFL2/s92/
+
+### Log
+
+| UTC | Entry |
+|---|---|
+| 22:20Z | Baseline before any change: root build clean, `verify.py` 39/0, `check_site.py` 10/1/0. |
+| 22:25Z | Claim pushed. Remote had only `origin/main`; no open PRs at that moment. |
+| 22:27Z | Official standings fetched in full; 32-club transcription checks zero mismatches against `data/standings_2026.csv`. |
+| 22:28Z | Official injury hub fetched (7 chunks); parsed 277 rows / 26 clubs; row-level diff against the stored table. |
+| 22:29Z | Week 11 schedule fetched; 13 games and 6 byes match; two TV cells differ. |
+| 22:31Z | Rulebook page fetched; all four 2026 rule changes match `data/nfl-rules-operations-2026.json`. |
+| 22:32Z | NE, DET depth charts fetched (both labelled unofficial); WAS chart fetched. |
+| 22:33Z | Depth-deficiency join computed: 12 affected starter lines, 1 genuine cascade (NE RB). |
+| 22:34Z | Player pages checked (Fields → KC, Garrett → LAR): cross-team movement is real, not a transcription error. |
+| 22:35Z | Game pages checked twice: scores render client-side → audit row RA-21 added as NOT-RE-VERIFIABLE. |
+| 22:38Z | Backtest + luck panels computed; Week 11 lines originated with HFA=0. |
+| 22:41Z | Dashboard built (14 pages); gate green after fixing 9 defects the gate itself caught. |
+| 22:44Z | Merged `origin/main` (`93ad22b`): one additive conflict in this file, resolved by keeping both sessions' sections. |
 
 ## Session `fd94fccd` — independent final audit of published NFL decision site
 

@@ -1,0 +1,11 @@
+id|bet_type|market|thesis|signal|entry_rule|gate_status|state
+ST-101|single|game total|Availability surprise: late downgrades the market has not absorbed|SIG-101|Bet the direction of the surprise only when the filing timestamp precedes our decision by more than one hour|0 of 3 hard inputs present (no prices, stale filings)|gated
+ST-102|single|team total|Quarterback chain change|SIG-102|Bet the side implied by a confirmed QB change from an official league page|No historically stored filings; cannot backtest|gated
+ST-103|single|spread|Rest-week and travel differential|SIG-103|Fade teams returning from a neutral-site trip|7 neutral games in 2026; n too small|gated
+ST-104|single|spread|Our line versus the realised score, no market|SIG-104|Bet when our rating gap exceeds the realised line by more than the model's own error|Scored on outcomes only; no price to bet into|research
+ST-105|parlay|2-leg cross-game|Independent-side parlay where the two legs are in different games|SIG-105|Price the parlay as the product only when the legs are in different games|Price source missing; correlation measurable only at game level|gated
+ST-106|parlay|2-leg same-game|Same-game spread plus total, using the measured r = -0.161|SIG-106|Price with the measured joint distribution, never the product|r measured on 136 games; interval wide|research
+ST-107|parlay|3-leg same-game|Three-leg SGP|SIG-107|Requires a joint distribution that does not exist|No player-level data|blocked
+ST-108|prop combo|QB passing + WR receiving|Positively coupled prop pair|SIG-108|Price only with same-game player data|No prop lines, no player participation data|blocked
+ST-109|prop combo|RB rushing + team total|Positively coupled prop pair|SIG-109|Price only with same-game player data|No prop lines|blocked
+ST-110|single|moneyline|Home underdog after a neutral-site loss|SIG-110|Requires a multi-season sample|n too small in 2026|gated
