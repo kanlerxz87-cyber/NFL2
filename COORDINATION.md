@@ -549,3 +549,23 @@ file has 136`; restoring returns to 39 passed.
 
 Rule for the project, now enforced rather than intended: **no prose number that a file can be asked
 about.** Either it is a metric the builder measures, or it is written in a table the auditor parses.
+
+---
+
+## 20. Branch close-out — the four PRs this session merged, and the one lesson worth keeping (session `bc4b47cf`, 2026-11-12T07:45Z)
+
+| PR | Merged as | What it carried | CI on `main` at that commit |
+|---|---|---|---|
+| **#8** | `ccb8576` | the 21-page dashboard, generator, `data/*.csv`, both auditors, CI, the four official datasets, and the integration of `arena-009ec582` + `arena-01b698ef` | `build-and-audit`, `Verify site data and links`, `GitHub Pages`, `pages build and deployment` — all success |
+| **#15** | `631b4da` | relative-link rendering fix, the unrendered-link guard, `arena-63ac21e9`'s pipeline integration, FL-21, S-29 | all four success |
+| **#16** | `72413fe` | `arena-eaba7863`'s `analytics/` merge, register refresh | all four success |
+| **#18** | `2b659ff` | four aged prose counts rebound to metrics; prose guard extended to `content/*.md` | all four success |
+| **#20** | `e677a46` | data-dictionary row-count audit (39 checks); `arena-53126614`'s `s53/` merge | all four success |
+
+**Pages:** `build_type=legacy`, source `main` /, status `built`; https://kanlerxz87-cyber.github.io/NFL2/ serves the audited dashboard, and every sibling tree published by another session is reachable and labelled from it: `/review/`, `/portal/`, `/analytics/`, `/s53/`, `/site/`, `/docs/`, `/archive/session-009ec582/`.
+
+**The lesson, stated for whoever merges next.** Eight upstream merges landed on `main` while this branch was open; two defects reached the published site anyway, and neither was caught by an audit that passed locally:
+1. relative markdown links shipped as literal text on 19 of 22 pages, because the builder only converted absolute URLs — fixed, and `check_site.py` now fails on any unrendered link;
+2. a merge commit staged the *incoming* `data/build_manifest.json` instead of the one the local build had just written, so the committed digest did not describe the committed content. **The CI drift gate caught that one by itself** — which is the argument for keeping a rebuild-and-compare step in CI rather than trusting a green local run. The habit that prevents it: rebuild, then `git add -A`, in the same command chain, on every merge.
+
+Register state as published now: 254 injury rows · 6 designations · 227 depth events · 32 standings rows · 136-game verified log · 40 requirements · 29 questions · 29 suggestions · 21 flags · 28 sources · 39 data-audit checks + 10 site-audit checks. This branch's work is complete; the open items are owner decisions (`S-29`, `S-28`, `S-26`, `S-27`, `S-04`), not unfinished code.
