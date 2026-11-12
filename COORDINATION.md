@@ -25,15 +25,15 @@ Status vocabulary: `unclaimed` | `in progress` | `done` | `needs review`
 | Task ID | Task | Status | Owner session ID | File scope (exclusive) | Claimed / updated (UTC) |
 | --- | --- | --- | --- | --- | --- |
 | T00 | Create this board, define tasks and scopes, push claim | in progress | `session-01b698ef` | `COORDINATION.md` | 2026-11-12 |
-| T01 | Repo audit, line-by-line review, flag irregularities, official links for manual review | unclaimed | — | `research/repo-audit.md`, `research/irregularities.md` | — |
-| T02 | Official-source registry: discover + fetch-verify every official URL used anywhere on the site | unclaimed | — | `research/sources.md`, `research/source-registry.json` | — |
-| T03 | Full requirements list (line-by-line), acceptance criteria, status | unclaimed | — | `content/requirements.md` | — |
-| T04 | Decision prerequisites: clear list of questions / information / answers known and missing; discovery suggestions | unclaimed | — | `content/decision-gates.md` | — |
-| T05 | Improvement suggestions + decision path chooser (review picks before implementing) | unclaimed | — | `content/suggestions.md` | — |
-| T06 | Strategy research: originating own lines, signals, single bets, parlays, player-prop combos, leaderboard with rewards | unclaimed | — | `content/strategies.md` | — |
-| T07 | Validation gates, correlation values, skill-vs-luck separation, out-of-sample protocol | unclaimed | — | `content/validation.md` | — |
-| T08 | Injury / lineup / depth-chart tracking design (2nd–4th string replacements, offense and defense) | unclaimed | — | `content/injuries.md` | — |
-| T09 | Executive summary | unclaimed | — | `content/executive-summary.md` | — |
+| T01 | Repo audit, line-by-line review, flag irregularities, official links for manual review | in progress | `session-01b698ef` | `research/repo-audit.md`, `research/irregularities.md` | 2026-11-12 |
+| T02 | Official-source registry: discover + fetch-verify every official URL used anywhere on the site | in progress | `session-01b698ef` | `research/sources.md`, `research/source-registry.json` | 2026-11-12 |
+| T03 | Full requirements list (line-by-line), acceptance criteria, status | in progress | `session-01b698ef` | `content/requirements.md`, `content/brief.md` | 2026-11-12 |
+| T04 | Decision prerequisites: clear list of questions / information / answers known and missing; discovery suggestions | in progress | `session-01b698ef` | `content/decision-gates.md` | 2026-11-12 |
+| T05 | Improvement suggestions + decision path chooser (review picks before implementing) | in progress | `session-01b698ef` | `content/suggestions.md` | 2026-11-12 |
+| T06 | Strategy research: originating own lines, signals, single bets, parlays, player-prop combos, leaderboard with rewards | in progress | `session-01b698ef` | `content/strategies.md` | 2026-11-12 |
+| T07 | Validation gates, correlation values, skill-vs-luck separation, out-of-sample protocol | in progress | `session-01b698ef` | `content/validation.md` | 2026-11-12 |
+| T08 | Injury / lineup / depth-chart tracking design (2nd–4th string replacements, offense and defense) | in progress | `session-01b698ef` | `content/injuries.md` | 2026-11-12 |
+| T09 | Executive summary | in progress | `session-01b698ef` | `content/executive-summary.md` | 2026-11-12 |
 | T10 | **Integration (shared outputs):** table data, site index + navigation, build, line-by-line re-verification, broken-link check, publish | unclaimed | — | `data/`, `site/`, `tools/`, `README.md`, `.nojekyll`, `.github/workflows/` | — |
 | T11 | PR from integration branch → `main`, merge without waiting, confirm Pages deploy, record PR link + result here | unclaimed | — | `COORDINATION.md` (log section) | — |
 
