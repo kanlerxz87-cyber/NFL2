@@ -24,22 +24,8 @@ jobs:
       - name: Rebuild every dataset from the vendored sources
         run: python3 -m pipeline.build
 
-      - name: Verify the committed data matches a fresh build
-        run: |
-          set -e
-          python3 - <<'PY'
-          import json, glob, os, subprocess
-          # timestamps legitimately change; everything else must reproduce
-          changed = subprocess.run(["git", "status", "--porcelain", "site/data"],
-                                   capture_output=True, text=True).stdout.strip().splitlines()
-          ignore = [l for l in changed if not any(k in l for k in
-                    ("generated_utc", "as_of", "index.json"))]
-          if ignore:
-              print("data changed on rebuild:", *ignore, sep="\n  ")
-          for f in glob.glob("site/data/*.json"):
-              json.load(open(f))
-          print("all data files parse")
-          PY
+      - name: Verify the committed data reproduces exactly (ignoring timestamps)
+        run: python3 scripts/check_reproducible.py
 
       - name: Render every page against the real JSON
         run: node scripts/render_test.js
