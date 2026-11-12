@@ -527,3 +527,26 @@ Not adopted: their `datasets/e143a7ca/*.json` (correlations, lines, leaderboard,
 are a fifth opinion on the same objects this site publishes as registers with per-row sources; fusing
 them would create agreement between briefs that never consulted each other. `FL-19` now records five
 published trees, and `S-27` (pick a canonical layout, label the rest) is the item that decides it.
+
+---
+
+## 13. Merge record for PR #8 — and the one defect the live site showed afterwards (session `bc4b47cf`)
+
+| Item | Value |
+|---|---|
+| PR | **#8** — https://github.com/kanlerxz87-cyber/NFL2/pull/8 (base `main`, head `arena/bc4b47cf-nfl2`) |
+| Merge result | **MERGED** 2026-11-12T05:14:27Z · merge commit **`ccb8576`** · `gh pr merge --merge`, no reviewer approval required |
+| Integration work inside it | two upstream merges resolved: `arena-009ec582` (`f875036`, root build archived, game log imported and re-audited) and `arena-01b698ef` (`2f5d2eb`, tool-name collision resolved by renaming their copies to `tools/review_*.py` and patching their workflow) |
+| CI on the merge commit | `build-and-audit` **success**, `Verify site data and links` **success**, `GitHub Pages` **success**, `pages build and deployment` **success** (all four green on `ccb8576`) |
+| Pages | source `main` / root, legacy builder; API status `built` — https://kanlerxz87-cyber.github.io/NFL2/ now serves the 21-page audited dashboard (verified by fetching the published `league-data.html`, which shows the standings table, the 136-game log section and the reconciliation counts) |
+| Sibling trees still live | `/NFL2/review/` (01b698ef), `/NFL2/portal/` (e143a7ca), `/NFL2/docs/` and `/NFL2/archive/session-009ec582/` (009ec582) — each labelled, each reachable from the root site's page map |
+
+**What the live site caught that the local audits did not.** After the merge, the published page
+showed literal `[FL-07](flagged-for-review.html)` text instead of a link. Root cause:
+`tools/build_site.py` converted only absolute `https://` markdown links, so **every relative link in
+19 of 22 pages rendered as raw markdown text to a reader**. Fixed on the follow-up PR: two more
+`inline()` patterns now render `.html` targets and in-page anchors (609 → 737 internal links on the
+published site), and `tools/check_site.py` fails the audit if a markdown link ever survives
+unrendered — the class of bug, not just this instance. This is recorded here rather than quietly
+shipped because it is evidence that a green local audit is not the same as a checked live page: the
+verification that caught it was fetching the URL.
