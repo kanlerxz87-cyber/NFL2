@@ -1,7 +1,7 @@
 {
   "blank_cells_rendered_as_not_published": 588,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "293f30a889ac05de519d3b2ddd127f7a82c0839035f214f6538a5cbe6db3c1e6",
+  "inputs_sha256": "1888401308267a1586866ae4b45491324848c495c72fdbd34bc5faa33f963add",
   "metrics": {
     "correlation": 12,
     "data_files": 22,
@@ -33,10 +33,10 @@
     "injury_teams": 24,
     "limited": 89,
     "official_sources": 17,
-    "p0": 11,
+    "p0": 12,
     "pages": 22,
     "qb_depth_rows": 5,
-    "questions": 29,
+    "questions": 33,
     "requirements": 40,
     "ruled_out_rows": 9,
     "signals": 18,
