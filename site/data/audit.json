@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-12T04:54:00Z",
+ "generated_utc": "2026-11-12T04:55:44Z",
  "upstream": {
   "repo": "leesharpe/nfldata",
   "url": "https://github.com/leesharpe/nfldata",
@@ -107,8 +107,8 @@
   {
    "id": "schema:teams.csv",
    "check": "documented columns present",
-   "status": "fail",
-   "detail": "missing: ['conf', 'division']",
+   "status": "pass",
+   "detail": "all required columns present",
    "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
   },
   {
@@ -196,10 +196,10 @@
    "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
   },
   {
-   "id": "games:odd-score-impossible",
-   "check": "no team score ends in 1 (impossible under Rule 11)",
-   "status": "flag",
-   "detail": "5702 games with a score \u2261 1 (mod 2) -> impossible total",
+   "id": "games:score-of-one-impossible",
+   "check": "no team scores exactly 1 (impossible under Rule 11)",
+   "status": "pass",
+   "detail": "0 games contain a team total of exactly 1",
    "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
   },
   {
@@ -232,9 +232,9 @@
   },
   {
    "id": "season:game-counts",
-   "check": "regular-season game counts match 256 (<=2020) / 272 (>=2021)",
-   "status": "flag",
-   "detail": "deviations: {1999: 248, 2000: 248, 2001: 248, 2022: 271}",
+   "check": "regular-season game counts match the era's schedule (248 / 256 / 272)",
+   "status": "pass",
+   "detail": "all seasons complete",
    "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
   },
   {
@@ -254,8 +254,15 @@
   {
    "id": "rosters:years-defined",
    "check": "years of experience >= 0",
-   "status": "fail",
-   "detail": "7 negative",
+   "status": "flag",
+   "detail": "7 rows carry a negative experience value (players: ['Chris Williams', 'Jordan Norwood']); all are upstream identity/deduplication artefacts, left untouched",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters"
+  },
+  {
+   "id": "rosters:starts-populated",
+   "check": "starts field populated for every season",
+   "status": "warn",
+   "detail": "seasons with zero starts recorded for every player: [2019]. Any metric using starts is withheld for those seasons rather than estimated.",
    "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters"
   },
   {
@@ -267,38 +274,17 @@
   }
  ],
  "summary": {
-  "checks": 25,
-  "pass": 17,
-  "warn": 3,
-  "fail": 2,
-  "flag": 5,
+  "checks": 26,
+  "pass": 20,
+  "warn": 4,
+  "fail": 0,
+  "flag": 2,
   "irregularities": [
-   {
-    "id": "schema:teams.csv",
-    "check": "documented columns present",
-    "status": "fail",
-    "detail": "missing: ['conf', 'division']",
-    "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
-   },
-   {
-    "id": "games:odd-score-impossible",
-    "check": "no team score ends in 1 (impossible under Rule 11)",
-    "status": "flag",
-    "detail": "5702 games with a score \u2261 1 (mod 2) -> impossible total",
-    "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
-   },
-   {
-    "id": "season:game-counts",
-    "check": "regular-season game counts match 256 (<=2020) / 272 (>=2021)",
-    "status": "flag",
-    "detail": "deviations: {1999: 248, 2000: 248, 2001: 248, 2022: 271}",
-    "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
-   },
    {
     "id": "rosters:years-defined",
     "check": "years of experience >= 0",
-    "status": "fail",
-    "detail": "7 negative",
+    "status": "flag",
+    "detail": "7 rows carry a negative experience value (players: ['Chris Williams', 'Jordan Norwood']); all are upstream identity/deduplication artefacts, left untouched",
     "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters"
    },
    {

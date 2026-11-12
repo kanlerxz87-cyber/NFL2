@@ -179,6 +179,13 @@ def definitions() -> list[dict]:
         "Home team with 3+ more rest days than the visitor.")
     add("S20", "Model moneyline dog 6pt+", "model-ml", "moneyline",
         "Underdog moneylines where the model gives 6+ points more probability than the book.")
+    add("S21", "Indoor over", "environment", "total",
+        "Over when the roof is closed or the stadium is a dome: indoor games score more, "
+        "and both the market and the model may under-adjust. Pre-specified hypothesis.")
+    add("S22", "Moderate-wind under (EXPLORATORY)", "environment", "total",
+        "Under when kickoff wind is 10-15 mph. EXPLORATORY: the band was chosen after "
+        "inspecting results, so this is reported as a research finding, not a clean "
+        "pre-registered test. Selection bias is a real risk here.")
     return D
 
 
@@ -233,6 +240,10 @@ def evaluate_rule(df: pd.DataFrame, d: dict) -> pd.DataFrame:
         return spread_legs(df, (df.home_rest - df.away_rest) >= 3, "home")
     if sid == "S20":
         return _ml_value(df, 0.06, dog_only=True)
+    if sid == "S21":
+        return total_legs(df, df.roof.isin(["dome", "closed"]), "over")
+    if sid == "S22":
+        return total_legs(df, (df.wind >= 10) & (df.wind < 15), "under")
     return df.iloc[0:0]
 
 

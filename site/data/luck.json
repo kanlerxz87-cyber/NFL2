@@ -827,7 +827,91 @@
     "note": "share of a season's edge that repeats the next season; 0 = pure luck"
    },
    "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; season-to-season edge does not persist"
+  },
+  {
+   "id": "S21",
+   "name": "Indoor over",
+   "family": "environment",
+   "legs": 430,
+   "hit_rate": 0.5047,
+   "ci_low": 0.4576,
+   "break_even": 0.5238,
+   "excess": -0.0192,
+   "variance_test": {
+    "legs": 430,
+    "wins": 217,
+    "theoretical_sd": 10.356458652824545,
+    "observed_sd": 10.367772068984667,
+    "sd_ratio": 1.001092402001435,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 215,
+     "wins": 108,
+     "hit": 0.5023255813953489,
+     "roi": -0.03636363636363636
+    },
+    "second_half": {
+     "n": 215,
+     "wins": 109,
+     "hit": 0.5069767441860465,
+     "roi": -0.027484143763213526
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": -0.29992116407989744,
+    "ci_low": -2.2599,
+    "ci_high": 1.6601,
+    "skill_share": 0.0,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; season-to-season edge does not persist"
+  },
+  {
+   "id": "S22",
+   "name": "Moderate-wind under (EXPLORATORY)",
+   "family": "environment",
+   "legs": 180,
+   "hit_rate": 0.5722,
+   "ci_low": 0.4992,
+   "break_even": 0.5238,
+   "excess": 0.0484,
+   "variance_test": {
+    "legs": 180,
+    "wins": 103,
+    "theoretical_sd": 6.7005939426048995,
+    "observed_sd": 6.637854405687964,
+    "sd_ratio": 0.990636720049843,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 90,
+     "wins": 58,
+     "hit": 0.6444444444444445,
+     "roi": 0.24141414141414141
+    },
+    "second_half": {
+     "n": 90,
+     "wins": 45,
+     "hit": 0.5,
+     "roi": -0.03434343434343435
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.09077046321269776,
+    "ci_low": -1.8692,
+    "ci_high": 2.0508,
+    "skill_share": 0.0908,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
   }
  ],
- "generated_utc": "2026-11-12T04:54:10Z"
+ "generated_utc": "2026-11-12T04:55:35Z"
 }

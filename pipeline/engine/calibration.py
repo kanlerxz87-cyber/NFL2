@@ -42,7 +42,7 @@ def build(df: pd.DataFrame, sigma_margin: float = 13.248) -> dict:
     d["p_home_model"] = [NormalDist().cdf(m / sigma_margin) for m in d.model_margin]
     overall = {
         "spread_model_vs_result": _metrics(d.model_margin, d.result),
-        "spread_market_vs_result": _metrics(-d.market_spread, d.result),
+        "spread_market_vs_result": _metrics(d.market_spread, d.result),
         "total_model_vs_result": _metrics(d.model_total, d.total),
         "total_market_vs_result": _metrics(d.market_total, d.total),
     }
@@ -51,7 +51,7 @@ def build(df: pd.DataFrame, sigma_margin: float = 13.248) -> dict:
         by_season.append({
             "season": int(s),
             "model_spread_mae": round(float((g.result - g.model_margin).abs().mean()), 3),
-            "market_spread_mae": round(float((g.result + g.market_spread).abs().mean()), 3),
+            "market_spread_mae": round(float((g.result - g.market_spread).abs().mean()), 3),
             "model_total_mae": round(float((g.total - g.model_total).abs().mean()), 3),
             "market_total_mae": round(float((g.total - g.market_total).abs().mean()), 3),
             "n": int(len(g)),
@@ -69,9 +69,6 @@ def build(df: pd.DataFrame, sigma_margin: float = 13.248) -> dict:
         "error": round(float(r.actual - r.predicted), 4),
     } for r in cal.itertuples()]
 
-    win_rate_when_model_agrees = {
-        "favourite_covers": _metrics(d.model_margin.clip(lower=-99), d.result),
-    }
     return {
         "sigma_used": sigma_margin,
         "overall": overall,

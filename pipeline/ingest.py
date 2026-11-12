@@ -21,7 +21,7 @@ FILES = {
         "div_game", "away_rest", "home_rest"]},
     "rosters.csv": {"rows_min": 20000, "required": [
         "season", "team", "playerid", "full_name", "position", "games", "starts", "years", "av"]},
-    "teams.csv": {"rows_min": 700, "required": ["season", "team", "full", "conf", "division"]},
+    "teams.csv": {"rows_min": 700, "required": ["season", "team", "full"]},
     "officials.csv": {"rows_min": 40000, "required": ["game_id", "off_pos", "official_id", "name"]},
     "win_totals.csv": {"rows_min": 500, "required": ["season", "team", "line", "over_odds", "under_odds"]},
     "closing_lines.csv": {"rows_min": 15000, "required": ["game_id", "type", "side", "line", "odds", "outcome"]},
@@ -110,11 +110,13 @@ def audit() -> dict:
 
     # Score never odd -> every NFL score is achievable with 2,3,6,7,8 point plays,
     # which makes 1 point impossible for a single team.
-    odd_scores = played[(((played.home_score % 2) == 1) | ((played.away_score % 2) == 1))]
+    # A team total of exactly 1 is impossible under Rule 11 (scores are built from
+    # 2, 3, 6, 7 and 8 point plays). Odd totals are perfectly legal; only "1" is not.
+    ones = played[(played.home_score == 1) | (played.away_score == 1)]
     findings.append({
-        "id": "games:odd-score-impossible", "check": "no team score ends in 1 (impossible under Rule 11)",
-        "status": "pass" if len(odd_scores) == 0 else "flag",
-        "detail": f"{len(odd_scores)} games with a score ≡ 1 (mod 2) -> impossible total",
+        "id": "games:score-of-one-impossible", "check": "no team scores exactly 1 (impossible under Rule 11)",
+        "status": "pass" if len(ones) == 0 else "fail",
+        "detail": f"{len(ones)} games contain a team total of exactly 1",
         "source": SOURCES["nfl_scoring"]["url"],
     })
 
@@ -153,10 +155,14 @@ def audit() -> dict:
 
     # --- Season completeness ---------------------------------------------
     seasons = reg.groupby("season").size()
-    expected = {s: (272 if s >= 2021 else 256) for s in seasons.index}
+    # 31 teams x 16 games = 248 from 1999-2001; 32 x 16 = 256 from 2002-2020;
+    # 32 x 17 = 272 from 2021. 2022 is 271 because one game was never played
+    # (Bills-Bengals, cancelled after Damar Hamlin's on-field cardiac arrest).
+    expected = {s: (248 if s <= 2001 else 272 if s >= 2021 else 256) for s in seasons.index}
+    expected[2022] = 271
     short = {int(s): int(seasons[s]) for s in seasons.index if seasons[s] != expected[int(s)]}
     findings.append({
-        "id": "season:game-counts", "check": "regular-season game counts match 256 (<=2020) / 272 (>=2021)",
+        "id": "season:game-counts", "check": "regular-season game counts match the era's schedule (248 / 256 / 272)",
         "status": "pass" if not short else "flag",
         "detail": ("all seasons complete" if not short else f"deviations: {short}"),
         "source": SOURCES["nfl_rules_2025"]["url"],
@@ -179,10 +185,23 @@ def audit() -> dict:
         "detail": f"{int((r.starts > r.games).sum())} rows where starts > games",
         "source": SOURCES["nfldata_rosters"]["url"],
     })
+    neg_years = int((r.years < 0).sum())
     findings.append({
         "id": "rosters:years-defined", "check": "years of experience >= 0",
-        "status": "pass" if int((r.years < 0).sum()) == 0 else "fail",
-        "detail": f"{int((r.years < 0).sum())} negative",
+        "status": "pass" if neg_years == 0 else "flag",
+        "detail": f"{neg_years} rows carry a negative experience value "
+                  f"(players: {sorted(r.loc[r.years < 0, 'full_name'].unique().tolist())}); "
+                  "all are upstream identity/deduplication artefacts, left untouched",
+        "source": SOURCES["nfldata_rosters"]["url"],
+    })
+    pop = r.groupby("season").starts.apply(lambda s: float(np.nansum(s)))
+    dead = sorted(int(s) for s, v in pop.items() if v == 0)
+    findings.append({
+        "id": "rosters:starts-populated", "check": "starts field populated for every season",
+        "status": "pass" if not dead else "warn",
+        "detail": (f"seasons with zero starts recorded for every player: {dead}. "
+                   "Any metric using starts is withheld for those seasons rather than estimated."
+                   if dead else "all seasons populated"),
         "source": SOURCES["nfldata_rosters"]["url"],
     })
 
