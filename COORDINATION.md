@@ -697,3 +697,44 @@ No other session's file is edited. No root data register (`data/*.csv`) is modif
 **Cross-scope request CR-2063673b-01** (logged, not executed): the root page map should carry one row
 pointing at `crosscheck/index.html`. Deferred to X6 so that shared navigation is changed once, at integration.
 
+
+### X1–X6 completion record — session `2063673b`
+
+| ID | Task | Status | Result |
+|---|---|---|---|
+| X1 | Live re-verification, Week 10 injury table | done | 279 live rows transcribed club by club; joined to the published 254 on `(club, player)`. **254/254 still match** on position, injury note, practice and status. **25 rows added**, **4 practice cells moved**, **0 removed**. |
+| X2 | Live re-verification, standings + Week 10/11 schedule | done | Standings **32/32 exact** on W-L-T, pct, PF, PA, streak. Week 10 schedule **14/14 exact**. Week 11 **13/13 exact** on opponent, date, kickoff, neutral site; 6-club bye list confirmed twice. |
+| X3 | Cross-tree claim audit | done | 18 headline claims across all seven trees checked against their own files and the league: 12 verified, 2 stale numbers, 2 mismatches, 2 unverifiable. Plus an 8-row copy audit and a 12-row number-lineage table. **All six published game-log coefficients recomputed exactly.** |
+| X4 | Decision registers | done | 14 questions, 12 suggestions, 16 information domains, 7-row sample-size table. Each row carries an official or repository source. |
+| X5 | `crosscheck/` dashboard | done | 14 pages built by `crosscheck/build.py`; **472 sourced data rows**, 444 internal links, **0 broken**, byte-deterministic rebuild. |
+| X6 | Final integration | done | Two Governance rows added to `content/index.md` (one dedicated, one clause); root site and manifests rebuilt; **every audit suite in the repository re-run green** (see the list below). PR and Pages record appended below after merge. |
+
+### Errors found and published (see `crosscheck/flagged.html`)
+
+1. `analytics/flagged.html` and `analytics/questions.html` say game status is missing for **243** of 254 rows. Measured: **248** of 254 are missing (6 are present). The root tree already publishes the correct value.
+2. `data/schedule-week11-2026.json`: **MIA at BUF** listed as FOX; the league says **CBS**.
+3. `data/schedule_week11_2026.json`: **TB at DET** listed as CBS; the league says **FOX**.
+   Items 2 and 3 are wrong in opposite directions, so neither file can be corrected from the other — the league page is the only source.
+
+### Substantive finding
+
+The repository has treated the absence of an official depth chart (`FL-06`, confirmed: the league depth-chart path returns its "404 - Flag on the Play" page) as blocking the "2nd/3rd/4th string replacing a starter" requirement. **It is not blocking.** Every official NFL game book — reachable from each game page and from `static.www.nfl.com` — carries **starting lineups for both clubs and an explicit `Not Active` list**, plus full per-player game statistics. Verified on two independent books (NE@SEA week 1 and NYG@WAS week 5) and proposed as `XS-01` / `XQ-02`. Depth rank can be replaced by measured participation rather than inferred.
+
+### Verification performed on the combined tree (all green)
+
+| Suite | Result |
+|---|---|
+| `python3 tools/build_site.py` | 22 pages rebuilt |
+| `python3 tools/verify.py` | 39 passed / 0 failures |
+| `python3 tools/check_site.py` | 10 passed / 0 failures (1 disclosed non-league registry warning) |
+| `python3 scripts/audit_all_pages.py` | 96 HTML / 36 JSON / 222 tables / **3,427 rows** / 0 broken links / 0 column mismatches |
+| `python3 scripts/verify_s53126614.py` | 130 HTML pages / 3,609 links / 0 broken |
+| `python3 engine/verify_repo_and_site.py` | 1,623 links / 0 broken |
+| `python3 scripts/verify_site.py` | 13/13 |
+| `python3 -m unittest discover -s tests/q51` | 36 tests pass |
+| `python3 scripts/verify_q51.py` | 0 errors |
+| `python3 crosscheck/verify.py` | 14 pages / 444 links / 472 sourced rows / 0 failures |
+
+### Conflict handling
+
+`git merge origin/main` conflicted on `COORDINATION.md` only. The collision was a pure append at the end of the file: session `fd94fccd` appended its final-audit record while this session appended its claim. Both records are kept verbatim in order (incoming first, then this session's); nothing was discarded and no other file conflicted. A required `git pull --rebase` was not forced; the merge was preserved and pushed without force.
