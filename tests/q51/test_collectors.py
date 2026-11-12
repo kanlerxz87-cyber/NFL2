@@ -1,5 +1,5 @@
 import unittest
-from collectors.collect import Document,injuries,depth_chart,SafeRedirect
+from collectors.q51.collect import Document,injuries,depth_chart,SafeRedirect
 
 CLUBS=[{'team':'New England Patriots','abbr':'NE','home':'https://www.patriots.com/'},{'team':'Dallas Cowboys','abbr':'DAL','home':'https://www.dallascowboys.com/'}]
 ENTRY={'url':'https://www.nfl.com/injuries/league/2026/REG10','retrieved_at':'2026-11-12T00:00:00+00:00','sha256':'test-hash-not-an-official-observation'}

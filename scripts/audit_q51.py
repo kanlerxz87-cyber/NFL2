@@ -46,7 +46,7 @@ def is_official(u):
     return h in {'nfl.com','www.nfl.com','media.nfl.com','operations.nfl.com','static.www.nfl.com','github.com','api.github.com','www.ncpgambling.org','ncpgambling.org'} or h.endswith('.nfl.com')
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--ref',default=BASELINE); ap.add_argument('--out',default='research/audit-baseline.json'); args=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument('--ref',default=BASELINE); ap.add_argument('--out',default='research/q51/audit-baseline.json'); args=ap.parse_args()
     paths=subprocess.check_output(['git','ls-tree','-r','--name-only',args.ref],cwd=ROOT,text=True).splitlines()
     files=[]; findings=[]; tables=[]; broken=[]
     for path in paths:

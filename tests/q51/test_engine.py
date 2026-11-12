@@ -1,9 +1,9 @@
 import math, unittest
-from engine.odds import *
-from engine.statistics import *
-from engine.models import Game,RidgeBaseline
-from engine.grading import grade_single,grade_parlay
-from engine.validation import evaluate_gates,leaderboard,GATES
+from engine.q51.odds import *
+from engine.q51.statistics import *
+from engine.q51.models import Game,RidgeBaseline
+from engine.q51.grading import grade_single,grade_parlay
+from engine.q51.validation import evaluate_gates,leaderboard,GATES
 
 class OddsTests(unittest.TestCase):
     def test_american_conversion(self):

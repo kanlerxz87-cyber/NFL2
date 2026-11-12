@@ -1,4 +1,4 @@
-"""Offline CLI: python -m engine.cli lines|correlations|leaderboard."""
+"""Offline CLI: python -m engine.q51.cli lines|correlations|leaderboard."""
 from __future__ import annotations
 import argparse,json
 from pathlib import Path
