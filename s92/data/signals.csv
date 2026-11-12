@@ -1,0 +1,11 @@
+id|family|signal|evidence|question|state
+SIG-101|availability|Late injury downgrade between filings|Needs every filing with timestamps|q-105|blocked
+SIG-102|availability|Quarterback chain change|Needs a stored filing history and an official confirmation page|q-104|blocked
+SIG-103|schedule|Rest week and travel differential|7 neutral games in 2026; rest weeks observable|q-107|weak
+SIG-104|model|Own rating gap versus realised margin|136-game log; reproducible arithmetic|q-113|live
+SIG-105|market|Cross-game leg independence|Measured: home/away scores r = +0.076|q-109|live
+SIG-106|market|Same-game spread and total coupling|Measured: margin vs total r = -0.161 (n=136)|q-109|live
+SIG-107|market|Three-leg SGP coupling|No joint distribution|q-109|blocked
+SIG-108|prop|QB and receiver coupling|No player-level data|q-103|blocked
+SIG-109|prop|RB and team total coupling|No player-level data|q-103|blocked
+SIG-110|market|Home underdog bounce-back|n too small in 2026|q-107|weak

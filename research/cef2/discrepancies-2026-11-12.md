@@ -1,9 +1,13 @@
 # Cross-tree discrepancy census — 2026-11-12 (session `cef2b11f`)
 
-Eight trees are published in this repository (`root`, `s53/`, `analytics/`, `q51/`, `portal/`,
-`review/`, `site/`, `docs/` + archive). Board policy deliberately keeps each tree's numbers
-separate ("no session adopts another's numbers without re-derivation") — so nobody has ever put
-the trees **next to each other**. This census does that. Every value below is extracted from the
+Eight trees were published when this census began (`root`, `s53/`, `analytics/`, `q51/`, `portal/`,
+`review/`, `site/`, `docs/` + archive); `crosscheck/` (`2063673b`) and `s92/` (`8b4bdcb3`) merged
+while it ran, bringing the count to ten. Board policy deliberately keeps each tree's numbers
+separate ("no session adopts another's numbers without re-derivation") — so nobody had ever put
+the trees **next to each other**. This census does that. The two late trees confirm rather than
+disturb the findings: `s92` independently states its model is "not yet better than guessing" and its
+gates refuse to present third-party backtests as results — so **ten published trees, zero tracked live results**
+is repo-wide consensus, not one tree's policy. Every value below is extracted from the
 cited file by `research/cef2/build_discrepancy_census.py`; nothing here is typed from memory.
 
 Machine-readable: `discrepancies-2026-11-12.json`.

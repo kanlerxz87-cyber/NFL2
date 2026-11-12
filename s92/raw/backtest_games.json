@@ -1,0 +1,1362 @@
+[
+ {
+  "week": 1,
+  "home": "SEA",
+  "away": "NE",
+  "pred_margin": -0.3045,
+  "pred_total": 45.8977,
+  "act_margin": 3,
+  "act_total": 23,
+  "src": "https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "LAR",
+  "away": "SF",
+  "pred_margin": -2.9232,
+  "pred_total": 49.0194,
+  "act_margin": -20,
+  "act_total": 34,
+  "src": "https://www.nfl.com/games/49ers-at-rams-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "CAR",
+  "away": "CHI",
+  "pred_margin": -3.4718,
+  "pred_total": 47.5864,
+  "act_margin": -22,
+  "act_total": 96,
+  "src": "https://www.nfl.com/games/bears-at-panthers-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "CIN",
+  "away": "TB",
+  "pred_margin": 1.9442,
+  "pred_total": 49.9992,
+  "act_margin": 6,
+  "act_total": 60,
+  "src": "https://www.nfl.com/games/buccaneers-at-bengals-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "DET",
+  "away": "NO",
+  "pred_margin": 10.7124,
+  "pred_total": 58.5185,
+  "act_margin": 1,
+  "act_total": 61,
+  "src": "https://www.nfl.com/games/saints-at-lions-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "HOU",
+  "away": "BUF",
+  "pred_margin": -5.9343,
+  "pred_total": 55.4737,
+  "act_margin": -5,
+  "act_total": 67,
+  "src": "https://www.nfl.com/games/bills-at-texans-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "IND",
+  "away": "BAL",
+  "pred_margin": 2.3186,
+  "pred_total": 44.6542,
+  "act_margin": -18,
+  "act_total": 64,
+  "src": "https://www.nfl.com/games/ravens-at-colts-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "JAX",
+  "away": "CLE",
+  "pred_margin": 14.4884,
+  "pred_total": 37.8473,
+  "act_margin": 24,
+  "act_total": 44,
+  "src": "https://www.nfl.com/games/browns-at-jaguars-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "PIT",
+  "away": "ATL",
+  "pred_margin": 5.1627,
+  "pred_total": 41.2611,
+  "act_margin": 7,
+  "act_total": 33,
+  "src": "https://www.nfl.com/games/falcons-at-steelers-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "TEN",
+  "away": "NYJ",
+  "pred_margin": -2.8541,
+  "pred_total": 45.8927,
+  "act_margin": -13,
+  "act_total": 33,
+  "src": "https://www.nfl.com/games/jets-at-titans-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "LAC",
+  "away": "AZ",
+  "pred_margin": -1.1348,
+  "pred_total": 43.5913,
+  "act_margin": -12,
+  "act_total": 40,
+  "src": "https://www.nfl.com/games/cardinals-at-chargers-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "LV",
+  "away": "MIA",
+  "pred_margin": 0.178,
+  "pred_total": 51.2515,
+  "act_margin": 14,
+  "act_total": 40,
+  "src": "https://www.nfl.com/games/dolphins-at-raiders-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "MIN",
+  "away": "GB",
+  "pred_margin": -4.1141,
+  "pred_total": 21.481,
+  "act_margin": 17,
+  "act_total": 61,
+  "src": "https://www.nfl.com/games/packers-at-vikings-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "PHI",
+  "away": "WAS",
+  "pred_margin": -4.0512,
+  "pred_total": 40.138,
+  "act_margin": 2,
+  "act_total": 46,
+  "src": "https://www.nfl.com/games/commanders-at-eagles-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "NYG",
+  "away": "DAL",
+  "pred_margin": -4.1433,
+  "pred_total": 53.4663,
+  "act_margin": 8,
+  "act_total": 48,
+  "src": "https://www.nfl.com/games/cowboys-at-giants-2026-reg-1"
+ },
+ {
+  "week": 1,
+  "home": "KC",
+  "away": "DEN",
+  "pred_margin": -3.1276,
+  "pred_total": 41.2551,
+  "act_margin": 21,
+  "act_total": 41,
+  "src": "https://www.nfl.com/games/broncos-at-chiefs-2026-reg-1"
+ },
+ {
+  "week": 2,
+  "home": "BUF",
+  "away": "DET",
+  "pred_margin": 3.2637,
+  "pred_total": 54.2358,
+  "act_margin": 10,
+  "act_total": 72,
+  "src": "https://www.nfl.com/games/lions-at-bills-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "ATL",
+  "away": "CAR",
+  "pred_margin": 10.1752,
+  "pred_total": 55.0312,
+  "act_margin": -31,
+  "act_total": 37,
+  "src": "https://www.nfl.com/games/panthers-at-falcons-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "BAL",
+  "away": "NO",
+  "pred_margin": 0.9424,
+  "pred_total": 53.3549,
+  "act_margin": -7,
+  "act_total": 41,
+  "src": "https://www.nfl.com/games/saints-at-ravens-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "CHI",
+  "away": "MIN",
+  "pred_margin": 3.331,
+  "pred_total": 42.7728,
+  "act_margin": -6,
+  "act_total": 12,
+  "src": "https://www.nfl.com/games/vikings-at-bears-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "HOU",
+  "away": "CIN",
+  "pred_margin": -6.1176,
+  "pred_total": 66.5298,
+  "act_margin": -14,
+  "act_total": 26,
+  "src": "https://www.nfl.com/games/bengals-at-texans-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "NE",
+  "away": "PIT",
+  "pred_margin": -7.0782,
+  "pred_total": 45.7748,
+  "act_margin": 17,
+  "act_total": 23,
+  "src": "https://www.nfl.com/games/steelers-at-patriots-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "NYJ",
+  "away": "GB",
+  "pred_margin": -10.8399,
+  "pred_total": 44.917,
+  "act_margin": -3,
+  "act_total": 37,
+  "src": "https://www.nfl.com/games/packers-at-jets-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "TB",
+  "away": "CLE",
+  "pred_margin": 11.8329,
+  "pred_total": 31.866,
+  "act_margin": -4,
+  "act_total": 42,
+  "src": "https://www.nfl.com/games/browns-at-buccaneers-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "TEN",
+  "away": "PHI",
+  "pred_margin": 1.1131,
+  "pred_total": 32.5085,
+  "act_margin": -4,
+  "act_total": 44,
+  "src": "https://www.nfl.com/games/eagles-at-titans-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "DEN",
+  "away": "JAX",
+  "pred_margin": -15.915,
+  "pred_total": 42.5155,
+  "act_margin": 7,
+  "act_total": 33,
+  "src": "https://www.nfl.com/games/jaguars-at-broncos-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "LAC",
+  "away": "LV",
+  "pred_margin": -6.1633,
+  "pred_total": 54.4014,
+  "act_margin": -12,
+  "act_total": 40,
+  "src": "https://www.nfl.com/games/raiders-at-chargers-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "AZ",
+  "away": "SEA",
+  "pred_margin": -8.4743,
+  "pred_total": 43.4884,
+  "act_margin": -24,
+  "act_total": 38,
+  "src": "https://www.nfl.com/games/seahawks-at-cardinals-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "DAL",
+  "away": "WAS",
+  "pred_margin": 2.5917,
+  "pred_total": 56.912,
+  "act_margin": 17,
+  "act_total": 57,
+  "src": "https://www.nfl.com/games/commanders-at-cowboys-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "SF",
+  "away": "MIA",
+  "pred_margin": 12.0102,
+  "pred_total": 39.477,
+  "act_margin": 22,
+  "act_total": 48,
+  "src": "https://www.nfl.com/games/dolphins-at-49ers-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "KC",
+  "away": "IND",
+  "pred_margin": 10.094,
+  "pred_total": 41.9028,
+  "act_margin": 3,
+  "act_total": 63,
+  "src": "https://www.nfl.com/games/colts-at-chiefs-2026-reg-2"
+ },
+ {
+  "week": 2,
+  "home": "LAR",
+  "away": "NYG",
+  "pred_margin": -1.8309,
+  "pred_total": 40.8453,
+  "act_margin": 22,
+  "act_total": 34,
+  "src": "https://www.nfl.com/games/giants-at-rams-2026-reg-2"
+ },
+ {
+  "week": 3,
+  "home": "GB",
+  "away": "ATL",
+  "pred_margin": 13.3267,
+  "pred_total": 41.8969,
+  "act_margin": -21,
+  "act_total": 49,
+  "src": "https://www.nfl.com/games/falcons-at-packers-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "BUF",
+  "away": "LAC",
+  "pred_margin": 22.7207,
+  "pred_total": 57.1004,
+  "act_margin": 8,
+  "act_total": 40,
+  "src": "https://www.nfl.com/games/chargers-at-bills-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "CLE",
+  "away": "CAR",
+  "pred_margin": -5.2493,
+  "pred_total": 51.9324,
+  "act_margin": 3,
+  "act_total": 39,
+  "src": "https://www.nfl.com/games/panthers-at-browns-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "DET",
+  "away": "NYJ",
+  "pred_margin": 8.6454,
+  "pred_total": 46.4894,
+  "act_margin": 7,
+  "act_total": 55,
+  "src": "https://www.nfl.com/games/jets-at-lions-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "IND",
+  "away": "HOU",
+  "pred_margin": -11.8092,
+  "pred_total": 55.9072,
+  "act_margin": 2,
+  "act_total": 36,
+  "src": "https://www.nfl.com/games/texans-at-colts-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "JAX",
+  "away": "NE",
+  "pred_margin": 2.0328,
+  "pred_total": 44.8123,
+  "act_margin": 29,
+  "act_total": 41,
+  "src": "https://www.nfl.com/games/patriots-at-jaguars-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "MIA",
+  "away": "KC",
+  "pred_margin": -8.3172,
+  "pred_total": 40.8533,
+  "act_margin": -14,
+  "act_total": 34,
+  "src": "https://www.nfl.com/games/chiefs-at-dolphins-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "NYG",
+  "away": "TEN",
+  "pred_margin": 7.594,
+  "pred_total": 46.9916,
+  "act_margin": 5,
+  "act_total": 19,
+  "src": "https://www.nfl.com/games/titans-at-giants-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "PIT",
+  "away": "CIN",
+  "pred_margin": -5.8802,
+  "pred_total": 45.4354,
+  "act_margin": 3,
+  "act_total": 57,
+  "src": "https://www.nfl.com/games/bengals-at-steelers-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "WAS",
+  "away": "SEA",
+  "pred_margin": -12.5972,
+  "pred_total": 34.3148,
+  "act_margin": 2,
+  "act_total": 64,
+  "src": "https://www.nfl.com/games/seahawks-at-commanders-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "SF",
+  "away": "AZ",
+  "pred_margin": 17.5028,
+  "pred_total": 51.9488,
+  "act_margin": 6,
+  "act_total": 66,
+  "src": "https://www.nfl.com/games/cardinals-at-49ers-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "TB",
+  "away": "MIN",
+  "pred_margin": 0.9068,
+  "pred_total": 21.9854,
+  "act_margin": -7,
+  "act_total": 39,
+  "src": "https://www.nfl.com/games/vikings-at-buccaneers-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "NO",
+  "away": "LV",
+  "pred_margin": -0.7607,
+  "pred_total": 62.3434,
+  "act_margin": -8,
+  "act_total": 62,
+  "src": "https://www.nfl.com/games/raiders-at-saints-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "DAL",
+  "away": "BAL",
+  "pred_margin": 6.225,
+  "pred_total": 47.5474,
+  "act_margin": -3,
+  "act_total": 65,
+  "src": "https://www.nfl.com/games/ravens-at-cowboys-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "DEN",
+  "away": "LAR",
+  "pred_margin": 0.7361,
+  "pred_total": 34.5151,
+  "act_margin": 4,
+  "act_total": 56,
+  "src": "https://www.nfl.com/games/rams-at-broncos-2026-reg-3"
+ },
+ {
+  "week": 3,
+  "home": "CHI",
+  "away": "PHI",
+  "pred_margin": 16.7295,
+  "pred_total": 47.926,
+  "act_margin": 20,
+  "act_total": 34,
+  "src": "https://www.nfl.com/games/eagles-at-bears-2026-reg-3"
+ },
+ {
+  "week": 4,
+  "home": "CLE",
+  "away": "PIT",
+  "pred_margin": -10.1934,
+  "pred_total": 30.2213,
+  "act_margin": 3,
+  "act_total": 51,
+  "src": "https://www.nfl.com/games/steelers-at-browns-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "WAS",
+  "away": "IND",
+  "pred_margin": 5.5004,
+  "pred_total": 56.2871,
+  "act_margin": -17,
+  "act_total": 43,
+  "src": "https://www.nfl.com/games/colts-at-commanders-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "BAL",
+  "away": "TEN",
+  "pred_margin": 4.4236,
+  "pred_total": 41.717,
+  "act_margin": 6,
+  "act_total": 42,
+  "src": "https://www.nfl.com/games/titans-at-ravens-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "BUF",
+  "away": "NE",
+  "pred_margin": 7.7855,
+  "pred_total": 57.9129,
+  "act_margin": -3,
+  "act_total": 55,
+  "src": "https://www.nfl.com/games/patriots-at-bills-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "CHI",
+  "away": "NYJ",
+  "pred_margin": 11.2965,
+  "pred_total": 53.7862,
+  "act_margin": 11,
+  "act_total": 35,
+  "src": "https://www.nfl.com/games/jets-at-bears-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "CIN",
+  "away": "JAX",
+  "pred_margin": -3.7959,
+  "pred_total": 57.7868,
+  "act_margin": -5,
+  "act_total": 39,
+  "src": "https://www.nfl.com/games/jaguars-at-bengals-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "HOU",
+  "away": "DAL",
+  "pred_margin": 5.3938,
+  "pred_total": 52.4405,
+  "act_margin": -4,
+  "act_total": 64,
+  "src": "https://www.nfl.com/games/cowboys-at-texans-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "NYG",
+  "away": "AZ",
+  "pred_margin": 2.5426,
+  "pred_total": 44.4378,
+  "act_margin": 12,
+  "act_total": 60,
+  "src": "https://www.nfl.com/games/cardinals-at-giants-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "PHI",
+  "away": "LAR",
+  "pred_margin": -12.6113,
+  "pred_total": 32.6748,
+  "act_margin": -4,
+  "act_total": 44,
+  "src": "https://www.nfl.com/games/rams-at-eagles-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "TB",
+  "away": "GB",
+  "pred_margin": 1.243,
+  "pred_total": 44.6832,
+  "act_margin": -3,
+  "act_total": 31,
+  "src": "https://www.nfl.com/games/packers-at-buccaneers-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "MIN",
+  "away": "MIA",
+  "pred_margin": 13.3507,
+  "pred_total": 21.6154,
+  "act_margin": 5,
+  "act_total": 25,
+  "src": "https://www.nfl.com/games/dolphins-at-vikings-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "LV",
+  "away": "KC",
+  "pred_margin": -8.9773,
+  "pred_total": 53.4887,
+  "act_margin": -3,
+  "act_total": 57,
+  "src": "https://www.nfl.com/games/chiefs-at-raiders-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "SEA",
+  "away": "LAC",
+  "pred_margin": 16.3048,
+  "pred_total": 29.0829,
+  "act_margin": 7,
+  "act_total": 53,
+  "src": "https://www.nfl.com/games/chargers-at-seahawks-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "SF",
+  "away": "DEN",
+  "pred_margin": 3.6799,
+  "pred_total": 51.1876,
+  "act_margin": 10,
+  "act_total": 38,
+  "src": "https://www.nfl.com/games/broncos-at-49ers-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "CAR",
+  "away": "DET",
+  "pred_margin": -9.3494,
+  "pred_total": 58.8566,
+  "act_margin": 6,
+  "act_total": 58,
+  "src": "https://www.nfl.com/games/lions-at-panthers-2026-reg-4"
+ },
+ {
+  "week": 4,
+  "home": "NO",
+  "away": "ATL",
+  "pred_margin": 2.2848,
+  "pred_total": 44.7546,
+  "act_margin": -21,
+  "act_total": 69,
+  "src": "https://www.nfl.com/games/falcons-at-saints-2026-reg-4"
+ },
+ {
+  "week": 5,
+  "home": "DAL",
+  "away": "TB",
+  "pred_margin": -7.8233,
+  "pred_total": 53.3902,
+  "act_margin": -8,
+  "act_total": 40,
+  "src": "https://www.nfl.com/games/buccaneers-at-cowboys-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "JAX",
+  "away": "PHI",
+  "pred_margin": 26.3906,
+  "pred_total": 37.7977,
+  "act_margin": 2,
+  "act_total": 36,
+  "src": "https://www.nfl.com/games/eagles-at-jaguars-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "MIA",
+  "away": "CIN",
+  "pred_margin": -18.3384,
+  "pred_total": 46.4203,
+  "act_margin": -7,
+  "act_total": 55,
+  "src": "https://www.nfl.com/games/bengals-at-dolphins-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "NE",
+  "away": "LV",
+  "pred_margin": 1.2071,
+  "pred_total": 55.5953,
+  "act_margin": 28,
+  "act_total": 62,
+  "src": "https://www.nfl.com/games/raiders-at-patriots-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "NO",
+  "away": "MIN",
+  "pred_margin": -8.2911,
+  "pred_total": 38.6454,
+  "act_margin": -10,
+  "act_total": 36,
+  "src": "https://www.nfl.com/games/vikings-at-saints-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "NYJ",
+  "away": "CLE",
+  "pred_margin": -3.8047,
+  "pred_total": 41.5417,
+  "act_margin": 5,
+  "act_total": 29,
+  "src": "https://www.nfl.com/games/browns-at-jets-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "PIT",
+  "away": "IND",
+  "pred_margin": 10.4995,
+  "pred_total": 39.8944,
+  "act_margin": 12,
+  "act_total": 56,
+  "src": "https://www.nfl.com/games/colts-at-steelers-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "TEN",
+  "away": "HOU",
+  "pred_margin": -8.8768,
+  "pred_total": 51.3212,
+  "act_margin": -23,
+  "act_total": 29,
+  "src": "https://www.nfl.com/games/texans-at-titans-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "WAS",
+  "away": "NYG",
+  "pred_margin": -4.2045,
+  "pred_total": 42.5909,
+  "act_margin": 0,
+  "act_total": 54,
+  "src": "https://www.nfl.com/games/giants-at-commanders-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "GB",
+  "away": "CHI",
+  "pred_margin": -9.7168,
+  "pred_total": 52.3999,
+  "act_margin": 24,
+  "act_total": 38,
+  "src": "https://www.nfl.com/games/bears-at-packers-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "LAC",
+  "away": "DEN",
+  "pred_margin": -16.528,
+  "pred_total": 39.1967,
+  "act_margin": -6,
+  "act_total": 40,
+  "src": "https://www.nfl.com/games/broncos-at-chargers-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "AZ",
+  "away": "DET",
+  "pred_margin": -6.3114,
+  "pred_total": 51.9907,
+  "act_margin": -24,
+  "act_total": 66,
+  "src": "https://www.nfl.com/games/lions-at-cardinals-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "SEA",
+  "away": "SF",
+  "pred_margin": -4.915,
+  "pred_total": 38.9723,
+  "act_margin": -3,
+  "act_total": 61,
+  "src": "https://www.nfl.com/games/49ers-at-seahawks-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "ATL",
+  "away": "BAL",
+  "pred_margin": 5.7804,
+  "pred_total": 39.1286,
+  "act_margin": -7,
+  "act_total": 53,
+  "src": "https://www.nfl.com/games/ravens-at-falcons-2026-reg-5"
+ },
+ {
+  "week": 5,
+  "home": "LAR",
+  "away": "BUF",
+  "pred_margin": -6.5636,
+  "pred_total": 48.7205,
+  "act_margin": -3,
+  "act_total": 71,
+  "src": "https://www.nfl.com/games/bills-at-rams-2026-reg-5"
+ },
+ {
+  "week": 6,
+  "home": "DEN",
+  "away": "SEA",
+  "pred_margin": -0.8388,
+  "pred_total": 36.4621,
+  "act_margin": 3,
+  "act_total": 31,
+  "src": "https://www.nfl.com/games/seahawks-at-broncos-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "JAX",
+  "away": "HOU",
+  "pred_margin": 14.5614,
+  "pred_total": 38.2238,
+  "act_margin": -3,
+  "act_total": 65,
+  "src": "https://www.nfl.com/games/texans-at-jaguars-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "ATL",
+  "away": "CHI",
+  "pred_margin": -7.9462,
+  "pred_total": 45.7734,
+  "act_margin": -8,
+  "act_total": 54,
+  "src": "https://www.nfl.com/games/bears-at-falcons-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "CLE",
+  "away": "BAL",
+  "pred_margin": 0.3698,
+  "pred_total": 45.0306,
+  "act_margin": 3,
+  "act_total": 23,
+  "src": "https://www.nfl.com/games/ravens-at-browns-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "IND",
+  "away": "TEN",
+  "pred_margin": 5.9462,
+  "pred_total": 47.4459,
+  "act_margin": -6,
+  "act_total": 46,
+  "src": "https://www.nfl.com/games/titans-at-colts-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "NE",
+  "away": "NYJ",
+  "pred_margin": 9.1183,
+  "pred_total": 44.9505,
+  "act_margin": 7,
+  "act_total": 45,
+  "src": "https://www.nfl.com/games/jets-at-patriots-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "NYG",
+  "away": "NO",
+  "pred_margin": 4.3527,
+  "pred_total": 45.463,
+  "act_margin": -7,
+  "act_total": 61,
+  "src": "https://www.nfl.com/games/saints-at-giants-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "PHI",
+  "away": "CAR",
+  "pred_margin": -5.4344,
+  "pred_total": 49.5764,
+  "act_margin": -11,
+  "act_total": 39,
+  "src": "https://www.nfl.com/games/panthers-at-eagles-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "TB",
+  "away": "PIT",
+  "pred_margin": 3.4419,
+  "pred_total": 32.1667,
+  "act_margin": -7,
+  "act_total": 45,
+  "src": "https://www.nfl.com/games/steelers-at-buccaneers-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "LAR",
+  "away": "AZ",
+  "pred_margin": 12.2639,
+  "pred_total": 47.8359,
+  "act_margin": -2,
+  "act_total": 34,
+  "src": "https://www.nfl.com/games/cardinals-at-rams-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "KC",
+  "away": "LAC",
+  "pred_margin": 15.6422,
+  "pred_total": 43.2258,
+  "act_margin": 16,
+  "act_total": 28,
+  "src": "https://www.nfl.com/games/chargers-at-chiefs-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "LV",
+  "away": "BUF",
+  "pred_margin": -13.41,
+  "pred_total": 66.3036,
+  "act_margin": -3,
+  "act_total": 63,
+  "src": "https://www.nfl.com/games/bills-at-raiders-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "GB",
+  "away": "DAL",
+  "pred_margin": 5.2589,
+  "pred_total": 57.776,
+  "act_margin": 10,
+  "act_total": 36,
+  "src": "https://www.nfl.com/games/cowboys-at-packers-2026-reg-6"
+ },
+ {
+  "week": 6,
+  "home": "SF",
+  "away": "WAS",
+  "pred_margin": 15.1222,
+  "pred_total": 54.4007,
+  "act_margin": 6,
+  "act_total": 40,
+  "src": "https://www.nfl.com/games/commanders-at-49ers-2026-reg-6"
+ },
+ {
+  "week": 7,
+  "home": "CHI",
+  "away": "NE",
+  "pred_margin": 2.931,
+  "pred_total": 49.4471,
+  "act_margin": 6,
+  "act_total": 54,
+  "src": "https://www.nfl.com/games/patriots-at-bears-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "NO",
+  "away": "PIT",
+  "pred_margin": -8.224,
+  "pred_total": 53.6443,
+  "act_margin": -6,
+  "act_total": 26,
+  "src": "https://www.nfl.com/games/steelers-at-saints-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "ATL",
+  "away": "SF",
+  "pred_margin": -13.8928,
+  "pred_total": 45.7877,
+  "act_margin": 9,
+  "act_total": 49,
+  "src": "https://www.nfl.com/games/49ers-at-falcons-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "BAL",
+  "away": "CIN",
+  "pred_margin": -10.3377,
+  "pred_total": 55.4357,
+  "act_margin": -22,
+  "act_total": 48,
+  "src": "https://www.nfl.com/games/bengals-at-ravens-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "CAR",
+  "away": "TB",
+  "pred_margin": 1.2284,
+  "pred_total": 48.5669,
+  "act_margin": -30,
+  "act_total": 56,
+  "src": "https://www.nfl.com/games/buccaneers-at-panthers-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "HOU",
+  "away": "NYG",
+  "pred_margin": 8.3162,
+  "pred_total": 44.5925,
+  "act_margin": -6,
+  "act_total": 48,
+  "src": "https://www.nfl.com/games/giants-at-texans-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "MIN",
+  "away": "IND",
+  "pred_margin": 12.7967,
+  "pred_total": 35.4802,
+  "act_margin": 6,
+  "act_total": 26,
+  "src": "https://www.nfl.com/games/colts-at-vikings-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "NYJ",
+  "away": "MIA",
+  "pred_margin": 2.9166,
+  "pred_total": 33.3011,
+  "act_margin": -3,
+  "act_total": 53,
+  "src": "https://www.nfl.com/games/dolphins-at-jets-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "TEN",
+  "away": "CLE",
+  "pred_margin": -6.123,
+  "pred_total": 33.2869,
+  "act_margin": -3,
+  "act_total": 51,
+  "src": "https://www.nfl.com/games/browns-at-titans-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "AZ",
+  "away": "DEN",
+  "pred_margin": -11.4689,
+  "pred_total": 44.9685,
+  "act_margin": -14,
+  "act_total": 46,
+  "src": "https://www.nfl.com/games/broncos-at-cardinals-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "DET",
+  "away": "GB",
+  "pred_margin": -0.6331,
+  "pred_total": 54.5305,
+  "act_margin": 3,
+  "act_total": 37,
+  "src": "https://www.nfl.com/games/packers-at-lions-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "LV",
+  "away": "LAR",
+  "pred_margin": -1.3804,
+  "pred_total": 51.8377,
+  "act_margin": -14,
+  "act_total": 56,
+  "src": "https://www.nfl.com/games/rams-at-raiders-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "SEA",
+  "away": "KC",
+  "pred_margin": -5.6744,
+  "pred_total": 43.4684,
+  "act_margin": 17,
+  "act_total": 23,
+  "src": "https://www.nfl.com/games/chiefs-at-seahawks-2026-reg-7"
+ },
+ {
+  "week": 7,
+  "home": "PHI",
+  "away": "DAL",
+  "pred_margin": -3.6082,
+  "pred_total": 44.6494,
+  "act_margin": -17,
+  "act_total": 59,
+  "src": "https://www.nfl.com/games/cowboys-at-eagles-2026-reg-7"
+ },
+ {
+  "week": 8,
+  "home": "GB",
+  "away": "CAR",
+  "pred_margin": 4.8404,
+  "pred_total": 53.4433,
+  "act_margin": 8,
+  "act_total": 46,
+  "src": "https://www.nfl.com/games/panthers-at-packers-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "BUF",
+  "away": "BAL",
+  "pred_margin": 7.906,
+  "pred_total": 58.357,
+  "act_margin": 26,
+  "act_total": 46,
+  "src": "https://www.nfl.com/games/ravens-at-bills-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "CIN",
+  "away": "TEN",
+  "pred_margin": 19.5337,
+  "pred_total": 41.9913,
+  "act_margin": 7,
+  "act_total": 79,
+  "src": "https://www.nfl.com/games/titans-at-bengals-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "DAL",
+  "away": "AZ",
+  "pred_margin": 8.4902,
+  "pred_total": 54.6193,
+  "act_margin": -3,
+  "act_total": 63,
+  "src": "https://www.nfl.com/games/cardinals-at-cowboys-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "DET",
+  "away": "MIN",
+  "pred_margin": -3.9763,
+  "pred_total": 34.8895,
+  "act_margin": 4,
+  "act_total": 34,
+  "src": "https://www.nfl.com/games/vikings-at-lions-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "JAX",
+  "away": "IND",
+  "pred_margin": 14.8822,
+  "pred_total": 48.6248,
+  "act_margin": 35,
+  "act_total": 49,
+  "src": "https://www.nfl.com/games/colts-at-jaguars-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "NYJ",
+  "away": "LV",
+  "pred_margin": -0.4303,
+  "pred_total": 50.8862,
+  "act_margin": -5,
+  "act_total": 71,
+  "src": "https://www.nfl.com/games/raiders-at-jets-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "PIT",
+  "away": "CLE",
+  "pred_margin": 4.9589,
+  "pred_total": 34.9844,
+  "act_margin": 21,
+  "act_total": 33,
+  "src": "https://www.nfl.com/games/browns-at-steelers-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "TB",
+  "away": "ATL",
+  "pred_margin": 3.2447,
+  "pred_total": 47.8533,
+  "act_margin": 16,
+  "act_total": 16,
+  "src": "https://www.nfl.com/games/falcons-at-buccaneers-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "LAR",
+  "away": "LAC",
+  "pred_margin": 10.7059,
+  "pred_total": 39.5801,
+  "act_margin": 15,
+  "act_total": 33,
+  "src": "https://www.nfl.com/games/chargers-at-rams-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "DEN",
+  "away": "KC",
+  "pred_margin": -4.0243,
+  "pred_total": 39.501,
+  "act_margin": 4,
+  "act_total": 52,
+  "src": "https://www.nfl.com/games/chiefs-at-broncos-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "MIA",
+  "away": "NE",
+  "pred_margin": -10.2755,
+  "pred_total": 41.283,
+  "act_margin": -5,
+  "act_total": 43,
+  "src": "https://www.nfl.com/games/patriots-at-dolphins-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "WAS",
+  "away": "PHI",
+  "pred_margin": 0.0891,
+  "pred_total": 43.6285,
+  "act_margin": 17,
+  "act_total": 37,
+  "src": "https://www.nfl.com/games/eagles-at-commanders-2026-reg-8"
+ },
+ {
+  "week": 8,
+  "home": "SEA",
+  "away": "CHI",
+  "pred_margin": -1.067,
+  "pred_total": 41.6002,
+  "act_margin": -17,
+  "act_total": 51,
+  "src": "https://www.nfl.com/games/bears-at-seahawks-2026-reg-8"
+ },
+ {
+  "week": 9,
+  "home": "BAL",
+  "away": "JAX",
+  "pred_margin": -15.6431,
+  "pred_total": 42.024,
+  "act_margin": -23,
+  "act_total": 43,
+  "src": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "ATL",
+  "away": "CIN",
+  "pred_margin": -7.062,
+  "pred_total": 53.653,
+  "act_margin": -17,
+  "act_total": 51,
+  "src": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "CAR",
+  "away": "DEN",
+  "pred_margin": -2.767,
+  "pred_total": 52.3849,
+  "act_margin": -5,
+  "act_total": 47,
+  "src": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "IND",
+  "away": "DAL",
+  "pred_margin": -4.422,
+  "pred_total": 61.309,
+  "act_margin": -4,
+  "act_total": 50,
+  "src": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "KC",
+  "away": "NYJ",
+  "pred_margin": 5.4508,
+  "pred_total": 41.5864,
+  "act_margin": 23,
+  "act_total": 47,
+  "src": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "MIA",
+  "away": "DET",
+  "pred_margin": -8.7031,
+  "pred_total": 49.3197,
+  "act_margin": -10,
+  "act_total": 28,
+  "src": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "NO",
+  "away": "CLE",
+  "pred_margin": -0.229,
+  "pred_total": 46.6944,
+  "act_margin": 1,
+  "act_total": 45,
+  "src": "https://www.nfl.com/games/browns-at-saints-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "PHI",
+  "away": "NYG",
+  "pred_margin": -4.4848,
+  "pred_total": 37.4382,
+  "act_margin": -8,
+  "act_total": 30,
+  "src": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "WAS",
+  "away": "LAR",
+  "pred_margin": -6.9449,
+  "pred_total": 46.2262,
+  "act_margin": -7,
+  "act_total": 33,
+  "src": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "LAC",
+  "away": "HOU",
+  "pred_margin": -9.1612,
+  "pred_total": 33.3075,
+  "act_margin": -22,
+  "act_total": 66,
+  "src": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "SF",
+  "away": "LV",
+  "pred_margin": 8.6508,
+  "pred_total": 59.3588,
+  "act_margin": 21,
+  "act_total": 55,
+  "src": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "NE",
+  "away": "GB",
+  "pred_margin": 3.015,
+  "pred_total": 36.1366,
+  "act_margin": -18,
+  "act_total": 72,
+  "src": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "SEA",
+  "away": "AZ",
+  "pred_margin": 11.5586,
+  "pred_total": 49.0614,
+  "act_margin": 14,
+  "act_total": 20,
+  "src": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "CHI",
+  "away": "TB",
+  "pred_margin": 2.7629,
+  "pred_total": 45.5662,
+  "act_margin": 3,
+  "act_total": 51,
+  "src": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9"
+ },
+ {
+  "week": 9,
+  "home": "MIN",
+  "away": "BUF",
+  "pred_margin": 1.0742,
+  "pred_total": 45.6166,
+  "act_margin": -17,
+  "act_total": 29,
+  "src": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9"
+ }
+]

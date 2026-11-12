@@ -1,0 +1,14 @@
+id|what|published_value|verified_value|result|source
+SP-01|Week 5 result: NYG at WAS|27 - 27|27 - 27 (overtime)|match|https://www.nfl.com/games/giants-at-commanders-2026-reg-5
+SP-02|Week 5 venue: NYG at WAS|(not recorded in log)|Northwest Stadium, Landover MD|match|https://www.nfl.com/games/giants-at-commanders-2026-reg-5
+SP-03|Week 1 result: SF at LA|27 - 7|27 - 7|match|https://www.nfl.com/games/49ers-at-rams-2026-reg-1
+SP-04|Week 1 neutral site: SF at LA|yes|Melbourne Cricket Ground, East Melbourne, Victoria|match|https://www.nfl.com/games/49ers-at-rams-2026-reg-1
+SP-05|Week 1 result: NE at SEA|10 - 13|10 - 13|match|https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1
+SP-06|Week 1 date: NE at SEA|2026-09-09|Sep 9, 2026|match|https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1
+SP-07|Week 9 result: DET at MIA|19 - 9|19 - 9 (Miami's own game log shows the 19-9 loss)|match|https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+SP-08|Week 11 broadcaster: MIA at BUF|CBS|CBS (broadcaster icon on the game page)|match|https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+SP-09|Week 11 broadcaster: TB at DET|CBS|FOX (broadcaster icon on the game page)|mismatch|https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+SP-10|Week 11 venue: TB at DET|(not recorded)|Ford Field, Detroit MI|match|https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+SP-11|Week 11 kickoff: JAX at NYG|4:25 PM ET|4:25 pm ET after the Nov 9 change|match|https://www.nfl.com/news/week-11-schedule-change
+SP-12|Week 11 kickoff: PIT at PHI|1:00 PM ET|1:00 pm ET after the Nov 9 change|match|https://www.nfl.com/news/week-11-schedule-change
+SP-13|Week 11 neutral site: MIN at SF|Mexico City|Mexico City (league schedule page)|match|https://www.nfl.com/schedules/2026/by-week/week-11

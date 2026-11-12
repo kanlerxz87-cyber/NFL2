@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary &middot; NFL2 s92</title>
+<meta name="description" content="One page: what is verified, what is not, and what to do first.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="kind-program">
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> <span>s92 evidence &amp; decision dashboard</span></a>
+  <div class="asof">Official sources fetched <strong>2026-11-12 22:35 UTC</strong> &middot; every row links its source &middot;
+    <a href="../index.html">root dashboard</a></div>
+</header>
+<div class="shell">
+  <aside class="side">
+    <div class="navgroup"><span>Overview</span><a class="" href="index.html">Home</a><a class="" href="decision-brief.html">Decision brief</a><a class="on" href="executive-summary.html">Executive summary</a></div><div class="navgroup"><span>Decide</span><a class="" href="questions.html">Questions &amp; answers</a><a class="" href="missing-info.html">Missing information</a><a class="" href="suggestions.html">Suggestion board</a><a class="" href="assumptions.html">Assumptions &amp; bounds</a></div><div class="navgroup"><span>Origination</span><a class="" href="line-lab.html">Line lab</a><a class="" href="strategies.html">Strategies &amp; gates</a><a class="" href="correlation.html">Correlation &amp; luck</a></div><div class="navgroup"><span>Data</span><a class="" href="availability.html">Injuries &amp; backups</a><a class="" href="official-audit.html">Repository audit</a><a class="" href="sources.html">Sources</a></div><div class="navgroup"><span>Review</span><a class="" href="flagged.html">Flagged for review</a></div>
+    <div class="sidefoot">Session <code>8b4bdcb3</code><br>Branch <code>arena/8b4bdcb3-nfl2</code></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge program">Report</span>
+      <h1>Executive summary</h1>
+      <p class="lead">One page: what is verified, what is not, and what to do first.</p>
+    </div>
+    <nav class="toc"><span>On this page</span><a href="#executive-summary">Executive summary</a><a href="#verified">Verified</a><a href="#not-verified-and-why">Not verified, and why</a><a href="#the-model-stated-plainly">The model, stated plainly</a><a href="#availability-and-depth">Availability and depth</a><a href="#what-i-would-do-first-in-order">What I would do first, in order</a><a href="#decision-readiness">Decision readiness</a></nav>
+    <div class="body"><h2 id="executive-summary">Executive summary</h2>
+<p>The repository holds one genuinely verified dataset (the 2026 standings, reconciled to the official league table with zero mismatches), one partially verified dataset (a 136-game game log whose aggregate reconciles exactly but whose individual scores cannot be re-read through this fetch path), one stale dataset (the injury table, a filing behind the official hub), and one absent dataset (prices, of any kind). Everything else is specification.</p>
+<p>That ordering matters because it sets the order of work: <strong>collect better before modelling more</strong>. The three decisions that unblock the most are a price feed, a participation-data licence, and an agreement on what a depth slot means when the clubs themselves label their charts unofficial.</p>
+<h2 id="verified">Verified</h2>
+<div class="twrap"><table class="data"><thead><tr><th>Claim</th><th>Value</th><th>How it was verified</th></tr></thead><tbody><tr><td>Clubs reconciled to official standings</td><td>32 of 32</td><td>every shared field compared, 224 cells, zero mismatches</td></tr><tr><td>League points balance</td><td>6,246 for / 6,246 against</td><td>arithmetic identity over 32 clubs</td></tr><tr><td>Games in the log</td><td>136</td><td>272 club-games ÷ 2; matches the standings sum exactly</td></tr><tr><td>2026 rule changes</td><td>4 of 4 match</td><td>rulebook page, four rules, word-for-word</td></tr><tr><td>Week 11 schedule</td><td>13 games, 6 byes</td><td>official week page; two TV cells differ</td></tr></tbody></table></div>
+<h2 id="not-verified-and-why">Not verified, and why</h2>
+<div class="twrap"><table class="data"><thead><tr><th>Item</th><th>State</th><th>Why it stays blank</th></tr></thead><tbody><tr><td>Any market price</td><td>absent</td><td>no feed, no licence, no stored prices</td></tr><tr><td>Individual game scores</td><td>single-session transcription</td><td>official game pages render scores client-side</td></tr><tr><td>Injury rows</td><td>stale by one filing</td><td>277 official vs 254 stored; SEA and CIN missing</td></tr><tr><td>Depth order</td><td>unofficial</td><td>club charts say so themselves; 3 of 32 clubs covered</td></tr><tr><td>Player-level props</td><td>absent</td><td>no participation, snap or route data</td></tr><tr><td>Home-field advantage</td><td>not estimable from one season</td><td>+0.50 points over 129 games, interval wide</td></tr></tbody></table></div>
+<h2 id="the-model-stated-plainly">The model, stated plainly</h2>
+<p>``` Leave-one-week-out over 136 games, weeks 1-9 of 2026.</p>
+<p>Spread   our MAE 10.55    zero-line baseline 10.62    difference 95% interval [-1.23, 1.12] Total    our MAE 12.86    league-average baseline 11.62  difference 95% interval [0.04, 2.52] Margin correlation (predicted vs actual)  0.331 Total  correlation (predicted vs actual)  0.081 ```</p>
+<p>Read that honestly: the spread model's advantage is <strong>not distinguishable from zero</strong>, and the total model is <strong>worse than assuming the league average</strong>. That is the ordinary outcome for a first model with nine weeks of data and no market benchmark, and it is the reason no strategy is certified.</p>
+<h2 id="availability-and-depth">Availability and depth</h2>
+<p>12 starter lines across the three charted clubs show a starter who did not practise fully or was ruled out. Exactly one is a genuine cascade — the New England running-back line, where the starter did not practise and his listed backup was ruled out, so the next available body is the third name on the chart. That is the concrete form of "down to a third-stringer", and it is rare: one line in 68 charted lines at these three clubs.</p>
+<h2 id="what-i-would-do-first-in-order">What I would do first, in order</h2>
+<div class="twrap"><table class="data"><thead><tr><th>Order</th><th>Move</th><th>Why now</th></tr></thead><tbody><tr><td>1</td><td>Store every injury filing with its timestamp (S-102)</td><td>the current table is already a filing behind; everything downstream inherits that error</td></tr><tr><td>2</td><td>Freeze the luck-filter thresholds (S-103, S-104)</td><td>costs nothing; prevents the leaderboard from becoming self-deception later</td></tr><tr><td>3</td><td>One owner per published number (S-112)</td><td>five dashboards currently publish overlapping claims</td></tr><tr><td>4</td><td>Buy prices before building strategies (S-101)</td><td>without a price there is no such thing as an edge, only a prediction</td></tr></tbody></table></div>
+<h2 id="decision-readiness">Decision readiness</h2>
+<p>15 questions are open; 8 are P0 blockers. 20 suggestions are scored and waiting. The <a href="decision-brief.html">decision brief</a> reduces all of it to four choices, in the order in which they actually have to be made.</p></div>
+    <footer class="pagefoot">
+      <a class="pager" href="decision-brief.html">&larr; Decision brief</a> <a class="pager right" href="questions.html">Questions &amp; answers &rarr;</a>
+      <div class="foot-meta">Generated by <code>s92/build.py</code> from <code>s92/data/</code> &middot;
+        row sources verified against official league and club pages on 2026-11-12 &middot;
+        blanket cells are rendered as <span class="np">not published</span>, never estimated.</div>
+    </footer>
+  </main>
+</div>
+</body></html>
