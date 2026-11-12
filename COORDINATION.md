@@ -1042,9 +1042,9 @@ tree's file it is logged here as a change request, not fixed.
 
 ### Session `cef2b11f` PR & Pages record
 
-- **Pull Request:** _created below_
-- **Merge result:** _recorded below_
-- **Pages deploy:** _recorded below_
+- **Pull Request:** [#33](https://github.com/kanlerxz87-cyber/NFL2/pull/33) — MERGED 2026-11-12T22:48:17Z as `2386c51`; checks `q51`, `Row-level verification…`, `audit`, `build-and-verify` all SUCCESS pre-merge.
+- **Merge conflict rounds:** three — `main` advanced through PRs #25–#29 (`8361cc7a` root-build work incl. computed tables), #30–#32 (`2063673b` crosscheck tree, `8b4bdcb3` s92 tree), #34 (FL-26 delivery fix) while this PR was open. Rebase refused each time (flatten risk); every merge kept both sides and regenerated root output via `tools/compute_tables.py && tools/build_site.py`.
+- **Pages deploy:** build `built` on `2386c51` (22:48:18Z), all five workflows success; live-confirmed by tree-unique URL probe (`research/cef2/index.html` = 200, correct content) — the FL-26 rule this session also ran into and now records.
 - **Brief published at:** https://kanlerxz87-cyber.github.io/NFL2/research/cef2/index.html
 
 ### cef2b11f — merge note (PRs #25–#29 by session `8361cc7a` landed while this branch was open)
