@@ -1,0 +1,207 @@
+{
+  "as_of": "2026-11-12",
+  "selected_path": null,
+  "decision_note": "Intentionally blank until human reviewer chooses Path A, B, C, or D.",
+  "paths": [
+    {
+      "id": "PATH-A",
+      "title": "Path A \u2014 Zero-Cost Verified Public Stack (Immediate Consolidation)",
+      "cost": "$0 / Free Official Public Sources",
+      "timeline": "1\u20132 Days",
+      "summary": "Unify the 3 parallel repo builds into a single deterministic Python build pipeline, expand club depth-chart scraper from 13 to all 32 official NFL club domains, and track paper-only originated lines every Tuesday/Friday/Sunday.",
+      "unlocks": "100% 32-club 1st\u20134th string injury coverage + multi-week prospective paper validation.",
+      "cannot_unlock": "Cannot unlock live capital tiers (Bronze/Silver/Gold) or SGP copula gates because closing odds & PBP remain absent.",
+      "risk": "Low \u2014 zero licensing cost, zero hallucination exposure.",
+      "official_ref": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "PATH-B",
+      "title": "Path B \u2014 Play-by-Play + Participation Analytics Upgrade (nflverse / NGS)",
+      "cost": "$0 Open-Source (CC-BY-4.0 nflverse) or NFL+ Pro",
+      "timeline": "3\u20135 Days",
+      "summary": "Add 2019\u20132026 play-by-play EPA/play, success rate, snap counts, and player game logs to compute exact within-game SGP & player-prop copula correlations (N >= 1,800 games) and positional WAR backup drop-offs.",
+      "unlocks": "Resolves UC-01..UC-04 (Gate G6 empirical correlations) and replaces team-level PF/PA with opponent-adjusted EPA.",
+      "cannot_unlock": "Still requires closing sportsbook lines for Gate G3 (CLV) and Gate G4 (vig-adjusted ROI).",
+      "risk": "Low-Moderate \u2014 must pin upstream release hashes and keep NFL.com cross-checks.",
+      "official_ref": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+    },
+    {
+      "id": "PATH-C",
+      "title": "Path C \u2014 Licensed Odds & Closing-Line Backtest Stack (Recommended for Competition)",
+      "cost": "~$50\u2013$199/mo Licensed Odds API + Path B PBP",
+      "timeline": "1\u20132 Weeks",
+      "summary": "Combine Path A (all 32 club depth charts) + Path B (multi-season PBP/snap logs) + timestamped opening/closing spreads, totals, and player prop lines across >=3 regulated sportsbooks (2022\u20132026).",
+      "unlocks": "Unlocks ALL 9 validation gates (G0\u2013G8), real CLV/ROI grading, and Bronze/Silver/Gold leaderboard promotions.",
+      "cannot_unlock": "Does not include real-time sub-second injury wire automation.",
+      "risk": "Moderate \u2014 requires strict timestamp hygiene so post-injury closing lines are never confused with pre-injury openers.",
+      "official_ref": "https://www.nfl.com/schedules/2026/reg11/"
+    },
+    {
+      "id": "PATH-D",
+      "title": "Path D \u2014 Full Syndicate Real-Time Origination & Execution Desk",
+      "cost": "$500+/mo Commercial Feeds (Opta/Sportradar + Low-Latency Odds + NOAA)",
+      "timeline": "4\u20136 Weeks",
+      "summary": "Automated 90-minute-pre-kickoff official inactive ingestion, automated 32-club depth-chart diffing, stadium wind/temp telemetry, and live multi-book execution alerts.",
+      "unlocks": "Captures fleeting injury/inactive pricing windows (e.g., SIG-05 QB2/QB3 & SIG-09/10 prop reallocation).",
+      "cannot_unlock": "Overkill until Path C proves positive out-of-sample CLV (Gate G3) on historical data.",
+      "risk": "High engineering & vendor cost if deployed before Gate G3 passes.",
+      "official_ref": "https://operations.nfl.com/"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "IMP-01",
+      "area": "Site Architecture",
+      "proposal": "Consolidate root (/), docs/, and review/ builds into one single-source generator while keeping URL redirects",
+      "decision_benefit": "Eliminates duplicate maintenance and ensures one canonical navigation bar for reviewers",
+      "effort": "Small",
+      "path": "Path A",
+      "status": "Proposed \u2014 Awaiting Reviewer Choice",
+      "source": "https://github.com/kanlerxz87-cyber/NFL2"
+    },
+    {
+      "id": "IMP-02",
+      "area": "Lineup Deficiencies",
+      "proposal": "Automate fetch & parser for the remaining 19 official NFL club depth-chart pages (expanding 13/32 -> 32/32)",
+      "decision_benefit": "Completes league-wide starter vs 2nd/3rd/4th string replacement coverage before Sunday kickoffs",
+      "effort": "Small",
+      "path": "Path A",
+      "status": "Proposed \u2014 Awaiting Reviewer Choice",
+      "source": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "id": "IMP-03",
+      "area": "Game-Day Timing",
+      "proposal": "Add T-90 minute official NFL game-day inactive ingestion alongside Wednesday\u2013Friday practice reports",
+      "decision_benefit": "Converts Questionable/DNP uncertainty into confirmed active 2nd/3rd/4th string starters before kickoff",
+      "effort": "Medium",
+      "path": "Path A / D",
+      "status": "Proposed \u2014 Awaiting Reviewer Choice",
+      "source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "IMP-04",
+      "area": "Market Benchmarking",
+      "proposal": "Integrate licensed timestamped opening + closing Pinnacle/consensus NFL odds & player props (2022\u20132026)",
+      "decision_benefit": "Unlocks Gates G1, G3 (CLV), G4 (vig-adjusted ROI), and G5 (Brier vs market)",
+      "effort": "Medium",
+      "path": "Path C",
+      "status": "Proposed \u2014 Top Priority Data Unlock",
+      "source": "https://www.nfl.com/schedules/2026/reg11/"
+    },
+    {
+      "id": "IMP-05",
+      "area": "Correlations & SGP",
+      "proposal": "Ingest 5-season play-by-play & player game logs to compute empirical Student-t copula matrices (UC-01..UC-04)",
+      "decision_benefit": "Unlocks Gate G6 so SGP and player-prop combos can be priced without guessing leg correlation",
+      "effort": "Medium",
+      "path": "Path B / C",
+      "status": "Proposed \u2014 Required for SGP/Props",
+      "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+    },
+    {
+      "id": "IMP-06",
+      "area": "Skill Modeling",
+      "proposal": "Upgrade team ratings from game-level SRS + season YPA/3rd% to opponent-adjusted play-level EPA & garbage-time filter",
+      "decision_benefit": "Strips late-4th-quarter blowout noise when a team trails by >17 points",
+      "effort": "Medium",
+      "path": "Path B",
+      "status": "Proposed \u2014 Awaiting Reviewer Choice",
+      "source": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+    },
+    {
+      "id": "IMP-07",
+      "area": "Backup Pricing",
+      "proposal": "Attach career snap-weighted EPA/dropback & PFF/NGS coverage grades to 2nd/3rd/4th string backups",
+      "decision_benefit": "Differentiates veteran QB2 Drew Lock from untested QB3 Joe Fagnano or rookie Kyle McCord quantitatively",
+      "effort": "Large",
+      "path": "Path B / C",
+      "status": "Proposed \u2014 Awaiting Reviewer Choice",
+      "source": "https://www.seahawks.com/team/depth-chart/"
+    },
+    {
+      "id": "IMP-08",
+      "area": "Totals Origination",
+      "proposal": "Join NOAA/NWS stadium wind, precipitation & roof-open status to outdoor game totals",
+      "decision_benefit": "Captures verified wind >=15 mph suppression on passing efficiency & field-goal make rates",
+      "effort": "Small",
+      "path": "Path B / C",
+      "status": "Proposed \u2014 Awaiting Reviewer Choice",
+      "source": "https://www.nfl.com/schedules/2026/REG/"
+    }
+  ],
+  "prerequisites_register": [
+    {
+      "id": "Q-01",
+      "question": "Do our originated NFL fair lines beat closing market spreads/totals after -110 vig?",
+      "have": "136 verified 2026 game scores + 32-team SRS & Pass/3rd-down skill ratings + Week 11 originated fair lines",
+      "missing": "Historical & live sportsbook opening/closing spreads, totals, and moneylines",
+      "answer_needed": "Out-of-sample CLV >= +1.5% (t >= 2.0) & 95% ROI LB > 0% over N >= 200 bets",
+      "discovery": "Connect licensed odds archive (The Odds API / SportsDataIO / historical Pinnacle CSV) keyed by NFL game_id",
+      "source": "https://www.nfl.com/schedules/2026/reg11/"
+    },
+    {
+      "id": "Q-02",
+      "question": "Which Week 10/11 clubs have confirmed 2nd, 3rd, or 4th string backups replacing injured starters?",
+      "have": "Full Week 10 REG10 injury report + 13 verified club depth charts (18 multi-string chains incl. NE, BAL, SF, DAL, SEA, MIA)",
+      "missing": "Remaining 19 club depth charts + Friday/Saturday final injury statuses + Sunday T-90m inactive lists",
+      "answer_needed": "32/32 club depth-chart join + confirmed game-day active/inactive designations",
+      "discovery": "Run automated club-domain parser across the 19 listed official club URLs + ingest NFL.com T-90m Inactives",
+      "source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "Q-03",
+      "question": "How many spread points is a starter -> 2nd/3rd/4th string drop-off worth by position?",
+      "have": "Verified 2026 correlations proving Def Pass Rate (r=+0.815), Off Pass Rate (r=+0.750) & Sacks Taken (r=-0.621) dominate Rush YPC (r=+0.017)",
+      "missing": "Player-level snap counts & replacement-level EPA/play archive across 2019\u20132026",
+      "answer_needed": "Empirical point-value table with standard errors per position group (QB, CB, LT/C, WR, RB)",
+      "discovery": "Regress game margin residuals on starter-absence snap shares using 5-year play-by-play + participation logs",
+      "source": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+    },
+    {
+      "id": "Q-04",
+      "question": "What are the true within-game correlations for Same-Game Parlays (SGP) and Player Prop Combos?",
+      "have": "15 exact cross-team season correlations (n=32) + interactive bivariate joint-probability calculator",
+      "missing": "Within-game player box-score & play-by-play joint outcome archive (N >= 1,000 team-games)",
+      "answer_needed": "Empirical copula rho + 95% CI for QB-WR, Spread-RB, and Total-Pass pairs vs SGP bookmaker pricing",
+      "discovery": "Compute polychoric / tail-dependent Student-t copula parameters from 2020\u20132026 NFL gamebooks / nflverse PBP",
+      "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+    },
+    {
+      "id": "Q-05",
+      "question": "What Home-Field Advantage (HFA) should be used for 2026 originated lines?",
+      "have": "Exact 2026 true-home mean margin = +0.50 pts across 129 non-neutral games (95% CI [-1.80, +2.79]; 7 neutral games excluded)",
+      "missing": "Multi-season (2021\u20132025) stadium-specific HFA, rest-differential, and altitude/travel matrix",
+      "answer_needed": "Shrinkage-weighted HFA prior (blending multi-year ~+1.75 prior with 2026 +0.50 sample)",
+      "discovery": "Ingest 2021\u20132025 official NFL schedules/scores and fit hierarchical empirical-Bayes stadium HFA model",
+      "source": "https://www.nfl.com/schedules/2026/REG/"
+    },
+    {
+      "id": "Q-06",
+      "question": "Which 2026 teams' W-L records are most distorted by luck rather than repeatable skill?",
+      "have": "Exact 32-team Pythagorean residuals & turnover differentials: DEN (+2.17w), BUF (+1.58w), CLE (+1.53w) vs TB (-2.17w), LAC (-1.57w), HOU (-1.40w)",
+      "missing": "Play-level fumble-recovery luck, dropped-interception rates, and garbage-time-filtered EPA",
+      "answer_needed": "Out-of-sample weeks 10\u201318 ATS validation of Pythagorean + Pass-YPA luck-fade signal (SIG-01)",
+      "discovery": "Track SIG-01 prospectively Weeks 10\u201318 and backtest across 2019\u20132025 Weeks 9\u201317 cohorts",
+      "source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "Q-07",
+      "question": "What bankroll, drawdown limit, and regulatory constraints govern competition rewards?",
+      "have": "4-tier Sandbox/Bronze/Silver/Gold unit-cap ladder (0.00u -> 1.00u Quarter-Kelly) with automatic demotion rules",
+      "missing": "Stakeholder risk budget, legal jurisdiction book list, and maximum correlated Sunday exposure cap",
+      "answer_needed": "Signed risk charter specifying bankroll unit size, max Sunday exposure %, and approved books",
+      "discovery": "Reviewer selects Path A/B/C/D below and records bankroll parameters in config before unlocking Tier 1+",
+      "source": "https://github.com/kanlerxz87-cyber/NFL2"
+    },
+    {
+      "id": "Q-08",
+      "question": "Why do club depth charts and NFL.com injury pages occasionally conflict on active starters?",
+      "have": "Documented proof: Ravens.com lists IR QB1 Lamar Jackson & out-for-season QB2 Huntley ahead of QB3 Fagnano; REG10 lists 'No Injuries' for SEA despite Darnold OUT",
+      "missing": "Official NFL Gameday Roster / Transaction Wire API feed",
+      "answer_needed": "Deterministic precedence hierarchy: (1) T-90m Inactives > (2) NFL IR/Reserve wire > (3) REG10 Friday status > (4) Club depth chart",
+      "discovery": "Parse NFL.com Transactions (/transactions/league/reserve-list/2026/11) alongside club depth charts",
+      "source": "https://www.baltimoreravens.com/team/depth-chart"
+    }
+  ]
+}

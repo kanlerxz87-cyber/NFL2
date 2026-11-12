@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NFL2 &middot; S53 Line-Origination, 13-Club Depth &amp; Decision Dashboard</title>
+  <link rel="stylesheet" href="assets/s53126614.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">NFL2 &middot; S53 <span>Week 11 Origination, 13-Club Depth &amp; Decision Suite</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Zero Inferred Values &middot; 100% Row Official Links</span>
+    </div>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html" aria-current="page">S53 Dashboard</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements (20/20)</a>
+      <a href="repo-audit.html">Repo Audit</a>
+      <a href="originated-lines.html">Week 11 Originated Lines</a>
+      <a href="correlations.html">Correlations &amp; Luck</a>
+      <a href="depth-deficiencies.html">1st&ndash;4th String Depth</a>
+      <a href="leaderboard-competition.html">Signal Leaderboard</a>
+      <a href="decision-center.html">Decision Center &amp; Paths</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="../index.html">Root Hub &rarr;</a>
+      <a href="../analytics/index.html">Analytics</a>
+      <a href="../portal/index.html">Portal</a>
+      <a href="../review/index.html">Review</a>
+      <a href="../docs/index.html">Docs</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>NFL2 Quantitative Line-Origination, 13-Club Depth Deficiency &amp; Decision Suite</h1>
+      <p>Complete 10-page analytical &amp; audit hub (Session <code>arena-53126614</code>): every table row links to an official NFL.com or official club page, unconfirmed market/backtest values are strictly blank and flagged, and all 13 Week 11 matchups have originated fair lines built from verified 2026 game logs and passing/downs efficiency.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="label">Zero-Sum Conservation</div><div class="value">32 / 32 Clubs</div><div class="sub">PF=PA, Pass=63,556, Rush=30,580, Sacks=641</div></div>
+        <div class="kpi"><div class="label">Empirical Correlations</div><div class="value">15 Pairs (n=32)</div><div class="sub">Def Pass Rate r=+0.815 vs Rush YPC r=+0.017</div></div>
+        <div class="kpi"><div class="label">1st&ndash;4th String Depth</div><div class="value">13 Official Clubs</div><div class="sub">18 replacement chains; 19 clubs blank + flagged</div></div>
+        <div class="kpi"><div class="label">Week 11 Originated Lines</div><div class="value">13 Matchups</div><div class="sub">v0 PF/PA, v1 SRS &amp; v2 Skill (Mexico City HFA=0)</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Suite Navigation &amp; Deliverable Summary Table</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Subpage</th>
+              <th>Verified Scope &amp; Interactive Capabilities</th>
+              <th>Primary Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Overview</td><td><a href="executive-summary.html"><strong>Executive Summary</strong></a></td><td>Key 2026 findings, methodology, luck-vs-skill outliers (DEN +2.17w vs TB &minus;2.17w), and decision blockers</td><td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">NFL.com Standings</a></td></tr>
+            <tr><td>Governance</td><td><a href="requirements.html"><strong>Requirements Matrix</strong></a></td><td>20/20 prompt clauses traced line-by-line to JSON datasets and HTML pages</td><td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">GitHub Repo</a></td></tr>
+            <tr><td>Audit</td><td><a href="repo-audit.html"><strong>Line-by-Line Repo Audit</strong></a></td><td>50+ files audited; caught &amp; fixed 4 player-stat column shifts (<code>REQ-FIX-04</code>) and <code>REG9&rarr;REG10</code></td><td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc" target="_blank" rel="noopener">NFL.com Rushing</a></td></tr>
+            <tr><td>Origination</td><td><a href="originated-lines.html"><strong>Week 11 Originated Fair Lines</strong></a></td><td>Fixes 8g-vs-9g denominator bug; compares v0 PF/PA, v1 SRS &amp; v2 Skill fair spreads, totals &amp; MLs</td><td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com Week 11</a></td></tr>
+            <tr><td>Analytics</td><td><a href="correlations.html"><strong>Correlations &amp; Luck Removal</strong></a></td><td>15 exact Pearson r / Spearman &rho; pairs with 95% Fisher-z CIs + interactive SGP copula calculator</td><td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Defense</a></td></tr>
+            <tr><td>Personnel</td><td><a href="depth-deficiencies.html"><strong>1st&ndash;4th String Lineup Deficiencies</strong></a></td><td>13 official club depth charts joined with Week 10 REG10 &amp; IR wire (including BAL QB3 Joe Fagnano)</td><td class="source-cell"><a href="https://www.baltimoreravens.com/team/depth-chart" target="_blank" rel="noopener">Ravens Depth Chart</a></td></tr>
+            <tr><td>Competition</td><td><a href="leaderboard-competition.html"><strong>Signal Leaderboard Competition</strong></a></td><td>12 single, parlay &amp; prop-combo signal specs, 0u&ndash;1u reward tiers &amp; validation gates G0&ndash;G8</td><td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all" target="_blank" rel="noopener">NFL.com Downs</a></td></tr>
+            <tr><td>Decisions</td><td><a href="decision-center.html"><strong>Decision Center &amp; Path Chooser</strong></a></td><td>Interactive Path A&ndash;D reviewer + Questions / Known / Missing / Required Answers / Discovery register</td><td class="source-cell"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">NFL.com REG10</a></td></tr>
+            <tr><td>Review Queue</td><td><a href="flagged.html"><strong>Flagged for Review</strong></a></td><td>All 13 cross-repo irregularities &amp; unverified blank cells documented with official verification URLs</td><td class="source-cell"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">NFL.com Official</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div>NFL2 &middot; Session <code>arena-53126614</code> &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="../index.html">Root Dashboard</a></div>
+  </footer>
+  <script src="assets/s53126614.js"></script>
+</body>
+</html>

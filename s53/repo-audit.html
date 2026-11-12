@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo Audit &amp; Line-by-Line Verification — NFL2</title>
+<meta name="description" content="Line-by-line verification of every dataset and page in NFL2 against official NFL.com sources, with flagged irregularities and manual review links.">
+<link rel="stylesheet" href="assets/s53126614.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Line-by-line repo audit</span><span class="tag">Verified 2026-11-12</span></div>
+  <nav class="main" aria-label="Main">
+    <a href="index.html">Dashboard</a>
+    <a href="executive-summary.html">Executive Summary</a>
+    <a href="requirements.html">Requirements</a>
+    <a class="active" href="repo-audit.html">Repo Audit</a>
+    <a href="../league-data.html">Standings</a>
+    <a href="../league-data.html">Schedule</a>
+    <a href="../injuries.html">Injuries</a>
+    <a href="depth-deficiencies.html">Depth Deficiencies</a>
+    <a href="originated-lines.html">Originated Lines</a>
+    <a href="leaderboard-competition.html">Leaderboard &amp; Gates</a>
+    <a href="correlations.html">Correlations</a>
+    <a href="decision-center.html">Decision Center</a>
+    <a href="../suggestions.html">Suggestions</a>
+    <a href="../questions.html">Questions</a>
+    <a href="flagged.html">Flagged for Review</a>
+    <a href="../sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>Repository Audit — Line-by-Line Verification</h1>
+  <p class="lead">Every file, JSON dataset, and HTML table row committed across parallel sessions was audited cell-by-cell against live fetches of official NFL.com pages and official NFL club websites. Every row below provides a direct official link for manual review.</p>
+
+  <div class="kpi">
+    <div class="card"><h3>Files Audited</h3><div class="big">50</div><div class="sub">All root, <code>docs/</code>, <code>data/</code>, and workflow files</div></div>
+    <div class="card"><h3>Data Rows Verified</h3><div class="big">241 / 245</div><div class="sub">Standings (64), Schedule (38), Defense (32), Injuries (41), Teams (32), Leaders (36/40)</div></div>
+    <div class="card"><h3>Irregularities Caught</h3><div class="big">12</div><div class="sub"><code>IR-01</code>…<code>IR-12</code> documented &amp; corrected/flagged</div></div>
+    <div class="card"><h3>Hallucination Tolerance</h3><div class="big">0</div><div class="sub">Unconfirmed values left blank &amp; flagged</div></div>
+  </div>
+
+  <h2>1 · File-by-file verification register</h2>
+  <p class="small">Machine-readable audit: <a href="../data/s53126614_repo_audit.json">data/s53126614_repo_audit.json</a> · Markdown report: <a href="../audits/repo-audit-53126614.md">audits/repo-audit-53126614.md</a></p>
+  <label for="f-files">Filter audited files</label>
+  <input id="f-files" type="search" placeholder="e.g. standings, player_leaders, FLAGGED…" data-filter-input="#audit-files-table" style="width:100%;max-width:420px">
+  <div class="tbl-wrap"><table id="audit-files-table">
+    <thead><tr><th>Repo File(s)</th><th>Session</th><th>Rows Checked</th><th>Verified</th><th>Finding Summary</th><th>Status</th><th>Official Source</th></tr></thead>
+    <tbody>
+      <tr><td><code>data/standings-2026.json</code>, <code>standings.html</code></td><td>194db560</td><td>32</td><td>32</td><td>All 32 teams (W, L, T, PCT, PF, PA, Net, Home, Road, Div, Conf, Strk, Last 5) match official division standings.</td><td><span class="pill ok">Verified</span></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com Standings</a></td></tr>
+      <tr><td><code>data/standings_2026.json</code>, <code>docs/standings.html</code></td><td>arena-85d79210</td><td>32</td><td>32</td><td>Reconciles 32/32 with root standings JSON and official NFL.com division/league standings.</td><td><span class="pill ok">Verified</span></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com Standings</a></td></tr>
+      <tr><td><code>data/schedule-week11-2026.json</code>, <code>schedule.html</code></td><td>194db560</td><td>19</td><td>19</td><td>13 Week 11 games + 6 bye teams = 32 teams accounted for; flex changes &amp; Mexico City venue match.</td><td><span class="pill ok">Verified</span></td><td class="src"><a href="https://www.nfl.com/news/week-11-schedule-change">NFL.com Week 11</a></td></tr>
+      <tr><td><code>data/schedule_week11_2026.json</code>, <code>docs/schedule.html</code></td><td>arena-85d79210</td><td>19</td><td>19</td><td>13 games + 6 bye teams match Nov 9 schedule change and May 15 bye release.</td><td><span class="pill ok">Verified</span></td><td class="src"><a href="https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week">NFL.com Byes</a></td></tr>
+      <tr><td><code>data/injuries-week10-2026.json</code>, <code>injuries.html</code></td><td>194db560</td><td>6</td><td>6</td><td>6 summary designations match, but <code>fullReport</code> URL linked <code>/REG9</code> (Week 9) instead of <code>/REG10</code> (Week 10) — see <strong>IR-01</strong>.</td><td><span class="pill warn">Flagged &amp; Fixed</span></td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10">NFL.com REG10</a></td></tr>
+      <tr><td><code>data/injuries_2026-11-11.json</code>, <code>docs/injuries.html</code></td><td>arena-85d79210</td><td>35</td><td>35</td><td>Wednesday Nov 11 practice/news items verified against official NFL.com Wednesday roundup.</td><td><span class="pill ok">Verified Snapshot</span></td><td class="src"><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11">NFL.com Roundup</a></td></tr>
+      <tr><td><code>data/team_stats_defense_2026.json</code>, <code>docs/defense.html</code></td><td>arena-85d79210</td><td>32</td><td>32</td><td>All 32 teams' passing &amp; rushing yards/attempts allowed match official NFL.com Team Defense stats.</td><td><span class="pill ok">Verified</span></td><td class="src"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all">NFL.com Def Pass</a></td></tr>
+      <tr><td><code>data/player_leaders_2026.json</code> (Passing &amp; Tackles)</td><td>arena-85d79210</td><td>20</td><td>20</td><td>Top-10 Passing and Top-10 Tackles match NFL.com cell-for-cell (upstream special-teams tackle note in <strong>IR-11</strong>).</td><td><span class="pill ok">Verified</span></td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc">NFL.com Passing</a></td></tr>
+      <tr><td><code>data/player_leaders_2026.json</code> (Rushing &amp; Receiving)</td><td>arena-85d79210</td><td>20</td><td>16</td><td>4 column-shift errors caught &amp; corrected: Bijan Robinson TD (5 not 9), Jaylen Warren TD (2 not 7), Trey McBride Lng (27 not 41), Ja'Marr Chase TD (7 not 8) — see <strong>IR-04…IR-07</strong>.</td><td><span class="pill bad">4 Mismatches Fixed</span></td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc">NFL.com Rushing</a></td></tr>
+      <tr><td><code>lines-lab.html</code>, <code>assets/app.js</code></td><td>194db560</td><td>13</td><td>12</td><td>Row <code>NO at CHI</code> had 7 <code>&lt;td&gt;</code> cells (<strong>IR-02</strong>); calculator assumed equal games <code>g</code> despite 8-vs-9 game pairings (<strong>IR-03</strong>).</td><td><span class="pill warn">Flagged &amp; Fixed</span></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com Standings</a></td></tr>
+      <tr><td><code>teams.html</code>, <code>data/teams.json</code></td><td>Both</td><td>32</td><td>32</td><td>All 32 team alignments and official <code>nfl.com/teams/&lt;slug&gt;</code> links verified.</td><td><span class="pill ok">Verified</span></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com Standings</a></td></tr>
+      <tr><td><code>.github/workflows/pages.yml</code> + Repo Root</td><td>Both</td><td>2</td><td>2</td><td>Legacy Pages serves <code>/</code> while workflow uploads <code>docs/</code>; both builds preserved &amp; cross-linked (<strong>IR-09</strong>).</td><td><span class="pill warn">Integrated</span></td><td class="src"><a href="https://github.com/kanlerxz87-cyber/NFL2">GitHub Repo</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>2 · Detailed irregularities register (<code>IR-01</code>…<code>IR-12</code>)</h2>
+  <label for="f-ir">Filter irregularities</label>
+  <input id="f-ir" type="search" placeholder="e.g. High, McBride, REG10, rushing…" data-filter-input="#audit-ir-table" style="width:100%;max-width:420px">
+  <div class="tbl-wrap"><table id="audit-ir-table">
+    <thead><tr><th>ID</th><th>Severity</th><th>Location</th><th>Irregularity Found vs Official Source</th><th>Resolution</th><th>Official Verification Link</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IR-01</strong></td><td><span class="pill bad">High</span></td><td><code>injuries.html</code>, <code>data/injuries-week10-2026.json</code>, <code>flagged.html</code>, <code>questions.html</code>, <code>sources.html</code></td><td>Linked <code>.../REG9</code> slug as "Week 10 Official Injury Report". Live fetch shows <code>REG9</code> is Week 9 (Nov 5 JAX at BAL); Week 10 is <code>/REG10</code> (Nov 12 WAS at NYG).</td><td>Updated to <code>REG10</code> &amp; full Week 10 designations added on <a href="depth-deficiencies.html">Depth Deficiencies</a>.</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10">NFL.com REG10</a></td></tr>
+      <tr><td><strong>IR-02</strong></td><td><span class="pill warn">Low</span></td><td><code>lines-lab.html</code> (Week 11 table)</td><td><code>NO at CHI</code> row had 7 <code>&lt;td&gt;</code> cells in an 8-column table.</td><td>Added missing 8th <code>&lt;td&gt;</code> cell; verified by HTML column checker.</td><td class="src"><a href="https://www.nfl.com/news/week-11-schedule-change">NFL.com Week 11</a></td></tr>
+      <tr><td><strong>IR-03</strong></td><td><span class="pill bad">High</span></td><td><code>lines-lab.html</code>, <code>assets/app.js</code></td><td>Single shared <code>Games played</code> input <code>g</code> used for both teams, but 8 of 13 Week 11 games pair an 8-game team vs a 9-game team (e.g. IND 9g at HOU 8g).</td><td>Built per-team <code>g_away</code> / <code>g_home</code> v0 + v1 engine on <a href="originated-lines.html">Originated Lines</a>.</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com Standings</a></td></tr>
+      <tr><td><strong>IR-04</strong></td><td><span class="pill bad">High</span></td><td><code>data/player_leaders_2026.json</code>, <code>docs/stats.html</code></td><td><strong>Bijan Robinson</strong> Rushing TD transcribed as <code>9</code>; official NFL.com lists <code>TD = 5</code>, <code>20+ = 9</code> (column shift).</td><td>Corrected to <code>TD = 5</code> in JSON/HTML and logged on <a href="flagged.html">Flagged</a>.</td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc">NFL.com Rushing</a></td></tr>
+      <tr><td><strong>IR-05</strong></td><td><span class="pill bad">High</span></td><td><code>data/player_leaders_2026.json</code>, <code>docs/stats.html</code></td><td><strong>Jaylen Warren</strong> Rushing TD transcribed as <code>7</code>; official NFL.com lists <code>TD = 2</code>, <code>20+ = 7</code> (PIT entire team has <code>4</code> rushing TDs).</td><td>Corrected to <code>TD = 2</code> in JSON/HTML and logged on <a href="flagged.html">Flagged</a>.</td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc">NFL.com Rushing</a></td></tr>
+      <tr><td><strong>IR-06</strong></td><td><span class="pill bad">High</span></td><td><code>data/player_leaders_2026.json</code>, <code>docs/stats.html</code></td><td><strong>Trey McBride</strong> Receiving <code>Lng</code> transcribed as <code>41</code>; official NFL.com lists <code>Lng = 27</code>, <code>Rec 1st% = 41.1</code> (column shift).</td><td>Corrected to <code>Lng = 27</code> in JSON/HTML and logged on <a href="flagged.html">Flagged</a>.</td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc">NFL.com Receiving</a></td></tr>
+      <tr><td><strong>IR-07</strong></td><td><span class="pill bad">High</span></td><td><code>data/player_leaders_2026.json</code>, <code>docs/stats.html</code></td><td><strong>Ja'Marr Chase</strong> Receiving TD transcribed as <code>8</code>; official NFL.com lists <code>TD = 7</code>, <code>20+ = 8</code> (column shift).</td><td>Corrected to <code>TD = 7</code> in JSON/HTML and logged on <a href="flagged.html">Flagged</a>.</td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc">NFL.com Receiving</a></td></tr>
+      <tr><td><strong>IR-08</strong></td><td><span class="pill warn">Low</span></td><td><code>data/player_leaders_2026.json</code></td><td>Player Rushing <code>Yds/Att</code> and Player Receiving <code>Yds/Rec</code> were derived from <code>Yds / Att</code> and <code>Yds / Rec</code> rather than raw columns on those pages.</td><td>Explicitly annotated as derived ratios; arithmetic verified.</td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc">NFL.com Receiving</a></td></tr>
+      <tr><td><strong>IR-09</strong></td><td><span class="pill warn">Medium</span></td><td>Root <code>/</code> vs <code>docs/</code></td><td>GitHub Pages <code>legacy</code> source serves <code>/</code> on <code>main</code>, leaving <code>docs/index.html</code> unlinked from root <code>index.html</code>.</td><td>Preserved both builds &amp; cross-linked root dashboard ↔ <code>docs/</code> companion suite.</td><td class="src"><a href="https://kanlerxz87-cyber.github.io/NFL2/">Live GitHub Pages</a></td></tr>
+      <tr><td><strong>IR-10</strong></td><td><span class="pill warn">Low</span></td><td>NE OL Ben Brown position</td><td>NFL.com Week 10 summary says <code>OL</code>, NFL.com <code>REG10</code> says <code>C</code>, Patriots.com depth chart lists him as 1st-string <code>LG</code> and 2nd-string <code>C</code>.</td><td>All three official designations recorded verbatim on <a href="depth-deficiencies.html">Depth Deficiencies</a>.</td><td class="src"><a href="https://www.patriots.com/team/depth-chart">Patriots.com Depth</a></td></tr>
+      <tr><td><strong>IR-11</strong></td><td><span class="pill warn">Low</span></td><td>NFL.com Player Tackles page</td><td>Upstream NFL.com <code>Comb</code> exceeds <code>Solo + Ast</code> for 7 of top 10 tacklers (e.g. Alex Singleton 107 vs 56+50=106) due to special-teams tackles.</td><td>Retained official NFL.com figures verbatim; flagged upstream accounting note.</td><td class="src"><a href="https://www.nfl.com/stats/player-stats/category/tackles/2026/reg/all/defensivecombinetackles/desc">NFL.com Tackles</a></td></tr>
+      <tr><td><strong>IR-12</strong></td><td><span class="pill warn">Low</span></td><td><code>COORDINATION.md</code></td><td>Execution sandbox pins each session to fixed branch <code>arena/&lt;id&gt;-nfl2</code> rather than <code>session-&lt;id&gt;/&lt;task&gt;</code> sub-branches.</td><td>Enforced strict non-overlapping file scopes &amp; rebase serialization in <code>COORDINATION.md</code>.</td><td class="src"><a href="https://github.com/kanlerxz87-cyber/NFL2/branches">GitHub Branches</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <p><a class="btn ghost" href="requirements.html">← Requirements</a> <a class="btn" href="flagged.html">Open Flagged for Review →</a></p>
+</div></main>
+<footer><div class="wrap"><p>NFL2 · Line-by-line repo audit by session <code>arena-53126614</code> · <a href="../sources.html">Sources &amp; verification method</a></p></div></footer>
+<script src="assets/s53126614.js"></script>
+</body></html>

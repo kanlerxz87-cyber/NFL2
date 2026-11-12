@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flagged for Review &mdash; NFL2 S53 Suite</title>
+  <link rel="stylesheet" href="assets/s53126614.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">NFL2 &middot; S53 <span>Week 11 Origination, 13-Club Depth &amp; Decision Suite</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Zero Inferred Values &middot; 100% Row Official Links</span>
+    </div>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">S53 Dashboard</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements (20/20)</a>
+      <a href="repo-audit.html">Repo Audit</a>
+      <a href="originated-lines.html">Week 11 Originated Lines</a>
+      <a href="correlations.html">Correlations &amp; Luck</a>
+      <a href="depth-deficiencies.html">1st&ndash;4th String Depth</a>
+      <a href="leaderboard-competition.html">Signal Leaderboard</a>
+      <a href="decision-center.html">Decision Center &amp; Paths</a>
+      <a href="flagged.html" aria-current="page">Flagged for Review</a>
+      <a href="../index.html">Root Hub &rarr;</a>
+      <a href="../analytics/index.html">Analytics</a>
+      <a href="../portal/index.html">Portal</a>
+      <a href="../review/index.html">Review</a>
+      <a href="../docs/index.html">Docs</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>Flagged for Review: Irregularities, Source Discrepancies &amp; Unverified Blank Cells</h1>
+      <p>Every irregularity uncovered during our line-by-line repository audit and every intentionally blank cell where official NFL sources do not publish a value. Per project governance, flagged items do not block merging &mdash; they are published transparently here with official verification links.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="label">Audit Irregularities</div><div class="value">12 Logged</div><div class="sub">All linked to official NFL.com / Club URLs</div></div>
+        <div class="kpi"><div class="label">Market Odds Cells</div><div class="value">100% Blank</div><div class="sub">Week 11 spreads/totals/MLs unverified</div></div>
+        <div class="kpi"><div class="label">Strategy CLV / ROI Cells</div><div class="value">100% Blank</div><div class="sub">12/12 strategies gated at Sandbox 0.00u</div></div>
+        <div class="kpi"><div class="label">Unmapped Club Depth Charts</div><div class="value">19 / 32 Blank</div><div class="sub">13 verified; 19 flagged with club URLs</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>1. Irregularities &amp; Upstream Discrepancies Flagged for Manual Review</h2>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter flagged items (e.g., HIGH, Rushing, REG10, Tackles, Depth)..." data-filter-input="flg-table" aria-label="Filter flagged items">
+        <span class="count">Cross-linked with <a href="../flagged-for-review.html">Root Flagged Register</a>, <a href="../analytics/flagged.html">Analytics</a>, <a href="../portal/flagged-review.html">Portal</a> &amp; <a href="../review/flagged.html">Review</a></span>
+      </div>
+      <div class="table-wrap">
+        <table id="flg-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Severity</th>
+              <th>Affected Scope</th>
+              <th>Finding</th>
+              <th>Disposition</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>IR-01</code></td>
+            <td><span class="badge badge-unverified">HIGH</span></td>
+            <td><code>data/injuries-week10-2026.json, injuries.html, flagged.html, questions.html, sources.html</code></td>
+            <td><strong>Full Week 10 injury report link pointed to the REG9 slug (which displays &#x27;Injuries - WEEK 9&#x27;, Nov 5 JAX at BAL). Official Week 10 full report is /injuries/league/2026/REG10 (&#x27;Injuries - WEEK 10&#x27;, Nov 12 WAS at NYG).</strong></td>
+            <td>Flagged &amp; queued for S53-09 fix</td>
+            <td class="source-cell"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-02</code></td>
+            <td><span class="badge badge-neutral">LOW</span></td>
+            <td><code>lines-lab.html (Week 11 template table, row &#x27;NO at CHI&#x27;)</code></td>
+            <td><strong>HTML table row for &#x27;NO at CHI&#x27; contains 7 &lt;td&gt; cells in an 8-column table (missing final Source/time cell).</strong></td>
+            <td>Flagged &amp; queued for S53-09 fix</td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-03</code></td>
+            <td><span class="badge badge-unverified">HIGH</span></td>
+            <td><code>lines-lab.html + assets/app.js</code></td>
+            <td><strong>Baseline v0 calculator assumes equal games played g for home and away teams. In official 2026 standings (as of Nov 12), 16 teams have played 8 games and 16 have played 9 games; 8 of 13 Week 11 games pair an 8-game team vs a 9-game team (e.g. IND 2-7 [9g] at HOU 3-5 [8g]). Fixed in originated-lines.html with separate g_away and g_home.</strong></td>
+            <td>Addressed in originated-lines.html + queued for S53-09</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-04</code></td>
+            <td><span class="badge badge-unverified">HIGH</span></td>
+            <td><code>data/player_leaders_2026.json + docs/stats.html (Rushing row 1: Bijan Robinson)</code></td>
+            <td><strong>Bijan Robinson rushing TD recorded as 9; official NFL.com Player Rushing table lists RushYds=880, Att=169, TD=5, 20+=9, 40+=2, Lng=59. Column &#x27;20+&#x27; (9) was misread as &#x27;TD&#x27; (5).</strong></td>
+            <td>Flagged &amp; queued for S53-09 fix</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-05</code></td>
+            <td><span class="badge badge-unverified">HIGH</span></td>
+            <td><code>data/player_leaders_2026.json + docs/stats.html (Rushing row 6: Jaylen Warren)</code></td>
+            <td><strong>Jaylen Warren rushing TD recorded as 7; official NFL.com Player Rushing table lists RushYds=704, Att=119, TD=2, 20+=7, 40+=2, Lng=51 (and PIT entire team rushing TD total is 4).</strong></td>
+            <td>Flagged &amp; queued for S53-09 fix</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-06</code></td>
+            <td><span class="badge badge-unverified">HIGH</span></td>
+            <td><code>data/player_leaders_2026.json + docs/stats.html (Receiving row 1: Trey McBride)</code></td>
+            <td><strong>Trey McBride longest reception (Lng) recorded as 41; official NFL.com Player Receiving table lists Rec=73, Yds=598, TD=5, 20+=4, 40+=0, Lng=27, Rec 1st=30, Rec 1st%=41.1. &#x27;Rec 1st%&#x27; (41.1) was misread as &#x27;Lng&#x27; (27).</strong></td>
+            <td>Flagged &amp; queued for S53-09 fix</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-07</code></td>
+            <td><span class="badge badge-unverified">HIGH</span></td>
+            <td><code>data/player_leaders_2026.json + docs/stats.html (Receiving row 7: Ja&#x27;Marr Chase)</code></td>
+            <td><strong>Ja&#x27;Marr Chase receiving TD recorded as 8; official NFL.com Player Receiving table lists Rec=53, Yds=647, TD=7, 20+=8, 40+=2, Lng=47. Column &#x27;20+&#x27; (8) was misread as &#x27;TD&#x27; (7).</strong></td>
+            <td>Flagged &amp; queued for S53-09 fix</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-08</code></td>
+            <td><span class="badge badge-neutral">LOW</span></td>
+            <td><code>data/player_leaders_2026.json (Rushing Yds/Att &amp; Receiving Yds/Rec)</code></td>
+            <td><strong>NFL.com Player Rushing and Player Receiving category pages do not display Yds/Att or Yds/Rec columns directly; those two ratios were derived from Yds/Att and Yds/Rec without a &#x27;derived&#x27; label.</strong></td>
+            <td>Flagged for transparency</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-09</code></td>
+            <td><span class="badge badge-model">MEDIUM</span></td>
+            <td><code>Repo root (/) vs docs/ + .github/workflows/pages.yml</code></td>
+            <td><strong>Two parallel sessions created two complete dashboards (root / and docs/). GitHub Pages serves root &#x27;/&#x27; via legacy build_type, so docs/index.html was not linked from root index.html.</strong></td>
+            <td>Cross-linked in S53-09 integration</td>
+            <td class="source-cell"><a href="https://kanlerxz87-cyber.github.io/NFL2/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-10</code></td>
+            <td><span class="badge badge-neutral">LOW</span></td>
+            <td><code>NFL.com summary vs NFL.com REG10 vs Patriots.com depth chart (Ben Brown)</code></td>
+            <td><strong>Official sources use different position granularity for Ben Brown (NE): &#x27;OL&#x27; in NFL.com Week 10 summary, &#x27;C&#x27; on NFL.com REG10 injury report, and 1st-string &#x27;LG&#x27; + 2nd-string &#x27;C&#x27; on Patriots.com depth chart.</strong></td>
+            <td>Documented across sources</td>
+            <td class="source-cell"><a href="https://www.patriots.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-11</code></td>
+            <td><span class="badge badge-neutral">LOW</span></td>
+            <td><code>NFL.com Player Tackles table (upstream official source note)</code></td>
+            <td><strong>On NFL.com&#x27;s official Tackles page, CombTackles != Solo + Ast for 7 of the top 10 tacklers (e.g. Alex Singleton 107 Comb vs 56 Solo + 50 Ast = 106; Nakobe Dean 99 Comb vs 54 + 42 = 96) because NFL.com includes special-teams tackles in Comb.</strong></td>
+            <td>Verified upstream behavior</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/tackles/2026/reg/all/defensivecombinetackles/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IR-12</code></td>
+            <td><span class="badge badge-neutral">LOW</span></td>
+            <td><code>COORDINATION.md / parallel branch naming</code></td>
+            <td><strong>Project prompt specifies session-&lt;id&gt;/&lt;task&gt; branches, whereas the execution environment fixes each session to a single branch arena/&lt;id&gt;-nfl2. Non-overlapping file scopes + rebase serialization enforce conflict-free parallel execution.</strong></td>
+            <td>Documented environment constraint</td>
+            <td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2/branches" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div>NFL2 Flagged for Review &middot; Session <code>arena-53126614</code> &middot; <a href="index.html">S53 Dashboard</a> &middot; <a href="../flagged-for-review.html">Root Flagged Queue</a></div>
+  </footer>
+  <script src="assets/s53126614.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+{
+  "as_of": "2026-11-12",
+  "competition_status": "Pre-Registered Sandbox \u2014 0 of 12 Strategies Promoted to Live Capital (Historical Odds Feed Missing)",
+  "reward_tiers": [
+    {
+      "tier": "Tier 0 \u2014 Paper Sandbox",
+      "gates_required": "G0 Only (Pre-Registered Spec)",
+      "unit_cap": "0.00u (Zero Real Stake)",
+      "kelly_fraction": "0.00x",
+      "reward": "Paper tracking + automated CLV/calibration logging",
+      "demotion_trigger": "N/A (Entry tier for all 12 strategies today)",
+      "official_ref": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "tier": "Tier 1 \u2014 Bronze Qualifier",
+      "gates_required": "G0 + G1 (N>=200) + G2 (Walk-Forward) + G8 (Skill Filter)",
+      "unit_cap": "0.25u Max",
+      "kelly_fraction": "0.10x Kelly",
+      "reward": "Initial micro-allocation + weekly automated line-shopping priority",
+      "demotion_trigger": "Rolling 50-bet CLV < 0 bps or Brier worse than market",
+      "official_ref": "https://www.nfl.com/schedules/2026/REG/"
+    },
+    {
+      "tier": "Tier 2 \u2014 Silver Contender",
+      "gates_required": "Bronze + G3 (t_CLV >= 2.0) + G5 (Calibration Beat)",
+      "unit_cap": "0.50u Max",
+      "kelly_fraction": "0.18x Kelly",
+      "reward": "2x capital multiplier + cross-game independent parlay eligibility",
+      "demotion_trigger": "Max drawdown > 12u or regime break (G8)",
+      "official_ref": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "tier": "Tier 3 \u2014 Gold Leaderboard Winner",
+      "gates_required": "Silver + G4 (95% ROI LB > 0%) + G6 (Verified Copula) + G7 (BH-FDR q<=0.05)",
+      "unit_cap": "1.00u Max",
+      "kelly_fraction": "0.25x Quarter-Kelly",
+      "reward": "Full syndicate capital weight + SGP/prop-combo execution budget + research bonus pool",
+      "demotion_trigger": "Rolling 100-bet CLV < +25 bps or 15u drawdown freeze",
+      "official_ref": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+    }
+  ],
+  "validation_gates": [
+    {
+      "id": "G0",
+      "name": "Immutable Pre-Registration",
+      "threshold": "Formula, inputs & selectivity cutoff committed before grading",
+      "luck_removed": "Eliminates hindsight bias, feature snooping & moving goalposts",
+      "status_now": "PASS (12/12 Registered)",
+      "source": "https://github.com/kanlerxz87-cyber/NFL2"
+    },
+    {
+      "id": "G1",
+      "name": "Minimum Sample Power",
+      "threshold": "N >= 200 graded singles; N >= 350 graded parlays / prop combos",
+      "luck_removed": "Prevents small-sample coin-flip streaks (2026 alone has only 136 games)",
+      "status_now": "BLOCKED (Needs 2022\u20132025 archive)",
+      "source": "https://www.nfl.com/schedules/2026/REG/"
+    },
+    {
+      "id": "G2",
+      "name": "Chronological Walk-Forward OOS",
+      "threshold": "Strict expanding-window train <= Week t-1, predict Week t only",
+      "luck_removed": "Prevents future-leakage of full-season PF/PA or injury outcomes",
+      "status_now": "READY (Engine Implemented)",
+      "source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "G3",
+      "name": "Closing Line Value (CLV) Skill t-Test",
+      "threshold": "Mean no-vig CLV >= +1.5% with t-stat >= +2.00",
+      "luck_removed": "Isolates repeatable pricing skill from single-game fumble/OT variance",
+      "status_now": "UNVERIFIED (Blank \u2014 Needs Closing Odds)",
+      "source": "https://www.nfl.com/schedules/2026/reg11/"
+    },
+    {
+      "id": "G4",
+      "name": "Vig-Adjusted ROI Confidence Bound",
+      "threshold": "Bootstrap 95% lower bound of ROI > 0.0% after -110 vig (4.55% hold)",
+      "luck_removed": "Ensures edge survives bookmaker vigorish and tail variance",
+      "status_now": "UNVERIFIED (Blank \u2014 Needs Closing Odds)",
+      "source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "G5",
+      "name": "Proper Scoring Calibration",
+      "threshold": "Out-of-sample Brier & Log-Loss strictly lower than devigged market",
+      "luck_removed": "Penalizes overconfident probability estimates before Kelly sizing",
+      "status_now": "UNVERIFIED (Blank \u2014 Needs Closing Odds)",
+      "source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "id": "G6",
+      "name": "Empirical Copula Correlation Gate",
+      "threshold": "Within-game leg rho estimated on >=1,000 team-games; 95% CI excludes book implied rho",
+      "luck_removed": "Blocks SGP & prop-combo correlation tax traps",
+      "status_now": "BLOCKED for SGP/Props (Cross-Game rho=0 OK)",
+      "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+    },
+    {
+      "id": "G7",
+      "name": "Benjamini\u2013Hochberg Multiple-Testing FDR",
+      "threshold": "Adjusted q-value <= 0.05 across all M candidate strategies tested",
+      "luck_removed": "Stops 1-in-20 false-positive 'lucky winner' among 12+ parallel strategies",
+      "status_now": "ENFORCED (M = 12 Active)",
+      "source": "https://github.com/kanlerxz87-cyber/NFL2"
+    },
+    {
+      "id": "G8",
+      "name": "Selectivity & Luck-Residual Screen",
+      "threshold": "Bet only top <=20% model-disagreement slates; strip Pythagorean & INT luck",
+      "luck_removed": "Forces selective high-conviction skill bets instead of recreational action",
+      "status_now": "PASS (Verified on 2026 Data)",
+      "source": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all"
+    }
+  ],
+  "strategies": [
+    {
+      "id": "SIG-01",
+      "name": "Pythagorean Luck-Fade vs Pass-YPA Skill Spread",
+      "bet_type": "Single Bet (Spread)",
+      "mechanism": "Back teams with negative luck residual (e.g., TB -2.17w, HOU -1.40w) & positive Pass YPA Diff (r=+0.724) against over-lucky opponents (e.g., DEN +2.17w, CLE +1.53w).",
+      "selectivity": "Abs(Model v2 - Market) >= 2.2 pts & |Luck Diff| >= 2.0 wins",
+      "corr_anchor": "C-01 (r=+0.876), C-02 (r=+0.724)",
+      "tier": "Tier 0 \u2014 Sandbox (0.00u)",
+      "gates_passed": "G0, G2, G8",
+      "gate_blocker": "G1, G3, G4, G5 (Missing Historical Odds)",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "SIG-02",
+      "name": "Secondary Multi-String Coverage Collapse Team-Total Over",
+      "bet_type": "Single Bet (Team Total)",
+      "mechanism": "Target opposing offense Team Total Over when >=2 starting CB/S/NB defenders are replaced by 2nd/3rd/4th string backups (e.g., SF & DAL Week 10 clusters).",
+      "selectivity": ">=2 DB starters OUT/DNP on verified club chart + Opp Off Passer Rate >= 92.0",
+      "corr_anchor": "C-10 Def Pass Rate vs PA/g (r=+0.815)",
+      "tier": "Tier 0 \u2014 Sandbox (0.00u)",
+      "gates_passed": "G0, G8",
+      "gate_blocker": "G1 (Needs 32-club historical injury+depth archive) + G3\u2013G5",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all"
+    },
+    {
+      "id": "SIG-03",
+      "name": "Blindside / Interior OL 2nd\u20133rd String Pass-Pro Fade",
+      "bet_type": "Single Bet (Spread / Team Under)",
+      "mechanism": "Fade offenses missing LT1 or C1/LG1+LG2 to 2nd/3rd string backups (e.g., NE LG1+LG2 out/DNP, MIA C1 DNP, WAS C1 OUT) vs top-12 pass-defense rating clubs.",
+      "selectivity": ">=1 OL starter OUT + backup >=2nd string + Opp Def Pass Rate <= 88.0",
+      "corr_anchor": "C-09 Sacks Taken vs PF/g (r=-0.621)",
+      "tier": "Tier 0 \u2014 Sandbox (0.00u)",
+      "gates_passed": "G0, G8",
+      "gate_blocker": "G1, G3\u2013G5 (Missing Historical Odds & Snap Logs)",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "id": "SIG-04",
+      "name": "3rd-Down Sustainability vs Raw Total Regression",
+      "bet_type": "Single Bet (Game Total)",
+      "mechanism": "Exploit divergence between sustainable scrimmage Yds/Play (r=+0.760) + 3rd-Down% (r=+0.707) and noisy red-zone / turnover scoring spikes.",
+      "selectivity": "Abs(Fair Total - Market Total) >= 2.8 pts & neutral weather/dome",
+      "corr_anchor": "C-06 (r=+0.760), C-08 (r=+0.707)",
+      "tier": "Tier 0 \u2014 Sandbox (0.00u)",
+      "gates_passed": "G0, G2, G8",
+      "gate_blocker": "G1, G3\u2013G5 (Missing Historical Closing Totals & Weather)",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+    },
+    {
+      "id": "SIG-05",
+      "name": "Verified 2nd/3rd-String QB Drop-OffOrigination Filter",
+      "bet_type": "Single Bet (Spread / ML)",
+      "mechanism": "Price verified QB1 -> QB2/QB3 cascades (BAL QB3 Joe Fagnano, SEA QB2 Drew Lock, MIA rookie Kyle McCord) via career dropback prior rather than team season PF/g.",
+      "selectivity": "Official NFL.com QB1 OUT/IR + verified club depth-chart replacement",
+      "corr_anchor": "C-05 Off Pass Rate vs PF/g (r=+0.750)",
+      "tier": "Tier 0 \u2014 Sandbox (0.00u)",
+      "gates_passed": "G0, G8",
+      "gate_blocker": "G1, G3\u2013G5 (Missing Historical Odds & QB EPA Prior)",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.baltimoreravens.com/team/depth-chart"
+    },
+    {
+      "id": "SIG-06",
+      "name": "Cross-Game Independent High-CLV 2-Leg Parlay",
+      "bet_type": "Parlay (2-Leg Cross-Game)",
+      "mechanism": "Combine exactly two independent games (verified rho = 0.00 across distinct stadiums/clubs) ONLY when each single leg independently clears +2.5% no-vig EV.",
+      "selectivity": "Both legs pass Silver Tier single gates; max 0.15x Kelly stake",
+      "corr_anchor": "Cross-game independence (rho = 0.00)",
+      "tier": "Tier 0 \u2014 Sandbox (0.00u)",
+      "gates_passed": "G0, G6 (rho=0), G8",
+      "gate_blocker": "G1 (N>=350), G3\u2013G5 (Missing Closing Odds)",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.nfl.com/schedules/2026/reg11/"
+    },
+    {
+      "id": "SIG-07",
+      "name": "Trailing-Script Favorite Spread + Opp QB Pass-Attempts SGP",
+      "bet_type": "Parlay (Same-Game SGP)",
+      "mechanism": "Pair skill-favorite spread with trailing opponent QB pass attempts over when book SGP pricing underestimates negative-game-script pass rate shift.",
+      "selectivity": "Copula joint prob > SGP implied prob + 4.0% correlation-margin buffer",
+      "corr_anchor": "UC-03 (Unverified within-game rho)",
+      "tier": "Tier 0 \u2014 Locked (0.00u)",
+      "gates_passed": "G0",
+      "gate_blocker": "G6 HARD BLOCK (Requires PBP within-game rho) + G1, G3\u2013G5",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "id": "SIG-08",
+      "name": "DB Backup Cluster + Opposing Passing Over SGP",
+      "bet_type": "Parlay (Same-Game SGP)",
+      "mechanism": "Combine opposing QB passing efficiency/yards over with opposing team-total over against defenses starting 2nd/3rd-string corners (SF, DAL, NE).",
+      "selectivity": ">=2 DB starters OUT/DNP + verified copula edge > +4.5%",
+      "corr_anchor": "C-10 (r=+0.815) + UC-01 (Unverified)",
+      "tier": "Tier 0 \u2014 Locked (0.00u)",
+      "gates_passed": "G0",
+      "gate_blocker": "G6 HARD BLOCK (Requires PBP within-game rho) + G1, G3\u2013G5",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.49ers.com/team/depth-chart"
+    },
+    {
+      "id": "SIG-09",
+      "name": "Alpha WR1 Absence -> 2nd/3rd-String WR Reception Combo",
+      "bet_type": "Player Prop Combo",
+      "mechanism": "When WR1 (e.g., LAR Puka Nacua) exits lineup, model target reallocation to verified 2nd/3rd-string WRs (Whittington / Atwell) before prop books re-center.",
+      "selectivity": "WR1 >= 26% target share OUT/IR + verified club depth-chart WR2/WR3",
+      "corr_anchor": "UC-01 / Target-share conservation",
+      "tier": "Tier 0 \u2014 Locked (0.00u)",
+      "gates_passed": "G0",
+      "gate_blocker": "G6 + Missing Official Snap/Route Participation & Prop Odds",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.therams.com/team/depth-chart"
+    },
+    {
+      "id": "SIG-10",
+      "name": "RB1+RB2 Attrition -> 3rd/4th-String Receiving/Attempt Share",
+      "bet_type": "Player Prop Combo",
+      "mechanism": "Target touch-volume (NOT YPC, since Rush YPC vs PF/g r=+0.017!) when RB1+RB2 are out/DNP (e.g., NE Corey Kiner / Lan Larison; GB Lloyd / Strong).",
+      "selectivity": "RB1 & RB2 OUT/DNP + verified 3rd/4th string active on game-day 48",
+      "corr_anchor": "C-13 (r=+0.017 noise filter applied)",
+      "tier": "Tier 0 \u2014 Locked (0.00u)",
+      "gates_passed": "G0, G8",
+      "gate_blocker": "G1, G6 + Missing Historical Prop Lines & Game-Day Inactives",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.packers.com/team/depth-chart"
+    },
+    {
+      "id": "SIG-11",
+      "name": "QB Passing Yards + Primary Pass-Catcher Yards Stack Combo",
+      "bet_type": "Player Prop Combo",
+      "mechanism": "Price bivariate Gaussian/t-copula stack against SGP prop-combo multiplier ONLY where bookmaker applies flat correlation haircut below empirical team target concentration.",
+      "selectivity": "Pass-catcher >= 28% air-yards share + verified rho CI lower bound > book rho",
+      "corr_anchor": "UC-01 (Blank \u2014 Needs Player Game Logs)",
+      "tier": "Tier 0 \u2014 Locked (0.00u)",
+      "gates_passed": "G0",
+      "gate_blocker": "G6 HARD BLOCK (Within-game rho unverified) + Prop Odds",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc"
+    },
+    {
+      "id": "SIG-12",
+      "name": "OL Multi-Backup Mismatch -> QB Sacks Taken + Under Pass YPA Combo",
+      "bet_type": "Player Prop Combo",
+      "mechanism": "Pair opposing defense/QB-sack prop with QB under yards-per-attempt when >=2 OL starters are replaced by 2nd/3rd string backups.",
+      "selectivity": ">=2 OL starters OUT/DNP + Opp pressure rate top quartile",
+      "corr_anchor": "C-09 Sacks Taken vs PF/g (r=-0.621)",
+      "tier": "Tier 0 \u2014 Locked (0.00u)",
+      "gates_passed": "G0",
+      "gate_blocker": "G6 + Missing Historical Prop Odds & Pressure Participation",
+      "clv": null,
+      "roi": null,
+      "source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    }
+  ]
+}

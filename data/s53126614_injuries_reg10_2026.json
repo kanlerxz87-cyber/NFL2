@@ -1,0 +1,271 @@
+{
+  "as_of": "2026-11-12",
+  "week": 10,
+  "season": 2026,
+  "official_sources": {
+    "league_injury_report_reg10": "https://www.nfl.com/injuries/league/2026/REG10",
+    "week10_status_summary": "https://www.nfl.com/news/nfl-week-10-injury-report-2026-season",
+    "wednesday_nov11_roundup": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+    "thursday_nov5_ir_roundup": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-thursday-nov-5",
+    "huntley_turf_toe_report": "https://www.nfl.com/news/ravens-qb-tyler-huntley-out-for-season-turf-toe-injury"
+  },
+  "note": "Mirrors official Week 10 REG10 club practice/status reports without inferring blank injury or game-status fields, supplemented by NFL.com official IR/starter announcements.",
+  "games_count": 14,
+  "total_listed_players": 254,
+  "games": [
+    {
+      "matchup": "WAS at NYG",
+      "kickoff_et": "2026-11-12 20:15",
+      "roster_verified": true,
+      "listed_count": 20,
+      "out_players": [
+        "Lucas Patrick",
+        "Colson Yankoff"
+      ],
+      "questionable_players": [
+        "Malik Harrison"
+      ],
+      "dnp_players": [
+        "Lucas Patrick",
+        "Colson Yankoff",
+        "Treylon Burks"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "NE at DET",
+      "kickoff_et": "2026-11-15 09:30",
+      "roster_verified": true,
+      "listed_count": 24,
+      "out_players": [
+        "Ben Brown",
+        "Carlton Davis III",
+        "TreVeyon Henderson"
+      ],
+      "questionable_players": [],
+      "dnp_players": [
+        "Ben Brown",
+        "Carlton Davis III",
+        "TreVeyon Henderson",
+        "Cameron Latu",
+        "Walter Rouse",
+        "Brenden Schooler",
+        "Rhamondre Stevenson",
+        "Cade Mays",
+        "D.J. Reed",
+        "Sione Vaki"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "KC at ATL",
+      "kickoff_et": "2026-11-15 13:00",
+      "roster_verified": true,
+      "listed_count": 17,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Jaylon Moore",
+        "Peter Woods",
+        "Zachariah Branch",
+        "Gervon Dexter Sr.",
+        "James Pearce Jr.",
+        "Za'Darius Smith",
+        "Josh Woods"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "MIN at GB",
+      "kickoff_et": "2026-11-15 13:00",
+      "roster_verified": true,
+      "listed_count": 25,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Blake Cashman",
+        "T.J. Hockenson",
+        "Tyrion Ingram-Dawkins",
+        "Jauan Jennings",
+        "Kyler Murray",
+        "Kyle Van Noy",
+        "Javon Bullard",
+        "Zaire Franklin",
+        "Josh Jacobs",
+        "Sean Rhyan",
+        "Lukas Van Ness",
+        "Josh Whyle"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "JAX at TEN",
+      "kickoff_et": "2026-11-15 13:00",
+      "roster_verified": true,
+      "listed_count": 22,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Jessie Bates",
+        "Jordan Davis",
+        "Jakobi Meyers",
+        "Bhayshul Tuten",
+        "Travon Walker",
+        "Cody Barton",
+        "Anthony Hill Jr.",
+        "Peter Skoronski",
+        "Tyjae Spears",
+        "Carnell Tate"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "BUF at NYJ",
+      "kickoff_et": "2026-11-15 13:00",
+      "roster_verified": true,
+      "listed_count": 18,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Harrison Phillips",
+        "Trevin Wallace"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "MIA at IND",
+      "kickoff_et": "2026-11-15 13:00",
+      "roster_verified": true,
+      "listed_count": 21,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Aaron Brewer",
+        "Will Kacmarek",
+        "Mo Alie-Cox",
+        "Jaylon Carlies",
+        "Akeem Davis-Gaither",
+        "A.J. Haulcy",
+        "Luke Rhodes",
+        "Jalen Travis",
+        "Charvarius Ward"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "CAR at NO",
+      "kickoff_et": "2026-11-15 13:00",
+      "roster_verified": true,
+      "listed_count": 22,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Chuba Hubbard",
+        "Bobby Okereke",
+        "CJ Donaldson",
+        "Alvin Kamara",
+        "Erik McCoy"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "HOU at CLE",
+      "kickoff_et": "2026-11-15 13:00",
+      "roster_verified": true,
+      "listed_count": 24,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Azeez Al-Shaair",
+        "Brevin Jordan",
+        "David Montgomery",
+        "Keylan Rutledge",
+        "Denzel Boston",
+        "Michael Burton",
+        "Ronnie Hickman Jr.",
+        "Elgton Jenkins"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "LA at AZ",
+      "kickoff_et": "2026-11-15 16:05",
+      "roster_verified": true,
+      "listed_count": 23,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Steve Avila",
+        "Kam Curl",
+        "Terrance Ferguson",
+        "Trent McDuffie",
+        "Puka Nacua",
+        "Budda Baker",
+        "Hjalte Froholdt",
+        "Jon Gaines II",
+        "Roy Lopez",
+        "Isaac Seumalo",
+        "Josh Sweat",
+        "Mack Wilson"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "SEA at LV",
+      "kickoff_et": "2026-11-15 16:05",
+      "roster_verified": true,
+      "listed_count": 4,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "SF at DAL",
+      "kickoff_et": "2026-11-15 16:25",
+      "roster_verified": true,
+      "listed_count": 26,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Mike Evans",
+        "Renardo Green",
+        "Deommodore Lenoir",
+        "Trent Williams",
+        "Donovan Ezeiruaku",
+        "Jake Ferguson",
+        "Tyler Goodson",
+        "Malik Hooker",
+        "P.J. Locke",
+        "Von Miller",
+        "Jonathan Mingo",
+        "Joey Porter Jr."
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "PIT at CIN",
+      "kickoff_et": "2026-11-15 20:20",
+      "roster_verified": true,
+      "listed_count": 8,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [
+        "Cameron Heyward",
+        "Darnell Washington",
+        "T.J. Watt"
+      ],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "matchup": "LAC at BAL",
+      "kickoff_et": "2026-11-16 20:15",
+      "roster_verified": true,
+      "listed_count": 0,
+      "out_players": [],
+      "questionable_players": [],
+      "dnp_players": [],
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    }
+  ]
+}
