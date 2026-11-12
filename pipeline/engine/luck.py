@@ -39,7 +39,7 @@ def variance_test(wins: int, legs: int, p0: float) -> dict:
     p = p0
     theo_sd = math.sqrt(legs * p * (1 - p))
     obs_sd = math.sqrt(legs * (wins / legs) * (1 - wins / legs)) if 0 < wins < legs else 0.0
-    return {"legs": legs, "wins": wins, "theoretical_sd": theo_sd, "observed_sd": obs_sd,
+    return {"legs": legs, "wins": wins, "theoretical_sd": _canon(theo_sd), "observed_sd": _canon(obs_sd),
             "sd_ratio": _canon(obs_sd / theo_sd) if theo_sd else None,
             "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"}
 
@@ -53,7 +53,8 @@ def split_half(legs: pd.DataFrame) -> dict:
     def stat(d):
         n = len(d)
         w = int(d.won.sum())
-        return {"n": n, "wins": w, "hit": (w / n if n else None), "roi": float(d.pnl.mean()) if n else None}
+        return {"n": n, "wins": w, "hit": _canon(w / n) if n else None,
+                "roi": _canon(float(d.pnl.mean())) if n else None}
     return {"first_half": stat(a), "second_half": stat(b),
             "same_sign_roi": bool(np.sign(a.pnl.mean()) == np.sign(b.pnl.mean())) if len(a) and len(b) else None}
 
@@ -73,7 +74,7 @@ def persistence(legs: pd.DataFrame, min_legs: int = 25) -> dict:
     r = float(np.corrcoef(x, y)[0, 1])
     n = len(x)
     se = 1 / math.sqrt(max(n - 3, 1))
-    return {"seasons": int(len(s)), "correlation": r,
+    return {"seasons": int(len(s)), "correlation": _canon(r),
             "ci_low": round(r - 1.96 * se, 4), "ci_high": round(r + 1.96 * se, 4),
             "skill_share": round(max(r, 0.0), 4),
             "note": "share of a season's edge that repeats the next season; 0 = pure luck"}
@@ -94,8 +95,8 @@ def decompose(strategies: list[dict], legs_by_id: dict[str, pd.DataFrame]) -> di
         pe = persistence(legs)
         out.append({
             "id": s["id"], "name": s["name"], "family": s["family"],
-            "legs": n, "hit_rate": round(w / n, 4), "ci_low": round(lo, 4),
-            "break_even": round(p0, 4), "excess": round(w / n - p0, 4),
+            "legs": n, "hit_rate": _canon(w / n), "ci_low": _canon(lo),
+            "break_even": _canon(p0), "excess": _canon(w / n - p0),
             "variance_test": variance_test(w, n, p0),
             "split_half": sh,
             "persistence": pe,

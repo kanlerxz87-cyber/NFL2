@@ -23,15 +23,15 @@
     "wins": 323,
     "pushes": 15,
     "hit_rate": 0.5168,
-    "ci_low": 0.47763993673558763,
-    "ci_high": 0.5557548080023927,
-    "break_even": 0.5238095238095238,
-    "roi": 0.010618181818181825,
-    "profit_units": 6.63636363636364,
-    "max_drawdown": -16.54545454545457,
+    "ci_low": 0.477639936736,
+    "ci_high": 0.555754808002,
+    "break_even": 0.52380952381,
+    "roi": 0.0106181818182,
+    "profit_units": 6.63636363636,
+    "max_drawdown": -16.5454545455,
     "seasons": 8,
     "profitable_seasons": 5,
-    "p_value": 0.6520716898675177,
+    "p_value": 0.652071689868,
     "season_detail": {
      "2013": {
       "legs": 79,
@@ -87,16 +87,16 @@
     "legs": 459,
     "wins": 233,
     "pushes": 6,
-    "hit_rate": 0.5076252723311547,
-    "ci_low": 0.46201581268887126,
-    "ci_high": 0.5531081565789625,
-    "break_even": 0.5238095238095238,
-    "roi": -0.017825311942959006,
-    "profit_units": -8.181818181818183,
-    "max_drawdown": -25.818181818181838,
+    "hit_rate": 0.507625272331,
+    "ci_low": 0.462015812689,
+    "ci_high": 0.553108156579,
+    "break_even": 0.52380952381,
+    "roi": -0.017825311943,
+    "profit_units": -8.18181818182,
+    "max_drawdown": -25.8181818182,
     "seasons": 5,
     "profitable_seasons": 2,
-    "p_value": 0.7706498372090642,
+    "p_value": 0.770649837209,
     "season_detail": {
      "2021": {
       "legs": 107,
@@ -138,12 +138,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.46201581268887126,
+     "value": 0.462015812689,
      "detail": "Wilson 95% lower 0.4620 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.017825311942959006,
+     "value": -0.017825311943,
      "detail": "ROI -1.78% (floor 2.0%)"
     },
     "G4_stability": {
@@ -158,7 +158,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.326732019607,
+     "value": 0.3267320196,
      "detail": "z=0.33 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -186,16 +186,16 @@
     "legs": 360,
     "wins": 191,
     "pushes": 5,
-    "hit_rate": 0.5305555555555556,
-    "ci_low": 0.4789517539102284,
-    "ci_high": 0.5815141426031691,
-    "break_even": 0.5238095238095237,
-    "roi": 0.02676767676767677,
-    "profit_units": 9.636363636363637,
-    "max_drawdown": -16.090909090909097,
+    "hit_rate": 0.530555555556,
+    "ci_low": 0.47895175391,
+    "ci_high": 0.581514142603,
+    "break_even": 0.52380952381,
+    "roi": 0.0267676767677,
+    "profit_units": 9.63636363636,
+    "max_drawdown": -16.0909090909,
     "seasons": 8,
     "profitable_seasons": 6,
-    "p_value": 0.41936424594229577,
+    "p_value": 0.419364245942,
     "season_detail": {
      "2013": {
       "legs": 46,
@@ -251,16 +251,16 @@
     "legs": 304,
     "wins": 160,
     "pushes": 5,
-    "hit_rate": 0.5263157894736842,
-    "ci_low": 0.4702098160196618,
-    "ci_high": 0.581764989642137,
-    "break_even": 0.5238095238095238,
-    "roi": 0.021232057416267942,
-    "profit_units": 6.454545454545454,
-    "max_drawdown": -13.00000000000002,
+    "hit_rate": 0.526315789474,
+    "ci_low": 0.47020981602,
+    "ci_high": 0.581764989642,
+    "break_even": 0.52380952381,
+    "roi": 0.0212320574163,
+    "profit_units": 6.45454545455,
+    "max_drawdown": -13.0,
     "seasons": 5,
     "profitable_seasons": 3,
-    "p_value": 0.48800295888102796,
+    "p_value": 0.488002958881,
     "season_detail": {
      "2021": {
       "legs": 65,
@@ -302,12 +302,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4702098160196618,
+     "value": 0.47020981602,
      "detail": "Wilson 95% lower 0.4702 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": true,
-     "value": 0.021232057416267942,
+     "value": 0.0212320574163,
      "detail": "ROI +2.12% (floor 2.0%)"
     },
     "G4_stability": {
@@ -322,7 +322,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.917662935482,
+     "value": 0.917662935493,
      "detail": "z=0.92 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -349,16 +349,16 @@
     "legs": 202,
     "wins": 107,
     "pushes": 3,
-    "hit_rate": 0.5297029702970297,
-    "ci_low": 0.4609621557371507,
-    "ci_high": 0.5973351380403877,
-    "break_even": 0.5238095238095238,
-    "roi": 0.026102610261026116,
-    "profit_units": 5.272727272727275,
-    "max_drawdown": -13.636363636363644,
+    "hit_rate": 0.529702970297,
+    "ci_low": 0.460962155737,
+    "ci_high": 0.59733513804,
+    "break_even": 0.52380952381,
+    "roi": 0.026102610261,
+    "profit_units": 5.27272727273,
+    "max_drawdown": -13.6363636364,
     "seasons": 8,
     "profitable_seasons": 6,
-    "p_value": 0.4612544726691394,
+    "p_value": 0.461254472669,
     "season_detail": {
      "2013": {
       "legs": 26,
@@ -414,16 +414,16 @@
     "legs": 192,
     "wins": 101,
     "pushes": 3,
-    "hit_rate": 0.5260416666666666,
-    "ci_low": 0.45559699289267147,
-    "ci_high": 0.5954647182338842,
-    "break_even": 0.5238095238095238,
-    "roi": 0.01988636363636365,
-    "profit_units": 3.818181818181821,
-    "max_drawdown": -17.54545454545455,
+    "hit_rate": 0.526041666667,
+    "ci_low": 0.455596992893,
+    "ci_high": 0.595464718234,
+    "break_even": 0.52380952381,
+    "roi": 0.0198863636364,
+    "profit_units": 3.81818181818,
+    "max_drawdown": -17.5454545455,
     "seasons": 5,
     "profitable_seasons": 3,
-    "p_value": 0.5041176237177061,
+    "p_value": 0.504117623718,
     "season_detail": {
      "2021": {
       "legs": 47,
@@ -465,12 +465,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.45559699289267147,
+     "value": 0.455596992893,
      "detail": "Wilson 95% lower 0.4556 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": 0.01988636363636365,
+     "value": 0.0198863636364,
      "detail": "ROI +1.99% (floor 2.0%)"
     },
     "G4_stability": {
@@ -485,7 +485,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.721687836487,
+     "value": 0.721687836496,
      "detail": "z=0.72 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -513,16 +513,16 @@
     "legs": 593,
     "wins": 288,
     "pushes": 9,
-    "hit_rate": 0.4856661045531197,
-    "ci_low": 0.44566142274956105,
-    "ci_high": 0.5258553012530502,
-    "break_even": 0.5238095238095237,
-    "roi": -0.057642189176759145,
-    "profit_units": -34.18181818181817,
-    "max_drawdown": -40.81818181818173,
+    "hit_rate": 0.485666104553,
+    "ci_low": 0.44566142275,
+    "ci_high": 0.525855301253,
+    "break_even": 0.52380952381,
+    "roi": -0.0576421891768,
+    "profit_units": -34.1818181818,
+    "max_drawdown": -40.8181818182,
     "seasons": 8,
     "profitable_seasons": 2,
-    "p_value": 0.971344242807904,
+    "p_value": 0.971344242808,
     "season_detail": {
      "2013": {
       "legs": 69,
@@ -578,16 +578,16 @@
     "legs": 515,
     "wins": 254,
     "pushes": 4,
-    "hit_rate": 0.49320388349514566,
-    "ci_low": 0.4502351391879865,
-    "ci_high": 0.5362732635616837,
-    "break_even": 0.523809523809524,
-    "roi": -0.05066195939982348,
-    "profit_units": -26.090909090909093,
-    "max_drawdown": -38.63636363636362,
+    "hit_rate": 0.493203883495,
+    "ci_low": 0.450235139188,
+    "ci_high": 0.536273263562,
+    "break_even": 0.52380952381,
+    "roi": -0.0506619593998,
+    "profit_units": -26.0909090909,
+    "max_drawdown": -38.6363636364,
     "seasons": 5,
     "profitable_seasons": 2,
-    "p_value": 0.9243276604794681,
+    "p_value": 0.924327660479,
     "season_detail": {
      "2021": {
       "legs": 107,
@@ -629,12 +629,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4502351391879865,
+     "value": 0.450235139188,
      "detail": "Wilson 95% lower 0.4502 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.05066195939982348,
+     "value": -0.0506619593998,
      "detail": "ROI -5.07% (floor 2.0%)"
     },
     "G4_stability": {
@@ -649,7 +649,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.308456854467,
+     "value": -0.308456854474,
      "detail": "z=-0.31 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -677,16 +677,16 @@
     "legs": 326,
     "wins": 155,
     "pushes": 6,
-    "hit_rate": 0.4754601226993865,
-    "ci_low": 0.4218509969509433,
-    "ci_high": 0.5296408499070403,
-    "break_even": 0.5238095238095238,
-    "roi": -0.0738984941438929,
-    "profit_units": -24.090909090909086,
-    "max_drawdown": -26.727272727272698,
+    "hit_rate": 0.475460122699,
+    "ci_low": 0.421850996951,
+    "ci_high": 0.529640849907,
+    "break_even": 0.52380952381,
+    "roi": -0.0738984941439,
+    "profit_units": -24.0909090909,
+    "max_drawdown": -26.7272727273,
     "seasons": 8,
     "profitable_seasons": 1,
-    "p_value": 0.9643351732314203,
+    "p_value": 0.964335173231,
     "season_detail": {
      "2013": {
       "legs": 33,
@@ -742,16 +742,16 @@
     "legs": 338,
     "wins": 153,
     "pushes": 4,
-    "hit_rate": 0.4526627218934911,
-    "ci_low": 0.40042642858223887,
-    "ci_high": 0.5059629248194153,
-    "break_even": 0.5238095238095237,
-    "roi": -0.12399139322216245,
-    "profit_units": -41.90909090909091,
-    "max_drawdown": -45.81818181818189,
+    "hit_rate": 0.452662721893,
+    "ci_low": 0.400426428582,
+    "ci_high": 0.505962924819,
+    "break_even": 0.52380952381,
+    "roi": -0.123991393222,
+    "profit_units": -41.9090909091,
+    "max_drawdown": -45.8181818182,
     "seasons": 5,
     "profitable_seasons": 0,
-    "p_value": 0.9962463582905756,
+    "p_value": 0.996246358291,
     "season_detail": {
      "2021": {
       "legs": 63,
@@ -793,12 +793,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.40042642858223887,
+     "value": 0.400426428582,
      "detail": "Wilson 95% lower 0.4004 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.12399139322216245,
+     "value": -0.123991393222,
      "detail": "ROI -12.40% (floor 2.0%)"
     },
     "G4_stability": {
@@ -813,7 +813,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": -1.74057053831,
+     "value": -1.74057053832,
      "detail": "z=-1.74 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -841,16 +841,16 @@
     "legs": 433,
     "wins": 211,
     "pushes": 7,
-    "hit_rate": 0.48729792147806006,
-    "ci_low": 0.44053721663181095,
-    "ci_high": 0.5342820232174247,
-    "break_even": 0.5238095238095237,
-    "roi": -0.05353768633214362,
-    "profit_units": -23.181818181818187,
-    "max_drawdown": -30.727272727272762,
+    "hit_rate": 0.487297921478,
+    "ci_low": 0.440537216632,
+    "ci_high": 0.534282023217,
+    "break_even": 0.52380952381,
+    "roi": -0.0535376863321,
+    "profit_units": -23.1818181818,
+    "max_drawdown": -30.7272727273,
     "seasons": 8,
     "profitable_seasons": 2,
-    "p_value": 0.9417169952976135,
+    "p_value": 0.941716995298,
     "season_detail": {
      "2013": {
       "legs": 41,
@@ -906,16 +906,16 @@
     "legs": 381,
     "wins": 177,
     "pushes": 12,
-    "hit_rate": 0.4645669291338583,
-    "ci_low": 0.4150901647736475,
-    "ci_high": 0.5147510740614641,
-    "break_even": 0.5238095238095238,
-    "roi": -0.08160343593414458,
-    "profit_units": -31.090909090909086,
-    "max_drawdown": -35.63636363636364,
+    "hit_rate": 0.464566929134,
+    "ci_low": 0.415090164774,
+    "ci_high": 0.514751074061,
+    "break_even": 0.52380952381,
+    "roi": -0.0816034359341,
+    "profit_units": -31.0909090909,
+    "max_drawdown": -35.6363636364,
     "seasons": 5,
     "profitable_seasons": 0,
-    "p_value": 0.9910251715453836,
+    "p_value": 0.991025171545,
     "season_detail": {
      "2021": {
       "legs": 82,
@@ -957,12 +957,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4150901647736475,
+     "value": 0.415090164774,
      "detail": "Wilson 95% lower 0.4151 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.08160343593414458,
+     "value": -0.0816034359341,
      "detail": "ROI -8.16% (floor 2.0%)"
     },
     "G4_stability": {
@@ -1005,16 +1005,16 @@
     "legs": 99,
     "wins": 41,
     "pushes": 4,
-    "hit_rate": 0.41414141414141414,
-    "ci_low": 0.32209499350111753,
-    "ci_high": 0.5126020228099588,
-    "break_even": 0.5238095238095238,
-    "roi": -0.1689623507805326,
-    "profit_units": -16.727272727272727,
-    "max_drawdown": -19.36363636363637,
+    "hit_rate": 0.414141414141,
+    "ci_low": 0.322094993501,
+    "ci_high": 0.51260202281,
+    "break_even": 0.52380952381,
+    "roi": -0.168962350781,
+    "profit_units": -16.7272727273,
+    "max_drawdown": -19.3636363636,
     "seasons": 8,
     "profitable_seasons": 1,
-    "p_value": 0.9888571915455292,
+    "p_value": 0.988857191546,
     "season_detail": {
      "2013": {
       "legs": 14,
@@ -1070,16 +1070,16 @@
     "legs": 71,
     "wins": 32,
     "pushes": 3,
-    "hit_rate": 0.4507042253521127,
-    "ci_low": 0.3404796109419389,
-    "ci_high": 0.5659893421672929,
-    "break_even": 0.523809523809524,
-    "roi": -0.0973111395646607,
-    "profit_units": -6.909090909090909,
-    "max_drawdown": -9.09090909090909,
+    "hit_rate": 0.450704225352,
+    "ci_low": 0.340479610942,
+    "ci_high": 0.565989342167,
+    "break_even": 0.52380952381,
+    "roi": -0.0973111395647,
+    "profit_units": -6.90909090909,
+    "max_drawdown": -9.09090909091,
     "seasons": 5,
     "profitable_seasons": 1,
-    "p_value": 0.9118450534285923,
+    "p_value": 0.911845053429,
     "season_detail": {
      "2021": {
       "legs": 13,
@@ -1121,12 +1121,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.3404796109419389,
+     "value": 0.340479610942,
      "detail": "Wilson 95% lower 0.3405 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.0973111395646607,
+     "value": -0.0973111395647,
      "detail": "ROI -9.73% (floor 2.0%)"
     },
     "G4_stability": {
@@ -1141,7 +1141,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.830747160736,
+     "value": -0.830747160738,
      "detail": "z=-0.83 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1171,15 +1171,15 @@
     "wins": 59,
     "pushes": 3,
     "hit_rate": 0.472,
-    "ci_low": 0.38663059555481866,
-    "ci_high": 0.5590390665184024,
-    "break_even": 0.5238095238095237,
-    "roi": -0.07490909090909093,
-    "profit_units": -9.363636363636365,
-    "max_drawdown": -10.909090909090908,
+    "ci_low": 0.386630595555,
+    "ci_high": 0.559039066518,
+    "break_even": 0.52380952381,
+    "roi": -0.0749090909091,
+    "profit_units": -9.36363636364,
+    "max_drawdown": -10.9090909091,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.8942325891382057,
+    "p_value": 0.894232589138,
     "season_detail": {
      "2013": {
       "legs": 16,
@@ -1235,16 +1235,16 @@
     "legs": 91,
     "wins": 43,
     "pushes": 4,
-    "hit_rate": 0.4725274725274725,
-    "ci_low": 0.373158035616828,
-    "ci_high": 0.5741224041931707,
-    "break_even": 0.5238095238095238,
-    "roi": -0.053946053946053944,
-    "profit_units": -4.909090909090909,
-    "max_drawdown": -6.727272727272726,
+    "hit_rate": 0.472527472527,
+    "ci_low": 0.373158035617,
+    "ci_high": 0.574122404193,
+    "break_even": 0.52380952381,
+    "roi": -0.0539460539461,
+    "profit_units": -4.90909090909,
+    "max_drawdown": -6.72727272727,
     "seasons": 5,
     "profitable_seasons": 1,
-    "p_value": 0.86091908957305,
+    "p_value": 0.860919089573,
     "season_detail": {
      "2021": {
       "legs": 16,
@@ -1286,12 +1286,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.373158035616828,
+     "value": 0.373158035617,
      "detail": "Wilson 95% lower 0.3732 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.053946053946053944,
+     "value": -0.0539460539461,
      "detail": "ROI -5.39% (floor 2.0%)"
     },
     "G4_stability": {
@@ -1306,7 +1306,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.524142418361,
+     "value": -0.52414241837,
      "detail": "z=-0.52 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1335,16 +1335,16 @@
     "legs": 199,
     "wins": 94,
     "pushes": 7,
-    "hit_rate": 0.4723618090452261,
-    "ci_low": 0.4041803080537952,
-    "ci_high": 0.5415901470559895,
-    "break_even": 0.5238095238095238,
-    "roi": -0.06304248515303792,
-    "profit_units": -12.545454545454547,
-    "max_drawdown": -22.36363636363638,
+    "hit_rate": 0.472361809045,
+    "ci_low": 0.404180308054,
+    "ci_high": 0.541590147056,
+    "break_even": 0.52380952381,
+    "roi": -0.063042485153,
+    "profit_units": -12.5454545455,
+    "max_drawdown": -22.3636363636,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.9362626048577598,
+    "p_value": 0.936262604858,
     "season_detail": {
      "2013": {
       "legs": 23,
@@ -1401,15 +1401,15 @@
     "wins": 43,
     "pushes": 1,
     "hit_rate": 0.43,
-    "ci_low": 0.33733298455633143,
-    "ci_high": 0.5278461052713281,
-    "break_even": 0.5238095238095238,
-    "roi": -0.16909090909090907,
-    "profit_units": -16.909090909090907,
-    "max_drawdown": -16.818181818181824,
+    "ci_low": 0.337332984556,
+    "ci_high": 0.527846105271,
+    "break_even": 0.52380952381,
+    "roi": -0.169090909091,
+    "profit_units": -16.9090909091,
+    "max_drawdown": -16.8181818182,
     "seasons": 5,
     "profitable_seasons": 2,
-    "p_value": 0.9760601655322928,
+    "p_value": 0.976060165532,
     "season_detail": {
      "2021": {
       "legs": 14,
@@ -1451,12 +1451,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.33733298455633143,
+     "value": 0.337332984556,
      "detail": "Wilson 95% lower 0.3373 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.16909090909090907,
+     "value": -0.169090909091,
      "detail": "ROI -16.91% (floor 2.0%)"
     },
     "G4_stability": {
@@ -1499,16 +1499,16 @@
     "legs": 1193,
     "wins": 423,
     "pushes": 0,
-    "hit_rate": 0.35456831517183574,
-    "ci_low": 0.32792886138212746,
-    "ci_high": 0.3821413426327423,
-    "break_even": 0.3601443336317438,
-    "roi": -0.026851947462472582,
-    "profit_units": -32.03437332272979,
-    "max_drawdown": -64.94578339404708,
+    "hit_rate": 0.354568315172,
+    "ci_low": 0.327928861382,
+    "ci_high": 0.382141342633,
+    "break_even": 0.360144333632,
+    "roi": -0.0268519474625,
+    "profit_units": -32.0343733227,
+    "max_drawdown": -64.945783394,
     "seasons": 8,
     "profitable_seasons": 4,
-    "p_value": 0.6668965583806564,
+    "p_value": 0.666896558381,
     "season_detail": {
      "2013": {
       "legs": 148,
@@ -1564,16 +1564,16 @@
     "legs": 792,
     "wins": 242,
     "pushes": 0,
-    "hit_rate": 0.3055555555555556,
-    "ci_low": 0.27447677537953113,
-    "ci_high": 0.33851146924779507,
-    "break_even": 0.3433939007919578,
-    "roi": -0.14238739310055218,
-    "profit_units": -112.77081533563732,
-    "max_drawdown": -125.45397705644287,
+    "hit_rate": 0.305555555556,
+    "ci_low": 0.27447677538,
+    "ci_high": 0.338511469248,
+    "break_even": 0.343393900792,
+    "roi": -0.142387393101,
+    "profit_units": -112.770815336,
+    "max_drawdown": -125.453977056,
     "seasons": 5,
     "profitable_seasons": 0,
-    "p_value": 0.9886957398444111,
+    "p_value": 0.988695739844,
     "season_detail": {
      "2021": {
       "legs": 174,
@@ -1615,12 +1615,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.27447677537953113,
+     "value": 0.27447677538,
      "detail": "Wilson 95% lower 0.2745 vs break-even 0.3434"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.14238739310055218,
+     "value": -0.142387393101,
      "detail": "ROI -14.24% (floor 2.0%)"
     },
     "G4_stability": {
@@ -1664,15 +1664,15 @@
     "wins": 7,
     "pushes": 2,
     "hit_rate": 0.4375,
-    "ci_low": 0.2309865228140567,
-    "ci_high": 0.6682144375606189,
-    "break_even": 0.5238095238095238,
-    "roi": -0.03977272727272729,
-    "profit_units": -0.6363636363636367,
+    "ci_low": 0.230986522814,
+    "ci_high": 0.668214437561,
+    "break_even": 0.52380952381,
+    "roi": -0.0397727272727,
+    "profit_units": -0.636363636364,
     "max_drawdown": -4.0,
     "seasons": 6,
     "profitable_seasons": 2,
-    "p_value": 0.826787002550198,
+    "p_value": 0.82678700255,
     "season_detail": {
      "2013": {
       "legs": 2,
@@ -1717,15 +1717,15 @@
     "wins": 3,
     "pushes": 0,
     "hit_rate": 0.75,
-    "ci_low": 0.30064184009690814,
-    "ci_high": 0.954412739704631,
-    "break_even": 0.5238095238095238,
-    "roi": 0.43181818181818177,
-    "profit_units": 1.727272727272727,
+    "ci_low": 0.300641840097,
+    "ci_high": 0.954412739705,
+    "break_even": 0.52380952381,
+    "roi": 0.431818181818,
+    "profit_units": 1.72727272727,
     "max_drawdown": -1.0,
     "seasons": 2,
     "profitable_seasons": 1,
-    "p_value": 0.3426573143793712,
+    "p_value": 0.342657314379,
     "season_detail": {
      "2021": {
       "legs": 3,
@@ -1749,12 +1749,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.30064184009690814,
+     "value": 0.300641840097,
      "detail": "Wilson 95% lower 0.3006 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": true,
-     "value": 0.43181818181818177,
+     "value": 0.431818181818,
      "detail": "ROI +43.18% (floor 2.0%)"
     },
     "G4_stability": {
@@ -1797,16 +1797,16 @@
     "legs": 165,
     "wins": 83,
     "pushes": 1,
-    "hit_rate": 0.503030303030303,
-    "ci_low": 0.42754409690156187,
-    "ci_high": 0.5783786190393317,
-    "break_even": 0.523809523809524,
-    "roi": -0.033608815426997236,
-    "profit_units": -5.545454545454544,
-    "max_drawdown": -12.818181818181817,
+    "hit_rate": 0.50303030303,
+    "ci_low": 0.427544096902,
+    "ci_high": 0.578378619039,
+    "break_even": 0.52380952381,
+    "roi": -0.033608815427,
+    "profit_units": -5.54545454545,
+    "max_drawdown": -12.8181818182,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.7298543126962909,
+    "p_value": 0.729854312696,
     "season_detail": {
      "2013": {
       "legs": 18,
@@ -1862,16 +1862,16 @@
     "legs": 88,
     "wins": 53,
     "pushes": 1,
-    "hit_rate": 0.6022727272727273,
-    "ci_low": 0.49780729960539094,
-    "ci_high": 0.6981826184474657,
-    "break_even": 0.5238095238095238,
-    "roi": 0.16115702479338842,
-    "profit_units": 14.18181818181818,
-    "max_drawdown": -6.909090909090917,
+    "hit_rate": 0.602272727273,
+    "ci_low": 0.497807299605,
+    "ci_high": 0.698182618447,
+    "break_even": 0.52380952381,
+    "roi": 0.161157024793,
+    "profit_units": 14.1818181818,
+    "max_drawdown": -6.90909090909,
     "seasons": 5,
     "profitable_seasons": 4,
-    "p_value": 0.08580471508951486,
+    "p_value": 0.0858047150895,
     "season_detail": {
      "2021": {
       "legs": 29,
@@ -1913,12 +1913,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.49780729960539094,
+     "value": 0.497807299605,
      "detail": "Wilson 95% lower 0.4978 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": true,
-     "value": 0.16115702479338842,
+     "value": 0.161157024793,
      "detail": "ROI +16.12% (floor 2.0%)"
     },
     "G4_stability": {
@@ -1933,7 +1933,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 1.9188064472,
+     "value": 1.91880644721,
      "detail": "z=1.92 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -1961,15 +1961,15 @@
     "wins": 123,
     "pushes": 6,
     "hit_rate": 0.48046875,
-    "ci_low": 0.42000876927039626,
-    "ci_high": 0.5415062251302152,
-    "break_even": 0.5238095238095238,
-    "roi": -0.05930397727272727,
-    "profit_units": -15.181818181818182,
-    "max_drawdown": -23.36363636363638,
+    "ci_low": 0.42000876927,
+    "ci_high": 0.54150622513,
+    "break_even": 0.52380952381,
+    "roi": -0.0593039772727,
+    "profit_units": -15.1818181818,
+    "max_drawdown": -23.3636363636,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.9266171533009747,
+    "p_value": 0.926617153301,
     "season_detail": {
      "2013": {
       "legs": 29,
@@ -2025,16 +2025,16 @@
     "legs": 170,
     "wins": 79,
     "pushes": 5,
-    "hit_rate": 0.4647058823529412,
-    "ci_low": 0.3913409824125569,
-    "ci_high": 0.5396306047035295,
-    "break_even": 0.5238095238095238,
-    "roi": -0.08342245989304811,
-    "profit_units": -14.18181818181818,
-    "max_drawdown": -22.54545454545454,
+    "hit_rate": 0.464705882353,
+    "ci_low": 0.391340982413,
+    "ci_high": 0.539630604704,
+    "break_even": 0.52380952381,
+    "roi": -0.083422459893,
+    "profit_units": -14.1818181818,
+    "max_drawdown": -22.5454545455,
     "seasons": 5,
     "profitable_seasons": 1,
-    "p_value": 0.9473589837208225,
+    "p_value": 0.947358983721,
     "season_detail": {
      "2021": {
       "legs": 31,
@@ -2076,12 +2076,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.3913409824125569,
+     "value": 0.391340982413,
      "detail": "Wilson 95% lower 0.3913 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.08342245989304811,
+     "value": -0.083422459893,
      "detail": "ROI -8.34% (floor 2.0%)"
     },
     "G4_stability": {
@@ -2096,7 +2096,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.920357986617,
+     "value": -0.920357986615,
      "detail": "z=-0.92 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2124,16 +2124,16 @@
     "legs": 122,
     "wins": 58,
     "pushes": 3,
-    "hit_rate": 0.47540983606557374,
-    "ci_low": 0.3889042495013318,
-    "ci_high": 0.5634167101145314,
-    "break_even": 0.5238095238095238,
-    "roi": -0.06780923994038748,
-    "profit_units": -8.272727272727273,
-    "max_drawdown": -9.90909090909091,
+    "hit_rate": 0.475409836066,
+    "ci_low": 0.388904249501,
+    "ci_high": 0.563416710115,
+    "break_even": 0.52380952381,
+    "roi": -0.0678092399404,
+    "profit_units": -8.27272727273,
+    "max_drawdown": -9.90909090909,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.8771865552239664,
+    "p_value": 0.877186555224,
     "season_detail": {
      "2013": {
       "legs": 16,
@@ -2190,15 +2190,15 @@
     "wins": 43,
     "pushes": 4,
     "hit_rate": 0.5,
-    "ci_low": 0.3966097224935507,
-    "ci_high": 0.6033902775064494,
-    "break_even": 0.523809523809524,
-    "roi": 0.0010570824524313016,
-    "profit_units": 0.09090909090909194,
-    "max_drawdown": -5.727272727272726,
+    "ci_low": 0.396609722494,
+    "ci_high": 0.603390277506,
+    "break_even": 0.52380952381,
+    "roi": 0.00105708245243,
+    "profit_units": 0.0909090909091,
+    "max_drawdown": -5.72727272727,
     "seasons": 5,
     "profitable_seasons": 3,
-    "p_value": 0.7088600856761949,
+    "p_value": 0.708860085676,
     "season_detail": {
      "2021": {
       "legs": 16,
@@ -2240,12 +2240,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.3966097224935507,
+     "value": 0.396609722494,
      "detail": "Wilson 95% lower 0.3966 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": 0.0010570824524313016,
+     "value": 0.00105708245243,
      "detail": "ROI +0.11% (floor 2.0%)"
     },
     "G4_stability": {
@@ -2289,16 +2289,16 @@
     "legs": 511,
     "wins": 238,
     "pushes": 11,
-    "hit_rate": 0.4657534246575342,
-    "ci_low": 0.42291980841250926,
-    "ci_high": 0.5090980984669176,
-    "break_even": 0.5238095238095237,
-    "roi": -0.08930795232165095,
-    "profit_units": -45.63636363636363,
-    "max_drawdown": -56.18181818181839,
+    "hit_rate": 0.465753424658,
+    "ci_low": 0.422919808413,
+    "ci_high": 0.509098098467,
+    "break_even": 0.52380952381,
+    "roi": -0.0893079523217,
+    "profit_units": -45.6363636364,
+    "max_drawdown": -56.1818181818,
     "seasons": 8,
     "profitable_seasons": 1,
-    "p_value": 0.9962302007075055,
+    "p_value": 0.996230200708,
     "season_detail": {
      "2013": {
       "legs": 63,
@@ -2355,15 +2355,15 @@
     "wins": 178,
     "pushes": 5,
     "hit_rate": 0.5,
-    "ci_low": 0.4483390367771499,
-    "ci_high": 0.5516609632228501,
-    "break_even": 0.5238095238095238,
-    "roi": -0.03140960163432074,
-    "profit_units": -11.181818181818183,
-    "max_drawdown": -23.545454545454575,
+    "ci_low": 0.448339036777,
+    "ci_high": 0.551660963223,
+    "break_even": 0.52380952381,
+    "roi": -0.0314096016343,
+    "profit_units": -11.1818181818,
+    "max_drawdown": -23.5454545455,
     "seasons": 5,
     "profitable_seasons": 2,
-    "p_value": 0.8295921800304258,
+    "p_value": 0.82959218003,
     "season_detail": {
      "2021": {
       "legs": 81,
@@ -2405,12 +2405,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4483390367771499,
+     "value": 0.448339036777,
      "detail": "Wilson 95% lower 0.4483 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.03140960163432074,
+     "value": -0.0314096016343,
      "detail": "ROI -3.14% (floor 2.0%)"
     },
     "G4_stability": {
@@ -2453,16 +2453,16 @@
     "legs": 766,
     "wins": 400,
     "pushes": 8,
-    "hit_rate": 0.5221932114882507,
-    "ci_low": 0.4867973686697219,
-    "ci_high": 0.5573675689388703,
-    "break_even": 0.5238095238095238,
-    "roi": 0.0073581770709708096,
-    "profit_units": 5.63636363636364,
-    "max_drawdown": -25.363636363636356,
+    "hit_rate": 0.522193211488,
+    "ci_low": 0.48679736867,
+    "ci_high": 0.557367568939,
+    "break_even": 0.52380952381,
+    "roi": 0.00735817707097,
+    "profit_units": 5.63636363636,
+    "max_drawdown": -25.3636363636,
     "seasons": 8,
     "profitable_seasons": 5,
-    "p_value": 0.5500321259596909,
+    "p_value": 0.55003212596,
     "season_detail": {
      "2013": {
       "legs": 96,
@@ -2518,16 +2518,16 @@
     "legs": 480,
     "wins": 244,
     "pushes": 3,
-    "hit_rate": 0.5083333333333333,
-    "ci_low": 0.4637213761310048,
-    "ci_high": 0.5528129655488029,
-    "break_even": 0.5238095238095238,
-    "roi": -0.02329545454545455,
-    "profit_units": -11.181818181818183,
-    "max_drawdown": -28.54545454545458,
+    "hit_rate": 0.508333333333,
+    "ci_low": 0.463721376131,
+    "ci_high": 0.552812965549,
+    "break_even": 0.52380952381,
+    "roi": -0.0232954545455,
+    "profit_units": -11.1818181818,
+    "max_drawdown": -28.5454545455,
     "seasons": 5,
     "profitable_seasons": 2,
-    "p_value": 0.7656507314094968,
+    "p_value": 0.765650731409,
     "season_detail": {
      "2021": {
       "legs": 96,
@@ -2569,12 +2569,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4637213761310048,
+     "value": 0.463721376131,
      "detail": "Wilson 95% lower 0.4637 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.02329545454545455,
+     "value": -0.0232954545455,
      "detail": "ROI -2.33% (floor 2.0%)"
     },
     "G4_stability": {
@@ -2589,7 +2589,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.36514837167,
+     "value": 0.365148371656,
      "detail": "z=0.37 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2618,15 +2618,15 @@
     "wins": 201,
     "pushes": 5,
     "hit_rate": 0.5234375,
-    "ci_low": 0.4734982997357594,
-    "ci_high": 0.5729124167769102,
-    "break_even": 0.5238095238095238,
-    "roi": 0.012310606060606058,
-    "profit_units": 4.727272727272727,
-    "max_drawdown": -22.9090909090909,
+    "ci_low": 0.473498299736,
+    "ci_high": 0.572912416777,
+    "break_even": 0.52380952381,
+    "roi": 0.0123106060606,
+    "profit_units": 4.72727272727,
+    "max_drawdown": -22.9090909091,
     "seasons": 8,
     "profitable_seasons": 5,
-    "p_value": 0.526186030295364,
+    "p_value": 0.526186030295,
     "season_detail": {
      "2013": {
       "legs": 48,
@@ -2682,16 +2682,16 @@
     "legs": 319,
     "wins": 153,
     "pushes": 0,
-    "hit_rate": 0.47962382445141066,
-    "ci_low": 0.4253700034949222,
-    "ci_high": 0.5343625536399409,
-    "break_even": 0.5238095238095238,
-    "roi": -0.08435451695639781,
-    "profit_units": -26.909090909090903,
-    "max_drawdown": -35.999999999999986,
+    "hit_rate": 0.479623824451,
+    "ci_low": 0.425370003495,
+    "ci_high": 0.53436255364,
+    "break_even": 0.52380952381,
+    "roi": -0.0843545169564,
+    "profit_units": -26.9090909091,
+    "max_drawdown": -36.0,
     "seasons": 5,
     "profitable_seasons": 1,
-    "p_value": 0.9491020801848655,
+    "p_value": 0.949102080185,
     "season_detail": {
      "2021": {
       "legs": 64,
@@ -2733,12 +2733,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4253700034949222,
+     "value": 0.425370003495,
      "detail": "Wilson 95% lower 0.4254 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.08435451695639781,
+     "value": -0.0843545169564,
      "detail": "ROI -8.44% (floor 2.0%)"
     },
     "G4_stability": {
@@ -2753,7 +2753,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.727860264243,
+     "value": -0.727860264257,
      "detail": "z=-0.73 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2781,16 +2781,16 @@
     "legs": 449,
     "wins": 211,
     "pushes": 16,
-    "hit_rate": 0.46993318485523383,
-    "ci_low": 0.42421924218207413,
-    "ci_high": 0.5161572417496287,
-    "break_even": 0.5238095238095238,
-    "roi": -0.06722008503745697,
-    "profit_units": -30.181818181818176,
-    "max_drawdown": -33.27272727272729,
+    "hit_rate": 0.469933184855,
+    "ci_low": 0.424219242182,
+    "ci_high": 0.51615724175,
+    "break_even": 0.52380952381,
+    "roi": -0.0672200850375,
+    "profit_units": -30.1818181818,
+    "max_drawdown": -33.2727272727,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.9901779725284092,
+    "p_value": 0.990177972528,
     "season_detail": {
      "2013": {
       "legs": 66,
@@ -2846,16 +2846,16 @@
     "legs": 264,
     "wins": 136,
     "pushes": 6,
-    "hit_rate": 0.5151515151515151,
-    "ci_low": 0.4550816701852982,
-    "ci_high": 0.5747867453819329,
-    "break_even": 0.5238095238095237,
-    "roi": 0.006198347107438018,
-    "profit_units": 1.6363636363636367,
-    "max_drawdown": -18.909090909090914,
+    "hit_rate": 0.515151515152,
+    "ci_low": 0.455081670185,
+    "ci_high": 0.574786745382,
+    "break_even": 0.52380952381,
+    "roi": 0.00619834710744,
+    "profit_units": 1.63636363636,
+    "max_drawdown": -18.9090909091,
     "seasons": 5,
     "profitable_seasons": 2,
-    "p_value": 0.6343087803813906,
+    "p_value": 0.634308780381,
     "season_detail": {
      "2021": {
       "legs": 71,
@@ -2897,12 +2897,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4550816701852982,
+     "value": 0.455081670185,
      "detail": "Wilson 95% lower 0.4551 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": 0.006198347107438018,
+     "value": 0.00619834710744,
      "detail": "ROI +0.62% (floor 2.0%)"
     },
     "G4_stability": {
@@ -2917,7 +2917,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.492365963917,
+     "value": 0.492365963933,
      "detail": "z=0.49 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -2945,16 +2945,16 @@
     "legs": 204,
     "wins": 93,
     "pushes": 6,
-    "hit_rate": 0.45588235294117646,
-    "ci_low": 0.3889825442588461,
-    "ci_high": 0.5244129828083484,
-    "break_even": 0.5238095238095238,
-    "roi": -0.10026737967914438,
-    "profit_units": -20.454545454545453,
-    "max_drawdown": -30.72727272727272,
+    "hit_rate": 0.455882352941,
+    "ci_low": 0.388982544259,
+    "ci_high": 0.524412982808,
+    "break_even": 0.52380952381,
+    "roi": -0.100267379679,
+    "profit_units": -20.4545454545,
+    "max_drawdown": -30.7272727273,
     "seasons": 8,
     "profitable_seasons": 2,
-    "p_value": 0.9779261303783275,
+    "p_value": 0.977926130378,
     "season_detail": {
      "2013": {
       "legs": 30,
@@ -3010,16 +3010,16 @@
     "legs": 143,
     "wins": 67,
     "pushes": 5,
-    "hit_rate": 0.46853146853146854,
-    "ci_low": 0.3886396577120413,
-    "ci_high": 0.5500697499132573,
-    "break_even": 0.523809523809524,
-    "roi": -0.07056579783852512,
-    "profit_units": -10.090909090909093,
-    "max_drawdown": -13.454545454545453,
+    "hit_rate": 0.468531468531,
+    "ci_low": 0.388639657712,
+    "ci_high": 0.550069749913,
+    "break_even": 0.52380952381,
+    "roi": -0.0705657978385,
+    "profit_units": -10.0909090909,
+    "max_drawdown": -13.4545454545,
     "seasons": 5,
     "profitable_seasons": 1,
-    "p_value": 0.9203277309732454,
+    "p_value": 0.920327730973,
     "season_detail": {
      "2021": {
       "legs": 29,
@@ -3061,12 +3061,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.3886396577120413,
+     "value": 0.388639657712,
      "detail": "Wilson 95% lower 0.3886 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.07056579783852512,
+     "value": -0.0705657978385,
      "detail": "ROI -7.06% (floor 2.0%)"
     },
     "G4_stability": {
@@ -3081,7 +3081,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": -0.752617809006,
+     "value": -0.752617809018,
      "detail": "z=-0.75 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3109,16 +3109,16 @@
     "legs": 798,
     "wins": 241,
     "pushes": 0,
-    "hit_rate": 0.30200501253132833,
-    "ci_low": 0.2711606438977902,
-    "ci_high": 0.3347464883663942,
-    "break_even": 0.3176174752328577,
-    "roi": -0.06624060150375942,
-    "profit_units": -52.860000000000014,
-    "max_drawdown": -53.89999999999999,
+    "hit_rate": 0.302005012531,
+    "ci_low": 0.271160643898,
+    "ci_high": 0.334746488366,
+    "break_even": 0.317617475233,
+    "roi": -0.0662406015038,
+    "profit_units": -52.86,
+    "max_drawdown": -53.9,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.8377766071574317,
+    "p_value": 0.837776607157,
     "season_detail": {
      "2013": {
       "legs": 112,
@@ -3174,16 +3174,16 @@
     "legs": 561,
     "wins": 153,
     "pushes": 0,
-    "hit_rate": 0.2727272727272727,
-    "ci_low": 0.23751239402666413,
-    "ci_high": 0.3110334926278963,
-    "break_even": 0.3093239972847614,
-    "roi": -0.16759358288770052,
+    "hit_rate": 0.272727272727,
+    "ci_low": 0.237512394027,
+    "ci_high": 0.311033492628,
+    "break_even": 0.309323997285,
+    "roi": -0.167593582888,
     "profit_units": -94.02,
-    "max_drawdown": -108.30999999999997,
+    "max_drawdown": -108.31,
     "seasons": 5,
     "profitable_seasons": 0,
-    "p_value": 0.9726347687612465,
+    "p_value": 0.972634768761,
     "season_detail": {
      "2021": {
       "legs": 131,
@@ -3225,12 +3225,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.23751239402666413,
+     "value": 0.237512394027,
      "detail": "Wilson 95% lower 0.2375 vs break-even 0.3093"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.16759358288770052,
+     "value": -0.167593582888,
      "detail": "ROI -16.76% (floor 2.0%)"
     },
     "G4_stability": {
@@ -3273,16 +3273,16 @@
     "legs": 522,
     "wins": 266,
     "pushes": 4,
-    "hit_rate": 0.5095785440613027,
-    "ci_low": 0.46678066799543555,
-    "ci_high": 0.5522364707849005,
-    "break_even": 0.5238095238095238,
-    "roi": -0.019505398815743636,
-    "profit_units": -10.181818181818178,
-    "max_drawdown": -42.54545454545456,
+    "hit_rate": 0.509578544061,
+    "ci_low": 0.466780667995,
+    "ci_high": 0.552236470785,
+    "break_even": 0.52380952381,
+    "roi": -0.0195053988157,
+    "profit_units": -10.1818181818,
+    "max_drawdown": -42.5454545455,
     "seasons": 8,
     "profitable_seasons": 3,
-    "p_value": 0.7564211243334705,
+    "p_value": 0.756421124333,
     "season_detail": {
      "2013": {
       "legs": 70,
@@ -3338,16 +3338,16 @@
     "legs": 430,
     "wins": 217,
     "pushes": 2,
-    "hit_rate": 0.5046511627906977,
-    "ci_low": 0.45756276094403747,
-    "ci_high": 0.5516571969878633,
-    "break_even": 0.5238095238095238,
-    "roi": -0.03192389006342494,
-    "profit_units": -13.727272727272725,
-    "max_drawdown": -24.5454545454546,
+    "hit_rate": 0.504651162791,
+    "ci_low": 0.457562760944,
+    "ci_high": 0.551657196988,
+    "break_even": 0.52380952381,
+    "roi": -0.0319238900634,
+    "profit_units": -13.7272727273,
+    "max_drawdown": -24.5454545455,
     "seasons": 5,
     "profitable_seasons": 1,
-    "p_value": 0.8005909398862785,
+    "p_value": 0.800590939886,
     "season_detail": {
      "2021": {
       "legs": 79,
@@ -3389,12 +3389,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.45756276094403747,
+     "value": 0.457562760944,
      "detail": "Wilson 95% lower 0.4576 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": false,
-     "value": -0.03192389006342494,
+     "value": -0.0319238900634,
      "detail": "ROI -3.19% (floor 2.0%)"
     },
     "G4_stability": {
@@ -3409,7 +3409,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 0.192897128868,
+     "value": 0.192897128881,
      "detail": "z=0.19 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3437,16 +3437,16 @@
     "legs": 327,
     "wins": 194,
     "pushes": 1,
-    "hit_rate": 0.5932721712538226,
-    "ci_low": 0.5392462446080819,
-    "ci_high": 0.6451320984395662,
-    "break_even": 0.5238095238095238,
-    "roi": 0.13566861273283293,
-    "profit_units": 44.36363636363637,
-    "max_drawdown": -8.272727272727277,
+    "hit_rate": 0.593272171254,
+    "ci_low": 0.539246244608,
+    "ci_high": 0.64513209844,
+    "break_even": 0.52380952381,
+    "roi": 0.135668612733,
+    "profit_units": 44.3636363636,
+    "max_drawdown": -8.27272727273,
     "seasons": 8,
     "profitable_seasons": 7,
-    "p_value": 0.006952737923046303,
+    "p_value": 0.00695273792305,
     "season_detail": {
      "2013": {
       "legs": 52,
@@ -3502,16 +3502,16 @@
     "legs": 180,
     "wins": 103,
     "pushes": 2,
-    "hit_rate": 0.5722222222222222,
-    "ci_low": 0.4991787751207214,
-    "ci_high": 0.6422474306884255,
-    "break_even": 0.5238095238095238,
-    "roi": 0.10353535353535352,
-    "profit_units": 18.636363636363633,
-    "max_drawdown": -7.18181818181818,
+    "hit_rate": 0.572222222222,
+    "ci_low": 0.499178775121,
+    "ci_high": 0.642247430688,
+    "break_even": 0.52380952381,
+    "roi": 0.103535353535,
+    "profit_units": 18.6363636364,
+    "max_drawdown": -7.18181818182,
     "seasons": 5,
     "profitable_seasons": 4,
-    "p_value": 0.11011737928536904,
+    "p_value": 0.110117379285,
     "season_detail": {
      "2021": {
       "legs": 45,
@@ -3553,12 +3553,12 @@
     },
     "G2_statistical": {
      "pass": false,
-     "value": 0.4991787751207214,
+     "value": 0.499178775121,
      "detail": "Wilson 95% lower 0.4992 vs break-even 0.5238"
     },
     "G3_economic": {
      "pass": true,
-     "value": 0.10353535353535352,
+     "value": 0.103535353535,
      "detail": "ROI +10.35% (floor 2.0%)"
     },
     "G4_stability": {
@@ -3573,7 +3573,7 @@
     },
     "G6_skill": {
      "pass": false,
-     "value": 1.9379255805,
+     "value": 1.93792558049,
      "detail": "z=1.94 vs 50% coin-flip (need 2.0)"
     },
     "G7_provenance": {
@@ -3593,9 +3593,9 @@
   "total": 22,
   "certified": 0,
   "rejected": 22,
-  "best_holdout_roi": 0.43181818181818177
+  "best_holdout_roi": 0.431818181818
  },
- "generated_utc": "2026-11-12T05:09:05Z",
+ "generated_utc": "2026-11-12T05:11:10Z",
  "gate_definitions": {
   "G1_sample": ">= 100 settled legs",
   "G2_statistical": "Wilson 95% lower bound on hit rate > break-even rate",

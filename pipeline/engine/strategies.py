@@ -65,11 +65,12 @@ def _settle(legs: pd.DataFrame) -> dict:
     peak = np.maximum.accumulate(curve) if len(curve) else np.array([0])
     dd = float(np.min(curve - peak)) if len(curve) else 0.0
     return {
-        "legs": n, "wins": wins, "pushes": pushes, "hit_rate": hit,
-        "ci_low": lo, "ci_high": hi, "break_even": p0, "roi": roi,
-        "profit_units": float(legs.pnl.sum()), "max_drawdown": dd,
+        "legs": n, "wins": wins, "pushes": pushes, "hit_rate": _canon(hit),
+        "ci_low": _canon(lo), "ci_high": _canon(hi), "break_even": _canon(p0),
+        "roi": _canon(roi),
+        "profit_units": _canon(float(legs.pnl.sum())), "max_drawdown": _canon(dd),
         "seasons": int(len(per)), "profitable_seasons": prof,
-        "p_value": _p_one_sided(wins, n, p0),
+        "p_value": _canon(_p_one_sided(wins, n, p0)),
         "season_detail": {int(s): {"legs": int(r.n), "wins": int(r.w), "pnl": round(float(r.pnl), 3),
                                    "roi": round(float(r.pnl / r.n), 4)}
                           for s, r in per.iterrows()},
