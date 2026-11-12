@@ -621,3 +621,41 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 - **Post-merge CI:** `Q51 evidence and engine verification`, `build-and-audit`, `Verify site data and links`, `lab-validate`, `GitHub Pages`, and `pages build and deployment` completed successfully at `45ea5f3`.
 - **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`. Live-fetched and confirmed: https://kanlerxz87-cyber.github.io/NFL2/ , https://kanlerxz87-cyber.github.io/NFL2/q51/index.html , and https://kanlerxz87-cyber.github.io/NFL2/q51/flagged.html .
 - **Conflict handling:** repeated required pre-push `git pull --rebase` attempts tried to flatten the already-pushed claim merge and conflicted on COORDINATION.md; each was aborted and the branch was preserved without force. Final publication used the clean merged PR; no upstream work was discarded.
+
+
+---
+
+## Session `8b4bdcb3-nfl2` — decision layer, official-source review, site audit
+
+**Session ID:** `8b4bdcb3` · **Branch:** `arena/8b4bdcb3-nfl2` · **Base:** `25d88a9` (`main`, 2026-11-12T17:10+09:00 / 08:10Z)
+**Claimed at:** 2026-11-12T22:25Z. Remote inspected first: only `origin/main` exists as a remote ref; `gh pr list --state open` returns no open PRs; no other session is mid-push. No branch beyond `main` is present on the remote, so no other session's unmerged work can be overwritten.
+
+### Scope claimed (additive; no file owned by another session is modified)
+
+| Path | What it is |
+|---|---|
+| `s92/**` | this session's own dashboard (home, line lab, strategy lab, injury & availability, official-source audit, decision brief, suggestions, flagged) + `s92/build.py` generator + `s92/data/*.csv` |
+| `s92/raw/**` | verbatim official-source extracts used for the audit (received via the session's page-fetch path; recorded with retrieval timestamps) |
+| `tools/verify_s92.py` | this session's row-source, blank-cell, arithmetic and link gate |
+| `.github/workflows/s92.yml` | CI: rebuild `s92/` and re-run `verify_s92.py` |
+| this appended section of `COORDINATION.md` | claim, log, verification record, PR/Pages record |
+
+**Requested of the integration owner** (not edited by this session): add one navigation link to `s92/index.html` on the root dashboard. Root `index.html`, `content/**`, `data/**`, `tools/build_site.py`, `tools/verify.py`, `tools/check_site.py` are **not** modified by this session.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| S92-T01 | Line-by-line review of the current repository against official NFL sources; flag irregularities | in progress | 8b4bdcb3 | `s92/raw/**`, `s92/data/official_audit.csv` |
+| S92-T02 | Decision-readiness layer: questions / information have–lack / answers / missing-info discovery, plus a propositions board and assumptions & bounds register | in progress | 8b4bdcb3 | `s92/data/decisions.csv`, `s92/data/bounds.csv`, `s92/data/suggestions.csv` |
+| S92-T03 | Line-origination signal research: single bets, parlays, player-prop combos; correlation values and luck removal; validation gates; leaderboard with rewards | in progress | 8b4bdcb3 | `s92/data/*.csv`, `s92/pages/**` |
+| S92-T04 | Injury/availability and 1st–4th string depth-deficiency tracking | in progress | 8b4bdcb3 | `s92/data/availability.csv` |
+| S92-T05 | Executive summary, site audit findings, publish dashboard, PR, merge, Pages confirmation | in progress | 8b4bdcb3 | `s92/**`, `COORDINATION.md` |
+
+### Log
+
+| UTC | Entry |
+|---|---|
+| 20:xxZ | Local baseline run before any change: `tools/build_site.py` → no drift; `tools/verify.py` → 39 passed/0 failures; `tools/check_site.py` → 10 passed/1 warning/0 failures. |
+| 22:25Z | Claim written and pushed. Remote had no other branch and no open PR. |
+| 22:30Z | Official standings (`nfl.com/standings/league/2026/reg`) retrieved in full; used as the independent check on `data/standings_2026.csv`. |
