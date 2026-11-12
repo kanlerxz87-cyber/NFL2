@@ -577,6 +577,8 @@ Register state as published now: 254 injury rows · 6 designations · 227 depth 
 
 Arena fixes the branch to `arena/51ce8d8e-nfl2`. Upstream task IDs T12–T18 are already used by another session; this session therefore uses **Q51-T01..Q51-T04**, not those IDs. Main has advanced substantially since the original claim. Preserve all upstream files and completed PR records.
 
+A required `git pull --rebase` attempted to flatten the merge preserving the already-pushed claim and conflicted; it was aborted. Used a normal upstream merge instead, then push without force. This records the exceptional conflict handling transparently.
+
 | Task | Status | Owner | Exclusive paths | Result |
 |---|---|---|---|---|
 | Q51-T01 | done | 51ce8d8e-nfl2 | `research/q51/**`, `scripts/audit_q51.py` | Reproducible audit of the original 48-file baseline; 18 findings with evidence. Baseline counts are historical, not current-repository claims. |
