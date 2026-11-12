@@ -493,3 +493,31 @@ audit still passed because nothing had been comparing prose to the CSVs.
 The pattern this note exists to record: **the audits verify the data, and a reader verifies the
 sentences about the data.** Both are now automated where automation is possible, and the live URL is
 part of the checklist rather than the end of it.
+
+---
+
+## Task board — Session arena-53126614 (audit, verified depth/offense/correlations, originated lines, requirements & integration)
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| S53-01 | Line-by-line audit of all existing repo files (`194db560` + `arena-85d79210`) vs official NFL.com sources; flag irregularities | in progress | arena-53126614 | `audits/repo-audit-53126614.md`, `data/s53126614_repo_audit.json`, `repo-audit.html` |
+| S53-02 | Full line-by-line Requirements Traceability Matrix (`REQ-01`..`REQ-24`) | unclaimed | arena-53126614 (queued) | `data/s53126614_requirements.json`, `requirements.html` |
+| S53-03 | Official 2026 Team Offense stats (NFL.com) + verified empirical correlation matrix ($n=32$) + copula/SGP leg correlation calculator | unclaimed | arena-53126614 (queued) | `data/s53126614_team_offense_2026.json`, `data/s53126614_correlations_2026.json`, `correlations.html` |
+| S53-04 | Official Week 10 Injury Report (`REG10`) + official NFL club depth charts (1st/2nd/3rd/4th string offense & defense replacement deficiency tracker) | unclaimed | arena-53126614 (queued) | `data/s53126614_injuries_reg10_2026.json`, `data/s53126614_depth_deficiencies_2026.json`, `depth-deficiencies.html` |
+| S53-05 | Originated NFL Lines engine (fixes unequal `g` 8-vs-9 bug; v0 PF/PA + v1 SOS/efficiency fair spreads, totals, MLs for all 13 Week 11 games; market blank/unverified) | unclaimed | arena-53126614 (queued) | `data/s53126614_originated_lines_week11.json`, `originated-lines.html`, `assets/s53126614.js` |
+| S53-06 | Selectively skill-based Strategy Competition: 12 signal specs, reward/capital tiers, single/parlay/prop-combo rules, validation gates G0–G8, luck-removal math | unclaimed | arena-53126614 (queued) | `data/s53126614_signals_leaderboard.json`, `leaderboard-competition.html` |
+| S53-07 | Decision Center: Questions / Known-Info / Missing-Info / Answers / Discovery playbooks + interactive Suggestions Path Chooser | unclaimed | arena-53126614 (queued) | `data/s53126614_decision_center.json`, `decision-center.html` |
+| S53-08 | Automated line-by-line verification & link-checker suite | unclaimed | arena-53126614 (queued) | `scripts/verify_s53126614.py`, `.nojekyll` |
+| S53-09 | Final integration: cross-link root `/` + `docs/` builds, apply logged shared-file fixes after domain tasks finish, re-verify every row & link, PR + merge + Pages check | unclaimed | — (integration step) | Shared outputs (`index.html`, `flagged.html`, `README.md`, navigation, `COORDINATION.md`) |
+
+## Cross-session file requests (logged per non-overlapping scope rule)
+
+- `REQ-FIX-01` (from `arena-53126614` regarding `194db560` files `data/injuries-week10-2026.json`, `injuries.html`, `flagged.html`, `questions.html`, `sources.html`): URL `https://www.nfl.com/injuries/league/2026/REG9` actually displays `## Injuries - WEEK 9` (Nov 5 JAX at BAL); official Week 10 full report is `https://www.nfl.com/injuries/league/2026/REG10` (`## Injuries - WEEK 10`, Nov 12 WAS at NYG). Logged here rather than editing during `S53-01`; queued for final integration (`S53-09`).
+- `REQ-FIX-02` (from `arena-53126614` regarding `194db560` file `lines-lab.html` line 55): `NO at CHI` table row has 7 `<td>` cells instead of 8 `<td>` cells, and calculator assumes equal games `g` for both teams despite 8-vs-9 game pairings in Week 11. Queued for final integration (`S53-09`).
+- `REQ-FIX-03` (from `arena-53126614` regarding shared root `index.html` and `docs/index.html`): GitHub Pages serves `/` (`build_type: legacy`), so `docs/index.html` is reachable at `/NFL2/docs/index.html` but unlinked from `/NFL2/index.html`. Queued for final integration (`S53-09`).
+
+## Claim log
+
+- 2026-11-12 — Session `194db560` claimed T1, T2, T9 on branch `arena/194db560-nfl2`. Scope: `COORDINATION.md`, `README.md`, `index.html`, `assets/*`, `data/*`, `*.html`. Completed T1–T10; PR #1 merged to `main` (`44fd56d`).
+- 2026-11-12 — Session `arena-85d79210` claimed T-01…T-08 on branch `arena/85d79210-nfl2` (repo appeared empty except `README.md` at claim time; PR #1 had not yet merged). Scope: `docs/**`, `data/*_2026.json`, `scripts/`, `.github/workflows/pages.yml`. No overlapping file scopes with 194db560 except `README.md` + `COORDINATION.md` (shared outputs — integration session only).
+- 2026-11-12 — Session `arena-53126614` rebased onto `main@f64078f` (preserving both `194db560` and `arena-85d79210` builds intact) and claimed `S53-01` (with `S53-02`..`S53-08` queued under strictly disjoint `s53126614` / new-page scopes).
