@@ -233,3 +233,23 @@ handles no money, and offers no betting advice. Legal sports betting is age- and
 jurisdiction-restricted. Help resources:
 [National Council on Problem Gambling](https://www.ncpgambling.org/).
 Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.
+
+---
+
+## Quantitative Line Origination, 1st–4th String Depth & Strategy Portal (Session `e143a7ca`)
+
+- **Live Portal**: [`https://kanlerxz87-cyber.github.io/NFL2/portal/index.html`](https://kanlerxz87-cyber.github.io/NFL2/portal/index.html)
+- **Executive Summary**: [`reports/EXECUTIVE_SUMMARY_E143A7CA.md`](reports/EXECUTIVE_SUMMARY_E143A7CA.md)
+- **Line-by-Line Repo Audit**: [`reports/REPO_LINE_BY_LINE_AUDIT.md`](reports/REPO_LINE_BY_LINE_AUDIT.md)
+- **Technical Specification**: [`reports/LINE_ORIGINATION_AND_LEADERBOARD.md`](reports/LINE_ORIGINATION_AND_LEADERBOARD.md)
+
+### Reproducible Build & Verification (`e143a7ca`)
+
+```sh
+python3 engine/compute_analytics.py
+python3 engine/build_portal.py
+python3 engine/verify_repo_and_site.py
+```
+
+Verifies `11/11` exact 32-club zero-sum conservation checks, `10/10` portal pages (`326/326` rows with official `https://` source links, `293` strict blank cells for unconfirmed metrics), and `0` broken internal links across all `58` HTML pages in the repository.
+

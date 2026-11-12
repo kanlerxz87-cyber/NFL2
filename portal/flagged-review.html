@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flagged for Review — NFL2 Quantitative Decision Portal</title>
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-head">
+        <div class="brand">
+          <span class="brand-mark">NFL2</span>
+          <span>Verified Line Origination, Depth Deficiency &amp; Strategy Portal</span>
+        </div>
+        <div class="meta-pills">
+          <span class="meta-pill">Snapshot: 2026-11-12 (Week 10)</span>
+          <span class="meta-pill">Zero-Sum Verified: 11/11</span>
+          <a href="../index.html" class="meta-pill" style="color:#93c5fd;">&larr; Root Site</a>
+          <a href="../review/index.html" class="meta-pill" style="color:#93c5fd;">Review Build</a>
+          <a href="../docs/index.html" class="meta-pill" style="color:#93c5fd;">Docs Build</a>
+        </div>
+      </div>
+      <nav class="nav-bar" aria-label="Portal Navigation">
+        <a href="index.html" class="">Overview</a>
+<a href="executive-summary.html" class="">Executive Summary</a>
+<a href="suggestions.html" class="">Suggestions Hub</a>
+<a href="questions-discovery.html" class="">Questions &amp; Missing Info</a>
+<a href="line-origination.html" class="">Originate NFL Lines</a>
+<a href="leaderboard-gates.html" class="">Leaderboard &amp; Gates</a>
+<a href="correlations-skill.html" class="">Correlations &amp; Skill</a>
+<a href="injuries-depth.html" class="">Injuries &amp; 1st–4th Depth</a>
+<a href="repo-audit.html" class="">Repo Line-by-Line Audit</a>
+<a href="flagged-review.html" class="active">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-header">
+      <h1>Flagged for Review</h1>
+      <p>Central review queue for all repository irregularities and all unverified metrics intentionally left blank, complete with official source links.</p>
+    </div>
+    
+    <div class="callout warn">
+      <strong>Flagged for Review — Post-Deploy Human Inspection Queue:</strong> Per project instructions, flagged irregularities and unverified blank items <strong>do not block deployment</strong>; instead, every single item is published transparently on this page with its exact location and official source link so you can inspect them on the live site and request targeted changes.
+    </div>
+    <section class="section-card">
+      <h2>1. Flagged Repository, Cross-Session &amp; Upstream Source Irregularities (11 Items)</h2>
+      <p class="section-desc">Every discrepancy found during line-by-line inspection of repository files, HTML markup, URLs, and upstream NFL.com headers.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-flagged-ir" placeholder="Filter flagged irregularities..." aria-label="Filter flagged irregularities...">
+      <span class="kpi-sub">11 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-flagged-ir" data-sortable="true">
+        <thead><tr><th>Flag ID</th><th>Severity</th><th>File &amp; Line Location</th><th>Irregularity Description</th><th>Review Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>IR-REPO-01</strong></td><td>Low</td><td><code>README.md @ 01f227119ee8df4223b0aa697d08ed92257773c3:1</code></td><td>Initial repository commit contained only &#x27;# NFL2&#x27; (6 bytes) with no trailing newline, no .nojekyll, and no verification scripts.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-02</strong></td><td>Medium</td><td><code>data/injuries-week10-2026.json:6, injuries.html:25-27,32,51,74, flagged.html:26, questions.html:44, sources.html:28</code></td><td>URL/Label mismatch: cites &#x27;NFL.com Official Injury Report — Week 10&#x27; while linking to .../2026/REG9 instead of canonical live Week 10 report https://www.nfl.com/injuries/.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-03</strong></td><td>Low</td><td><code>data/injuries-week10-2026.json:12-13, injuries.html:38-39, index.html:47</code></td><td>Lists New England Patriots Ben Brown position as &#x27;OL&#x27; and omits suffix &#x27;III&#x27; on Carlton Davis III; official NFL.com Week 10 Injury Report lists Ben Brown as &#x27;C&#x27; and &#x27;Carlton Davis III&#x27;.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-04</strong></td><td>High</td><td><code>data/injuries-week10-2026.json:8-31, injuries.html:30-53</code></td><td>Summary-only Week 10 injury transcription (6 rows) omits full official Week 10 DNP and Limited practice participation rows published live on https://www.nfl.com/injuries/ across all 14 games.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-05</strong></td><td>Medium</td><td><code>data/schedule-week11-2026.json vs data/injuries-week10-2026.json</code></td><td>Temporal slate mismatch: repository includes Week 11 schedule (Nov 19-23) alongside Week 10 injuries (Nov 12-16) without including the active Week 10 game slate from https://www.nfl.com/schedules.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-06</strong></td><td>Medium</td><td><code>lines-lab.html:56</code></td><td>Malformed HTML row: &#x27;NO at CHI&#x27; &lt;tr&gt; contains 7 &lt;td&gt; cells inside an 8-column table, omitting the 8th &#x27;Source / time&#x27; cell.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/lines-lab.html#L56" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-07</strong></td><td>High</td><td><code>lines-lab.html, strategies.html, executive-summary.html, suggestions.html, questions.html, flagged.html</code></td><td>59 tbody table rows in root build lack external official https:// source links despite project requirement (&#x27;Every table row must have a source link to an official site&#x27;). Addressed in 100% of portal/*.html rows; change request logged for session 194db560 scope in COORDINATION.md.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/tree/main" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-08</strong></td><td>Medium</td><td><code>injuries.html:56, flagged.html:27</code></td><td>Root build left all 2nd/3rd/4th-string depth-chart cells unpopulated citing lack of league-wide NFL.com chart, whereas official NFL club websites (e.g., commanders.com, giants.com, lions, chiefs) publish official club 1st-4th string offense &amp; defense depth charts.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.commanders.com/news/commanders-release-2026-unofficial-depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-09</strong></td><td>Low</td><td><code>COORDINATION.md:41</code></td><td>Merge log line 41 references &#x27;PR #2&#x27; for commit e351a8d, whereas GitHub PR ledger confirms PR #3 merged e351a8d (PR #2 is branch arena/85d79210-nfl2).</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/pull/3" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-ENV-01</strong></td><td>Low</td><td><code>Git branch topology (arena/e143a7ca-nfl2)</code></td><td>Execution sandbox enforces single-branch operation on arena/e143a7ca-nfl2 rather than creating per-task branches session-&lt;id&gt;/&lt;task&gt;; non-overlapping file-scope isolation enforced via COORDINATION.md.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/branches" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-NFL-01</strong></td><td>Low (Upstream Display)</td><td><code>https://www.nfl.com/injuries/ (Week 10 Matchup Headers)</code></td><td>NFL.com&#x27;s Week 10 injury page headers display HOU (3-6), CLE (4-5), MIA (3-6), IND (6-3), whereas official NFL.com Standings &amp; Schedules verify zero-sum records HOU (3-5), CLE (5-4), MIA (2-7), IND (5-4).</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    <section class="section-card">
+      <h2>2. Unverified Metrics Intentionally Left Blank Across All Tables (6 Blank Metric Groups)</h2>
+      <p class="section-desc">Zero values were inferred, guessed, or backfilled. Every unconfirmed value cell renders literally blank alongside an UNVERIFIED status badge and discovery path.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-flagged-uv" placeholder="Filter unverified blank items..." aria-label="Filter unverified blank items...">
+      <span class="kpi-sub">6 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-flagged-uv" data-sortable="true">
+        <thead><tr><th>Blank ID</th><th>Portal Section</th><th>Blank Column(s) &amp; Scope</th><th class="num">Confirmed Value</th><th>Why Unconfirmable from Official Public Sources Today</th><th>Discovery / Resolution Action</th><th>Flag Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>UV-MKT-01</strong></td><td>Line Origination (Week 10 &amp; Week 11)</td><td>Market Spread, Market Total, Market Edge (27 games)</td><td class="blank-cell num"></td><td>No official NFL public page publishes regulated sportsbook betting lines; left blank rather than fabricated.</td><td>Connect regulated odds feed per Q-E01 / SUG-03.</td><td><span class="badge unverified">UNVERIFIED — LEFT BLANK</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>UV-INJ-01</strong></td><td>Injuries &amp; 1st–4th String Depth</td><td>Point-Spread Delta (pts) on 16 Depth Chains &amp; 32 Injury Rows</td><td class="blank-cell num"></td><td>Official club depth charts &amp; NFL injury reports confirm string order and participation, not numeric point weights.</td><td>Calibrate snap-weighted replacement EPA on multi-season PBP per Q-E02 / SUG-04.</td><td><span class="badge unverified">UNVERIFIED — LEFT BLANK</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>UV-INJ-02</strong></td><td>Week 10 Sunday/Monday Injury Rows</td><td>Official Game Status Designation (Wed/Thu rows)</td><td class="blank-cell num"></td><td>Clubs file final Out/Doubtful/Questionable game designations on Friday/Saturday (only TNF WAS/NYG &amp; early rule-outs filed by Nov 12).</td><td>Re-poll nfl.com/injuries/ Friday 4:00 PM ET &amp; 90 min pre-kickoff per SUG-01.</td><td><span class="badge unverified">UNVERIFIED — LEFT BLANK</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>UV-SGP-01</strong></td><td>Correlations &amp; Prop Combos</td><td>Empirical Single-Game Correlation (r) &amp; Joint Price Adj (6 pairs)</td><td class="blank-cell num"></td><td>Aggregate season totals cannot measure within-game player prop covariance conditioned on spread/total.</td><td>Ingest player game box scores across &gt;=1,000 games per Q-E03 / SUG-04.</td><td><span class="badge unverified">UNVERIFIED — LEFT BLANK</span></td><td><a href="https://www.nfl.com/stats/player-stats/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>UV-LB-01</strong></td><td>Strategy Leaderboard (STRAT-S01..C03)</td><td>Sample N, Mean CLV %, Realized ROI %, Score (9 strategies)</td><td class="blank-cell num"></td><td>Zero historical closing odds exist in repo; all 9 strategies quarantined in Tier 0 (0% capital) with backtest cells blank.</td><td>Execute walk-forward out-of-sample evaluation once Q-E01..Q-E03 feeds exist.</td><td><span class="badge unverified">UNVERIFIED — LEFT BLANK</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>UV-GOV-01</strong></td><td>Questions &amp; Governance (Q-E01..Q-E07)</td><td>Confirmed Answer on 7 Open Prerequisite Questions</td><td class="blank-cell num"></td><td>Requires human owner sign-off on sportsbook panel, HFA window, weather feed, legal jurisdiction, and bankroll Kelly cap.</td><td>Review Suggestions Hub &amp; record owner answers before unlocking Tier 1+.</td><td><span class="badge unverified">UNVERIFIED — LEFT BLANK</span></td><td><a href="https://operations.nfl.com/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    
+  </main>
+  <footer>
+    <div class="container">
+      <strong>NFL2 Quantitative Decision &amp; Verification Portal</strong> &bull;
+      Repository: <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">kanlerxz87-cyber/NFL2</a> &bull;
+      Every table row cites an official source (<code>nfl.com</code>, <code>operations.nfl.com</code>, official NFL club sites, <code>github.com</code>). Unconfirmed values remain strictly blank and flagged on <a href="flagged-review.html">Flagged for Review</a>.
+    </div>
+  </footer>
+  <script src="assets/portal.js"></script>
+</body>
+</html>

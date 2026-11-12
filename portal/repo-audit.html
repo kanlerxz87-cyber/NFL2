@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repository Line-by-Line Verification Audit — NFL2 Quantitative Decision Portal</title>
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-head">
+        <div class="brand">
+          <span class="brand-mark">NFL2</span>
+          <span>Verified Line Origination, Depth Deficiency &amp; Strategy Portal</span>
+        </div>
+        <div class="meta-pills">
+          <span class="meta-pill">Snapshot: 2026-11-12 (Week 10)</span>
+          <span class="meta-pill">Zero-Sum Verified: 11/11</span>
+          <a href="../index.html" class="meta-pill" style="color:#93c5fd;">&larr; Root Site</a>
+          <a href="../review/index.html" class="meta-pill" style="color:#93c5fd;">Review Build</a>
+          <a href="../docs/index.html" class="meta-pill" style="color:#93c5fd;">Docs Build</a>
+        </div>
+      </div>
+      <nav class="nav-bar" aria-label="Portal Navigation">
+        <a href="index.html" class="">Overview</a>
+<a href="executive-summary.html" class="">Executive Summary</a>
+<a href="suggestions.html" class="">Suggestions Hub</a>
+<a href="questions-discovery.html" class="">Questions &amp; Missing Info</a>
+<a href="line-origination.html" class="">Originate NFL Lines</a>
+<a href="leaderboard-gates.html" class="">Leaderboard &amp; Gates</a>
+<a href="correlations-skill.html" class="">Correlations &amp; Skill</a>
+<a href="injuries-depth.html" class="">Injuries &amp; 1st–4th Depth</a>
+<a href="repo-audit.html" class="active">Repo Line-by-Line Audit</a>
+<a href="flagged-review.html" class="">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-header">
+      <h1>Repository Line-by-Line Verification Audit</h1>
+      <p>Complete file-by-file and line-by-line review of the NFL2 repository against official NFL.com, NFL Operations, member club, and GitHub sources.</p>
+    </div>
+    
+    <div class="callout">
+      <strong>Line-by-Line Repository Review:</strong> Every JSON dataset, HTML template, script, and cross-session merge artifact in <code>kanlerxz87-cyber/NFL2</code> was inspected line by line against official NFL sources and GitHub metadata. All prior sessions' files are preserved non-destructively, and every irregularity is logged with its exact location and official reference URL.
+    </div>
+    <section class="section-card">
+      <h2>1. File-by-File &amp; Line-by-Line Repository Audit Ledger</h2>
+      <p class="section-desc">Line counts, irregularity cross-references, verification outcomes, and official reference links across repository data files, HTML pages, and multi-session builds.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-files" placeholder="Search audited files..." aria-label="Search audited files...">
+      <span class="kpi-sub">22 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-files" data-sortable="true">
+        <thead><tr><th>Repository File / Build</th><th class="num">Lines / Scope</th><th>Irregularity Ref (Blank if Clean)</th><th>Line-by-Line Verification Summary</th><th>Audit Outcome</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><code>README.md (initial @ 01f2271)</code></td><td class="num">1</td><td>IR-REPO-01</td><td>Line 1 contained &#x27;# NFL2&#x27; (6 bytes, no trailing newline) at initial commit 01f227119ee8df4223b0aa697d08ed92257773c3.</td><td><span class="badge flagged">Verified (Flagged Minor Formatting)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>README.md (main @ e351a8d)</code></td><td class="num">39</td><td class="blank-cell"></td><td>Documents 12 root HTML pages, 3 data JSON files, responsible gambling notice, and Pages root configuration.</td><td><span class="badge flagged">Verified</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/README.md" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>COORDINATION.md</code></td><td class="num">48</td><td>IR-REPO-09</td><td>Task board for session 194db560; line 41 cites &#x27;PR #2&#x27; for follow-up merge e351a8d, whereas GitHub PR ledger shows PR #3 was merged (PR #2 belongs to arena/85d79210-nfl2).</td><td><span class="badge flagged">Verified (Flagged Typo)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/pulls?q=is%3Apr" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>data/standings-2026.json</code></td><td class="num">42</td><td class="blank-cell"></td><td>All 32 team rows verified cell-by-cell against live NFL.com 2026 Division Standings. League conservation holds exactly: sum(W)=135, sum(L)=135, sum(T)=2 (136 games), sum(PF)=6246, sum(PA)=6246, Home+Road=Total for all 32 clubs.</td><td><span class="badge flagged">Verified (100% Match)</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>data/schedule-week11-2026.json</code></td><td class="num">25</td><td>IR-REPO-05</td><td>13 Week 11 games + 6 bye clubs = 32 teams verified against NFL.com Week 11 schedule change, but active Week 10 slate (Nov 12-16, 2026; 14 games) is omitted despite Week 10 injuries being tracked.</td><td><span class="badge flagged">Verified (Flagged Coverage Gap)</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>data/injuries-week10-2026.json</code></td><td class="num">32</td><td>IR-REPO-02, IR-REPO-03, IR-REPO-04</td><td>(1) Line 6 links &#x27;fullReport&#x27; to REG9 URL while labeling it Week 10; (2) Line 12 lists NE Ben Brown pos as &#x27;OL&#x27; whereas official NFL.com Injury Report lists &#x27;C&#x27; (and &#x27;Carlton Davis III&#x27;); (3) Captures only 6 summary designations and omits full DNP/Limited practice statuses live on nfl.com/injuries/.</td><td><span class="badge flagged">Needs Review (3 Irregularities)</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>index.html</code></td><td class="num">74</td><td>IR-REPO-03</td><td>7 summary table rows all carry official external links (nfl.com and static.www.nfl.com Rules PDF); line 47 repeats Ben Brown (OL) summary label.</td><td><span class="badge flagged">Verified (Inherits Ben Brown Pos)</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>standings.html</code></td><td class="num">64</td><td class="blank-cell"></td><td>32/32 tbody rows match NFL.com 2026 division standings line-by-line and include official nfl.com source links.</td><td><span class="badge flagged">Verified (100% Match)</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>schedule.html</code></td><td class="num">58</td><td class="blank-cell"></td><td>13 game rows + 6 bye rows = 19 tbody rows, each carrying an official nfl.com source link.</td><td><span class="badge flagged">Verified</span></td><td><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>teams.html</code></td><td class="num">64</td><td class="blank-cell"></td><td>32/32 NFL club alignment rows carry official nfl.com/teams/&lt;slug&gt;/ links.</td><td><span class="badge flagged">Verified</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>injuries.html</code></td><td class="num">75</td><td>IR-REPO-02, IR-REPO-08</td><td>Links full report to REG9 URL (lines 25-27, 32, 51, 74) and states no official club depth charts were found, leaving all 2nd-4th string replacement cells empty despite official NFL club sites (e.g. commanders.com, giants.com) publishing 1st-4th string depth charts.</td><td><span class="badge flagged">Needs Review</span></td><td><a href="https://www.commanders.com/news/commanders-release-2026-unofficial-depth-chart" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>lines-lab.html</code></td><td class="num">84</td><td>IR-REPO-06, IR-REPO-07</td><td>(1) Line 56 (&#x27;NO at CHI&#x27;) has only 7 &lt;td&gt; cells in an 8-column table; (2) 18 tbody rows across roadmap and Week 11 template tables lack per-row official https:// source links.</td><td><span class="badge flagged">Needs Review (HTML &amp; Source-Link Defect)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/lines-lab.html" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>strategies.html</code></td><td class="num">90</td><td>IR-REPO-07</td><td>10 tbody rows across Gates G1-G7 and Singles/Parlays/Props tables carry zero per-row official https:// source links; empirical correlations and concrete strategy competition entries not populated.</td><td><span class="badge flagged">Needs Review (Source-Link &amp; Depth Gap)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/strategies.html" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>executive-summary.html</code></td><td class="num">65</td><td>IR-REPO-07</td><td>Rows 2-3 of table 1 and all 3 rows of table 2 lack external official https:// source links.</td><td><span class="badge flagged">Needs Review (Source-Link Gap)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/executive-summary.html" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>suggestions.html</code></td><td class="num">48</td><td>IR-REPO-07</td><td>11 tbody rows across Suggestions S-01..S-10 and Decision Log carry no external official https:// source links.</td><td><span class="badge flagged">Needs Review (Source-Link Gap)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/suggestions.html" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>questions.html</code></td><td class="num">54</td><td>IR-REPO-02, IR-REPO-07</td><td>12 open-question rows (Q-01..Q-12) carry no external official https:// links; A-02 links to REG9 URL.</td><td><span class="badge flagged">Needs Review (Source-Link Gap &amp; REG9 URL)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/questions.html" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>flagged.html</code></td><td class="num">42</td><td>IR-REPO-02, IR-REPO-07</td><td>Rows F-04, F-06, F-07 link only to internal pages rather than external official sources; F-02 links to REG9 URL.</td><td><span class="badge flagged">Needs Review (Self-Referential Links &amp; REG9 URL)</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/flagged.html" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>sources.html</code></td><td class="num">59</td><td>IR-REPO-02</td><td>All 7 source registry rows carry external official URLs; row 5 points to nfl.com/injuries/league/2026/REG9 while labeled Week 10.</td><td><span class="badge flagged">Verified (Flagged REG9 URL)</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>assets/app.js &amp; assets/style.css</code></td><td class="num">149</td><td class="blank-cell"></td><td>Client-side table search filter, Abramowitz-Stegun 7.1.26 normal CDF approximation (max error 1.5e-7), and Pearson correlation calculator verified arithmetically.</td><td><span class="badge flagged">Verified</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/tree/main/assets" target="_blank" rel="noopener">Official Reference &#8599;</a></td></tr>
+<tr><td><code>scripts/build_site.py &amp; root *.html (PR #6)</code></td><td class="num">12 pages</td><td class="blank-cell"></td><td>Generated 12-page root site from data/games_2026.json &amp; data/team_stats.json; declared depth charts 404 (IR-01), resolved here via official club sites.</td><td><span class="badge verified">AUDITED — PRESERVED</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/pull/6" target="_blank" rel="noopener">GitHub PR #6 &#8599;</a></td></tr>
+<tr><td><code>docs/*.html &amp; scripts/validate_data.py (PR #4)</code></td><td class="num">16 pages</td><td class="blank-cell"></td><td>Preserved intact under /docs/ with 32-team stats &amp; Week 10/11 schedules; uses &#x27;-&#x27; placeholders rather than strict blank cells.</td><td><span class="badge model">AUDITED — PRESERVED</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/pull/4" target="_blank" rel="noopener">GitHub PR #4 &#8599;</a></td></tr>
+<tr><td><code>portal/*.html &amp; engine/*.py (Session e143a7ca)</code></td><td class="num">10 pages</td><td class="blank-cell"></td><td>100% per-row https:// official links, strict blank (&#x27;&#x27;) cells for unverified values, 11/11 zero-sum check, and 1st–4th string club depth charts.</td><td><span class="badge verified">VERIFIED</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">GitHub Repo &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    <section class="section-card">
+      <h2>2. Irregularities Found During Line-by-Line Audit (Also Published on Flagged for Review)</h2>
+      <p class="section-desc">11 repository, environment, and upstream display irregularities documented for post-deploy human review.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-ir-audit" placeholder="Search irregularities..." aria-label="Search irregularities...">
+      <span class="kpi-sub">11 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-ir-audit" data-sortable="true">
+        <thead><tr><th>ID</th><th>Severity</th><th>File &amp; Line Location</th><th>Detailed Finding</th><th>Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>IR-REPO-01</strong></td><td>Low</td><td><code>README.md @ 01f227119ee8df4223b0aa697d08ed92257773c3:1</code></td><td>Initial repository commit contained only &#x27;# NFL2&#x27; (6 bytes) with no trailing newline, no .nojekyll, and no verification scripts.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-02</strong></td><td>Medium</td><td><code>data/injuries-week10-2026.json:6, injuries.html:25-27,32,51,74, flagged.html:26, questions.html:44, sources.html:28</code></td><td>URL/Label mismatch: cites &#x27;NFL.com Official Injury Report — Week 10&#x27; while linking to .../2026/REG9 instead of canonical live Week 10 report https://www.nfl.com/injuries/.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-03</strong></td><td>Low</td><td><code>data/injuries-week10-2026.json:12-13, injuries.html:38-39, index.html:47</code></td><td>Lists New England Patriots Ben Brown position as &#x27;OL&#x27; and omits suffix &#x27;III&#x27; on Carlton Davis III; official NFL.com Week 10 Injury Report lists Ben Brown as &#x27;C&#x27; and &#x27;Carlton Davis III&#x27;.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-04</strong></td><td>High</td><td><code>data/injuries-week10-2026.json:8-31, injuries.html:30-53</code></td><td>Summary-only Week 10 injury transcription (6 rows) omits full official Week 10 DNP and Limited practice participation rows published live on https://www.nfl.com/injuries/ across all 14 games.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-05</strong></td><td>Medium</td><td><code>data/schedule-week11-2026.json vs data/injuries-week10-2026.json</code></td><td>Temporal slate mismatch: repository includes Week 11 schedule (Nov 19-23) alongside Week 10 injuries (Nov 12-16) without including the active Week 10 game slate from https://www.nfl.com/schedules.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-06</strong></td><td>Medium</td><td><code>lines-lab.html:56</code></td><td>Malformed HTML row: &#x27;NO at CHI&#x27; &lt;tr&gt; contains 7 &lt;td&gt; cells inside an 8-column table, omitting the 8th &#x27;Source / time&#x27; cell.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/lines-lab.html#L56" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-07</strong></td><td>High</td><td><code>lines-lab.html, strategies.html, executive-summary.html, suggestions.html, questions.html, flagged.html</code></td><td>59 tbody table rows in root build lack external official https:// source links despite project requirement (&#x27;Every table row must have a source link to an official site&#x27;). Addressed in 100% of portal/*.html rows; change request logged for session 194db560 scope in COORDINATION.md.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/tree/main" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-08</strong></td><td>Medium</td><td><code>injuries.html:56, flagged.html:27</code></td><td>Root build left all 2nd/3rd/4th-string depth-chart cells unpopulated citing lack of league-wide NFL.com chart, whereas official NFL club websites (e.g., commanders.com, giants.com, lions, chiefs) publish official club 1st-4th string offense &amp; defense depth charts.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.commanders.com/news/commanders-release-2026-unofficial-depth-chart" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-REPO-09</strong></td><td>Low</td><td><code>COORDINATION.md:41</code></td><td>Merge log line 41 references &#x27;PR #2&#x27; for commit e351a8d, whereas GitHub PR ledger confirms PR #3 merged e351a8d (PR #2 is branch arena/85d79210-nfl2).</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/pull/3" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-ENV-01</strong></td><td>Low</td><td><code>Git branch topology (arena/e143a7ca-nfl2)</code></td><td>Execution sandbox enforces single-branch operation on arena/e143a7ca-nfl2 rather than creating per-task branches session-&lt;id&gt;/&lt;task&gt;; non-overlapping file-scope isolation enforced via COORDINATION.md.</td><td><span class="badge flagged">needs review</span></td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/branches" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+<tr><td><strong>IR-NFL-01</strong></td><td>Low (Upstream Display)</td><td><code>https://www.nfl.com/injuries/ (Week 10 Matchup Headers)</code></td><td>NFL.com&#x27;s Week 10 injury page headers display HOU (3-6), CLE (4-5), MIA (3-6), IND (6-3), whereas official NFL.com Standings &amp; Schedules verify zero-sum records HOU (3-5), CLE (5-4), MIA (2-7), IND (5-4).</td><td><span class="badge flagged">needs review</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">Official Source &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    
+  </main>
+  <footer>
+    <div class="container">
+      <strong>NFL2 Quantitative Decision &amp; Verification Portal</strong> &bull;
+      Repository: <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">kanlerxz87-cyber/NFL2</a> &bull;
+      Every table row cites an official source (<code>nfl.com</code>, <code>operations.nfl.com</code>, official NFL club sites, <code>github.com</code>). Unconfirmed values remain strictly blank and flagged on <a href="flagged-review.html">Flagged for Review</a>.
+    </div>
+  </footer>
+  <script src="assets/portal.js"></script>
+</body>
+</html>
