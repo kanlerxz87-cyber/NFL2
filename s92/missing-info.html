@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missing information &middot; NFL2 s92</title>
+<meta name="description" content="What does not exist yet, where it would come from, and what it blocks.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="kind-decision">
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> <span>s92 evidence &amp; decision dashboard</span></a>
+  <div class="asof">Official sources fetched <strong>2026-11-12 22:35 UTC</strong> &middot; every row links its source &middot;
+    <a href="../index.html">root dashboard</a></div>
+</header>
+<div class="shell">
+  <aside class="side">
+    <div class="navgroup"><span>Overview</span><a class="" href="index.html">Home</a><a class="" href="decision-brief.html">Decision brief</a><a class="" href="executive-summary.html">Executive summary</a></div><div class="navgroup"><span>Decide</span><a class="" href="questions.html">Questions &amp; answers</a><a class="on" href="missing-info.html">Missing information</a><a class="" href="suggestions.html">Suggestion board</a><a class="" href="assumptions.html">Assumptions &amp; bounds</a></div><div class="navgroup"><span>Origination</span><a class="" href="line-lab.html">Line lab</a><a class="" href="strategies.html">Strategies &amp; gates</a><a class="" href="correlation.html">Correlation &amp; luck</a></div><div class="navgroup"><span>Data</span><a class="" href="availability.html">Injuries &amp; backups</a><a class="" href="official-audit.html">Repository audit</a><a class="" href="sources.html">Sources</a></div><div class="navgroup"><span>Review</span><a class="" href="flagged.html">Flagged for review</a></div>
+    <div class="sidefoot">Session <code>8b4bdcb3</code><br>Branch <code>arena/8b4bdcb3-nfl2</code></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge decision">Discovery plan</span>
+      <h1>Missing information</h1>
+      <p class="lead">What does not exist yet, where it would come from, and what it blocks.</p>
+    </div>
+    <nav class="toc"><span>On this page</span><a href="#the-missing-information-register">The missing-information register</a><a href="#information-we-have">Information we have</a><a href="#information-we-do-not-have">Information we do not have</a><a href="#how-each-gap-closes">How each gap closes</a><a href="#the-trap-this-register-is-designed-to-avoid">The trap this register is designed to avoid</a><a href="#what-cannot-be-discovered-from-inside-this-session">What cannot be discovered from inside this session</a></nav>
+    <div class="body"><h2 id="the-missing-information-register">The missing-information register</h2>
+<p>This is the discovery plan the brief asked for: the information that does not exist yet, where it would come from, and what would have to happen for it to arrive. It is organised by <em>what is missing</em>, not by what we would like to build, so that the roadmap's inputs are visible before the roadmap.</p>
+<h2 id="information-we-have">Information we have</h2>
+<div class="twrap"><table class="data"><thead><tr><th>Dataset</th><th>Coverage</th><th>Verified how</th></tr></thead><tbody><tr><td>2026 standings</td><td>32 clubs, 7 fields</td><td>every cell compared with the official league table</td></tr><tr><td>2026 game log</td><td>136 games, weeks 1-9</td><td>aggregate reconciles exactly to the standings</td></tr><tr><td>Week 11 schedule</td><td>13 games, 6 byes</td><td>official week page; two TV cells differ</td></tr><tr><td>Injury report</td><td>277 official rows at fetch</td><td>parsed from the official hub and stored with retrieval time</td></tr><tr><td>Club depth charts</td><td>3 clubs, 152 slots</td><td>transcribed in full, each labelled unofficial where the club says so</td></tr><tr><td>2026 rules</td><td>4 rule changes</td><td>word-for-word match against the rulebook page</td></tr></tbody></table></div>
+<h2 id="information-we-do-not-have">Information we do not have</h2>
+<div class="twrap"><table class="data"><thead><tr><th>Missing item</th><th>Would come from</th><th>Blocks</th><th>Closes</th></tr></thead><tbody><tr><td>Prices, opening and closing</td><td>a licensed feed</td><td>every market-relative metric</td><td>Q-101</td></tr><tr><td>Settlement rules</td><td>one venue's published rulebook</td><td>the definition of a graded record</td><td>Q-102</td></tr><tr><td>Snap counts and routes</td><td>a participation-data licence</td><td>replacement cost in points</td><td>Q-103</td></tr><tr><td>A league depth chart</td><td>the league, which does not publish one</td><td>the 1st-4th string requirement</td><td>Q-104</td></tr><tr><td>Historical injury filings</td><td>a scheduled scraper with timestamps</td><td>point-in-time availability signals</td><td>Q-105</td></tr><tr><td>Game-status semantics</td><td>the league's filing calendar</td><td>the meaning of a blank cell</td><td>Q-106</td></tr><tr><td>Player-level joint outcomes</td><td>play-by-play</td><td>prop and same-game-parlay correlation</td><td>Q-109</td></tr><tr><td>A funded reward schedule</td><td>the owner</td><td>whether the competition selects for anything</td><td>Q-110</td></tr></tbody></table></div>
+<h2 id="how-each-gap-closes">How each gap closes</h2>
+<ul><li><strong>Q-101 Price feed</strong> — Contract a licensed feed; store point-in-time prices; replay one season before any strategy runs</li><li><strong>Q-102 Settlement</strong> — Adopt one venue's published rulebook as the settlement spec and record its version</li><li><strong>Q-103 Player-level data</strong> — License one provider; version the extract; never mix providers mid-season</li><li><strong>Q-104 Depth authority</strong> — Use club charts as a prior, then replace with realised snap share once participation data is licensed</li><li><strong>Q-105 Filing cadence</strong> — Scrape the hub on a fixed schedule and store every filing, not the latest</li><li><strong>Q-106 Game status semantics</strong> — Encode three states (out / designated / not-yet-filed) and never collapse them</li><li><strong>Q-107 Home-field and travel</strong> — Pool several seasons; publish the interval; treat neutral sites as zero</li><li><strong>Q-108 Sample size</strong> — Pre-register, then require the gate to be met before any leaderboard entry is marked skilled</li><li><strong>Q-109 Correlation inputs</strong> — License play-by-play; compute pairwise phi on the same game keys</li><li><strong>Q-110 Reward design</strong> — Owner decision; then encode as a gate that a strategy cannot pass by self-report</li><li><strong>Q-111 Luck definition</strong> — Fix the filter set and thresholds in advance; any change requires a new version</li><li><strong>Q-112 Ownership of truth</strong> — Publish a metric ownership table; other trees link instead of restating</li><li><strong>Q-113 Model validation</strong> — Score against realised outcomes now; add closing-line value later</li><li><strong>Q-114 Injury data licence</strong> — Record a fair-use note per source, as the existing sources register does</li><li><strong>Q-115 Prop markets</strong> — Pick two markets, write their settlement rules from the venue rulebook, then model</li></ul>
+<h2 id="the-trap-this-register-is-designed-to-avoid">The trap this register is designed to avoid</h2>
+<p>It is easy to spend a season building models on data that already exists and calling the result skill. The register exists so that the missing inputs are named <em>before</em> the models, and so that a strategy that depends on an input we do not have is visibly blocked rather than quietly over-fitted. The <a href="strategies.html">strategy registry</a> applies exactly this rule: eight of ten entries are blocked on a named missing input, and the two that are not blocked are labelled research, not skill.</p>
+<h2 id="what-cannot-be-discovered-from-inside-this-session">What cannot be discovered from inside this session</h2>
+<p>Three items need a decision or a purchase, not a search: the price licence (Q-101), the participation licence (Q-103) and the reward budget (Q-110). They are recorded here so they are not mistaken for research tasks that a later session could finish on its own.</p></div>
+    <footer class="pagefoot">
+      <a class="pager" href="questions.html">&larr; Questions &amp; answers</a> <a class="pager right" href="suggestions.html">Suggestion board &rarr;</a>
+      <div class="foot-meta">Generated by <code>s92/build.py</code> from <code>s92/data/</code> &middot;
+        row sources verified against official league and club pages on 2026-11-12 &middot;
+        blanket cells are rendered as <span class="np">not published</span>, never estimated.</div>
+    </footer>
+  </main>
+</div>
+</body></html>

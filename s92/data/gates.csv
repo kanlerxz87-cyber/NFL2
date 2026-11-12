@@ -1,0 +1,12 @@
+id|gate|class|test|pass_criterion|blocks
+G-0|Data provenance|hard|Every row the strategy consumes must cite an official or licensed source; no third-party tables in the system of record|100% of inputs listed with a source and a licence position|Promotion
+G-1|Point-in-time integrity|hard|Every input has a timestamped filing and cannot be overwritten by a later fetch|Zero silent overwrites across a season|Promotion
+G-2|Settlement definition|hard|The strategy's record settles under one published venue rulebook|Rulebook version recorded; pushes and ties defined|Promotion
+G-3|Pre-registration|hard|Rule, stake, market and sample target locked before the first graded bet|Lock timestamp precedes first bet timestamp|Scoring
+G-4|Sample sufficiency|hard|The closed-form sample-size target for the observed effect is met|n >= target computed from the strategy's own variance|Skilled label
+G-5|Multiple-testing correction|hard|Bonferroni or an equivalent correction across every test the registry has run|Corrected p < 0.05|Skilled label
+G-6|Persistence|hard|Performance survives a chronological split-half and a season-to-season check|Both halves positive; second season positive|Skilled label
+G-7|Luck interval|hard|Cluster bootstrap interval on the strategy's mean return excludes zero|95% interval lower bound > 0|Skilled label
+G-8|Benchmark comparison|soft|Performance compared with a closing line where one exists|Positive CLV over the sample|Reward tier
+G-9|Capacity|soft|Stake size does not move the price the strategy claims|Stake below the declared market capacity|Reward tier
+G-10|Correlation accounting|hard|Parlay and prop-combo entries use a measured joint distribution, not an independence assumption|Joint probabilities computed from same-game data|Scoring

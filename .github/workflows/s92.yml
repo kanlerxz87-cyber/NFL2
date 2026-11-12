@@ -1,0 +1,40 @@
+name: s92 evidence dashboard
+
+on:
+  push:
+    paths: ["s92/**", "tools/verify_s92.py", ".github/workflows/s92.yml"]
+  pull_request:
+    paths: ["s92/**", "tools/verify_s92.py", ".github/workflows/s92.yml"]
+  workflow_dispatch:
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild every page from s92/data
+        run: python3 s92/build.py
+
+      - name: Fail if the committed HTML does not match a rebuild
+        run: |
+          git add -A s92
+          if git diff --cached --quiet; then
+            echo "s92/ is in sync with s92/data/"
+          else
+            echo "::error::committed s92 HTML differs from a rebuild - commit the output of s92/build.py"
+            git diff --cached --stat
+            exit 1
+          fi
+
+      - name: Row-level source, link, blank and arithmetic gate
+        run: python3 tools/verify_s92.py
+
+      - name: Root dashboard still builds and audits
+        run: |
+          python3 tools/build_site.py
+          python3 tools/verify.py
+          python3 tools/check_site.py
