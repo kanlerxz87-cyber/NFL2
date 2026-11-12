@@ -1174,3 +1174,9 @@ The branch base was `25d88a9`; `main` had moved eleven merges forward, so this b
 
 **Handoff:** A1–A6 closed; open items are decisions, not gaps — Q-36/S-35 (start the stored injury history), Q-35/S-36 (price vintage + the alias table), S-38 (paired-MAE admission gate), Q-37/S-39 (how many club charts we transcribe). Read `content/suggestions.md` → "Revised order of first moves" first.
 
+### Postscript to the publication record — the deploy test resolved
+
+PR #38 was written as the experiment ("if the Pages run on the merge commit for #38 is green, the failure was transient"). **It came back green.** `main` at `4b897e55` (merge of #38, 2026-11-12T23:05Z) shows `GitHub Pages: completed/success` with every step passing — including `Run actions/deploy-pages@v4`, the step that failed on `57e6888` — and `pages-build-deployment: completed/success`, with the Pages API reporting **built** at 23:05:48Z. `FL-34` is therefore closed as transient (an intermittent artifact-metadata fetch inside `deploy-pages`, self-clearing on the next push, as the action's own message advised), with the practical rule recorded for whoever reads a red Pages run next: check the Pages API build record for the same commit before believing either signal. `FL-23` on `main` — which of the two mechanisms is canonical — remains an open owner decision, and this session changed no deployment config.
+
+Session `a392a193` closes here: PRs **#37** and **#38** merged, 26 pages live, `verify 65 · check_site 11+1 disclosed warning · 0 failures` on the merged tree, and every open item on the board is a decision with its evidence attached rather than a missing dataset.
+
