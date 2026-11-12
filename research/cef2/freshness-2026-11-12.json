@@ -1,0 +1,37 @@
+{
+  "session": "cef2b11f",
+  "checked_utc": "2026-11-12T22:45Z",
+  "question": "What has the official source moved to since the registers were captured, and does any 'not published' state on the site now have published values?",
+  "official_pages": {
+    "injuries_hub": {"url": "https://www.nfl.com/injuries/", "fetched": "2026-11-12T22:38Z", "week_label_on_page": "Week 10"},
+    "standings": {"url": "https://www.nfl.com/standings/", "fetched": "2026-11-12T22:35Z"}
+  },
+  "results": {
+    "game_designations": {
+      "published_now_on_official_page": 6,
+      "register_count": 6,
+      "identical": true,
+      "players": ["Lucas Patrick (WAS, Out)", "Colson Yankoff (WAS, Out)", "Malik Harrison (NYG, Questionable)", "Ben Brown (NE, Out)", "Carlton Davis III (NE, Out)", "TreVeyon Henderson (NE, Out)"],
+      "note": "Sunday/Monday game-status cells remain blank on the official hub at Thursday evening; the register's 'not yet published' flags remain accurate"
+    },
+    "practice_participation_drift": {
+      "register_rows": 254,
+      "register_rows_still_on_hub": 254,
+      "hub_rows_added_after_capture": 25,
+      "by_club": {"SEA": 15, "CIN": 4, "IND": 2, "SF": 2, "JAX": 1, "AZ": 1},
+      "interpretation": "hub rolled from the Tuesday filing to the Wednesday filing between capture and re-check; captures must be dated (FL-09, S-26)"
+    },
+    "roster_moves": {
+      "register_covers_up_to": "2026-11-11 official roundup (227 events)",
+      "official_now_also_has": "Thursday Nov 12 roundup (linked from the injuries hub news rail)",
+      "lag_days": 1
+    },
+    "standings": {"register_rows": 32, "exact_match_with_official": 32, "games_played_between_captures": 0}
+  },
+  "consequences_for_open_decisions": [
+    "S-26 (point-in-time storage): quantified by the 25-row practice drift in 18 hours",
+    "Q-24 (sandbox egress allowlist): live verification of the published site must go through the page reader, as in every prior session",
+    "decision timing: availability-based signals age one practice cycle between capture and kickoff; gates should require a maximum-capture-age, proposed for the leaderboard rules"
+  ],
+  "files_touched": ["research/cef2/**"]
+}
