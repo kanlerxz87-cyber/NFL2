@@ -252,11 +252,23 @@ def build_metrics():
     inj = read_rows("injuries_2026_wk10.csv")
     depth = read_rows("depth_changes_2026_wk10.csv")
     st = read_rows("standings_2026.csv")
+    sched = read_rows("schedule_2026_wk10.csv")
     agg = team_availability(inj)
-    empty = [t for t in ["SEA", "CIN", "LAC", "BAL"]]
+    # Which clubs should have an injury block is a fact about the Week 10 slate, so derive it from the
+    # fixture list instead of naming clubs by hand. A hand-written list silently stops being true the
+    # moment the source page changes: the list that used to live here named four clubs as empty and
+    # was wrong for two of them, which the league does populate. See FL-24.
+    playing = set()
+    for g in sched:
+        playing.add(g["away"])
+        playing.add(g["home"])
+    empty = sorted(playing - set(agg))
     m = {
         "injury_rows": len(inj),
         "injury_teams": len(agg),
+        "injury_clubs_playing": len(playing),
+        "injury_clubs_missing": len(empty),
+        "injury_coverage": "%d of %d" % (len(agg), len(playing)),
         "games": len(read_rows("schedule_2026_wk10.csv")),
         "dnp": sum(1 for r in inj if r["practice"] == "D"),
         "limited": sum(1 for r in inj if r["practice"] == "L"),
@@ -283,8 +295,8 @@ def build_metrics():
         "flags": len(read_rows("flags.csv")),
         "pages": len(PAGES) + 1,          # + 404, which is generated from index
         "data_files": len([f for f in sorted(os.listdir(DATA)) if f.endswith(".csv")]),
-        "empty_clubs": ", ".join(sorted(empty)),
-        "empty_club_count": len([t for t in empty if t not in agg]),
+        "empty_clubs": ", ".join(empty),
+        "empty_club_count": len(empty),
     }
     m.update(gamelog_metrics(st))
     return m, inj, agg
@@ -501,14 +513,19 @@ def directive(body, ctx):
             a = agg[t]
             rows.append("<tr><td>%s</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td class=\"num\">%d</td><td>%s</td></tr>"
                         % (t, a["reported"], a["dnp"], a["lim"], a["full"], a["dnp_off"], a["dnp_def"], blank_cell()))
-        for t in ["SEA", "CIN", "LAC", "BAL"]:
-            if t not in agg:
+        # Absent clubs are derived from the Week 10 fixture list, so this table can never again name
+        # a club by hand that the league actually publishes. See FL-24.
+        for t in METRICS["empty_clubs"].split(", "):
+            if t and t not in agg:
                 rows.append("<tr class=\"flagrow\"><td>%s</td><td colspan=\"6\">%s</td><td>%s</td></tr>"
                             % (t, blank_cell(), source_link("S-INJ")))
+        caption = ('Counts are arithmetic over the official rows only. "Offence"/"defence" use the position mapping in the '
+                   '<a href="data-dictionary.html">data dictionary</a>. Clubs with no rows in this snapshot are listed at the '
+                   'foot of the table as not published rather than zero. Two of them (LAC, BAL) read "No Injuries Reported" on '
+                   'the hub; the others are a collection gap (<a href="flagged-for-review.html">FL-24</a>).')
         return ('<div class="tablewrap"><table class="data"><thead><tr><th>Club</th><th>Reported</th><th>Did not practice</th><th>Limited</th>'
                 '<th>Full</th><th>DNP offence</th><th>DNP defence</th><th>Source</th></tr></thead><tbody>%s</tbody></table></div>'
-                '<p class="caption">Counts are arithmetic over the official rows only. "Offence"/"defence" use the position mapping in the '
-                '<a href="data-dictionary.html">data dictionary</a>. The last four clubs published no rows on the hub page - they are shown as not published, not as zero (<a href="flagged-for-review.html">FL-01</a>).</p>' % "".join(rows))
+                '<p class="caption">%s</p>' % ("".join(rows), caption))
     if body == "toc":
         items = ctx.get("toc", [])
         return '<nav class="toc">%s</nav>' % "".join('<a href="#%s">%s</a>' % (a, esc(t)) for a, t in items)
@@ -660,7 +677,7 @@ def main():
 
 KPIS = [
     ("injury_rows", "Injury rows ingested", "injuries",
-     lambda m: "28 clubs, %d players, verbatim from the official hub" % m["injury_rows"]),
+     lambda m: "%d players across %d of the %d clubs playing Week 10" % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"])),
     ("designations", "Designations published", "injuries",
      lambda m: "%d of %d rows carry a game status; the rest are not published" % (m["designations"], m["injury_rows"])),
     ("depth_rows", "Depth & roster events", "depth-impact",

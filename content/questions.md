@@ -7,7 +7,7 @@
 
 The brief asked for a clear separation between information we already have and information we do not. Those are the two central columns, and they are the reason several rows look blunt: on most modelling questions we have *nothing* — no prices, no snaps, no licensed history. Saying so is the deliverable. Where the "what we have" column names a dataset, that dataset is on this site with per-row sources, so the answer to "do we really have this" is checkable rather than asserted.
 
-## The five that unblock the most
+## The six that unblock the most
 
 | # | Question | Unblocks |
 | --- | --- | --- |
@@ -16,3 +16,4 @@ The brief asked for a clear separation between information we already have and i
 | Q-05 | What is authoritative for depth rank, given that no official depth chart exists? | the entire "backups replacing starters" requirement |
 | Q-07 | How do we reconstruct the game-time active/inactive list? | who actually played, which is the ground truth for every availability model |
 | Q-23 | Is the 2026 roster churn real, or does our join silently mis-assign players to clubs? | trust in every team-level number produced from these rows |
+| Q-33 | Should the two measured correlations be used in parlay pricing, given both intervals include zero? | the parlay and prop-combo side of the objective, and two validation gates — this is the newest P0 and it appeared only once the correlations could actually be measured |
