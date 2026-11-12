@@ -584,7 +584,7 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 | Q51-T01 | done | 51ce8d8e-nfl2 | `research/q51/**`, `scripts/audit_q51.py` | Reproducible audit of the original 48-file baseline; 18 findings with evidence. Baseline counts are historical, not current-repository claims. |
 | Q51-T02 | done | 51ce8d8e-nfl2 | `engine/q51/**`, `tests/q51/**` | Standalone odds, statistics, grading, point-in-time modeling and fail-closed validation gates; 34 tests pass. No invented training data or betting performance. |
 | Q51-T03 | done | 51ce8d8e-nfl2 | `collectors/q51/**` | Allowlisted, robots-aware official-source collector and parsers; 5 parser/safety tests pass. Live sandbox probe recorded 0/7 TLS failures, not hidden. |
-| Q51-T04 | in progress | 51ce8d8e-nfl2 | `q51/**`, `scripts/verify_q51.py`, shared factual corrections, this appended section | Namespaced 10-page evidence dashboard built; stale shared-integration handoff logged; evidence-backed corrections and link repairs applied. PR/Pages confirmation pending. |
+| Q51-T04 | done | 51ce8d8e-nfl2 | `q51/**`, `scripts/verify_q51.py`, shared factual corrections, this appended section | Namespaced 10-page evidence dashboard published; stale shared-integration handoff logged; evidence-backed corrections and link repairs applied; PR #23 merged and Pages confirmed live. |
 
 ### Conflict / handoff log
 
@@ -612,3 +612,12 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 - `python3 scripts/audit_q51_current.py`: every tracked file hashed/line-counted; syntax and internal links checked. Final tracked-file report is committed after the code commit so its `ref` is exact.
 - Live collector probe: `collectors/q51/collect.py --mode probe` recorded **0 successful / 7 failed** HTTPS retrievals with TLS EOF in `research/q51/collector-probe.json`. Manual page-fetch evidence remains separate; no raw response hash is invented.
 - Shared corrections applied under the stale-claim handoff: A-01 broadcasters, A-05/A-06 formal status/injury detail, A-07 depth wording, A-09/A-14 skill/correlation claims, A-10 overround wording, A-12 current-vs-planning week, A-18 helpline digits, F-08 bye resolution, missing team anchors and archive cross-build links. Upstream files and completed PR records preserved.
+
+
+### Q51 PR & GitHub Pages deployment record
+
+- **Pull Request:** [#23](https://github.com/kanlerxz87-cyber/NFL2/pull/23) — `arena/51ce8d8e-nfl2` → `main`.
+- **Merge result:** `MERGED` at `2026-11-12T07:54:42Z`, merge commit `45ea5f399b09480c644ea111ba71ecb11379411a`. PR checks `q51`, `validate`, `audit`, and `Row-level verification, link check and build reproducibility` all passed before merge.
+- **Post-merge CI:** `Q51 evidence and engine verification`, `build-and-audit`, `Verify site data and links`, `lab-validate`, `GitHub Pages`, and `pages build and deployment` completed successfully at `45ea5f3`.
+- **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`. Live-fetched and confirmed: https://kanlerxz87-cyber.github.io/NFL2/ , https://kanlerxz87-cyber.github.io/NFL2/q51/index.html , and https://kanlerxz87-cyber.github.io/NFL2/q51/flagged.html .
+- **Conflict handling:** repeated required pre-push `git pull --rebase` attempts tried to flatten the already-pushed claim merge and conflicted on COORDINATION.md; each was aborted and the branch was preserved without force. Final publication used the clean merged PR; no upstream work was discarded.
