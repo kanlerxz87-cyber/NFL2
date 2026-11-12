@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Every object in the original repository was inspected with local git commands or the official GitHub API. The &#x27;Manual review&#x27; column is a link for a h">
+<title>Repo review | NFL2</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="repo-review.html">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><a href="index.html"><span class="brand-mark">NFL2</span><span class="brand-sub">decision dashboard</span></a></div>
+  <div class="topbar-meta">
+    <span class="chip chip-ok">Verified sources only</span>
+    <span class="chip">Captured 2026-11-12 (UTC)</span>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav class="nav" aria-label="Site navigation">
+<div class="nav-group"><h3>Overview</h3><ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="executive-summary.html">Executive summary</a></li>
+<li><a href="requirements.html">Requirements</a></li>
+<li><a href="repo-review.html" class="active" aria-current="page">Repo review</a></li>
+</ul></div>
+<div class="nav-group"><h3>Decisions</h3><ul>
+<li><a href="decisions.html">Questions &amp; answers</a></li>
+<li><a href="suggestions.html">Suggestions / choose a path</a></li>
+</ul></div>
+<div class="nav-group"><h3>Research</h3><ul>
+<li><a href="sources.html">Official sources</a></li>
+<li><a href="data.html">Verified data</a></li>
+<li><a href="strategies.html">Strategies &amp; signals</a></li>
+</ul></div>
+<div class="nav-group"><h3>Validation</h3><ul>
+<li><a href="validation.html">Validation gates</a></li>
+<li><a href="correlations.html">Correlation values</a></li>
+<li><a href="leaderboard.html">Leaderboard &amp; rewards</a></li>
+</ul></div>
+<div class="nav-group"><h3>Tracking</h3><ul>
+<li><a href="injuries.html">Injuries &amp; depth</a></li>
+</ul></div>
+<div class="nav-group"><h3>Governance</h3><ul>
+<li><a href="methodology.html">Methodology</a></li>
+<li><a href="flagged.html">Flagged for review</a></li>
+</ul></div>
+</nav></aside>
+  <main id="main" class="main">
+    <div class="page-head">
+      <p class="eyebrow">Line-by-line audit</p>
+      <h1>Repo review</h1>
+      <p class="lede">Every object in the original repository was inspected with local git commands or the official GitHub API. The &#x27;Manual review&#x27; column is a link for a human to check the same fact. There were no unverified repository lines: the whole tree was one 6-byte file.</p>
+    </div>
+    <div class="toolbar">
+      <label class="filter-label" for="rowFilter">Filter rows
+        <input type="search" id="rowFilter" class="filter" placeholder="Type to filter every table on this page…" autocomplete="off">
+      </label>
+      <span id="rowCount" class="filter-count"></span>
+      <span class="legend-inline"><span class="dot dot-verified"></span> verified <span class="dot dot-proposal"></span> proposal <span class="dot dot-unverified"></span> unverified <span class="dot dot-review"></span> needs review</span>
+    </div>
+<section class="card">
+<h2>Repository audit</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">ID</th><th scope="col" tabindex="0">Object / line</th><th scope="col" tabindex="0">Observed content</th><th scope="col" tabindex="0">How verified</th><th scope="col" tabindex="0">Manual review link</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="repo-review.html::audit-rows:000" class="row-verified" data-status="verified" data-flags="">
+<td>A01</td><td>README.md, line 1</td><td># NFL2 — 6 bytes, no trailing newline</td><td>git ls-tree -r HEAD; cat README.md | od -c</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/README.md" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2/blob/main/README.md</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:001" class="row-verified" data-status="verified" data-flags="">
+<td>A02</td><td>Tree at base commit</td><td>Exactly one tracked file: README.md (blob bea05f1e...)</td><td>git ls-tree -r HEAD</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/tree/01f227119ee8df4223b0aa697d08ed92257773c3" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2/tree/01f227119ee8df4223b0aa697d08ed92257773c3</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:002" class="row-verified" data-status="verified" data-flags="">
+<td>A03</td><td>Commit history</td><td>One commit: 01f2271 Initial commit</td><td>git log --oneline -5</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/commits/main" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2/commits/main</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:003" class="row-verified" data-status="verified" data-flags="">
+<td>A04</td><td>Branches</td><td>main and arena/01b698ef-nfl2; remote had only origin/main at audit time</td><td>git branch -a</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/branches" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2/branches</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:004" class="row-verified" data-status="verified" data-flags="">
+<td>A05</td><td>Remote</td><td>origin https://github.com/kanlerxz87-cyber/NFL2.git</td><td>git remote -v</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:005" class="row-verified" data-status="verified" data-flags="">
+<td>A06</td><td>Default branch</td><td>main</td><td>gh repo view --json defaultBranchRef</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:006" class="row-verified" data-status="verified" data-flags="">
+<td>A07</td><td>GitHub Pages config</td><td>status built; build_type legacy; source main:/; https enforced</td><td>gh api repos/kanlerxz87-cyber/NFL2/pages</td><td><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener noreferrer">https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:007" class="row-verified" data-status="verified" data-flags="">
+<td>A08</td><td>COORDINATION.md</td><td>Absent at base commit; created by this session before work began</td><td>cat COORDINATION.md</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/arena/01b698ef-nfl2/COORDINATION.md" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2/blob/arena/01b698ef-nfl2/COORDINATION.md</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:008" class="row-verified" data-status="verified" data-flags="">
+<td>A09</td><td>Missing baseline files</td><td>No .gitignore, LICENSE, CI, .nojekyll, 404.html, site or data files</td><td>ls -la; git ls-tree -r HEAD</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/tree/01f227119ee8df4223b0aa697d08ed92257773c3" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2/tree/01f227119ee8df4223b0aa697d08ed92257773c3</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:009" class="row-verified" data-status="verified" data-flags="">
+<td>A10</td><td>Git identity</td><td>kanlerxz87-cyber &lt;312694378+kanlerxz87-cyber@users.noreply.github.com&gt;</td><td>git config user.name; git config user.email</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:010" class="row-verified" data-status="verified" data-flags="">
+<td>A11</td><td>GitHub auth</td><td>Authenticated as kanlerxz87-cyber via GH_TOKEN</td><td>gh auth status</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">https://github.com/kanlerxz87-cyber/NFL2</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-rows:011" class="row-verified" data-status="verified" data-flags="">
+<td>A12</td><td>Sandbox outbound network</td><td>Direct curl to www.nfl.com fails; verification used fetch/search tools</td><td>curl -sS -w %{http_code} https://www.nfl.com/injuries/</td><td><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer">https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages</a></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official GitHub / local git</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+</tbody></table></div>
+<p class="analysis"><strong>Analysis:</strong> Conclusion: no dataset, schema, code, tests or prior analysis existed. Therefore every site value is either copied from a fetch-verified official page, a documented design proposal, or a blank UNVERIFIED cell.</p>
+</section>
+<section class="card">
+<h2>Baseline irregularities</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">ID</th><th scope="col" tabindex="0">Observation</th><th scope="col" tabindex="0">Consequence</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="repo-review.html::audit-irregular:000" class="row-needs-review" data-status="needs-review" data-flags="F11">
+<td>F11</td><td>6-byte README; no LICENSE, .gitignore, CI, 404 page or .nojekyll; Pages build_type legacy</td><td>Baseline hygiene added during integration</td><td><span class="badge badge-review">NEEDS REVIEW</span></td><td>Published on Flagged for Review</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+<tr data-row-id="repo-review.html::audit-irregular:001" class="row-needs-review" data-status="needs-review" data-flags="F10">
+<td>F10</td><td>Environment fixes the session to one branch</td><td>Per-session worktrees cannot be created; disjoint file scopes used instead</td><td><span class="badge badge-review">NEEDS REVIEW</span></td><td>Logged on the coordination board</td><td>S29</td><td class="src-cell"><a class="src-link" href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer" title="kanlerxz87-cyber/NFL2 - GitHub repository">S29 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+    <footer class="footer">
+      <p>NFL2 · Static GitHub Pages dashboard · 2026-11-12 (UTC) ·
+         <a href="methodology.html">Verification methodology</a> ·
+         <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">Repository ↗</a></p>
+      <p class="muted">Research and validation framework only. No wagering, accounts or payments.
+         Legal sports betting is age- and jurisdiction-restricted; help resources:
+         <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.
+         Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.</p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

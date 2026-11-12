@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The competition design mirrors the NFL&#x27;s official crowdsourced analytics competition: judged submissions, a documented prize pool, explicit PASS/FAIL ">
+<title>Leaderboard &amp; rewards | NFL2</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="leaderboard.html">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><a href="index.html"><span class="brand-mark">NFL2</span><span class="brand-sub">decision dashboard</span></a></div>
+  <div class="topbar-meta">
+    <span class="chip chip-ok">Verified sources only</span>
+    <span class="chip">Captured 2026-11-12 (UTC)</span>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav class="nav" aria-label="Site navigation">
+<div class="nav-group"><h3>Overview</h3><ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="executive-summary.html">Executive summary</a></li>
+<li><a href="requirements.html">Requirements</a></li>
+<li><a href="repo-review.html">Repo review</a></li>
+</ul></div>
+<div class="nav-group"><h3>Decisions</h3><ul>
+<li><a href="decisions.html">Questions &amp; answers</a></li>
+<li><a href="suggestions.html">Suggestions / choose a path</a></li>
+</ul></div>
+<div class="nav-group"><h3>Research</h3><ul>
+<li><a href="sources.html">Official sources</a></li>
+<li><a href="data.html">Verified data</a></li>
+<li><a href="strategies.html">Strategies &amp; signals</a></li>
+</ul></div>
+<div class="nav-group"><h3>Validation</h3><ul>
+<li><a href="validation.html">Validation gates</a></li>
+<li><a href="correlations.html">Correlation values</a></li>
+<li><a href="leaderboard.html" class="active" aria-current="page">Leaderboard &amp; rewards</a></li>
+</ul></div>
+<div class="nav-group"><h3>Tracking</h3><ul>
+<li><a href="injuries.html">Injuries &amp; depth</a></li>
+</ul></div>
+<div class="nav-group"><h3>Governance</h3><ul>
+<li><a href="methodology.html">Methodology</a></li>
+<li><a href="flagged.html">Flagged for review</a></li>
+</ul></div>
+</nav></aside>
+  <main id="main" class="main">
+    <div class="page-head">
+      <p class="eyebrow">Competition design</p>
+      <h1>Leaderboard &amp; rewards</h1>
+      <p class="lede">The competition design mirrors the NFL&#x27;s official crowdsourced analytics competition: judged submissions, a documented prize pool, explicit PASS/FAIL standards and a public/private leaderboard split. This project is not affiliated with or endorsed by the NFL or Kaggle; those pages are cited as design references. No live-money feature is enabled.</p>
+    </div>
+    <div class="toolbar">
+      <label class="filter-label" for="rowFilter">Filter rows
+        <input type="search" id="rowFilter" class="filter" placeholder="Type to filter every table on this page…" autocomplete="off">
+      </label>
+      <span id="rowCount" class="filter-count"></span>
+      <span class="legend-inline"><span class="dot dot-verified"></span> verified <span class="dot dot-proposal"></span> proposal <span class="dot dot-unverified"></span> unverified <span class="dot dot-review"></span> needs review</span>
+    </div>
+<section class="card">
+<h2>Competition structure</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Element</th><th scope="col" tabindex="0">Proposed rule</th><th scope="col" tabindex="0">Verified official analogue</th><th scope="col" tabindex="0">This project&#x27;s value</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="leaderboard.html::leaderboard-structure:000" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>Eligibility</td><td>Pre-register the strategy before the holdout window</td><td>Official competition submission rules</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:001" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>Public leaderboard</td><td>In-season development sample only</td><td>Public leaderboard: visible during competition, based on a sample of test data</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:002" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>Private leaderboard</td><td>Final ranking on untouched holdout</td><td>Private leaderboard: final ranking on the remainder of the test data</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:003" class="row-unverified" data-status="unverified" data-flags="F12">
+<td>Passing standard</td><td>Explicit PASS/FAIL per gate</td><td>2027 Big Data Bowl evaluation table uses [PASS/FAIL]</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:004" class="row-verified" data-status="verified" data-flags="">
+<td>Judging</td><td>Independent review against frozen specs</td><td>NFL club analytics staff judge each submission</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>S11</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener noreferrer" title="Big Data Bowl | NFL Football Operations">S11 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:005" class="row-unverified" data-status="unverified" data-flags="F13">
+<td>Prize pool</td><td>Recognition-only until D07/D08 are answered</td><td>$100,000 in prize money for Big Data Bowl contestants</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S11</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener noreferrer" title="Big Data Bowl | NFL Football Operations">S11 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:006" class="row-verified" data-status="verified" data-flags="">
+<td>Rewards</td><td>No cash, no wagering, no payments in this build</td><td>2027: Open Track $45,000, University Track $45,000, Grand Prize $10,000</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:007" class="row-verified" data-status="verified" data-flags="">
+<td>Integrity</td><td>Exclude markets prohibited by league policy</td><td>NFL prohibits wagers tied to officiating and injuries</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>S18</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners" target="_blank" rel="noopener noreferrer" title="NFL announces official partnerships with three leading sports betting operators | NFL.com">S18 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-structure:008" class="row-verified" data-status="verified" data-flags="">
+<td>Harm minimisation</td><td>No live-money features; link help resources</td><td>NFL responsible-betting programme and NCPG</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>S30</td><td class="src-cell"><a class="src-link" href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" title="Home - National Council on Problem Gambling">S30 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<h2>Current standings (no strategy has been scored)</h2>
+<p class="intro">Rank, scores, gate counts and rewards are blank because no official dataset exists to compute them. Nothing is inferred.</p>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Rank</th><th scope="col" tabindex="0">Strategy</th><th scope="col" tabindex="0">Public score</th><th scope="col" tabindex="0">Private score</th><th scope="col" tabindex="0">Gates passed</th><th scope="col" tabindex="0">Reward</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="leaderboard.html::leaderboard-current:000" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>ST01 single spread divergence</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S20</td><td class="src-cell"><a class="src-link" href="https://support.nfl.com/hc/en-us/articles/35869698780564-If-I-place-a-bet-on-NFL-com-or-the-NFL-app-am-I-betting-with-the-NFL" target="_blank" rel="noopener noreferrer" title="If I place a bet on NFL.com or the NFL app, am I betting with the NFL? - NFL Support">S20 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-current:001" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>ST08 cross-game parlay</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S22</td><td class="src-cell"><a class="src-link" href="https://massgaming.com/wp-content/uploads/BetMGM-House-Rules-8.10.23.pdf" target="_blank" rel="noopener noreferrer" title="BetMGM Massachusetts House Rules (approved, hosted by Massachusetts Gaming Commission)">S22 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-current:002" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>ST11 QB + WR prop combo</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S04</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/stats/player-stats/" target="_blank" rel="noopener noreferrer" title="NFL 2026 Player Stats | passing Stats | NFL.com">S04 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::leaderboard-current:003" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>ST15 null / sham control</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+</tbody></table></div>
+<p class="analysis"><strong>Analysis:</strong> An empty leaderboard is the correct state: a leaderboard with invented scores would be a hallucination.</p>
+</section>
+<section class="card">
+<h2>Verified official reward reference (design analogue only)</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Item</th><th scope="col" tabindex="0">Value</th><th scope="col" tabindex="0">Official source</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="leaderboard.html::reward-reference:000" class="row-verified" data-status="verified" data-flags="">
+<td>Big Data Bowl prize pool</td><td>$100,000 in prize money</td><td>NFL Football Operations</td><td><span class="badge badge-verified">VERIFIED</span></td><td>S11</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener noreferrer" title="Big Data Bowl | NFL Football Operations">S11 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::reward-reference:001" class="row-verified" data-status="verified" data-flags="">
+<td>2027 Open Track</td><td>$45,000</td><td>Official 2027 competition page</td><td><span class="badge badge-verified">VERIFIED</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::reward-reference:002" class="row-verified" data-status="verified" data-flags="">
+<td>2027 University Track</td><td>$45,000</td><td>Official 2027 competition page</td><td><span class="badge badge-verified">VERIFIED</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::reward-reference:003" class="row-verified" data-status="verified" data-flags="">
+<td>2027 Grand Prize</td><td>$10,000</td><td>Official 2027 competition page</td><td><span class="badge badge-verified">VERIFIED</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::reward-reference:004" class="row-verified" data-status="verified" data-flags="">
+<td>2027 final submission deadline</td><td>January 6, 2027</td><td>Official 2027 competition page</td><td><span class="badge badge-verified">VERIFIED</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="leaderboard.html::reward-reference:005" class="row-unverified" data-status="unverified" data-flags="F13">
+<td>This project&#x27;s reward budget</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Not supplied; gate D08</td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>S11</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener noreferrer" title="Big Data Bowl | NFL Football Operations">S11 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+    <footer class="footer">
+      <p>NFL2 · Static GitHub Pages dashboard · 2026-11-12 (UTC) ·
+         <a href="methodology.html">Verification methodology</a> ·
+         <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">Repository ↗</a></p>
+      <p class="muted">Research and validation framework only. No wagering, accounts or payments.
+         Legal sports betting is age- and jurisdiction-restricted; help resources:
+         <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.
+         Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.</p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

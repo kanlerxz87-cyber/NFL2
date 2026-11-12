@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A strategy is treated as skill-based only if it survives pre-registered, out-of-sample gates and beats a null control after multiple-testing correctio">
+<title>Validation gates | NFL2</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="validation.html">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><a href="index.html"><span class="brand-mark">NFL2</span><span class="brand-sub">decision dashboard</span></a></div>
+  <div class="topbar-meta">
+    <span class="chip chip-ok">Verified sources only</span>
+    <span class="chip">Captured 2026-11-12 (UTC)</span>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav class="nav" aria-label="Site navigation">
+<div class="nav-group"><h3>Overview</h3><ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="executive-summary.html">Executive summary</a></li>
+<li><a href="requirements.html">Requirements</a></li>
+<li><a href="repo-review.html">Repo review</a></li>
+</ul></div>
+<div class="nav-group"><h3>Decisions</h3><ul>
+<li><a href="decisions.html">Questions &amp; answers</a></li>
+<li><a href="suggestions.html">Suggestions / choose a path</a></li>
+</ul></div>
+<div class="nav-group"><h3>Research</h3><ul>
+<li><a href="sources.html">Official sources</a></li>
+<li><a href="data.html">Verified data</a></li>
+<li><a href="strategies.html">Strategies &amp; signals</a></li>
+</ul></div>
+<div class="nav-group"><h3>Validation</h3><ul>
+<li><a href="validation.html" class="active" aria-current="page">Validation gates</a></li>
+<li><a href="correlations.html">Correlation values</a></li>
+<li><a href="leaderboard.html">Leaderboard &amp; rewards</a></li>
+</ul></div>
+<div class="nav-group"><h3>Tracking</h3><ul>
+<li><a href="injuries.html">Injuries &amp; depth</a></li>
+</ul></div>
+<div class="nav-group"><h3>Governance</h3><ul>
+<li><a href="methodology.html">Methodology</a></li>
+<li><a href="flagged.html">Flagged for review</a></li>
+</ul></div>
+</nav></aside>
+  <main id="main" class="main">
+    <div class="page-head">
+      <p class="eyebrow">Every strategy must pass</p>
+      <h1>Validation gates</h1>
+      <p class="lede">A strategy is treated as skill-based only if it survives pre-registered, out-of-sample gates and beats a null control after multiple-testing correction. No dataset exists in this repository to run any gate, so every result cell is blank and flagged UNVERIFIED.</p>
+    </div>
+    <div class="toolbar">
+      <label class="filter-label" for="rowFilter">Filter rows
+        <input type="search" id="rowFilter" class="filter" placeholder="Type to filter every table on this page…" autocomplete="off">
+      </label>
+      <span id="rowCount" class="filter-count"></span>
+      <span class="legend-inline"><span class="dot dot-verified"></span> verified <span class="dot dot-proposal"></span> proposal <span class="dot dot-unverified"></span> unverified <span class="dot dot-review"></span> needs review</span>
+    </div>
+<section class="card">
+<h2>Gate catalogue</h2>
+<p class="intro">The gate structure mirrors the official Big Data Bowl evaluation table, which publishes literal PASS/FAIL passing standards.</p>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Gate</th><th scope="col" tabindex="0">What it tests</th><th scope="col" tabindex="0">Metric / method</th><th scope="col" tabindex="0">Pass standard (proposed)</th><th scope="col" tabindex="0">Result</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="validation.html::gates:000" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G01</td><td>Data provenance</td><td>Every input row resolves to a fetch-verified official URL</td><td>100% of rows</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:001" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G02</td><td>No leakage</td><td>Features available strictly before kickoff</td><td>Zero future fields</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:002" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G03</td><td>Pre-registration</td><td>Hypothesis, features, alpha and N frozen before evaluation</td><td>Committed spec</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:003" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G04</td><td>Timestamp integrity</td><td>Injury/depth snapshots carry a captured-at time</td><td>Timestamp on every row</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S32</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer" title="Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S32 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:004" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G05</td><td>Probability calibration</td><td>Brier score, a strictly proper scoring rule</td><td>Better than market baseline</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S15</td><td class="src-cell"><a class="src-link" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html" target="_blank" rel="noopener noreferrer" title="brier_score_loss - scikit-learn 1.9.1 documentation">S15 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:005" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G06</td><td>Discrimination</td><td>Pearson correlation between predicted and realised residual</td><td>CI excludes zero</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S14</td><td class="src-cell"><a class="src-link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html" target="_blank" rel="noopener noreferrer" title="pearsonr - SciPy v1.18.0 Manual">S14 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:006" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G07</td><td>Rank / robustness</td><td>Spearman correlation for non-normal or ordinal features</td><td>CI excludes zero</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S17</td><td class="src-cell"><a class="src-link" href="https://www.itl.nist.gov/div898/handbook/" target="_blank" rel="noopener noreferrer" title="NIST/SEMATECH e-Handbook of Statistical Methods">S17 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:007" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G08</td><td>Multiple testing</td><td>FWER / FDR correction across all candidate strategies</td><td>Corrected p below pre-registered alpha</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S16</td><td class="src-cell"><a class="src-link" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html" target="_blank" rel="noopener noreferrer" title="statsmodels.stats.multitest.multipletests - statsmodels 0.15.0">S16 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:008" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G09</td><td>Luck control</td><td>Null / sham strategy with identical stake and sample</td><td>Beats null distribution</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:009" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G10</td><td>Out-of-sample</td><td>Walk-forward holdout never reused for tuning</td><td>Private-score gain positive</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:010" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G11</td><td>Market realism</td><td>Closing-line value against licensed prices, net of vig</td><td>Positive after costs</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S20</td><td class="src-cell"><a class="src-link" href="https://support.nfl.com/hc/en-us/articles/35869698780564-If-I-place-a-bet-on-NFL-com-or-the-NFL-app-am-I-betting-with-the-NFL" target="_blank" rel="noopener noreferrer" title="If I place a bet on NFL.com or the NFL app, am I betting with the NFL? - NFL Support">S20 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::gates:011" class="row-unverified" data-status="unverified" data-flags="F02 F12">
+<td>G12</td><td>Executability</td><td>Legs permitted by approved rules; integrity policy respected</td><td>Zero prohibited legs</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED — NOT RUN</span></td><td>S22</td><td class="src-cell"><a class="src-link" href="https://massgaming.com/wp-content/uploads/BetMGM-House-Rules-8.10.23.pdf" target="_blank" rel="noopener noreferrer" title="BetMGM Massachusetts House Rules (approved, hosted by Massachusetts Gaming Commission)">S22 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<h2>Removing luck — nine-step operational definition</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Step</th><th scope="col" tabindex="0">Control</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="validation.html::skill-protocol:000" class="row-proposal" data-status="proposal" data-flags="">
+<td>1</td><td>Freeze hypothesis, features, alpha, minimum N and holdout before looking at outcomes</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:001" class="row-proposal" data-status="proposal" data-flags="">
+<td>2</td><td>Separate public (development) and private (final) evaluation data</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:002" class="row-proposal" data-status="proposal" data-flags="">
+<td>3</td><td>Exclude future information and test explicitly for leakage</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:003" class="row-proposal" data-status="proposal" data-flags="">
+<td>4</td><td>Score probabilities with a strictly proper scoring rule rather than win/loss counts</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S15</td><td class="src-cell"><a class="src-link" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html" target="_blank" rel="noopener noreferrer" title="brier_score_loss - scikit-learn 1.9.1 documentation">S15 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:004" class="row-proposal" data-status="proposal" data-flags="">
+<td>5</td><td>Correct for the number of strategies tried (FWER / FDR)</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S16</td><td class="src-cell"><a class="src-link" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html" target="_blank" rel="noopener noreferrer" title="statsmodels.stats.multitest.multipletests - statsmodels 0.15.0">S16 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:005" class="row-proposal" data-status="proposal" data-flags="">
+<td>6</td><td>Compare against a null / sham strategy with identical staking</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:006" class="row-proposal" data-status="proposal" data-flags="">
+<td>7</td><td>Require out-of-sample repeatability across seasons, not a single hot streak</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S17</td><td class="src-cell"><a class="src-link" href="https://www.itl.nist.gov/div898/handbook/" target="_blank" rel="noopener noreferrer" title="NIST/SEMATECH e-Handbook of Statistical Methods">S17 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:007" class="row-proposal" data-status="proposal" data-flags="">
+<td>8</td><td>Require positive results after the bookmaker margin and only in executable markets</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S22</td><td class="src-cell"><a class="src-link" href="https://massgaming.com/wp-content/uploads/BetMGM-House-Rules-8.10.23.pdf" target="_blank" rel="noopener noreferrer" title="BetMGM Massachusetts House Rules (approved, hosted by Massachusetts Gaming Commission)">S22 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::skill-protocol:008" class="row-proposal" data-status="proposal" data-flags="">
+<td>9</td><td>Publish blank / unverified results rather than rounding or estimating them</td><td>Official documentation</td><td><span class="badge badge-proposal">PROPOSAL</span></td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+</tbody></table></div>
+<p class="analysis"><strong>Analysis:</strong> &#x27;Selectively skill based&#x27; means a strategy is admitted to the leaderboard only after all nine steps. No strategy in this build has been admitted.</p>
+</section>
+<section class="card">
+<h2>Official methods referenced by the gates</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Method</th><th scope="col" tabindex="0">What the official documentation says</th><th scope="col" tabindex="0">Used by</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="validation.html::official-methods:000" class="row-verified" data-status="verified" data-flags="">
+<td>scipy.stats.pearsonr</td><td>Pearson correlation coefficient and p-value for testing non-correlation</td><td>G06, correlations page</td><td><span class="badge badge-verified">VERIFIED</span></td><td>SciPy manual</td><td>S14</td><td class="src-cell"><a class="src-link" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html" target="_blank" rel="noopener noreferrer" title="pearsonr - SciPy v1.18.0 Manual">S14 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::official-methods:001" class="row-verified" data-status="verified" data-flags="">
+<td>sklearn.metrics.brier_score_loss</td><td>Brier score is the mean squared difference between predicted probability and outcome; a strictly proper scoring rule</td><td>G05</td><td><span class="badge badge-verified">VERIFIED</span></td><td>scikit-learn docs</td><td>S15</td><td class="src-cell"><a class="src-link" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html" target="_blank" rel="noopener noreferrer" title="brier_score_loss - scikit-learn 1.9.1 documentation">S15 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::official-methods:002" class="row-verified" data-status="verified" data-flags="">
+<td>statsmodels multipletests</td><td>Test results and p-value correction for multiple tests (bonferroni, holm, fdr_bh and others)</td><td>G08</td><td><span class="badge badge-verified">VERIFIED</span></td><td>statsmodels docs</td><td>S16</td><td class="src-cell"><a class="src-link" href="https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html" target="_blank" rel="noopener noreferrer" title="statsmodels.stats.multitest.multipletests - statsmodels 0.15.0">S16 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::official-methods:003" class="row-verified" data-status="verified" data-flags="">
+<td>NIST/SEMATECH e-Handbook</td><td>Official statistical methods reference (DOI 10.18434/M32189)</td><td>G07, step 7</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NIST</td><td>S17</td><td class="src-cell"><a class="src-link" href="https://www.itl.nist.gov/div898/handbook/" target="_blank" rel="noopener noreferrer" title="NIST/SEMATECH e-Handbook of Statistical Methods">S17 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::official-methods:004" class="row-verified" data-status="verified" data-flags="">
+<td>Kaggle public/private leaderboard</td><td>A high public score does not guarantee a high private score; data leakage creates unrealistically high performance</td><td>G02, G09, G10</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Kaggle docs</td><td>S13</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer" title="How to Use Kaggle | Competitions">S13 ↗</a></td>
+</tr>
+<tr data-row-id="validation.html::official-methods:005" class="row-verified" data-status="verified" data-flags="">
+<td>Big Data Bowl 2027 evaluation</td><td>Explicit PASS/FAIL requirements and weighted evaluation components</td><td>G03</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official competition</td><td>S12</td><td class="src-cell"><a class="src-link" href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer" title="NFL Big Data Bowl 2027 | Kaggle">S12 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+    <footer class="footer">
+      <p>NFL2 · Static GitHub Pages dashboard · 2026-11-12 (UTC) ·
+         <a href="methodology.html">Verification methodology</a> ·
+         <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">Repository ↗</a></p>
+      <p class="muted">Research and validation framework only. No wagering, accounts or payments.
+         Legal sports betting is age- and jurisdiction-restricted; help resources:
+         <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.
+         Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.</p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
