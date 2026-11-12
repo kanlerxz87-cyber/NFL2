@@ -1,5 +1,5 @@
 {
-  "ref": "115c5bc0de293180394df5cf9088288c898d631c",
+  "ref": "eaf8f6cda467154eace16a7e58654d815e68a0b1",
   "scope": "Every tracked file hashed and line-counted; text syntax parsed; HTML rows/links inventoried. Structural only, not independent factual verification of every cell.",
   "files": [
     {
@@ -14,6 +14,13 @@
       "sha256": "d7fb75f1fccf808e2f66296cbaa68ac5ea4585ed17165a858ce1f187edd0b00e",
       "bytes": 558,
       "line_count": 26,
+      "syntax": "binary_or_not_applicable"
+    },
+    {
+      "path": ".github/workflows/q51.yml",
+      "sha256": "f8a5fcf4e3493615c641688c7d797516758f7d7d5b459c4b7723a6d82b496db0",
+      "bytes": 1089,
+      "line_count": 34,
       "syntax": "binary_or_not_applicable"
     },
     {
@@ -56,9 +63,9 @@
     },
     {
       "path": "COORDINATION.md",
-      "sha256": "2c4dc2e116e95d7c6f315d3206f512828bdc61add0c03b7f6ec26df0c5e5cfec",
-      "bytes": 63654,
-      "line_count": 601,
+      "sha256": "dc40d93bd34b93aee089168176c37fdc27e005899466504cfd6f0a4b1d8f2e98",
+      "bytes": 65505,
+      "line_count": 614,
       "syntax": "binary_or_not_applicable"
     },
     {
@@ -70,9 +77,9 @@
     },
     {
       "path": "README.md",
-      "sha256": "5a0374aa44894b863b736ecea8d239b0cd5200b6b1f6062e80602c9928c6339f",
-      "bytes": 12758,
-      "line_count": 162,
+      "sha256": "5adc3bd555160d47ce4af47efa3eda47fd255afc43758dfccf1bb9412a9f609b",
+      "bytes": 13875,
+      "line_count": 171,
       "syntax": "binary_or_not_applicable"
     },
     {
@@ -1142,7 +1149,7 @@
     },
     {
       "path": "datasets/e143a7ca/verification_manifest.json",
-      "sha256": "4fd09e02f07a2909e0bcf2cb71a5e9feb51e43533d403e1426d5576dfbe82356",
+      "sha256": "542c66071745a4da123cc78c518ece8674a769fc02744a58e5aa0e9eecd9640f",
       "bytes": 376,
       "line_count": 14,
       "syntax": "valid_json"
@@ -1399,6 +1406,20 @@
       "sha256": "92b691a2cc1f365579d97383051cd18c0211f29b595d6d5a400d078f7885abf8",
       "bytes": 100,
       "line_count": 2,
+      "syntax": "valid_python"
+    },
+    {
+      "path": "engine/q51/build_research.py",
+      "sha256": "94b0f96d57118cd018546d0673cafbe9539849fe28da666bb8498caa9b43716b",
+      "bytes": 6747,
+      "line_count": 100,
+      "syntax": "valid_python"
+    },
+    {
+      "path": "engine/q51/build_site.py",
+      "sha256": "f37cdafaeccdd588eb3a037a42801b86ccc350021dc2982ad9bd88eb690138b8",
+      "bytes": 26458,
+      "line_count": 165,
       "syntax": "valid_python"
     },
     {
@@ -1869,6 +1890,176 @@
       "rows_with_official_nfl_or_club_link": 9
     },
     {
+      "path": "q51/assets/app.js",
+      "sha256": "a3cf086ee743e677130817591412fcc6f3e9571890080ebfc02f335b424de6a4",
+      "bytes": 285,
+      "line_count": 2,
+      "syntax": "valid_js"
+    },
+    {
+      "path": "q51/assets/style.css",
+      "sha256": "6c31de1f67e051884a8acb17348463a355196e8706ed8de86009b5d106b8ba32",
+      "bytes": 2298,
+      "line_count": 2,
+      "syntax": "binary_or_not_applicable"
+    },
+    {
+      "path": "q51/availability.html",
+      "sha256": "5f0d15e910f495edf1b62ec40850325dda0dededcc9e3707fd6d351cff0acf1b",
+      "bytes": 27993,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 2,
+      "tbody_rows": 46,
+      "rows_with_official_nfl_or_club_link": 46
+    },
+    {
+      "path": "q51/competition.html",
+      "sha256": "1ce0801ce9f24e7cc4a91c1a925a490a30981f1317403c08bf92168877bf7729",
+      "bytes": 15424,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 2,
+      "tbody_rows": 19,
+      "rows_with_official_nfl_or_club_link": 19
+    },
+    {
+      "path": "q51/correlations.html",
+      "sha256": "9f60e95b0c672df242e2699cbd95b7a3b638e93e060cc55934de28c83478101c",
+      "bytes": 4515,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 1,
+      "tbody_rows": 6,
+      "rows_with_official_nfl_or_club_link": 6
+    },
+    {
+      "path": "q51/data/availability.json",
+      "sha256": "0757ca43befb2440351401d1ff6988de703c1a478fa0408ad30b197c5c28dd0c",
+      "bytes": 10309,
+      "line_count": 292,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/data/correlation-inputs.json",
+      "sha256": "d70b93f95ea09b846b5a714d0c87353bffd9c5e9db566e566d4eb2dcc8ecd29f",
+      "bytes": 121642,
+      "line_count": 4942,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/data/correlations.json",
+      "sha256": "e92bb13aa18fbaa2e378a7c91932a265fa1ffd991ccea81cc91e31633ed3286f",
+      "bytes": 3388,
+      "line_count": 115,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/data/games.json",
+      "sha256": "16a09bb6624719364b77f9ec5f0576063fc62b755e069cddf42c05ebd659c39a",
+      "bytes": 51829,
+      "line_count": 1913,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/data/gates.json",
+      "sha256": "9f57f06d75eaa70334d56cc32353cbe87b79690cabd8d917d4d6e6aa6de16ac8",
+      "bytes": 1750,
+      "line_count": 73,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/data/leaderboard.json",
+      "sha256": "c6b26acb3cfbc42bc328c33321b88e53b362d765763643763f6dcf586492735d",
+      "bytes": 281,
+      "line_count": 9,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/data/lines.json",
+      "sha256": "2de090111d6e9484eccf0ab07efd0d23f4781713aa932f58bf7efdc253bcbec0",
+      "bytes": 17249,
+      "line_count": 511,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/data/week11.json",
+      "sha256": "fee08c2ab5802909b9c514fca714dd50f66e6258df44d5ecda32ba28dc078e70",
+      "bytes": 3902,
+      "line_count": 150,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "q51/decisions.html",
+      "sha256": "713f3952886333c57fe7076e97d6dd5e6ddb608dc47c93cec5b1537934f681ab",
+      "bytes": 11880,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 2,
+      "tbody_rows": 18,
+      "rows_with_official_nfl_or_club_link": 14
+    },
+    {
+      "path": "q51/executive-summary.html",
+      "sha256": "72083055d01331fce0400c95a9e4e8fde3cc2128112a141c9593a33dd8a31eb6",
+      "bytes": 3622,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 0,
+      "tbody_rows": 0,
+      "rows_with_official_nfl_or_club_link": 0
+    },
+    {
+      "path": "q51/flagged.html",
+      "sha256": "8be4fa0e73cdd89b0360991302b0cf5a8a6fabe9442097b117e696ab6d0c0ecb",
+      "bytes": 18470,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 1,
+      "tbody_rows": 23,
+      "rows_with_official_nfl_or_club_link": 16
+    },
+    {
+      "path": "q51/index.html",
+      "sha256": "3b7b646c3ed3ca8da1d419c4e4cf9fd7bdc8398f362c0880c24c820bf05ab4bd",
+      "bytes": 4979,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 1,
+      "tbody_rows": 5,
+      "rows_with_official_nfl_or_club_link": 5
+    },
+    {
+      "path": "q51/lines.html",
+      "sha256": "b787bb94f914761e731314b3c1651eb03ac7a0ba9090b352531950207c9dc790",
+      "bytes": 9953,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 1,
+      "tbody_rows": 13,
+      "rows_with_official_nfl_or_club_link": 13
+    },
+    {
+      "path": "q51/methodology.html",
+      "sha256": "6ccec3e29c2cb8bed412f103270be08ebb27065073f719b42ddc49fe56bfb34b",
+      "bytes": 4404,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 1,
+      "tbody_rows": 3,
+      "rows_with_official_nfl_or_club_link": 3
+    },
+    {
+      "path": "q51/sources.html",
+      "sha256": "2b20909a6770f12bb52ef13e3ac92cc286af8377c33503684c229876bf689363",
+      "bytes": 12680,
+      "line_count": 1,
+      "syntax": "binary_or_not_applicable",
+      "tables": 1,
+      "tbody_rows": 22,
+      "rows_with_official_nfl_or_club_link": 20
+    },
+    {
       "path": "questions.html",
       "sha256": "815b036080d4ae0e7f7eca54d0bda190606f4e6b25f637cfe025b62343eaa837",
       "bytes": 25809,
@@ -1921,6 +2112,27 @@
       "sha256": "d32a7ae4b54dbb0584d69033094487718dc45d30da810d4256f019df556bfb61",
       "bytes": 765516,
       "line_count": 14334,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "research/q51/collector-probe.json",
+      "sha256": "d297cc5164c6e8317c6aee547e37b55921fc0241264206d2b6240f751e57b603",
+      "bytes": 2175,
+      "line_count": 64,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "research/q51/current-audit.json",
+      "sha256": "a5612f5f47e0947c357f1f8eda9efe332fec6f91d72901acda9f9ff04be63bf3",
+      "bytes": 92100,
+      "line_count": 2927,
+      "syntax": "valid_json"
+    },
+    {
+      "path": "research/q51/current-review.json",
+      "sha256": "e475f888498cbc1350b581e1d3da674181126b3f162b42900ab0ed0842a7ec4f",
+      "bytes": 4341,
+      "line_count": 31,
       "syntax": "valid_json"
     },
     {
@@ -2327,6 +2539,13 @@
       "syntax": "valid_python"
     },
     {
+      "path": "scripts/audit_q51_current.py",
+      "sha256": "1614fd4032c1dd5d05e506353fc45e1cd8cfd490baeba9f9c71e8b3d8c569ccb",
+      "bytes": 5843,
+      "line_count": 92,
+      "syntax": "valid_python"
+    },
+    {
       "path": "scripts/build_new_pages.py",
       "sha256": "a0f32009ccb4810a3c96adbff2b6b92632ff808adfe4ddc4b054c3c1ffcda069",
       "bytes": 45535,
@@ -2415,6 +2634,13 @@
       "sha256": "d8b2b3b97357e9d79fe1ea81f8322880e868fe0682f98a3af6a9853264a6fc7a",
       "bytes": 5333,
       "line_count": 108,
+      "syntax": "valid_python"
+    },
+    {
+      "path": "scripts/verify_q51.py",
+      "sha256": "2bfe953f472797c84b08b88b132e75ca5227a709a6f2093ba35b210be5f98dbb",
+      "bytes": 4021,
+      "line_count": 68,
       "syntax": "valid_python"
     },
     {
@@ -2811,6 +3037,13 @@
       "rows_with_official_nfl_or_club_link": 0
     },
     {
+      "path": "tests/q51/test_audit_mutations.py",
+      "sha256": "f06e80f69fc85a4a2d0c259925c70f0bc8f1c40f7a5d8daba3ea869ce1435477",
+      "bytes": 2293,
+      "line_count": 39,
+      "syntax": "valid_python"
+    },
+    {
       "path": "tests/q51/test_collectors.py",
       "sha256": "93dafc8fe1763656f6089125b45c934d46f45d1b27c0f8a04768412b33e48500",
       "bytes": 2574,
@@ -2913,11 +3146,11 @@
     "validation-gates.html"
   ],
   "totals": {
-    "files": 355,
-    "lines": 245774,
-    "html_pages": 121,
-    "tbody_rows": 4575,
-    "rows_with_official_nfl_or_club_link": 3468
+    "files": 384,
+    "lines": 257335,
+    "html_pages": 131,
+    "tbody_rows": 4730,
+    "rows_with_official_nfl_or_club_link": 3610
   },
   "limitations": [
     "Official-domain coverage is not factual agreement.",
