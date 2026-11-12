@@ -129,7 +129,7 @@ PAGES.append(P(
               R(["Overview", "Repo review", "Line-by-line audit of the original repository", "14", "VERIFIED", "GitHub API + local git", "S29"], "S29"),
               R(["Decisions", "Questions & answers", "Information we have / do not have / answers / discovery", "39", "PROPOSAL", "Official NFL sources", "S01"], "S01"),
               R(["Decisions", "Suggestions", "Ranked paths and the pre-implementation chooser", "20", "PROPOSAL", "Official competition design", "S11"], "S11"),
-              R(["Research", "Official sources", "Every fetch-verified official URL", "36", "VERIFIED", "Source registry", "S01"], "S01"),
+              R(["Research", "Official sources", "36 registry rows: 33 fetch-verified / local-git-verified official URLs and 3 explicitly excluded entries", "36", "VERIFIED", "Source registry", "S01"], "S01"),
               R(["Research", "Verified data", "Standings, schedule, game metrics, injury and depth snapshots", "31", "VERIFIED", "NFL.com / club site", "S03"], "S03"),
               R(["Research", "Strategies & signals", "15 candidate strategies across singles, parlays, prop combos", "35", "PROPOSAL", "Official data inputs", "S20"], "S20"),
               R(["Validation", "Validation gates", "12 gates + 9-step skill-vs-luck protocol", "27", "PROPOSAL", "Official method documentation", "S15"], "S15"),

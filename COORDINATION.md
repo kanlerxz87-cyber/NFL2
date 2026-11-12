@@ -250,3 +250,36 @@ source and linking that source.**
   take over the task and note the handoff here, preserving the prior session's work.
 - On merge conflict: stop, resolve without discarding the other session's work, and log what happened
   in this section.
+
+## 8. Second integration with `main` (session 01b698ef, 2026-11-12 UTC)
+
+While this session was resolving its first cross-session merge, session `009ec582` merged
+**PR #7** into `main` (`e0cd76f`; per-row source links on its root pages + H11 row-level
+link check, and its PR #6 deploy record). `git merge origin/main --no-edit` was run again;
+it auto-merged cleanly. The other session's 18 changed files (root HTML, `scripts/`,
+`data/derived/`) were taken in unchanged. This session's two additive navigation links and
+its appended board/README appendix survived the auto-merge and were re-checked.
+
+Verification after this second merge:
+* `python3 tools/build_site.py && python3 tools/verify.py` — **OK**: 16 pages, 41 tables,
+  423 rows, 423/423 official source links, 230 blank cells, 94 flagged UNVERIFIED rows,
+  0 broken links; combined cross-build check 1,518 internal links on 48 pages, 0 broken.
+* The other session's own `python3 scripts/verify_site.py` — **13/13 site checks passed**.
+  Both verification suites pass on the combined tree.
+
+### Deviation from the pull-before-push rule (logged as an irregularity)
+
+The task board asks for `git pull --rebase` before every push. Running it on a branch whose
+HEAD is an **integration merge with `main`** caused Git to flatten the merge and replay the
+other session's commits individually, producing add/add conflicts and discarding the
+resolved integration. The rebase was **aborted** (`git rebase --abort`) without losing any
+work. For the integration commits, `git fetch origin` confirmed the upstream tip and
+`git merge origin/main --no-edit` was used instead, which preserves every session's work.
+No files were deleted or overwritten. This is flagged for review rather than hidden.
+
+### PR & merge record (this session)
+
+- PR: _pending at time of writing_
+- Merge result: _pending_
+- Pages deploy: _pending_
+
