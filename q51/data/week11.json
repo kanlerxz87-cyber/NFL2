@@ -1,0 +1,150 @@
+{
+  "games": [
+    {
+      "game_id": "2026-R11-IND-HOU",
+      "home": "HOU",
+      "away": "IND",
+      "date": "Thu, Nov 19",
+      "time_et": "8:15 pm ET",
+      "tv": "Prime Video",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 11
+    },
+    {
+      "game_id": "2026-R11-MIA-BUF",
+      "home": "BUF",
+      "away": "MIA",
+      "date": "Sun, Nov 22",
+      "time_et": "1:00 pm ET",
+      "tv": "FOX",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 12
+    },
+    {
+      "game_id": "2026-R11-BAL-CAR",
+      "home": "CAR",
+      "away": "BAL",
+      "date": "Sun, Nov 22",
+      "time_et": "1:00 pm ET",
+      "tv": "FOX",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 13
+    },
+    {
+      "game_id": "2026-R11-NO-CHI",
+      "home": "CHI",
+      "away": "NO",
+      "date": "Sun, Nov 22",
+      "time_et": "1:00 pm ET",
+      "tv": "FOX",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 14
+    },
+    {
+      "game_id": "2026-R11-TEN-DAL",
+      "home": "DAL",
+      "away": "TEN",
+      "date": "Sun, Nov 22",
+      "time_et": "1:00 pm ET",
+      "tv": "FOX",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 15
+    },
+    {
+      "game_id": "2026-R11-TB-DET",
+      "home": "DET",
+      "away": "TB",
+      "date": "Sun, Nov 22",
+      "time_et": "1:00 pm ET",
+      "tv": "CBS",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 16
+    },
+    {
+      "game_id": "2026-R11-AZ-KC",
+      "home": "KC",
+      "away": "AZ",
+      "date": "Sun, Nov 22",
+      "time_et": "1:00 pm ET",
+      "tv": "CBS",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 17
+    },
+    {
+      "game_id": "2026-R11-PIT-PHI",
+      "home": "PHI",
+      "away": "PIT",
+      "date": "Sun, Nov 22",
+      "time_et": "1:00 pm ET",
+      "tv": "CBS",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 18
+    },
+    {
+      "game_id": "2026-R11-NYJ-LAC",
+      "home": "LAC",
+      "away": "NYJ",
+      "date": "Sun, Nov 22",
+      "time_et": "4:05 pm ET",
+      "tv": "FOX",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 19
+    },
+    {
+      "game_id": "2026-R11-LV-DEN",
+      "home": "DEN",
+      "away": "LV",
+      "date": "Sun, Nov 22",
+      "time_et": "4:25 pm ET",
+      "tv": "CBS",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 20
+    },
+    {
+      "game_id": "2026-R11-JAX-NYG",
+      "home": "NYG",
+      "away": "JAX",
+      "date": "Sun, Nov 22",
+      "time_et": "4:25 pm ET",
+      "tv": "CBS",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 21
+    },
+    {
+      "game_id": "2026-R11-MIN-SF",
+      "home": "SF",
+      "away": "MIN",
+      "date": "Sun, Nov 22",
+      "time_et": "8:20 pm ET",
+      "tv": "NBC",
+      "neutral": true,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 22
+    },
+    {
+      "game_id": "2026-R11-CIN-WAS",
+      "home": "WAS",
+      "away": "CIN",
+      "date": "Mon, Nov 23",
+      "time_et": "8:15 pm ET",
+      "tv": "ESPN",
+      "neutral": false,
+      "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+      "source_row": 23
+    }
+  ],
+  "source_url": "https://www.nfl.com/news/week-11-schedule-change",
+  "as_of": "2026-11-12",
+  "planning_week": 11
+}

@@ -3,6 +3,8 @@
 
 {{kpis}}
 
+> **Independent Q51 audit and tested research engine:** [open the evidence dashboard](q51/index.html). It publishes current-snapshot research lines, descriptive correlations, fail-closed gates and the full Flagged for Review register. Outputs are paper-only and unvalidated; no betting edge is claimed.
+
 ## Read this first
 
 This site has two kinds of pages and they never mix on one page without a divider:
@@ -11,7 +13,7 @@ This site has two kinds of pages and they never mix on one page without a divide
 - **Specified** (blue badge) — the design of the pricing engine, signals, gates and competition rules. These are proposals, not results.
 - **Decisions** (amber badge) — the [question register](questions.html), the [suggestion register](suggestions.html) and the [review queue](flagged-for-review.html). Nothing on these pages has been implemented on your instruction.
 
-There are no scores, no model outputs and no edges on this site, because none exist yet. Blank cells are rendered as `not published` rather than filled with an estimate — see [verification method](methodology.html).
+The root register remains design-only. Independent Q51 research outputs are labelled unvalidated and paper-only; no betting edge is claimed. Blank cells are rendered as `not published` rather than filled with an estimate — see [verification method](methodology.html).
 
 ## What the repository held at the start of this session
 

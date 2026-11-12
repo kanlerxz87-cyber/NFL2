@@ -1,0 +1,34 @@
+name: Q51 evidence and engine verification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  q51:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Unit and mutation tests
+        run: python3 -m unittest discover -s tests/q51 -v
+      - name: Rebuild current-snapshot research artifacts
+        run: python3 -m engine.q51.build_research
+      - name: Rebuild Q51 dashboard
+        run: python3 -m engine.q51.build_site
+      - name: Strict Q51 publication gate
+        run: python3 scripts/verify_q51.py
+      - name: Upstream root data and site verification
+        run: |
+          python3 tools/build_site.py
+          python3 tools/verify.py
+          python3 tools/check_site.py
+          python3 scripts/audit_all_pages.py
+      - name: Confirm generated output matches committed output
+        run: git diff --exit-code -- q51 index.html 404.html data/build_manifest.json

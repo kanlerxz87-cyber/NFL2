@@ -13,7 +13,7 @@
 <li><strong>Spread:</strong> Handicap on margin. Favorite −X must win by more than X; underdog +X covers by losing by less or winning. Whole-number spread can <em>push</em> (refund); half-point cannot.</li>
 <li><strong>Moneyline:</strong> Straight winner, margin irrelevant. Minus = favorite (risk to win $100); plus = underdog (win per $100).</li>
 <li><strong>Total (O/U):</strong> Combined points vs number. Whole-number total can push; half-point cannot.</li>
-<li><strong>Price vs number:</strong> The number (e.g. −3.5) and the price (−110) are separate. Standard spread price −110/−110 implies 52.38% each (104.76% total) — the extra ~4.76% is the book’s <em>vig/hold</em>. A line is a <em>price to balance risk</em>, not a score prediction. Sources: <a href="https://www.gamblingsite.com/football-betting/nfl-odds/">GamblingSite — How to Read NFL Odds</a> · <a href="https://www.oddsshopper.com/articles/betting-101/implied-probability">OddsShopper — Implied Probability</a>.</li>
+<li><strong>Price vs number:</strong> The number (e.g. −3.5) and the price (−110) are separate. Standard spread price −110/−110 implies 52.38% each (104.76% total) — the extra ~4.76% is the <em>overround</em>; under balanced proportional stakes the normalized margin is ~4.545%, and actual hold depends on wager distribution. A line is a <em>price to balance risk</em>, not a score prediction. Sources: <a href="https://www.gamblingsite.com/football-betting/nfl-odds/">GamblingSite — How to Read NFL Odds</a> · <a href="https://www.oddsshopper.com/articles/betting-101/implied-probability">OddsShopper — Implied Probability</a>.</li>
 </ul>
 
 <h2>2 · Fair-odds math (verified formulas)</h2>
@@ -21,7 +21,7 @@
   Negative odds:  |odds| / (|odds| + 100)      e.g. −110 → 110/210 = 52.38%
   Positive odds:  100 / (odds + 100)           e.g. +150 → 100/250 = 40.00%
 
-Overround = sum(implied probs) − 100%          e.g. −110/−110 → 104.76% → vig 4.76%
+Overround = sum(implied probs) − 100%          e.g. −110/−110 → 104.76% → overround 4.76%; balanced normalized margin 4.545%
 No-vig (fair) prob = implied / sum(implied)    e.g. 52.38/104.76 = 50.00% each (≈ +100)
 
 Expected value per unit staked:  EV = p·b − (1−p)   where b = net odds (decimal − 1)
@@ -76,7 +76,7 @@ Kelly fraction:  f* = (b·p − q) / b,  q = 1−p      (maximizes log-growth; u
 <ul class="tight">
 <li>Stake cap 1% per bet until 500 graded bets (S-12); quarter-Kelly thereafter. Never full Kelly on uncertain edges.</li>
 <li>Loss limits + session stops set <em>before</em> any real-money use (Q-08, Q-17).</li>
-<li>Help: National Council on Problem Gambling — <strong>1-800-MY-RESET</strong> (1-800-522-4700), <a href="https://www.ncpgambling.org/ncpg/">ncpgambling.org</a>. 18+/21+ only where applicable; check local law.</li>
+<li>Help: National Council on Problem Gambling — <strong>1-800-MY-RESET</strong> (1-800-697-3738), <a href="https://www.ncpgambling.org/ncpg/">ncpgambling.org</a>. 18+/21+ only where applicable; check local law.</li>
 </ul>
 </main>
 <footer><div class="footer-inner"><a href="index.html">← Dashboard</a> · <a href="strategies.html">Leaderboard →</a></div></footer>
