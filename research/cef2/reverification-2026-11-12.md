@@ -54,3 +54,15 @@ site 10+1warn/0, census 11/11 under the new counts, all sibling verifiers green.
 unaffected by their merge and stay open. Their `FL-24` independently re-derives this session's IND
 finding (11-of-13 rows vs the rolling hub) — same drift, two directions, one conclusion: captures must
 be dated (S-26/CEF2-S1).
+
+## 6. Publication record (final)
+
+- This session merged to `main` as **PR #33**, merge commit `2386c51` (2026-11-12T22:48:17Z) on top of
+  `0fd35d3` (after absorbing PRs #25–#34 through three conflict rounds; every conflict resolved by
+  keeping both records and regenerating generated files, never hand-merging them).
+- GitHub Pages: build `status=built` on `2386c51`; CI `GitHub Pages`, `pages build and deployment`,
+  `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification` all success.
+- Per the FL-26 lesson, the deploy was confirmed by probing a **tree-unique** URL:
+  `https://kanlerxz87-cyber.github.io/NFL2/research/cef2/index.html` renders the published brief
+  (it exists only in the audited root build, so its 200 + content is proof the correct tree is live).
+- Follow-up commit (this record + PR #34 gate note on the brief page) published via PR #35.
