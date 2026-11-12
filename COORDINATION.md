@@ -621,3 +621,24 @@ A required `git pull --rebase` attempted to flatten the merge preserving the alr
 - **Post-merge CI:** `Q51 evidence and engine verification`, `build-and-audit`, `Verify site data and links`, `lab-validate`, `GitHub Pages`, and `pages build and deployment` completed successfully at `45ea5f3`.
 - **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`. Live-fetched and confirmed: https://kanlerxz87-cyber.github.io/NFL2/ , https://kanlerxz87-cyber.github.io/NFL2/q51/index.html , and https://kanlerxz87-cyber.github.io/NFL2/q51/flagged.html .
 - **Conflict handling:** repeated required pre-push `git pull --rebase` attempts tried to flatten the already-pushed claim merge and conflicted on COORDINATION.md; each was aborted and the branch was preserved without force. Final publication used the clean merged PR; no upstream work was discarded.
+
+---
+
+## Session `cef2b11f` (`arena/cef2b11f-nfl2`) — cross-tree re-verification, discrepancy census & freshness refresh
+
+**Branch base:** `25d88a9` (PR #24 merge, `main` HEAD at claim time). No open PRs and no other
+active branches at claim time (`git branch -r` shows only `origin/main`), so all work below starts on a quiet board.
+Session posture: **re-verify and integrate, not restate.** No new analytical opinion is added to the
+eight published trees; this session audits what they say against official sources and against each other.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| CEF2-T01 | Independent re-verification sweep: rebuild + all 7 repo verifier suites re-run on this tree; live Pages URLs fetched through the page reader (sandbox curl egress is allowlist-blocked); spot re-verification of core registers against official NFL sources (standings reconciliation, injury register rows, schedule rows) | in progress | `cef2b11f` | `research/cef2/reverification-2026-11-12.json`, `research/cef2/reverification-2026-11-12.md` |
+| CEF2-T02 | Cross-tree discrepancy census: enumerate every place the eight published trees report conflicting numbers for the same object (correlations, strategy counts, register totals, blank-cell censuses), each row sourced to both sides | in progress | `cef2b11f` | `research/cef2/discrepancies-2026-11-12.json`, `research/cef2/discrepancies-2026-11-12.md` |
+| CEF2-T03 | Freshness check of the official Week 11 injury/designation state vs the published Week 10 registers; record drift and what it implies for decision timing | in progress | `cef2b11f` | `research/cef2/freshness-2026-11-12.json`, `research/cef2/freshness-2026-11-12.md` |
+| CEF2-T04 | Final integration: one cross-link row in `content/index.md` to this session's re-verification brief (rebuilt via `tools/build_site.py`, CI drift gate respected), COORDINATION close-out, PR → merge → Pages confirmation | unclaimed→in progress | `cef2b11f` | `content/index.md`, regenerated root `index.html`/`404.html`/`data/build_manifest.json`, `README.md`, `COORDINATION.md` |
+
+Rules this session follows: edits confined to the scopes above; `tools/**`, root `data/*.csv`,
+`analytics/**`, `review/**`, `portal/**`, `site/**`, `s53/**`, `q53`-family files, `docs/**`,
+`engine/**`, `pipeline/**` and `archive/**` are **not touched**; if a defect is found in another
+tree's file it is logged here as a change request, not fixed.
