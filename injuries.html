@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Three distinct layers must be tracked: the weekly official injury report, club-published depth charts with First through Fourth string, and the defini">
+<title>Injuries &amp; depth | NFL2</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="injuries.html">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><a href="index.html"><span class="brand-mark">NFL2</span><span class="brand-sub">decision dashboard</span></a></div>
+  <div class="topbar-meta">
+    <span class="chip chip-ok">Verified sources only</span>
+    <span class="chip">Captured 2026-11-12 (UTC)</span>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav class="nav" aria-label="Site navigation">
+<div class="nav-group"><h3>Overview</h3><ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="executive-summary.html">Executive summary</a></li>
+<li><a href="requirements.html">Requirements</a></li>
+<li><a href="repo-review.html">Repo review</a></li>
+</ul></div>
+<div class="nav-group"><h3>Decisions</h3><ul>
+<li><a href="decisions.html">Questions &amp; answers</a></li>
+<li><a href="suggestions.html">Suggestions / choose a path</a></li>
+</ul></div>
+<div class="nav-group"><h3>Research</h3><ul>
+<li><a href="sources.html">Official sources</a></li>
+<li><a href="data.html">Verified data</a></li>
+<li><a href="strategies.html">Strategies &amp; signals</a></li>
+</ul></div>
+<div class="nav-group"><h3>Validation</h3><ul>
+<li><a href="validation.html">Validation gates</a></li>
+<li><a href="correlations.html">Correlation values</a></li>
+<li><a href="leaderboard.html">Leaderboard &amp; rewards</a></li>
+</ul></div>
+<div class="nav-group"><h3>Tracking</h3><ul>
+<li><a href="injuries.html" class="active" aria-current="page">Injuries &amp; depth</a></li>
+</ul></div>
+<div class="nav-group"><h3>Governance</h3><ul>
+<li><a href="methodology.html">Methodology</a></li>
+<li><a href="flagged.html">Flagged for review</a></li>
+</ul></div>
+</nav></aside>
+  <main id="main" class="main">
+    <div class="page-head">
+      <p class="eyebrow">Snapshots captured 2026-11-12 (UTC)</p>
+      <h1>Injuries &amp; depth</h1>
+      <p class="lede">Three distinct layers must be tracked: the weekly official injury report, club-published depth charts with First through Fourth string, and the definitive inactive list in the Game Day Administration Report. Blank cells below are blank on the official source; they were not filled in.</p>
+    </div>
+    <div class="toolbar">
+      <label class="filter-label" for="rowFilter">Filter rows
+        <input type="search" id="rowFilter" class="filter" placeholder="Type to filter every table on this page…" autocomplete="off">
+      </label>
+      <span id="rowCount" class="filter-count"></span>
+      <span class="legend-inline"><span class="dot dot-verified"></span> verified <span class="dot dot-proposal"></span> proposal <span class="dot dot-unverified"></span> unverified <span class="dot dot-review"></span> needs review</span>
+    </div>
+<section class="card">
+<h2>Verified official rules that constrain the tracker</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">ID</th><th scope="col" tabindex="0">Fact</th><th scope="col" tabindex="0">Design consequence</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="injuries.html::injury-facts:000" class="row-verified" data-status="verified" data-flags="">
+<td>I01</td><td>Week 10 injury report lists Player, Position, Injuries, Practice Status, Game Status</td><td>Mirror the exact schema</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-facts:001" class="row-verified" data-status="verified" data-flags="">
+<td>I02</td><td>Practice status is DNP / Limited (&lt;100% of normal reps) / Full (100%)</td><td>Use verbatim codes, not probabilities</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com</td><td>S02</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693" target="_blank" rel="noopener noreferrer" title="Competition Committee approves revisions to injury report | NFL.com">S02 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-facts:002" class="row-verified" data-status="verified" data-flags="">
+<td>I03</td><td>Questionable = uncertain; Doubtful = unlikely; Out = will not play; Probable eliminated</td><td>Never attach a percentage to a status</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com</td><td>S02</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693" target="_blank" rel="noopener noreferrer" title="Competition Committee approves revisions to injury report | NFL.com">S02 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-facts:003" class="row-verified" data-status="verified" data-flags="">
+<td>I04</td><td>Club depth chart exposes First–Fourth but is labelled &#x27;Unofficial Depth Chart&#x27;</td><td>Store a source-quality marker</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Chiefs official site</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-facts:004" class="row-verified" data-status="verified" data-flags="">
+<td>I05</td><td>Game Day Administration Report with inactive list is exchanged at the 90-minute meeting</td><td>Final availability checkpoint</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL Football Operations</td><td>S24</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/game-operations-logistics/preparation-safety/game-and-stadium-prep" target="_blank" rel="noopener noreferrer" title="Game and Stadium Prep | NFL Football Operations">S24 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-facts:005" class="row-verified" data-status="verified" data-flags="">
+<td>I06</td><td>47/48-player game-day active list from a 53-player roster</td><td>Model who can actually dress</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com</td><td>S25</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-emergency-third-quarterback-rule-questions-and-answers" target="_blank" rel="noopener noreferrer" title="NFL emergency third-quarterback rule: Questions and answers | NFL.com">S25 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-facts:006" class="row-verified" data-status="verified" data-flags="">
+<td>I07</td><td>Game Ops Manual requires certified athletic-trainer injury spotters</td><td>In-game injuries are a separate stream</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL Football Operations</td><td>S26</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/game-operations-logistics/preparation-safety/game-ops-manual" target="_blank" rel="noopener noreferrer" title="Game Ops Manual | NFL Football Operations">S26 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-facts:007" class="row-verified" data-status="verified" data-flags="">
+<td>I08</td><td>NFL integrity policy prohibits wagers tied to injuries</td><td>Check market permissibility</td><td><span class="badge badge-verified">VERIFIED</span></td><td>NFL.com</td><td>S18</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners" target="_blank" rel="noopener noreferrer" title="NFL announces official partnerships with three leading sports betting operators | NFL.com">S18 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<h2>Week 10 injury snapshot — Commanders at Giants, Thu 12 Nov 2026</h2>
+<p class="intro">Empty Injury / Game Status cells are empty on the official report. They are not filled in.</p>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Club</th><th scope="col" tabindex="0">Player</th><th scope="col" tabindex="0">Pos</th><th scope="col" tabindex="0">Injury</th><th scope="col" tabindex="0">Practice status</th><th scope="col" tabindex="0">Game status</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="injuries.html::injury-snapshot:000" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>John Bates</td><td>TE</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:001" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Treylon Burks</td><td>WR</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Did Not Participate In Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:002" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Jayden Daniels</td><td>QB</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:003" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Matt Gulbin</td><td>C</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:004" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Chig Okonkwo</td><td>TE</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:005" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Lucas Patrick</td><td>C</td><td>Concussion</td><td>Did Not Participate In Practice</td><td>Out</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:006" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Amik Robertson</td><td>CB</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Limited Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:007" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Shy Tuttle</td><td>DT</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:008" class="row-verified" data-status="verified" data-flags="">
+<td>Commanders</td><td>Colson Yankoff</td><td>TE</td><td>Knee</td><td>Did Not Participate In Practice</td><td>Out</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:009" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Abdul Carter</td><td>LB</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:010" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Jermaine Eluemunor</td><td>T</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:011" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Malik Harrison</td><td>LB</td><td>Groin</td><td>Limited Participation in Practice</td><td>Questionable</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:012" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Colton Hood</td><td>CB</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:013" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Theo Johnson</td><td>TE</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:014" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Charlie Jones</td><td>WR</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:015" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>J.J. McCarthy</td><td>QB</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:016" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Darnell Mooney</td><td>WR</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:017" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Malik Nabers</td><td>WR</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:018" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Cam Skattebo</td><td>RB</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::injury-snapshot:019" class="row-verified" data-status="verified" data-flags="">
+<td>Giants</td><td>Andrew Thomas</td><td>T</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td>Full Participation in Practice</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official NFL injury report</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<h2>Chiefs depth snapshot — offense and defense</h2>
+<p class="intro">This directly addresses 2nd, 3rd and 4th string replacements on both offense and defense. Source quality caveat: the club calls this an &#x27;Unofficial Depth Chart&#x27;.</p>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Unit</th><th scope="col" tabindex="0">Position</th><th scope="col" tabindex="0">1st</th><th scope="col" tabindex="0">2nd</th><th scope="col" tabindex="0">3rd</th><th scope="col" tabindex="0">4th</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="injuries.html::depth-snapshot:000" class="row-verified" data-status="verified" data-flags="">
+<td>Offense</td><td>QB</td><td>Patrick Mahomes</td><td>Justin Fields</td><td>Garrett Nussmeier</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:001" class="row-verified" data-status="verified" data-flags="">
+<td>Offense</td><td>TE</td><td>Travis Kelce</td><td>Noah Gray</td><td>Jared Wiley</td><td>Jake Briningstool</td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:002" class="row-verified" data-status="verified" data-flags="">
+<td>Offense</td><td>RB</td><td>Kenneth Walker</td><td>Emmett Johnson</td><td>Jaydn Ott</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:003" class="row-verified" data-status="verified" data-flags="">
+<td>Offense</td><td>WR</td><td>Rashee Rice</td><td>Jalen Royals</td><td>Andrew Armstrong</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:004" class="row-verified" data-status="verified" data-flags="">
+<td>Offense</td><td>LT</td><td>Kahlil Benson</td><td>Diego Pounds</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:005" class="row-verified" data-status="verified" data-flags="">
+<td>Defense</td><td>CB</td><td>Mansoor Delane</td><td>Kristian Fulton</td><td>Melvin Smith</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:006" class="row-verified" data-status="verified" data-flags="">
+<td>Defense</td><td>S</td><td>Chamarri Conner</td><td>Jaden Hicks</td><td>Xavier Nwankpa</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:007" class="row-verified" data-status="verified" data-flags="">
+<td>Defense</td><td>DE</td><td>Felix Anudike-Uzomah</td><td>Ashton Gillotte</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:008" class="row-verified" data-status="verified" data-flags="">
+<td>Defense</td><td>LB</td><td>Drue Tranquill</td><td>Jeffrey Bassa</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::depth-snapshot:009" class="row-verified" data-status="verified" data-flags="">
+<td>Defense</td><td>DT</td><td>Chris Jones</td><td>Peter Woods</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-verified">VERIFIED — club-labelled unofficial</span></td><td>Chiefs official depth chart</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<h2>Tracker schema (design)</h2>
+<div class="table-wrap"><table class="data-table" data-sortable>
+<thead><tr><th scope="col" tabindex="0">Field</th><th scope="col" tabindex="0">Definition / source of truth</th><th scope="col" tabindex="0">Computed?</th><th scope="col" tabindex="0">Value</th><th scope="col" tabindex="0">Status</th><th scope="col" tabindex="0">Official basis</th><th scope="col" tabindex="0">Source</th><th scope="col" tabindex="0">Official link</th></tr></thead>
+<tbody>
+<tr data-row-id="injuries.html::tracker-schema:000" class="row-verified" data-status="verified" data-flags="">
+<td>player_id</td><td>Official NFL.com player slug</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:001" class="row-verified" data-status="verified" data-flags="">
+<td>club, position</td><td>Verbatim from official report row</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:002" class="row-verified" data-status="verified" data-flags="">
+<td>injury_text</td><td>Verbatim injury field; blank if absent</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:003" class="row-verified" data-status="verified" data-flags="">
+<td>practice_status</td><td>DNP / Limited / Full, verbatim</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S02</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693" target="_blank" rel="noopener noreferrer" title="Competition Committee approves revisions to injury report | NFL.com">S02 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:004" class="row-verified" data-status="verified" data-flags="">
+<td>game_status</td><td>Questionable / Doubtful / Out / blank</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S02</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693" target="_blank" rel="noopener noreferrer" title="Competition Committee approves revisions to injury report | NFL.com">S02 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:005" class="row-verified" data-status="verified" data-flags="">
+<td>depth_rank</td><td>1–4 from club chart, with &#x27;unofficial&#x27; marker</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:006" class="row-verified" data-status="verified" data-flags="">
+<td>unit</td><td>offense / defense / special teams</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S23</td><td class="src-cell"><a class="src-link" href="https://www.chiefs.com/team/depth-chart" target="_blank" rel="noopener noreferrer" title="Chiefs Depth Chart | Kansas City Chiefs - chiefs.com">S23 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:007" class="row-verified" data-status="verified" data-flags="">
+<td>inactive_final</td><td>Game Day Administration Report at 90-minute meeting</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S24</td><td class="src-cell"><a class="src-link" href="https://operations.nfl.com/game-operations-logistics/preparation-safety/game-and-stadium-prep" target="_blank" rel="noopener noreferrer" title="Game and Stadium Prep | NFL Football Operations">S24 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:008" class="row-verified" data-status="verified" data-flags="">
+<td>captured_at_utc</td><td>Timestamp of each snapshot</td><td>No</td><td>As specified at left</td><td><span class="badge badge-verified">VERIFIED</span></td><td>Official source</td><td>S32</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer" title="Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S32 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:009" class="row-unverified" data-status="unverified" data-flags="F02 F03">
+<td>replacement_depth</td><td>Computed depth rank of the player who actually took the snaps</td><td>Yes</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>No licensed dataset</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+<tr data-row-id="injuries.html::tracker-schema:010" class="row-unverified" data-status="unverified" data-flags="F02 F03">
+<td>deficiency_index</td><td>Computed unit-level weakness from replacements</td><td>Yes</td><td class="blank" data-blank="1" aria-label="Unverified - value left blank"></td><td><span class="badge badge-unverified">UNVERIFIED</span></td><td>No licensed dataset</td><td>S01</td><td class="src-cell"><a class="src-link" href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener noreferrer" title="Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com">S01 ↗</a></td>
+</tr>
+</tbody></table></div>
+<p class="analysis"><strong>Analysis:</strong> replacement_depth and deficiency_index are the two fields the brief asks the system to &#x27;know&#x27;. Both require per-snap participation data that is not available from any fetch-verified official source here, so both are blank and flagged.</p>
+</section>
+    <footer class="footer">
+      <p>NFL2 · Static GitHub Pages dashboard · 2026-11-12 (UTC) ·
+         <a href="methodology.html">Verification methodology</a> ·
+         <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener noreferrer">Repository ↗</a></p>
+      <p class="muted">Research and validation framework only. No wagering, accounts or payments.
+         Legal sports betting is age- and jurisdiction-restricted; help resources:
+         <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.
+         Not affiliated with or endorsed by the NFL or Kaggle; official pages are cited as references.</p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
