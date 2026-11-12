@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selectively Skill-Based Signal Leaderboard Competition &mdash; NFL2</title>
+  <link rel="stylesheet" href="assets/s53126614.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">NFL2 <span>Decision &amp; Line-Origination Hub</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Verified Through NFL Week 9 / Week 10 Injury Cycle</span>
+    </div>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Dashboard</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements Matrix</a>
+      <a href="repo-audit.html">Repo Audit</a>
+      <a href="standings.html">Standings</a>
+      <a href="results.html">Game Log (136)</a>
+      <a href="originated-lines.html">Originated Lines</a>
+      <a href="correlations.html">Correlations &amp; Skill</a>
+      <a href="depth-deficiencies.html">Injuries &amp; 1st&ndash;4th String</a>
+      <a href="leaderboard-competition.html" aria-current="page">Signal Leaderboard</a>
+      <a href="decision-center.html">Decision Center &amp; Paths</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="sources.html">Official Sources</a>
+      <a href="docs/index.html">Companion Hub (docs/)</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Signal-Generation Leaderboard Competition (Singles, Parlays &amp; Prop Combos)</h1>
+      <p>A capital-allocation tournament across 12 selectively skill-based strategies spanning single bets, correlated/independent parlays, and player prop combos. Rewards top-performing strategies with unit-cap promotions ONLY after passing 9 validation gates (<code>G0</code>&ndash;<code>G8</code>) and Benjamini&ndash;Hochberg multiple-testing correction.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="label">Pre-Registered Strategies</div><div class="value">12 Specs</div><div class="sub">5 Singles &middot; 3 Parlays &middot; 4 Prop Combos</div></div>
+        <div class="kpi"><div class="label">Validation Gates</div><div class="value">G0 &ndash; G8</div><div class="sub">Sample power, CLV, Brier, Copula, BH-FDR</div></div>
+        <div class="kpi"><div class="label">Promoted to Live Capital</div><div class="value">0 / 12</div><div class="sub">Honestly gated &mdash; historical odds missing</div></div>
+        <div class="kpi"><div class="label">Noise Signals Rejected</div><div class="value">Rush YPC &amp; Raw Sacks</div><div class="sub">r = +0.017 &amp; r = &minus;0.264 excluded</div></div>
+      </div>
+    </section>
+
+    <div class="callout callout-ok">
+      <strong>How Luck Is Removed Before Any Strategy Can Win Rewards:</strong>
+      (1) <strong>Input-level luck stripping:</strong> Pythagorean close-game luck (<code>DEN +2.17w</code>, <code>CLE +1.53w</code> vs <code>TB &minus;2.17w</code>) and noisy rushing YPC (<code>r = +0.017</code>) are stripped out in favor of Passing YPA Diff (<code>r = +0.724</code>), Def Passer Rating (<code>r = +0.815</code>), and 3rd-Down% (<code>r = +0.707</code>).
+      (2) <strong>Outcome-level luck stripping:</strong> Grading requires <code>N &ge; 200</code> singles / <code>N &ge; 350</code> parlays, Closing Line Value <code>t &ge; +2.00</code> (which converges 5&times; faster than win/loss P&amp;L), and Benjamini&ndash;Hochberg FDR <code>q &le; 0.05</code> across all 12 competing strategies.
+    </div>
+
+    <section class="section">
+      <h2>1. Competition Reward Ladder &amp; Capital-Allocation Rules</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Competition Tier</th>
+              <th>Mandatory Gates Required</th>
+              <th class="num">Unit Stake Cap</th>
+              <th class="num">Kelly Multiplier</th>
+              <th>Leaderboard Reward</th>
+              <th>Automatic Demotion / Freeze Trigger</th>
+              <th>Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><strong>Tier 0 — Paper Sandbox</strong></td>
+            <td>G0 Only (Pre-Registered Spec)</td>
+            <td class="num"><strong>0.00u (Zero Real Stake)</strong></td>
+            <td class="num">0.00x</td>
+            <td>Paper tracking + automated CLV/calibration logging</td>
+            <td>N/A (Entry tier for all 12 strategies today)</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Official Ref</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 1 — Bronze Qualifier</strong></td>
+            <td>G0 + G1 (N&gt;=200) + G2 (Walk-Forward) + G8 (Skill Filter)</td>
+            <td class="num"><strong>0.25u Max</strong></td>
+            <td class="num">0.10x Kelly</td>
+            <td>Initial micro-allocation + weekly automated line-shopping priority</td>
+            <td>Rolling 50-bet CLV &lt; 0 bps or Brier worse than market</td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">Official Ref</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 2 — Silver Contender</strong></td>
+            <td>Bronze + G3 (t_CLV &gt;= 2.0) + G5 (Calibration Beat)</td>
+            <td class="num"><strong>0.50u Max</strong></td>
+            <td class="num">0.18x Kelly</td>
+            <td>2x capital multiplier + cross-game independent parlay eligibility</td>
+            <td>Max drawdown &gt; 12u or regime break (G8)</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Ref</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 3 — Gold Leaderboard Winner</strong></td>
+            <td>Silver + G4 (95% ROI LB &gt; 0%) + G6 (Verified Copula) + G7 (BH-FDR q&lt;=0.05)</td>
+            <td class="num"><strong>1.00u Max</strong></td>
+            <td class="num">0.25x Quarter-Kelly</td>
+            <td>Full syndicate capital weight + SGP/prop-combo execution budget + research bonus pool</td>
+            <td>Rolling 100-bet CLV &lt; +25 bps or 15u drawdown freeze</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Official Ref</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2. Mandatory Validation Gates (G0&ndash;G8)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Gate</th>
+              <th>Gate Name</th>
+              <th>Quantitative Pass Criterion</th>
+              <th>How It Removes Luck</th>
+              <th>Current Repo State</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>G0</code></td>
+            <td><strong>Immutable Pre-Registration</strong></td>
+            <td>Formula, inputs &amp; selectivity cutoff committed before grading</td>
+            <td>Eliminates hindsight bias, feature snooping &amp; moving goalposts</td>
+            <td><span class="badge badge-verified">PASS (12/12 Registered)</span></td>
+            <td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G1</code></td>
+            <td><strong>Minimum Sample Power</strong></td>
+            <td>N &gt;= 200 graded singles; N &gt;= 350 graded parlays / prop combos</td>
+            <td>Prevents small-sample coin-flip streaks (2026 alone has only 136 games)</td>
+            <td><span class="badge badge-unverified">BLOCKED (Needs 2022–2025 archive)</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G2</code></td>
+            <td><strong>Chronological Walk-Forward OOS</strong></td>
+            <td>Strict expanding-window train &lt;= Week t-1, predict Week t only</td>
+            <td>Prevents future-leakage of full-season PF/PA or injury outcomes</td>
+            <td><span class="badge badge-verified">READY (Engine Implemented)</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G3</code></td>
+            <td><strong>Closing Line Value (CLV) Skill t-Test</strong></td>
+            <td>Mean no-vig CLV &gt;= +1.5% with t-stat &gt;= +2.00</td>
+            <td>Isolates repeatable pricing skill from single-game fumble/OT variance</td>
+            <td><span class="badge badge-unverified">UNVERIFIED (Blank — Needs Closing Odds)</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/reg11/" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G4</code></td>
+            <td><strong>Vig-Adjusted ROI Confidence Bound</strong></td>
+            <td>Bootstrap 95% lower bound of ROI &gt; 0.0% after -110 vig (4.55% hold)</td>
+            <td>Ensures edge survives bookmaker vigorish and tail variance</td>
+            <td><span class="badge badge-unverified">UNVERIFIED (Blank — Needs Closing Odds)</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G5</code></td>
+            <td><strong>Proper Scoring Calibration</strong></td>
+            <td>Out-of-sample Brier &amp; Log-Loss strictly lower than devigged market</td>
+            <td>Penalizes overconfident probability estimates before Kelly sizing</td>
+            <td><span class="badge badge-unverified">UNVERIFIED (Blank — Needs Closing Odds)</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G6</code></td>
+            <td><strong>Empirical Copula Correlation Gate</strong></td>
+            <td>Within-game leg rho estimated on &gt;=1,000 team-games; 95% CI excludes book implied rho</td>
+            <td>Blocks SGP &amp; prop-combo correlation tax traps</td>
+            <td><span class="badge badge-unverified">BLOCKED for SGP/Props (Cross-Game rho=0 OK)</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G7</code></td>
+            <td><strong>Benjamini–Hochberg Multiple-Testing FDR</strong></td>
+            <td>Adjusted q-value &lt;= 0.05 across all M candidate strategies tested</td>
+            <td>Stops 1-in-20 false-positive &#x27;lucky winner&#x27; among 12+ parallel strategies</td>
+            <td><span class="badge badge-verified">ENFORCED (M = 12 Active)</span></td>
+            <td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          <tr>
+            <td><code>G8</code></td>
+            <td><strong>Selectivity &amp; Luck-Residual Screen</strong></td>
+            <td>Bet only top &lt;=20% model-disagreement slates; strip Pythagorean &amp; INT luck</td>
+            <td>Forces selective high-conviction skill bets instead of recreational action</td>
+            <td><span class="badge badge-verified">PASS (Verified on 2026 Data)</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all" target="_blank" rel="noopener">Source</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>3. Strategy Competition Leaderboard (All 12 Candidate Signals)</h2>
+      <p class="section-intro">CLV and ROI columns are intentionally blank (<code>Unverified</code>) because NFL.com does not publish historical closing sportsbook odds; fabricating backtest returns is strictly prohibited.</p>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter strategies (e.g., Single, Parlay, Prop Combo, Secondary, QB, OL)..." data-filter-input="strat-table" aria-label="Filter strategies">
+        <span class="count">Sorted by Bet Structure &amp; Gate Readiness &middot; 100% rows carry official source links</span>
+      </div>
+      <div class="table-wrap">
+        <table id="strat-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Strategy Name</th>
+              <th>Bet Structure</th>
+              <th>Skill Mechanism</th>
+              <th>Selectivity Filter</th>
+              <th>Correlation Anchor</th>
+              <th>Current Reward Tier</th>
+              <th>Gates Met</th>
+              <th>Blocking Gate(s)</th>
+              <th class="num">OOS CLV</th>
+              <th class="num">OOS ROI</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>SIG-01</code></td>
+            <td><strong>Pythagorean Luck-Fade vs Pass-YPA Skill Spread</strong></td>
+            <td>Single Bet (Spread)</td>
+            <td>Back teams with negative luck residual (e.g., TB -2.17w, HOU -1.40w) &amp; positive Pass YPA Diff (r=+0.724) against over-lucky opponents (e.g., DEN +2.17w, CLE +1.53w).</td>
+            <td>Abs(Model v2 - Market) &gt;= 2.2 pts &amp; |Luck Diff| &gt;= 2.0 wins</td>
+            <td><code>C-01 (r=+0.876), C-02 (r=+0.724)</code></td>
+            <td><span class="badge badge-model">Tier 0 — Sandbox (0.00u)</span></td>
+            <td><code>G0, G2, G8</code></td>
+            <td>G1, G3, G4, G5 (Missing Historical Odds)</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-02</code></td>
+            <td><strong>Secondary Multi-String Coverage Collapse Team-Total Over</strong></td>
+            <td>Single Bet (Team Total)</td>
+            <td>Target opposing offense Team Total Over when &gt;=2 starting CB/S/NB defenders are replaced by 2nd/3rd/4th string backups (e.g., SF &amp; DAL Week 10 clusters).</td>
+            <td>&gt;=2 DB starters OUT/DNP on verified club chart + Opp Off Passer Rate &gt;= 92.0</td>
+            <td><code>C-10 Def Pass Rate vs PA/g (r=+0.815)</code></td>
+            <td><span class="badge badge-model">Tier 0 — Sandbox (0.00u)</span></td>
+            <td><code>G0, G8</code></td>
+            <td>G1 (Needs 32-club historical injury+depth archive) + G3–G5</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-03</code></td>
+            <td><strong>Blindside / Interior OL 2nd–3rd String Pass-Pro Fade</strong></td>
+            <td>Single Bet (Spread / Team Under)</td>
+            <td>Fade offenses missing LT1 or C1/LG1+LG2 to 2nd/3rd string backups (e.g., NE LG1+LG2 out/DNP, MIA C1 DNP, WAS C1 OUT) vs top-12 pass-defense rating clubs.</td>
+            <td>&gt;=1 OL starter OUT + backup &gt;=2nd string + Opp Def Pass Rate &lt;= 88.0</td>
+            <td><code>C-09 Sacks Taken vs PF/g (r=-0.621)</code></td>
+            <td><span class="badge badge-model">Tier 0 — Sandbox (0.00u)</span></td>
+            <td><code>G0, G8</code></td>
+            <td>G1, G3–G5 (Missing Historical Odds &amp; Snap Logs)</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.patriots.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-04</code></td>
+            <td><strong>3rd-Down Sustainability vs Raw Total Regression</strong></td>
+            <td>Single Bet (Game Total)</td>
+            <td>Exploit divergence between sustainable scrimmage Yds/Play (r=+0.760) + 3rd-Down% (r=+0.707) and noisy red-zone / turnover scoring spikes.</td>
+            <td>Abs(Fair Total - Market Total) &gt;= 2.8 pts &amp; neutral weather/dome</td>
+            <td><code>C-06 (r=+0.760), C-08 (r=+0.707)</code></td>
+            <td><span class="badge badge-model">Tier 0 — Sandbox (0.00u)</span></td>
+            <td><code>G0, G2, G8</code></td>
+            <td>G1, G3–G5 (Missing Historical Closing Totals &amp; Weather)</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-05</code></td>
+            <td><strong>Verified 2nd/3rd-String QB Drop-OffOrigination Filter</strong></td>
+            <td>Single Bet (Spread / ML)</td>
+            <td>Price verified QB1 -&gt; QB2/QB3 cascades (BAL QB3 Joe Fagnano, SEA QB2 Drew Lock, MIA rookie Kyle McCord) via career dropback prior rather than team season PF/g.</td>
+            <td>Official NFL.com QB1 OUT/IR + verified club depth-chart replacement</td>
+            <td><code>C-05 Off Pass Rate vs PF/g (r=+0.750)</code></td>
+            <td><span class="badge badge-model">Tier 0 — Sandbox (0.00u)</span></td>
+            <td><code>G0, G8</code></td>
+            <td>G1, G3–G5 (Missing Historical Odds &amp; QB EPA Prior)</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.baltimoreravens.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-06</code></td>
+            <td><strong>Cross-Game Independent High-CLV 2-Leg Parlay</strong></td>
+            <td>Parlay (2-Leg Cross-Game)</td>
+            <td>Combine exactly two independent games (verified rho = 0.00 across distinct stadiums/clubs) ONLY when each single leg independently clears +2.5% no-vig EV.</td>
+            <td>Both legs pass Silver Tier single gates; max 0.15x Kelly stake</td>
+            <td><code>Cross-game independence (rho = 0.00)</code></td>
+            <td><span class="badge badge-model">Tier 0 — Sandbox (0.00u)</span></td>
+            <td><code>G0, G6 (rho=0), G8</code></td>
+            <td>G1 (N&gt;=350), G3–G5 (Missing Closing Odds)</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/reg11/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-07</code></td>
+            <td><strong>Trailing-Script Favorite Spread + Opp QB Pass-Attempts SGP</strong></td>
+            <td>Parlay (Same-Game SGP)</td>
+            <td>Pair skill-favorite spread with trailing opponent QB pass attempts over when book SGP pricing underestimates negative-game-script pass rate shift.</td>
+            <td>Copula joint prob &gt; SGP implied prob + 4.0% correlation-margin buffer</td>
+            <td><code>UC-03 (Unverified within-game rho)</code></td>
+            <td><span class="badge badge-unverified">Tier 0 — Locked (0.00u)</span></td>
+            <td><code>G0</code></td>
+            <td>G6 HARD BLOCK (Requires PBP within-game rho) + G1, G3–G5</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-08</code></td>
+            <td><strong>DB Backup Cluster + Opposing Passing Over SGP</strong></td>
+            <td>Parlay (Same-Game SGP)</td>
+            <td>Combine opposing QB passing efficiency/yards over with opposing team-total over against defenses starting 2nd/3rd-string corners (SF, DAL, NE).</td>
+            <td>&gt;=2 DB starters OUT/DNP + verified copula edge &gt; +4.5%</td>
+            <td><code>C-10 (r=+0.815) + UC-01 (Unverified)</code></td>
+            <td><span class="badge badge-unverified">Tier 0 — Locked (0.00u)</span></td>
+            <td><code>G0</code></td>
+            <td>G6 HARD BLOCK (Requires PBP within-game rho) + G1, G3–G5</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.49ers.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-09</code></td>
+            <td><strong>Alpha WR1 Absence -&gt; 2nd/3rd-String WR Reception Combo</strong></td>
+            <td>Player Prop Combo</td>
+            <td>When WR1 (e.g., LAR Puka Nacua) exits lineup, model target reallocation to verified 2nd/3rd-string WRs (Whittington / Atwell) before prop books re-center.</td>
+            <td>WR1 &gt;= 26% target share OUT/IR + verified club depth-chart WR2/WR3</td>
+            <td><code>UC-01 / Target-share conservation</code></td>
+            <td><span class="badge badge-unverified">Tier 0 — Locked (0.00u)</span></td>
+            <td><code>G0</code></td>
+            <td>G6 + Missing Official Snap/Route Participation &amp; Prop Odds</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.therams.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-10</code></td>
+            <td><strong>RB1+RB2 Attrition -&gt; 3rd/4th-String Receiving/Attempt Share</strong></td>
+            <td>Player Prop Combo</td>
+            <td>Target touch-volume (NOT YPC, since Rush YPC vs PF/g r=+0.017!) when RB1+RB2 are out/DNP (e.g., NE Corey Kiner / Lan Larison; GB Lloyd / Strong).</td>
+            <td>RB1 &amp; RB2 OUT/DNP + verified 3rd/4th string active on game-day 48</td>
+            <td><code>C-13 (r=+0.017 noise filter applied)</code></td>
+            <td><span class="badge badge-unverified">Tier 0 — Locked (0.00u)</span></td>
+            <td><code>G0, G8</code></td>
+            <td>G1, G6 + Missing Historical Prop Lines &amp; Game-Day Inactives</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.packers.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-11</code></td>
+            <td><strong>QB Passing Yards + Primary Pass-Catcher Yards Stack Combo</strong></td>
+            <td>Player Prop Combo</td>
+            <td>Price bivariate Gaussian/t-copula stack against SGP prop-combo multiplier ONLY where bookmaker applies flat correlation haircut below empirical team target concentration.</td>
+            <td>Pass-catcher &gt;= 28% air-yards share + verified rho CI lower bound &gt; book rho</td>
+            <td><code>UC-01 (Blank — Needs Player Game Logs)</code></td>
+            <td><span class="badge badge-unverified">Tier 0 — Locked (0.00u)</span></td>
+            <td><code>G0</code></td>
+            <td>G6 HARD BLOCK (Within-game rho unverified) + Prop Odds</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingreceptions/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>SIG-12</code></td>
+            <td><strong>OL Multi-Backup Mismatch -&gt; QB Sacks Taken + Under Pass YPA Combo</strong></td>
+            <td>Player Prop Combo</td>
+            <td>Pair opposing defense/QB-sack prop with QB under yards-per-attempt when &gt;=2 OL starters are replaced by 2nd/3rd string backups.</td>
+            <td>&gt;=2 OL starters OUT/DNP + Opp pressure rate top quartile</td>
+            <td><code>C-09 Sacks Taken vs PF/g (r=-0.621)</code></td>
+            <td><span class="badge badge-unverified">Tier 0 — Locked (0.00u)</span></td>
+            <td><code>G0</code></td>
+            <td>G6 + Missing Historical Prop Odds &amp; Pressure Participation</td>
+            <td class="blank-cell" aria-label="CLV blank unverified"></td>
+            <td class="blank-cell" aria-label="ROI blank unverified"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>4. Interactive Gate &amp; Benjamini&ndash;Hochberg Promotion Simulator</h2>
+      <p class="section-intro">Test what sample size <em>N</em>, mean CLV %, and hit rate at <code>&minus;110</code> a candidate strategy would need to pass Gates <code>G1</code>, <code>G3</code>, <code>G4</code>, and <code>G7</code> once an archived odds feed is connected.</p>
+      <div class="card">
+        <div class="controls-row">
+          <label>Bet Type
+            <select id="sim-type">
+              <option value="200">Single Bet (Min N = 200)</option>
+              <option value="350">Parlay / Prop Combo (Min N = 350)</option>
+            </select>
+          </label>
+          <label>Graded Sample Size (N)
+            <input type="number" id="sim-n" value="240" min="10" max="5000" step="10">
+          </label>
+          <label>Mean No-Vig CLV (%)
+            <input type="number" id="sim-clv" value="1.8" min="-5" max="15" step="0.1">
+          </label>
+          <label>Observed Win Rate at -110 (%)
+            <input type="number" id="sim-wr" value="56.5" min="30" max="80" step="0.5">
+          </label>
+        </div>
+        <div class="kpi-strip" style="margin-top:0.5rem;">
+          <div class="kpi"><div class="label">Gate G1 (Sample Power)</div><div class="value" id="sim-g1">PASS</div><div class="sub" id="sim-g1-sub">240 &ge; 200</div></div>
+          <div class="kpi"><div class="label">Gate G3 (CLV t-Stat)</div><div class="value" id="sim-g3">PASS (t=+6.20)</div><div class="sub">Assuming 4.5% CLV SD</div></div>
+          <div class="kpi"><div class="label">Gate G4 (95% ROI Lower Bound)</div><div class="value" id="sim-g4">+1.8%</div><div class="sub" id="sim-g4-sub">Breakeven = 52.38%</div></div>
+          <div class="kpi"><div class="label">Earned Reward Tier</div><div class="value" id="sim-tier">Gold (1.00u)</div><div class="sub">Subject to G5/G6/G7</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>NFL2 Signal Leaderboard Competition &middot; Session <code>arena-53126614</code> &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="sources.html">Official Sources</a></div>
+  </footer>
+  <script src="assets/s53126614.js"></script>
+  <script>
+  (function () {
+    function runSim() {
+      var minN = parseInt(document.getElementById("sim-type").value, 10);
+      var n = Math.max(1, parseInt(document.getElementById("sim-n").value || "100", 10));
+      var clv = parseFloat(document.getElementById("sim-clv").value || "0");
+      var wr = parseFloat(document.getElementById("sim-wr").value || "50") / 100;
+      var passG1 = n >= minN;
+      var tClv = (clv / 4.5) * Math.sqrt(n);
+      var passG3 = clv >= 1.5 && tClv >= 2.0;
+      var seWr = Math.sqrt(wr * (1 - wr) / n);
+      var wrLo = wr - 1.96 * seWr;
+      var roiLo = (wrLo * (100 / 110 + 1) - 1) * 100;
+      var passG4 = roiLo > 0;
+      document.getElementById("sim-g1").textContent = passG1 ? "PASS" : "BLOCKED";
+      document.getElementById("sim-g1-sub").textContent = n + (passG1 ? " >= " : " < ") + minN;
+      document.getElementById("sim-g3").textContent = (passG3 ? "PASS" : "FAIL") + " (t=" + (tClv >= 0 ? "+" : "") + tClv.toFixed(2) + ")";
+      document.getElementById("sim-g4").textContent = (roiLo >= 0 ? "+" : "") + roiLo.toFixed(2) + "%";
+      document.getElementById("sim-g4-sub").textContent = passG4 ? "95% LB beats -110 vig" : "95% LB below 0% after vig";
+      var tier = "Tier 0 — Sandbox (0.00u)";
+      if (passG1 && passG3 && passG4) tier = (minN === 350 ? "Silver (0.50u; G6 Needed)" : "Gold (1.00u)");
+      else if (passG1 && passG3) tier = "Silver (0.50u)";
+      else if (passG1) tier = "Bronze (0.25u)";
+      document.getElementById("sim-tier").textContent = tier;
+    }
+    ["sim-type", "sim-n", "sim-clv", "sim-wr"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener("input", runSim);
+    });
+    runSim();
+  })();
+  </script>
+</body>
+</html>

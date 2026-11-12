@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Center: Suggestions Review, Path Chooser &amp; Prerequisites Register &mdash; NFL2</title>
+  <link rel="stylesheet" href="assets/s53126614.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">NFL2 <span>Decision &amp; Line-Origination Hub</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Verified Through NFL Week 9 / Week 10 Injury Cycle</span>
+    </div>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Dashboard</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements Matrix</a>
+      <a href="repo-audit.html">Repo Audit</a>
+      <a href="standings.html">Standings</a>
+      <a href="results.html">Game Log (136)</a>
+      <a href="originated-lines.html">Originated Lines</a>
+      <a href="correlations.html">Correlations &amp; Skill</a>
+      <a href="depth-deficiencies.html">Injuries &amp; 1st&ndash;4th String</a>
+      <a href="leaderboard-competition.html">Signal Leaderboard</a>
+      <a href="decision-center.html" aria-current="page">Decision Center &amp; Paths</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="sources.html">Official Sources</a>
+      <a href="docs/index.html">Companion Hub (docs/)</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Decision Center: Suggestions Review Board &amp; Prerequisites Register</h1>
+      <p>Dedicated pre-implementation review hub enabling a decision-maker to compare architecture/data paths (<code>Path A</code>&ndash;<code>Path D</code>), review ranked site &amp; modeling suggestions before implementing changes, and audit every known fact, missing input, required answer, and concrete discovery protocol.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="label">Strategic Paths Compared</div><div class="value">4 Paths</div><div class="sub">Zero-cost public &rarr; full syndicate stack</div></div>
+        <div class="kpi"><div class="label">Actionable Suggestions</div><div class="value">8 Proposals</div><div class="sub">Reviewed BEFORE implementation</div></div>
+        <div class="kpi"><div class="label">Decision Prerequisite Gates</div><div class="value">8 Registers</div><div class="sub">Known vs Missing vs Answer vs Discovery</div></div>
+        <div class="kpi"><div class="label">Committed Live Path</div><div class="value" id="chosen-path-kpi">Unselected (Blank)</div><div class="sub">Awaiting human reviewer sign-off</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>1. Dedicated Suggestions Path Chooser (Review &amp; Select Before Implementing)</h2>
+      <p class="section-intro">Click <strong>Preview PATH-A..D</strong> to inspect how each roadmap unlocks validation gates and suggestion items without modifying repository state. The official Reviewer Sign-Off column remains blank until a human approves a path.</p>
+      <div class="callout callout-info" id="path-preview-box">
+        <strong>Interactive Reviewer Preview:</strong> Select any path below to generate its pre-implementation execution checklist. (<em>Recommended sequence: execute <strong>Path A</strong> immediately at $0 cost, followed by <strong>Path C</strong> before unlocking any real-money competition tier.</em>)
+      </div>
+      <div class="table-wrap">
+        <table id="path-table">
+          <thead>
+            <tr>
+              <th>Path</th>
+              <th>Roadmap Option &amp; Scope</th>
+              <th>Cost &amp; Timeline</th>
+              <th>What It Unlocks</th>
+              <th>Remaining Limitation</th>
+              <th>Implementation Risk</th>
+              <th>Reviewer Sign-Off</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr data-path-id="PATH-A">
+            <td><code>PATH-A</code><br><button type="button" class="btn-choice js-pick-path" data-pick="PATH-A" style="margin-top:0.35rem;">Preview PATH-A</button></td>
+            <td><strong>Path A — Zero-Cost Verified Public Stack (Immediate Consolidation)</strong><br><span style="color:var(--muted);font-size:0.82rem;">Unify the 3 parallel repo builds into a single deterministic Python build pipeline, expand club depth-chart scraper from 13 to all 32 official NFL club domains, and track paper-only originated lines every Tuesday/Friday/Sunday.</span></td>
+            <td>$0 / Free Official Public Sources<br><span style="color:var(--dim);font-size:0.78rem;">1–2 Days</span></td>
+            <td>100% 32-club 1st–4th string injury coverage + multi-week prospective paper validation.</td>
+            <td>Cannot unlock live capital tiers (Bronze/Silver/Gold) or SGP copula gates because closing odds &amp; PBP remain absent.</td>
+            <td>Low — zero licensing cost, zero hallucination exposure.</td>
+            <td class="blank-cell js-path-decision" aria-label="Reviewer decision blank"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr data-path-id="PATH-B">
+            <td><code>PATH-B</code><br><button type="button" class="btn-choice js-pick-path" data-pick="PATH-B" style="margin-top:0.35rem;">Preview PATH-B</button></td>
+            <td><strong>Path B — Play-by-Play + Participation Analytics Upgrade (nflverse / NGS)</strong><br><span style="color:var(--muted);font-size:0.82rem;">Add 2019–2026 play-by-play EPA/play, success rate, snap counts, and player game logs to compute exact within-game SGP &amp; player-prop copula correlations (N &gt;= 1,800 games) and positional WAR backup drop-offs.</span></td>
+            <td>$0 Open-Source (CC-BY-4.0 nflverse) or NFL+ Pro<br><span style="color:var(--dim);font-size:0.78rem;">3–5 Days</span></td>
+            <td>Resolves UC-01..UC-04 (Gate G6 empirical correlations) and replaces team-level PF/PA with opponent-adjusted EPA.</td>
+            <td>Still requires closing sportsbook lines for Gate G3 (CLV) and Gate G4 (vig-adjusted ROI).</td>
+            <td>Low-Moderate — must pin upstream release hashes and keep NFL.com cross-checks.</td>
+            <td class="blank-cell js-path-decision" aria-label="Reviewer decision blank"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr data-path-id="PATH-C">
+            <td><code>PATH-C</code><br><button type="button" class="btn-choice js-pick-path" data-pick="PATH-C" style="margin-top:0.35rem;">Preview PATH-C</button></td>
+            <td><strong>Path C — Licensed Odds &amp; Closing-Line Backtest Stack (Recommended for Competition)</strong><br><span style="color:var(--muted);font-size:0.82rem;">Combine Path A (all 32 club depth charts) + Path B (multi-season PBP/snap logs) + timestamped opening/closing spreads, totals, and player prop lines across &gt;=3 regulated sportsbooks (2022–2026).</span></td>
+            <td>~$50–$199/mo Licensed Odds API + Path B PBP<br><span style="color:var(--dim);font-size:0.78rem;">1–2 Weeks</span></td>
+            <td>Unlocks ALL 9 validation gates (G0–G8), real CLV/ROI grading, and Bronze/Silver/Gold leaderboard promotions.</td>
+            <td>Does not include real-time sub-second injury wire automation.</td>
+            <td>Moderate — requires strict timestamp hygiene so post-injury closing lines are never confused with pre-injury openers.</td>
+            <td class="blank-cell js-path-decision" aria-label="Reviewer decision blank"></td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/reg11/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr data-path-id="PATH-D">
+            <td><code>PATH-D</code><br><button type="button" class="btn-choice js-pick-path" data-pick="PATH-D" style="margin-top:0.35rem;">Preview PATH-D</button></td>
+            <td><strong>Path D — Full Syndicate Real-Time Origination &amp; Execution Desk</strong><br><span style="color:var(--muted);font-size:0.82rem;">Automated 90-minute-pre-kickoff official inactive ingestion, automated 32-club depth-chart diffing, stadium wind/temp telemetry, and live multi-book execution alerts.</span></td>
+            <td>$500+/mo Commercial Feeds (Opta/Sportradar + Low-Latency Odds + NOAA)<br><span style="color:var(--dim);font-size:0.78rem;">4–6 Weeks</span></td>
+            <td>Captures fleeting injury/inactive pricing windows (e.g., SIG-05 QB2/QB3 &amp; SIG-09/10 prop reallocation).</td>
+            <td>Overkill until Path C proves positive out-of-sample CLV (Gate G3) on historical data.</td>
+            <td>High engineering &amp; vendor cost if deployed before Gate G3 passes.</td>
+            <td class="blank-cell js-path-decision" aria-label="Reviewer decision blank"></td>
+            <td class="source-cell"><a href="https://operations.nfl.com/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2. Ranked Site &amp; Modeling Suggestions (IMP-01..IMP-08)</h2>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter suggestions by area, path, or effort (e.g., Path A, Path C, SGP, Depth)..." data-filter-input="sug-table" aria-label="Filter suggestions">
+        <span class="count">Staged for review prior to implementation</span>
+      </div>
+      <div class="table-wrap">
+        <table id="sug-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Domain</th>
+              <th>Proposed Improvement</th>
+              <th>How It Improves Decision-Making</th>
+              <th>Effort</th>
+              <th>Target Path</th>
+              <th>Review State</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>IMP-01</code></td>
+            <td>Site Architecture</td>
+            <td><strong>Consolidate root (/), docs/, and review/ builds into one single-source generator while keeping URL redirects</strong></td>
+            <td>Eliminates duplicate maintenance and ensures one canonical navigation bar for reviewers</td>
+            <td><span class="badge badge-neutral">Small</span></td>
+            <td><code>Path A</code></td>
+            <td><span class="badge badge-model">Proposed — Awaiting Reviewer Choice</span></td>
+            <td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IMP-02</code></td>
+            <td>Lineup Deficiencies</td>
+            <td><strong>Automate fetch &amp; parser for the remaining 19 official NFL club depth-chart pages (expanding 13/32 -&gt; 32/32)</strong></td>
+            <td>Completes league-wide starter vs 2nd/3rd/4th string replacement coverage before Sunday kickoffs</td>
+            <td><span class="badge badge-neutral">Small</span></td>
+            <td><code>Path A</code></td>
+            <td><span class="badge badge-model">Proposed — Awaiting Reviewer Choice</span></td>
+            <td class="source-cell"><a href="https://www.patriots.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IMP-03</code></td>
+            <td>Game-Day Timing</td>
+            <td><strong>Add T-90 minute official NFL game-day inactive ingestion alongside Wednesday–Friday practice reports</strong></td>
+            <td>Converts Questionable/DNP uncertainty into confirmed active 2nd/3rd/4th string starters before kickoff</td>
+            <td><span class="badge badge-neutral">Medium</span></td>
+            <td><code>Path A / D</code></td>
+            <td><span class="badge badge-model">Proposed — Awaiting Reviewer Choice</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IMP-04</code></td>
+            <td>Market Benchmarking</td>
+            <td><strong>Integrate licensed timestamped opening + closing Pinnacle/consensus NFL odds &amp; player props (2022–2026)</strong></td>
+            <td>Unlocks Gates G1, G3 (CLV), G4 (vig-adjusted ROI), and G5 (Brier vs market)</td>
+            <td><span class="badge badge-neutral">Medium</span></td>
+            <td><code>Path C</code></td>
+            <td><span class="badge badge-model">Proposed — Top Priority Data Unlock</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/reg11/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IMP-05</code></td>
+            <td>Correlations &amp; SGP</td>
+            <td><strong>Ingest 5-season play-by-play &amp; player game logs to compute empirical Student-t copula matrices (UC-01..UC-04)</strong></td>
+            <td>Unlocks Gate G6 so SGP and player-prop combos can be priced without guessing leg correlation</td>
+            <td><span class="badge badge-neutral">Medium</span></td>
+            <td><code>Path B / C</code></td>
+            <td><span class="badge badge-model">Proposed — Required for SGP/Props</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IMP-06</code></td>
+            <td>Skill Modeling</td>
+            <td><strong>Upgrade team ratings from game-level SRS + season YPA/3rd% to opponent-adjusted play-level EPA &amp; garbage-time filter</strong></td>
+            <td>Strips late-4th-quarter blowout noise when a team trails by &gt;17 points</td>
+            <td><span class="badge badge-neutral">Medium</span></td>
+            <td><code>Path B</code></td>
+            <td><span class="badge badge-model">Proposed — Awaiting Reviewer Choice</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IMP-07</code></td>
+            <td>Backup Pricing</td>
+            <td><strong>Attach career snap-weighted EPA/dropback &amp; PFF/NGS coverage grades to 2nd/3rd/4th string backups</strong></td>
+            <td>Differentiates veteran QB2 Drew Lock from untested QB3 Joe Fagnano or rookie Kyle McCord quantitatively</td>
+            <td><span class="badge badge-neutral">Large</span></td>
+            <td><code>Path B / C</code></td>
+            <td><span class="badge badge-model">Proposed — Awaiting Reviewer Choice</span></td>
+            <td class="source-cell"><a href="https://www.seahawks.com/team/depth-chart/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>IMP-08</code></td>
+            <td>Totals Origination</td>
+            <td><strong>Join NOAA/NWS stadium wind, precipitation &amp; roof-open status to outdoor game totals</strong></td>
+            <td>Captures verified wind &gt;=15 mph suppression on passing efficiency &amp; field-goal make rates</td>
+            <td><span class="badge badge-neutral">Small</span></td>
+            <td><code>Path B / C</code></td>
+            <td><span class="badge badge-model">Proposed — Awaiting Reviewer Choice</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>3. Decision Prerequisites Register: Questions, Known Info, Missing Info, Required Answers &amp; Discovery</h2>
+      <p class="section-intro">No live betting or capital-allocation decision is permissible until the Missing Information and Required Answer columns below are satisfied.</p>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter prerequisites (e.g., odds, copula, backup, HFA, luck)..." data-filter-input="qia-table" aria-label="Filter prerequisites register">
+        <span class="count">Every missing-data item paired with a concrete discovery protocol &amp; official link</span>
+      </div>
+      <div class="table-wrap">
+        <table id="qia-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Core Decision Question</th>
+              <th>Information We Already Have (Verified)</th>
+              <th>Information We Do NOT Have (Missing)</th>
+              <th>Answer Needed Before Reasonable Decision</th>
+              <th>Concrete Discovery Suggestion</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>Q-01</code></td>
+            <td><strong>Do our originated NFL fair lines beat closing market spreads/totals after -110 vig?</strong></td>
+            <td>136 verified 2026 game scores + 32-team SRS &amp; Pass/3rd-down skill ratings + Week 11 originated fair lines</td>
+            <td>Historical &amp; live sportsbook opening/closing spreads, totals, and moneylines</td>
+            <td>Out-of-sample CLV &gt;= +1.5% (t &gt;= 2.0) &amp; 95% ROI LB &gt; 0% over N &gt;= 200 bets</td>
+            <td>Connect licensed odds archive (The Odds API / SportsDataIO / historical Pinnacle CSV) keyed by NFL game_id</td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/reg11/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>Q-02</code></td>
+            <td><strong>Which Week 10/11 clubs have confirmed 2nd, 3rd, or 4th string backups replacing injured starters?</strong></td>
+            <td>Full Week 10 REG10 injury report + 13 verified club depth charts (18 multi-string chains incl. NE, BAL, SF, DAL, SEA, MIA)</td>
+            <td>Remaining 19 club depth charts + Friday/Saturday final injury statuses + Sunday T-90m inactive lists</td>
+            <td>32/32 club depth-chart join + confirmed game-day active/inactive designations</td>
+            <td>Run automated club-domain parser across the 19 listed official club URLs + ingest NFL.com T-90m Inactives</td>
+            <td class="source-cell"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>Q-03</code></td>
+            <td><strong>How many spread points is a starter -&gt; 2nd/3rd/4th string drop-off worth by position?</strong></td>
+            <td>Verified 2026 correlations proving Def Pass Rate (r=+0.815), Off Pass Rate (r=+0.750) &amp; Sacks Taken (r=-0.621) dominate Rush YPC (r=+0.017)</td>
+            <td>Player-level snap counts &amp; replacement-level EPA/play archive across 2019–2026</td>
+            <td>Empirical point-value table with standard errors per position group (QB, CB, LT/C, WR, RB)</td>
+            <td>Regress game margin residuals on starter-absence snap shares using 5-year play-by-play + participation logs</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>Q-04</code></td>
+            <td><strong>What are the true within-game correlations for Same-Game Parlays (SGP) and Player Prop Combos?</strong></td>
+            <td>15 exact cross-team season correlations (n=32) + interactive bivariate joint-probability calculator</td>
+            <td>Within-game player box-score &amp; play-by-play joint outcome archive (N &gt;= 1,000 team-games)</td>
+            <td>Empirical copula rho + 95% CI for QB-WR, Spread-RB, and Total-Pass pairs vs SGP bookmaker pricing</td>
+            <td>Compute polychoric / tail-dependent Student-t copula parameters from 2020–2026 NFL gamebooks / nflverse PBP</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>Q-05</code></td>
+            <td><strong>What Home-Field Advantage (HFA) should be used for 2026 originated lines?</strong></td>
+            <td>Exact 2026 true-home mean margin = +0.50 pts across 129 non-neutral games (95% CI [-1.80, +2.79]; 7 neutral games excluded)</td>
+            <td>Multi-season (2021–2025) stadium-specific HFA, rest-differential, and altitude/travel matrix</td>
+            <td>Shrinkage-weighted HFA prior (blending multi-year ~+1.75 prior with 2026 +0.50 sample)</td>
+            <td>Ingest 2021–2025 official NFL schedules/scores and fit hierarchical empirical-Bayes stadium HFA model</td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>Q-06</code></td>
+            <td><strong>Which 2026 teams&#x27; W-L records are most distorted by luck rather than repeatable skill?</strong></td>
+            <td>Exact 32-team Pythagorean residuals &amp; turnover differentials: DEN (+2.17w), BUF (+1.58w), CLE (+1.53w) vs TB (-2.17w), LAC (-1.57w), HOU (-1.40w)</td>
+            <td>Play-level fumble-recovery luck, dropped-interception rates, and garbage-time-filtered EPA</td>
+            <td>Out-of-sample weeks 10–18 ATS validation of Pythagorean + Pass-YPA luck-fade signal (SIG-01)</td>
+            <td>Track SIG-01 prospectively Weeks 10–18 and backtest across 2019–2025 Weeks 9–17 cohorts</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>Q-07</code></td>
+            <td><strong>What bankroll, drawdown limit, and regulatory constraints govern competition rewards?</strong></td>
+            <td>4-tier Sandbox/Bronze/Silver/Gold unit-cap ladder (0.00u -&gt; 1.00u Quarter-Kelly) with automatic demotion rules</td>
+            <td>Stakeholder risk budget, legal jurisdiction book list, and maximum correlated Sunday exposure cap</td>
+            <td>Signed risk charter specifying bankroll unit size, max Sunday exposure %, and approved books</td>
+            <td>Reviewer selects Path A/B/C/D below and records bankroll parameters in config before unlocking Tier 1+</td>
+            <td class="source-cell"><a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          <tr>
+            <td><code>Q-08</code></td>
+            <td><strong>Why do club depth charts and NFL.com injury pages occasionally conflict on active starters?</strong></td>
+            <td>Documented proof: Ravens.com lists IR QB1 Lamar Jackson &amp; out-for-season QB2 Huntley ahead of QB3 Fagnano; REG10 lists &#x27;No Injuries&#x27; for SEA despite Darnold OUT</td>
+            <td>Official NFL Gameday Roster / Transaction Wire API feed</td>
+            <td>Deterministic precedence hierarchy: (1) T-90m Inactives &gt; (2) NFL IR/Reserve wire &gt; (3) REG10 Friday status &gt; (4) Club depth chart</td>
+            <td>Parse NFL.com Transactions (/transactions/league/reserve-list/2026/11) alongside club depth charts</td>
+            <td class="source-cell"><a href="https://www.baltimoreravens.com/team/depth-chart" target="_blank" rel="noopener">Official Source</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>NFL2 Decision Center &middot; Session <code>arena-53126614</code> &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="sources.html">Official Sources</a></div>
+  </footer>
+  <script src="assets/s53126614.js"></script>
+  <script>
+  (function () {
+    var notes = {
+      "PATH-A": "Previewing PATH-A ($0 Immediate): Implement IMP-01 (single-source build), IMP-02 (all 32 club depth charts), and IMP-03 (T-90m Sunday inactives). Keeps live stake at 0.00u.",
+      "PATH-B": "Previewing PATH-B (Open Play-by-Play + NGS): Implement IMP-05 (empirical SGP/prop copula correlations) and IMP-06 (garbage-time-filtered EPA). Unlocks Gate G6.",
+      "PATH-C": "Previewing PATH-C (Licensed Historical + Live Odds): Implement IMP-04 + Path B. Unlocks Gates G1, G3 (CLV), G4 (ROI), G5 (Brier), and real competition promotions.",
+      "PATH-D": "Previewing PATH-D (Full Syndicate Automation): Real-time injury/inactive wire + low-latency multi-book execution. Recommended ONLY after Path C proves t_CLV >= 2.0."
+    };
+    document.querySelectorAll(".js-pick-path").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var pid = btn.getAttribute("data-pick");
+        document.querySelectorAll(".js-pick-path").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        document.getElementById("chosen-path-kpi").textContent = pid + " (Preview)";
+        document.getElementById("path-preview-box").innerHTML = "<strong>Selected for Ephemeral Review:</strong> " + notes[pid] + " <em>(Official repository sign-off cell remains blank until committed by reviewer.)</em>";
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
