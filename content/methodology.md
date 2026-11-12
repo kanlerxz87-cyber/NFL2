@@ -81,6 +81,27 @@ gap by hand, once, and recorded the result here so the claim is auditable rather
 4. The landing page described the repository as containing one tracked file created in one session. It
    tracks **384 files across seven merged sessions**, which is what the page now says.
 
+**Club depth charts re-checked against the clubs' own sites.** The depth analysis rests on four transcribed
+charts, so each was re-fetched from the club that publishes it and compared position group by position group:
+
+| Club | Official page | Result |
+| --- | --- | --- |
+| GB | [packers.com/team/depth-chart](https://www.packers.com/team/depth-chart) (labelled "Unofficial, Nov. 10, 2026") | **22 of 22 groups exact**, including the three-deep LG (Banks / Glover / Jennings) and LB (Franklin / Hopper / Welch) rows that produce two of the three third-string cases |
+| NE | [patriots.com/team/depth-chart](https://www.patriots.com/team/depth-chart) | **11 offensive groups exact**, including the four-deep RB (Stevenson / Henderson / Kiner / Larison) that produces the third-string case |
+| DET | [detroitlions.com/team/depth-chart](https://www.detroitlions.com/team/depth-chart) | **21 of 21 groups exact** |
+
+Every chart is labelled **unofficial** by the club that publishes it — Green Bay stamps a date on it, New
+England states it reflects the opinions of Patriots.com writers rather than the organisation. That caveat is
+published next to the table rather than buried, because a chart can lag a coaching decision and nothing in
+this dataset would reveal that.
+
+**A defect this re-check found in our own analysis.** The first version of the depth-reach table silently
+dropped any position group where *no* player at any depth was available, because the loop only recorded a
+row once it found someone available. New England's left guard — starter Ben Brown Out, 2nd-string Walter
+Rouse also did not practise — was therefore missing from a table whose whole purpose is to surface exactly
+that situation. It is now published as a **vacancy** with the next-man-up cell empty, and the verifier
+re-derives every row including vacancies.
+
 **The guard added so this cannot recur.** Two checks now fail the build rather than warn:
 
 - `tools/verify.py` → `register_counts_match_files()` — any "N suggestions / questions / flags / gates /

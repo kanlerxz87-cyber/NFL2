@@ -22,7 +22,7 @@ What we can therefore state today, verified: confirmed rule-outs, injured-reserv
 | NO | Two starting backs absent or limited, with one returning from IR on a designation | official roundup | backfields rebuilt mid-week are where rush props are most mispriced |
 | WAS | Starting centre out with a concussion plus a tight end out | hub designations | interior-line absence is the clearest run-game deficiency we can currently evidence |
 
-## Who is actually playing instead: 17 measured cascades
+## Who is actually playing instead: 18 measured cases, one of them a vacancy
 
 This is the direct answer to "tell me when a 2nd, 3rd or 4th string is replacing a starter", and it is
 narrower than the requirement asks for. Four clubs — KC, GB, NE and DET — publish a depth chart that has
@@ -48,6 +48,18 @@ Two more are worth naming because they are one injury away from a cascade: **DET
 have a four-deep chain where only the starter is down, so the backup is a genuine 2nd string and not a
 patchwork. A pricing model should treat a four-deep chain with a healthy 2nd string differently from a
 two-deep chain with a limited one, and that distinction is now measurable rather than asserted.
+
+### The vacancy, which is worse than a third stringer
+
+One case does not fit the "next man up" shape at all. **New England at left guard**: the starter Ben Brown
+did not practise and is listed **Out**, and the 2nd-string Walter Rouse also did not practise. Nobody on the
+published two-deep is available. That is a **vacancy**, not a third-string replacement, and the first version
+of this table silently dropped it because the loop only recorded cases where *someone* was available.
+
+It is published now, marked `vacant`, with the next-man-up column deliberately empty — filling in a name
+there would be inventing a lineup the club has not published. This is the single most decision-relevant row
+on the page: a guard vacancy on an offensive line is exactly the situation where a totals model should widen
+its distribution rather than shift its mean, and it is the kind of thing a depth chart exists to surface.
 
 ### What this table is not
 

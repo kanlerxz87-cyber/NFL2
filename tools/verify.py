@@ -303,8 +303,10 @@ def depth_reach_is_reproducible():
                     if report.get((club, nm)) in (None, "F"):
                         reach, who = i, nm
                         break
-                if reach > 1:
-                    fresh[(club, grp)] = (reach, names[0], who, len(names))
+                if reach == 1:
+                    continue
+                # reach == 0 means no body at any depth is available: a vacancy
+                fresh[(club, grp)] = (reach, names[0], who, len(names))
     with open(reach_path, encoding="utf-8") as fh:
         published = list(csv.DictReader(fh, delimiter="|"))
     seen, problems = set(), []
@@ -314,8 +316,16 @@ def depth_reach_is_reproducible():
         if key not in fresh:
             problems.append("%s %s is published but no longer reproduces" % key); continue
         reach, starter, who, chain = fresh[key]
-        if int(r["depth_reached"]) != reach:
-            problems.append("%s %s: says %s string, recomputation says %d"
+        claimed = r["depth_reached"]
+        if reach == 0:
+            if claimed != "vacant":
+                problems.append("%s %s: recomputation finds a vacancy, row says %r"
+                                % (key[0], key[1], claimed))
+            if r["next_man_up"].strip():
+                problems.append("%s %s: a vacancy cannot have a next man up" % key)
+            continue
+        if claimed != str(reach):
+            problems.append("%s %s: says %r, recomputation says %d"
                             % (key[0], key[1], r["depth_reached"], reach))
         if r["projected_starter"] != starter:
             problems.append("%s %s: starter disagrees" % key)
@@ -329,10 +339,10 @@ def depth_reach_is_reproducible():
     if problems:
         bad("depth reach does not reproduce: %s" % problems[:4])
     else:
-        deepest = max((f[0] for f in fresh.values()), default=0)
         third = sum(1 for f in fresh.values() if f[0] >= 3)
-        ok("depth reach reproduces for %d position groups across %d charted clubs; %d reach the 3rd string"
-           % (len(fresh), len(charts), third))
+        vacant = sum(1 for f in fresh.values() if f[0] == 0)
+        ok("depth reach reproduces for %d position groups across %d charted clubs; %d reach the 3rd string, %d are vacant"
+           % (len(fresh), len(charts), third, vacant))
 
 
 def fair_lines_are_reproducible():

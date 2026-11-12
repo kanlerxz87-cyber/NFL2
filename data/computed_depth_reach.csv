@@ -1,17 +1,18 @@
 club|unit|position_group|depth_reached|projected_starter|starter_practice|next_man_up|next_man_practice|chain_length|players_skipped|chart_source
 DET|offense|C|2|Cade Mays|dnp|Juice Scruggs|not listed|2|none|https://www.detroitlions.com/team/depth-chart
-DET|offense|QB|2|Jared Goff|limited|Joshua Dobbs|not listed|2|none|https://www.detroitlions.com/team/depth-chart
-DET|offense|WR_2|2|Amon-Ra St. Brown|limited|DeAndre Carter|not listed|2|none|https://www.detroitlions.com/team/depth-chart
 DET|defense|CB_1|2|D.J. Reed|dnp|Rock Ya-Sin|not listed|4|none|https://www.detroitlions.com/team/depth-chart
+DET|offense|QB|2|Jared Goff|limited|Joshua Dobbs|not listed|2|none|https://www.detroitlions.com/team/depth-chart
 DET|defense|S_2|2|Brian Branch|limited|Christian Izien|not listed|2|none|https://www.detroitlions.com/team/depth-chart
+DET|offense|WR_2|2|Amon-Ra St. Brown|limited|DeAndre Carter|not listed|2|none|https://www.detroitlions.com/team/depth-chart
 GB|offense|C|2|Sean Rhyan|dnp|Jager Burton|not listed|2|none|https://www.packers.com/team/depth-chart
-GB|offense|LG|3|Aaron Banks|limited|Donovan Jennings|not listed|3|Travis Glover|https://www.packers.com/team/depth-chart
-GB|offense|RB|2|Josh Jacobs|dnp|MarShawn Lloyd|not listed|4|none|https://www.packers.com/team/depth-chart
-GB|offense|WR_3|2|Savion Williams|limited|Coleman Owen|not listed|2|none|https://www.packers.com/team/depth-chart
 GB|defense|EDGE_1|2|Lukas Van Ness|dnp|Brenton Cox Jr.|not listed|2|none|https://www.packers.com/team/depth-chart
 GB|defense|LB_1|3|Zaire Franklin|dnp|Kristian Welch|not listed|3|Ty'Ron Hopper|https://www.packers.com/team/depth-chart
+GB|offense|LG|3|Aaron Banks|limited|Donovan Jennings|not listed|3|Travis Glover|https://www.packers.com/team/depth-chart
 GB|defense|NB|2|Javon Bullard|dnp|Kamal Hadden|not listed|2|none|https://www.packers.com/team/depth-chart
+GB|offense|RB|2|Josh Jacobs|dnp|MarShawn Lloyd|not listed|4|none|https://www.packers.com/team/depth-chart
+GB|offense|WR_3|2|Savion Williams|limited|Coleman Owen|not listed|2|none|https://www.packers.com/team/depth-chart
 KC|offense|RT|2|Jaylon Moore|dnp|Joshua Ezeudu|not listed|2|none|https://www.chiefs.com/team/depth-chart
+NE|offense|LG|vacant|Ben Brown|dnp|||2|Walter Rouse|https://www.patriots.com/team/depth-chart
 NE|offense|RB|3|Rhamondre Stevenson|dnp|Corey Kiner|not listed|4|TreVeyon Henderson|https://www.patriots.com/team/depth-chart
 NE|offense|RT|2|Morgan Moses|limited|Caleb Lomu|not listed|2|none|https://www.patriots.com/team/depth-chart
 NE|offense|TE|2|Hunter Henry|limited|Eli Raridon|not listed|3|none|https://www.patriots.com/team/depth-chart

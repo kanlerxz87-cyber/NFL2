@@ -291,19 +291,31 @@ for club in sorted(_dc):
                 if st in (None, "F"):
                     reach, who = i, nm
                     break
-            if reach <= 1:
+            if reach == 1:
                 continue          # the starter is available; nothing replaced
             starter = names[0]
             srec = _report.get((club, starter))
             nrec = _report.get((club, who)) if who else None
-            skipped = names[1:reach - 1]
+            skipped = names[1:reach - 1] if who else names[1:]
+            # A group with NO available body at any depth is a vacancy, not a shallow chain. It was
+            # silently dropped in the first version of this table, which is why NE LG (starter
+            # limited/out, backup did not practise) is now published rather than omitted.
+            if who is None:
+                rows.append([
+                    club, unit, grp, "vacant", starter,
+                    _CODE.get(srec["practice"]) if srec else "not listed",
+                    "", "", str(len(names)), "; ".join(skipped),
+                    chart.get("club_site", ""),
+                ])
+                continue
             rows.append([
                 club, unit, grp, str(reach), starter,
-                _CODE.get(srec["practice"] if srec else "", "not listed") if srec else "not listed",
-                who or "", (_CODE.get(nrec["practice"]) if nrec else "not listed") if who else "",
+                _CODE.get(srec["practice"]) if srec else "not listed",
+                who, _CODE.get(nrec["practice"]) if nrec else "not listed",
                 str(len(names)), "; ".join(skipped) if skipped else "none",
                 chart.get("club_site", ""),
             ])
+rows.sort(key=lambda r: (r[0], 0 if r[3] == "vacant" else 1, r[2]))
 w("computed_depth_reach.csv", hdr, rows)
 
 
