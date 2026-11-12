@@ -1,0 +1,56 @@
+{
+  "session": "cef2b11f",
+  "branch": "arena/cef2b11f-nfl2",
+  "verified_utc": "2026-11-12T22:45Z",
+  "tree_base": "25d88a9b600372ff543b2d003cff05d0e038c1b6",
+  "suites": [
+    {"suite": "tools/build_site.py+tools/verify.py", "owner": "bc4b47cf(root)", "result": "39 passed, 0 warnings, 0 failures; rebuild byte-identical"},
+    {"suite": "tools/check_site.py", "owner": "bc4b47cf(root)", "result": "10 passed, 1 expected warning, 0 failures"},
+    {"suite": "tools/review_verify.py", "owner": "01b698ef", "result": "OK: rows, sources, blanks, links verified; 0 broken links"},
+    {"suite": "engine/verify_repo_and_site.py", "owner": "e143a7ca", "result": "PASS: 64 repo HTML pages, 1619 internal links, 0 broken"},
+    {"suite": "scripts/verify_q51.py", "owner": "51ce8d8e", "result": "10 pages, 0 errors, 130 explicit blank cells"},
+    {"suite": "tests/q51 unittest suite", "owner": "51ce8d8e", "result": "OK (36 tests)"},
+    {"suite": "scripts/verify_s53126614.py", "owner": "53126614", "result": "PASS: 9 JSON, 10 pages, 262 rows 100% official-sourced, 0 broken links"},
+    {"suite": "scripts/audit_all_pages.py", "owner": "eaba7863", "result": "PASS: 96 HTML pages, 222 tables, 3423 rows, 0 broken links, 0 column mismatches"},
+    {"suite": "render_test.js + check_links.py + check_reproducible.py", "owner": "63ac21e9", "result": "13/13 pages; 128 refs 0 broken; all artefacts reproduce"}
+  ],
+  "pages": {
+    "api_status": "built",
+    "build_type": "legacy",
+    "source": "main /",
+    "latest_build_commit": "25d88a9",
+    "latest_build_created": "2026-11-12T08:10:44Z",
+    "ci_on_main": ["build-and-audit success", "Verify site data and links success", "Q51 evidence and engine verification success", "pages build and deployment success"],
+    "live_fetches": {
+      "method": "page reader (sandbox curl egress to github.io is allowlist-blocked)",
+      "root": "200; card counts match data/build_manifest.json metrics",
+      "portal_index": "200; zero-sum table consistent with independent recomputation",
+      "q51_index": "200; 254/227/136 counts inherited; 0 eligible strategies by design"
+    }
+  },
+  "official_row_checks": {
+    "standings": {
+      "source": "https://www.nfl.com/standings/ (2 chunks, 2026-11-12T22:35Z)",
+      "compared_against": "data/standings_2026.csv",
+      "rows_compared": 32,
+      "exact_matches": 32,
+      "club_key_note": "official renders LA for the Rams; register keys LAR (documented as FL-17); mapped before comparison",
+      "recomputed_identities": {"wins_eq_losses": true, "ties": 2, "pf_eq_pa": true, "games_total": 136}
+    },
+    "injuries": {
+      "source": "https://www.nfl.com/injuries/ (5 chunks, 2026-11-12T22:38Z)",
+      "compared_against": "data/injuries_2026_wk10.csv",
+      "checker": "research/cef2/check_injuries_official.py",
+      "register_rows_found": 254,
+      "register_rows_missing": 0,
+      "hub_only_rows_after_capture": 25,
+      "hub_only_breakdown": {"SEA": 15, "CIN": 4, "IND": 2, "SF": 2, "JAX": 1, "AZ": 1},
+      "designations_identical": true
+    }
+  },
+  "flags": [
+    {"id": "CE-01", "summary": "analytics full-injuries JSON sums 253 (D93/L88/F72) vs root/s53 254 (D92/L89/F73); one player unaccounted between captures; needs dated mirror (S-26) to settle", "files": ["data/full-injuries-week10-2026.json", "data/injuries_2026_wk10.csv", "data/s53126614_injuries_reg10_2026.json"], "blocking": false},
+    {"id": "CE-02", "summary": "pass-vs-rush yards correlation: s53 C-14 -0.263 (totals) vs portal CORR-12 -0.314 (per game); units not stated in either file", "files": ["data/s53126614_correlations_2026.json", "datasets/e143a7ca/computed_correlations_and_lines.json"], "blocking": false},
+    {"id": "CE-03", "summary": "register phrasing '254 rows across 28 clubs' while only 24 clubs filed rows (BAL/CIN/LAC/SEA empty at capture); consistent under the slate reading, ambiguous wording logged as change request to root-build owner", "files": ["content/index.md", "content/executive-summary.md"], "blocking": false}
+  ]
+}

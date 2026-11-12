@@ -1,0 +1,786 @@
+{
+  "correlation_concordance": [
+    {
+      "agree_to_3dp": true,
+      "pair": "net-pts/G x win%",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-01",
+          "pearson_r": 0.876,
+          "tree": "analytics"
+        },
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-01",
+          "pearson_r": 0.876,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-01",
+          "pearson_r": 0.8758,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "pythagorean-win% x actual-win%",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-02",
+          "pearson_r": 0.877,
+          "tree": "analytics"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-02",
+          "pearson_r": 0.8769,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "def-passer-rating-allowed x pts-allowed/G",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-10",
+          "pearson_r": 0.815,
+          "tree": "analytics"
+        },
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-10",
+          "pearson_r": 0.815,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-08",
+          "pearson_r": 0.8151,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "off-rush-yds-per-carry x pts-for/G",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-08",
+          "pearson_r": 0.017,
+          "tree": "analytics"
+        },
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-13",
+          "pearson_r": 0.017,
+          "tree": "s53"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "off-rush-attempts/G x win%",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-07",
+          "pearson_r": 0.228,
+          "tree": "analytics"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-10",
+          "pearson_r": 0.2276,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "off-pass-attempts/G x win%",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-06",
+          "pearson_r": 0.069,
+          "tree": "analytics"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-11",
+          "pearson_r": 0.0688,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "int-differential x net-pts/G",
+      "values": [
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-04",
+          "pearson_r": 0.464,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-07",
+          "pearson_r": 0.4638,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "3rd-down-conv% x pts-for/G",
+      "values": [
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-07",
+          "pearson_r": 0.707,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-06",
+          "pearson_r": 0.7074,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "off-sack-rate-allowed x pts-for/G",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-09",
+          "pearson_r": -0.635,
+          "tree": "analytics"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-05",
+          "pearson_r": -0.6353,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": true,
+      "pair": "offense PF/G x defense PA/G",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-14",
+          "pearson_r": -0.206,
+          "tree": "analytics"
+        },
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-15",
+          "pearson_r": -0.206,
+          "tree": "s53"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": false,
+      "pair": "off-pass-yds x off-rush-yds (SAME object, divergent r)",
+      "values": [
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-14",
+          "pearson_r": -0.263,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-12",
+          "pearson_r": -0.314,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": false,
+      "pair": "def-rush-allowed x pts-allowed/G (different denominators)",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-12",
+          "pearson_r": 0.613,
+          "tree": "analytics"
+        },
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-11",
+          "pearson_r": 0.467,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-09",
+          "pearson_r": 0.4671,
+          "tree": "portal"
+        }
+      ]
+    }
+  ],
+  "generated_from": "repository files at working-tree state",
+  "notes": [
+    "Trees are independent observations of the same league, published side by side by protocol (board rule: no session adopts another's numbers without re-derivation).",
+    "A 'conflict' here means two files publish different values for one pair/object; it is evidence for the owner's open decisions S-26/S-27/S-29, not a defect by itself.",
+    "Values are extracted, never typed; a file lacking a field is reported as not stated rather than zero."
+  ],
+  "objects": [
+    {
+      "claims": [
+        {
+          "file": "data/injuries_2026_wk10.csv",
+          "note": "manifest metrics: injury_teams=24, empty_clubs=BAL, CIN, LAC, SEA",
+          "status": "stated",
+          "tree": "root (bc4b47cf)",
+          "value": {
+            "clubs_with_rows": 24,
+            "designations": 6,
+            "rows": 254
+          }
+        },
+        {
+          "file": "data/full-injuries-week10-2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "analytics (eaba7863)",
+          "value": {
+            "dnp": 93,
+            "fp": 72,
+            "lp": 88,
+            "players_listed_on_reg10": 253,
+            "teams_in_week10": 28
+          }
+        },
+        {
+          "file": "data/s53126614_injuries_reg10_2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "s53 (53126614)",
+          "value": {
+            "games": 14,
+            "players": 254
+          }
+        },
+        {
+          "file": "datasets/e143a7ca/week10_active_slate_and_injuries.json",
+          "note": "",
+          "status": "complementary",
+          "tree": "portal (e143a7ca)",
+          "value": {
+            "status": "shape differs; per-club table counts not comparable to a flat row count",
+            "top_keys": [
+              "season",
+              "week",
+              "asOf",
+              "scheduleSource",
+              "injurySource",
+              "byesWeek10",
+              "games",
+              "verifiedKeyInjuriesAndLineupChanges"
+            ]
+          }
+        },
+        {
+          "file": "data/injuries-week10-2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "root hub mirror",
+          "value": {
+            "designations": 6,
+            "games_with_no_designation": 12
+          }
+        },
+        {
+          "file": "research/cef2/check_injuries_official.py output",
+          "note": "verdict: register is a faithful capture; the hub rolled to the next practice filing (+15 SEA, +4 CIN, +2 IND, +2 SF, +1 JAX, +1 AZ)",
+          "status": "stated",
+          "tree": "cef2 re-verification 2026-11-12T22:4xZ",
+          "value": {
+            "hub_rows_added_after_capture": 25,
+            "register_rows_found_on_official_page": 254,
+            "register_rows_missing": 0
+          }
+        }
+      ],
+      "object": "Week-10 injury snapshot: player rows / clubs / published game designations"
+    },
+    {
+      "claims": [
+        {
+          "file": "data/correlation.csv",
+          "note": "root deliberately publishes no rho without a pre-registered protocol (correlation.html)",
+          "status": "stated",
+          "tree": "root (bc4b47cf)",
+          "value": {
+            "pair_classes": 12,
+            "rho_cells_filled": 12
+          }
+        },
+        {
+          "file": "data/correlations-2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "analytics (eaba7863)",
+          "value": {
+            "pairs": 14,
+            "r_values_present": 14
+          }
+        },
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "s53 (53126614)",
+          "value": {
+            "pairs": 15,
+            "sample": "n = 32 NFL teams (2026 Regular Season through Week 9/10 official NFL.com snapshot)"
+          }
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "note": "",
+          "status": "stated",
+          "tree": "portal (e143a7ca)",
+          "value": {
+            "pairs": 12
+          }
+        },
+        {
+          "file": "site/data/correlation.json",
+          "note": "this tree estimates outcome correlations from play-by-play outcomes, not team stats",
+          "status": "complementary",
+          "tree": "site (63ac21e9)",
+          "value": {
+            "outcomes": 3,
+            "signals": 3
+          }
+        }
+      ],
+      "object": "2026 team-stat correlation figures (same league table, different trees quoting r values)"
+    },
+    {
+      "claims": [
+        {
+          "file": "this script",
+          "note": "",
+          "status": "stated",
+          "tree": "cef2 census",
+          "value": {
+            "agreeing": 10,
+            "disagreeing": 2,
+            "matched_pairs": 12
+          }
+        }
+      ],
+      "object": "Correlation concordance across trees (matched pairs; extracted by id)"
+    },
+    {
+      "claims": [
+        {
+          "file": "data/s53126614_originated_lines_week11.json",
+          "note": "",
+          "status": "stated",
+          "tree": "s53 (53126614)",
+          "value": {
+            "hfa": 0.5,
+            "home_ml": "-302",
+            "home_win_prob": 0.7511,
+            "spread_home": "HOU -9.0",
+            "total": 48.3
+          }
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "note": "",
+          "status": "stated",
+          "tree": "portal (e143a7ca)",
+          "value": {
+            "hfa": 2.0,
+            "home_ml": "-269",
+            "home_win_prob_pct": 72.9,
+            "spread_home": -8.0,
+            "total": 49.5
+          }
+        },
+        {
+          "file": "\u2014",
+          "note": "same 13-game slate dates Nov 19-23; both leave every market cell blank/unverified; each ML is internally consistent with its own probability (fair, no-vig conversion)",
+          "status": "stated",
+          "tree": "both",
+          "value": {
+            "slate_games": 13
+          }
+        }
+      ],
+      "object": "Week-11 headline game IND at HOU as originated by each tree (both model-only)"
+    },
+    {
+      "claims": [
+        {
+          "file": "data/injuries_2026_wk10.csv",
+          "note": "",
+          "status": "stated",
+          "tree": "root",
+          "value": {
+            "D": 92,
+            "F": 73,
+            "L": 89,
+            "rows": 254
+          }
+        },
+        {
+          "file": "data/full-injuries-week10-2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "analytics (eaba7863)",
+          "value": {
+            "D": 93,
+            "F": 72,
+            "L": 88,
+            "players_listed": 253
+          }
+        },
+        {
+          "file": "data/s53126614_injuries_reg10_2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "s53 (53126614)",
+          "value": {
+            "players": 254
+          }
+        },
+        {
+          "file": "\u2014",
+          "note": "analytics sums to 253 (D93/L88/F72) against root's 254 (D92/L89/F73) and s53's 254; one player is unaccounted between captures - the current official hub has rolled to a later filing so it cannot be settled from live pages; needs a dated mirror (S-26)",
+          "status": "flagged",
+          "tree": "cef2 verdict",
+          "value": null
+        }
+      ],
+      "object": "Week-10 practice snapshot: total listed players and code counts"
+    },
+    {
+      "claims": [
+        {
+          "file": "data/s53126614_originated_lines_week11.json",
+          "note": "",
+          "status": "stated",
+          "tree": "s53 (53126614)",
+          "value": {
+            "games": 13,
+            "label": "MODEL ONLY \u2014 Originated Fair Lines (Zero Market Lines Claimed)",
+            "models": [
+              "hfa_true_home_pts",
+              "hfa_neutral_pts",
+              "margin_sd_pts",
+              "league_mean_total_pts",
+              "srs_weight",
+              "efficiency_weight"
+            ]
+          }
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "note": "",
+          "status": "stated",
+          "tree": "portal (e143a7ca)",
+          "value": {
+            "week11_lines": 13
+          }
+        },
+        {
+          "file": "site/data/lines.json",
+          "note": "historical model residuals vs vendored closing lines 2006-2018; zero 2026 coverage (FL-21)",
+          "status": "stated",
+          "tree": "site (63ac21e9)",
+          "value": {
+            "entries": 8
+          }
+        },
+        {
+          "file": "content/line-origination.md",
+          "note": "",
+          "status": "stated",
+          "tree": "root (bc4b47cf)",
+          "value": {
+            "value": "specification only - no published model line"
+          }
+        }
+      ],
+      "object": "Week-11 originated lines (who publishes what, and against what benchmark)"
+    },
+    {
+      "claims": [
+        {
+          "file": "content/flagged-for-review.md FL-06",
+          "note": "",
+          "status": "stated",
+          "tree": "root (bc4b47cf)",
+          "value": {
+            "value": "no official public depth chart at nfl.com/teams/*/depth-chart (404); must be reconstructed"
+          }
+        },
+        {
+          "file": "data/depth-charts-2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "analytics (eaba7863)",
+          "value": {
+            "clubs": 18,
+            "flag": [
+              {
+                "label_on_page": "Official Depth Chart",
+                "team": "Arizona Cardinals",
+                "url": "https://www.azcardinals.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Baltimore Ravens Depth Chart",
+                "team": "Baltimore Ravens",
+                "url": "https://www.baltimoreravens.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Unofficial 2026 Dallas Cowboys Depth Chart",
+                "team": "Dallas Cowboys",
+                "url": "https://www.dallascowboys.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "2026 Unofficial Depth Chart Compiled by Lions Football Communications",
+                "team": "Detroit Lions",
+                "url": "https://www.detroitlions.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Green Bay Packers Depth Chart (Unofficial, Nov. 10, 2026)",
+                "team": "Green Bay Packers",
+                "url": "https://www.packers.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Rams Unofficial Depth Chart",
+                "team": "Los Angeles Rams",
+                "url": "https://www.therams.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Dolphins Depth Chart",
+                "team": "Miami Dolphins",
+                "url": "https://www.miamidolphins.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Patriots Unofficial Depth Chart",
+                "team": "New England Patriots",
+                "url": "https://www.patriots.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Giants Team Depth Chart",
+                "team": "New York Giants",
+                "url": "https://www.giants.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "San Francisco 49ers Depth Chart (Updated as of 11/10/26)",
+                "team": "San Francisco 49ers",
+                "url": "https://www.49ers.com/team/depth-chart"
+              },
+              {
+                "label_on_page": "Seattle Seahawks Depth Chart",
+                "team": "Seattle Seahawks",
+                "url": "https://www.seahawks.com/team/depth-chart/"
+              },
+              {
+                "label_on_page": "Washington Commanders Team Depth Chart",
+                "team": "Washington Commanders",
+                "url": "https://www.commanders.com/team/depth-chart"
+              }
+            ]
+          }
+        },
+        {
+          "file": "data/s53126614_depth_deficiencies_2026.json",
+          "note": "",
+          "status": "stated",
+          "tree": "s53 (53126614)",
+          "value": {
+            "unmapped_clubs": 19,
+            "verified_clubs": 13
+          }
+        }
+      ],
+      "object": "Depth-chart availability and verified club counts"
+    },
+    {
+      "claims": [
+        {
+          "file": "data/strategies.csv|gates.csv|signals.csv",
+          "note": "",
+          "status": "stated",
+          "tree": "root (bc4b47cf)",
+          "value": {
+            "gates": 14,
+            "signal_families": 18,
+            "strategies": 14
+          }
+        },
+        {
+          "file": "datasets/e143a7ca/leaderboard_strategies.json",
+          "note": "",
+          "status": "stated",
+          "tree": "portal (e143a7ca)",
+          "value": {
+            "gates": 7,
+            "reward_tiers": 4,
+            "strategies": 9
+          }
+        },
+        {
+          "file": "data/s53126614_signals_leaderboard.json",
+          "note": "",
+          "status": "stated",
+          "tree": "s53 (53126614)",
+          "value": {
+            "gates": 9,
+            "reward_tiers": 4,
+            "strategies": 12
+          }
+        },
+        {
+          "file": "site/data/strategies.json",
+          "note": "",
+          "status": "stated",
+          "tree": "site (63ac21e9)",
+          "value": {
+            "gate_definitions": 7,
+            "strategies": 22,
+            "tests_run": 60
+          }
+        }
+      ],
+      "object": "Leaderboard competition: strategies, signals, gates per tree"
+    },
+    {
+      "claims": [
+        {
+          "file": "data/*.csv vs data/build_manifest.json",
+          "note": "",
+          "status": "stated",
+          "tree": "cef2 measurement",
+          "value": {
+            "depth_events": {
+              "agree": true,
+              "file": 227,
+              "manifest": 227
+            },
+            "designations": {
+              "agree": true,
+              "file": 6,
+              "manifest": 6
+            },
+            "flags": {
+              "agree": true,
+              "file": 21,
+              "manifest": 21
+            },
+            "game_log_wk1_9": {
+              "agree": true,
+              "file": 136,
+              "manifest": 136
+            },
+            "injury_games_header": {
+              "agree": true,
+              "file": 14,
+              "manifest": 14
+            },
+            "injury_rows": {
+              "agree": true,
+              "file": 254,
+              "manifest": 254
+            },
+            "questions": {
+              "agree": true,
+              "file": 29,
+              "manifest": 29
+            },
+            "requirements": {
+              "agree": true,
+              "file": 40,
+              "manifest": 40
+            },
+            "sources": {
+              "agree": true,
+              "file": 28,
+              "manifest": 28
+            },
+            "standings": {
+              "agree": true,
+              "file": 32,
+              "manifest": 32
+            },
+            "suggestions": {
+              "agree": true,
+              "file": 29,
+              "manifest": 29
+            }
+          }
+        }
+      ],
+      "object": "Root site self-consistency (file count vs build_manifest metric)"
+    }
+  ],
+  "pair_conflicts": [
+    {
+      "agree_to_3dp": false,
+      "pair": "off-pass-yds x off-rush-yds (SAME object, divergent r)",
+      "values": [
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-14",
+          "pearson_r": -0.263,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-12",
+          "pearson_r": -0.314,
+          "tree": "portal"
+        }
+      ]
+    },
+    {
+      "agree_to_3dp": false,
+      "pair": "def-rush-allowed x pts-allowed/G (different denominators)",
+      "values": [
+        {
+          "file": "data/correlations-2026.json",
+          "id": "C-12",
+          "pearson_r": 0.613,
+          "tree": "analytics"
+        },
+        {
+          "file": "data/s53126614_correlations_2026.json",
+          "id": "C-11",
+          "pearson_r": 0.467,
+          "tree": "s53"
+        },
+        {
+          "file": "datasets/e143a7ca/computed_correlations_and_lines.json",
+          "id": "CORR-09",
+          "pearson_r": 0.4671,
+          "tree": "portal"
+        }
+      ]
+    }
+  ]
+}

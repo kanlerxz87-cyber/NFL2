@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cef2 re-verification brief · NFL2</title>
+<style>
+:root{--ink:#1a2332;--mut:#5b6b7f;--line:#dfe6ee;--bg:#f6f8fb;--ok:#0f7b3f;--warn:#b45309;--bad:#b91c1c;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:var(--ink);color:#fff;padding:22px 28px}
+header h1{margin:0 0 4px;font-size:21px}
+header p{margin:0;color:#b9c5d6;font-size:13.5px;max-width:980px}
+header a{color:#9fc1ff}
+main{max-width:1180px;margin:0 auto;padding:20px 24px 60px}
+nav{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 4px;font-size:13.5px}
+nav a{color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--card);padding:5px 10px;border-radius:7px}
+h2{font-size:17px;margin:34px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+h3{font-size:14.5px;margin:20px 0 6px}
+p.lede{color:var(--mut);font-size:13.5px;margin:4px 0 12px}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:13.5px;margin:10px 0 6px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#eef2f7;font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.ok{color:var(--ok);font-weight:600}
+.warn{color:var(--warn);font-weight:600}
+.bad{color:var(--bad);font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:#eef7f0;color:var(--ok);margin-left:6px;vertical-align:1px}
+.badge.spec{background:#eef3fb;color:#1d4ed8}
+.badge.amber{background:#fdf6e7;color:var(--warn)}
+a{color:#1d4ed8}
+.note{font-size:12.5px;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:14px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.card b{font-size:21px;display:block}
+.card span{color:var(--mut);font-size:12.5px}
+footer{margin-top:44px;font-size:12.5px;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+code{background:#eef2f7;padding:1px 5px;border-radius:5px;font-size:12.5px}
+ul.tight{margin:6px 0;padding-left:22px}
+ul.tight li{margin:4px 0}
+</style>
+</head>
+<body>
+<header>
+<h1>Session <code style="background:#2c3a52;color:#cfe0ff">cef2b11f</code> — independent re-verification, cross-tree census &amp; freshness check <span class="badge" style="background:#204018;color:#c6f6d5">measured &amp; sourced</span></h1>
+<p>Posture: <b>verify, do not restate.</b> This session added no new opinion to the eight published trees. It re-ran every repository verifier, re-fetched the official league pages, compared the published registers row by row, put the eight trees next to each other for the first time, and quantified how far the official sources moved in the eighteen hours since the registers were captured. Published 2026-11-12T22:5xZ. Data files: <a href="https://github.com/kanlerxz87-cyber/NFL2/tree/main/research/cef2">research/cef2/</a>.</p>
+<nav>
+<a href="../../index.html">← root dashboard</a>
+<a href="#suites">Suites</a>
+<a href="#official">Official row checks</a>
+<a href="#census">Cross-tree census</a>
+<a href="#fresh">Freshness</a>
+<a href="#flags">Flags CE-01…03</a>
+<a href="#suggestions">Suggestions</a>
+</nav>
+</header>
+<main>
+
+<div class="grid">
+<div class="card"><b>32 / 32</b><span>standings rows exact vs nfl.com/standings/ at re-check (zero-sum identities recomputed clean: 135 W = 135 L, 2 ties, PF = PA, 136 games)</span></div>
+<div class="card"><b>254 / 254</b><span>Week-10 injury rows located on nfl.com/injuries/; 0 missing; six game designations identical</span></div>
+<div class="card"><b>+25</b><span>hub-only rows since capture (SEA +15, CIN +4, IND +2, SF +2, JAX +1, AZ +1) — filing drift, not transcription error</span></div>
+<div class="card"><b>9 / 9</b><span>verifier suites green on the merged tree; Pages build <code>25d88a9</code> status <code>built</code></span></div>
+<div class="card"><b>10 / 12</b><span>cross-tree correlation pairs matching to three decimals where definitions align</span></div>
+<div class="card"><b>0</b><span>live tracked results anywhere — all four leaderboard registers agree on this by design (gates fail closed)</span></div>
+</div>
+
+<h2 id="suites">1 · All local suites re-run on this tree <span class="badge">all green</span></h2>
+<table>
+<tr><th>Suite</th><th>Owning tree</th><th>Result</th></tr>
+<tr><td><code>tools/verify.py</code> (39 checks) + <code>tools/check_site.py</code> (10 + 1 expected warn) after full rebuild</td><td>root</td><td class="ok">0 failures; rebuild byte-identical</td></tr>
+<tr><td><code>tools/review_verify.py</code></td><td>review/</td><td class="ok">rows, sources, blanks, links OK</td></tr>
+<tr><td><code>engine/verify_repo_and_site.py</code></td><td>portal/</td><td class="ok">64 HTML pages, 1,619 internal links, 0 broken</td></tr>
+<tr><td><code>scripts/verify_q51.py</code> + 36 engine tests</td><td>q51/</td><td class="ok">0 errors; unittests OK</td></tr>
+<tr><td><code>scripts/verify_s53126614.py</code></td><td>s53/</td><td class="ok">262 rows 100% official-sourced; 3,287 links 0 broken</td></tr>
+<tr><td><code>scripts/audit_all_pages.py</code></td><td>analytics/</td><td class="ok">96 pages · 222 tables · 3,423 rows · 0 broken links · 0 column mismatches</td></tr>
+<tr><td><code>render_test.js</code> · <code>check_links.py</code> · <code>check_reproducible.py</code></td><td>site/</td><td class="ok">13/13 pages; 128 refs clean; artefacts reproduce</td></tr>
+<tr><td>GitHub Pages API + CI at <code>main</code> <code>25d88a9</code></td><td>—</td><td class="ok">status <code>built</code>; all four workflows success; live fetches of <a href="https://kanlerxz87-cyber.github.io/NFL2/">root</a>, <a href="https://kanlerxz87-cyber.github.io/NFL2/portal/index.html">portal</a>, <a href="https://kanlerxz87-cyber.github.io/NFL2/q51/index.html">q51</a> resolve with register-matching values</td></tr>
+</table>
+<p class="note">Full record: <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/research/cef2/reverification-2026-11-12.md">reverification-2026-11-12.md</a> · machine-readable <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/research/cef2/reverification-2026-11-12.json">.json</a>. Live-site checks go through the page reader because this sandbox's direct egress to github.io is allowlist-blocked (recorded by an earlier session as Q-24).</p>
+
+<h2 id="official">2 · Row-by-row re-check against the official sources</h2>
+<table>
+<tr><th>Object</th><th>Register</th><th>Official page at re-check</th><th>Verdict</th></tr>
+<tr><td>2026 standings, W-L-T · PF · PA · pct · streak</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/standings_2026.csv">data/standings_2026.csv</a> (32 rows)</td><td><a href="https://www.nfl.com/standings/">nfl.com/standings/</a>, fetched 22:35Z</td><td class="ok">32/32 exact after the documented LA↔LAR club-key mapping (FL-17)</td></tr>
+<tr><td>Week-10 practice rows</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/injuries_2026_wk10.csv">data/injuries_2026_wk10.csv</a> (254 rows)</td><td><a href="https://www.nfl.com/injuries/">nfl.com/injuries/</a>, fetched 22:38Z (7 chunks)</td><td class="ok">254/254 located, 0 missing — checker: <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/research/cef2/check_injuries_official.py">check_injuries_official.py</a></td></tr>
+<tr><td>Game designations</td><td>6 (5 Out, 1 Questionable)</td><td>same six, same values; Sunday/Monday cells still blank on the hub</td><td class="ok">identical; register's "not yet published" flags remain accurate</td></tr>
+<tr><td>League depth charts</td><td>root FL-06: no official public depth chart</td><td><a href="https://www.nfl.com/teams/new-england-patriots/depth-chart/">nfl.com/teams/new-england-patriots/depth-chart/</a> re-fetch = 404</td><td class="warn">FL-06 re-confirmed live — "2nd/3rd/4th string" must stay a reconstruction</td></tr>
+<tr><td>Root register self-consistency</td><td>11 files vs <code>data/build_manifest.json</code> metrics</td><td>—</td><td class="ok">11/11 exact (40 req · 29 Q · 29 sug · 21 flags · 28 sources · 32 standings · 136 games · 14 games · 227 depth · 254 rows · 6 designations)</td></tr>
+</table>
+
+<h2 id="census">3 · Cross-tree discrepancy census <span class="badge spec">first time the trees are compared to each other</span></h2>
+<p class="lede">Board policy kept every tree's numbers separate on purpose. Nobody had yet checked what happens when they stand side by side. Full extraction: <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/research/cef2/discrepancies-2026-11-12.json">discrepancies JSON</a> · <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/research/cef2/discrepancies-2026-11-12.md">census notes</a>.</p>
+
+<h3>3a · Week-10 injury snapshot totals</h3>
+<table>
+<tr><th>Tree · file</th><th class="num">Players</th><th class="num">D / L / F</th><th>Note</th></tr>
+<tr><td>root · <code>data/injuries_2026_wk10.csv</code></td><td class="num">254</td><td class="num">92 / 89 / 73</td><td>verified row-by-row today (0 missing)</td></tr>
+<tr><td>analytics · <code>data/full-injuries-week10-2026.json</code></td><td class="num">253</td><td class="num">93 / 88 / 72</td><td class="bad">CE-01: off by one against both other trees; unresolvable from the live hub — it rolled forward</td></tr>
+<tr><td>s53 · <code>data/s53126614_injuries_reg10_2026.json</code></td><td class="num">254</td><td class="num">— / — / —</td><td>agrees with root</td></tr>
+</table>
+
+<h3>3b · Correlations — the most convergent object in the repo</h3>
+<table>
+<tr><th>Pair (as defined in each file)</th><th class="num">analytics</th><th class="num">s53</th><th class="num">portal</th><th>Verdict</th></tr>
+<tr><td>Net Pts/G × Win %</td><td class="num">0.876</td><td class="num">0.876</td><td class="num">0.8758</td><td class="ok">agree</td></tr>
+<tr><td>Pythagorean × actual Win %</td><td class="num">0.877</td><td class="num">—</td><td class="num">0.8769</td><td class="ok">agree</td></tr>
+<tr><td>Def PPR allowed × Pts Allowed/G</td><td class="num">0.815</td><td class="num">0.815</td><td class="num">0.8151</td><td class="ok">agree</td></tr>
+<tr><td>Rush Yd/Carry × Pts For/G</td><td class="num">0.017</td><td class="num">0.017</td><td class="num">—</td><td class="ok">agree</td></tr>
+<tr><td>Rush / Pass attempts/G × Win %</td><td class="num">0.228 / 0.069</td><td class="num">—</td><td class="num">0.2276 / 0.0688</td><td class="ok">agree</td></tr>
+<tr><td>INT differential × Net Pts/G</td><td class="num">—</td><td class="num">0.464</td><td class="num">0.4638</td><td class="ok">agree</td></tr>
+<tr><td>3rd-down conv × Pts For/G</td><td class="num">—</td><td class="num">0.707</td><td class="num">0.7074</td><td class="ok">agree</td></tr>
+<tr><td>Off PF/G × Def PA/G</td><td class="num">−0.206</td><td class="num">−0.206</td><td class="num">—</td><td class="ok">agree</td></tr>
+<tr><td>Sack pressure × Pts For/G</td><td class="num">−0.635 (rate)</td><td class="num">−0.621 (count)</td><td class="num">−0.6353 (rate)</td><td class="warn">definitional, consistent once definitions differ</td></tr>
+<tr><td>Off pass-yds × off rush-yds</td><td class="num">—</td><td class="num">−0.263</td><td class="num">−0.314</td><td class="bad">CE-02: same name, different r, no denominator stated in either file</td></tr>
+<tr><td>Def rush allowed × Pts Allowed/G</td><td class="num">0.613 (/G)</td><td class="num">0.467 (/carry)</td><td class="num">0.4671 (/carry)</td><td class="warn">definitional</td></tr>
+</table>
+<p class="note">The root register remains the methodological dissenter: 12 pair classes with <b>zero fitted rhos</b> pending a pre-registered protocol — a policy about <i>publishing</i> fitted numbers, not a numeric conflict. All numbers above are extracted from the cited files by <code>build_discrepancy_census.py</code>; none were re-typed.</p>
+
+<h3>3c · Week-11 originated lines — same slate, two models</h3>
+<table>
+<tr><th>Headline game IND at HOU</th><th class="num">s53 (v2 skill)</th><th class="num">portal</th></tr>
+<tr><td>Fair home spread</td><td class="num">HOU −9.0</td><td class="num">HOU −8.0</td></tr>
+<tr><td>Home-field assumption</td><td class="num">0.5 pts</td><td class="num">2.0 pts</td></tr>
+<tr><td>Fair total</td><td class="num">48.3</td><td class="num">49.5</td></tr>
+<tr><td>Home win prob → fair ML</td><td class="num">75.1% → −302/+302</td><td class="num">72.9% → −269/+269</td></tr>
+<tr><td>Market columns</td><td class="num">blank (no licensed feed)</td><td class="num">blank (same)</td></tr>
+</table>
+<p class="note">Both MLs are internally consistent with their own probabilities (no-vig conversion) — the one-point divergence is entirely upstream: the HFA constant. Two defensible models are already a point apart on the same game before any skill enters, which is exactly why the leaderboard must score lines against one frozen benchmark, not against each other. The only calibrated line model in the repo (<code>site/data/calibration.json</code>, 2006–2018 vendored archive, n=3,404) reports model spread MAE 10.25 vs market 9.936 — <b>worse than the close</b> — and publishes that negative. Any 2026 line claim that has not survived a similar comparison should be read as uncalibrated.</p>
+
+<h3>3d · The competition registers</h3>
+<table>
+<tr><th>Tree</th><th class="num">Strategies</th><th class="num">Gates</th><th class="num">Reward tiers</th><th class="num">Tracked results</th></tr>
+<tr><td>root <code>data/strategies.csv</code></td><td class="num">14</td><td class="num">14</td><td>in <code>content/leaderboard.md</code></td><td class="num">0 (all unranked by design)</td></tr>
+<tr><td>portal</td><td class="num">9</td><td class="num">7 (G1–G7)</td><td class="num">4</td><td class="num">0 (Tier-0 quarantine)</td></tr>
+<tr><td>s53</td><td class="num">12</td><td class="num">9 (G0–G8)</td><td class="num">4</td><td class="num">0</td></tr>
+<tr><td>site</td><td class="num">22</td><td class="num">7</td><td>in file</td><td class="num">60 historical tests only</td></tr>
+</table>
+<p class="note">No numeric conflict — a canonical-registry conflict (owner decisions S-27, S-04). Every tree independently reached the same bottom line: <b>no strategy has earned capital yet, because the gates fail closed without dated price data (Q-01/S-29) and point-in-time availability (S-26).</b></p>
+
+<h2 id="fresh">4 · Freshness — how far the league moved in 18 hours</h2>
+<table>
+<tr><th>Channel</th><th>Register horizon (captured ~04:30–05:10Z)</th><th>Official page at 22:40Z</th><th>Gap</th></tr>
+<tr><td>Game designations (six)</td><td>6 published, rest "not yet published"</td><td>still exactly 6; Sunday cells still blank pre-Friday-filing</td><td class="ok">none — flags remain accurate</td></tr>
+<tr><td>Practice participation</td><td>254 rows (Tuesday filing)</td><td>279 rows (Wednesday filing)</td><td class="warn">+25 rows; SEA &amp; CIN went from "No Injuries Reported" to filed tables (15 + 4 rows)</td></tr>
+<tr><td>Roster transactions</td><td>227 events through the Wed Nov 11 roundup</td><td>Thu Nov 12 roundup published</td><td class="warn">one day</td></tr>
+<tr><td>Standings</td><td>136 games</td><td>136 games, identical</td><td class="ok">none</td></tr>
+</table>
+<p class="lede">Record: <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/research/cef2/freshness-2026-11-12.md">freshness-2026-11-12.md</a> · <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/research/cef2/freshness-2026-11-12.json">json</a>. The hub is an evergreen page: a captured table is only as current as its capture stamp — the quantified case for dated mirrors (S-26).</p>
+
+<h2 id="flags">5 · New flags found by this sweep <span class="badge amber">needs review — published, not blocking</span></h2>
+<table>
+<tr><th>Flag</th><th>Finding</th><th>Files</th><th>Resolution path</th></tr>
+<tr><td><b>CE-01</b></td><td>analytics injury totals sum to 253 where root and s53 both carry 254 (one D/L/F cell each and one row unaccounted); no live page can settle it because the hub rolled to a newer filing</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/full-injuries-week10-2026.json">full-injuries-week10-2026.json</a> vs <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/injuries_2026_wk10.csv">injuries_2026_wk10.csv</a></td><td>adopt dated mirrors per capture (S-26); reconcile against the archived snapshot, do not silently pick a winner</td></tr>
+<tr><td><b>CE-02</b></td><td>pass-vs-rush yards correlation published as −0.263 and −0.314 for the same named object; underlying metrics differ (season totals vs yards/game) but neither file says so</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s53126614_correlations_2026.json">s53 correlations</a> · <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/datasets/e143a7ca/computed_correlations_and_lines.json">portal correlations</a></td><td>mandatory <code>units</code> field on every correlation record + build check rejecting its absence</td></tr>
+<tr><td><b>CE-03</b></td><td>"254 rows across 28 clubs" is the slate count, not a filing count: only 24 clubs filed (BAL, CIN, LAC, SEA published "No Injuries Reported"); the site's own injury page explains this, the index phrasing reads like a per-club claim</td><td><code>content/index.md</code>, <code>content/executive-summary.md</code> (root build)</td><td>change request logged for the root-build owner: render "28-club slate · 24 clubs filed" from manifest metrics</td></tr>
+</table>
+
+<h2 id="suggestions">6 · Suggestions from this session <span class="badge spec">for the owner's decision section — nothing implemented</span></h2>
+<p class="lede">IDs are prefixed <code>CEF2-S</code> deliberately: the root suggestion register (S-01…S-29) is another session's file; merging these in is an owner decision, listed as a change request in COORDINATION.md.</p>
+<table>
+<tr><th>ID</th><th>Suggestion</th><th>Problem it closes</th><th class="num">Effort</th><th>Reversible</th><th>Decision</th></tr>
+<tr><td><b>CEF2-S1</b></td><td>Every captured table stores fetch timestamp + league filing-day label; a build gate refuses any register row older than its stated capture window</td><td>CE-01, FL-09, S-26 — settled by one mechanism</td><td class="num">Low–Med</td><td>Yes</td><td class="warn">pending owner</td></tr>
+<tr><td><b>CEF2-S2</b></td><td>Add a required <code>units</code>/denominator field to every correlation and line record; auditor fails rows without it</td><td>CE-02 and any future "same name, different metric" divergence</td><td class="num">Low</td><td>Yes</td><td class="warn">pending owner</td></tr>
+<tr><td><b>CEF2-S3</b></td><td>Freeze one benchmark line sheet per slate (shared HFA constant, shared model inputs version) that every origination tree scores against; leaderboards rank distance-to-benchmark, not model-vs-model</td><td>The 1-point HFA divergence between s53 and portal on the same game</td><td class="num">Med</td><td>Yes</td><td class="warn">pending owner</td></tr>
+<tr><td><b>CEF2-S4</b></td><td>Name one canonical competition ledger (root's is the audited one); other registers become labelled views pointing at it</td><td>Four strategy registries, four schemas, one competition</td><td class="num">Low</td><td>Yes</td><td class="warn">pending owner (decides S-27/S-04 with it)</td></tr>
+<tr><td><b>CEF2-S5</b></td><td>Label every availability-derived decision with its practice-cycle age, and re-capture designations before each slate (Friday filing + one after Thursday transactions), else mark "one cycle old" on the page</td><td>The +25-row drift observed in 18 hours</td><td class="num">Low</td><td>Yes</td><td class="warn">pending owner</td></tr>
+</table>
+
+<footer>
+<p><b>What this session did and did not do.</b> Did: re-run all nine verifier suites, re-fetch the official standings and injury hub, diff every published register row by row, census the eight trees against each other, quantify source drift, and publish the three findings CE-01…03 without editing any file owned by another session. Did not: change any register, adopt any other tree's numbers, or implement any suggestion above. No value on this page was inferred — files that do not state something are reported as not stated. Unverified market prices remain absent from every tree, by design.</p>
+<p>Session <code>cef2b11f</code> · branch <code>arena/cef2b11f-nfl2</code> · base <code>25d88a9</code> · source of truth for the numbers on this page: <a href="https://github.com/kanlerxz87-cyber/NFL2/tree/main/research/cef2">research/cef2/</a> (checker scripts reproduce every claim; run commands are in each file header).</p>
+</footer>
+</main>
+</body>
+</html>
