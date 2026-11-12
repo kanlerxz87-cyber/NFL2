@@ -65,4 +65,4 @@ be dated (S-26/CEF2-S1).
 - Per the FL-26 lesson, the deploy was confirmed by probing a **tree-unique** URL:
   `https://kanlerxz87-cyber.github.io/NFL2/research/cef2/index.html` renders the published brief
   (it exists only in the audited root build, so its 200 + content is proof the correct tree is live).
-- Follow-up commit (this record + PR #34 gate note on the brief page) published via PR #35.
+- Follow-up commit (this record + PR #34 gate note on the brief page) published via PR #36.
