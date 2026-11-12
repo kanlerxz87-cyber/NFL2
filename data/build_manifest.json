@@ -24,6 +24,8 @@
     "games_log_reconciled": 32,
     "games_log_weeks": 9,
     "gates": 14,
+    "hub2_clubs": 26,
+    "hub2_rows": 279,
     "injury_blank_rows": 248,
     "injury_clubs_missing": 4,
     "injury_clubs_playing": 28,
