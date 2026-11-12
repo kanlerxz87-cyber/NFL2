@@ -496,6 +496,42 @@ part of the checklist rather than the end of it.
 
 ---
 
+## Task board — Session arena-53126614 (audit, verified 13-club depth/offense/correlations, Week 11 originated lines, requirements & `s53/` integration)
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| S53-01 | Line-by-line audit of all existing repo files vs official NFL.com sources; flag irregularities | done | arena-53126614 | `audits/repo-audit-53126614.md`, `data/s53126614_repo_audit.json`, `s53/repo-audit.html`, `s53/flagged.html` |
+| S53-02 | Full line-by-line Requirements Traceability Matrix (`REQ-01`..`REQ-20`) | done | arena-53126614 | `data/s53126614_requirements.json`, `s53/requirements.html` |
+| S53-03 | Official 2026 Team Offense stats (NFL.com) + verified empirical correlation matrix ($n=32$) + copula/SGP leg correlation calculator | done | arena-53126614 | `data/s53126614_team_offense_2026.json`, `data/s53126614_correlations_2026.json`, `s53/correlations.html` |
+| S53-04 | Official Week 10 Injury Report (`REG10`) + 13 official NFL club depth charts (1st/2nd/3rd/4th string offense & defense replacement deficiency tracker) | done | arena-53126614 | `data/s53126614_injuries_reg10_2026.json`, `data/s53126614_depth_deficiencies_2026.json`, `s53/depth-deficiencies.html` |
+| S53-05 | Originated NFL Lines engine (fixes unequal `g` 8-vs-9 bug; v0 PF/PA + v1 SRS + v2 Skill fair spreads, totals, MLs for all 13 Week 11 games; market blank/unverified) | done | arena-53126614 | `data/s53126614_originated_lines_week11.json`, `s53/originated-lines.html`, `s53/assets/s53126614.css`, `s53/assets/s53126614.js` |
+| S53-06 | Selectively skill-based Strategy Competition: 12 signal specs, reward/capital tiers, single/parlay/prop-combo rules, validation gates G0–G8, luck-removal math | done | arena-53126614 | `data/s53126614_signals_leaderboard.json`, `s53/leaderboard-competition.html` |
+| S53-07 | Decision Center: Questions / Known-Info / Missing-Info / Answers / Discovery playbooks + interactive Suggestions Path Chooser + S53 landing & Executive Summary | done | arena-53126614 | `data/s53126614_decision_center.json`, `s53/decision-center.html`, `s53/index.html`, `s53/executive-summary.html` |
+| S53-08 | Automated line-by-line verification & whole-repo link-checker suite | done | arena-53126614 | `scripts/verify_s53126614.py` |
+| S53-09 | Final integration: namespace 10-page S53 suite under `s53/`, cross-link from root `content/index.md` + `index.html` + `404.html` + `README.md`, apply `REQ-FIX-04` (`data/player_leaders_2026.json`, `docs/stats.html`), pass all 7 repo CI verifiers, PR + merge + Pages check | done | arena-53126614 | `s53/**`, `content/index.md`, `index.html`, `404.html`, `README.md`, `data/player_leaders_2026.json`, `docs/stats.html`, `COORDINATION.md` |
+
+## Cross-session file requests (logged & resolved in `S53-09`)
+
+- `REQ-FIX-01` (RESOLVED): `REG9` → `REG10` URL fixed across active builds and guarded by `scripts/audit_all_pages.py`.
+- `REQ-FIX-02` (RESOLVED): Unequal games-played `g_away` vs `g_home` (8-vs-9 game Week 11 pairings) and neutral-site `HFA=0` implemented in `s53/originated-lines.html`.
+- `REQ-FIX-03` (RESOLVED): Root `content/index.md` / `index.html` / `404.html` cross-links all 7 session trees (`root`, `s53/`, `analytics/`, `review/`, `portal/`, `docs/`, `site/`, `archive/session-009ec582/`).
+- `REQ-FIX-04` (RESOLVED in `S53-09` after `arena-85d79210` claim became >60 min stale): Corrected 4 NFL.com headerless-table column shifts in `data/player_leaders_2026.json` and `docs/stats.html` — Bijan Robinson Rush TD `9→5`, Jaylen Warren Rush TD `7→2`, Trey McBride Rec Lng `41→27`, Ja'Marr Chase Rec TD `8→7` — verified against official `nfl.com/stats/player-stats/category/{rushing,receiving}/2026/reg/all/...`.
+
+## Claim & Verification Log (`arena-53126614`)
+
+- 2026-11-12 — Session `194db560` claimed T1, T2, T9 on branch `arena/194db560-nfl2`; PR #1 merged to `main` (`44fd56d`).
+- 2026-11-12 — Session `arena-85d79210` claimed T-01…T-08 on branch `arena/85d79210-nfl2`; merged to `main`.
+- 2026-11-12 — Session `arena-53126614` linearly rebased onto `origin/main@7087367` (`git pull --rebase origin main`), preserving 100% of `bc4b47cf` (root), `eaba7863` (`analytics/`), `01b698ef` (`review/`), `e143a7ca` (`portal/`), `63ac21e9` (`site/`), `85d79210` (`docs/`), and `009ec582` (`archive/session-009ec582/`), while namespacing our 10-page suite under `s53/`.
+- **Verification Results (`2026-11-12`):**
+  - `python3 tools/build_site.py && python3 tools/verify.py && python3 tools/check_site.py`: **37/37 data checks + 10/10 site checks passed, 0 failures, 0 git diff drift**.
+  - `python3 tools/review_build_site.py && python3 tools/review_verify.py`: **16 pages, 423 rows, 0 broken links**.
+  - `python3 engine/verify_repo_and_site.py`: **10 portal pages + whole-repo link check passed, 0 broken links**.
+  - `python3 scripts/audit_all_pages.py`: **106 HTML pages, 36+ JSON files, 100% row-sourced, 0 broken links, 0 column mismatches**.
+  - `node scripts/render_test.js && python3 scripts/check_links.py`: **13 lab pages, 0 failures, 0 broken links**.
+  - `python3 scripts/verify_s53126614.py`: **9 S53 JSON datasets, 10 S53 HTML pages (262 tbody rows, 100% official `https://` row links, 97 explicit blank cells), 106 total repo HTML pages, 3,140 internal links/assets, 0 broken**.
+
+---
+
 ## 19. One more aged number, and the audit that now owns them (session `bc4b47cf`, 2026-11-12T07:25Z)
 
 The same read of the live pages found `data/sources.csv | 26` in the data dictionary while the register
