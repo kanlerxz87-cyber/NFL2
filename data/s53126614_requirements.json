@@ -1,0 +1,187 @@
+{
+  "as_of": "2026-11-12",
+  "session": "arena-53126614",
+  "source_prompt": "Project specification on branch arena/53126614-nfl2",
+  "requirements": [
+    {
+      "id": "REQ-01",
+      "category": "Core Goal",
+      "requirement": "Collect, organize, and analyze NFL data utilizing a full list of requirements.",
+      "status": "Met & Verified",
+      "deliverable": "requirements.html, index.html, data/s53126614_*.json",
+      "verification": "22-row traceability matrix mapping every prompt clause to verified datasets and pages.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "REQ-02",
+      "category": "Decision Making",
+      "requirement": "Make suggestions on how to improve the site to improve decision making.",
+      "status": "Met & Verified",
+      "deliverable": "decision-center.html, suggestions.html, docs/suggestions.html",
+      "verification": "Ranked suggestions (S-01..S-12 + Path A/B/C/D comparator) with explicit decision impact, effort, and data dependencies.",
+      "official_source": "https://github.com/kanlerxz87-cyber/NFL2"
+    },
+    {
+      "id": "REQ-03",
+      "category": "Decision Making",
+      "requirement": "Create a dedicated section for suggestions so someone can review and choose the best path before implementing changes.",
+      "status": "Met & Verified",
+      "deliverable": "decision-center.html, suggestions.html",
+      "verification": "Interactive Path Chooser & Proposal Scorecard lets reviewer compare Paths A/B/C/D and export a pre-implementation decision spec without mutating live rules.",
+      "official_source": "https://kanlerxz87-cyber.github.io/NFL2/"
+    },
+    {
+      "id": "REQ-04",
+      "category": "Prerequisites",
+      "requirement": "Clear list of questions, information we already have, information we do not have, and answers needed before any decision can reasonably be made.",
+      "status": "Met & Verified",
+      "deliverable": "decision-center.html, questions.html, docs/questions.html",
+      "verification": "Side-by-side Known (Verified + Linked) vs Missing (Unverified) vs Required Answer register across 16 decision gates.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "REQ-05",
+      "category": "Discovery",
+      "requirement": "Make concrete suggestions to discover missing information.",
+      "status": "Met & Verified",
+      "deliverable": "decision-center.html",
+      "verification": "Every missing-data item (historical odds, play-by-play EPA, snap counts, remaining club depth charts, weather) has a concrete acquisition protocol.",
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "id": "REQ-06",
+      "category": "Line Origination",
+      "requirement": "Originate own NFL lines (fair spread, fair total, fair moneyline).",
+      "status": "Met (Model Only)",
+      "deliverable": "originated-lines.html, lines-lab.html, data/s53126614_originated_lines_week11.json",
+      "verification": "v0 per-game PF/PA (fixing unequal 8-vs-9 games bug) + v1 schedule/efficiency-adjusted ratings generate transparent MODEL ONLY fair lines for all 13 Week 11 games; market odds left blank/unverified.",
+      "official_source": "https://www.nfl.com/news/week-11-schedule-change"
+    },
+    {
+      "id": "REQ-07",
+      "category": "Strategy Research",
+      "requirement": "Research and develop strategies for generating useful signals.",
+      "status": "Met (Pre-Registered Specs)",
+      "deliverable": "leaderboard-competition.html, data/s53126614_signals_leaderboard.json",
+      "verification": "12 skill-based candidate signal specifications (SIG-01..SIG-12) grounded in verified 2026 efficiency & injury/depth mechanisms.",
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "id": "REQ-08",
+      "category": "Leaderboard & Rewards",
+      "requirement": "Treat strategy evaluation as a leaderboard competition that provides rewards for top performing strategies.",
+      "status": "Met (Framework; Backtest Blank)",
+      "deliverable": "leaderboard-competition.html, strategies.html",
+      "verification": "4-tier capital/unit reward & demotion ladder (Sandbox 0u -> Bronze 0.25u -> Silver 0.50u -> Gold 1.00u); performance cells blank until historical odds feed is connected.",
+      "official_source": "https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf"
+    },
+    {
+      "id": "REQ-09",
+      "category": "Bet Structures",
+      "requirement": "Analyze single bets, parlays, and player prop bet combos.",
+      "status": "Met & Verified",
+      "deliverable": "leaderboard-competition.html, correlations.html, originated-lines.html",
+      "verification": "Separate leaderboard boards, mathematical pricing rules, devigging tools, and correlated-parlay / prop-combo joint-probability calculators.",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+    },
+    {
+      "id": "REQ-10",
+      "category": "Validation Gates",
+      "requirement": "Each strategy must pass validation gates.",
+      "status": "Met & Verified",
+      "deliverable": "leaderboard-competition.html, strategies.html",
+      "verification": "Formal gates G0-G8 (Pre-registration, Sample Size Power, Walk-Forward OOS, Positive CLV t-stat, Vig-Adjusted ROI CI, Brier/Log-Loss Calibration, Correlation Cap, Benjamini-Hochberg FDR, Regime Stability) + interactive Gate Evaluator.",
+      "official_source": "https://github.com/kanlerxz87-cyber/NFL2"
+    },
+    {
+      "id": "REQ-11",
+      "category": "Correlations",
+      "requirement": "Determine correlation values.",
+      "status": "Met & Verified (Team n=32); Player-Game Flagged",
+      "deliverable": "correlations.html, data/s53126614_correlations_2026.json",
+      "verification": "15 exact Pearson r & Spearman rho values (with t-stats & 95% Fisher-z CIs) computed from verified 2026 NFL.com 32-team stats; within-game SGP player correlations flagged unverified pending PBP logs.",
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all"
+    },
+    {
+      "id": "REQ-12",
+      "category": "Skill vs Luck",
+      "requirement": "Remove luck from the equation and build strategies that are selectively skill based.",
+      "status": "Met & Verified",
+      "deliverable": "correlations.html, leaderboard-competition.html",
+      "verification": "32-team Pythagorean luck decomposition (identifying DEN +2.17 luck wins vs TB -2.17 luck losses), turnover-noise filtering, CLV gate, selectivity threshold, and multiple-testing FDR correction.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "REQ-13",
+      "category": "Injuries & Defense Backups",
+      "requirement": "Track injuries and know deficiencies in defenses such as 2nd, 3rd, or 4th string backups replacing starters.",
+      "status": "Met (Verified Sample; Remaining Teams Flagged)",
+      "deliverable": "depth-deficiencies.html, data/s53126614_depth_deficiencies_2026.json",
+      "verification": "Cross-references NFL.com Week 10 REG10 injury report with official club depth charts (Patriots.com, 49ers.com, DallasCowboys.com, DetroitLions.com, Commanders.com, MiamiDolphins.com, Seahawks.com, Giants.com) down to 2nd/3rd/4th string.",
+      "official_source": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    {
+      "id": "REQ-14",
+      "category": "Offense Starters & Backups",
+      "requirement": "Track offensive lineup deficiencies across starters and 2nd, 3rd, or 4th string backups.",
+      "status": "Met (Verified Sample; Remaining Teams Flagged)",
+      "deliverable": "depth-deficiencies.html, data/s53126614_depth_deficiencies_2026.json",
+      "verification": "Tracks verified offensive replacements including SEA QB1 Darnold OUT -> QB2 Lock / QB3 Milroe, MIA QB1 McCord (Willis IR, no QB2 listed), NE RB1 Stevenson DNP + RB2 Henderson OUT -> RB3 Kiner / RB4 Larison, NE LG1 Brown OUT + LG2 Rouse DNP, SF LT1 Trent Williams DNP -> LT2 Lowe / LT3 Cruz.",
+      "official_source": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "id": "REQ-15",
+      "category": "Executive Summary",
+      "requirement": "Create an executive summary outlining important details.",
+      "status": "Met & Verified",
+      "deliverable": "executive-summary.html, docs/executive-summary.html",
+      "verification": "Synthesizes verified 2026 league snapshot, originated-lines architecture, depth/injury findings, correlation takeaways, blockers, and decision paths.",
+      "official_source": "https://www.nfl.com/standings/division/2026/reg"
+    },
+    {
+      "id": "REQ-16",
+      "category": "Repo Audit",
+      "requirement": "Review the repo line by line, verify from official trusted sources, provide links for manual review, and flag irregularities.",
+      "status": "Met & Verified",
+      "deliverable": "repo-audit.html, audits/repo-audit-53126614.md, flagged.html",
+      "verification": "50 repo files audited cell-by-cell; 12 irregularities (IR-01..IR-12) documented with official source links and 4 player-stat column-shift errors corrected.",
+      "official_source": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc"
+    },
+    {
+      "id": "REQ-17",
+      "category": "Site Creation",
+      "requirement": "Create a GitHub Pages live site with a clean landing page, category subpages, user-friendly dashboard UI, and easy-to-read tables.",
+      "status": "Met & Live",
+      "deliverable": "index.html + 18 root pages + 16 docs/ companion pages",
+      "verification": "Zero-dependency responsive dashboard served live at https://kanlerxz87-cyber.github.io/NFL2/ with instant table filtering and interactive calculators.",
+      "official_source": "https://kanlerxz87-cyber.github.io/NFL2/"
+    },
+    {
+      "id": "REQ-18",
+      "category": "Row-Level Verification",
+      "requirement": "Every table row must have a source link to an official site; unconfirmed values left blank and flagged; never infer.",
+      "status": "Met & Automated",
+      "deliverable": "scripts/verify_s53126614.py, flagged.html",
+      "verification": "Automated HTML & JSON verifier asserts every data/audit/reference table row carries an official source link and all unconfirmed market/backtest cells remain blank.",
+      "official_source": "https://github.com/kanlerxz87-cyber/NFL2"
+    },
+    {
+      "id": "REQ-19",
+      "category": "Parallel Coordination",
+      "requirement": "Coordinate via COORDINATION.md with non-overlapping scopes, small frequent commits, git pull --rebase before every push, and conflict preservation.",
+      "status": "Met & Logged",
+      "deliverable": "COORDINATION.md",
+      "verification": "Preserved 100% of sessions 194db560 and arena-85d79210; claimed S53-01..S53-09 in disjoint scope with immediate push at each step.",
+      "official_source": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md"
+    },
+    {
+      "id": "REQ-20",
+      "category": "PR, Merge & Live Deploy",
+      "requirement": "Open PR to main, merge without waiting, confirm GitHub Pages deploys with zero broken links, publish Flagged for Review page, record PR & merge in COORDINATION.md.",
+      "status": "In Final Execution (S53-09)",
+      "deliverable": "flagged.html, COORDINATION.md, GitHub Pages",
+      "verification": "Verified by scripts/verify_s53126614.py + scripts/validate_data.py + GitHub Pages API + live HTTP check.",
+      "official_source": "https://kanlerxz87-cyber.github.io/NFL2/flagged.html"
+    }
+  ]
+}

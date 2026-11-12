@@ -1,0 +1,278 @@
+{
+  "season": 2026,
+  "as_of": "2026-11-12",
+  "sample": "n = 32 NFL teams (2026 Regular Season through Week 9/10 official NFL.com snapshot)",
+  "note": "Every correlation below is computed directly from verified NFL.com team statistics in data/s53126614_team_offense_2026.json. Within-game player-prop / SGP leg correlations are NOT estimated from cross-team data and remain flagged UNVERIFIED pending play-by-play game logs (Q-04).",
+  "correlations": [
+    {
+      "id": "C-01",
+      "signal_x": "Net Points / Game",
+      "signal_y": "Win Percentage (PCT)",
+      "field_x": "net_pts_per_g",
+      "field_y": "win_pct",
+      "n": 32,
+      "pearson_r": 0.876,
+      "spearman_rho": 0.869,
+      "r_squared": 0.767,
+      "t_stat": 9.94,
+      "ci95": [
+        0.759,
+        0.938
+      ],
+      "official_source": "https://www.nfl.com/standings/division/2026/reg",
+      "interpretation": "Core team-strength baseline; high r confirms point differential drives standings, while residuals isolate close-game luck."
+    },
+    {
+      "id": "C-02",
+      "signal_x": "Pass YPA Differential (Off YPA - Def YPA)",
+      "signal_y": "Net Points / Game",
+      "field_x": "net_ypa_diff",
+      "field_y": "net_pts_per_g",
+      "n": 32,
+      "pearson_r": 0.724,
+      "spearman_rho": 0.683,
+      "r_squared": 0.524,
+      "t_stat": 5.75,
+      "ci95": [
+        0.502,
+        0.856
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all",
+      "interpretation": "Strongest play-efficiency signal in public NFL team stats; passing efficiency differential dominates scoring margin."
+    },
+    {
+      "id": "C-03",
+      "signal_x": "Pass YPA Differential (Off YPA - Def YPA)",
+      "signal_y": "Win Percentage (PCT)",
+      "field_x": "net_ypa_diff",
+      "field_y": "win_pct",
+      "n": 32,
+      "pearson_r": 0.661,
+      "spearman_rho": 0.615,
+      "r_squared": 0.437,
+      "t_stat": 4.83,
+      "ci95": [
+        0.406,
+        0.821
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all",
+      "interpretation": "Direct skill signal for side/spread origination before turnover noise."
+    },
+    {
+      "id": "C-04",
+      "signal_x": "Interception Differential (Def INT - Off INT)",
+      "signal_y": "Net Points / Game",
+      "field_x": "int_diff",
+      "field_y": "net_pts_per_g",
+      "n": 32,
+      "pearson_r": 0.464,
+      "spearman_rho": 0.485,
+      "r_squared": 0.215,
+      "t_stat": 2.87,
+      "ci95": [
+        0.137,
+        0.699
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/defense/interceptions/2026/reg/all",
+      "interpretation": "High in-sample impact on margin, but interceptions regress heavily week-to-week \u2014 classic luck-vs-skill separator."
+    },
+    {
+      "id": "C-05",
+      "signal_x": "Offense Passer Rating",
+      "signal_y": "Points For / Game",
+      "field_x": "passer_rate",
+      "field_y": "pf_per_g",
+      "n": 32,
+      "pearson_r": 0.75,
+      "spearman_rho": 0.746,
+      "r_squared": 0.563,
+      "t_stat": 6.22,
+      "ci95": [
+        0.544,
+        0.871
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all",
+      "interpretation": "Quarterback/passing efficiency strongly governs team scoring output (totals & team-total origination)."
+    },
+    {
+      "id": "C-06",
+      "signal_x": "Offense Gross Yards / Scrimmage Play",
+      "signal_y": "Points For / Game",
+      "field_x": "off_gross_yds_per_play",
+      "field_y": "pf_per_g",
+      "n": 32,
+      "pearson_r": 0.76,
+      "spearman_rho": 0.774,
+      "r_squared": 0.577,
+      "t_stat": 6.4,
+      "ci95": [
+        0.559,
+        0.876
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all",
+      "interpretation": "Down-to-down yardage efficiency translates directly into scoring drives."
+    },
+    {
+      "id": "C-07",
+      "signal_x": "Offense 3rd-Down Conversion %",
+      "signal_y": "Points For / Game",
+      "field_x": "off_3rd_pct",
+      "field_y": "pf_per_g",
+      "n": 32,
+      "pearson_r": 0.707,
+      "spearman_rho": 0.732,
+      "r_squared": 0.5,
+      "t_stat": 5.47,
+      "ci95": [
+        0.475,
+        0.847
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all",
+      "interpretation": "Drive-sustaining conversion skill; crucial secondary signal for totals and script projections."
+    },
+    {
+      "id": "C-08",
+      "signal_x": "3rd-Down Differential % (Off 3rd% - Def 3rd%)",
+      "signal_y": "Win Percentage (PCT)",
+      "field_x": "third_down_diff_pct",
+      "field_y": "win_pct",
+      "n": 32,
+      "pearson_r": 0.507,
+      "spearman_rho": 0.512,
+      "r_squared": 0.257,
+      "t_stat": 3.22,
+      "ci95": [
+        0.192,
+        0.727
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all",
+      "interpretation": "Money-down differential across offense and defense."
+    },
+    {
+      "id": "C-09",
+      "signal_x": "Sacks Taken (Offense)",
+      "signal_y": "Points For / Game",
+      "field_x": "sacks_taken",
+      "field_y": "pf_per_g",
+      "n": 32,
+      "pearson_r": -0.621,
+      "spearman_rho": -0.618,
+      "r_squared": 0.385,
+      "t_stat": -4.34,
+      "ci95": [
+        -0.797,
+        -0.347
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all",
+      "interpretation": "Negative correlation: offensive line protection breakdowns (and backup OL injuries) depress scoring."
+    },
+    {
+      "id": "C-10",
+      "signal_x": "Defense Passer Rating Allowed",
+      "signal_y": "Points Allowed / Game",
+      "field_x": "def_passer_rate",
+      "field_y": "pa_per_g",
+      "n": 32,
+      "pearson_r": 0.815,
+      "spearman_rho": 0.823,
+      "r_squared": 0.664,
+      "t_stat": 7.7,
+      "ci95": [
+        0.651,
+        0.906
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all",
+      "interpretation": "Coverage/pass-defense efficiency directly governs opponent scoring (key when CB1/CB2 backups play)."
+    },
+    {
+      "id": "C-11",
+      "signal_x": "Defense Rushing Yards / Carry Allowed",
+      "signal_y": "Points Allowed / Game",
+      "field_x": "def_rush_ypc",
+      "field_y": "pa_per_g",
+      "n": 32,
+      "pearson_r": 0.467,
+      "spearman_rho": 0.47,
+      "r_squared": 0.218,
+      "t_stat": 2.89,
+      "ci95": [
+        0.142,
+        0.702
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all",
+      "interpretation": "Run-fit leaks increase opponent scoring, though weaker than pass defense."
+    },
+    {
+      "id": "C-12",
+      "signal_x": "Defense Sacks",
+      "signal_y": "Points Allowed / Game",
+      "field_x": "def_sacks",
+      "field_y": "pa_per_g",
+      "n": 32,
+      "pearson_r": -0.264,
+      "spearman_rho": -0.205,
+      "r_squared": 0.07,
+      "t_stat": -1.5,
+      "ci95": [
+        -0.561,
+        0.093
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all",
+      "interpretation": "Pass-rush sack totals reduce PA/g modestly; coverage quality matters alongside raw sack counts."
+    },
+    {
+      "id": "C-13",
+      "signal_x": "Offense Rushing Yards / Carry",
+      "signal_y": "Points For / Game",
+      "field_x": "rush_ypc",
+      "field_y": "pf_per_g",
+      "n": 32,
+      "pearson_r": 0.017,
+      "spearman_rho": 0.048,
+      "r_squared": 0.0,
+      "t_stat": 0.09,
+      "ci95": [
+        -0.334,
+        0.364
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all",
+      "interpretation": "Weaker than passing YPA \u2014 rushing efficiency alone is a secondary scoring driver."
+    },
+    {
+      "id": "C-14",
+      "signal_x": "Offense Passing Yards",
+      "signal_y": "Offense Rushing Yards",
+      "field_x": "pass_yds",
+      "field_y": "rush_yds",
+      "n": 32,
+      "pearson_r": -0.263,
+      "spearman_rho": -0.174,
+      "r_squared": 0.069,
+      "t_stat": -1.5,
+      "ci95": [
+        -0.561,
+        0.094
+      ],
+      "official_source": "https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all",
+      "interpretation": "Near-zero cross-team correlation: high-passing offenses are not systematically high- or low-rushing."
+    },
+    {
+      "id": "C-15",
+      "signal_x": "Points For / Game",
+      "signal_y": "Points Allowed / Game",
+      "field_x": "pf_per_g",
+      "field_y": "pa_per_g",
+      "n": 32,
+      "pearson_r": -0.206,
+      "spearman_rho": -0.272,
+      "r_squared": 0.043,
+      "t_stat": -1.15,
+      "ci95": [
+        -0.518,
+        0.153
+      ],
+      "official_source": "https://www.nfl.com/standings/division/2026/reg",
+      "interpretation": "Tests independence of team offense vs defense strength when pricing game totals vs spreads."
+    }
+  ]
+}

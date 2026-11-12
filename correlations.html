@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Empirical Correlations &amp; Skill-vs-Luck Engine &mdash; NFL2</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">NFL2 <span>Decision &amp; Line-Origination Hub</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Through NFL Week 9 / Week 10 Injury Cycle</span>
+    </div>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Dashboard</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements Matrix</a>
+      <a href="repo-audit.html">Repo Audit</a>
+      <a href="standings.html">Standings</a>
+      <a href="schedule.html">Week 11 Schedule</a>
+      <a href="originated-lines.html">Originated Lines</a>
+      <a href="correlations.html" aria-current="page">Correlations &amp; Skill</a>
+      <a href="depth-deficiencies.html">Injuries &amp; 1st&ndash;4th String</a>
+      <a href="leaderboard-competition.html">Signal Leaderboard</a>
+      <a href="decision-center.html">Decision Center &amp; Paths</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="sources.html">Official Sources</a>
+      <a href="docs/index.html">Companion Hub (docs/)</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>2026 NFL Empirical Correlations &amp; Skill-vs-Luck Decomposition</h1>
+      <p>Exact Pearson <em>r</em>, Spearman <em>&rho;</em>, <em>t</em>-statistics, and 95% Fisher-<em>z</em> confidence intervals computed strictly from verified 2026 NFL.com 32-team official statistics, paired with a 32-team Pythagorean luck-removal table and an interactive Correlated Parlay / Prop-Combo EV Calculator.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="label">Def Pass Rating vs PA/g</div><div class="value">r = +0.815</div><div class="sub">t = +7.70 &middot; Strongest defensive driver</div></div>
+        <div class="kpi"><div class="label">Off Yds/Play vs PF/g</div><div class="value">r = +0.760</div><div class="sub">t = +6.40 &middot; Core offensive skill metric</div></div>
+        <div class="kpi"><div class="label">Off Rush YPC vs PF/g</div><div class="value">r = +0.017</div><div class="sub">t = +0.09 &middot; Pure noise myth removed</div></div>
+        <div class="kpi"><div class="label">Biggest Luck Outliers</div><div class="value">DEN +2.17w / TB &minus;2.17w</div><div class="sub">Actual Wins minus Pythagorean Wins</div></div>
+      </div>
+    </section>
+
+    <div class="callout callout-info">
+      <strong>How Correlation &amp; Luck Removal Reshape Strategy Design:</strong>
+      Verified 2026 data proves that <strong>passing efficiency</strong> (<code>Def Passer Rating vs PA/g r = +0.815</code>; <code>Off Passer Rating vs PF/g r = +0.750</code>), <strong>3rd-down conversion</strong> (<code>r = +0.707</code>), and <strong>offensive line sack avoidance</strong> (<code>Sacks Taken vs PF/g r = -0.621</code>) dominate scoring, while <strong>rushing yards per carry</strong> (<code>r = +0.017</code>) and <strong>raw defensive sack totals</strong> (<code>r = -0.264</code>, 95% CI spans zero) are noisy traps. Consequently, our injury/backup engine weights <strong>CB/S coverage</strong> and <strong>OL pass-protection</strong> starter losses far above RB or edge-sack hype.
+    </div>
+
+    <section class="section">
+      <h2>1. Verified 2026 League-Wide Correlation Matrix (n = 32 Teams)</h2>
+      <p class="section-intro">Every correlation below is computed directly from verified 2026 NFL.com Standings, Offense (Passing/Rushing/Downs), and Defense (Passing/Rushing/Downs) tables stored in <code>data/s53126614_team_offense_2026.json</code>.</p>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter correlations (e.g., passer rating, sack, 3rd down, rushing, noise)..." data-filter-input="corr-table" aria-label="Filter correlations">
+        <span class="count">15 verified empirical pairs &middot; Exact 95% Fisher-z confidence intervals</span>
+      </div>
+      <div class="table-wrap">
+        <table id="corr-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Metric Pair (X vs Y)</th>
+              <th class="num">n</th>
+              <th class="num">Pearson r</th>
+              <th class="num">Spearman &rho;</th>
+              <th class="num">r&sup2;</th>
+              <th class="num">t-Stat</th>
+              <th class="num">95% CI (Fisher z)</th>
+              <th>Signal Class</th>
+              <th>Skill-vs-Luck Takeaway</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>C-01</code></td>
+            <td><strong>Net Points / Game vs Win Percentage (PCT)</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.876</strong></td>
+            <td class="num">+0.869</td>
+            <td class="num">0.767</td>
+            <td class="num">+9.94</td>
+            <td class="num">[+0.759, +0.938]</td>
+            <td><span class="badge badge-verified">Strong Skill Signal</span></td>
+            <td>Core team-strength baseline; high r confirms point differential drives standings, while residuals isolate close-game luck.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-02</code></td>
+            <td><strong>Pass YPA Differential (Off YPA - Def YPA) vs Net Points / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.724</strong></td>
+            <td class="num">+0.683</td>
+            <td class="num">0.524</td>
+            <td class="num">+5.75</td>
+            <td class="num">[+0.502, +0.856]</td>
+            <td><span class="badge badge-verified">Strong Skill Signal</span></td>
+            <td>Strongest play-efficiency signal in public NFL team stats; passing efficiency differential dominates scoring margin.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-03</code></td>
+            <td><strong>Pass YPA Differential (Off YPA - Def YPA) vs Win Percentage (PCT)</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.661</strong></td>
+            <td class="num">+0.615</td>
+            <td class="num">0.437</td>
+            <td class="num">+4.83</td>
+            <td class="num">[+0.406, +0.821]</td>
+            <td><span class="badge badge-model">Moderate / Mixed</span></td>
+            <td>Direct skill signal for side/spread origination before turnover noise.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-04</code></td>
+            <td><strong>Interception Differential (Def INT - Off INT) vs Net Points / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.464</strong></td>
+            <td class="num">+0.485</td>
+            <td class="num">0.215</td>
+            <td class="num">+2.87</td>
+            <td class="num">[+0.137, +0.699]</td>
+            <td><span class="badge badge-model">Moderate / Mixed</span></td>
+            <td>High in-sample impact on margin, but interceptions regress heavily week-to-week — classic luck-vs-skill separator.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/interceptions/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-05</code></td>
+            <td><strong>Offense Passer Rating vs Points For / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.750</strong></td>
+            <td class="num">+0.746</td>
+            <td class="num">0.563</td>
+            <td class="num">+6.22</td>
+            <td class="num">[+0.544, +0.871]</td>
+            <td><span class="badge badge-verified">Strong Skill Signal</span></td>
+            <td>Quarterback/passing efficiency strongly governs team scoring output (totals &amp; team-total origination).</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-06</code></td>
+            <td><strong>Offense Gross Yards / Scrimmage Play vs Points For / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.760</strong></td>
+            <td class="num">+0.774</td>
+            <td class="num">0.577</td>
+            <td class="num">+6.40</td>
+            <td class="num">[+0.559, +0.876]</td>
+            <td><span class="badge badge-verified">Strong Skill Signal</span></td>
+            <td>Down-to-down yardage efficiency translates directly into scoring drives.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-07</code></td>
+            <td><strong>Offense 3rd-Down Conversion % vs Points For / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.707</strong></td>
+            <td class="num">+0.732</td>
+            <td class="num">0.500</td>
+            <td class="num">+5.47</td>
+            <td class="num">[+0.475, +0.847]</td>
+            <td><span class="badge badge-verified">Strong Skill Signal</span></td>
+            <td>Drive-sustaining conversion skill; crucial secondary signal for totals and script projections.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/downs/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-08</code></td>
+            <td><strong>3rd-Down Differential % (Off 3rd% - Def 3rd%) vs Win Percentage (PCT)</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.507</strong></td>
+            <td class="num">+0.512</td>
+            <td class="num">0.257</td>
+            <td class="num">+3.22</td>
+            <td class="num">[+0.192, +0.727]</td>
+            <td><span class="badge badge-model">Moderate / Mixed</span></td>
+            <td>Money-down differential across offense and defense.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/downs/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-09</code></td>
+            <td><strong>Sacks Taken (Offense) vs Points For / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>-0.621</strong></td>
+            <td class="num">-0.618</td>
+            <td class="num">0.385</td>
+            <td class="num">-4.34</td>
+            <td class="num">[-0.797, -0.347]</td>
+            <td><span class="badge badge-model">Moderate / Mixed</span></td>
+            <td>Negative correlation: offensive line protection breakdowns (and backup OL injuries) depress scoring.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-10</code></td>
+            <td><strong>Defense Passer Rating Allowed vs Points Allowed / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.815</strong></td>
+            <td class="num">+0.823</td>
+            <td class="num">0.664</td>
+            <td class="num">+7.70</td>
+            <td class="num">[+0.651, +0.906]</td>
+            <td><span class="badge badge-verified">Strong Skill Signal</span></td>
+            <td>Coverage/pass-defense efficiency directly governs opponent scoring (key when CB1/CB2 backups play).</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-11</code></td>
+            <td><strong>Defense Rushing Yards / Carry Allowed vs Points Allowed / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.467</strong></td>
+            <td class="num">+0.470</td>
+            <td class="num">0.218</td>
+            <td class="num">+2.89</td>
+            <td class="num">[+0.142, +0.702]</td>
+            <td><span class="badge badge-model">Moderate / Mixed</span></td>
+            <td>Run-fit leaks increase opponent scoring, though weaker than pass defense.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-12</code></td>
+            <td><strong>Defense Sacks vs Points Allowed / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>-0.264</strong></td>
+            <td class="num">-0.205</td>
+            <td class="num">0.070</td>
+            <td class="num">-1.50</td>
+            <td class="num">[-0.561, +0.093]</td>
+            <td><span class="badge badge-unverified">Weak / High Noise</span></td>
+            <td>Pass-rush sack totals reduce PA/g modestly; coverage quality matters alongside raw sack counts.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-13</code></td>
+            <td><strong>Offense Rushing Yards / Carry vs Points For / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>+0.017</strong></td>
+            <td class="num">+0.048</td>
+            <td class="num">0.000</td>
+            <td class="num">+0.09</td>
+            <td class="num">[-0.334, +0.364]</td>
+            <td><span class="badge badge-unverified">Weak / High Noise</span></td>
+            <td>Weaker than passing YPA — rushing efficiency alone is a secondary scoring driver.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-14</code></td>
+            <td><strong>Offense Passing Yards vs Offense Rushing Yards</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>-0.263</strong></td>
+            <td class="num">-0.174</td>
+            <td class="num">0.069</td>
+            <td class="num">-1.50</td>
+            <td class="num">[-0.561, +0.094]</td>
+            <td><span class="badge badge-unverified">Weak / High Noise</span></td>
+            <td>Near-zero cross-team correlation: high-passing offenses are not systematically high- or low-rushing.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/rushing/2026/reg/all" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          <tr>
+            <td><code>C-15</code></td>
+            <td><strong>Points For / Game vs Points Allowed / Game</strong></td>
+            <td class="num">32</td>
+            <td class="num"><strong>-0.206</strong></td>
+            <td class="num">-0.272</td>
+            <td class="num">0.043</td>
+            <td class="num">-1.15</td>
+            <td class="num">[-0.518, +0.153]</td>
+            <td><span class="badge badge-unverified">Weak / High Noise</span></td>
+            <td>Tests independence of team offense vs defense strength when pricing game totals vs spreads.</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">NFL.com Stats</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2. Unverified Within-Game SGP &amp; Prop-Combo Correlations (Left Blank by Rule)</h2>
+      <p class="section-intro">Season-level team aggregates (<em>n</em> = 32) cannot legitimately measure <strong>within-game</strong> player prop or same-game parlay leg correlations. Per zero-fabrication rules, those cells are left blank below with concrete discovery steps.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Target Correlation Pair</th>
+              <th>Betting Scope</th>
+              <th class="num">Empirical r</th>
+              <th>Verification Status</th>
+              <th>Concrete Discovery Path</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>UC-01</code></td>
+            <td><strong>Same-Game QB Passing Yards vs Primary WR Receiving Yards</strong></td>
+            <td>Within-Game Player Prop SGP</td>
+            <td class="blank-cell" aria-label="Unverified blank correlation"></td>
+            <td><span class="badge badge-unverified">Unverified — Missing Official PBP / Game Logs</span></td>
+            <td>Ingest nflverse play-by-play or official NFL Next Gen Stats game logs (2022–2026, n &gt;= 1,000 team-games)</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc" target="_blank" rel="noopener">NFL.com Reference</a></td>
+          </tr>
+          <tr>
+            <td><code>UC-02</code></td>
+            <td><strong>Team Favorite Spread Cover vs RB1 Rushing Attempts (Game-Script Effect)</strong></td>
+            <td>Same-Game Parlay (Spread + Prop)</td>
+            <td class="blank-cell" aria-label="Unverified blank correlation"></td>
+            <td><span class="badge badge-unverified">Unverified — Missing Official Game-by-Game Box &amp; Closing Spread</span></td>
+            <td>Join historical closing spreads (The Odds API / SportsDataIO) with NFL.com game-level rushing box scores</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all/rushingyards/desc" target="_blank" rel="noopener">NFL.com Reference</a></td>
+          </tr>
+          <tr>
+            <td><code>UC-03</code></td>
+            <td><strong>Game Total Over vs QB1 Pass Completions + Opposing QB1 Pass Attempts</strong></td>
+            <td>3-Leg Same-Game Parlay</td>
+            <td class="blank-cell" aria-label="Unverified blank correlation"></td>
+            <td><span class="badge badge-unverified">Unverified — Missing Historical Closing Totals &amp; Game Logs</span></td>
+            <td>Compute Gaussian copula empirical polychoric correlation from 5-season historical game box scores</td>
+            <td class="source-cell"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Reference</a></td>
+          </tr>
+          <tr>
+            <td><code>UC-04</code></td>
+            <td><strong>Cross-Game Outdoor Wind Speed (&gt;= 15 mph) vs Full-Game Under Hit Rate</strong></td>
+            <td>Cross-Game Weather Parlay Check</td>
+            <td class="blank-cell" aria-label="Unverified blank correlation"></td>
+            <td><span class="badge badge-unverified">Unverified — Missing Historical Kickoff Weather &amp; Closing Totals</span></td>
+            <td>Join NOAA / NWS hourly stadium observations with official gamebook kickoff metadata</td>
+            <td class="source-cell"><a href="https://www.nfl.com/schedules/2026/reg11/" target="_blank" rel="noopener">NFL.com Reference</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>3. Interactive Correlated Parlay &amp; Prop-Combo Joint-Probability Sandbox</h2>
+      <p class="section-intro">Explore how bivariate correlation <em>&rho;</em> shifts true 2-leg parlay / player-prop combo joint probability via the Bahadur / Gaussian-moment approximation <code>P(A &cap; B) = pA&middot;pB + &rho;&middot;&radic;(pA(1&minus;pA)&middot;pB(1&minus;pB))</code> (clamped to Fr&eacute;chet&ndash;Hoeffding bounds). User-entered sportsbook prices are never stored as official data.</p>
+      <div class="card">
+        <div class="controls-row" id="copula-controls">
+          <label>Leg A True Win Prob (%)
+            <input type="number" id="leg-a-prob" value="54.0" min="1" max="99" step="0.5">
+          </label>
+          <label>Leg B True Win Prob (%)
+            <input type="number" id="leg-b-prob" value="54.0" min="1" max="99" step="0.5">
+          </label>
+          <label>Pairwise Correlation (&rho;)
+            <input type="number" id="leg-rho" value="0.25" min="-0.95" max="0.95" step="0.05">
+          </label>
+          <label>Offered SGP / Combo Decimal Odds
+            <input type="number" id="sgp-dec-odds" value="3.60" min="1.05" max="50" step="0.05">
+          </label>
+        </div>
+        <div class="kpi-strip" id="copula-output" style="margin-top:0.5rem;">
+          <div class="kpi"><div class="label">Independent Joint Prob (&rho;=0)</div><div class="value" id="out-ind-prob">29.16%</div><div class="sub" id="out-ind-fair">Fair +243 (3.43x)</div></div>
+          <div class="kpi"><div class="label">Correlated Joint Prob</div><div class="value" id="out-cor-prob">35.37%</div><div class="sub" id="out-cor-fair">Fair +183 (2.83x)</div></div>
+          <div class="kpi"><div class="label">Expected Value (EV %)</div><div class="value" id="out-ev">+27.3%</div><div class="sub" id="out-gate">Requires verified &rho; before live sizing</div></div>
+          <div class="kpi"><div class="label">Quarter-Kelly Stake</div><div class="value" id="out-kelly">2.63%</div><div class="sub">Capped at Sandbox 0u until G6 passes</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>4. 32-Team Skill Rating vs Record Luck Decomposition (Sorted by Pythagorean Skill)</h2>
+      <p class="section-intro">Separating underlying scoring skill (<code>Pyth Win% = PF^2.37 / (PF^2.37 + PA^2.37)</code>, Pass YPA Differential, 3rd-Down Differential) from close-game &amp; turnover variance (<code>Luck = Actual Wins &minus; Expected Wins</code>). Notice <strong>Tampa Bay (3&ndash;6, +24 Net Pts, &minus;2.17w unlucky)</strong> and <strong>Houston (3&ndash;5, +17 Net Pts, &minus;1.40w unlucky)</strong> outrank <strong>Cleveland (5&ndash;4, &minus;35 Net Pts, +1.53w over-lucky)</strong> and sit right alongside <strong>Denver (7&ndash;2, +12 Net Pts, +2.17w over-lucky)</strong>.</p>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter 32 teams (e.g., TB, DEN, CLE, Unlucky, Over-Lucky)..." data-filter-input="skill-table" aria-label="Filter 32-team skill table">
+        <span class="count">All 32 NFL clubs &middot; 100% verified from NFL.com</span>
+      </div>
+      <div class="table-wrap">
+        <table id="skill-table">
+          <thead>
+            <tr>
+              <th class="num">Skill Rk</th>
+              <th>Team</th>
+              <th class="num">G</th>
+              <th class="num">Actual W-L</th>
+              <th class="num">Actual Pct</th>
+              <th class="num">Pyth Skill Pct</th>
+              <th>Luck Residual</th>
+              <th class="num">PF/g</th>
+              <th class="num">PA/g</th>
+              <th class="num">Net/g</th>
+              <th class="num">Off Rate</th>
+              <th class="num">Def Rate</th>
+              <th class="num">YPA Diff</th>
+              <th class="num">Off 3rd%</th>
+              <th class="num">Def 3rd%</th>
+              <th class="num">INT Diff</th>
+              <th>Official Sources</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td><strong>Jacksonville Jaguars</strong> <span style="color:var(--muted);">(JAX)</span></td>
+            <td class="num">8</td>
+            <td class="num">6-2</td>
+            <td class="num">0.750</td>
+            <td class="num"><strong>0.819</strong></td>
+            <td><span class="badge badge-neutral">-0.55w (Neutral)</span></td>
+            <td class="num">28.62</td>
+            <td class="num">15.12</td>
+            <td class="num">+13.50</td>
+            <td class="num">110.8</td>
+            <td class="num">80.1</td>
+            <td class="num">+1.30</td>
+            <td class="num">46.4%</td>
+            <td class="num">34.0%</td>
+            <td class="num">+7</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td><strong>San Francisco 49ers</strong> <span style="color:var(--muted);">(SF)</span></td>
+            <td class="num">8</td>
+            <td class="num">7-1</td>
+            <td class="num">0.875</td>
+            <td class="num"><strong>0.725</strong></td>
+            <td><span class="badge badge-neutral">+1.20w (Neutral)</span></td>
+            <td class="num">29.38</td>
+            <td class="num">19.50</td>
+            <td class="num">+9.88</td>
+            <td class="num">109.8</td>
+            <td class="num">88.7</td>
+            <td class="num">+2.00</td>
+            <td class="num">51.7%</td>
+            <td class="num">40.4%</td>
+            <td class="num">+1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td><strong>Kansas City Chiefs</strong> <span style="color:var(--muted);">(KC)</span></td>
+            <td class="num">8</td>
+            <td class="num">6-2</td>
+            <td class="num">0.750</td>
+            <td class="num"><strong>0.694</strong></td>
+            <td><span class="badge badge-neutral">+0.45w (Neutral)</span></td>
+            <td class="num">25.25</td>
+            <td class="num">17.88</td>
+            <td class="num">+7.38</td>
+            <td class="num">101.8</td>
+            <td class="num">79.4</td>
+            <td class="num">+1.40</td>
+            <td class="num">41.7%</td>
+            <td class="num">36.7%</td>
+            <td class="num">+2</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td><strong>Cincinnati Bengals</strong> <span style="color:var(--muted);">(CIN)</span></td>
+            <td class="num">8</td>
+            <td class="num">6-2</td>
+            <td class="num">0.750</td>
+            <td class="num"><strong>0.679</strong></td>
+            <td><span class="badge badge-neutral">+0.57w (Neutral)</span></td>
+            <td class="num">30.00</td>
+            <td class="num">21.88</td>
+            <td class="num">+8.12</td>
+            <td class="num">114.8</td>
+            <td class="num">88.9</td>
+            <td class="num">+0.80</td>
+            <td class="num">53.6%</td>
+            <td class="num">47.5%</td>
+            <td class="num">-1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td><strong>Buffalo Bills</strong> <span style="color:var(--muted);">(BUF)</span></td>
+            <td class="num">8</td>
+            <td class="num">7-1</td>
+            <td class="num">0.875</td>
+            <td class="num"><strong>0.678</strong></td>
+            <td><span class="badge badge-unverified">+1.58w (Over-Lucky)</span></td>
+            <td class="num">32.00</td>
+            <td class="num">23.38</td>
+            <td class="num">+8.62</td>
+            <td class="num">99.3</td>
+            <td class="num">89.3</td>
+            <td class="num">+1.90</td>
+            <td class="num">43.2%</td>
+            <td class="num">38.6%</td>
+            <td class="num">+0</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">6</td>
+            <td><strong>Chicago Bears</strong> <span style="color:var(--muted);">(CHI)</span></td>
+            <td class="num">9</td>
+            <td class="num">7-2</td>
+            <td class="num">0.778</td>
+            <td class="num"><strong>0.655</strong></td>
+            <td><span class="badge badge-neutral">+1.11w (Neutral)</span></td>
+            <td class="num">26.78</td>
+            <td class="num">20.44</td>
+            <td class="num">+6.33</td>
+            <td class="num">88.0</td>
+            <td class="num">93.1</td>
+            <td class="num">-0.80</td>
+            <td class="num">45.3%</td>
+            <td class="num">22.8%</td>
+            <td class="num">-2</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">7</td>
+            <td><strong>Minnesota Vikings</strong> <span style="color:var(--muted);">(MIN)</span></td>
+            <td class="num">8</td>
+            <td class="num">6-2</td>
+            <td class="num">0.750</td>
+            <td class="num"><strong>0.633</strong></td>
+            <td><span class="badge badge-neutral">+0.94w (Neutral)</span></td>
+            <td class="num">18.25</td>
+            <td class="num">14.50</td>
+            <td class="num">+3.75</td>
+            <td class="num">82.0</td>
+            <td class="num">67.9</td>
+            <td class="num">+0.00</td>
+            <td class="num">33.3%</td>
+            <td class="num">31.2%</td>
+            <td class="num">+4</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">8</td>
+            <td><strong>Pittsburgh Steelers</strong> <span style="color:var(--muted);">(PIT)</span></td>
+            <td class="num">8</td>
+            <td class="num">6-2</td>
+            <td class="num">0.750</td>
+            <td class="num"><strong>0.629</strong></td>
+            <td><span class="badge badge-neutral">+0.97w (Neutral)</span></td>
+            <td class="num">22.50</td>
+            <td class="num">18.00</td>
+            <td class="num">+4.50</td>
+            <td class="num">85.6</td>
+            <td class="num">83.3</td>
+            <td class="num">-0.50</td>
+            <td class="num">37.9%</td>
+            <td class="num">34.3%</td>
+            <td class="num">+1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">9</td>
+            <td><strong>Seattle Seahawks</strong> <span style="color:var(--muted);">(SEA)</span></td>
+            <td class="num">9</td>
+            <td class="num">5-4</td>
+            <td class="num">0.556</td>
+            <td class="num"><strong>0.628</strong></td>
+            <td><span class="badge badge-neutral">-0.65w (Neutral)</span></td>
+            <td class="num">22.44</td>
+            <td class="num">18.00</td>
+            <td class="num">+4.44</td>
+            <td class="num">89.3</td>
+            <td class="num">77.3</td>
+            <td class="num">+1.70</td>
+            <td class="num">37.4%</td>
+            <td class="num">30.6%</td>
+            <td class="num">-1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">10</td>
+            <td><strong>Los Angeles Rams</strong> <span style="color:var(--muted);">(LAR)</span></td>
+            <td class="num">9</td>
+            <td class="num">5-4</td>
+            <td class="num">0.556</td>
+            <td class="num"><strong>0.598</strong></td>
+            <td><span class="badge badge-neutral">-0.38w (Neutral)</span></td>
+            <td class="num">23.78</td>
+            <td class="num">20.11</td>
+            <td class="num">+3.67</td>
+            <td class="num">90.5</td>
+            <td class="num">82.3</td>
+            <td class="num">+0.40</td>
+            <td class="num">40.0%</td>
+            <td class="num">31.6%</td>
+            <td class="num">-2</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">11</td>
+            <td><strong>Detroit Lions</strong> <span style="color:var(--muted);">(DET)</span></td>
+            <td class="num">8</td>
+            <td class="num">6-2</td>
+            <td class="num">0.750</td>
+            <td class="num"><strong>0.594</strong></td>
+            <td><span class="badge badge-unverified">+1.25w (Over-Lucky)</span></td>
+            <td class="num">27.75</td>
+            <td class="num">23.62</td>
+            <td class="num">+4.12</td>
+            <td class="num">106.5</td>
+            <td class="num">97.5</td>
+            <td class="num">+0.60</td>
+            <td class="num">37.2%</td>
+            <td class="num">44.4%</td>
+            <td class="num">+4</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">12</td>
+            <td><strong>Tampa Bay Buccaneers</strong> <span style="color:var(--muted);">(TB)</span></td>
+            <td class="num">9</td>
+            <td class="num">3-6</td>
+            <td class="num">0.333</td>
+            <td class="num"><strong>0.574</strong></td>
+            <td><span class="badge badge-verified">-2.17w (Unlucky Buy-Low)</span></td>
+            <td class="num">22.44</td>
+            <td class="num">19.78</td>
+            <td class="num">+2.67</td>
+            <td class="num">70.2</td>
+            <td class="num">72.7</td>
+            <td class="num">-0.70</td>
+            <td class="num">36.3%</td>
+            <td class="num">34.5%</td>
+            <td class="num">+7</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">13</td>
+            <td><strong>Green Bay Packers</strong> <span style="color:var(--muted);">(GB)</span></td>
+            <td class="num">9</td>
+            <td class="num">6-3</td>
+            <td class="num">0.667</td>
+            <td class="num"><strong>0.572</strong></td>
+            <td><span class="badge badge-neutral">+0.85w (Neutral)</span></td>
+            <td class="num">24.00</td>
+            <td class="num">21.22</td>
+            <td class="num">+2.78</td>
+            <td class="num">97.9</td>
+            <td class="num">77.6</td>
+            <td class="num">+1.30</td>
+            <td class="num">37.8%</td>
+            <td class="num">41.7%</td>
+            <td class="num">+7</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">14</td>
+            <td><strong>Houston Texans</strong> <span style="color:var(--muted);">(HOU)</span></td>
+            <td class="num">8</td>
+            <td class="num">3-5</td>
+            <td class="num">0.375</td>
+            <td class="num"><strong>0.550</strong></td>
+            <td><span class="badge badge-verified">-1.40w (Unlucky Buy-Low)</span></td>
+            <td class="num">26.12</td>
+            <td class="num">24.00</td>
+            <td class="num">+2.12</td>
+            <td class="num">104.1</td>
+            <td class="num">95.3</td>
+            <td class="num">+0.50</td>
+            <td class="num">39.8%</td>
+            <td class="num">38.7%</td>
+            <td class="num">+2</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">15</td>
+            <td><strong>Denver Broncos</strong> <span style="color:var(--muted);">(DEN)</span></td>
+            <td class="num">9</td>
+            <td class="num">7-2</td>
+            <td class="num">0.778</td>
+            <td class="num"><strong>0.537</strong></td>
+            <td><span class="badge badge-unverified">+2.17w (Over-Lucky)</span></td>
+            <td class="num">22.00</td>
+            <td class="num">20.67</td>
+            <td class="num">+1.33</td>
+            <td class="num">84.7</td>
+            <td class="num">83.4</td>
+            <td class="num">-0.50</td>
+            <td class="num">32.4%</td>
+            <td class="num">41.2%</td>
+            <td class="num">+4</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">16</td>
+            <td><strong>New York Giants</strong> <span style="color:var(--muted);">(NYG)</span></td>
+            <td class="num">8</td>
+            <td class="num">5-2-1</td>
+            <td class="num">0.688</td>
+            <td class="num"><strong>0.533</strong></td>
+            <td><span class="badge badge-neutral">+1.23w (Neutral)</span></td>
+            <td class="num">22.75</td>
+            <td class="num">21.50</td>
+            <td class="num">+1.25</td>
+            <td class="num">88.5</td>
+            <td class="num">87.0</td>
+            <td class="num">+1.10</td>
+            <td class="num">40.4%</td>
+            <td class="num">37.3%</td>
+            <td class="num">+0</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">17</td>
+            <td><strong>Dallas Cowboys</strong> <span style="color:var(--muted);">(DAL)</span></td>
+            <td class="num">9</td>
+            <td class="num">4-5</td>
+            <td class="num">0.444</td>
+            <td class="num"><strong>0.525</strong></td>
+            <td><span class="badge badge-neutral">-0.72w (Neutral)</span></td>
+            <td class="num">27.33</td>
+            <td class="num">26.22</td>
+            <td class="num">+1.11</td>
+            <td class="num">95.4</td>
+            <td class="num">99.1</td>
+            <td class="num">-0.10</td>
+            <td class="num">45.3%</td>
+            <td class="num">48.3%</td>
+            <td class="num">-1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">18</td>
+            <td><strong>New England Patriots</strong> <span style="color:var(--muted);">(NE)</span></td>
+            <td class="num">9</td>
+            <td class="num">5-4</td>
+            <td class="num">0.556</td>
+            <td class="num"><strong>0.511</strong></td>
+            <td><span class="badge badge-neutral">+0.40w (Neutral)</span></td>
+            <td class="num">23.44</td>
+            <td class="num">23.00</td>
+            <td class="num">+0.44</td>
+            <td class="num">96.2</td>
+            <td class="num">100.2</td>
+            <td class="num">+0.50</td>
+            <td class="num">40.4%</td>
+            <td class="num">38.0%</td>
+            <td class="num">-6</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">19</td>
+            <td><strong>Carolina Panthers</strong> <span style="color:var(--muted);">(CAR)</span></td>
+            <td class="num">8</td>
+            <td class="num">3-5</td>
+            <td class="num">0.375</td>
+            <td class="num"><strong>0.444</strong></td>
+            <td><span class="badge badge-neutral">-0.55w (Neutral)</span></td>
+            <td class="num">24.88</td>
+            <td class="num">27.38</td>
+            <td class="num">-2.50</td>
+            <td class="num">91.3</td>
+            <td class="num">88.3</td>
+            <td class="num">+0.80</td>
+            <td class="num">37.7%</td>
+            <td class="num">47.7%</td>
+            <td class="num">-1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">20</td>
+            <td><strong>Las Vegas Raiders</strong> <span style="color:var(--muted);">(LV)</span></td>
+            <td class="num">9</td>
+            <td class="num">4-5</td>
+            <td class="num">0.444</td>
+            <td class="num"><strong>0.430</strong></td>
+            <td><span class="badge badge-neutral">+0.13w (Neutral)</span></td>
+            <td class="num">26.44</td>
+            <td class="num">29.78</td>
+            <td class="num">-3.33</td>
+            <td class="num">97.0</td>
+            <td class="num">103.6</td>
+            <td class="num">-0.60</td>
+            <td class="num">43.8%</td>
+            <td class="num">44.0%</td>
+            <td class="num">-1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">21</td>
+            <td><strong>New Orleans Saints</strong> <span style="color:var(--muted);">(NO)</span></td>
+            <td class="num">8</td>
+            <td class="num">3-5</td>
+            <td class="num">0.375</td>
+            <td class="num"><strong>0.409</strong></td>
+            <td><span class="badge badge-neutral">-0.27w (Neutral)</span></td>
+            <td class="num">23.12</td>
+            <td class="num">27.00</td>
+            <td class="num">-3.88</td>
+            <td class="num">91.2</td>
+            <td class="num">99.6</td>
+            <td class="num">-1.40</td>
+            <td class="num">43.5%</td>
+            <td class="num">47.2%</td>
+            <td class="num">-2</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">22</td>
+            <td><strong>Washington Commanders</strong> <span style="color:var(--muted);">(WAS)</span></td>
+            <td class="num">8</td>
+            <td class="num">2-5-1</td>
+            <td class="num">0.313</td>
+            <td class="num"><strong>0.406</strong></td>
+            <td><span class="badge badge-neutral">-0.75w (Neutral)</span></td>
+            <td class="num">21.50</td>
+            <td class="num">25.25</td>
+            <td class="num">-3.75</td>
+            <td class="num">94.8</td>
+            <td class="num">96.5</td>
+            <td class="num">-0.20</td>
+            <td class="num">31.1%</td>
+            <td class="num">40.0%</td>
+            <td class="num">+4</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">23</td>
+            <td><strong>Atlanta Falcons</strong> <span style="color:var(--muted);">(ATL)</span></td>
+            <td class="num">9</td>
+            <td class="num">3-6</td>
+            <td class="num">0.333</td>
+            <td class="num"><strong>0.400</strong></td>
+            <td><span class="badge badge-neutral">-0.60w (Neutral)</span></td>
+            <td class="num">20.89</td>
+            <td class="num">24.78</td>
+            <td class="num">-3.89</td>
+            <td class="num">76.4</td>
+            <td class="num">96.3</td>
+            <td class="num">+0.10</td>
+            <td class="num">34.9%</td>
+            <td class="num">42.6%</td>
+            <td class="num">-9</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">24</td>
+            <td><strong>Cleveland Browns</strong> <span style="color:var(--muted);">(CLE)</span></td>
+            <td class="num">9</td>
+            <td class="num">5-4</td>
+            <td class="num">0.556</td>
+            <td class="num"><strong>0.386</strong></td>
+            <td><span class="badge badge-unverified">+1.53w (Over-Lucky)</span></td>
+            <td class="num">17.89</td>
+            <td class="num">21.78</td>
+            <td class="num">-3.89</td>
+            <td class="num">93.7</td>
+            <td class="num">84.6</td>
+            <td class="num">+0.70</td>
+            <td class="num">34.2%</td>
+            <td class="num">39.4%</td>
+            <td class="num">+3</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">25</td>
+            <td><strong>New York Jets</strong> <span style="color:var(--muted);">(NYJ)</span></td>
+            <td class="num">9</td>
+            <td class="num">2-7</td>
+            <td class="num">0.222</td>
+            <td class="num"><strong>0.382</strong></td>
+            <td><span class="badge badge-verified">-1.44w (Unlucky Buy-Low)</span></td>
+            <td class="num">20.22</td>
+            <td class="num">24.78</td>
+            <td class="num">-4.56</td>
+            <td class="num">100.4</td>
+            <td class="num">103.5</td>
+            <td class="num">+0.60</td>
+            <td class="num">35.4%</td>
+            <td class="num">42.3%</td>
+            <td class="num">-2</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">26</td>
+            <td><strong>Baltimore Ravens</strong> <span style="color:var(--muted);">(BAL)</span></td>
+            <td class="num">9</td>
+            <td class="num">4-5</td>
+            <td class="num">0.444</td>
+            <td class="num"><strong>0.371</strong></td>
+            <td><span class="badge badge-neutral">+0.66w (Neutral)</span></td>
+            <td class="num">21.00</td>
+            <td class="num">26.22</td>
+            <td class="num">-5.22</td>
+            <td class="num">93.9</td>
+            <td class="num">96.1</td>
+            <td class="num">-0.10</td>
+            <td class="num">37.8%</td>
+            <td class="num">39.0%</td>
+            <td class="num">-1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">27</td>
+            <td><strong>Indianapolis Colts</strong> <span style="color:var(--muted);">(IND)</span></td>
+            <td class="num">9</td>
+            <td class="num">2-7</td>
+            <td class="num">0.222</td>
+            <td class="num"><strong>0.328</strong></td>
+            <td><span class="badge badge-neutral">-0.95w (Neutral)</span></td>
+            <td class="num">20.44</td>
+            <td class="num">27.67</td>
+            <td class="num">-7.22</td>
+            <td class="num">69.1</td>
+            <td class="num">104.1</td>
+            <td class="num">-2.40</td>
+            <td class="num">36.9%</td>
+            <td class="num">32.4%</td>
+            <td class="num">-8</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">28</td>
+            <td><strong>Tennessee Titans</strong> <span style="color:var(--muted);">(TEN)</span></td>
+            <td class="num">8</td>
+            <td class="num">1-7</td>
+            <td class="num">0.125</td>
+            <td class="num"><strong>0.317</strong></td>
+            <td><span class="badge badge-verified">-1.54w (Unlucky Buy-Low)</span></td>
+            <td class="num">18.00</td>
+            <td class="num">24.88</td>
+            <td class="num">-6.88</td>
+            <td class="num">78.8</td>
+            <td class="num">95.9</td>
+            <td class="num">-2.00</td>
+            <td class="num">36.2%</td>
+            <td class="num">43.6%</td>
+            <td class="num">+3</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">29</td>
+            <td><strong>Arizona Cardinals</strong> <span style="color:var(--muted);">(AZ)</span></td>
+            <td class="num">9</td>
+            <td class="num">3-6</td>
+            <td class="num">0.333</td>
+            <td class="num"><strong>0.299</strong></td>
+            <td><span class="badge badge-neutral">+0.31w (Neutral)</span></td>
+            <td class="num">19.78</td>
+            <td class="num">28.33</td>
+            <td class="num">-8.56</td>
+            <td class="num">84.0</td>
+            <td class="num">108.9</td>
+            <td class="num">-2.20</td>
+            <td class="num">38.0%</td>
+            <td class="num">40.7%</td>
+            <td class="num">-4</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">30</td>
+            <td><strong>Philadelphia Eagles</strong> <span style="color:var(--muted);">(PHI)</span></td>
+            <td class="num">9</td>
+            <td class="num">2-7</td>
+            <td class="num">0.222</td>
+            <td class="num"><strong>0.279</strong></td>
+            <td><span class="badge badge-neutral">-0.51w (Neutral)</span></td>
+            <td class="num">16.44</td>
+            <td class="num">24.56</td>
+            <td class="num">-8.11</td>
+            <td class="num">78.0</td>
+            <td class="num">92.2</td>
+            <td class="num">-1.50</td>
+            <td class="num">35.9%</td>
+            <td class="num">40.6%</td>
+            <td class="num">-3</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">31</td>
+            <td><strong>Miami Dolphins</strong> <span style="color:var(--muted);">(MIA)</span></td>
+            <td class="num">8</td>
+            <td class="num">1-7</td>
+            <td class="num">0.125</td>
+            <td class="num"><strong>0.251</strong></td>
+            <td><span class="badge badge-neutral">-1.01w (Neutral)</span></td>
+            <td class="num">15.75</td>
+            <td class="num">25.00</td>
+            <td class="num">-9.25</td>
+            <td class="num">77.1</td>
+            <td class="num">114.0</td>
+            <td class="num">-1.20</td>
+            <td class="num">41.6%</td>
+            <td class="num">47.4%</td>
+            <td class="num">-1</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          <tr>
+            <td class="num">32</td>
+            <td><strong>Los Angeles Chargers</strong> <span style="color:var(--muted);">(LAC)</span></td>
+            <td class="num">8</td>
+            <td class="num">0-8</td>
+            <td class="num">0.000</td>
+            <td class="num"><strong>0.197</strong></td>
+            <td><span class="badge badge-verified">-1.57w (Unlucky Buy-Low)</span></td>
+            <td class="num">15.12</td>
+            <td class="num">27.38</td>
+            <td class="num">-12.25</td>
+            <td class="num">70.6</td>
+            <td class="num">95.9</td>
+            <td class="num">-1.30</td>
+            <td class="num">34.2%</td>
+            <td class="num">34.3%</td>
+            <td class="num">-4</td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">Off</a> &middot; <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">Def</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>NFL2 Empirical Correlations &amp; Skill Engine &middot; Session <code>arena-53126614</code> &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="sources.html">Official Sources</a></div>
+  </footer>
+  <script src="assets/app.js"></script>
+  <script>
+  (function () {
+    function toAmerican(p) {
+      if (p <= 0 || p >= 1) return "N/A";
+      if (p >= 0.5) return String(Math.round(-100 * p / (1 - p)));
+      return "+" + String(Math.round(100 * (1 - p) / p));
+    }
+    function recalc() {
+      var pA = Math.min(0.99, Math.max(0.01, parseFloat(document.getElementById("leg-a-prob").value || "50") / 100));
+      var pB = Math.min(0.99, Math.max(0.01, parseFloat(document.getElementById("leg-b-prob").value || "50") / 100));
+      var rho = Math.min(0.95, Math.max(-0.95, parseFloat(document.getElementById("leg-rho").value || "0")));
+      var dec = Math.max(1.01, parseFloat(document.getElementById("sgp-dec-odds").value || "3.60"));
+      var pInd = pA * pB;
+      var cov = rho * Math.sqrt(pA * (1 - pA) * pB * (1 - pB));
+      var lo = Math.max(0, pA + pB - 1);
+      var hi = Math.min(pA, pB);
+      var pCor = Math.min(hi, Math.max(lo, pInd + cov));
+      var ev = (pCor * dec - 1) * 100;
+      var b = dec - 1;
+      var fullKelly = Math.max(0, (b * pCor - (1 - pCor)) / b);
+      var qKelly = fullKelly * 0.25 * 100;
+      document.getElementById("out-ind-prob").textContent = (pInd * 100).toFixed(2) + "%";
+      document.getElementById("out-ind-fair").textContent = "Fair " + toAmerican(pInd) + " (" + (1 / pInd).toFixed(2) + "x)";
+      document.getElementById("out-cor-prob").textContent = (pCor * 100).toFixed(2) + "%";
+      document.getElementById("out-cor-fair").textContent = "Fair " + toAmerican(pCor) + " (" + (1 / pCor).toFixed(2) + "x)";
+      document.getElementById("out-ev").textContent = (ev >= 0 ? "+" : "") + ev.toFixed(2) + "%";
+      document.getElementById("out-kelly").textContent = qKelly.toFixed(2) + "%";
+    }
+    ["leg-a-prob", "leg-b-prob", "leg-rho", "sgp-dec-odds"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener("input", recalc);
+    });
+    recalc();
+  })();
+  </script>
+</body>
+</html>
