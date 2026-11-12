@@ -181,8 +181,13 @@ def registers():
     for r in req:
         if r["status"] not in stat:
             bad("requirement %s: status %r not in %s" % (r["id"], r["status"], sorted(stat)))
-    if len(req) != 40:
-        warn("requirements: %d rows (count changed since the docs were written)" % len(req))
+    quoted = re.findall(r"(\d+) requirements", open(os.path.join(ROOT, "content", "index.md"), encoding="utf-8").read()
+                        + open(os.path.join(ROOT, "content", "requirements.md"), encoding="utf-8").read())
+    stale = [q for q in quoted if int(q) != len(req)]
+    if stale:
+        bad("prose quotes %s requirements, the register has %d" % (stale, len(req)))
+    else:
+        ok("requirements: %d rows, and the site prose that quotes the count agrees with the file" % len(req))
     sug, _, _ = rows("suggestions.csv")
     for r in sug:
         for k in ("impact", "effort"):
@@ -389,8 +394,39 @@ def gamelog():
                 % ({k: m.get(k) for k in ("games_log", "games_log_reconciled", "games_log_mismatched")}, len(data)))
 
 
+def datasets_documented():
+    """A CSV in data/ that the dictionary does not mention is an orphan: nobody has to say what it
+    means, so it silently becomes the place unsourced numbers live."""
+    dict_md = os.path.join(ROOT, "content", "data-dictionary.md")
+    text = open(dict_md, encoding="utf-8").read() if os.path.exists(dict_md) else ""
+    orphans = [f for f in sorted(os.listdir(DATA))
+               if f.endswith(".csv") and f not in text]
+    if orphans:
+        bad("data files the dictionary never mentions: %s" % orphans[:6])
+    else:
+        ok("every data/*.csv is documented in the data dictionary (%d files)"
+           % len([f for f in os.listdir(DATA) if f.endswith(".csv")]))
+
+
+def reverification_holds():
+    """The re-verification register is allowed to report 'superseded' (the official page moved under
+    us) but never 'MISMATCH' (we published something the official page does not say)."""
+    fn = os.path.join(DATA, "reverification_a392.csv")
+    if not os.path.exists(fn):
+        warn("re-verification register absent; run scripts/reverify_a392.py"); return
+    data, _, _ = rows("reverification_a392.csv")
+    bad_rows = [r for r in data if r["result"].strip().upper() == "MISMATCH"]
+    if bad_rows:
+        bad("published values disagree with the official page: %s"
+            % [r["check"] for r in bad_rows][:4])
+    else:
+        ok("re-verification register: %d checks, 0 mismatches against the live official pages "
+           "(%d superseded by a later official read)"
+           % (len(data), sum(1 for r in data if r["result"].strip() == "SUPERSEDED")))
+
+
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); dictionary_counts_match_files(); gamelog()
+    check_widths(); no_disguised_guesses(); datasets_documented(); reverification_holds(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); dictionary_counts_match_files(); gamelog()
     print("=" * 72)
     for m in PASS:
         print("  PASS  " + m)

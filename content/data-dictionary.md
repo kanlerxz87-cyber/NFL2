@@ -16,6 +16,34 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | design rows | S-DESIGN |
 | `data/build_manifest.json` | — | build output, counts, allowlist | generated |
+| `data/injuries_wk10_2026_hubrefresh.csv` | 279 | one player × club, re-read from the hub at 22:35Z, side of the ball assigned from the league's own position code | S-INJ-2235 |
+| `data/injury_delta_a392.csv` | 40 | one row that appeared, disappeared or changed between the 04:45Z and 22:35Z official reads | S-INJ, S-INJ-2235 |
+| `data/reverification_a392.csv` | 9 | one check performed against the live official page, with its outcome | S-STAND-2235, S-INJ-2235 |
+| `data/ratings_2026_a392.csv` | 32 | club × season-to-date, fitted coefficients and the Pythagorean luck residual | S-GAMES26 |
+| `data/model_backtest_2026_a392.csv` | 6 | evaluation week × market (spread, total), our error against a baseline and the archived price | S-GAMES26, S-NFLDATA-ARCHIVE |
+| `data/model_verdict_2026_a392.csv` | 14 | one headline metric, its value, the method that produced it, and the read | S-CALC-A392 |
+| `data/measured_correlations_a392.csv` | 8 | one measured pair (rho or phi) with a seeded bootstrap interval and parlay arithmetic | S-GAMES26 |
+| `data/rest_and_hfa_2026_a392.csv` | 3 | rest bucket × mean home margin, the decomposition behind M-05 | S-GAMES26 |
+| `data/originated_lines_wk10_a392.csv` | 14 | Week 10 fixture × our line, the archived line where one exists, availability load by side | S-GAMES26, S-NFLDATA-ARCHIVE |
+| `data/price_archive_a392.csv` | 5 | one price-bearing asset in the repository, what it proves and what it does not | S-NFLDATA-ARCHIVE, S-NFLDATA-SCHEMA |
+| `data/code_collision_a392.csv` | 2 | one cross-source join, how many games it silently dropped with and without the alias table | S-NFLDATA-ARCHIVE |
+| `data/deficiency_by_club_a392.csv` | 78 | club × side of the ball, counts off the official filing | S-INJ-2235 |
+| `data/deficiency_chains_a392.csv` | 22 | one unavailable player at a club whose depth chart this build transcribes, with the club's own next man up | S-DEPTH-SEA, S-DEPTH-LAR, S-INJ-2235 |
+| `data/computed_luck.csv` | 8 | bet count × probability of being ahead at four win rates — arithmetic, not data | S-CALC |
+| `data/computed_sample_sizes.csv` | 5 | one win-probability case × the sample size each gate assumes | S-CALC |
+| `data/computed_vig.csv` | 5 | one price pair × implied probability, overround and the no-vig line | S-CALC |
+| `data/computed_parlays.csv` | 10 | one parlay construction × joint probability under independence and under a modelled coupling | S-CALC |
+
+### Grains introduced by the origination lab
+
+| Column pattern | Meaning | Rule |
+| --- | --- | --- |
+| `*_mae`, `*_gap_pts` | mean absolute error, in points, against the final score | smaller is better; a line is rounded to a half point so a push cannot occur; computed only on games where the comparison exists, and the paired rows are the ones scored on identical slates |
+| `rho`, `ci_low`, `ci_high`, `spans_zero` | measured correlation and its 4,000-resample percentile bootstrap interval, seeded | `spans_zero: yes` means the data cannot distinguish the pair from uncorrelated; nothing downstream may treat such a row as a signal |
+| `p_a`, `p_b`, `joint_observed`, `joint_independent`, `price_error_pct` | parlay arithmetic on two binary legs | the percentage is how wrong a ticket priced on the product of the marginals is, against the observed joint |
+| `did_not_practise`, `limited`, `designated_out` by `side` | counts off the official filing, offence and defence kept separate | a zero here means the club filed nobody, which the hub also renders as "No Injuries Reported"; it is never read as healthy (FL-01) |
+| `string`, `next_man_up` | the club's own column order on its published chart | asserted only where the club's chart and the league's filing both speak; otherwise `not published` |
+
 
 ## Column meanings — injury snapshot
 

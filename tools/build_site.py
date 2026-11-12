@@ -26,12 +26,16 @@ NAV = [
                    ("flagged-for-review", "Flagged for Review")]),
     ("Origination", [("line-origination", "Originate Our Own Lines"), ("signals", "Signal Catalogue"),
                      ("correlation", "Correlation"), ("bet-types", "Bet Types"),
-                     ("skill-vs-luck", "Removing Luck")]),
+                     ("skill-vs-luck", "Removing Luck"),
+                     ("model-lab", "Fair-Line Lab (computed)"),
+                     ("measured-correlations", "Measured Correlations")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
-              ("league-data", "Standings & Schedule"), ("data-dictionary", "Data Dictionary")]),
-    ("Governance", [("methodology", "Verification Method"), ("sources", "Source Registry")]),
+              ("league-data", "Standings & Schedule"), ("deficiencies", "Depth Deficiencies by Side"),
+                   ("data-dictionary", "Data Dictionary")]),
+    ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
+                   ("sources", "Source Registry")]),
 ]
 PAGES = [slug for _, items in NAV for slug, _ in items]
 
@@ -218,6 +222,52 @@ def html_table(header, body):
             cells.append("<td>%s</td>" % (blank_cell() if cell in BLANKS and cell != "n/a" else inline(cell)))
         trs.append("<tr>%s</tr>" % "".join(cells))
     return '<div class="tablewrap"><table class="data"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (th, "".join(trs))
+
+
+# ------------------------------------------------------- repository map ----
+# Every tree the parallel sessions published is listed here, and the page counts are measured from
+# the filesystem at build time rather than remembered in prose: a session that adds or removes a page
+# changes the table without anyone having to edit a sentence (and check_site.py fails if a tree with
+# pages in it is missing from this list).
+SITE_TREES = [
+    (".", "canonical — `bc4b47cf` integration, extended by `a392a193`",
+     "#8 #15 #16 #18 #20 #24", "current", "the register, the verified data layer, the origination lab and the review queue"),
+    ("q51", "`51ce8d8e`", "#23 #24", "current",
+     "independent evidence dashboard, tested paper-only engine, fail-closed gates"),
+    ("s53", "`53126614`", "#19 #20", "as authored",
+     "Week 11 fair-line origination, 13-club depth deficiency, interactive decision paths"),
+    ("analytics", "`eaba7863`", "#14 #16", "as authored",
+     "12-club 1st-4th string cascades, n=32 correlations, fair-line calculators"),
+    ("portal", "`e143a7ca`", "#12", "as authored", "quantitative portal, 11/11 zero-sum league reconciliation"),
+    ("site", "`63ac21e9`", "#10 #15", "as authored",
+     "multi-season walk-forward lab; the calibration every other tree defers to; reads pipeline/data/raw"),
+    ("review", "`01b698ef`", "#9 #11", "as authored", "verification-review dashboard and the 423-row register"),
+    ("docs", "`85d79210`", "#4 #5", "superseded", "the earliest category dashboard; kept for provenance"),
+    ("archive/session-009ec582", "`009ec582`", "#6 #7", "archived", "first 12-page build, kept intact by request"),
+]
+
+
+def render_site_map():
+    import glob
+    head = ["Tree", "Owner session", "Merged as", "State", "Pages", "What it uniquely holds"]
+    out = ['<div class="tablewrap"><table class="data"><thead><tr>']
+    out += ["<th>%s</th>" % inline(h) for h in head]
+    out.append("</tr></thead><tbody>")
+    for path, owner, prs, state, what in SITE_TREES:
+        n = len(glob.glob(os.path.join(ROOT, path, "*.html")))
+        href = "index.html" if path == "." else "%s/index.html" % path
+        link = ('<a href="%s">open</a>' % href) if os.path.exists(os.path.join(ROOT, path, "index.html")) else "not published"
+        out.append('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td class="num">%d</td><td>%s %s</td></tr>'
+                   % (inline("/ (root)" if path == "." else "/%s/" % path), inline(owner), inline(prs),
+                      inline(state), n, link, inline(what)))
+    out.append("</tbody></table></div>")
+    out.append("<p class=\"caption\">Page counts are files ending in .html in that directory, counted when this page was "
+               "built, so they cannot drift from the tree. \"as authored\" means the build is published and verified but "
+               "its numbers are that session&#39;s snapshot, not this register&#39;s; anything the canonical site adopted "
+               "from it is re-audited here and says so. The nine trees are the output of nine parallel agent sessions "
+               "working to the same brief - <a href=\"https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md\">"
+               "COORDINATION.md</a> is the log of who built what and which claims were cross-checked.</p>")
+    return "".join(out)
 
 
 # ---------------------------------------------------------------- metrics ----
@@ -493,6 +543,8 @@ def directive(body, ctx):
     m = re.match(r"^metric (\w+)$", body)
     if m:
         return metric(m.group(1))
+    if body == "site_map":
+        return render_site_map()
     if body == "team_availability":
         agg = AGG
         rows = []
@@ -528,6 +580,8 @@ PAGE_KIND = {
     "injuries": ("measured", "Measured data"), "depth-impact": ("measured", "Measured data"),
     "league-data": ("measured", "Measured data"), "data-dictionary": ("measured", "Schema"),
     "methodology": ("program", "Policy"), "sources": ("program", "Register"),
+    "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
+    "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
 }
 
 CSS_HREF = "assets/style.css"

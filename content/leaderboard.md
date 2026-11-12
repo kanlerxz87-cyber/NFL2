@@ -39,3 +39,13 @@ Two further rules keep the competition from being gamed: **a strategy may not be
 ## Reward mechanics that are deliberately not decided
 
 The reward *structure* is above; the reward *funding* is not, because a payout pool is a budget decision. Until that decision exists the board pays in staking allocation and data access only — see [S-25](suggestions.html) and [Q-26](questions.html). A competition with a leader board and no cost to winning produces entries, not effort, and that is the failure mode this section is written to avoid.
+
+
+## The lab ledger is not this board
+
+A separate, historical measurement now exists — [the Fair-Line Lab](model-lab.html) scores a model's *lines* against results and against an archived price on 136 completed 2026 games. It is kept off this board deliberately, for two reasons.
+
+- Those games are **in-sample history**, not forward-tracked bets. The whole point of the zero in every performance cell above is that nobody can promote a strategy on a backtest; that rule stays.
+- What the lab measures is **line quality**, not bet outcomes. It is the right instrument for deciding whether origination deserves funding, and the wrong one for allocating stakes.
+
+The rule the lab suggests adding is [S-33](suggestions.html): before a strategy enters a ranked tier, its mean absolute error must beat the benchmark **on the identical set of games where the benchmark exists**, with a bootstrap interval that excludes zero. Unpaired means are how a weak model gets promoted by an easy week, and the lab's own numbers show why: our spread error looks 0.28 points worse unpaired and +0.295 points worse paired, on 88 of 136 games.

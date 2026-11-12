@@ -14,6 +14,25 @@ NAV_PAGES = None
 FAIL, WARN, PASS = [], [], []
 
 
+def site_trees_registered():
+    """A parallel session publishes a tree at the repo root; if the canonical index does not list it,
+    a reader cannot find it and nobody can tell whether it is current. So the map is checked against
+    the filesystem instead of against someone's memory."""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import build_site as bs
+    listed = {("." if t == "." else t) for t, *_ in bs.SITE_TREES}
+    on_disk = set()
+    for f in glob.glob(os.path.join(ROOT, "*", "*.html")):
+        on_disk.add(os.path.basename(os.path.dirname(f)))
+    for f in glob.glob(os.path.join(ROOT, "archive", "*", "*.html")):
+        on_disk.add("archive/" + os.path.basename(os.path.dirname(f)))
+    missing = sorted(on_disk - listed)
+    if missing:
+        bad("published trees absent from the repository map: %s" % missing)
+    else:
+        ok("repository map lists every published tree on disk (%d trees)" % len(listed))
+
+
 def pages_list():
     sys.path.insert(0, os.path.join(ROOT, "tools"))
     import build_site
@@ -131,6 +150,7 @@ def main():
         ok("all measured-data pages carry official source links")
     if nonofficial:
         warn("links to non-league hosts (fine on registry/research pages, not on data pages): %s" % sorted(nonofficial)[:8])
+    site_trees_registered()
     manifest = os.path.join(ROOT, "data", "build_manifest.json")
     if os.path.exists(manifest):
         json.load(open(manifest))
