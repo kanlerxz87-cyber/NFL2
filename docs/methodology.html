@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — NFL2</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">NFL<span>2</span> Dashboard</div>
+<nav class="nav"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="teams.html">Teams</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries</a><a href="depth-charts.html">Depth Charts</a><a href="defense.html">Defense</a><a href="stats.html">Stats</a><a href="lines.html">Own Lines</a><a href="strategies.html">Leaderboard</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Q&amp;A Register</a><a class="active" href="methodology.html">Methodology</a><a href="flagged.html">Flagged ⚠</a><a href="sources.html">Sources</a></nav></div></header>
+<main class="wrap">
+<h1>Verification Methodology</h1>
+<p class="muted">How every line was verified, what “verified” means, and how to re-check it yourself. No hallucinations: unverified = blank + flagged.</p>
+
+<h2>1 · Verification standard</h2>
+<ul class="tight">
+<li><strong>Official first:</strong> NFL.com (standings, schedule, stats, news) is the authoritative source for league facts. NFL Media releases outrank third-party summaries.</li>
+<li><strong>Line-by-line:</strong> Every table row was transcribed from the fetched official page and carries a Source link. Click any Source link to verify that row at the origin.</li>
+<li><strong>Blank, not guessed:</strong> If a value could not be confirmed from an official source, it is left blank / “—” and flagged <span class="badge b-unverified">UNVERIFIED</span> or <span class="badge b-tbd">TBD</span>. Never inferred, never filled in.</li>
+<li><strong>Derived labelled:</strong> Any calculation (per-game, Yds/Att, fair odds) shows its formula + inputs and is badged <span class="badge b-info">DERIVED</span>.</li>
+<li><strong>Snapshot dated:</strong> Every dataset has a snapshot date. Standings/stats change weekly — re-fetch before deciding.</li>
+</ul>
+
+<h2>2 · Steps performed (this pass)</h2>
+<ol>
+<li>Fetched NFL.com League + Division Standings (2026 REG) → transcribed 32 rows → arithmetic check (PF−PA=Net).</li>
+<li>Fetched NFL.com Week 11 Schedule + Nov 9 schedule-change release → transcribed 13 games + 6 byes.</li>
+<li>Fetched NFL.com Stats (passing/rushing/receiving/tackles + defense pass/rush) → transcribed top-10s + 32-team defensive totals.</li>
+<li>Fetched NFL.com News Roundup (Nov 11, 4 chunks) → extracted key injury/QB items; flagged Week-10-vs-Week-11 timing gap.</li>
+<li>Cross-checked backup-QB lists across 5 outlets → found conflicts → marked UNVERIFIED (F-03).</li>
+<li>Cross-checked odds/Kelly/correlation formulas across multiple explainers → documented with worked examples.</li>
+<li>Built JSON snapshots in <code>/data</code> (each with <code>source_url</code>) → ran <code>scripts/validate_data.py</code> (source present, no blank verified values, arithmetic holds).</li>
+<li>Built static site in <code>/docs</code> (no build step) → link-checked internal + external links → deployed via GitHub Pages workflow.</li>
+</ol>
+
+<h2>3 · How to re-verify (2 minutes)</h2>
+<ol>
+<li>Pick any row → click its Source link → find the value on the official page.</li>
+<li>Run validation: <code>python3 scripts/validate_data.py</code> (checks sources + arithmetic).</li>
+<li>Check snapshot date vs today: if &gt;7 days old, treat as stale and re-fetch.</li>
+<li>Check <a href="flagged.html">Flagged page</a> for known conflicts affecting that table.</li>
+</ol>
+
+<h2>4 · What was NOT verified (and why)</h2>
+<div class="table-wrap"><table><thead><tr><th>Item</th><th>Why not verified</th><th>Where flagged</th></tr></thead><tbody>
+<tr><td>Stadiums / surfaces / roofs</td><td>No official stadium pages fetched in this pass</td><td>Q-14</td></tr>
+<tr><td>Market odds</td><td>No licensed feed collected</td><td>F-05, Q-03</td></tr>
+<tr><td>Play-by-play / EPA / snaps</td><td>Not collected; pipeline pending S-02</td><td>F-06, Q-11/Q-15</td></tr>
+<tr><td>Full depth charts (non-QB)</td><td>Only individual injury entries verified</td><td>Depth Charts page</td></tr>
+<tr><td>Fair lines / strategy performance</td><td>No calibration data; zero graded bets</td><td>F-07, Lines/Leaderboard</td></tr>
+</tbody></table></div>
+
+<h2>5 · Reproducibility</h2>
+<ul class="tight">
+<li>Raw snapshots: <code>data/*.json</code> (immutable, dated). Derived site tables must match JSON — validator enforces source presence.</li>
+<li>Site: static HTML/CSS/JS in <code>/docs</code> — open any file directly; no build, no tracking, no backend.</li>
+<li>Coordination + verification log: <code>COORDINATION.md</code> (task board, claims, per-task verification).</li>
+</ul>
+</main>
+<footer><div class="footer-inner"><a href="index.html">← Dashboard</a> · <a href="flagged.html">Flagged →</a></div></footer>
+<script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Defense — NFL2</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">NFL<span>2</span> Dashboard</div>
+<nav class="nav"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="teams.html">Teams</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries</a><a href="depth-charts.html">Depth Charts</a><a class="active" href="defense.html">Defense</a><a href="stats.html">Stats</a><a href="lines.html">Own Lines</a><a href="strategies.html">Leaderboard</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Q&amp;A Register</a><a href="methodology.html">Methodology</a><a href="flagged.html">Flagged ⚠</a><a href="sources.html">Sources</a></nav></div></header>
+<main class="wrap">
+<h1>Defensive Deficiencies — Points &amp; Yards Allowed</h1>
+<p class="muted">Totals <span class="badge b-verified">VERIFIED</span> from NFL.com (standings PA + defense pass/rush yards allowed). Per-game values <span class="badge b-info">DERIVED</span> as <code>total ÷ games played (W+L+T)</code>. Rankings are analysis on verified inputs — not official NFL rankings. NFL.com Defense Scoring page returned placeholder 0/1 values and was <strong>not used</strong> (F-04).</p>
+<div class="toolbar"><input type="text" placeholder="Filter defense… (e.g. Raiders, rush)" data-filter-target="def-table" style="min-width:300px"></div>
+
+<h2>Most points allowed (worst defenses by PA)</h2>
+<div class="table-wrap"><table id="def-table"><thead><tr><th>Rank</th><th>Team</th><th>Games</th><th>PA (total)</th><th>PA / game <span class="badge b-info">DERIVED</span></th><th>Pass Yds Allowed</th><th>Pass / game <span class="badge b-info">DERIVED</span></th><th>Rush Yds Allowed</th><th>Rush / game <span class="badge b-info">DERIVED</span></th><th>Rush YPA Allowed</th><th>Source</th></tr></thead><tbody>
+<tr><td>1</td><td>Las Vegas Raiders (LV)</td><td>9</td><td>268</td><td>29.8</td><td>2,238</td><td>248.7</td><td>1,361</td><td>151.2</td><td>5.0</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>2</td><td>Arizona Cardinals (AZ)</td><td>9</td><td>255</td><td>28.3</td><td>2,076</td><td>230.7</td><td>1,097</td><td>121.9</td><td>4.2</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>3</td><td>Indianapolis Colts (IND)</td><td>9</td><td>249</td><td>27.7</td><td>2,145</td><td>238.3</td><td>1,233</td><td>137.0</td><td>4.9</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>4</td><td>Baltimore Ravens (BAL)</td><td>9</td><td>236</td><td>26.2</td><td>2,177</td><td>241.9</td><td>899</td><td>99.9</td><td>3.6</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>4</td><td>Dallas Cowboys (DAL)</td><td>9</td><td>236</td><td>26.2</td><td>2,133</td><td>237.0</td><td>1,327</td><td>147.4</td><td>5.0</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>6</td><td>New York Jets (NYJ)</td><td>9</td><td>223</td><td>24.8</td><td>1,909</td><td>212.1</td><td>1,152</td><td>128.0</td><td>4.1</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>6</td><td>Atlanta Falcons (ATL)</td><td>9</td><td>223</td><td>24.8</td><td>2,171</td><td>241.2</td><td>1,069</td><td>118.8</td><td>4.4</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>8</td><td>Philadelphia Eagles (PHI)</td><td>9</td><td>221</td><td>24.6</td><td>2,150</td><td>238.9</td><td>1,135</td><td>126.1</td><td>4.1</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>9</td><td>Los Angeles Chargers (LAC)</td><td>8</td><td>219</td><td>27.4</td><td>1,845</td><td>230.6</td><td>976</td><td>122.0</td><td>4.1</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>10</td><td>Carolina Panthers (CAR)</td><td>8</td><td>219</td><td>27.4</td><td>1,774</td><td>221.8</td><td>1,067</td><td>133.4</td><td>4.6</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>11</td><td>New Orleans Saints (NO)</td><td>8</td><td>216</td><td>27.0</td><td>2,045</td><td>255.6</td><td>1,071</td><td>133.9</td><td>4.5</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>12</td><td>New England Patriots (NE)</td><td>9</td><td>207</td><td>23.0</td><td>2,256</td><td>250.7</td><td>870</td><td>96.7</td><td>3.9</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>13</td><td>Washington Commanders (WAS)</td><td>8</td><td>202</td><td>25.3</td><td>2,048</td><td>256.0</td><td>818</td><td>102.3</td><td>3.9</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>14</td><td>Miami Dolphins (MIA)</td><td>8</td><td>200</td><td>25.0</td><td>1,797</td><td>224.6</td><td>894</td><td>111.8</td><td>3.8</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>15</td><td>Tennessee Titans (TEN)</td><td>8</td><td>199</td><td>24.9</td><td>2,182</td><td>272.8</td><td>993</td><td>124.1</td><td>4.2</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>16</td><td>Cleveland Browns (CLE)</td><td>9</td><td>196</td><td>21.8</td><td>1,982</td><td>220.2</td><td>1,175</td><td>130.6</td><td>4.7</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>17</td><td>Houston Texans (HOU)</td><td>8</td><td>192</td><td>24.0</td><td>2,056</td><td>257.0</td><td>824</td><td>103.0</td><td>3.9</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>18</td><td>Green Bay Packers (GB)</td><td>9</td><td>191</td><td>21.2</td><td>2,087</td><td>231.9</td><td>981</td><td>109.0</td><td>4.0</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>19</td><td>Detroit Lions (DET)</td><td>8</td><td>189</td><td>23.6</td><td>2,265</td><td>283.1</td><td>753</td><td>94.1</td><td>4.1</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>20</td><td>Buffalo Bills (BUF)</td><td>8</td><td>187</td><td>23.4</td><td>2,022</td><td>252.8</td><td>733</td><td>91.6</td><td>3.9</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>21</td><td>Denver Broncos (DEN)</td><td>9</td><td>186</td><td>20.7</td><td>2,249</td><td>249.9</td><td>1,119</td><td>124.3</td><td>4.5</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>22</td><td>Chicago Bears (CHI)</td><td>9</td><td>184</td><td>20.4</td><td>2,120</td><td>235.6</td><td>820</td><td>91.1</td><td>4.4</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>23</td><td>Los Angeles Rams (LAR)</td><td>9</td><td>181</td><td>20.1</td><td>1,882</td><td>209.1</td><td>934</td><td>103.8</td><td>4.0</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>24</td><td>Tampa Bay Buccaneers (TB)</td><td>9</td><td>178</td><td>19.8</td><td>2,040</td><td>226.7</td><td>712</td><td>79.1</td><td>3.5</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>25</td><td>Cincinnati Bengals (CIN)</td><td>8</td><td>175</td><td>21.9</td><td>1,989</td><td>248.6</td><td>1,013</td><td>126.6</td><td>5.0</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>26</td><td>New York Giants (NYG)</td><td>8</td><td>172</td><td>21.5</td><td>1,514</td><td>189.3</td><td>989</td><td>123.6</td><td>4.7</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>27</td><td>Seattle Seahawks (SEA)</td><td>9</td><td>162</td><td>18.0</td><td>1,519</td><td>168.8</td><td>802</td><td>89.1</td><td>3.4</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>28</td><td>San Francisco 49ers (SF)</td><td>8</td><td>156</td><td>19.5</td><td>1,783</td><td>222.9</td><td>647</td><td>80.9</td><td>3.3</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>29</td><td>Pittsburgh Steelers (PIT)</td><td>8</td><td>144</td><td>18.0</td><td>1,936</td><td>242.0</td><td>671</td><td>83.9</td><td>3.6</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>30</td><td>Kansas City Chiefs (KC)</td><td>8</td><td>143</td><td>17.9</td><td>1,764</td><td>220.5</td><td>780</td><td>97.5</td><td>3.6</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>31</td><td>Jacksonville Jaguars (JAX)</td><td>8</td><td>121</td><td>15.1</td><td>1,907</td><td>238.4</td><td>714</td><td>89.3</td><td>3.7</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+<tr><td>32</td><td>Minnesota Vikings (MIN)</td><td>8</td><td>116</td><td>14.5</td><td>1,495</td><td>186.9</td><td>951</td><td>118.9</td><td>4.2</td><td><a href="https://www.nfl.com/standings/league/2026/reg">NFL.com</a></td></tr>
+</tbody></table></div>
+<p class="small muted">Pass/rush yards allowed sources: <a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all">Defense Passing</a> · <a href="https://www.nfl.com/stats/team-stats/defense/rushing/2026/reg/all">Defense Rushing</a>. Raw data: <code>data/team_stats_defense_2026.json</code>. Per-game = total ÷ (W+L+T) — verify: e.g. LV 268÷9=29.8.</p>
+
+<h2>Reading the deficiencies (analysis, not official)</h2>
+<ul class="tight">
+<li><strong>Run defense leaks:</strong> LV (1,361 yds, 5.0 YPA), DAL (1,327, 5.0), IND (1,233, 4.9), CLE (1,175, 4.7) — highest yards + efficiency allowed. CIN also allows 5.0 YPA (1,013 yds) despite fewer PA — efficiency leak hidden by totals.</li>
+<li><strong>Pass defense leaks:</strong> DET (2,265 yds, 283.1/g), TEN (2,182, 272.8/g), ATL (2,171), DEN (2,249 on 344 att — volume-driven). WAS/HOU allow 256–257/g on fewer games.</li>
+<li><strong>Elite defenses:</strong> MIN (116 PA, 14.5/g), JAX (121, 15.1/g), KC (143, 17.9/g), PIT (144, 18.0/g), SEA (162, 18.0/g). SF allows fewest rush yards (647, 3.3 YPA).</li>
+<li><strong>Caveat:</strong> Totals conflate opponent pace, garbage time, and schedule strength. EPA/success-rate by play type (Q-15) is required before calling any of these “exploitable” in a model. Backup-deficiency overlay (which starters are out) is on the <a href="depth-charts.html">Depth Charts page</a> — currently UNVERIFIED.</li>
+</ul>
+</main>
+<footer><div class="footer-inner"><a href="index.html">← Dashboard</a> · <a href="stats.html">Stats →</a></div></footer>
+<script src="assets/app.js"></script>
+</body></html>
