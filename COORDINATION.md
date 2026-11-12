@@ -283,3 +283,73 @@ No files were deleted or overwritten. This is flagged for review rather than hid
 - Merge result: _pending_
 - Pages deploy: _pending_
 
+
+---
+
+# Session `arena-63ac21e9` — line-origination lab (claim + log)
+
+**Session ID:** `arena-63ac21e9` · **Branch:** `arena/63ac21e9-nfl2` · **Started:** 2026-11-12T04:30Z
+**Branch base:** `01f2271` (before any other session merged)
+
+This session began against a repository containing only a 6-byte `README.md` and claimed
+T0–T9 before creating any file. By the time it pushed, other sessions had already built and
+merged a site to `main` (PRs #1–#9). This session therefore found `main` populated and
+integrated around it rather than overwriting it.
+
+### Files this session owns (non-overlapping with every other scope)
+
+| Path | Contents |
+|---|---|
+| `pipeline/**` | ingest, ratings, backtest, strategies, luck, correlation, props, lines, availability, build orchestrator |
+| `pipeline/data/raw/**` | vendored, SHA-256-pinned source files |
+| `site/**` | separate dashboard at `/site/` (14 pages, own `app.js` / `styles.css` / `data/`) |
+| `docs/EXECUTIVE-SUMMARY.md`, `docs/REQUIREMENTS.md`, `docs/OPEN-QUESTIONS.md`, `docs/VERIFICATION.md`, `docs/SUGGESTIONS.md` | |
+| `scripts/render_test.js`, `scripts/check_links.py` | render harness + link checker |
+| `.github/workflows/validate.yml` | CI: rebuild, render-test, link-check |
+
+**No file owned by another session was modified.** `main`'s `README.md`, `EXECUTIVE_SUMMARY.md`,
+`index.html`, `assets/**`, `data/**`, `scripts/**`, `tools/**`, `content/**` are untouched.
+`COORDINATION.md` and `.gitignore` were merged additively (this file keeps `main`'s board above
+and appends this section; `.gitignore` keeps every rule from both sides).
+
+### Task log
+
+| UTC | Entry |
+|---|---|
+| 04:30Z | Cloned at `01f2271`; only a stub `README.md`. Claimed T0–T9. |
+| 04:41Z | Vendored dataset pinned to `leesharpe/nfldata@692e5f9` (2026-11-12T03:45Z); SHA-256 per file. |
+| 04:54Z | Pipeline complete: 10 artefacts, all valid JSON, zero imputed values. |
+| 05:05Z | Dashboard built: 14 pages, 13 render-tested, 128 references link-checked. |
+| 05:12Z | Verified against official NFL sources: 2025 rulebook, 2025 rules changes, nfl.com/injuries (Week 10 2026), IR minimum-absence rule, injury-report status vocabulary. |
+| 05:15Z | Inspected all 10 other `arena/*-nfl2` branches: each was an empty stub at the time of inspection. |
+| 05:40Z | **Merge conflict discovered** — `main` had advanced through PRs #1–#9 from other sessions. Rebase aborted (it would have flattened the other session's integration merge); resolved by merging `origin/main` into this branch and keeping both. |
+
+### Verification performed on the combined tree
+
+* `python3 -m pipeline.build` — regenerates all 10 artefacts from vendored sources.
+* `node scripts/render_test.js` — 13/13 page modules execute against the real JSON, 0 failures.
+* `python3 scripts/check_links.py` — 128 references, 0 broken.
+* `python3 tools/build_site.py && python3 tools/verify.py` (the other session's suite) — run
+  against the combined tree to confirm this session did not break it.
+* `python3 scripts/verify_site.py` (the other session's second suite) — 13/13 checks.
+
+### Sources
+
+`leesharpe/nfldata` (pinned commit) · nflverse `injuries` and `depth_charts` releases ·
+operations.nfl.com 2025 rulebook and rules changes · nfl.com/injuries · nfl.com IR rule article.
+Full table: `docs/VERIFICATION.md`; machine-readable: `site/data/provenance.json`.
+
+### Irregularities flagged by this session
+
+See `site/flagged.html` and `docs/EXECUTIVE-SUMMARY.md` §6. Summary: 2022 has 271 games
+(Bills-Bengals cancelled); `rosters.csv` has zero starts after 2018; seven negative-experience
+rows; 2026 injury mirror lags the official page by one week; prop correlations unverified because
+no prop-line archive is reachable; no upstream LICENSE; **the line model is measurably worse than
+the closing line** (spread MAE 10.25 vs 9.94).
+
+### PR & merge record
+
+- PR: [#10](https://github.com/kanlerxz87-cyber/NFL2/pull/10)
+- Merge result: _recorded after merge_
+- Pages deploy: _recorded after deploy_
+- Published at: https://kanlerxz87-cyber.github.io/NFL2/site/
