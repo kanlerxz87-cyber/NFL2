@@ -103,6 +103,38 @@ market line.
 
 | Item | Value |
 |---|---|
-| PR | _pending_ |
-| Merge result | _pending_ |
-| Pages deploy | _pending_ (GitHub Pages already enabled: source `main`, path `/`, legacy builder, https enforced) |
+| PR | **#6** — https://github.com/kanlerxz87-cyber/NFL2/pull/6 (base `main`, head `arena/009ec582-nfl2`) |
+| Merge result | _pending at time of writing_ |
+| Pages deploy | Source `main`, path `/`, legacy builder, https enforced |
+
+### Merge conflict with concurrent session work — how it was resolved
+
+`main` had advanced to `f64078f` (session `arena-85d79210`, PRs #4 and #5) while this session was
+building on `arena/009ec582-nfl2` from `01f2271`. Both sessions wrote **static HTML to the repo root**,
+and GitHub Pages is configured as `legacy` / root — so both builds were competing for the same URLs.
+
+Resolution, and the reasoning:
+
+1. **This session's pages win at the root.** They are generated from verified JSON by
+   `scripts/build_site.py` and pass 12/12 build checks; every figure has a provenance chain. The
+   previous session's root pages were hand-built HTML with no generator and no data behind them.
+2. **The previous session's site is preserved, not deleted.** Its complete 16-page build already
+   existed in `docs/` on `main`, and `.github/workflows/pages.yml` publishes `docs/`. That tree was
+   merged in unchanged, so the previous build remains reachable at
+   `https://kanlerxz87-cyber.github.io/NFL2/docs/index.html`.
+3. **The previous session's data files are preserved.** Files unique to `main`
+   (`data/injuries_2026-11-11.json`, `data/player_leaders_2026.json`, `data/strategies.json`,
+   `data/teams.json`, `data/team_stats_defense_2026.json`, the duplicated `*-2026.json` /
+   `*_2026.json` pairs) were kept as-is. They are **not read by this session's pipeline**, which uses
+   the canonical `data/games_2026.json`, `data/standings_raw.json`, `data/team_stats.json`,
+   `data/injuries_week10.json`, `data/depth_charts.json`, `data/player_verified.json`. They are left in
+   place so nothing another session produced is destroyed.
+4. **`.nojekyll` retained.** Without it, Jekyll's underscore/hyphen rules can drop files from the
+   published site.
+
+**Open issue flagged for the next session:** the repository now carries two site builds (root and
+`docs/`) produced by two different sessions with different conventions (e.g. `data/injuries_2026-11-11.json`
+vs `data/injuries_week10.json`; `lines-lab.html` vs `strategies.html`). This should be consolidated by
+picking one build and deprecating the other explicitly, rather than letting both drift. It is recorded
+here rather than resolved silently.
+
