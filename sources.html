@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources &amp; Verification — NFL2</title>
+<meta name="description" content="Official sources used, verification method, and how to check every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Sources</span><span class="tag">Verification method</span></div>
+  <nav class="main" aria-label="Main">
+    <a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a class="active" href="sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>Sources &amp; Verification Method</h1>
+  <p class="lead">Every fact on this site traces to one of the official sources below. If a value cannot be confirmed there, it stays blank and flagged. No hallucinations, no memory fills.</p>
+
+  <h2>Official sources used (fetched 2026-11-12)</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>Source</th><th>Used for</th><th>URL</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>NFL.com — 2026 division standings (regular season)</td><td>All 32 standings rows; division alignment</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">nfl.com/standings/division/2026/reg</a></td></tr>
+      <tr><td>2</td><td>NFL.com — Week 11 Schedule Change (Nov 9, 2026)</td><td>Week 11 games, times, TV, flex moves</td><td class="src"><a href="https://www.nfl.com/news/week-11-schedule-change">nfl.com/news/week-11-schedule-change</a></td></tr>
+      <tr><td>3</td><td>NFL.com — 2026 schedule release: every team's bye week</td><td>Week 11 bye teams</td><td class="src"><a href="https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week">nfl.com/news/2026-nfl-schedule-release…</a></td></tr>
+      <tr><td>4</td><td>NFL.com — Week 10 injury report (all 14 games)</td><td>Week 10 OUT/Questionable designations</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">nfl.com/news/nfl-week-10-injury-report…</a></td></tr>
+      <tr><td>5</td><td>NFL.com — Official Injury Report, Week 10 (full)</td><td>Practice participation; verification for F-02</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG9">nfl.com/injuries/league/2026/REG9</a></td></tr>
+      <tr><td>6</td><td>NFL Official Playing Rules 2026 (PDF)</td><td>Scoring values (TD/FG/safety/try)</td><td class="src"><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf">static.nfl.com … Rules PDF</a></td></tr>
+      <tr><td>7</td><td>NFL.com team pages (pattern <code>/teams/&lt;slug&gt;</code>)</td><td>Team directory links</td><td class="src"><a href="https://www.nfl.com/teams/buffalo-bills/">nfl.com/teams/…</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Verification method (line by line)</h2>
+  <ol>
+    <li><strong>Fetch the official page</strong> and transcribe each row exactly (W-L-T, PF/PA, times, designations).</li>
+    <li><strong>Attach the source link to the row</strong> — no row without a link ships.</li>
+    <li><strong>Cross-check counts:</strong> 32 standings rows = 32 teams; 13 Week 11 games + 6 byes = 32; 6 injury designations match the summary article.</li>
+    <li><strong>Leave blanks where the source is silent</strong> (e.g. depth charts, market odds, leaderboard results) and flag them on <a href="flagged.html">Flagged for Review</a>.</li>
+    <li><strong>Store machine copies</strong> in <code>data/*.json</code> with source URL + as-of date, so any row can be re-checked.</li>
+    <li><strong>Never infer:</strong> “not listed” ≠ “healthy”; “model output” ≠ “market line”; “correlation” ≠ “causation.”</li>
+  </ol>
+
+  <h2>Methodology references (for the models, not facts)</h2>
+  <p class="small">The Lines Lab math (PF/PA averages, normal win-probability approximation, Pearson <em>r</em>) and the leaderboard gates (CLV, ROI with confidence intervals, out-of-sample testing) are standard quantitative methods implemented transparently on this site. They are <em>our</em> methodology, not NFL-published formulas — which is why every assumption (HFA, SD) is shown and editable. Advanced metrics referenced in planning (EPA, DVOA, Next Gen Stats) are defined by their creators; we do not reproduce their proprietary values without a licensed source (see Q-04).</p>
+
+  <h2>How to manually review (2 minutes per table)</h2>
+  <ol>
+    <li>Open any table → click the row’s source link.</li>
+    <li>Find the team/game/player on the official page and compare each cell.</li>
+    <li>If anything differs, note the Flagged ID (e.g. “F-09: BUF PF should be X per [link]”) for the next session.</li>
+  </ol>
+  <div class="note warn"><strong>Disclaimer:</strong> Independent research project. NFL, team names, and logos are trademarks of the NFL. Not affiliated with or endorsed by the NFL. Models are for education/research, not betting advice. Check local law and age limits before any wagering.</div>
+  <p><a class="btn ghost" href="flagged.html">← Flagged</a> <a class="btn" href="index.html">Back to Dashboard →</a></p>
+</div></main>
+<footer><div class="wrap"><p>NFL2 · <a href="https://github.com/kanlerxz87-cyber/NFL2">GitHub repo</a> · <a href="https://kanlerxz87-cyber.github.io/NFL2/">Live site</a></p></div></footer>
+<script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions Board — NFL2</title>
+<meta name="description" content="Suggestions for improving decision-making. Review, rank, and choose the best path before implementing.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Suggestions board</span><span class="tag">Review before building</span></div>
+  <nav class="main" aria-label="Main">
+    <a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a class="active" href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>Suggestions Board — Choose the Best Path</h1>
+  <p class="lead">Each suggestion states the improvement, the decision it enables, the effort, and what it needs from <a href="questions.html">Questions &amp; Gaps</a>. Nothing here is implemented until you pick a path — this page is the review queue.</p>
+  <div class="note"><strong>How to use:</strong> Rank S-01…S-10 by impact. Recommended order is A → B → C (see <a href="executive-summary.html">Executive Summary §4</a>). Mark your pick (e.g. “Approve S-03”) and the next session builds only that.</div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>ID</th><th>Suggestion</th><th>Improves decision-making by…</th><th>Effort / needs</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>S-01</strong></td><td><strong>Weekly verified snapshot automation.</strong> Script that re-fetches NFL.com standings/schedule/injuries each week and diffs against <code>data/*.json</code>, flagging any change.</td><td>Stops stale-data decisions; every number stays sourced.</td><td>Medium · needs Q-01 (refresh cadence)</td><td><span class="pill warn">Proposed</span></td></tr>
+      <tr><td><strong>S-02</strong></td><td><strong>Team pages.</strong> One page per team (record, PF/PA trend, injuries, depth chart, upcoming games) assembled only from linked official sources.</td><td>Answers “who is actually playing?” before any line is set.</td><td>Medium · needs Q-07 (depth charts)</td><td><span class="pill warn">Proposed</span></td></tr>
+      <tr><td><strong>S-03</strong></td><td><strong>v1 opponent-adjusted ratings (Elo/power).</strong> Replace raw PF/PA averages in <a href="lines-lab.html">Lines Lab</a> with schedule-adjusted ratings.</td><td>Removes soft-schedule bias — the biggest flaw in v0.</td><td>Medium · needs Q-04 (play-by-play or game logs)</td><td><span class="pill warn">Proposed — recommended first build</span></td></tr>
+      <tr><td><strong>S-04</strong></td><td><strong>Leaderboard scoring rule.</strong> Lock ranking = out-of-sample CLV + ROI (with CI) at minimum <em>n</em>; publish the exact formula before any entries.</td><td>Makes “skill, not luck” enforceable and auditable.</td><td>Low (decision) · needs Q-05/Q-06 (odds history)</td><td><span class="pill warn">Proposed — needs your approval</span></td></tr>
+      <tr><td><strong>S-05</strong></td><td><strong>Market-line capture.</strong> Timestamped open + close lines from named licensed books, stored alongside your fair lines.</td><td>Enables edge + CLV measurement; without it, “value” is unprovable.</td><td>Medium · needs Q-06 (which books / legal access)</td><td><span class="pill warn">Proposed</span></td></tr>
+      <tr><td><strong>S-06</strong></td><td><strong>Prop projection engine.</strong> Role → efficiency → opponent/script projections for passing/rushing/receiving props, with uncertainty bands.</td><td>Turns prop combos from gut feel into testable projections.</td><td>High · needs Q-04 + snap/route data</td><td><span class="pill warn">Proposed</span></td></tr>
+      <tr><td><strong>S-07</strong></td><td><strong>Weather &amp; venue module.</strong> Outdoor wind/precip/temperature + neutral-site handling (Mexico City, Munich).</td><td>Prevents systematic mispricing of totals in bad weather / neutral sites.</td><td>Low–Medium · needs Q-08 (weather source)</td><td><span class="pill warn">Proposed</span></td></tr>
+      <tr><td><strong>S-08</strong></td><td><strong>Key-number &amp; distribution upgrade.</strong> Replace normal approx with empirical margin/total distributions (3, 7, pushes).</td><td>Correctly prices the most common NFL outcomes.</td><td>Medium · needs Q-04 (historical margins)</td><td><span class="pill warn">Proposed</span></td></tr>
+      <tr><td><strong>S-09</strong></td><td><strong>Bankroll &amp; staking guardrails.</strong> Kelly-fraction calculator with caps, max drawdown alerts, and “no-bet” rules (e.g. no bet when model and market disagree by &lt; threshold).</td><td>Protects the bankroll; forces selectivity (skill-based, not volume-based).</td><td>Low · needs Q-09 (risk tolerance)</td><td><span class="pill warn">Proposed</span></td></tr>
+      <tr><td><strong>S-10</strong></td><td><strong>Weekly decision memo.</strong> Auto-generated one-pager: verified snapshot → your fair lines → candidate edges → gates check → go/no-go.</td><td>One place to review before any action; creates an audit trail.</td><td>Low (once S-01/S-03 exist)</td><td><span class="pill warn">Proposed</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Decision log (fill when you pick)</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Date</th><th>Decision</th><th>Approved by</th><th>Next session builds</th></tr></thead>
+    <tbody><tr><td class="small">—</td><td class="small">— (awaiting review)</td><td class="small">—</td><td class="small">—</td></tr></tbody>
+  </table></div>
+  <div class="note"><strong>What not to do:</strong> do not approve a strategy for live use until it passes gates G1–G7 on <a href="strategies.html">Strategy Leaderboard</a>. Approving a <em>suggestion</em> (build the tool) is different from approving a <em>bet</em> (use the tool).</div>
+  <p><a class="btn ghost" href="strategies.html">← Leaderboard</a> <a class="btn" href="questions.html">Next: Questions &amp; Gaps →</a></p>
+</div></main>
+<footer><div class="wrap"><p>NFL2 · Suggestions are proposals, not facts. <a href="questions.html">Questions register</a></p></div></footer>
+<script src="assets/app.js"></script>
+</body></html>

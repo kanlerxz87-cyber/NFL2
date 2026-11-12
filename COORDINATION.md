@@ -12,21 +12,22 @@
 
 | # | Task | Status | Owner (session) | Files touched | Sources / verification | Irregularities |
 |---|------|--------|-----------------|---------------|------------------------|----------------|
-| T1 | Repo audit + COORDINATION.md setup | in progress | 194db560 | `COORDINATION.md`, `README.md` | Repo was empty except `README.md` (`# NFL2`) at `01f2271` — verified via `git log` | None |
-| T2 | Verified data collection (standings, schedule, injuries, rules) | in progress | 194db560 | `data/*.json`, `standings.html`, `schedule.html`, `injuries.html` | NFL.com official standings/schedule/injury pages (see Sources index) | See Flagged page |
-| T3 | Executive summary | unclaimed | — | `executive-summary.html` | Synthesizes T2 only; no new numbers | — |
-| T4 | Suggestions review board | unclaimed | — | `suggestions.html` | N/A (proposals, not facts) | — |
-| T5 | Questions / info gaps / answers-needed register | unclaimed | — | `questions.html` | N/A (open questions) | — |
-| T6 | Originated-lines methodology (own lines lab) | unclaimed | — | `lines-lab.html`, `assets/app.js` | NFL Official Playing Rules (scoring values); methodology is original, labelled MODEL ONLY | No sportsbook odds reproduced |
-| T7 | Strategy leaderboard + validation gates + correlation | unclaimed | — | `strategies.html` | Framework only; performance cells left blank until backtested — no fabricated win rates | See Flagged page |
-| T8 | Injury & depth-chart deficiency tracker | unclaimed | — | `injuries.html` | NFL.com Week 10 injury report article + official injury report pages | Depth-chart (1st/2nd/3rd/4th string) not published by NFL — flagged |
-| T9 | Site build (landing + subpages, clean dashboard UI) | unclaimed | — | `index.html`, `*.html`, `assets/style.css`, `assets/app.js` | — | — |
-| T10 | Final integration: re-verify combined data, link check, Pages deploy | unclaimed | — | All (merge only) | Re-check every table row has a source link | — |
-| T11 | PR to `main`, merge, confirm Pages deploy | unclaimed | — | — | Record PR link + merge result below | — |
+| T1 | Repo audit + COORDINATION.md setup | done | 194db560 | `COORDINATION.md`, `README.md` | Repo was empty except `README.md` (`# NFL2`) at `01f2271` — verified via `git log` | None |
+| T2 | Verified data collection (standings, schedule, injuries, rules) | done | 194db560 | `data/*.json`, `standings.html`, `schedule.html`, `injuries.html` | NFL.com official standings/schedule/injury pages (see Sources index) | See Flagged page |
+| T3 | Executive summary | done | 194db560 | `executive-summary.html` | Synthesizes T2 only; no new numbers | — |
+| T4 | Suggestions review board | done | 194db560 | `suggestions.html` | N/A (proposals, not facts) | — |
+| T5 | Questions / info gaps / answers-needed register | done | 194db560 | `questions.html` | N/A (open questions) | — |
+| T6 | Originated-lines methodology (own lines lab) | done | 194db560 | `lines-lab.html`, `assets/app.js` | NFL Official Playing Rules (scoring values); methodology is original, labelled MODEL ONLY | No sportsbook odds reproduced |
+| T7 | Strategy leaderboard + validation gates + correlation | done | 194db560 | `strategies.html` | Framework only; performance cells left blank until backtested — no fabricated win rates | See Flagged page |
+| T8 | Injury & depth-chart deficiency tracker | done | 194db560 | `injuries.html` | NFL.com Week 10 injury report article + official injury report pages | Depth-chart (1st/2nd/3rd/4th string) not published by NFL — flagged |
+| T9 | Site build (landing + subpages, clean dashboard UI) | done | 194db560 | `index.html`, `*.html`, `assets/style.css`, `assets/app.js` | — | — |
+| T10 | Final integration: re-verify combined data, link check, Pages deploy | done | 194db560 | All (merge only) | Re-check every table row has a source link | — |
+| T11 | PR to `main`, merge, confirm Pages deploy | in progress | 194db560 | — | Record PR link + merge result below | — |
 
 ## Claim log
 
-- 2026-11-12 — Session `194db560` claimed T1, T2, T9 (site shell + data) on branch `arena/194db560-nfl2`. Scope: `COORDINATION.md`, `README.md`, `index.html`, `assets/*`, `data/*`, `*.html`. No other sessions active at claim time (repo had a single commit). Will claim T3–T8, T10–T11 in sequence to keep scopes non-overlapping within this session.
+- 2026-11-12 — Session `194db560` claimed T1, T2, T9 (site shell + data) on branch `arena/194db560-nfl2`. Scope: `COORDINATION.md`, `README.md`, `index.html`, `assets/*`, `data/*`, `*.html`. No other sessions active at claim time (repo had a single commit).
+- 2026-11-12 — Session `194db560` completed T1–T10: verified data (NFL.com standings/schedule/injuries + Rules PDF), 12-page site, Lines Lab v0, leaderboard framework, suggestions/questions/flagged pages. Verification: 32/32 standings rows, 19/19 schedule rows, 16/16 injury rows, 32/32 team rows carry NFL.com source links; all local links resolve; JSON counts reconcile (32 teams, 13 games + 6 byes, 6 designations). Flagged F-01…F-10 published (do not block merge).
 
 ## Handoff / conflict log
 

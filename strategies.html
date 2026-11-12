@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy Leaderboard — NFL2</title>
+<meta name="description" content="Leaderboard competition framework: single bets, parlays, player props, validation gates, correlation, and skill-vs-luck tests.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Leaderboard framework</span><span class="tag">No fabricated results</span></div>
+  <nav class="main" aria-label="Main">
+    <a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a class="active" href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>Strategy Leaderboard — Skill, Not Luck</h1>
+  <p class="lead">A competition where strategies earn rewards for <em>repeatable, validated</em> edge — not for one hot week. Every strategy must pass the gates below before it can rank. Performance cells are blank until a strategy actually passes; we do not invent win rates.</p>
+  <div class="note"><strong>How ranking works (proposed — see <a href="suggestions.html">S-04</a>):</strong> Rank by <em>out-of-sample</em> closing-line value (CLV) + ROI with minimum sample size, not by raw win rate. A strategy that beats the closing line consistently is showing skill; one that only wins in-sample is showing luck.</div>
+
+  <h2>Validation gates (all must pass)</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Gate</th><th>Requirement</th><th>Pass mark (proposed)</th><th>Why it removes luck</th></tr></thead>
+    <tbody>
+      <tr><td>G1 · Pre-registration</td><td>Strategy rules frozen <em>before</em> the test window (no tuning on the test set)</td><td>Written spec + timestamp</td><td>Stops hindsight fitting</td></tr>
+      <tr><td>G2 · Minimum sample</td><td>Enough bets to separate skill from noise</td><td>≥ 200 bets (single-bet strategies); ≥ 100 tickets (parlays)</td><td>Small samples are dominated by variance</td></tr>
+      <tr><td>G3 · Out-of-sample test</td><td>Test on a later season/week block never used for design</td><td>Separate train / validation / test splits</td><td>Proves the edge travels</td></tr>
+      <tr><td>G4 · Closing-line value</td><td>Average price vs closing line (your number vs close)</td><td>Positive CLV on average</td><td>Beating the close is the cleanest skill signal</td></tr>
+      <tr><td>G5 · ROI with costs</td><td>ROI after vig, with confidence interval</td><td>95% CI excludes 0 (or report CI honestly)</td><td>Prevents “profitable” noise from ranking</td></tr>
+      <tr><td>G6 · Correlation check</td><td>Legs/signals not secretly the same bet (see below)</td><td>Pairwise |r| reported; correlated legs penalised</td><td>Parlays/props often double-count one outcome</td></tr>
+      <tr><td>G7 · Stability</td><td>Edge holds across home/away, spread/total, early/late season</td><td>No single split drives all profit</td><td>One matchup type ≠ a strategy</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Leaderboard — Single bets</h2>
+  <p class="small">Status: <span class="pill warn">No strategy has passed G1–G7 yet</span> — cells are blank by design. Submit a strategy spec to <a href="suggestions.html">Suggestions</a> to enter the test queue.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Strategy</th><th>Market</th><th>Bets (n)</th><th>Win rate</th><th>ROI</th><th>CLV</th><th>Gates passed</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>(awaiting submissions)</td><td>Spread / Total / ML</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Leaderboard — Parlays</h2>
+  <p class="small">Parlay rule: legs must be <em>independent enough</em> (G6). A same-game parlay whose legs all need the same script (e.g. QB over + WR over + team total over) is one correlated bet, not three edges. Price every ticket against the no-vig fair price of its legs.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Strategy</th><th>Legs</th><th>Tickets (n)</th><th>Hit rate</th><th>ROI</th><th>Avg leg corr.</th><th>Gates passed</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>(awaiting submissions)</td><td>2–6 legs</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Leaderboard — Player prop combos</h2>
+  <p class="small">Prop rule: start from role (snaps / routes / targets / carries), then efficiency, then opponent + game script. A prop line is a projection threshold near the middle of the expected range with a price attached — see methodology notes on <a href="sources.html">Sources</a>. Combos must pass the same correlation gate as parlays.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Strategy</th><th>Prop type</th><th>Bets (n)</th><th>Hit rate</th><th>ROI</th><th>CLV</th><th>Gates passed</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>(awaiting submissions)</td><td>Pass / Rush / Rec / Kicking</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Correlation — measure it, don’t assume it</h2>
+  <p>For any two signals X and Y (e.g. “team covers” and “total goes over”, or two prop legs), compute Pearson’s <em>r</em> over paired historical games:</p>
+  <div class="calc-out">r = Σ(x−x̄)(y−ȳ) / √[ Σ(x−x̄)² · Σ(y−ȳ)² ]
+|r| &lt; 0.10 negligible · 0.10–0.30 weak · 0.30–0.50 moderate · &gt; 0.50 strong
+High |r| ⇒ legs are not independent ⇒ parlay fair price must use the joint probability, not the product of marginals.</div>
+  <form id="corr-calc">
+    <label for="corr-x">Signal X — one number per game (comma/space separated)</label>
+    <input id="corr-x" type="text" placeholder="e.g. 24, 17, 31, 20, 27" style="width:100%">
+    <label for="corr-y">Signal Y — same number of values, same game order</label>
+    <input id="corr-y" type="text" placeholder="e.g. 41, 38, 52, 44, 47" style="width:100%">
+    <p><button type="submit">Compute r</button></p>
+  </form>
+  <div id="corr-out" class="calc-out" aria-live="polite"></div>
+  <div class="note warn"><strong>Correlation ≠ causation.</strong> A strong <em>r</em> between “QB throws a lot” and “WR catches a lot” does not prove either causes the other — both may be driven by game script (trailing). Always check <em>n</em>, out-of-sample stability, and the football mechanism before building a combo.</div>
+
+  <h2>Removing luck — checklist for every submission</h2>
+  <ul>
+    <li>Report <em>n</em>, ROI, and 95% confidence interval — never win rate alone.</li>
+    <li>Show CLV vs the closing line; a strategy that cannot beat the close has not shown skill.</li>
+    <li>Split results by home/away, favorite/underdog, and month — flag any split that flips sign.</li>
+    <li>Disclose every parameter tuned and the exact test window. Undisclosed tuning = disqualified.</li>
+    <li>For parlays/props: publish leg correlations and the joint fair price, not just the ticket price.</li>
+  </ul>
+  <p><a class="btn ghost" href="lines-lab.html">← Lines Lab</a> <a class="btn" href="suggestions.html">Next: Suggestions Board →</a></p>
+</div></main>
+<footer><div class="wrap"><p>NFL2 · Framework page — no results claimed. <a href="questions.html">Open questions Q-05/Q-06</a> cover data needed to run real backtests.</p></div></footer>
+<script src="assets/app.js"></script>
+</body></html>

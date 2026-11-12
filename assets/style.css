@@ -1,0 +1,61 @@
+/* NFL2 — clean dashboard theme. No external dependencies. */
+:root{
+  --bg:#0b1220; --panel:#111a2e; --panel2:#16223c; --line:#22345a;
+  --text:#e8eefc; --muted:#9fb0d0; --accent:#3b82f6; --accent2:#22c55e;
+  --warn:#f59e0b; --bad:#ef4444; --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:#7db4ff}
+a:hover{text-decoration:underline}
+header.top{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.top-inner{display:flex;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
+.brand{font-weight:800;font-size:22px;letter-spacing:.3px}
+.brand span{color:var(--accent)}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:3px 8px;border-radius:999px}
+nav.main{display:flex;gap:8px;flex-wrap:wrap;padding:0 0 12px}
+nav.main a{color:var(--text);text-decoration:none;border:1px solid var(--line);padding:7px 12px;border-radius:999px;font-size:14px;background:var(--panel)}
+nav.main a:hover,nav.main a.active{border-color:var(--accent);background:var(--panel2)}
+main{padding:22px 0 60px}
+h1{font-size:32px;margin:10px 0 6px}
+h2{font-size:22px;margin:26px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{font-size:17px;margin:18px 0 8px}
+p.lead{color:var(--muted);font-size:17px;max-width:900px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.card h3{margin-top:0}
+.card .big{font-size:30px;font-weight:800}
+.card .sub{color:var(--muted);font-size:13px}
+.pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+.pill.ok{color:var(--accent2);border-color:var(--accent2)}
+.pill.warn{color:var(--warn);border-color:var(--warn)}
+.pill.bad{color:var(--bad);border-color:var(--bad)}
+.pill.model{color:#c4b5fd;border-color:#7c3aed}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:14px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+tr:hover td{background:rgba(59,130,246,.06)}
+.tbl-wrap{overflow-x:auto;border-radius:var(--radius)}
+.note{background:var(--panel2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:14px 0}
+.note.warn{border-left-color:var(--warn)}
+.note.bad{border-left-color:var(--bad)}
+.note.model{border-left-color:#7c3aed}
+.small{font-size:13px;color:var(--muted)}
+.src{font-size:12px;white-space:nowrap}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:10px 16px;border-radius:10px;font-weight:600}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.btn:hover{opacity:.92}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:13px}
+.kpi{display:flex;gap:12px;flex-wrap:wrap}
+.kpi .card{flex:1;min-width:180px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+input,select,button{font:inherit}
+input[type=number],select{padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:#0e1830;color:var(--text)}
+button{padding:9px 14px;border-radius:8px;border:1px solid var(--line);background:var(--accent);color:#fff;cursor:pointer;font-weight:600}
+button.ghost{background:transparent;color:var(--text)}
+label{font-size:13px;color:var(--muted);display:block;margin:10px 0 4px}
+.calc-out{background:#0e1830;border:1px dashed var(--line);border-radius:10px;padding:14px;margin-top:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;white-space:pre-wrap}
+@media(max-width:640px){h1{font-size:26px} th,td{padding:7px 6px;font-size:13px}}

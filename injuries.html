@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Injuries &amp; Depth — NFL2</title>
+<meta name="description" content="Official NFL Week 10 injury designations plus a depth-chart deficiency tracker framework.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Week 10 · 2026</span><span class="tag">As of 2026-11-12</span></div>
+  <nav class="main" aria-label="Main">
+    <a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a class="active" href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>Injuries &amp; Depth-Chart Deficiencies</h1>
+  <p class="lead">What the official report actually says — plus a tracker for 2nd/3rd/4th-string replacements on offense and defense. Only designations printed in the NFL.com Week 10 summary are listed as facts. Everything else is explicitly marked unverified.</p>
+
+  <h2>How to read NFL injury designations (official meanings)</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Game status</th><th>Official meaning</th><th>Practice code</th><th>Meaning</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill bad">OUT</span></td><td>Will not play</td><td>DNP</td><td>Did Not Participate in practice</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG9">NFL.com injuries</a></td></tr>
+      <tr><td><span class="pill warn">Doubtful</span></td><td>Unlikely to play</td><td>Limited</td><td>Limited Participation in practice</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG9">NFL.com injuries</a></td></tr>
+      <tr><td><span class="pill warn">Questionable</span></td><td>Uncertain whether the player will play</td><td>Full</td><td>Full Participation in practice</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG9">NFL.com injuries</a></td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">“Probable” was retired in 2016; the current game-status scale is Out / Doubtful / Questionable only. Practice participation is reported separately from game status — a player can practice fully and still be Questionable, or sit out practice and still play. Always check both columns on the full report.</p>
+
+  <h2>Week 10 designations listed in the NFL.com summary (verified)</h2>
+  <p class="small">Source: <a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com — NFL Week 10 injury report: Player statuses for all 14 games</a> · Full report: <a href="https://www.nfl.com/injuries/league/2026/REG9">NFL.com Official Injury Report — Week 10</a> · Machine copy: <a href="data/injuries-week10-2026.json">data/injuries-week10-2026.json</a></p>
+  <label for="f">Filter injuries</label><input id="f" type="search" placeholder="e.g. Patriots, knee, OUT…" data-filter-input="#inj-table" style="width:100%;max-width:420px">
+  <div class="tbl-wrap"><table id="inj-table">
+    <thead><tr><th>Team</th><th>Player</th><th>Pos</th><th>Injury</th><th>Status</th><th>Game</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Washington Commanders</td><td>Colson Yankoff</td><td>TE</td><td>knee</td><td><span class="pill bad">OUT</span></td><td>Thu, Nov 12 — WAS at NYG</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
+      <tr><td>Washington Commanders</td><td>Lucas Patrick</td><td>C</td><td>concussion</td><td><span class="pill bad">OUT</span></td><td>Thu, Nov 12 — WAS at NYG</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
+      <tr><td>New York Giants</td><td>Malik Harrison</td><td>LB</td><td>groin</td><td><span class="pill warn">QUESTIONABLE</span></td><td>Thu, Nov 12 — WAS at NYG</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
+      <tr><td>New England Patriots</td><td>Ben Brown</td><td>OL</td><td>knee</td><td><span class="pill bad">OUT</span></td><td>Sun, Nov 15 — NE vs DET (Munich)</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
+      <tr><td>New England Patriots</td><td>Carlton Davis</td><td>CB</td><td>knee</td><td><span class="pill bad">OUT</span></td><td>Sun, Nov 15 — NE vs DET (Munich)</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
+      <tr><td>New England Patriots</td><td>TreVeyon Henderson</td><td>RB</td><td>illness</td><td><span class="pill bad">OUT</span></td><td>Sun, Nov 15 — NE vs DET (Munich)</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Games with no designation in the summary — do not assume “healthy”</h2>
+  <p class="small">The NFL.com summary article printed OUT/Questionable lines only for WAS/NYG and NE above. For the 12 games below it printed no designation line. That means <em>“not listed in the summary”</em> — <strong>not</strong> “no injuries.” Verify each team on the full report before modeling.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Week 10 game</th><th>Summary status</th><th>Verify here</th></tr></thead>
+    <tbody>
+      <tr><td>KC at ATL · HOU at CLE · MIN at GB · MIA at IND · CAR at NO · BUF at NYJ · JAX at TEN · LAR at AZ · SEA at LV · SF at DAL · PIT at CIN · LAC at BAL</td><td><span class="pill warn">No designation listed in summary — unverified</span></td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG9">Full Week 10 report</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Depth-chart deficiency tracker (framework — fill from official depth charts)</h2>
+  <div class="note warn"><strong>Why this section is mostly blank:</strong> The NFL does not publish a single official “1st/2nd/3rd/4th string” depth chart per team on NFL.com. Teams publish their own depth charts, and beat reporters confirm starters. Until each team’s chart is captured with a link, the cells below stay blank and flagged — we will not guess who the backup is. See <a href="flagged.html">Flagged F-03</a> and <a href="questions.html">Questions Q-07</a>.</div>
+  <p class="small">How to fill this tracker (one row per injured starter): (1) confirm starter + injury on the NFL.com report; (2) find the team’s official depth chart (team site) naming the next man up; (3) record games started / snaps for the replacement from an official stats source; (4) link every cell. Suggested columns:</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Team / unit</th><th>Starter out (verified)</th><th>Replacement (depth-chart rank)</th><th>Experience (starts/snaps)</th><th>Deficiency signal</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>WAS — offense (TE)</td><td>Colson Yankoff (TE, knee) — OUT</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a> + team depth chart (TBD)</td></tr>
+      <tr><td>WAS — offense (OL)</td><td>Lucas Patrick (C, concussion) — OUT</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a> + team depth chart (TBD)</td></tr>
+      <tr><td>NE — offense (OL)</td><td>Ben Brown (OL, knee) — OUT</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a> + team depth chart (TBD)</td></tr>
+      <tr><td>NE — defense (CB)</td><td>Carlton Davis (CB, knee) — OUT</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a> + team depth chart (TBD)</td></tr>
+      <tr><td>NE — offense (RB)</td><td>TreVeyon Henderson (RB, illness) — OUT</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a> + team depth chart (TBD)</td></tr>
+      <tr><td>NYG — defense (LB)</td><td>Malik Harrison (LB, groin) — QUESTIONABLE</td><td class="small">— unverified (status uncertain) —</td><td class="small">— unverified —</td><td class="small">— unverified —</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a> + team depth chart (TBD)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><strong>What “deficiency” means in this tracker:</strong> a measurable drop when a starter is replaced — e.g. replacement’s career starts, snap share, or unit EPA allowed with/without the starter. Do not label a defense “deficient” from a single injury name alone; quantify it (see <a href="lines-lab.html">Lines Lab</a> injury adjustment) and cite the stats source.</div>
+  <p><a class="btn ghost" href="schedule.html">← Schedule</a> <a class="btn" href="teams.html">Next: Teams →</a></p>
+</div></main>
+<footer><div class="wrap"><p>NFL2 · Sources: <a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com Week 10 injuries</a> · <a href="https://www.nfl.com/injuries/league/2026/REG9">Full report</a></p></div></footer>
+<script src="assets/app.js"></script>
+</body></html>
