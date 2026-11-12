@@ -230,11 +230,11 @@ def no_invented_results():
 
 
 def prose_counts_match_files():
-    """Register prose that quotes a count must match the file it is describing.
+    """Any prose that quotes a count must match the file it is describing.
 
     Half-true sentences are how a verified dataset turns into a stale one: the finding was corrected
     to six designations and the evidence cell next to it kept saying five. Any "N of M players",
-    "N non-empty ... cells" or "N of M rows" claim in flags/questions/suggestions is checked against
+    "N non-empty ... cells" or "N of M rows" claim in the registers or in a page's prose is checked against
     what the injury file actually contains.
     """
     inj, _, _ = rows("injuries_2026_wk10.csv")
@@ -243,22 +243,34 @@ def prose_counts_match_files():
         "injury": sum(1 for r in inj if r["injury"].strip()),
         "rows": len(inj),
     }
+    allowed = {measured["status"], measured["injury"], measured["rows"],
+               measured["rows"] - measured["status"], measured["rows"] - measured["injury"]}
     claims = []
     for fn in ("flags.csv", "questions.csv", "suggestions.csv", "requirements.csv"):
         data, _, _ = rows(fn)
         for r in data:
             for k, cell in r.items():
                 for n, m in re.findall(r"(\d+) of (\d+) (?:Week 10 )?(?:players|rows)", cell):
-                    if int(m) == measured["rows"] and int(n) not in (measured["status"], measured["injury"], measured["rows"]):
+                    if int(m) == measured["rows"] and int(n) not in allowed:
                         claims.append("%s.%s: '%s of %s' matches no measured count %s"
-                                     % (r["id"], k, n, m, sorted(measured.values())))
+                                     % (r["id"], k, n, m, sorted(allowed)))
                 for n, kind in re.findall(r"(\d+) non-empty (\w+) cells", cell):
                     key = {"status": "status", "injury": "injury"}.get(kind)
                     if key and int(n) != measured[key]:
                         claims.append("%s.%s: claims %s non-empty %s cells, file has %d"
                                       % (r["id"], k, n, kind, measured[key]))
+    # the same rule for page prose: a count written into content/*.md is a claim about data/*.csv
+    content_dir = os.path.join(ROOT, "content")
+    for fn in sorted(os.listdir(content_dir)):
+        if not fn.endswith(".md"):
+            continue
+        text = open(os.path.join(content_dir, fn), encoding="utf-8").read()
+        text = re.sub(r"\{\{metric [a-z_]+\}\}", "0", text)   # metric refs are measured already
+        for n, m in re.findall(r"(\d+) of (\d+) (?:Week 10 )?(?:players|rows|cells)", text):
+            if int(m) == measured["rows"] and int(n) not in allowed:
+                claims.append("%s: '%s of %s' matches no measured count %s" % (fn, n, m, sorted(allowed)))
     if claims:
-        bad("register prose contradicts the data file it cites: %s" % claims[:5])
+        bad("prose contradicts the data file it cites: %s" % claims[:5])
     else:
         ok("every count quoted in the registers matches the file it describes "
            "(%d designations, %d injury cells, %d rows)" % (measured["status"], measured["injury"], measured["rows"]))

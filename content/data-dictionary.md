@@ -26,7 +26,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `player` | text | display name exactly as published, including suffixes ("Gervon Dexter Sr.", "Carlton Davis III", "Deebo Samuel Sr.") |
 | `slug` | key | the league's player URL slug, taken from the published href. Not a stable id — collisions carry opaque suffixes ([FL-15](flagged-for-review.html)) |
 | `pos` | code | league position string; used only for the offence/defence split below |
-| `injury` | text | populated for 9 of 254 rows because that is what the hub published; never backfilled from prose |
+| `injury` | text | populated for {{metric injury_detail_cells}} of {{metric injury_rows}} rows because that is what the hub published; never backfilled from prose |
 | `practice` | enum | `F` = Full Participation in Practice, `L` = Limited Participation in Practice, `D` = Did Not Participate In Practice |
 | `status` | enum | `OUT` = Out, `Q` = Questionable, `D` = Doubtful; empty means no designation had been filed |
 
