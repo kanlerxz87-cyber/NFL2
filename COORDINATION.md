@@ -894,3 +894,22 @@ Flag **FL-26** published with the probe evidence.
 
 **Process rule added, for the next session:** confirming a deploy requires probing a URL that exists in
 exactly one tree. A 200 on a page present in every tree proves only that *something* is deployed.
+
+### RV-T06 result — PR, merge and **verified** live confirmation
+
+- **Pull request:** [#34](https://github.com/kanlerxz87-cyber/NFL2/pull/34) — checks `build-and-audit`,
+  `Verify site data and links`, `Q51 evidence and engine verification` all **pass**.
+- **Merge:** `MERGED`; post-merge `build-and-audit`, `Verify site data and links`, `Q51`, `GitHub Pages` and
+  `pages build and deployment` all **success**; Pages API `status: built`.
+- **Live verification, done the way it should have been done the first time** — by probing pages that exist in
+  exactly one tree, with a cache-busting query because the CDN served a stale `/` for a minute:
+
+| Probe | Before the fix | After the fix |
+|---|---|---|
+| `GET /line-origination.html` (root-only) | **404** | **200** — "Originate Our Own Lines", 14-game table, mean total 48.64 |
+| `GET /index.html?v=2` | docs/ title `NFL Intelligence Dashboard` | **`NFL2 — Decision Dashboard · NFL2`** with the real metrics: 254 injury rows across 24 of 28 clubs, 34 suggestions, 33 questions, 26 flags, 18 signals (5 blocked) |
+| `GET /defense.html?v=2` (docs-only) | **200** with the archive page | **404** — correctly absent from the canonical tree |
+
+The lesson is now written into the board and into this session's record: a deploy is not confirmed by a 200
+on a page that every tree contains, and a CDN can serve a stale root for a minute after a successful build.
+Probe a URL that exists in exactly one tree, and cache-bust it.
