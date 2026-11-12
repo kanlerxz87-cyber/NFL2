@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Originated NFL Lines Engine (Week 11 Fair Spreads, Totals &amp; MLs) &mdash; NFL2</title>
+  <link rel="stylesheet" href="assets/s53126614.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">NFL2 <span>Decision &amp; Line-Origination Hub</span></a>
+      <span class="meta-stamp">Snapshot: 2026-11-12 &middot; Verified Through NFL Week 9 / Week 10 Injury Cycle</span>
+    </div>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Dashboard</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="requirements.html">Requirements Matrix</a>
+      <a href="repo-audit.html">Repo Audit</a>
+      <a href="standings.html">Standings</a>
+      <a href="results.html">Game Log (136)</a>
+      <a href="originated-lines.html" aria-current="page">Originated Lines</a>
+      <a href="correlations.html">Correlations &amp; Skill</a>
+      <a href="depth-deficiencies.html">Injuries &amp; 1st&ndash;4th String</a>
+      <a href="leaderboard-competition.html">Signal Leaderboard</a>
+      <a href="decision-center.html">Decision Center &amp; Paths</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="sources.html">Official Sources</a>
+      <a href="docs/index.html">Companion Hub (docs/)</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Originated NFL Fair Lines Engine (Week 11 Slate + 32-Team Skill Power Ratings)</h1>
+      <p>Transparent, deterministic fair spreads, totals, win probabilities, and no-vig moneylines originated strictly from verified 2026 NFL.com game logs and passing/downs skill metrics. Fixes the unequal games-played (<code>8g vs 9g</code>) bug found in our audit, sets <code>HFA = 0.00</code> for the neutral-site Mexico City game (<code>MIN vs SF</code>), and leaves all sportsbook market columns blank.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="label">Week 11 Games Originated</div><div class="value">13 Games</div><div class="sub">6 clubs on verified Week 11 bye</div></div>
+        <div class="kpi"><div class="label">2026 Empirical True-Home HFA</div><div class="value">+0.50 pts</div><div class="sub">129 true-home games (95% CI [&minus;1.80, +2.79])</div></div>
+        <div class="kpi"><div class="label">2026 Margin Std Dev (&sigma;)</div><div class="value">13.32 pts</div><div class="sub">League mean total: 45.93 pts</div></div>
+        <div class="kpi"><div class="label">Market Odds Claimed</div><div class="value">0 (Blank)</div><div class="sub">Zero fabricated sportsbook lines</div></div>
+      </div>
+    </section>
+
+    <div class="callout callout-info">
+      <strong>Three Origination Tiers Compared Side-by-Side (MODEL ONLY &mdash; Never Market Odds):</strong>
+      <code>v0 (Raw Per-Game PF/PA)</code> uses exact per-club <code>g_away</code> and <code>g_home</code>;
+      <code>v1 (SRS Schedule-Adjusted)</code> solves the 32-club opponent-adjusted least-squares system across all 136 verified Weeks 1&ndash;9 games;
+      <code>v2 (Selectively Skill-Weighted Composite)</code> blends <strong>60% Opponent-Adjusted SRS + 40% Passing YPA &amp; 3rd-Down Skill Rating</strong>, stripping out close-game &amp; turnover luck before mapping margin &rarr; win probability via <code>&Phi;(margin / &sigma;)</code>.
+    </div>
+
+    <section class="section">
+      <h2>1. Interactive Line-Origination Parameter &amp; Devig Sensitivity Controls</h2>
+      <p class="section-intro">Adjust Home-Field Advantage (e.g., <code>+0.50</code> 2026 empirical vs <code>+1.75</code> multi-year NFL prior) or margin volatility <code>&sigma;</code> to recalculate every Week 11 originated fair spread and moneyline live in your browser.</p>
+      <div class="card">
+        <div class="controls-row">
+          <label>True-Home HFA (pts; Neutral stays 0.0)
+            <input type="number" id="ctrl-hfa" value="0.50" min="-2.0" max="4.0" step="0.25">
+          </label>
+          <label>Game Margin Std Dev &sigma; (pts)
+            <input type="number" id="ctrl-sigma" value="13.32" min="9.0" max="18.0" step="0.1">
+          </label>
+          <label>Model Tier Displayed in Bold
+            <select id="ctrl-tier">
+              <option value="v2" selected>v2 — Skill Composite (60% SRS + 40% Pass/Downs)</option>
+              <option value="v1">v1 — Pure Opponent-Adjusted SRS</option>
+              <option value="v0">v0 — Raw Per-Game PF/PA</option>
+            </select>
+          </label>
+          <label>Hypothetical Market Spread (Home, Ephemeral)
+            <input type="number" id="ctrl-mkt-spread" placeholder="Leave blank or test e.g. -3.5" step="0.5">
+          </label>
+        </div>
+        <div id="mkt-sim-banner" style="font-size:0.84rem;color:var(--muted);">Market Spread &amp; Edge columns below remain blank unless you type an ephemeral test number above (never stored).</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2. Week 11 Originated Fair Lines Board (All 13 Official Matchups)</h2>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter Week 11 matchups (e.g., BUF, KC, Mexico, BAL, DET)..." data-filter-input="w11-lines-table" aria-label="Filter Week 11 originated lines">
+        <span class="count">8 of 13 matchups pair an 8-game team vs a 9-game team &mdash; exact per-team denominators enforced</span>
+      </div>
+      <div class="table-wrap">
+        <table id="w11-lines-table">
+          <thead>
+            <tr>
+              <th>Game / Kickoff</th>
+              <th>Matchup (Away at Home)</th>
+              <th class="num">Sample</th>
+              <th class="num">v0 PF/PA</th>
+              <th class="num">v1 SRS</th>
+              <th class="num">v2 Skill Fair</th>
+              <th class="num">Fair Total</th>
+              <th class="num">Fair ML (Aw / Hm)</th>
+              <th class="num">Hm Win%</th>
+              <th class="num">Mkt Spread</th>
+              <th class="num">Model Edge</th>
+              <th>Tag</th>
+              <th>Official Sources</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr data-away="IND" data-home="HOU" data-neutral="0" data-v0="4.6700" data-v1="8.2700" data-v2="8.5300" data-tot="48.30">
+            <td><code>W11-01</code><br><span style="color:var(--muted);font-size:0.76rem;">Thu, Nov 19 &middot; 8:15 pm ET</span></td>
+            <td><strong>Indianapolis Colts</strong> (IND) at <strong>Houston Texans</strong> (HOU)</td>
+            <td class="num">9g vs 8g</td>
+            <td class="num">HOU -5.2</td>
+            <td class="num">HOU -8.8</td>
+            <td class="num js-fair-spread"><strong>HOU -9.0</strong></td>
+            <td class="num js-fair-total">48.3</td>
+            <td class="num js-fair-ml">+302 / <strong>-302</strong></td>
+            <td class="num js-win-prob">75.1%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="MIA" data-home="BUF" data-neutral="0" data-v0="8.9300" data-v1="14.2500" data-v2="14.1500" data-tot="47.50">
+            <td><code>W11-02</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 1:00 pm ET</span></td>
+            <td><strong>Miami Dolphins</strong> (MIA) at <strong>Buffalo Bills</strong> (BUF)</td>
+            <td class="num">8g vs 8g</td>
+            <td class="num">BUF -9.4</td>
+            <td class="num">BUF -14.8</td>
+            <td class="num js-fair-spread"><strong>BUF -14.6</strong></td>
+            <td class="num js-fair-total">47.5</td>
+            <td class="num js-fair-ml">+637 / <strong>-637</strong></td>
+            <td class="num js-win-prob">86.4%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="BAL" data-home="CAR" data-neutral="0" data-v0="1.3600" data-v1="3.6200" data-v2="2.2900" data-tot="48.80">
+            <td><code>W11-03</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 1:00 pm ET</span></td>
+            <td><strong>Baltimore Ravens</strong> (BAL) at <strong>Carolina Panthers</strong> (CAR)</td>
+            <td class="num">9g vs 8g</td>
+            <td class="num">CAR -1.9</td>
+            <td class="num">CAR -4.1</td>
+            <td class="num js-fair-spread"><strong>CAR -2.8</strong></td>
+            <td class="num js-fair-total">48.8</td>
+            <td class="num js-fair-ml">+140 / <strong>-140</strong></td>
+            <td class="num js-win-prob">58.3%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="NO" data-home="CHI" data-neutral="0" data-v0="5.1100" data-v1="11.2900" data-v2="10.9600" data-tot="48.00">
+            <td><code>W11-04</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 1:00 pm ET</span></td>
+            <td><strong>New Orleans Saints</strong> (NO) at <strong>Chicago Bears</strong> (CHI)</td>
+            <td class="num">8g vs 9g</td>
+            <td class="num">CHI -5.6</td>
+            <td class="num">CHI -11.8</td>
+            <td class="num js-fair-spread"><strong>CHI -11.5</strong></td>
+            <td class="num js-fair-total">48.0</td>
+            <td class="num js-fair-ml">+413 / <strong>-413</strong></td>
+            <td class="num js-win-prob">80.5%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="TEN" data-home="DAL" data-neutral="0" data-v0="4.0000" data-v1="7.9200" data-v2="7.9400" data-tot="47.60">
+            <td><code>W11-05</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 1:00 pm ET</span></td>
+            <td><strong>Tennessee Titans</strong> (TEN) at <strong>Dallas Cowboys</strong> (DAL)</td>
+            <td class="num">8g vs 9g</td>
+            <td class="num">DAL -4.5</td>
+            <td class="num">DAL -8.4</td>
+            <td class="num js-fair-spread"><strong>DAL -8.4</strong></td>
+            <td class="num js-fair-total">47.6</td>
+            <td class="num js-fair-ml">+280 / <strong>-280</strong></td>
+            <td class="num js-win-prob">73.7%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="TB" data-home="DET" data-neutral="0" data-v0="0.7300" data-v1="-1.6600" data-v2="-0.3500" data-tot="46.60">
+            <td><code>W11-06</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 1:00 pm ET</span></td>
+            <td><strong>Tampa Bay Buccaneers</strong> (TB) at <strong>Detroit Lions</strong> (DET)</td>
+            <td class="num">9g vs 8g</td>
+            <td class="num">DET -1.2</td>
+            <td class="num">DET +1.2</td>
+            <td class="num js-fair-spread"><strong>DET -0.1</strong></td>
+            <td class="num js-fair-total">46.6</td>
+            <td class="num js-fair-ml">+102 / <strong>-102</strong></td>
+            <td class="num js-win-prob">50.4%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="AZ" data-home="KC" data-neutral="0" data-v0="7.9700" data-v1="12.2700" data-v2="13.3300" data-tot="45.70">
+            <td><code>W11-07</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 1:00 pm ET</span></td>
+            <td><strong>Arizona Cardinals</strong> (AZ) at <strong>Kansas City Chiefs</strong> (KC)</td>
+            <td class="num">9g vs 8g</td>
+            <td class="num">KC -8.5</td>
+            <td class="num">KC -12.8</td>
+            <td class="num js-fair-spread"><strong>KC -13.8</strong></td>
+            <td class="num js-fair-total">45.7</td>
+            <td class="num js-fair-ml">+569 / <strong>-569</strong></td>
+            <td class="num js-win-prob">85.0%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="PIT" data-home="PHI" data-neutral="0" data-v0="-6.3000" data-v1="-13.1100" data-v2="-10.3100" data-tot="42.00">
+            <td><code>W11-08</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 1:00 pm ET</span></td>
+            <td><strong>Pittsburgh Steelers</strong> (PIT) at <strong>Philadelphia Eagles</strong> (PHI)</td>
+            <td class="num">8g vs 9g</td>
+            <td class="num">PHI +5.8</td>
+            <td class="num">PHI +12.6</td>
+            <td class="num js-fair-spread"><strong>PHI +9.8</strong></td>
+            <td class="num js-fair-total">42.0</td>
+            <td class="num js-fair-ml">-333 / <strong>+333</strong></td>
+            <td class="num js-win-prob">23.1%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="NYJ" data-home="LAC" data-neutral="0" data-v0="-3.8500" data-v1="-6.3400" data-v2="-5.5500" data-tot="44.30">
+            <td><code>W11-09</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 4:05 pm ET</span></td>
+            <td><strong>New York Jets</strong> (NYJ) at <strong>Los Angeles Chargers</strong> (LAC)</td>
+            <td class="num">9g vs 8g</td>
+            <td class="num">LAC +3.4</td>
+            <td class="num">LAC +5.8</td>
+            <td class="num js-fair-spread"><strong>LAC +5.1</strong></td>
+            <td class="num js-fair-total">44.3</td>
+            <td class="num js-fair-ml">-184 / <strong>+184</strong></td>
+            <td class="num js-win-prob">35.2%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="LV" data-home="DEN" data-neutral="0" data-v0="2.3300" data-v1="6.3800" data-v2="2.8800" data-tot="48.60">
+            <td><code>W11-10</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 4:25 pm ET</span></td>
+            <td><strong>Las Vegas Raiders</strong> (LV) at <strong>Denver Broncos</strong> (DEN)</td>
+            <td class="num">9g vs 9g</td>
+            <td class="num">DEN -2.8</td>
+            <td class="num">DEN -6.9</td>
+            <td class="num js-fair-spread"><strong>DEN -3.4</strong></td>
+            <td class="num js-fair-total">48.6</td>
+            <td class="num js-fair-ml">+150 / <strong>-150</strong></td>
+            <td class="num js-win-prob">60.0%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="JAX" data-home="NYG" data-neutral="0" data-v0="-6.1200" data-v1="-15.6800" data-v2="-10.8600" data-tot="44.50">
+            <td><code>W11-11</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 4:25 pm ET</span></td>
+            <td><strong>Jacksonville Jaguars</strong> (JAX) at <strong>New York Giants</strong> (NYG)</td>
+            <td class="num">8g vs 8g</td>
+            <td class="num">NYG +5.6</td>
+            <td class="num">NYG +15.2</td>
+            <td class="num js-fair-spread"><strong>NYG +10.4</strong></td>
+            <td class="num js-fair-total">44.5</td>
+            <td class="num js-fair-ml">-358 / <strong>+358</strong></td>
+            <td class="num js-win-prob">21.8%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="MIN" data-home="SF" data-neutral="1" data-v0="3.0700" data-v1="2.5700" data-v2="5.4800" data-tot="42.10">
+            <td><code>W11-12</code><br><span style="color:var(--muted);font-size:0.76rem;">Sun, Nov 22 &middot; 8:20 pm ET</span></td>
+            <td><strong>Minnesota Vikings</strong> (MIN) at <strong>San Francisco 49ers</strong> (SF) <span class="badge badge-model">Neutral: Mexico City (HFA=0)</span></td>
+            <td class="num">8g vs 8g</td>
+            <td class="num">SF -3.1</td>
+            <td class="num">SF -2.6</td>
+            <td class="num js-fair-spread"><strong>SF -5.5</strong></td>
+            <td class="num js-fair-total">42.1</td>
+            <td class="num js-fair-ml">+194 / <strong>-194</strong></td>
+            <td class="num js-win-prob">66.0%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          <tr data-away="CIN" data-home="WAS" data-neutral="0" data-v0="-5.9300" data-v1="-14.3000" data-v2="-11.8800" data-tot="48.50">
+            <td><code>W11-13</code><br><span style="color:var(--muted);font-size:0.76rem;">Mon, Nov 23 &middot; 8:15 pm ET</span></td>
+            <td><strong>Cincinnati Bengals</strong> (CIN) at <strong>Washington Commanders</strong> (WAS)</td>
+            <td class="num">8g vs 8g</td>
+            <td class="num">WAS +5.4</td>
+            <td class="num">WAS +13.8</td>
+            <td class="num js-fair-spread"><strong>WAS +11.4</strong></td>
+            <td class="num js-fair-total">48.5</td>
+            <td class="num js-fair-ml">-409 / <strong>+409</strong></td>
+            <td class="num js-win-prob">19.7%</td>
+            <td class="blank-cell" aria-label="Market spread unverified blank"></td>
+            <td class="blank-cell" aria-label="Edge vs market unverified blank"></td>
+            <td><span class="badge badge-model">MODEL ONLY</span></td>
+            <td class="source-cell"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">Schedule</a> &middot; <a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>3. 32-Club Origination Power Ratings (Opponent-Adjusted SRS + Skill Efficiency)</h2>
+      <div class="toolbar">
+        <input type="search" placeholder="Filter 32-club power ratings..." data-filter-input="pr-table" aria-label="Filter 32-club power ratings">
+        <span class="count">Zero-centered points above/below average NFL club on neutral field</span>
+      </div>
+      <div class="table-wrap">
+        <table id="pr-table">
+          <thead>
+            <tr>
+              <th class="num">Rank</th>
+              <th>Club</th>
+              <th class="num">G</th>
+              <th class="num">Raw Net/g</th>
+              <th class="num">SRS Rating (v1)</th>
+              <th class="num">Pass/3rd Skill</th>
+              <th class="num">Composite Rating (v2)</th>
+              <th>Official Sources</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td><strong>Jacksonville Jaguars</strong> (<code>JAX</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+13.50</td>
+            <td class="num">+12.56</td>
+            <td class="num">+8.32</td>
+            <td class="num"><strong>+10.86</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td><strong>San Francisco 49ers</strong> (<code>SF</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+9.88</td>
+            <td class="num">+7.67</td>
+            <td class="num">+10.41</td>
+            <td class="num"><strong>+8.77</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td><strong>Buffalo Bills</strong> (<code>BUF</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+8.62</td>
+            <td class="num">+8.09</td>
+            <td class="num">+7.89</td>
+            <td class="num"><strong>+8.01</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td><strong>Cincinnati Bengals</strong> (<code>CIN</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+8.12</td>
+            <td class="num">+8.41</td>
+            <td class="num">+4.61</td>
+            <td class="num"><strong>+6.89</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td><strong>Chicago Bears</strong> (<code>CHI</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+6.33</td>
+            <td class="num">+6.92</td>
+            <td class="num">+4.34</td>
+            <td class="num"><strong>+5.89</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">6</td>
+            <td><strong>Kansas City Chiefs</strong> (<code>KC</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+7.38</td>
+            <td class="num">+4.66</td>
+            <td class="num">+6.33</td>
+            <td class="num"><strong>+5.32</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">7</td>
+            <td><strong>Seattle Seahawks</strong> (<code>SEA</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+4.44</td>
+            <td class="num">+3.58</td>
+            <td class="num">+7.94</td>
+            <td class="num"><strong>+5.32</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">8</td>
+            <td><strong>Green Bay Packers</strong> (<code>GB</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+2.78</td>
+            <td class="num">+4.53</td>
+            <td class="num">+3.13</td>
+            <td class="num"><strong>+3.97</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">9</td>
+            <td><strong>Minnesota Vikings</strong> (<code>MIN</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+3.75</td>
+            <td class="num">+5.10</td>
+            <td class="num">+0.57</td>
+            <td class="num"><strong>+3.29</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">10</td>
+            <td><strong>New England Patriots</strong> (<code>NE</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+0.44</td>
+            <td class="num">+3.37</td>
+            <td class="num">+2.39</td>
+            <td class="num"><strong>+2.98</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">11</td>
+            <td><strong>Los Angeles Rams</strong> (<code>LAR</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+3.67</td>
+            <td class="num">+1.33</td>
+            <td class="num">+3.97</td>
+            <td class="num"><strong>+2.39</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">12</td>
+            <td><strong>Tampa Bay Buccaneers</strong> (<code>TB</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+2.67</td>
+            <td class="num">+5.00</td>
+            <td class="num">-1.94</td>
+            <td class="num"><strong>+2.22</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">13</td>
+            <td><strong>Pittsburgh Steelers</strong> (<code>PIT</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+4.50</td>
+            <td class="num">+4.15</td>
+            <td class="num">-0.68</td>
+            <td class="num"><strong>+2.22</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">14</td>
+            <td><strong>Detroit Lions</strong> (<code>DET</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+4.12</td>
+            <td class="num">+3.34</td>
+            <td class="num">-0.34</td>
+            <td class="num"><strong>+1.87</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">15</td>
+            <td><strong>Houston Texans</strong> (<code>HOU</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+2.12</td>
+            <td class="num">+1.73</td>
+            <td class="num">+1.97</td>
+            <td class="num"><strong>+1.83</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">16</td>
+            <td><strong>New York Giants</strong> (<code>NYG</code>)</td>
+            <td class="num">8</td>
+            <td class="num">+1.25</td>
+            <td class="num">-3.12</td>
+            <td class="num">+4.68</td>
+            <td class="num"><strong>-0.00</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">17</td>
+            <td><strong>Denver Broncos</strong> (<code>DEN</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+1.33</td>
+            <td class="num">+3.02</td>
+            <td class="num">-4.64</td>
+            <td class="num"><strong>-0.05</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">18</td>
+            <td><strong>Carolina Panthers</strong> (<code>CAR</code>)</td>
+            <td class="num">8</td>
+            <td class="num">-2.50</td>
+            <td class="num">-1.34</td>
+            <td class="num">-0.51</td>
+            <td class="num"><strong>-1.01</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">19</td>
+            <td><strong>Atlanta Falcons</strong> (<code>ATL</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-3.89</td>
+            <td class="num">-1.00</td>
+            <td class="num">-2.22</td>
+            <td class="num"><strong>-1.49</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">20</td>
+            <td><strong>Dallas Cowboys</strong> (<code>DAL</code>)</td>
+            <td class="num">9</td>
+            <td class="num">+1.11</td>
+            <td class="num">-1.65</td>
+            <td class="num">-1.41</td>
+            <td class="num"><strong>-1.55</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">21</td>
+            <td><strong>Cleveland Browns</strong> (<code>CLE</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-3.89</td>
+            <td class="num">-3.60</td>
+            <td class="num">+0.65</td>
+            <td class="num"><strong>-1.90</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">22</td>
+            <td><strong>New York Jets</strong> (<code>NYJ</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-4.56</td>
+            <td class="num">-4.49</td>
+            <td class="num">-0.24</td>
+            <td class="num"><strong>-2.79</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">23</td>
+            <td><strong>Las Vegas Raiders</strong> (<code>LV</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-3.33</td>
+            <td class="num">-3.36</td>
+            <td class="num">-2.27</td>
+            <td class="num"><strong>-2.92</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">24</td>
+            <td><strong>Baltimore Ravens</strong> (<code>BAL</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-5.22</td>
+            <td class="num">-4.96</td>
+            <td class="num">-0.80</td>
+            <td class="num"><strong>-3.30</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">25</td>
+            <td><strong>Washington Commanders</strong> (<code>WAS</code>)</td>
+            <td class="num">8</td>
+            <td class="num">-3.75</td>
+            <td class="num">-5.89</td>
+            <td class="num">-3.64</td>
+            <td class="num"><strong>-4.99</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">26</td>
+            <td><strong>New Orleans Saints</strong> (<code>NO</code>)</td>
+            <td class="num">8</td>
+            <td class="num">-3.88</td>
+            <td class="num">-4.37</td>
+            <td class="num">-6.12</td>
+            <td class="num"><strong>-5.07</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">27</td>
+            <td><strong>Miami Dolphins</strong> (<code>MIA</code>)</td>
+            <td class="num">8</td>
+            <td class="num">-9.25</td>
+            <td class="num">-6.16</td>
+            <td class="num">-6.10</td>
+            <td class="num"><strong>-6.14</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">28</td>
+            <td><strong>Indianapolis Colts</strong> (<code>IND</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-7.22</td>
+            <td class="num">-6.54</td>
+            <td class="num">-6.94</td>
+            <td class="num"><strong>-6.70</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">29</td>
+            <td><strong>Arizona Cardinals</strong> (<code>AZ</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-8.56</td>
+            <td class="num">-7.62</td>
+            <td class="num">-8.59</td>
+            <td class="num"><strong>-8.01</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">30</td>
+            <td><strong>Philadelphia Eagles</strong> (<code>PHI</code>)</td>
+            <td class="num">9</td>
+            <td class="num">-8.11</td>
+            <td class="num">-8.96</td>
+            <td class="num">-6.78</td>
+            <td class="num"><strong>-8.09</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">31</td>
+            <td><strong>Los Angeles Chargers</strong> (<code>LAC</code>)</td>
+            <td class="num">8</td>
+            <td class="num">-12.25</td>
+            <td class="num">-10.82</td>
+            <td class="num">-4.62</td>
+            <td class="num"><strong>-8.34</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          <tr>
+            <td class="num">32</td>
+            <td><strong>Tennessee Titans</strong> (<code>TEN</code>)</td>
+            <td class="num">8</td>
+            <td class="num">-6.88</td>
+            <td class="num">-9.57</td>
+            <td class="num">-9.37</td>
+            <td class="num"><strong>-9.49</strong></td>
+            <td class="source-cell"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">Standings</a> &middot; <a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">136-Game Log</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>NFL2 Originated Lines Engine &middot; Session <code>arena-53126614</code> &middot; MODEL ONLY (Not Betting Advice; Market Odds Blank) &middot; <a href="flagged.html">Flagged for Review</a> &middot; <a href="sources.html">Official Sources</a></div>
+  </footer>
+  <script src="assets/s53126614.js"></script>
+  <script>
+  (function () {
+    var hfaEl = document.getElementById("ctrl-hfa");
+    var sigEl = document.getElementById("ctrl-sigma");
+    var tierEl = document.getElementById("ctrl-tier");
+    var mktEl = document.getElementById("ctrl-mkt-spread");
+    function fmtSpread(hm, marginHome) {
+      if (Math.abs(marginHome) < 0.05) return "PK (0.0)";
+      return marginHome > 0 ? (hm + " -" + marginHome.toFixed(1)) : (hm + " +" + Math.abs(marginHome).toFixed(1));
+    }
+    function updateBoard() {
+      var hfa = parseFloat(hfaEl.value || "0.5");
+      var sig = Math.max(6, parseFloat(sigEl.value || "13.32"));
+      var tier = tierEl.value || "v2";
+      var mktRaw = mktEl.value.trim();
+      var hasMkt = mktRaw !== "" && isFinite(parseFloat(mktRaw));
+      var mktHomeLine = hasMkt ? parseFloat(mktRaw) : null;
+      document.querySelectorAll("#w11-lines-table tbody tr").forEach(function (tr) {
+        var hm = tr.getAttribute("data-home");
+        var isNeut = tr.getAttribute("data-neutral") === "1";
+        var baseNeutralMargin = parseFloat(tr.getAttribute("data-" + tier));
+        var marginHome = baseNeutralMargin + (isNeut ? 0 : hfa);
+        var pHome = window.NFL2S53.normCdf(marginHome / sig);
+        var pAway = 1 - pHome;
+        tr.querySelector(".js-fair-spread").innerHTML = "<strong>" + fmtSpread(hm, marginHome) + "</strong>";
+        tr.querySelector(".js-fair-ml").innerHTML = window.NFL2S53.probToAmerican(pAway) + " / <strong>" + window.NFL2S53.probToAmerican(pHome) + "</strong>";
+        tr.querySelector(".js-win-prob").textContent = (pHome * 100).toFixed(1) + "%";
+        var mktCell = tr.cells[9];
+        var edgeCell = tr.cells[10];
+        if (hasMkt) {
+          // mktHomeLine e.g. -3.5 means home must win by > 3.5 -> required margin = -mktHomeLine
+          var reqMargin = -mktHomeLine;
+          var pCoverHome = 1 - window.NFL2S53.normCdf((reqMargin - marginHome) / sig);
+          var edgePct = (pCoverHome * (100 / 110 + 1) - 1) * 100;
+          mktCell.textContent = hm + " " + (mktHomeLine > 0 ? "+" + mktHomeLine.toFixed(1) : mktHomeLine.toFixed(1)) + " (user)";
+          edgeCell.textContent = (edgePct >= 0 ? "+" : "") + edgePct.toFixed(1) + "% EV@-110";
+        } else {
+          mktCell.textContent = "";
+          edgeCell.textContent = "";
+        }
+      });
+    }
+    [hfaEl, sigEl, tierEl, mktEl].forEach(function (el) {
+      if (el) el.addEventListener("input", updateBoard);
+    });
+  })();
+  </script>
+</body>
+</html>
