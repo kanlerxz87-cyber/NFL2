@@ -948,4 +948,18 @@ The repository has treated the absence of an official depth chart (`FL-06`, conf
 ### Conflict handling
 
 `git merge origin/main` conflicted on `COORDINATION.md` only. The collision was a pure append at the end of the file: session `fd94fccd` appended its final-audit record while this session appended its claim. Both records are kept verbatim in order (incoming first, then this session's); nothing was discarded and no other file conflicted. A required `git pull --rebase` was not forced; the merge was preserved and pushed without force.
+### RV-T05 — PR, merge and GitHub Pages record
 
+- **Pull request:** [#29](https://github.com/kanlerxz87-cyber/NFL2/pull/29) — `arena/8361cc7a-nfl2` → `main`.
+- **Checks before merge:** `Row-level verification, link check and build reproducibility` **pass**,
+  `build-and-audit` **pass**, `Q51 evidence and engine verification` **pass**.
+- **Merge result:** `MERGED` at 2026-11-12T22:39:15Z, merge commit `f048a5d2c39bc654bac6bddd025f3ca7383335a7`.
+- **Post-merge CI on `main`:** `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine
+  verification`, `GitHub Pages` and `pages build and deployment` all **success** at `f048a5d`.
+- **GitHub Pages:** API reports `status: built`, `build_type: legacy`, source `main` `/`.
+- **Live confirmation:** `https://kanlerxz87-cyber.github.io/NFL2/line-origination.html` was fetched after the
+  build and serves the new originated-line table (all 14 games, W10-01 … W10-14) with the model statement and
+  the bias diagnostics, confirming the deploy carries this session's content rather than a cached build.
+- **Flagged items are published, not blocking:** FL-24 (Week 10 coverage gap) and FL-25 (KC chart indexing
+  trap) are live on `flagged-for-review.html` with their official source links, per the owner's instruction
+  that flagged and unverified items do not block the merge.
