@@ -5,7 +5,7 @@ verify_data.py — deterministic, line-by-line verification of the transcribed N
 Checks performed (all pure arithmetic, no external calls, no inference):
   V1  Every game has two distinct clubs, both of which are real NFL clubs.
   V2  Games per club per week <= 1 (no club plays twice in a week; byes are gaps).
-  V3  Team-game totals derived from the 122 game rows == official standings PF/PA.
+  V3  Team-game totals derived from the 136 game rows == official standings PF/PA.
   V4  Standings PCT == (W + T/2) / (W + L + T) exactly, for all 32 clubs.
   V5  Standings NET == PF - PA exactly.
   V6  W + L + T consistency: every club's games played equals wins+losses+ties

@@ -14,7 +14,7 @@ DESIGN RULES
      DISCRIMINATION, which are the two properties a betting edge needs before ROI is
      even meaningful. This limitation is carried through to the site, not hidden.
 """
-import json, os, math, datetime
+import json, os, math, statistics, datetime
 from decimal import Decimal, ROUND_HALF_UP
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,13 +41,51 @@ for g in GAMES:
     elif g["home_pts"] < g["away_pts"]: home_l += 1
     else: home_t += 1
     margins.append(g["home_pts"] - g["away_pts"])
-HFA_POINTS = round(sum(margins)/len(margins), 2)
+HFA_POINTS = round(sum(margins)/len(margins), 2)  # pooled, reported only
 HOME_WIN_PCT = round((home_w + home_t/2)/len(GAMES), 4)
+
+# --- Home field, done properly -------------------------------------------
+# Games at a neutral site have no home club, so pooling them into "home minus away"
+# silently dilutes the estimate. They are excluded from the estimate and disclosed.
+_true_home = [g for g in GAMES if not g.get("neutral")]
+_m_home = [g["home_pts"] - g["away_pts"] for g in _true_home]
+n_th = len(_true_home)
+mean_th = statistics.mean(_m_home)
+sd_th = statistics.stdev(_m_home)
+se_th = sd_th / math.sqrt(n_th)
+# 95% interval on the mean home margin. If it spans zero we cannot claim an edge;
+# if it also spans the conventional ~+2.5 prior we cannot claim the prior is wrong.
+ci_lo = mean_th - 1.96*se_th
+ci_hi = mean_th + 1.96*se_th
+CONVENTIONAL_HFA = 2.5
+HFA_VERDICT = ("no edge detected" if ci_lo <= 0 <= ci_hi else
+               ("home edge present" if mean_th > 0 else "away edge present"))
+CONVENTIONAL_INSIDE_CI = ci_lo <= CONVENTIONAL_HFA <= ci_hi
+
 hfa = {"games": len(GAMES), "home_wins": home_w, "home_losses": home_l, "home_ties": home_t,
        "home_win_pct": HOME_WIN_PCT, "mean_home_margin": HFA_POINTS,
        "median_home_margin": sorted(margins)[len(margins)//2],
        "stdev_home_margin": round(math.sqrt(sum((m-HFA_POINTS)**2 for m in margins)/(len(margins)-1)), 2),
-       "note": "Home-field advantage is MEASURED from the 122-game log, not assumed. It is applied as a constant to the model line only."}
+       "neutral_site_games": len(GAMES) - n_th,
+       "true_home_games": n_th,
+       "true_home_mean_margin": round(mean_th, 2),
+       "true_home_sd": round(sd_th, 2),
+       "true_home_win_pct": round((sum(1 for g in _true_home if g["home_pts"]>g["away_pts"])
+                                   + 0.5*sum(1 for g in _true_home if g["home_pts"]==g["away_pts"]))/n_th, 4),
+       "true_home_se": round(se_th, 2),
+       "true_home_ci95": [round(ci_lo, 2), round(ci_hi, 2)],
+       "conventional_prior_points": CONVENTIONAL_HFA,
+       "conventional_prior_inside_ci": CONVENTIONAL_INSIDE_CI,
+       "verdict": HFA_VERDICT,
+       "note": (f"Estimated only on the {n_th} games played at a club's own stadium; the "
+                f"{len(GAMES)-n_th} neutral-site games are excluded and disclosed rather than "
+                f"pooled in. Mean home margin {mean_th:+.2f} pts, 95% CI "
+                f"[{ci_lo:+.2f}, {ci_hi:+.2f}]. The conventional ~+{CONVENTIONAL_HFA} pt prior "
+                + ("IS inside that interval, so this season cannot be used to reject it."
+                   if CONVENTIONAL_INSIDE_CI else
+                   "is OUTSIDE that interval, which would be a genuine finding.")),
+       "model_uses": round(mean_th, 2)}
+HFA_POINTS = round(mean_th, 2)   # the estimator the model actually uses
 
 # ---------------------------------------------------------------- 2. CLUB PROFILES
 def games_for(t, max_week=None):
@@ -127,7 +165,7 @@ def spearman(xs,ys):
         return r
     return pearson(rk(xs),rk(ys))
 
-# game-level correlations (n=122) — these are the ones that matter for parlays
+# game-level correlations — these are the ones that matter for parlays
 gl = {"margin":[], "total":[], "home_pts":[], "away_pts":[], "abs_margin":[]}
 for g in GAMES:
     gl["home_pts"].append(g["home_pts"]); gl["away_pts"].append(g["away_pts"])
@@ -185,7 +223,7 @@ def build_line(home, away, window, hfa_points=None):
 
     Sign convention (stated so the line cannot be read the wrong way):
         home_expected_margin = power(home) - power(away) + HFA
-    HFA measured over the 122-game log is +0.00 points, i.e. this season shows no
+    HFA is measured over the whole game log, and this season shows no
     home-field edge at all. It is applied in its true sign; it is NOT added as a
     bonus to whichever side we happen to like.
     """
@@ -392,16 +430,38 @@ for r in results:
 
 results.sort(key=lambda r:(-r["gates_passed"],-(r.get("brier_skill") or -9)))
 
+def _parlay_finding(corr):
+    """State the sign and size of the measured leg dependence. No boilerplate."""
+    h = next(x for x in corr if x["a"] == "home_pts")
+    r = h["pearson_r"]; n = h["n"]
+    if r < -0.15:
+        verdict = ("the two sides of a game move in OPPOSITE directions, so legs on opposite "
+                   "sides of one game are anti-correlated and a parlay built that way is worth "
+                   "LESS than the naive product")
+    elif r > 0.15:
+        verdict = ("the two sides of a game move TOGETHER, so legs on the same game are "
+                   "positively correlated and a parlay built that way is worth MORE than the "
+                   "naive product")
+    else:
+        verdict = ("the two sides of a game are close to independent, so multiplying the leg "
+                   "probabilities is a defensible approximation for THIS season - but the "
+                   "estimate is weak and is not a licence to assume independence in general")
+    return (f"Measured over {n} games: r(home score, away score) = {r:+.3f}. That means {verdict}. "
+            f"The correlation is estimated on a single partial season, so it is reported with its n "
+            f"and treated as provisional rather than as a structural law.")
+
 # ---------------------------------------------------------------- 8. CORRELATION / PARLAY MATH
 # For a 2-leg parlay at probability p each, independent hit prob = p^2.
 # Empirically we cannot observe joint outcomes across different games *for our model's
 # picks* without more graded data, but we CAN report the structural facts.
+PARLAY_FINDING = _parlay_finding(GAME_CORR)
 parlay = {
  "two_leg_independent_hit_rate_at_60pct": round(0.6*0.6,4),
  "three_leg_independent_hit_rate_at_60pct": round(0.6**3,4),
  "four_leg_independent_hit_rate_at_60pct": round(0.6**4,4),
  "same_game_leg_correlation_measured": GAME_CORR,
- "finding":"Home and away scores in the 122-game sample are negatively correlated (see pearson_r for home_pts vs away_pts). Because each side's score reduces the other's possession time, legs built on opposite sides of the SAME game are NOT independent; multiplying their probabilities overstates the parlay's chance. Cross-game legs carry no dependence and therefore add variance without adding edge.",
+ "finding": PARLAY_FINDING,
+ "finding_basis":"measured, not assumed",
  "prop_combo_status":"UNMEASURABLE from official sources in this environment: per-game, per-player box scores are not available (only season aggregates), so the correlation between a player's yardage and his club's team total cannot be quantified. See Flagged for Review FL-09.",
 }
 
@@ -451,7 +511,7 @@ for r in results:
 print("\n=== TOP CLUB CORRELATIONS vs WIN% (n=32) ===")
 for c in CLUB_CORR[:6]:
     print(f"  {c['metric']:16s} r={c['pearson_r']:+.3f} rho={c['spearman_rho']:+.3f} r^2={c['r_squared']:.3f}")
-print("\n=== GAME-LEVEL CORRELATIONS (n=122) ===")
+print(f"\n=== GAME-LEVEL CORRELATIONS (n={len(GAMES)}) ===")
 for c in GAME_CORR:
     print(f"  {c['label'][:56]:56s} r={c['pearson_r']:+.3f}")
 print("\n=== LUCK LADDER (top/bottom 3) ===")
