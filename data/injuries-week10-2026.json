@@ -1,0 +1,32 @@
+{
+  "week": 10,
+  "season": 2026,
+  "asOf": "2026-11-12",
+  "source": "https://www.nfl.com/news/nfl-week-10-injury-report-2026-season",
+  "sourceLabel": "NFL.com Week 10 injury report: Player statuses for all 14 games (2026 season)",
+  "fullReport": "https://www.nfl.com/injuries/league/2026/REG9",
+  "fullReportLabel": "NFL.com Official NFL Injury Report — Week 10 of the 2026 Season",
+  "note": "Only designations explicitly listed in the NFL.com Week 10 summary article are transcribed below. Teams/games with no OUT/Questionable line in that summary are marked 'No designation listed in summary — verify full report'. Do NOT treat that as 'healthy'. Practice participation (DNP/Limited/Full) lives on the full report page and is not reproduced here.",
+  "designations": [
+    {"team":"Washington Commanders","player":"Colson Yankoff","pos":"TE","injury":"knee","status":"OUT","game":"Thu, Nov 12 — WAS at NYG (MetLife Stadium)"},
+    {"team":"Washington Commanders","player":"Lucas Patrick","pos":"C","injury":"concussion","status":"OUT","game":"Thu, Nov 12 — WAS at NYG (MetLife Stadium)"},
+    {"team":"New York Giants","player":"Malik Harrison","pos":"LB","injury":"groin","status":"QUESTIONABLE","game":"Thu, Nov 12 — WAS at NYG (MetLife Stadium)"},
+    {"team":"New England Patriots","player":"Ben Brown","pos":"OL","injury":"knee","status":"OUT","game":"Sun, Nov 15 — NE vs DET (Munich, Germany)"},
+    {"team":"New England Patriots","player":"Carlton Davis","pos":"CB","injury":"knee","status":"OUT","game":"Sun, Nov 15 — NE vs DET (Munich, Germany)"},
+    {"team":"New England Patriots","player":"TreVeyon Henderson","pos":"RB","injury":"illness","status":"OUT","game":"Sun, Nov 15 — NE vs DET (Munich, Germany)"}
+  ],
+  "gamesWithNoDesignationInSummary": [
+    "KC at ATL (Sun, Nov 15, Atlanta)",
+    "HOU at CLE (Sun, Nov 15, Cleveland)",
+    "MIN at GB (Sun, Nov 15, Green Bay)",
+    "MIA at IND (Sun, Nov 15, Indianapolis)",
+    "CAR at NO (Sun, Nov 15, New Orleans)",
+    "BUF at NYJ (Sun, Nov 15, East Rutherford)",
+    "JAX at TEN (Sun, Nov 15, Nashville)",
+    "LAR at AZ (Sun, Nov 15, Glendale)",
+    "SEA at LV (Sun, Nov 15, Las Vegas)",
+    "SF at DAL (Sun, Nov 15, Arlington)",
+    "PIT at CIN (Sun, Nov 15, Cincinnati — SNF)",
+    "LAC at BAL (Mon, Nov 16, Baltimore — MNF)"
+  ]
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Originate Own Lines — NFL2</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">NFL<span>2</span> Dashboard</div>
+<nav class="nav"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="teams.html">Teams</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries</a><a href="depth-charts.html">Depth Charts</a><a href="defense.html">Defense</a><a href="stats.html">Stats</a><a class="active" href="lines.html">Own Lines</a><a href="strategies.html">Leaderboard</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Q&amp;A Register</a><a href="methodology.html">Methodology</a><a href="flagged.html">Flagged ⚠</a><a href="sources.html">Sources</a></nav></div></header>
+<main class="wrap">
+<h1>Originate Your Own NFL Lines</h1>
+<p class="muted">Methodology + working calculators. Week 11 fair lines are <span class="badge b-tbd">TBD</span> until QIA blockers clear — this page explains <em>how</em> lines will be originated, not what they will be. The calculator below is <strong>illustrative only</strong>.</p>
+
+<h2>1 · What a “line” is (and is not)</h2>
+<ul class="tight">
+<li><strong>Spread:</strong> Handicap on margin. Favorite −X must win by more than X; underdog +X covers by losing by less or winning. Whole-number spread can <em>push</em> (refund); half-point cannot.</li>
+<li><strong>Moneyline:</strong> Straight winner, margin irrelevant. Minus = favorite (risk to win $100); plus = underdog (win per $100).</li>
+<li><strong>Total (O/U):</strong> Combined points vs number. Whole-number total can push; half-point cannot.</li>
+<li><strong>Price vs number:</strong> The number (e.g. −3.5) and the price (−110) are separate. Standard spread price −110/−110 implies 52.38% each (104.76% total) — the extra ~4.76% is the book’s <em>vig/hold</em>. A line is a <em>price to balance risk</em>, not a score prediction. Sources: <a href="https://www.gamblingsite.com/football-betting/nfl-odds/">GamblingSite — How to Read NFL Odds</a> · <a href="https://www.oddsshopper.com/articles/betting-101/implied-probability">OddsShopper — Implied Probability</a>.</li>
+</ul>
+
+<h2>2 · Fair-odds math (verified formulas)</h2>
+<pre>Implied prob (American):
+  Negative odds:  |odds| / (|odds| + 100)      e.g. −110 → 110/210 = 52.38%
+  Positive odds:  100 / (odds + 100)           e.g. +150 → 100/250 = 40.00%
+
+Overround = sum(implied probs) − 100%          e.g. −110/−110 → 104.76% → vig 4.76%
+No-vig (fair) prob = implied / sum(implied)    e.g. 52.38/104.76 = 50.00% each (≈ +100)
+
+Expected value per unit staked:  EV = p·b − (1−p)   where b = net odds (decimal − 1)
+Kelly fraction:  f* = (b·p − q) / b,  q = 1−p      (maximizes log-growth; use fractional Kelly in practice)</pre>
+<p class="small muted">Cross-checked: <a href="https://fourthandvalue.com/tools/odds-calculator.html">Fourth &amp; Value Odds Calculator</a> · <a href="https://oddsorca.com/betting-calculators/no-vig-odds-calculator">OddsOrca No-Vig</a> · <a href="https://expectedvalue.co.uk/blog/kelly-criterion-optimal-bet-sizing/">Kelly Criterion explainer</a>. Try it:</p>
+<div class="card"><h3>No-vig calculator</h3>
+<div class="form-grid"><div><label>Side A (American odds)</label><input type="number" id="nv-a" value="-110"></div><div><label>Side B (American odds)</label><input type="number" id="nv-b" value="-110"></div></div>
+<div class="result" id="nv-result"></div></div>
+
+<h2>3 · How our fair lines will be originated (pipeline)</h2>
+<ol>
+<li><strong>Team ratings:</strong> Elo-style power ratings from verified results (S-04 baseline), then EPA/success-rate adjustments once play-by-play exists (S-02, Q-15). Home-field value estimated from history (Q-04) — never guessed.</li>
+<li><strong>Matchup adjustments:</strong> QB starter/backup delta (Q-02), key injuries (Q-01), weather/roof (Q-10, S-07), rest/travel. Each adjustment is a <em>model card</em> entry (S-08) with size + source.</li>
+<li><strong>Score distribution:</strong> Expected points → spread/total via margin/total distributions calibrated on historical data. Moneyline derived from spread distribution (not a separate guess).</li>
+<li><strong>Props:</strong> Player expected production from usage (snaps/targets/routes, Q-11) × matchup efficiency. No usage data = no prop line.</li>
+<li><strong>Calibration:</strong> Out-of-sample log-loss/Brier vs no-vig market baseline (Gate G4). Uncalibrated = TBD.</li>
+<li><strong>Publication:</strong> Fair spread/total/ML + model card + inputs snapshot. Market comparison only once odds feed exists (Q-03).</li>
+</ol>
+<div class="callout"><strong>Why Week 11 is TBD:</strong> Q-01 (fresh injuries), Q-02 (confirmed QBs), Q-03 (market odds), Q-04 (HFA), Q-11 (usage), Q-15 (EPA) are all Open. Publishing numbers now would be hallucination. The calculator below demonstrates the <em>mechanics</em> with placeholder inputs.</div>
+
+<h2>4 · Illustrative fair-lines calculator (NOT a prediction)</h2>
+<div class="card"><h3>Toy model — for mechanics only</h3>
+<p class="small muted">Inputs: points scored/allowed per game (use verified totals ÷ games from <a href="standings.html">Standings</a>/<a href="defense.html">Defense</a>). HFA default 2.5 and margin SD 13.5 are <strong>placeholders</strong> (Q-04). Output blends 50% toward league average — deliberately conservative. <strong>Do not bet on this output.</strong></p>
+<div class="form-grid">
+<div><label>Home pts / game</label><input type="number" id="fl-home-pts" value="28"></div>
+<div><label>Away pts / game</label><input type="number" id="fl-away-pts" value="22"></div>
+<div><label>Home pts allowed / game</label><input type="number" id="fl-home-allow" value="20"></div>
+<div><label>Away pts allowed / game</label><input type="number" id="fl-away-allow" value="24"></div>
+<div><label>Home-field value (pts)</label><input type="number" id="fl-hfa" value="2.5" step="0.5"></div>
+<div><label>League total avg</label><input type="number" id="fl-total-avg" value="44"></div>
+</div><div class="result" id="fl-result"></div></div>
+
+<h2>5 · Week 11 fair lines</h2>
+<div class="table-wrap"><table><thead><tr><th>Game (Week 11)</th><th>Fair Spread</th><th>Fair Total</th><th>Fair ML (Home/Away)</th><th>Status</th></tr></thead><tbody>
+<tr><td>IND at HOU (Thu)</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span> Q-01…Q-04</td></tr>
+<tr><td>MIA at BUF</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>BAL at CAR</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>NO at CHI</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>TEN at DAL</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>TB at DET</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>AZ at KC</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>PIT at PHI</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>NYJ at LAC</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>JAX at NYG</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>LV at DEN</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>MIN at SF (Mexico City)</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+<tr><td>CIN at WAS (Mon)</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="badge b-tbd">TBD</span></td></tr>
+</tbody></table></div>
+<p class="small muted">Fixtures verified on <a href="schedule.html">Schedule page</a>. Fair lines publish only after calibration (Gate G4) + fresh injuries/QBs.</p>
+
+<h2 id="safety">6 · Safety guardrails</h2>
+<ul class="tight">
+<li>Stake cap 1% per bet until 500 graded bets (S-12); quarter-Kelly thereafter. Never full Kelly on uncertain edges.</li>
+<li>Loss limits + session stops set <em>before</em> any real-money use (Q-08, Q-17).</li>
+<li>Help: National Council on Problem Gambling — <strong>1-800-MY-RESET</strong> (1-800-522-4700), <a href="https://www.ncpgambling.org/ncpg/">ncpgambling.org</a>. 18+/21+ only where applicable; check local law.</li>
+</ul>
+</main>
+<footer><div class="footer-inner"><a href="index.html">← Dashboard</a> · <a href="strategies.html">Leaderboard →</a></div></footer>
+<script src="assets/app.js"></script>
+</body></html>

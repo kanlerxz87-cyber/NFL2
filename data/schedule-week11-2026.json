@@ -1,0 +1,25 @@
+{
+  "week": 11,
+  "season": 2026,
+  "asOf": "2026-11-12",
+  "source": "https://www.nfl.com/news/week-11-schedule-change",
+  "sourceLabel": "NFL.com Week 11 Schedule Change (Nov 9, 2026) — final Week 11 schedule",
+  "byeSource": "https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week",
+  "byeSourceLabel": "NFL.com 2026 schedule release: every team's bye week (May 15, 2026)",
+  "games": [
+    {"date":"Thu, Nov 19","away":"Indianapolis Colts","home":"Houston Texans","timeET":"8:15 pm ET","tv":"Prime Video","note":""},
+    {"date":"Sun, Nov 22","away":"Miami Dolphins","home":"Buffalo Bills","timeET":"1:00 pm ET","tv":"FOX","note":""},
+    {"date":"Sun, Nov 22","away":"Baltimore Ravens","home":"Carolina Panthers","timeET":"1:00 pm ET","tv":"FOX","note":""},
+    {"date":"Sun, Nov 22","away":"New Orleans Saints","home":"Chicago Bears","timeET":"1:00 pm ET","tv":"FOX","note":""},
+    {"date":"Sun, Nov 22","away":"Tennessee Titans","home":"Dallas Cowboys","timeET":"1:00 pm ET","tv":"FOX","note":""},
+    {"date":"Sun, Nov 22","away":"Tampa Bay Buccaneers","home":"Detroit Lions","timeET":"1:00 pm ET","tv":"CBS","note":""},
+    {"date":"Sun, Nov 22","away":"Arizona Cardinals","home":"Kansas City Chiefs","timeET":"1:00 pm ET","tv":"CBS","note":""},
+    {"date":"Sun, Nov 22","away":"Pittsburgh Steelers","home":"Philadelphia Eagles","timeET":"1:00 pm ET","tv":"CBS","note":"Moved to 1:00 pm ET (was later slot) — NFL.com Nov 9, 2026"},
+    {"date":"Sun, Nov 22","away":"New York Jets","home":"Los Angeles Chargers","timeET":"4:05 pm ET","tv":"FOX","note":""},
+    {"date":"Sun, Nov 22","away":"Las Vegas Raiders","home":"Denver Broncos","timeET":"4:25 pm ET","tv":"CBS","note":""},
+    {"date":"Sun, Nov 22","away":"Jacksonville Jaguars","home":"New York Giants","timeET":"4:25 pm ET","tv":"CBS","note":"Moved to 4:25 pm ET — NFL.com Nov 9, 2026"},
+    {"date":"Sun, Nov 22","away":"Minnesota Vikings","home":"San Francisco 49ers","timeET":"8:20 pm ET","tv":"NBC","note":"Mexico City"},
+    {"date":"Mon, Nov 23","away":"Cincinnati Bengals","home":"Washington Commanders","timeET":"8:15 pm ET","tv":"ESPN","note":""}
+  ],
+  "byeWeek11": ["Atlanta Falcons","Cleveland Browns","Green Bay Packers","Los Angeles Rams","New England Patriots","Seattle Seahawks"]
+}
