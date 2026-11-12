@@ -276,6 +276,38 @@ def prose_counts_match_files():
            "(%d designations, %d injury cells, %d rows)" % (measured["status"], measured["injury"], measured["rows"]))
 
 
+def dictionary_counts_match_files():
+    """The data dictionary publishes a row count per file; those numbers are checked against the
+    files instead of being maintained by whoever remembers to edit them."""
+    dict_md = os.path.join(ROOT, "content", "data-dictionary.md")
+    if not os.path.exists(dict_md):
+        warn("content/data-dictionary.md not found; row-count audit skipped"); return
+    text = open(dict_md, encoding="utf-8").read()
+    checked, wrong = 0, []
+    for line in text.splitlines():
+        if not line.startswith("| `data/") and not line.startswith("| data/"):
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if len(cells) < 2:
+            continue
+        files = re.findall(r"([A-Za-z0-9_]+\.csv)", cells[0])
+        counts = [c for c in re.split(r"\s*/\s*", cells[1]) if re.fullmatch(r"\d+", c)]
+        if not files or len(files) != len(counts):
+            continue
+        for fn, n in zip(files, counts):
+            path = os.path.join(DATA, fn)
+            if not os.path.exists(path):
+                wrong.append("%s: dictionary lists a file that does not exist" % fn); continue
+            actual = len(rows(fn)[0])
+            checked += 1
+            if int(n) != actual:
+                wrong.append("%s: dictionary says %s rows, file has %d" % (fn, n, actual))
+    if wrong:
+        bad("data dictionary row counts are stale: %s" % wrong[:6])
+    else:
+        ok("data dictionary: all %d published row counts match the files they describe" % checked)
+
+
 def gamelog():
     """The week 1-9 game log came from a parallel session's fetch of the official schedule pages.
     Importing someone else's file into the published site means re-auditing it from scratch:
@@ -358,7 +390,7 @@ def gamelog():
 
 
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); gamelog()
+    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); dictionary_counts_match_files(); gamelog()
     print("=" * 72)
     for m in PASS:
         print("  PASS  " + m)

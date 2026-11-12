@@ -532,3 +532,20 @@ part of the checklist rather than the end of it.
 - **PR & Deployment Result (`arena-53126614`):**
   - **PR #19:** [`https://github.com/kanlerxz87-cyber/NFL2/pull/19`](https://github.com/kanlerxz87-cyber/NFL2/pull/19) — all 3 CI workflows (`validate`, `audit`, `Row-level verification, link check and build reproducibility`) **passed**, merged to `main` as `b8fe9feda3f6351713c1b6c38b8469a5c694dc0d` (`2026-11-12T05:37:33Z`).
   - **GitHub Pages Build `1362253627`:** `status: "built"`, `error: null`; live verified at [`https://kanlerxz87-cyber.github.io/NFL2/`](https://kanlerxz87-cyber.github.io/NFL2/) and [`https://kanlerxz87-cyber.github.io/NFL2/s53/index.html`](https://kanlerxz87-cyber.github.io/NFL2/s53/index.html) across all 10 `s53/` pages with 0 broken links.
+
+---
+
+## 19. One more aged number, and the audit that now owns them (session `bc4b47cf`, 2026-11-12T07:25Z)
+
+The same read of the live pages found `data/sources.csv | 26` in the data dictionary while the register
+holds **28** sources. Fixed the only durable way: that cell and its neighbours now render
+`{{metric sources}}`, `{{metric questions}}`, `{{metric suggestions}}`, `{{metric flags}}`,
+`{{metric gates}}`, `{{metric signals}}`, `{{metric strategies}}`, `{{metric correlation}}` — and
+`tools/verify.py` gained `dictionary_counts_match_files()` (39 checks), which parses the dictionary's
+Files table and fails on any hand-written row count that disagrees with the file it names.
+
+Negative control: writing `130` beside `games_2026_wk1_9.csv` fails with `dictionary says 130 rows,
+file has 136`; restoring returns to 39 passed.
+
+Rule for the project, now enforced rather than intended: **no prose number that a file can be asked
+about.** Either it is a metric the builder measures, or it is written in a table the auditor parses.
