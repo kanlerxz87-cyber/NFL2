@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for Review — NFL2</title>
+<meta name="description" content="Unverified items and irregularities flagged for manual review. These do not block the site; they need your attention.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Flagged for review</span><span class="tag">Needs your eyes</span></div>
+  <nav class="main" aria-label="Main">
+    <a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a class="active" href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>Flagged for Review</h1>
+  <p class="lead">Everything below is <strong>unverified, incomplete, or irregular</strong>. It is published here so you can review it after the site is live and request changes. Flagged items do not block the merge.</p>
+  <div class="note warn"><strong>How to review:</strong> Open each source link, compare it to the claim, and tell the next session what to fix (e.g. “F-02: correct X to Y per [link]”). Until then, treat every item below as <em>not confirmed</em>.</div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>ID</th><th>Item</th><th>What is wrong / missing</th><th>Source link (check here)</th><th>Action needed</th></tr></thead>
+    <tbody>
+      <tr><td><strong>F-01</strong></td><td>Playoff clinch markers (x/y/z) on Standings</td><td>Fetched NFL.com page displayed no clinch markers; none are claimed. Do not assume “no one has clinched.”</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com standings</a></td><td>Re-check page for markers; add only if displayed.</td></tr>
+      <tr><td><strong>F-02</strong></td><td>Week 10 injuries for 12 games</td><td>NFL.com summary listed designations only for WAS/NYG/NE. Other games show “no designation in summary” — <strong>not</strong> “healthy.”</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG9">Full Week 10 report</a></td><td>Transcribe full report per team before modeling.</td></tr>
+      <tr><td><strong>F-03</strong></td><td>Depth charts (2nd/3rd/4th string)</td><td>No single NFL-published depth chart found. Replacement names/experience left blank on <a href="injuries.html">Injuries</a>.</td><td class="src"><a href="https://www.nfl.com/teams/buffalo-bills/">Team pages (example)</a></td><td>Capture 32 team depth charts with dates (Q-07).</td></tr>
+      <tr><td><strong>F-04</strong></td><td>Lines Lab v0 assumptions</td><td>HFA 2.5 and SD 13.5 are editable model assumptions, not NFL facts. Normal approx ignores key numbers.</td><td class="src"><a href="lines-lab.html">Lines Lab</a></td><td>Replace with empirical estimates (Q-03, S-08).</td></tr>
+      <tr><td><strong>F-05</strong></td><td>Neutral-site games</td><td>MIN at SF (Mexico City, Week 11) and NE vs DET (Munich, Week 10) must not use standard HFA.</td><td class="src"><a href="https://www.nfl.com/news/week-11-schedule-change">NFL.com Week 11</a></td><td>Set HFA = 0 (or venue-specific) for these games.</td></tr>
+      <tr><td><strong>F-06</strong></td><td>Leaderboard performance</td><td>All win-rate/ROI/CLV cells blank — no strategy has passed gates G1–G7. Any future number needs <em>n</em> + CI + test window.</td><td class="src"><a href="strategies.html">Leaderboard</a></td><td>Run backtests only after Q-04/Q-05 answered.</td></tr>
+      <tr><td><strong>F-07</strong></td><td>Market odds</td><td>No sportsbook odds reproduced anywhere on this site. “Market line” columns are blank templates.</td><td class="src"><a href="lines-lab.html">Lines Lab §4</a></td><td>Define capture method (Q-06) before filling.</td></tr>
+      <tr><td><strong>F-08</strong></td><td>Team facts beyond alignment</td><td>Coaches, stadiums, rosters intentionally omitted from <a href="teams.html">Teams</a> — not verified this session.</td><td class="src"><a href="https://www.nfl.com/teams/buffalo-bills/">NFL.com team pages</a></td><td>Verify per-team before adding (Q-02).</td></tr>
+      <tr><td><strong>F-09</strong></td><td>Standings snapshot date</td><td>Standings are a 2026-11-12 snapshot. They will drift weekly; always re-check the live NFL.com page.</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com standings</a></td><td>Refresh per Q-01 cadence (S-01).</td></tr>
+      <tr><td><strong>F-10</strong></td><td>Repo starting state</td><td>Repo contained only <code>README.md</code> (“# NFL2”) at <code>01f2271</code>. No prior data to reconcile; all content is new this session.</td><td class="src"><a href="https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3">Initial commit</a></td><td>None — noted for audit trail.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><strong>Irregularities found during verification:</strong> None in the transcribed standings/schedule/injury rows (all matched the fetched NFL.com pages). The “irregularities” above are <em>gaps and assumptions</em>, flagged rather than filled. If you spot a mismatch, log it here with the source link.</div>
+  <p><a class="btn ghost" href="questions.html">← Questions</a> <a class="btn" href="sources.html">Next: Sources →</a></p>
+</div></main>
+<footer><div class="wrap"><p>NFL2 · Flagged items do not block the merge. <a href="sources.html">Verification method</a></p></div></footer>
+<script src="assets/app.js"></script>
+</body></html>

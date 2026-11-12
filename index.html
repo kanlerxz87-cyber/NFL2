@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL2 — NFL Intelligence Dashboard</title>
+<meta name="description" content="Verified NFL standings, schedule, injuries, originated-lines methodology, strategy leaderboard framework, and decision register. Every fact links to an official source.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">2026 season · verified vs NFL.com</span><span class="tag">Updated 2026-11-12</span></div>
+  <nav class="main" aria-label="Main">
+    <a class="active" href="index.html">Dashboard</a>
+    <a href="executive-summary.html">Executive Summary</a>
+    <a href="standings.html">Standings</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="injuries.html">Injuries &amp; Depth</a>
+    <a href="teams.html">Teams</a>
+    <a href="lines-lab.html">Lines Lab</a>
+    <a href="strategies.html">Strategy Leaderboard</a>
+    <a href="suggestions.html">Suggestions Board</a>
+    <a href="questions.html">Questions &amp; Gaps</a>
+    <a href="flagged.html">Flagged for Review</a>
+    <a href="sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>NFL Intelligence Dashboard</h1>
+  <p class="lead">Collect, organize, and analyze the NFL from <strong>official sources only</strong>. Every table row links to its source. Anything that cannot be confirmed is left blank and flagged — never inferred.</p>
+
+  <div class="note"><strong>How to read this site:</strong> <span class="pill ok">Verified</span> = transcribed from the linked official page. <span class="pill warn">Unverified / blank</span> = not confirmed — see <a href="flagged.html">Flagged for Review</a>. <span class="pill model">Model only</span> = our own calculation, not a sportsbook line and not betting advice. Start with the <a href="executive-summary.html">Executive Summary</a>, then decide what to build next on the <a href="suggestions.html">Suggestions Board</a>.</div>
+
+  <div class="grid">
+    <div class="card"><h3>2026 Standings (official)</h3><div class="big">32 teams</div><div class="sub">W-L-T, PF/PA, streaks — NFL.com division standings</div><p><a class="btn" href="standings.html">Open standings</a></p></div>
+    <div class="card"><h3>Week 11 Schedule</h3><div class="big">13 games</div><div class="sub">Nov 19–23, 2026 + 6 bye teams — NFL.com</div><p><a class="btn" href="schedule.html">Open schedule</a></p></div>
+    <div class="card"><h3>Week 10 Injuries</h3><div class="big">6 listed</div><div class="sub">5 OUT + 1 Questionable in NFL.com summary</div><p><a class="btn" href="injuries.html">Open injuries</a></p></div>
+    <div class="card"><h3>Lines Lab</h3><div class="big">Model only</div><div class="sub">Originate your own fair lines — transparent math</div><p><a class="btn" href="lines-lab.html">Open lines lab</a></p></div>
+    <div class="card"><h3>Strategy Leaderboard</h3><div class="big">Framework</div><div class="sub">Validation gates, correlation, skill vs luck</div><p><a class="btn" href="strategies.html">Open leaderboard</a></p></div>
+    <div class="card"><h3>Decisions</h3><div class="big">Open</div><div class="sub">Suggestions + questions register — pick the path</div><p><a class="btn ghost" href="suggestions.html">Suggestions</a> <a class="btn ghost" href="questions.html">Questions</a></p></div>
+  </div>
+
+  <h2>At a glance — verified snapshot (2026-11-12)</h2>
+  <p class="small">All numbers below come from the linked NFL.com pages. Full tables with per-row sources: <a href="standings.html">Standings</a> · <a href="schedule.html">Schedule</a> · <a href="injuries.html">Injuries</a>.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Item</th><th>Verified value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Best record (AFC)</td><td>Buffalo Bills 7-1-0 (.875), PF 256 / PA 187</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com standings</a></td></tr>
+      <tr><td>Best record (NFC)</td><td>San Francisco 49ers 7-1-0 (.875), PF 235 / PA 156</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com standings</a></td></tr>
+      <tr><td>Winless team</td><td>Los Angeles Chargers 0-8-0 (.000)</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg">NFL.com standings</a></td></tr>
+      <tr><td>Next games</td><td>Week 11: Thu Nov 19 – Mon Nov 23 (13 games, 6 byes)</td><td class="src"><a href="https://www.nfl.com/news/week-11-schedule-change">NFL.com Week 11</a></td></tr>
+      <tr><td>Week 10 OUT (summary)</td><td>WAS: Colson Yankoff (TE, knee), Lucas Patrick (C, concussion); NE: Ben Brown (OL, knee), Carlton Davis (CB, knee), TreVeyon Henderson (RB, illness)</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com Week 10 injuries</a></td></tr>
+      <tr><td>Week 10 Questionable (summary)</td><td>NYG: Malik Harrison (LB, groin)</td><td class="src"><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com Week 10 injuries</a></td></tr>
+      <tr><td>Scoring values</td><td>Touchdown 6 · Field goal 3 · Safety 2 · Try 1 (kick/safety) or 2 (touchdown)</td><td class="src"><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf">NFL Official Playing Rules 2026 (PDF)</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>What this project is (and is not)</h2>
+  <ul>
+    <li><strong>Is:</strong> a verified data + research system for originating your own lines and testing skill-based strategies with validation gates.</li>
+    <li><strong>Is not:</strong> a betting tip service. The Lines Lab and Leaderboard are <em>models and frameworks</em> — performance cells stay blank until strategies pass backtests. No fabricated win rates.</li>
+    <li><strong>Is not:</strong> a substitute for the official injury report, depth charts, or licensed odds. Always check the linked NFL.com pages before any decision.</li>
+  </ul>
+
+  <div class="note warn"><strong>Responsible gambling:</strong> Sports betting is legal only in some jurisdictions and subject to age limits (commonly 21+ in the US; varies by state/country). Never wager money you cannot afford to lose. If gambling stops being fun, seek help — e.g. US: call/text 1-800-GAMBLER. This site provides information and models, not betting advice.</div>
+
+  <h2>Data files (for reuse)</h2>
+  <p class="small">Machine-readable copies of the verified tables: <a href="data/standings-2026.json">standings-2026.json</a> · <a href="data/schedule-week11-2026.json">schedule-week11-2026.json</a> · <a href="data/injuries-week10-2026.json">injuries-week10-2026.json</a>. Each file records its source URL and as-of date.</p>
+</div></main>
+<footer><div class="wrap">
+  <p>NFL2 · Built from official sources (NFL.com, NFL Official Playing Rules). NFL and team names are trademarks of the NFL. This is an independent research project, not affiliated with the NFL. · <a href="sources.html">Sources &amp; verification method</a> · <a href="flagged.html">Flagged for Review</a></p>
+</div></footer>
+<script src="assets/app.js"></script>
+</body></html>
