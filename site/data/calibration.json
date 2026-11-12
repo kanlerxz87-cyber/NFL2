@@ -1,0 +1,191 @@
+{
+ "sigma_used": 13.248,
+ "overall": {
+  "spread_model_vs_result": {
+   "n": 3404,
+   "mae": 10.25,
+   "rmse": 13.247,
+   "bias": -0.189,
+   "correlation": 0.379
+  },
+  "spread_market_vs_result": {
+   "n": 3404,
+   "mae": 14.353,
+   "rmse": 18.183,
+   "bias": 3.752,
+   "correlation": -0.439
+  },
+  "total_model_vs_result": {
+   "n": 3404,
+   "mae": 10.874,
+   "rmse": 13.68,
+   "bias": -0.023,
+   "correlation": 0.1918
+  },
+  "total_market_vs_result": {
+   "n": 3404,
+   "mae": 10.502,
+   "rmse": 13.244,
+   "bias": 0.388,
+   "correlation": 0.3014
+  }
+ },
+ "by_season": [
+  {
+   "season": 2013,
+   "model_spread_mae": 9.933,
+   "market_spread_mae": 14.736,
+   "model_total_mae": 11.084,
+   "market_total_mae": 11.111,
+   "n": 256
+  },
+  {
+   "season": 2014,
+   "model_spread_mae": 11.291,
+   "market_spread_mae": 15.691,
+   "model_total_mae": 10.995,
+   "market_total_mae": 10.77,
+   "n": 256
+  },
+  {
+   "season": 2015,
+   "model_spread_mae": 10.284,
+   "market_spread_mae": 13.486,
+   "model_total_mae": 10.763,
+   "market_total_mae": 10.529,
+   "n": 256
+  },
+  {
+   "season": 2016,
+   "model_spread_mae": 9.219,
+   "market_spread_mae": 12.622,
+   "model_total_mae": 10.177,
+   "market_total_mae": 9.894,
+   "n": 255
+  },
+  {
+   "season": 2017,
+   "model_spread_mae": 10.622,
+   "market_spread_mae": 15.2,
+   "model_total_mae": 11.699,
+   "market_total_mae": 11.192,
+   "n": 255
+  },
+  {
+   "season": 2018,
+   "model_spread_mae": 10.255,
+   "market_spread_mae": 14.389,
+   "model_total_mae": 11.009,
+   "market_total_mae": 10.598,
+   "n": 256
+  },
+  {
+   "season": 2019,
+   "model_spread_mae": 10.478,
+   "market_spread_mae": 14.891,
+   "model_total_mae": 10.954,
+   "market_total_mae": 10.828,
+   "n": 256
+  },
+  {
+   "season": 2020,
+   "model_spread_mae": 10.196,
+   "market_spread_mae": 14.441,
+   "model_total_mae": 10.989,
+   "market_total_mae": 10.124,
+   "n": 255
+  },
+  {
+   "season": 2021,
+   "model_spread_mae": 11.172,
+   "market_spread_mae": 15.428,
+   "model_total_mae": 11.042,
+   "market_total_mae": 10.789,
+   "n": 272
+  },
+  {
+   "season": 2022,
+   "model_spread_mae": 9.098,
+   "market_spread_mae": 12.683,
+   "model_total_mae": 11.056,
+   "market_total_mae": 10.395,
+   "n": 271
+  },
+  {
+   "season": 2023,
+   "model_spread_mae": 10.31,
+   "market_spread_mae": 14.169,
+   "model_total_mae": 11.028,
+   "market_total_mae": 10.239,
+   "n": 272
+  },
+  {
+   "season": 2024,
+   "model_spread_mae": 10.178,
+   "market_spread_mae": 14.397,
+   "model_total_mae": 10.047,
+   "market_total_mae": 9.73,
+   "n": 272
+  },
+  {
+   "season": 2025,
+   "model_spread_mae": 10.231,
+   "market_spread_mae": 14.487,
+   "model_total_mae": 10.562,
+   "market_total_mae": 10.393,
+   "n": 272
+  }
+ ],
+ "calibration_table": [
+  {
+   "bucket": "-0.00-0.20",
+   "n": 12,
+   "predicted": 0.1693,
+   "observed": 0.1667,
+   "error": -0.0026
+  },
+  {
+   "bucket": "0.20-0.35",
+   "n": 268,
+   "predicted": 0.2997,
+   "observed": 0.2985,
+   "error": -0.0012
+  },
+  {
+   "bucket": "0.35-0.50",
+   "n": 894,
+   "predicted": 0.4329,
+   "observed": 0.3881,
+   "error": -0.0448
+  },
+  {
+   "bucket": "0.50-0.65",
+   "n": 1284,
+   "predicted": 0.5746,
+   "observed": 0.574,
+   "error": -0.0006
+  },
+  {
+   "bucket": "0.65-0.80",
+   "n": 810,
+   "predicted": 0.7144,
+   "observed": 0.716,
+   "error": 0.0016
+  },
+  {
+   "bucket": "0.80-1.00",
+   "n": 136,
+   "predicted": 0.8365,
+   "observed": 0.9191,
+   "error": 0.0826
+  }
+ ],
+ "verdict": {
+  "spread_beats_market": true,
+  "total_beats_market": false,
+  "spread_gap_points": -4.103,
+  "total_gap_points": 0.372,
+  "statement": "The model's spread MAE is 10.25 vs the market's 14.35 (-4.10 points worse). Total MAE 10.87 vs 10.50 (+0.37). The model is not yet sharper than the closing line, so it is presented as a line-origination baseline and a research instrument, not as a betting system."
+ },
+ "note": "Model spread/total are walk-forward: each week is predicted from prior weeks only. Market columns are closing lines and are the benchmark. If the model's MAE is not lower than the market's, the model is not yet a better line than the closing number and should not be used to bet against it."
+}

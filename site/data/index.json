@@ -1,0 +1,15 @@
+{
+ "generated_utc": "2026-11-12T04:54:11Z",
+ "upstream_commit": "692e5f9f8ac9f4e2ee751c630817a7c290a04390",
+ "datasets": {
+  "audit.json": "integrity audit, file hashes and irregularities",
+  "calibration.json": "model accuracy versus the closing line",
+  "strategies.json": "strategy library, validation gates, leaderboard, rewards",
+  "luck.json": "variance, split-half and persistence tests",
+  "correlation.json": "measured correlations and parlay pricing",
+  "props.json": "player-prop scope, slate structure, parlay hold",
+  "lines.json": "our own spread/total/moneyline for the upcoming slate",
+  "availability.json": "injury load, depth vacancies, backup deficiency",
+  "provenance.json": "every dataset, its source URL, hash and verification status"
+ }
+}

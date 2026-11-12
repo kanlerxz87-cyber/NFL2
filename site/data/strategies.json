@@ -1,0 +1,3306 @@
+{
+ "windows": {
+  "development": [
+   2013,
+   2020
+  ],
+  "holdout": [
+   2021,
+   2025
+  ]
+ },
+ "tests_run": 60,
+ "strategies": [
+  {
+   "id": "S01",
+   "name": "Model spread edge 3.0+",
+   "family": "model-spread",
+   "market": "spread",
+   "desc": "Take the side the model rates 3+ points better than the closing spread.",
+   "gate_input": "model",
+   "development": {
+    "legs": 625,
+    "wins": 323,
+    "pushes": 15,
+    "hit_rate": 0.5168,
+    "ci_low": 0.47763993673558763,
+    "ci_high": 0.5557548080023927,
+    "break_even": 0.5238095238095238,
+    "roi": 0.010618181818181825,
+    "profit_units": 6.63636363636364,
+    "max_drawdown": -16.54545454545457,
+    "seasons": 8,
+    "profitable_seasons": 5,
+    "p_value": 0.6520716898675177,
+    "season_detail": {
+     "2013": {
+      "legs": 79,
+      "wins": 40,
+      "pnl": -0.636,
+      "roi": -0.0081
+     },
+     "2014": {
+      "legs": 67,
+      "wins": 39,
+      "pnl": 7.455,
+      "roi": 0.1113
+     },
+     "2015": {
+      "legs": 64,
+      "wins": 30,
+      "pnl": -2.727,
+      "roi": -0.0426
+     },
+     "2016": {
+      "legs": 70,
+      "wins": 39,
+      "pnl": 5.455,
+      "roi": 0.0779
+     },
+     "2017": {
+      "legs": 74,
+      "wins": 33,
+      "pnl": -8.0,
+      "roi": -0.1081
+     },
+     "2018": {
+      "legs": 89,
+      "wins": 46,
+      "pnl": 1.818,
+      "roi": 0.0204
+     },
+     "2019": {
+      "legs": 86,
+      "wins": 45,
+      "pnl": 1.909,
+      "roi": 0.0222
+     },
+     "2020": {
+      "legs": 96,
+      "wins": 51,
+      "pnl": 1.364,
+      "roi": 0.0142
+     }
+    }
+   },
+   "holdout": {
+    "legs": 459,
+    "wins": 233,
+    "pushes": 6,
+    "hit_rate": 0.5076252723311547,
+    "ci_low": 0.46201581268887126,
+    "ci_high": 0.5531081565789625,
+    "break_even": 0.5238095238095238,
+    "roi": -0.017825311942959006,
+    "profit_units": -8.181818181818183,
+    "max_drawdown": -25.818181818181838,
+    "seasons": 5,
+    "profitable_seasons": 2,
+    "p_value": 0.7706498372090642,
+    "season_detail": {
+     "2021": {
+      "legs": 107,
+      "wins": 58,
+      "pnl": 4.727,
+      "roi": 0.0442
+     },
+     "2022": {
+      "legs": 99,
+      "wins": 51,
+      "pnl": 1.364,
+      "roi": 0.0138
+     },
+     "2023": {
+      "legs": 69,
+      "wins": 33,
+      "pnl": -5.0,
+      "roi": -0.0725
+     },
+     "2024": {
+      "legs": 102,
+      "wins": 51,
+      "pnl": -3.636,
+      "roi": -0.0357
+     },
+     "2025": {
+      "legs": 82,
+      "wins": 40,
+      "pnl": -5.636,
+      "roi": -0.0687
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 459,
+     "detail": "459 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.46201581268887126,
+     "detail": "Wilson 95% lower 0.4620 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.017825311942959006,
+     "detail": "ROI -1.78% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 2,
+     "detail": "2/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.7706498372090642,
+     "detail": "p=0.7706 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 0.32673201960653764,
+     "detail": "z=0.33 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S02",
+   "name": "Model spread edge 4.0+",
+   "family": "model-spread",
+   "market": "spread",
+   "desc": "Same, 4-point threshold.",
+   "gate_input": "model",
+   "development": {
+    "legs": 360,
+    "wins": 191,
+    "pushes": 5,
+    "hit_rate": 0.5305555555555556,
+    "ci_low": 0.4789517539102284,
+    "ci_high": 0.5815141426031691,
+    "break_even": 0.5238095238095237,
+    "roi": 0.02676767676767677,
+    "profit_units": 9.636363636363637,
+    "max_drawdown": -16.090909090909097,
+    "seasons": 8,
+    "profitable_seasons": 6,
+    "p_value": 0.41936424594229577,
+    "season_detail": {
+     "2013": {
+      "legs": 46,
+      "wins": 26,
+      "pnl": 3.636,
+      "roi": 0.0791
+     },
+     "2014": {
+      "legs": 28,
+      "wins": 17,
+      "pnl": 4.455,
+      "roi": 0.1591
+     },
+     "2015": {
+      "legs": 37,
+      "wins": 18,
+      "pnl": -0.636,
+      "roi": -0.0172
+     },
+     "2016": {
+      "legs": 38,
+      "wins": 20,
+      "pnl": 0.182,
+      "roi": 0.0048
+     },
+     "2017": {
+      "legs": 46,
+      "wins": 19,
+      "pnl": -9.727,
+      "roi": -0.2115
+     },
+     "2018": {
+      "legs": 61,
+      "wins": 33,
+      "pnl": 4.0,
+      "roi": 0.0656
+     },
+     "2019": {
+      "legs": 50,
+      "wins": 27,
+      "pnl": 2.545,
+      "roi": 0.0509
+     },
+     "2020": {
+      "legs": 54,
+      "wins": 31,
+      "pnl": 5.182,
+      "roi": 0.096
+     }
+    }
+   },
+   "holdout": {
+    "legs": 304,
+    "wins": 160,
+    "pushes": 5,
+    "hit_rate": 0.5263157894736842,
+    "ci_low": 0.4702098160196618,
+    "ci_high": 0.581764989642137,
+    "break_even": 0.5238095238095238,
+    "roi": 0.021232057416267942,
+    "profit_units": 6.454545454545454,
+    "max_drawdown": -13.00000000000002,
+    "seasons": 5,
+    "profitable_seasons": 3,
+    "p_value": 0.48800295888102796,
+    "season_detail": {
+     "2021": {
+      "legs": 65,
+      "wins": 35,
+      "pnl": 2.818,
+      "roi": 0.0434
+     },
+     "2022": {
+      "legs": 67,
+      "wins": 38,
+      "pnl": 7.545,
+      "roi": 0.1126
+     },
+     "2023": {
+      "legs": 43,
+      "wins": 22,
+      "pnl": -0.0,
+      "roi": -0.0
+     },
+     "2024": {
+      "legs": 77,
+      "wins": 40,
+      "pnl": 0.364,
+      "roi": 0.0047
+     },
+     "2025": {
+      "legs": 52,
+      "wins": 25,
+      "pnl": -4.273,
+      "roi": -0.0822
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 304,
+     "detail": "304 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.4702098160196618,
+     "detail": "Wilson 95% lower 0.4702 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": true,
+     "value": 0.021232057416267942,
+     "detail": "ROI +2.12% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 3,
+     "detail": "3/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.48800295888102796,
+     "detail": "p=0.488 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 0.917662935482246,
+     "detail": "z=0.92 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S03",
+   "name": "Model spread edge 5.0+",
+   "family": "model-spread",
+   "market": "spread",
+   "desc": "Same, 5-point threshold.",
+   "gate_input": "model",
+   "development": {
+    "legs": 202,
+    "wins": 107,
+    "pushes": 3,
+    "hit_rate": 0.5297029702970297,
+    "ci_low": 0.4609621557371507,
+    "ci_high": 0.5973351380403877,
+    "break_even": 0.5238095238095238,
+    "roi": 0.026102610261026116,
+    "profit_units": 5.272727272727275,
+    "max_drawdown": -13.636363636363644,
+    "seasons": 8,
+    "profitable_seasons": 6,
+    "p_value": 0.4612544726691394,
+    "season_detail": {
+     "2013": {
+      "legs": 26,
+      "wins": 14,
+      "pnl": 0.727,
+      "roi": 0.028
+     },
+     "2014": {
+      "legs": 14,
+      "wins": 9,
+      "pnl": 3.182,
+      "roi": 0.2273
+     },
+     "2015": {
+      "legs": 22,
+      "wins": 14,
+      "pnl": 5.727,
+      "roi": 0.2603
+     },
+     "2016": {
+      "legs": 17,
+      "wins": 9,
+      "pnl": 0.182,
+      "roi": 0.0107
+     },
+     "2017": {
+      "legs": 30,
+      "wins": 11,
+      "pnl": -9.0,
+      "roi": -0.3
+     },
+     "2018": {
+      "legs": 36,
+      "wins": 21,
+      "pnl": 5.091,
+      "roi": 0.1414
+     },
+     "2019": {
+      "legs": 26,
+      "wins": 12,
+      "pnl": -2.091,
+      "roi": -0.0804
+     },
+     "2020": {
+      "legs": 31,
+      "wins": 17,
+      "pnl": 1.455,
+      "roi": 0.0469
+     }
+    }
+   },
+   "holdout": {
+    "legs": 192,
+    "wins": 101,
+    "pushes": 3,
+    "hit_rate": 0.5260416666666666,
+    "ci_low": 0.45559699289267147,
+    "ci_high": 0.5954647182338842,
+    "break_even": 0.5238095238095238,
+    "roi": 0.01988636363636365,
+    "profit_units": 3.818181818181821,
+    "max_drawdown": -17.54545454545455,
+    "seasons": 5,
+    "profitable_seasons": 3,
+    "p_value": 0.5041176237177061,
+    "season_detail": {
+     "2021": {
+      "legs": 47,
+      "wins": 26,
+      "pnl": 3.636,
+      "roi": 0.0774
+     },
+     "2022": {
+      "legs": 44,
+      "wins": 26,
+      "pnl": 7.636,
+      "roi": 0.1736
+     },
+     "2023": {
+      "legs": 23,
+      "wins": 15,
+      "pnl": 5.636,
+      "roi": 0.2451
+     },
+     "2024": {
+      "legs": 50,
+      "wins": 22,
+      "pnl": -8.0,
+      "roi": -0.16
+     },
+     "2025": {
+      "legs": 28,
+      "wins": 12,
+      "pnl": -5.091,
+      "roi": -0.1818
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 192,
+     "detail": "192 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.45559699289267147,
+     "detail": "Wilson 95% lower 0.4556 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": 0.01988636363636365,
+     "detail": "ROI +1.99% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 3,
+     "detail": "3/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.5041176237177061,
+     "detail": "p=0.5041 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 0.7216878364870313,
+     "detail": "z=0.72 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S04",
+   "name": "Model total edge 3.0+",
+   "family": "model-total",
+   "market": "total",
+   "desc": "Over/under where the model total is 3+ points from the closing total.",
+   "gate_input": "model",
+   "development": {
+    "legs": 593,
+    "wins": 288,
+    "pushes": 9,
+    "hit_rate": 0.4856661045531197,
+    "ci_low": 0.44566142274956105,
+    "ci_high": 0.5258553012530502,
+    "break_even": 0.5238095238095237,
+    "roi": -0.057642189176759145,
+    "profit_units": -34.18181818181817,
+    "max_drawdown": -40.81818181818173,
+    "seasons": 8,
+    "profitable_seasons": 2,
+    "p_value": 0.971344242807904,
+    "season_detail": {
+     "2013": {
+      "legs": 69,
+      "wins": 37,
+      "pnl": 4.636,
+      "roi": 0.0672
+     },
+     "2014": {
+      "legs": 36,
+      "wins": 14,
+      "pnl": -9.273,
+      "roi": -0.2576
+     },
+     "2015": {
+      "legs": 48,
+      "wins": 23,
+      "pnl": -4.091,
+      "roi": -0.0852
+     },
+     "2016": {
+      "legs": 71,
+      "wins": 38,
+      "pnl": 1.545,
+      "roi": 0.0218
+     },
+     "2017": {
+      "legs": 84,
+      "wins": 37,
+      "pnl": -13.364,
+      "roi": -0.1591
+     },
+     "2018": {
+      "legs": 89,
+      "wins": 46,
+      "pnl": -0.182,
+      "roi": -0.002
+     },
+     "2019": {
+      "legs": 73,
+      "wins": 37,
+      "pnl": -1.364,
+      "roi": -0.0187
+     },
+     "2020": {
+      "legs": 123,
+      "wins": 56,
+      "pnl": -12.091,
+      "roi": -0.0983
+     }
+    }
+   },
+   "holdout": {
+    "legs": 515,
+    "wins": 254,
+    "pushes": 4,
+    "hit_rate": 0.49320388349514566,
+    "ci_low": 0.4502351391879865,
+    "ci_high": 0.5362732635616837,
+    "break_even": 0.523809523809524,
+    "roi": -0.05066195939982348,
+    "profit_units": -26.090909090909093,
+    "max_drawdown": -38.63636363636362,
+    "seasons": 5,
+    "profitable_seasons": 2,
+    "p_value": 0.9243276604794681,
+    "season_detail": {
+     "2021": {
+      "legs": 107,
+      "wins": 52,
+      "pnl": -6.727,
+      "roi": -0.0629
+     },
+     "2022": {
+      "legs": 120,
+      "wins": 54,
+      "pnl": -16.909,
+      "roi": -0.1409
+     },
+     "2023": {
+      "legs": 132,
+      "wins": 63,
+      "pnl": -9.727,
+      "roi": -0.0737
+     },
+     "2024": {
+      "legs": 83,
+      "wins": 45,
+      "pnl": 3.909,
+      "roi": 0.0471
+     },
+     "2025": {
+      "legs": 73,
+      "wins": 40,
+      "pnl": 3.364,
+      "roi": 0.0461
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 515,
+     "detail": "515 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.4502351391879865,
+     "detail": "Wilson 95% lower 0.4502 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.05066195939982348,
+     "detail": "ROI -5.07% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 2,
+     "detail": "2/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9243276604794681,
+     "detail": "p=0.9243 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -0.3084568544674611,
+     "detail": "z=-0.31 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S05",
+   "name": "Model total edge 4.0+",
+   "family": "model-total",
+   "market": "total",
+   "desc": "Same, 4-point threshold.",
+   "gate_input": "model",
+   "development": {
+    "legs": 326,
+    "wins": 155,
+    "pushes": 6,
+    "hit_rate": 0.4754601226993865,
+    "ci_low": 0.4218509969509433,
+    "ci_high": 0.5296408499070403,
+    "break_even": 0.5238095238095238,
+    "roi": -0.0738984941438929,
+    "profit_units": -24.090909090909086,
+    "max_drawdown": -26.727272727272698,
+    "seasons": 8,
+    "profitable_seasons": 1,
+    "p_value": 0.9643351732314203,
+    "season_detail": {
+     "2013": {
+      "legs": 33,
+      "wins": 17,
+      "pnl": 0.455,
+      "roi": 0.0138
+     },
+     "2014": {
+      "legs": 9,
+      "wins": 2,
+      "pnl": -5.182,
+      "roi": -0.5758
+     },
+     "2015": {
+      "legs": 19,
+      "wins": 9,
+      "pnl": -1.818,
+      "roi": -0.0957
+     },
+     "2016": {
+      "legs": 39,
+      "wins": 18,
+      "pnl": -4.636,
+      "roi": -0.1189
+     },
+     "2017": {
+      "legs": 57,
+      "wins": 27,
+      "pnl": -5.455,
+      "roi": -0.0957
+     },
+     "2018": {
+      "legs": 53,
+      "wins": 27,
+      "pnl": -0.455,
+      "roi": -0.0086
+     },
+     "2019": {
+      "legs": 33,
+      "wins": 17,
+      "pnl": -0.545,
+      "roi": -0.0165
+     },
+     "2020": {
+      "legs": 83,
+      "wins": 38,
+      "pnl": -6.455,
+      "roi": -0.0778
+     }
+    }
+   },
+   "holdout": {
+    "legs": 338,
+    "wins": 153,
+    "pushes": 4,
+    "hit_rate": 0.4526627218934911,
+    "ci_low": 0.40042642858223887,
+    "ci_high": 0.5059629248194153,
+    "break_even": 0.5238095238095237,
+    "roi": -0.12399139322216245,
+    "profit_units": -41.90909090909091,
+    "max_drawdown": -45.81818181818189,
+    "seasons": 5,
+    "profitable_seasons": 0,
+    "p_value": 0.9962463582905756,
+    "season_detail": {
+     "2021": {
+      "legs": 63,
+      "wins": 27,
+      "pnl": -10.455,
+      "roi": -0.1659
+     },
+     "2022": {
+      "legs": 87,
+      "wins": 38,
+      "pnl": -14.455,
+      "roi": -0.1661
+     },
+     "2023": {
+      "legs": 96,
+      "wins": 45,
+      "pnl": -8.091,
+      "roi": -0.0843
+     },
+     "2024": {
+      "legs": 47,
+      "wins": 21,
+      "pnl": -5.909,
+      "roi": -0.1257
+     },
+     "2025": {
+      "legs": 45,
+      "wins": 22,
+      "pnl": -3.0,
+      "roi": -0.0667
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 338,
+     "detail": "338 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.40042642858223887,
+     "detail": "Wilson 95% lower 0.4004 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.12399139322216245,
+     "detail": "ROI -12.40% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 0,
+     "detail": "0/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9962463582905756,
+     "detail": "p=0.9962 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -1.7405705383053485,
+     "detail": "z=-1.74 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S06",
+   "name": "QB-change fade",
+   "family": "availability",
+   "market": "spread",
+   "desc": "Oppose a team whose starting QB differs from its previous game.",
+   "gate_input": "model",
+   "development": {
+    "legs": 433,
+    "wins": 211,
+    "pushes": 7,
+    "hit_rate": 0.48729792147806006,
+    "ci_low": 0.44053721663181095,
+    "ci_high": 0.5342820232174247,
+    "break_even": 0.5238095238095237,
+    "roi": -0.05353768633214362,
+    "profit_units": -23.181818181818187,
+    "max_drawdown": -30.727272727272762,
+    "seasons": 8,
+    "profitable_seasons": 2,
+    "p_value": 0.9417169952976135,
+    "season_detail": {
+     "2013": {
+      "legs": 41,
+      "wins": 21,
+      "pnl": -0.909,
+      "roi": -0.0222
+     },
+     "2014": {
+      "legs": 52,
+      "wins": 23,
+      "pnl": -7.091,
+      "roi": -0.1364
+     },
+     "2015": {
+      "legs": 61,
+      "wins": 27,
+      "pnl": -7.455,
+      "roi": -0.1222
+     },
+     "2016": {
+      "legs": 53,
+      "wins": 28,
+      "pnl": 0.455,
+      "roi": 0.0086
+     },
+     "2017": {
+      "legs": 58,
+      "wins": 34,
+      "pnl": 7.909,
+      "roi": 0.1364
+     },
+     "2018": {
+      "legs": 49,
+      "wins": 23,
+      "pnl": -4.091,
+      "roi": -0.0835
+     },
+     "2019": {
+      "legs": 55,
+      "wins": 25,
+      "pnl": -5.273,
+      "roi": -0.0959
+     },
+     "2020": {
+      "legs": 64,
+      "wins": 30,
+      "pnl": -6.727,
+      "roi": -0.1051
+     }
+    }
+   },
+   "holdout": {
+    "legs": 381,
+    "wins": 177,
+    "pushes": 12,
+    "hit_rate": 0.4645669291338583,
+    "ci_low": 0.4150901647736475,
+    "ci_high": 0.5147510740614641,
+    "break_even": 0.5238095238095238,
+    "roi": -0.08160343593414458,
+    "profit_units": -31.090909090909086,
+    "max_drawdown": -35.63636363636364,
+    "seasons": 5,
+    "profitable_seasons": 0,
+    "p_value": 0.9910251715453836,
+    "season_detail": {
+     "2021": {
+      "legs": 82,
+      "wins": 38,
+      "pnl": -5.455,
+      "roi": -0.0665
+     },
+     "2022": {
+      "legs": 79,
+      "wins": 36,
+      "pnl": -8.273,
+      "roi": -0.1047
+     },
+     "2023": {
+      "legs": 76,
+      "wins": 36,
+      "pnl": -2.273,
+      "roi": -0.0299
+     },
+     "2024": {
+      "legs": 71,
+      "wins": 37,
+      "pnl": -0.364,
+      "roi": -0.0051
+     },
+     "2025": {
+      "legs": 73,
+      "wins": 30,
+      "pnl": -14.727,
+      "roi": -0.2017
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 381,
+     "detail": "381 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.4150901647736475,
+     "detail": "Wilson 95% lower 0.4151 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.08160343593414458,
+     "detail": "ROI -8.16% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 0,
+     "detail": "0/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9910251715453836,
+     "detail": "p=0.991 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -1.3832519028621117,
+     "detail": "z=-1.38 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S07",
+   "name": "Off-bye home team",
+   "family": "schedule",
+   "market": "spread",
+   "desc": "Home team rested off a bye against a team that played last week.",
+   "gate_input": "model",
+   "development": {
+    "legs": 99,
+    "wins": 41,
+    "pushes": 4,
+    "hit_rate": 0.41414141414141414,
+    "ci_low": 0.32209499350111753,
+    "ci_high": 0.5126020228099588,
+    "break_even": 0.5238095238095238,
+    "roi": -0.1689623507805326,
+    "profit_units": -16.727272727272727,
+    "max_drawdown": -19.36363636363637,
+    "seasons": 8,
+    "profitable_seasons": 1,
+    "p_value": 0.9888571915455292,
+    "season_detail": {
+     "2013": {
+      "legs": 14,
+      "wins": 6,
+      "pnl": -2.545,
+      "roi": -0.1818
+     },
+     "2014": {
+      "legs": 10,
+      "wins": 2,
+      "pnl": -6.182,
+      "roi": -0.6182
+     },
+     "2015": {
+      "legs": 9,
+      "wins": 4,
+      "pnl": -1.364,
+      "roi": -0.1515
+     },
+     "2016": {
+      "legs": 20,
+      "wins": 12,
+      "pnl": 4.909,
+      "roi": 0.2455
+     },
+     "2017": {
+      "legs": 13,
+      "wins": 2,
+      "pnl": -7.182,
+      "roi": -0.5524
+     },
+     "2018": {
+      "legs": 7,
+      "wins": 2,
+      "pnl": -3.182,
+      "roi": -0.4545
+     },
+     "2019": {
+      "legs": 12,
+      "wins": 6,
+      "pnl": -0.545,
+      "roi": -0.0455
+     },
+     "2020": {
+      "legs": 14,
+      "wins": 7,
+      "pnl": -0.636,
+      "roi": -0.0455
+     }
+    }
+   },
+   "holdout": {
+    "legs": 71,
+    "wins": 32,
+    "pushes": 3,
+    "hit_rate": 0.4507042253521127,
+    "ci_low": 0.3404796109419389,
+    "ci_high": 0.5659893421672929,
+    "break_even": 0.523809523809524,
+    "roi": -0.0973111395646607,
+    "profit_units": -6.909090909090909,
+    "max_drawdown": -9.09090909090909,
+    "seasons": 5,
+    "profitable_seasons": 1,
+    "p_value": 0.9118450534285923,
+    "season_detail": {
+     "2021": {
+      "legs": 13,
+      "wins": 5,
+      "pnl": -1.455,
+      "roi": -0.1119
+     },
+     "2022": {
+      "legs": 19,
+      "wins": 10,
+      "pnl": 1.091,
+      "roi": 0.0574
+     },
+     "2023": {
+      "legs": 12,
+      "wins": 6,
+      "pnl": -0.545,
+      "roi": -0.0455
+     },
+     "2024": {
+      "legs": 12,
+      "wins": 4,
+      "pnl": -4.364,
+      "roi": -0.3636
+     },
+     "2025": {
+      "legs": 15,
+      "wins": 7,
+      "pnl": -1.636,
+      "roi": -0.1091
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 71,
+     "detail": "71 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.3404796109419389,
+     "detail": "Wilson 95% lower 0.3405 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.0973111395646607,
+     "detail": "ROI -9.73% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 1,
+     "detail": "1/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9118450534285923,
+     "detail": "p=0.9118 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -0.8307471607356971,
+     "detail": "z=-0.83 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G1_sample",
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S08",
+   "name": "Short-week fade",
+   "family": "schedule",
+   "market": "spread",
+   "desc": "Home side when the visitor had <= 5 days between games.",
+   "gate_input": "model",
+   "development": {
+    "legs": 125,
+    "wins": 59,
+    "pushes": 3,
+    "hit_rate": 0.472,
+    "ci_low": 0.38663059555481866,
+    "ci_high": 0.5590390665184024,
+    "break_even": 0.5238095238095237,
+    "roi": -0.07490909090909093,
+    "profit_units": -9.363636363636365,
+    "max_drawdown": -10.909090909090908,
+    "seasons": 8,
+    "profitable_seasons": 3,
+    "p_value": 0.8942325891382057,
+    "season_detail": {
+     "2013": {
+      "legs": 16,
+      "wins": 6,
+      "pnl": -4.545,
+      "roi": -0.2841
+     },
+     "2014": {
+      "legs": 16,
+      "wins": 8,
+      "pnl": -0.727,
+      "roi": -0.0455
+     },
+     "2015": {
+      "legs": 16,
+      "wins": 7,
+      "pnl": -1.636,
+      "roi": -0.1023
+     },
+     "2016": {
+      "legs": 17,
+      "wins": 10,
+      "pnl": 2.091,
+      "roi": 0.123
+     },
+     "2017": {
+      "legs": 15,
+      "wins": 8,
+      "pnl": 1.273,
+      "roi": 0.0848
+     },
+     "2018": {
+      "legs": 15,
+      "wins": 9,
+      "pnl": 3.182,
+      "roi": 0.2121
+     },
+     "2019": {
+      "legs": 15,
+      "wins": 7,
+      "pnl": -1.636,
+      "roi": -0.1091
+     },
+     "2020": {
+      "legs": 15,
+      "wins": 4,
+      "pnl": -7.364,
+      "roi": -0.4909
+     }
+    }
+   },
+   "holdout": {
+    "legs": 91,
+    "wins": 43,
+    "pushes": 4,
+    "hit_rate": 0.4725274725274725,
+    "ci_low": 0.373158035616828,
+    "ci_high": 0.5741224041931707,
+    "break_even": 0.5238095238095238,
+    "roi": -0.053946053946053944,
+    "profit_units": -4.909090909090909,
+    "max_drawdown": -6.727272727272726,
+    "seasons": 5,
+    "profitable_seasons": 1,
+    "p_value": 0.86091908957305,
+    "season_detail": {
+     "2021": {
+      "legs": 16,
+      "wins": 6,
+      "pnl": -3.545,
+      "roi": -0.2216
+     },
+     "2022": {
+      "legs": 17,
+      "wins": 8,
+      "pnl": -0.727,
+      "roi": -0.0428
+     },
+     "2023": {
+      "legs": 18,
+      "wins": 8,
+      "pnl": -0.727,
+      "roi": -0.0404
+     },
+     "2024": {
+      "legs": 20,
+      "wins": 11,
+      "pnl": 1.0,
+      "roi": 0.05
+     },
+     "2025": {
+      "legs": 20,
+      "wins": 10,
+      "pnl": -0.909,
+      "roi": -0.0455
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 91,
+     "detail": "91 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.373158035616828,
+     "detail": "Wilson 95% lower 0.3732 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.053946053946053944,
+     "detail": "ROI -5.39% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 1,
+     "detail": "1/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.86091908957305,
+     "detail": "p=0.8609 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -0.5241424183609594,
+     "detail": "z=-0.52 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G1_sample",
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S09",
+   "name": "Divisional home dog + model",
+   "family": "market-structure",
+   "market": "spread",
+   "desc": "Home division underdog that the model also favours.",
+   "gate_input": "model",
+   "development": {
+    "legs": 199,
+    "wins": 94,
+    "pushes": 7,
+    "hit_rate": 0.4723618090452261,
+    "ci_low": 0.4041803080537952,
+    "ci_high": 0.5415901470559895,
+    "break_even": 0.5238095238095238,
+    "roi": -0.06304248515303792,
+    "profit_units": -12.545454545454547,
+    "max_drawdown": -22.36363636363638,
+    "seasons": 8,
+    "profitable_seasons": 3,
+    "p_value": 0.9362626048577598,
+    "season_detail": {
+     "2013": {
+      "legs": 23,
+      "wins": 15,
+      "pnl": 5.636,
+      "roi": 0.2451
+     },
+     "2014": {
+      "legs": 26,
+      "wins": 11,
+      "pnl": -5.0,
+      "roi": -0.1923
+     },
+     "2015": {
+      "legs": 33,
+      "wins": 13,
+      "pnl": -6.182,
+      "roi": -0.1873
+     },
+     "2016": {
+      "legs": 29,
+      "wins": 13,
+      "pnl": -3.182,
+      "roi": -0.1097
+     },
+     "2017": {
+      "legs": 18,
+      "wins": 9,
+      "pnl": 0.182,
+      "roi": 0.0101
+     },
+     "2018": {
+      "legs": 19,
+      "wins": 9,
+      "pnl": -1.818,
+      "roi": -0.0957
+     },
+     "2019": {
+      "legs": 23,
+      "wins": 9,
+      "pnl": -2.818,
+      "roi": -0.1225
+     },
+     "2020": {
+      "legs": 28,
+      "wins": 15,
+      "pnl": 0.636,
+      "roi": 0.0227
+     }
+    }
+   },
+   "holdout": {
+    "legs": 100,
+    "wins": 43,
+    "pushes": 1,
+    "hit_rate": 0.43,
+    "ci_low": 0.33733298455633143,
+    "ci_high": 0.5278461052713281,
+    "break_even": 0.5238095238095238,
+    "roi": -0.16909090909090907,
+    "profit_units": -16.909090909090907,
+    "max_drawdown": -16.818181818181824,
+    "seasons": 5,
+    "profitable_seasons": 2,
+    "p_value": 0.9760601655322928,
+    "season_detail": {
+     "2021": {
+      "legs": 14,
+      "wins": 6,
+      "pnl": -2.545,
+      "roi": -0.1818
+     },
+     "2022": {
+      "legs": 20,
+      "wins": 8,
+      "pnl": -4.727,
+      "roi": -0.2364
+     },
+     "2023": {
+      "legs": 20,
+      "wins": 11,
+      "pnl": 1.0,
+      "roi": 0.05
+     },
+     "2024": {
+      "legs": 18,
+      "wins": 9,
+      "pnl": 0.182,
+      "roi": 0.0101
+     },
+     "2025": {
+      "legs": 28,
+      "wins": 9,
+      "pnl": -10.818,
+      "roi": -0.3864
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 100,
+     "detail": "100 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.33733298455633143,
+     "detail": "Wilson 95% lower 0.3373 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.16909090909090907,
+     "detail": "ROI -16.91% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 2,
+     "detail": "2/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9760601655322928,
+     "detail": "p=0.9761 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -1.4000000000000001,
+     "detail": "z=-1.40 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S10",
+   "name": "Moneyline value 4pt+",
+   "family": "model-ml",
+   "market": "moneyline",
+   "desc": "Moneyline whose implied probability is beaten by the model by 4+ points.",
+   "gate_input": "model",
+   "development": {
+    "legs": 1193,
+    "wins": 423,
+    "pushes": 0,
+    "hit_rate": 0.35456831517183574,
+    "ci_low": 0.32792886138212746,
+    "ci_high": 0.3821413426327423,
+    "break_even": 0.3601443336317438,
+    "roi": -0.026851947462472582,
+    "profit_units": -32.03437332272979,
+    "max_drawdown": -64.94578339404708,
+    "seasons": 8,
+    "profitable_seasons": 4,
+    "p_value": 0.6668965583806564,
+    "season_detail": {
+     "2013": {
+      "legs": 148,
+      "wins": 45,
+      "pnl": -16.102,
+      "roi": -0.1088
+     },
+     "2014": {
+      "legs": 139,
+      "wins": 56,
+      "pnl": 3.363,
+      "roi": 0.0242
+     },
+     "2015": {
+      "legs": 130,
+      "wins": 57,
+      "pnl": 21.932,
+      "roi": 0.1687
+     },
+     "2016": {
+      "legs": 150,
+      "wins": 56,
+      "pnl": -14.342,
+      "roi": -0.0956
+     },
+     "2017": {
+      "legs": 147,
+      "wins": 46,
+      "pnl": -13.377,
+      "roi": -0.091
+     },
+     "2018": {
+      "legs": 163,
+      "wins": 58,
+      "pnl": 7.755,
+      "roi": 0.0476
+     },
+     "2019": {
+      "legs": 148,
+      "wins": 53,
+      "pnl": 0.727,
+      "roi": 0.0049
+     },
+     "2020": {
+      "legs": 168,
+      "wins": 52,
+      "pnl": -21.991,
+      "roi": -0.1309
+     }
+    }
+   },
+   "holdout": {
+    "legs": 792,
+    "wins": 242,
+    "pushes": 0,
+    "hit_rate": 0.3055555555555556,
+    "ci_low": 0.27447677537953113,
+    "ci_high": 0.33851146924779507,
+    "break_even": 0.3433939007919578,
+    "roi": -0.14238739310055218,
+    "profit_units": -112.77081533563732,
+    "max_drawdown": -125.45397705644287,
+    "seasons": 5,
+    "profitable_seasons": 0,
+    "p_value": 0.9886957398444111,
+    "season_detail": {
+     "2021": {
+      "legs": 174,
+      "wins": 56,
+      "pnl": -15.222,
+      "roi": -0.0875
+     },
+     "2022": {
+      "legs": 164,
+      "wins": 46,
+      "pnl": -38.509,
+      "roi": -0.2348
+     },
+     "2023": {
+      "legs": 145,
+      "wins": 42,
+      "pnl": -15.432,
+      "roi": -0.1064
+     },
+     "2024": {
+      "legs": 161,
+      "wins": 49,
+      "pnl": -35.963,
+      "roi": -0.2234
+     },
+     "2025": {
+      "legs": 148,
+      "wins": 49,
+      "pnl": -7.644,
+      "roi": -0.0516
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 792,
+     "detail": "792 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.27447677537953113,
+     "detail": "Wilson 95% lower 0.2745 vs break-even 0.3434"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.14238739310055218,
+     "detail": "ROI -14.24% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 0,
+     "detail": "0/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9886957398444111,
+     "detail": "p=0.9887 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -10.944303439588,
+     "detail": "z=-10.94 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S11",
+   "name": "Cold-weather under",
+   "family": "environment",
+   "market": "total",
+   "desc": "Under when kickoff temperature is <= 45F and the model total is 4+ below the market.",
+   "gate_input": "model",
+   "development": {
+    "legs": 16,
+    "wins": 7,
+    "pushes": 2,
+    "hit_rate": 0.4375,
+    "ci_low": 0.2309865228140567,
+    "ci_high": 0.6682144375606189,
+    "break_even": 0.5238095238095238,
+    "roi": -0.03977272727272729,
+    "profit_units": -0.6363636363636367,
+    "max_drawdown": -4.0,
+    "seasons": 6,
+    "profitable_seasons": 2,
+    "p_value": 0.826787002550198,
+    "season_detail": {
+     "2013": {
+      "legs": 2,
+      "wins": 0,
+      "pnl": -1.0,
+      "roi": -0.5
+     },
+     "2016": {
+      "legs": 1,
+      "wins": 0,
+      "pnl": -1.0,
+      "roi": -1.0
+     },
+     "2017": {
+      "legs": 1,
+      "wins": 1,
+      "pnl": 0.909,
+      "roi": 0.9091
+     },
+     "2018": {
+      "legs": 6,
+      "wins": 2,
+      "pnl": -2.182,
+      "roi": -0.3636
+     },
+     "2019": {
+      "legs": 1,
+      "wins": 0,
+      "pnl": -1.0,
+      "roi": -1.0
+     },
+     "2020": {
+      "legs": 5,
+      "wins": 4,
+      "pnl": 3.636,
+      "roi": 0.7273
+     }
+    }
+   },
+   "holdout": {
+    "legs": 4,
+    "wins": 3,
+    "pushes": 0,
+    "hit_rate": 0.75,
+    "ci_low": 0.30064184009690814,
+    "ci_high": 0.954412739704631,
+    "break_even": 0.5238095238095238,
+    "roi": 0.43181818181818177,
+    "profit_units": 1.727272727272727,
+    "max_drawdown": -1.0,
+    "seasons": 2,
+    "profitable_seasons": 1,
+    "p_value": 0.3426573143793712,
+    "season_detail": {
+     "2021": {
+      "legs": 3,
+      "wins": 3,
+      "pnl": 2.727,
+      "roi": 0.9091
+     },
+     "2025": {
+      "legs": 1,
+      "wins": 0,
+      "pnl": -1.0,
+      "roi": -1.0
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 4,
+     "detail": "4 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.30064184009690814,
+     "detail": "Wilson 95% lower 0.3006 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": true,
+     "value": 0.43181818181818177,
+     "detail": "ROI +43.18% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 1,
+     "detail": "1/2 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.3426573143793712,
+     "detail": "p=0.3427 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 1.0,
+     "detail": "z=1.00 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G1_sample",
+    "G2_statistical",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S12",
+   "name": "Wind under",
+   "family": "environment",
+   "market": "total",
+   "desc": "Under when kickoff wind is >= 15 mph.",
+   "gate_input": "model",
+   "development": {
+    "legs": 165,
+    "wins": 83,
+    "pushes": 1,
+    "hit_rate": 0.503030303030303,
+    "ci_low": 0.42754409690156187,
+    "ci_high": 0.5783786190393317,
+    "break_even": 0.523809523809524,
+    "roi": -0.033608815426997236,
+    "profit_units": -5.545454545454544,
+    "max_drawdown": -12.818181818181817,
+    "seasons": 8,
+    "profitable_seasons": 3,
+    "p_value": 0.7298543126962909,
+    "season_detail": {
+     "2013": {
+      "legs": 18,
+      "wins": 9,
+      "pnl": -0.818,
+      "roi": -0.0455
+     },
+     "2014": {
+      "legs": 20,
+      "wins": 10,
+      "pnl": -0.909,
+      "roi": -0.0455
+     },
+     "2015": {
+      "legs": 23,
+      "wins": 13,
+      "pnl": 2.818,
+      "roi": 0.1225
+     },
+     "2016": {
+      "legs": 21,
+      "wins": 8,
+      "pnl": -5.727,
+      "roi": -0.2727
+     },
+     "2017": {
+      "legs": 18,
+      "wins": 10,
+      "pnl": 1.091,
+      "roi": 0.0606
+     },
+     "2018": {
+      "legs": 17,
+      "wins": 13,
+      "pnl": 7.818,
+      "roi": 0.4599
+     },
+     "2019": {
+      "legs": 22,
+      "wins": 11,
+      "pnl": -1.0,
+      "roi": -0.0455
+     },
+     "2020": {
+      "legs": 26,
+      "wins": 9,
+      "pnl": -8.818,
+      "roi": -0.3392
+     }
+    }
+   },
+   "holdout": {
+    "legs": 88,
+    "wins": 53,
+    "pushes": 1,
+    "hit_rate": 0.6022727272727273,
+    "ci_low": 0.49780729960539094,
+    "ci_high": 0.6981826184474657,
+    "break_even": 0.5238095238095238,
+    "roi": 0.16115702479338842,
+    "profit_units": 14.18181818181818,
+    "max_drawdown": -6.909090909090917,
+    "seasons": 5,
+    "profitable_seasons": 4,
+    "p_value": 0.08580471508951486,
+    "season_detail": {
+     "2021": {
+      "legs": 29,
+      "wins": 21,
+      "pnl": 11.091,
+      "roi": 0.3824
+     },
+     "2022": {
+      "legs": 13,
+      "wins": 8,
+      "pnl": 2.273,
+      "roi": 0.1748
+     },
+     "2023": {
+      "legs": 12,
+      "wins": 8,
+      "pnl": 4.273,
+      "roi": 0.3561
+     },
+     "2024": {
+      "legs": 15,
+      "wins": 6,
+      "pnl": -3.545,
+      "roi": -0.2364
+     },
+     "2025": {
+      "legs": 19,
+      "wins": 10,
+      "pnl": 0.091,
+      "roi": 0.0048
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 88,
+     "detail": "88 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.49780729960539094,
+     "detail": "Wilson 95% lower 0.4978 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": true,
+     "value": 0.16115702479338842,
+     "detail": "ROI +16.12% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": true,
+     "value": 4,
+     "detail": "4/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.08580471508951486,
+     "detail": "p=0.0858 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 1.9188064472004942,
+     "detail": "z=1.92 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G1_sample",
+    "G2_statistical",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S13",
+   "name": "Primetime home dog",
+   "family": "market-structure",
+   "market": "spread",
+   "desc": "Home underdog in a 20:00+ kickoff window.",
+   "gate_input": "model",
+   "development": {
+    "legs": 256,
+    "wins": 123,
+    "pushes": 6,
+    "hit_rate": 0.48046875,
+    "ci_low": 0.42000876927039626,
+    "ci_high": 0.5415062251302152,
+    "break_even": 0.5238095238095238,
+    "roi": -0.05930397727272727,
+    "profit_units": -15.181818181818182,
+    "max_drawdown": -23.36363636363638,
+    "seasons": 8,
+    "profitable_seasons": 3,
+    "p_value": 0.9266171533009747,
+    "season_detail": {
+     "2013": {
+      "legs": 29,
+      "wins": 17,
+      "pnl": 4.455,
+      "roi": 0.1536
+     },
+     "2014": {
+      "legs": 33,
+      "wins": 15,
+      "pnl": -4.364,
+      "roi": -0.1322
+     },
+     "2015": {
+      "legs": 37,
+      "wins": 12,
+      "pnl": -13.091,
+      "roi": -0.3538
+     },
+     "2016": {
+      "legs": 38,
+      "wins": 22,
+      "pnl": 6.0,
+      "roi": 0.1579
+     },
+     "2017": {
+      "legs": 25,
+      "wins": 15,
+      "pnl": 3.636,
+      "roi": 0.1455
+     },
+     "2018": {
+      "legs": 37,
+      "wins": 18,
+      "pnl": -0.636,
+      "roi": -0.0172
+     },
+     "2019": {
+      "legs": 28,
+      "wins": 12,
+      "pnl": -5.091,
+      "roi": -0.1818
+     },
+     "2020": {
+      "legs": 29,
+      "wins": 12,
+      "pnl": -6.091,
+      "roi": -0.21
+     }
+    }
+   },
+   "holdout": {
+    "legs": 170,
+    "wins": 79,
+    "pushes": 5,
+    "hit_rate": 0.4647058823529412,
+    "ci_low": 0.3913409824125569,
+    "ci_high": 0.5396306047035295,
+    "break_even": 0.5238095238095238,
+    "roi": -0.08342245989304811,
+    "profit_units": -14.18181818181818,
+    "max_drawdown": -22.54545454545454,
+    "seasons": 5,
+    "profitable_seasons": 1,
+    "p_value": 0.9473589837208225,
+    "season_detail": {
+     "2021": {
+      "legs": 31,
+      "wins": 13,
+      "pnl": -6.182,
+      "roi": -0.1994
+     },
+     "2022": {
+      "legs": 35,
+      "wins": 12,
+      "pnl": -12.091,
+      "roi": -0.3455
+     },
+     "2023": {
+      "legs": 36,
+      "wins": 15,
+      "pnl": -4.364,
+      "roi": -0.1212
+     },
+     "2024": {
+      "legs": 35,
+      "wins": 23,
+      "pnl": 10.909,
+      "roi": 0.3117
+     },
+     "2025": {
+      "legs": 33,
+      "wins": 16,
+      "pnl": -2.455,
+      "roi": -0.0744
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 170,
+     "detail": "170 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.3913409824125569,
+     "detail": "Wilson 95% lower 0.3913 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.08342245989304811,
+     "detail": "ROI -8.34% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 1,
+     "detail": "1/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9473589837208225,
+     "detail": "p=0.9474 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -0.9203579866168441,
+     "detail": "z=-0.92 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S14",
+   "name": "Thursday short-week home",
+   "family": "schedule",
+   "market": "spread",
+   "desc": "Home team on Thursday when the visitor played a Sunday game.",
+   "gate_input": "model",
+   "development": {
+    "legs": 122,
+    "wins": 58,
+    "pushes": 3,
+    "hit_rate": 0.47540983606557374,
+    "ci_low": 0.3889042495013318,
+    "ci_high": 0.5634167101145314,
+    "break_even": 0.5238095238095238,
+    "roi": -0.06780923994038748,
+    "profit_units": -8.272727272727273,
+    "max_drawdown": -9.90909090909091,
+    "seasons": 8,
+    "profitable_seasons": 3,
+    "p_value": 0.8771865552239664,
+    "season_detail": {
+     "2013": {
+      "legs": 16,
+      "wins": 6,
+      "pnl": -4.545,
+      "roi": -0.2841
+     },
+     "2014": {
+      "legs": 16,
+      "wins": 8,
+      "pnl": -0.727,
+      "roi": -0.0455
+     },
+     "2015": {
+      "legs": 16,
+      "wins": 7,
+      "pnl": -1.636,
+      "roi": -0.1023
+     },
+     "2016": {
+      "legs": 16,
+      "wins": 10,
+      "pnl": 3.091,
+      "roi": 0.1932
+     },
+     "2017": {
+      "legs": 15,
+      "wins": 8,
+      "pnl": 1.273,
+      "roi": 0.0848
+     },
+     "2018": {
+      "legs": 15,
+      "wins": 9,
+      "pnl": 3.182,
+      "roi": 0.2121
+     },
+     "2019": {
+      "legs": 15,
+      "wins": 7,
+      "pnl": -1.636,
+      "roi": -0.1091
+     },
+     "2020": {
+      "legs": 13,
+      "wins": 3,
+      "pnl": -7.273,
+      "roi": -0.5594
+     }
+    }
+   },
+   "holdout": {
+    "legs": 86,
+    "wins": 43,
+    "pushes": 4,
+    "hit_rate": 0.5,
+    "ci_low": 0.3966097224935507,
+    "ci_high": 0.6033902775064494,
+    "break_even": 0.523809523809524,
+    "roi": 0.0010570824524313016,
+    "profit_units": 0.09090909090909194,
+    "max_drawdown": -5.727272727272726,
+    "seasons": 5,
+    "profitable_seasons": 3,
+    "p_value": 0.7088600856761949,
+    "season_detail": {
+     "2021": {
+      "legs": 16,
+      "wins": 6,
+      "pnl": -3.545,
+      "roi": -0.2216
+     },
+     "2022": {
+      "legs": 17,
+      "wins": 8,
+      "pnl": -0.727,
+      "roi": -0.0428
+     },
+     "2023": {
+      "legs": 17,
+      "wins": 8,
+      "pnl": 0.273,
+      "roi": 0.016
+     },
+     "2024": {
+      "legs": 17,
+      "wins": 11,
+      "pnl": 4.0,
+      "roi": 0.2353
+     },
+     "2025": {
+      "legs": 19,
+      "wins": 10,
+      "pnl": 0.091,
+      "roi": 0.0048
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 86,
+     "detail": "86 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.3966097224935507,
+     "detail": "Wilson 95% lower 0.3966 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": 0.0010570824524313016,
+     "detail": "ROI +0.11% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 3,
+     "detail": "3/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.7088600856761949,
+     "detail": "p=0.7089 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 0.0,
+     "detail": "z=0.00 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G1_sample",
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S15",
+   "name": "Large-loss overreaction fade",
+   "family": "behaviour",
+   "market": "spread",
+   "desc": "Fade a team that lost its previous game by 17+ (market overshoot test).",
+   "gate_input": "model",
+   "development": {
+    "legs": 511,
+    "wins": 238,
+    "pushes": 11,
+    "hit_rate": 0.4657534246575342,
+    "ci_low": 0.42291980841250926,
+    "ci_high": 0.5090980984669176,
+    "break_even": 0.5238095238095237,
+    "roi": -0.08930795232165095,
+    "profit_units": -45.63636363636363,
+    "max_drawdown": -56.18181818181839,
+    "seasons": 8,
+    "profitable_seasons": 1,
+    "p_value": 0.9962302007075055,
+    "season_detail": {
+     "2013": {
+      "legs": 63,
+      "wins": 32,
+      "pnl": 0.091,
+      "roi": 0.0014
+     },
+     "2014": {
+      "legs": 79,
+      "wins": 35,
+      "pnl": -10.182,
+      "roi": -0.1289
+     },
+     "2015": {
+      "legs": 61,
+      "wins": 30,
+      "pnl": -1.727,
+      "roi": -0.0283
+     },
+     "2016": {
+      "legs": 50,
+      "wins": 25,
+      "pnl": -1.273,
+      "roi": -0.0255
+     },
+     "2017": {
+      "legs": 71,
+      "wins": 26,
+      "pnl": -19.364,
+      "roi": -0.2727
+     },
+     "2018": {
+      "legs": 52,
+      "wins": 23,
+      "pnl": -7.091,
+      "roi": -0.1364
+     },
+     "2019": {
+      "legs": 71,
+      "wins": 36,
+      "pnl": -1.273,
+      "roi": -0.0179
+     },
+     "2020": {
+      "legs": 64,
+      "wins": 31,
+      "pnl": -4.818,
+      "roi": -0.0753
+     }
+    }
+   },
+   "holdout": {
+    "legs": 356,
+    "wins": 178,
+    "pushes": 5,
+    "hit_rate": 0.5,
+    "ci_low": 0.4483390367771499,
+    "ci_high": 0.5516609632228501,
+    "break_even": 0.5238095238095238,
+    "roi": -0.03140960163432074,
+    "profit_units": -11.181818181818183,
+    "max_drawdown": -23.545454545454575,
+    "seasons": 5,
+    "profitable_seasons": 2,
+    "p_value": 0.8295921800304258,
+    "season_detail": {
+     "2021": {
+      "legs": 81,
+      "wins": 34,
+      "pnl": -16.091,
+      "roi": -0.1987
+     },
+     "2022": {
+      "legs": 49,
+      "wins": 25,
+      "pnl": 0.727,
+      "roi": 0.0148
+     },
+     "2023": {
+      "legs": 74,
+      "wins": 37,
+      "pnl": -1.364,
+      "roi": -0.0184
+     },
+     "2024": {
+      "legs": 76,
+      "wins": 44,
+      "pnl": 9.0,
+      "roi": 0.1184
+     },
+     "2025": {
+      "legs": 76,
+      "wins": 38,
+      "pnl": -3.455,
+      "roi": -0.0455
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 356,
+     "detail": "356 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.4483390367771499,
+     "detail": "Wilson 95% lower 0.4483 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.03140960163432074,
+     "detail": "ROI -3.14% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 2,
+     "detail": "2/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.8295921800304258,
+     "detail": "p=0.8296 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 0.0,
+     "detail": "z=0.00 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S16",
+   "name": "Divisional under",
+   "family": "market-structure",
+   "market": "total",
+   "desc": "Under in division games, where familiarity suppresses scoring.",
+   "gate_input": "model",
+   "development": {
+    "legs": 766,
+    "wins": 400,
+    "pushes": 8,
+    "hit_rate": 0.5221932114882507,
+    "ci_low": 0.4867973686697219,
+    "ci_high": 0.5573675689388703,
+    "break_even": 0.5238095238095238,
+    "roi": 0.0073581770709708096,
+    "profit_units": 5.63636363636364,
+    "max_drawdown": -25.363636363636356,
+    "seasons": 8,
+    "profitable_seasons": 5,
+    "p_value": 0.5500321259596909,
+    "season_detail": {
+     "2013": {
+      "legs": 96,
+      "wins": 56,
+      "pnl": 10.909,
+      "roi": 0.1136
+     },
+     "2014": {
+      "legs": 96,
+      "wins": 52,
+      "pnl": 4.273,
+      "roi": 0.0445
+     },
+     "2015": {
+      "legs": 96,
+      "wins": 52,
+      "pnl": 5.273,
+      "roi": 0.0549
+     },
+     "2016": {
+      "legs": 95,
+      "wins": 41,
+      "pnl": -16.727,
+      "roi": -0.1761
+     },
+     "2017": {
+      "legs": 95,
+      "wins": 57,
+      "pnl": 13.818,
+      "roi": 0.1455
+     },
+     "2018": {
+      "legs": 96,
+      "wins": 51,
+      "pnl": 3.364,
+      "roi": 0.035
+     },
+     "2019": {
+      "legs": 96,
+      "wins": 49,
+      "pnl": -1.455,
+      "roi": -0.0152
+     },
+     "2020": {
+      "legs": 96,
+      "wins": 42,
+      "pnl": -13.818,
+      "roi": -0.1439
+     }
+    }
+   },
+   "holdout": {
+    "legs": 480,
+    "wins": 244,
+    "pushes": 3,
+    "hit_rate": 0.5083333333333333,
+    "ci_low": 0.4637213761310048,
+    "ci_high": 0.5528129655488029,
+    "break_even": 0.5238095238095238,
+    "roi": -0.02329545454545455,
+    "profit_units": -11.181818181818183,
+    "max_drawdown": -28.54545454545458,
+    "seasons": 5,
+    "profitable_seasons": 2,
+    "p_value": 0.7656507314094968,
+    "season_detail": {
+     "2021": {
+      "legs": 96,
+      "wins": 48,
+      "pnl": -4.364,
+      "roi": -0.0455
+     },
+     "2022": {
+      "legs": 96,
+      "wins": 55,
+      "pnl": 12.0,
+      "roi": 0.125
+     },
+     "2023": {
+      "legs": 96,
+      "wins": 51,
+      "pnl": 1.364,
+      "roi": 0.0142
+     },
+     "2024": {
+      "legs": 96,
+      "wins": 40,
+      "pnl": -19.636,
+      "roi": -0.2045
+     },
+     "2025": {
+      "legs": 96,
+      "wins": 50,
+      "pnl": -0.545,
+      "roi": -0.0057
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 480,
+     "detail": "480 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.4637213761310048,
+     "detail": "Wilson 95% lower 0.4637 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.02329545454545455,
+     "detail": "ROI -2.33% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 2,
+     "detail": "2/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.7656507314094968,
+     "detail": "p=0.7657 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 0.3651483716701095,
+     "detail": "z=0.37 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S17",
+   "name": "Late-season under",
+   "family": "schedule",
+   "market": "total",
+   "desc": "Under in weeks 15-18.",
+   "gate_input": "model",
+   "development": {
+    "legs": 384,
+    "wins": 201,
+    "pushes": 5,
+    "hit_rate": 0.5234375,
+    "ci_low": 0.4734982997357594,
+    "ci_high": 0.5729124167769102,
+    "break_even": 0.5238095238095238,
+    "roi": 0.012310606060606058,
+    "profit_units": 4.727272727272727,
+    "max_drawdown": -22.9090909090909,
+    "seasons": 8,
+    "profitable_seasons": 5,
+    "p_value": 0.526186030295364,
+    "season_detail": {
+     "2013": {
+      "legs": 48,
+      "wins": 27,
+      "pnl": 3.545,
+      "roi": 0.0739
+     },
+     "2014": {
+      "legs": 48,
+      "wins": 32,
+      "pnl": 14.091,
+      "roi": 0.2936
+     },
+     "2015": {
+      "legs": 48,
+      "wins": 26,
+      "pnl": 1.636,
+      "roi": 0.0341
+     },
+     "2016": {
+      "legs": 48,
+      "wins": 20,
+      "pnl": -9.818,
+      "roi": -0.2045
+     },
+     "2017": {
+      "legs": 48,
+      "wins": 31,
+      "pnl": 11.182,
+      "roi": 0.233
+     },
+     "2018": {
+      "legs": 48,
+      "wins": 26,
+      "pnl": 3.636,
+      "roi": 0.0758
+     },
+     "2019": {
+      "legs": 48,
+      "wins": 19,
+      "pnl": -10.727,
+      "roi": -0.2235
+     },
+     "2020": {
+      "legs": 48,
+      "wins": 20,
+      "pnl": -8.818,
+      "roi": -0.1837
+     }
+    }
+   },
+   "holdout": {
+    "legs": 319,
+    "wins": 153,
+    "pushes": 0,
+    "hit_rate": 0.47962382445141066,
+    "ci_low": 0.4253700034949222,
+    "ci_high": 0.5343625536399409,
+    "break_even": 0.5238095238095238,
+    "roi": -0.08435451695639781,
+    "profit_units": -26.909090909090903,
+    "max_drawdown": -35.999999999999986,
+    "seasons": 5,
+    "profitable_seasons": 1,
+    "p_value": 0.9491020801848655,
+    "season_detail": {
+     "2021": {
+      "legs": 64,
+      "wins": 32,
+      "pnl": -2.909,
+      "roi": -0.0455
+     },
+     "2022": {
+      "legs": 63,
+      "wins": 36,
+      "pnl": 5.727,
+      "roi": 0.0909
+     },
+     "2023": {
+      "legs": 64,
+      "wins": 30,
+      "pnl": -6.727,
+      "roi": -0.1051
+     },
+     "2024": {
+      "legs": 64,
+      "wins": 26,
+      "pnl": -14.364,
+      "roi": -0.2244
+     },
+     "2025": {
+      "legs": 64,
+      "wins": 29,
+      "pnl": -8.636,
+      "roi": -0.1349
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 319,
+     "detail": "319 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.4253700034949222,
+     "detail": "Wilson 95% lower 0.4254 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.08435451695639781,
+     "detail": "ROI -8.44% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 1,
+     "detail": "1/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9491020801848655,
+     "detail": "p=0.9491 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -0.7278602642426104,
+     "detail": "z=-0.73 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S18",
+   "name": "Heavy favourite cover",
+   "family": "market-structure",
+   "market": "spread",
+   "desc": "Home favourites of 7+ points.",
+   "gate_input": "model",
+   "development": {
+    "legs": 449,
+    "wins": 211,
+    "pushes": 16,
+    "hit_rate": 0.46993318485523383,
+    "ci_low": 0.42421924218207413,
+    "ci_high": 0.5161572417496287,
+    "break_even": 0.5238095238095238,
+    "roi": -0.06722008503745697,
+    "profit_units": -30.181818181818176,
+    "max_drawdown": -33.27272727272729,
+    "seasons": 8,
+    "profitable_seasons": 3,
+    "p_value": 0.9901779725284092,
+    "season_detail": {
+     "2013": {
+      "legs": 66,
+      "wins": 31,
+      "pnl": -4.818,
+      "roi": -0.073
+     },
+     "2014": {
+      "legs": 63,
+      "wins": 31,
+      "pnl": 0.182,
+      "roi": 0.0029
+     },
+     "2015": {
+      "legs": 53,
+      "wins": 21,
+      "pnl": -10.909,
+      "roi": -0.2058
+     },
+     "2016": {
+      "legs": 44,
+      "wins": 23,
+      "pnl": 1.909,
+      "roi": 0.0434
+     },
+     "2017": {
+      "legs": 58,
+      "wins": 33,
+      "pnl": 5.0,
+      "roi": 0.0862
+     },
+     "2018": {
+      "legs": 59,
+      "wins": 24,
+      "pnl": -11.182,
+      "roi": -0.1895
+     },
+     "2019": {
+      "legs": 52,
+      "wins": 21,
+      "pnl": -7.909,
+      "roi": -0.1521
+     },
+     "2020": {
+      "legs": 54,
+      "wins": 27,
+      "pnl": -2.455,
+      "roi": -0.0455
+     }
+    }
+   },
+   "holdout": {
+    "legs": 264,
+    "wins": 136,
+    "pushes": 6,
+    "hit_rate": 0.5151515151515151,
+    "ci_low": 0.4550816701852982,
+    "ci_high": 0.5747867453819329,
+    "break_even": 0.5238095238095237,
+    "roi": 0.006198347107438018,
+    "profit_units": 1.6363636363636367,
+    "max_drawdown": -18.909090909090914,
+    "seasons": 5,
+    "profitable_seasons": 2,
+    "p_value": 0.6343087803813906,
+    "season_detail": {
+     "2021": {
+      "legs": 71,
+      "wins": 41,
+      "pnl": 10.273,
+      "roi": 0.1447
+     },
+     "2022": {
+      "legs": 47,
+      "wins": 19,
+      "pnl": -8.727,
+      "roi": -0.1857
+     },
+     "2023": {
+      "legs": 46,
+      "wins": 22,
+      "pnl": -3.0,
+      "roi": -0.0652
+     },
+     "2024": {
+      "legs": 44,
+      "wins": 23,
+      "pnl": -0.091,
+      "roi": -0.0021
+     },
+     "2025": {
+      "legs": 56,
+      "wins": 31,
+      "pnl": 3.182,
+      "roi": 0.0568
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 264,
+     "detail": "264 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.4550816701852982,
+     "detail": "Wilson 95% lower 0.4551 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": 0.006198347107438018,
+     "detail": "ROI +0.62% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 2,
+     "detail": "2/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.6343087803813906,
+     "detail": "p=0.6343 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": 0.49236596391733045,
+     "detail": "z=0.49 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S19",
+   "name": "Rest-advantage spread",
+   "family": "schedule",
+   "market": "spread",
+   "desc": "Home team with 3+ more rest days than the visitor.",
+   "gate_input": "model",
+   "development": {
+    "legs": 204,
+    "wins": 93,
+    "pushes": 6,
+    "hit_rate": 0.45588235294117646,
+    "ci_low": 0.3889825442588461,
+    "ci_high": 0.5244129828083484,
+    "break_even": 0.5238095238095238,
+    "roi": -0.10026737967914438,
+    "profit_units": -20.454545454545453,
+    "max_drawdown": -30.72727272727272,
+    "seasons": 8,
+    "profitable_seasons": 2,
+    "p_value": 0.9779261303783275,
+    "season_detail": {
+     "2013": {
+      "legs": 30,
+      "wins": 17,
+      "pnl": 2.455,
+      "roi": 0.0818
+     },
+     "2014": {
+      "legs": 23,
+      "wins": 6,
+      "pnl": -10.545,
+      "roi": -0.4585
+     },
+     "2015": {
+      "legs": 19,
+      "wins": 9,
+      "pnl": -1.818,
+      "roi": -0.0957
+     },
+     "2016": {
+      "legs": 36,
+      "wins": 22,
+      "pnl": 8.0,
+      "roi": 0.2222
+     },
+     "2017": {
+      "legs": 24,
+      "wins": 7,
+      "pnl": -7.636,
+      "roi": -0.3182
+     },
+     "2018": {
+      "legs": 18,
+      "wins": 7,
+      "pnl": -4.636,
+      "roi": -0.2576
+     },
+     "2019": {
+      "legs": 28,
+      "wins": 12,
+      "pnl": -5.091,
+      "roi": -0.1818
+     },
+     "2020": {
+      "legs": 26,
+      "wins": 13,
+      "pnl": -1.182,
+      "roi": -0.0455
+     }
+    }
+   },
+   "holdout": {
+    "legs": 143,
+    "wins": 67,
+    "pushes": 5,
+    "hit_rate": 0.46853146853146854,
+    "ci_low": 0.3886396577120413,
+    "ci_high": 0.5500697499132573,
+    "break_even": 0.523809523809524,
+    "roi": -0.07056579783852512,
+    "profit_units": -10.090909090909093,
+    "max_drawdown": -13.454545454545453,
+    "seasons": 5,
+    "profitable_seasons": 1,
+    "p_value": 0.9203277309732454,
+    "season_detail": {
+     "2021": {
+      "legs": 29,
+      "wins": 14,
+      "pnl": -0.273,
+      "roi": -0.0094
+     },
+     "2022": {
+      "legs": 35,
+      "wins": 19,
+      "pnl": 3.273,
+      "roi": 0.0935
+     },
+     "2023": {
+      "legs": 26,
+      "wins": 13,
+      "pnl": -0.182,
+      "roi": -0.007
+     },
+     "2024": {
+      "legs": 26,
+      "wins": 11,
+      "pnl": -5.0,
+      "roi": -0.1923
+     },
+     "2025": {
+      "legs": 27,
+      "wins": 10,
+      "pnl": -7.909,
+      "roi": -0.2929
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 143,
+     "detail": "143 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.3886396577120413,
+     "detail": "Wilson 95% lower 0.3886 vs break-even 0.5238"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.07056579783852512,
+     "detail": "ROI -7.06% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 1,
+     "detail": "1/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9203277309732454,
+     "detail": "p=0.9203 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -0.7526178090063814,
+     "detail": "z=-0.75 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  },
+  {
+   "id": "S20",
+   "name": "Model moneyline dog 6pt+",
+   "family": "model-ml",
+   "market": "moneyline",
+   "desc": "Underdog moneylines where the model gives 6+ points more probability than the book.",
+   "gate_input": "model",
+   "development": {
+    "legs": 798,
+    "wins": 241,
+    "pushes": 0,
+    "hit_rate": 0.30200501253132833,
+    "ci_low": 0.2711606438977902,
+    "ci_high": 0.3347464883663942,
+    "break_even": 0.3176174752328577,
+    "roi": -0.06624060150375942,
+    "profit_units": -52.860000000000014,
+    "max_drawdown": -53.89999999999999,
+    "seasons": 8,
+    "profitable_seasons": 3,
+    "p_value": 0.8377766071574317,
+    "season_detail": {
+     "2013": {
+      "legs": 112,
+      "wins": 30,
+      "pnl": -18.57,
+      "roi": -0.1658
+     },
+     "2014": {
+      "legs": 84,
+      "wins": 28,
+      "pnl": -3.53,
+      "roi": -0.042
+     },
+     "2015": {
+      "legs": 71,
+      "wins": 28,
+      "pnl": 11.77,
+      "roi": 0.1658
+     },
+     "2016": {
+      "legs": 84,
+      "wins": 27,
+      "pnl": -4.64,
+      "roi": -0.0552
+     },
+     "2017": {
+      "legs": 103,
+      "wins": 29,
+      "pnl": -15.61,
+      "roi": -0.1516
+     },
+     "2018": {
+      "legs": 111,
+      "wins": 33,
+      "pnl": 6.45,
+      "roi": 0.0581
+     },
+     "2019": {
+      "legs": 110,
+      "wins": 37,
+      "pnl": 5.44,
+      "roi": 0.0495
+     },
+     "2020": {
+      "legs": 123,
+      "wins": 29,
+      "pnl": -34.17,
+      "roi": -0.2778
+     }
+    }
+   },
+   "holdout": {
+    "legs": 561,
+    "wins": 153,
+    "pushes": 0,
+    "hit_rate": 0.2727272727272727,
+    "ci_low": 0.23751239402666413,
+    "ci_high": 0.3110334926278963,
+    "break_even": 0.3093239972847614,
+    "roi": -0.16759358288770052,
+    "profit_units": -94.02,
+    "max_drawdown": -108.30999999999997,
+    "seasons": 5,
+    "profitable_seasons": 0,
+    "p_value": 0.9726347687612465,
+    "season_detail": {
+     "2021": {
+      "legs": 131,
+      "wins": 40,
+      "pnl": -8.53,
+      "roi": -0.0651
+     },
+     "2022": {
+      "legs": 112,
+      "wins": 31,
+      "pnl": -23.72,
+      "roi": -0.2118
+     },
+     "2023": {
+      "legs": 107,
+      "wins": 29,
+      "pnl": -7.81,
+      "roi": -0.073
+     },
+     "2024": {
+      "legs": 106,
+      "wins": 25,
+      "pnl": -34.76,
+      "roi": -0.3279
+     },
+     "2025": {
+      "legs": 105,
+      "wins": 28,
+      "pnl": -19.2,
+      "roi": -0.1829
+     }
+    }
+   },
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 561,
+     "detail": "561 legs (need 100)"
+    },
+    "G2_statistical": {
+     "pass": false,
+     "value": 0.23751239402666413,
+     "detail": "Wilson 95% lower 0.2375 vs break-even 0.3093"
+    },
+    "G3_economic": {
+     "pass": false,
+     "value": -0.16759358288770052,
+     "detail": "ROI -16.76% (floor 2.0%)"
+    },
+    "G4_stability": {
+     "pass": false,
+     "value": 0,
+     "detail": "0/5 seasons profitable (need 2/3)"
+    },
+    "G5_multiplicity": {
+     "pass": false,
+     "value": 0.9726347687612465,
+     "detail": "p=0.9726 vs 0.00083 (Bonferroni 60 tests)"
+    },
+    "G6_skill": {
+     "pass": false,
+     "value": -10.766108438479101,
+     "detail": "z=-10.77 vs 50% coin-flip (need 2.0)"
+    },
+    "G7_provenance": {
+     "pass": true,
+     "detail": "all input columns verified in provenance.json"
+    }
+   },
+   "verdict": "REJECTED",
+   "failed_gates": [
+    "G2_statistical",
+    "G3_economic",
+    "G4_stability",
+    "G5_multiplicity",
+    "G6_skill"
+   ]
+  }
+ ],
+ "summary": {
+  "total": 20,
+  "certified": 0,
+  "rejected": 20,
+  "best_holdout_roi": 0.43181818181818177
+ },
+ "generated_utc": "2026-11-12T04:54:10Z",
+ "gate_definitions": {
+  "G1_sample": ">= 100 settled legs",
+  "G2_statistical": "Wilson 95% lower bound on hit rate > break-even rate",
+  "G3_economic": "flat-stake ROI >= 2.0%",
+  "G4_stability": "profitable in >= 2/3 of holdout seasons",
+  "G5_multiplicity": "one-sided p < 0.05 / 60 (Bonferroni)",
+  "G6_skill": "z vs coin-flip >= 2.0",
+  "G7_provenance": "every input verified in provenance.json"
+ },
+ "reward_rules": {
+  "idea": "Leaderboard with rewards so the best strategies surface on merit.",
+  "points_formula": "points = ROI x 100 x sqrt(legs) x stability_factor - drawdown_penalty",
+  "stability_factor": "profitable_seasons / seasons",
+  "drawdown_penalty": "|max_drawdown| / 20",
+  "payout_tiers": [
+   {
+    "tier": "Tier 1 (only if CERTIFIED)",
+    "reward": "full allocation",
+    "requires": "all 7 gates"
+   },
+   {
+    "tier": "Tier 2 (research)",
+    "reward": "paper-trading only",
+    "requires": "G1-G3 pass, G4-G6 fail"
+   },
+   {
+    "tier": "Tier 3 (rejected)",
+    "reward": "no allocation, retained for learning",
+    "requires": "G1 or G2 fail"
+   }
+  ],
+  "note": "No strategy may be funded from a tier-2 or tier-3 slot regardless of its backtest ROI; this is the rule that stops lucky streaks receiving capital."
+ }
+}

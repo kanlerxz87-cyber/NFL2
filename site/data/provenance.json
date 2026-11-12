@@ -1,0 +1,187 @@
+{
+ "generated_utc": "2026-11-12T04:54:11Z",
+ "upstream": {
+  "repo": "leesharpe/nfldata",
+  "url": "https://github.com/leesharpe/nfldata",
+  "commit": "692e5f9f8ac9f4e2ee751c630817a7c290a04390",
+  "commit_date": "2026-11-12T03:45:18+00:00",
+  "license_note": "Repository publishes no LICENSE file; data is aggregated from Pro Football Reference and nflverse and redistributed publicly by the author. Treated as third-party, attribution given; see pipeline/data/SOURCES.md."
+ },
+ "official_sources": {
+  "nfl_rules_2025": {
+   "title": "2025 NFL Rulebook (official)",
+   "url": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/",
+   "publisher": "NFL Football Operations"
+  },
+  "nfl_rules_changes_2025": {
+   "title": "2025 Rules Changes (official)",
+   "url": "https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes/",
+   "publisher": "NFL Football Operations"
+  },
+  "nfl_injury_report": {
+   "title": "NFL Injury Report / Game Status policy (official)",
+   "url": "https://operations.nfl.com/player-health-safety/injury-report/",
+   "publisher": "NFL Football Operations"
+  },
+  "nfl_cba": {
+   "title": "Collective Bargaining Agreement (official PDF)",
+   "url": "https://operations.nfl.com/media/aitjth4b/2020-nfl-nflpa-cba.pdf",
+   "publisher": "NFL Football Operations"
+  },
+  "nfl_ir_rules": {
+   "title": "Injured Reserve rules (NFL Football Operations)",
+   "url": "https://operations.nfl.com/player-health-safety/nfl-injured-reserve/",
+   "publisher": "NFL Football Operations"
+  },
+  "nfl_roster_rules": {
+   "title": "Roster and practice-squad rules (NFL Football Operations)",
+   "url": "https://operations.nfl.com/player-health-safety/roster-and-practice-squad-rules/",
+   "publisher": "NFL Football Operations"
+  },
+  "nfl_scoring": {
+   "title": "NFL official statistics / scoring rules (Rule 11)",
+   "url": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/",
+   "publisher": "NFL Football Operations"
+  },
+  "nfldata_games": {
+   "title": "nfldata games.csv (schema + column definitions)",
+   "url": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md",
+   "publisher": "Lee Sharpe (nfldata), upstream of Pro Football Reference / nflverse"
+  },
+  "nfldata_rosters": {
+   "title": "nfldata rosters.csv (schema, games/starts/years/AV)",
+   "url": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters",
+   "publisher": "Lee Sharpe (nfldata), sourced from Pro Football Reference"
+  }
+ },
+ "files": [
+  {
+   "file": "games.csv",
+   "sha256": "8f051df19b4dde5f5e815ffff1079b5e06ca5d2d39e431bdda410608abd3033b",
+   "bytes": 2189964,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/games.csv",
+   "verified": true
+  },
+  {
+   "file": "rosters.csv",
+   "sha256": "0e9582602289c790348b08bd71d94103bb9ddbd3119b2ff8b5223d6c0fa01a39",
+   "bytes": 1606485,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/rosters.csv",
+   "verified": true
+  },
+  {
+   "file": "teams.csv",
+   "sha256": "b7cfab98e6ac35c684432f6ace65d6065b0b89b90e3a2e91116a69ae38e04d42",
+   "bytes": 90927,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/teams.csv",
+   "verified": true
+  },
+  {
+   "file": "officials.csv",
+   "sha256": "495f6d86bc12c145d2308268580701488aee65f9f17a402a3fcf3c5c3eb2c705",
+   "bytes": 2068251,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/officials.csv",
+   "verified": true
+  },
+  {
+   "file": "win_totals.csv",
+   "sha256": "6228fe8c2cf41b340a9df27dc862b63f3da765068ee7c09474397279c1b75c20",
+   "bytes": 12811,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/win_totals.csv",
+   "verified": true
+  },
+  {
+   "file": "closing_lines.csv",
+   "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729",
+   "bytes": 942229,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/closing_lines.csv",
+   "verified": true
+  },
+  {
+   "file": "initial_lines.csv",
+   "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+   "bytes": 45068,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/initial_lines.csv",
+   "verified": true
+  },
+  {
+   "file": "sc_lines.csv",
+   "sha256": "384039e92630831eaf4d851471ba9e521f4a7b0207d0d7da7d376c4a1cc5004e",
+   "bytes": 140765,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/sc_lines.csv",
+   "verified": true
+  },
+  {
+   "file": "standings.csv",
+   "sha256": "fbe2640037c449b1317bfe811f79cc7e01ff9aa05a2066c445849049629f0052",
+   "bytes": 56864,
+   "url": "https://github.com/leesharpe/nfldata/blob/master/data/standings.csv",
+   "verified": true
+  },
+  {
+   "file": "injuries/injuries_2024.csv",
+   "sha256": "498bce8e13cb64b2ab9bb0ad6cb81d0a63c2ddb24016c9fc90c2de2126fae449",
+   "bytes": 816989,
+   "url": "https://github.com/nflverse/nflverse-data/releases/tag/injuries",
+   "mirror": "https://github.com/Beexly/Sports/blob/main/data/nflverse/",
+   "verified": true,
+   "note": null
+  },
+  {
+   "file": "injuries/injuries_2025.csv",
+   "sha256": "873ca1606dd575bd01152508a243ef6b3a0f8f97b90b707217e62ee8c7ceb735",
+   "bytes": 696006,
+   "url": "https://github.com/nflverse/nflverse-data/releases/tag/injuries",
+   "mirror": "https://github.com/Beexly/Sports/blob/main/data/nflverse/",
+   "verified": true,
+   "note": null
+  },
+  {
+   "file": "injuries/injuries_2026.csv",
+   "sha256": "7ac1a6b6f69974ff172cea271f28dc01fca23c49ee170bcef7c1f4ac42549072",
+   "bytes": 309785,
+   "url": "https://github.com/nflverse/nflverse-data/releases/tag/injuries",
+   "mirror": "https://github.com/Beexly/Sports/blob/main/data/nflverse/",
+   "verified": false,
+   "note": "2026 mirror lags the official page by one week; official cross-check at https://www.nfl.com/injuries/"
+  },
+  {
+   "file": "depth/depth_charts_2024.parquet",
+   "sha256": "4c994b9d59b5f7941f9c2ea290d7d27707d9bf1cbd8c15b5806ca3f8cee53c0b",
+   "bytes": 492261,
+   "url": "https://github.com/nflverse/nflverse-data/releases/tag/depth_charts",
+   "mirror": "https://github.com/Beexly/Sports/blob/main/data/nflverse/",
+   "verified": true
+  },
+  {
+   "file": "dfs/DKSalaries_week9_main_2026-11-08.csv",
+   "sha256": "826169ceb4e7812a79c8e88d030a022c8c4187577430f69afd4fc5a3a296a57e",
+   "bytes": 57513,
+   "url": "DraftKings salary export (public DFS download)",
+   "verified": true,
+   "note": "Book's own export; availability flags are the book's, not the NFL's."
+  }
+ ],
+ "unavailable": [
+  {
+   "dataset": "player-prop line history",
+   "status": "UNVERIFIED / unavailable",
+   "why": "no licensed odds archive reachable from this environment"
+  },
+  {
+   "dataset": "snap counts",
+   "status": "unavailable",
+   "why": "published only as release assets above the API size limit"
+  },
+  {
+   "dataset": "depth charts for seasons other than 2024",
+   "status": "unavailable",
+   "why": "the only reachable mirror carries 2024"
+  },
+  {
+   "dataset": "official NFL live injury JSON for all 32 teams",
+   "status": "partial",
+   "why": "official page text was captured for the current week but the machine endpoint is blocked; weekly injury CSVs are used instead"
+  }
+ ]
+}

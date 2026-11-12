@@ -1,0 +1,833 @@
+{
+ "methods": [
+  "variance ratio",
+  "wilson lower bound vs break-even",
+  "chronological split-half",
+  "season-to-season persistence"
+ ],
+ "strategies": [
+  {
+   "id": "S01",
+   "name": "Model spread edge 3.0+",
+   "family": "model-spread",
+   "legs": 459,
+   "hit_rate": 0.5076,
+   "ci_low": 0.462,
+   "break_even": 0.5238,
+   "excess": -0.0162,
+   "variance_test": {
+    "legs": 459,
+    "wins": 233,
+    "theoretical_sd": 10.69999046347086,
+    "observed_sd": 10.710896860059897,
+    "sd_ratio": 1.0010192903093018,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 229,
+     "wins": 121,
+     "hit": 0.5283842794759825,
+     "roi": 0.026200873362445427
+    },
+    "second_half": {
+     "n": 230,
+     "wins": 112,
+     "hit": 0.48695652173913045,
+     "roi": -0.061660079051383404
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.41908665313196086,
+    "ci_low": -1.5409,
+    "ci_high": 2.3791,
+    "skill_share": 0.4191,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S02",
+   "name": "Model spread edge 4.0+",
+   "family": "model-spread",
+   "legs": 304,
+   "hit_rate": 0.5263,
+   "ci_low": 0.4702,
+   "break_even": 0.5238,
+   "excess": 0.0025,
+   "variance_test": {
+    "legs": 304,
+    "wins": 160,
+    "theoretical_sd": 8.707908152885684,
+    "observed_sd": 8.70571500132014,
+    "sd_ratio": 0.9997481425473215,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 152,
+     "wins": 82,
+     "hit": 0.5394736842105263,
+     "roi": 0.04964114832535885
+    },
+    "second_half": {
+     "n": 152,
+     "wins": 78,
+     "hit": 0.5131578947368421,
+     "roi": -0.007177033492822966
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.2470048392318461,
+    "ci_low": -1.713,
+    "ci_high": 2.207,
+    "skill_share": 0.247,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S03",
+   "name": "Model spread edge 5.0+",
+   "family": "model-spread",
+   "legs": 192,
+   "hit_rate": 0.526,
+   "ci_low": 0.4556,
+   "break_even": 0.5238,
+   "excess": 0.0022,
+   "variance_test": {
+    "legs": 192,
+    "wins": 101,
+    "theoretical_sd": 6.920343666508552,
+    "observed_sd": 6.918799871846755,
+    "sd_ratio": 0.9997769193646742,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 96,
+     "wins": 56,
+     "hit": 0.5833333333333334,
+     "roi": 0.14488636363636365
+    },
+    "second_half": {
+     "n": 96,
+     "wins": 45,
+     "hit": 0.46875,
+     "roi": -0.10511363636363637
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 4,
+    "correlation": 0.2902418792696315,
+    "ci_low": -1.6698,
+    "ci_high": 2.2502,
+    "skill_share": 0.2902,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S04",
+   "name": "Model total edge 3.0+",
+   "family": "model-total",
+   "legs": 515,
+   "hit_rate": 0.4932,
+   "ci_low": 0.4502,
+   "break_even": 0.5238,
+   "excess": -0.0306,
+   "variance_test": {
+    "legs": 515,
+    "wins": 254,
+    "theoretical_sd": 11.333933557535147,
+    "observed_sd": 11.345757515134588,
+    "sd_ratio": 1.0010432351256886,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 257,
+     "wins": 124,
+     "hit": 0.48249027237354086,
+     "roi": -0.07110010611956134
+    },
+    "second_half": {
+     "n": 258,
+     "wins": 130,
+     "hit": 0.5038759689922481,
+     "roi": -0.03030303030303029
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.5040606248722058,
+    "ci_low": -1.4559,
+    "ci_high": 2.4641,
+    "skill_share": 0.5041,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even"
+  },
+  {
+   "id": "S05",
+   "name": "Model total edge 4.0+",
+   "family": "model-total",
+   "legs": 338,
+   "hit_rate": 0.4527,
+   "ci_low": 0.4004,
+   "break_even": 0.5238,
+   "excess": -0.0711,
+   "variance_test": {
+    "legs": 338,
+    "wins": 153,
+    "theoretical_sd": 9.18196003164225,
+    "observed_sd": 9.151098488722315,
+    "sd_ratio": 0.9966388937859039,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 169,
+     "wins": 79,
+     "hit": 0.46745562130177515,
+     "roi": -0.10166756320602476
+    },
+    "second_half": {
+     "n": 169,
+     "wins": 74,
+     "hit": 0.4378698224852071,
+     "roi": -0.14631522323830015
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.10335194815359185,
+    "ci_low": -1.8566,
+    "ci_high": 2.0634,
+    "skill_share": 0.1034,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even"
+  },
+  {
+   "id": "S06",
+   "name": "QB-change fade",
+   "family": "availability",
+   "legs": 381,
+   "hit_rate": 0.4646,
+   "ci_low": 0.4151,
+   "break_even": 0.5238,
+   "excess": -0.0592,
+   "variance_test": {
+    "legs": 381,
+    "wins": 177,
+    "theoretical_sd": 9.748539049798293,
+    "observed_sd": 9.735073371233884,
+    "sd_ratio": 0.9986186977868559,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 190,
+     "wins": 88,
+     "hit": 0.4631578947368421,
+     "roi": -0.07894736842105263
+    },
+    "second_half": {
+     "n": 191,
+     "wins": 89,
+     "hit": 0.46596858638743455,
+     "roi": -0.08424559733460256
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": -0.5485106618130655,
+    "ci_low": -2.5085,
+    "ci_high": 1.4115,
+    "skill_share": 0.0,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; season-to-season edge does not persist"
+  },
+  {
+   "id": "S07",
+   "name": "Off-bye home team",
+   "family": "schedule",
+   "legs": 71,
+   "hit_rate": 0.4507,
+   "ci_low": 0.3405,
+   "break_even": 0.5238,
+   "excess": -0.0731,
+   "variance_test": {
+    "legs": 71,
+    "wins": 32,
+    "theoretical_sd": 4.208295446721086,
+    "observed_sd": 4.192548722284857,
+    "sd_ratio": 0.9962581704075703,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 35,
+     "wins": 16,
+     "hit": 0.45714285714285713,
+     "roi": -0.04155844155844157
+    },
+    "second_half": {
+     "n": 36,
+     "wins": 16,
+     "hit": 0.4444444444444444,
+     "roi": -0.1515151515151515
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 0,
+    "correlation": null,
+    "note": "needs >=4 seasons with >=25 legs; got 0"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even"
+  },
+  {
+   "id": "S08",
+   "name": "Short-week fade",
+   "family": "schedule",
+   "legs": 91,
+   "hit_rate": 0.4725,
+   "ci_low": 0.3732,
+   "break_even": 0.5238,
+   "excess": -0.0513,
+   "variance_test": {
+    "legs": 91,
+    "wins": 43,
+    "theoretical_sd": 4.764285119345052,
+    "observed_sd": 4.762490806428783,
+    "sd_ratio": 0.9996233825492552,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 45,
+     "wins": 19,
+     "hit": 0.4222222222222222,
+     "roi": -0.10505050505050506
+    },
+    "second_half": {
+     "n": 46,
+     "wins": 24,
+     "hit": 0.5217391304347826,
+     "roi": -0.003952569169960473
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 0,
+    "correlation": null,
+    "note": "needs >=4 seasons with >=25 legs; got 0"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even"
+  },
+  {
+   "id": "S09",
+   "name": "Divisional home dog + model",
+   "family": "market-structure",
+   "legs": 100,
+   "hit_rate": 0.43,
+   "ci_low": 0.3373,
+   "break_even": 0.5238,
+   "excess": -0.0938,
+   "variance_test": {
+    "legs": 100,
+    "wins": 43,
+    "theoretical_sd": 4.994327848429293,
+    "observed_sd": 4.950757517794625,
+    "sd_ratio": 0.9912760371451445,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 50,
+     "wins": 23,
+     "hit": 0.46,
+     "roi": -0.1218181818181818
+    },
+    "second_half": {
+     "n": 50,
+     "wins": 20,
+     "hit": 0.4,
+     "roi": -0.21636363636363637
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 1,
+    "correlation": null,
+    "note": "needs >=4 seasons with >=25 legs; got 1"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even"
+  },
+  {
+   "id": "S10",
+   "name": "Moneyline value 4pt+",
+   "family": "model-ml",
+   "legs": 792,
+   "hit_rate": 0.3056,
+   "ci_low": 0.2745,
+   "break_even": 0.3434,
+   "excess": -0.0378,
+   "variance_test": {
+    "legs": 792,
+    "wins": 242,
+    "theoretical_sd": 13.363226688010121,
+    "observed_sd": 12.963624321753372,
+    "sd_ratio": 0.9700968654063704,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 396,
+     "wins": 123,
+     "hit": 0.3106060606060606,
+     "roi": -0.14239641269287348
+    },
+    "second_half": {
+     "n": 396,
+     "wins": 119,
+     "hit": 0.3005050505050505,
+     "roi": -0.1423783735082309
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": -0.9503124903656208,
+    "ci_low": -2.9103,
+    "ci_high": 1.0097,
+    "skill_share": 0.0,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; season-to-season edge does not persist"
+  },
+  {
+   "id": "S11",
+   "name": "Cold-weather under",
+   "family": "environment",
+   "legs": 4,
+   "hit_rate": 0.75,
+   "ci_low": 0.3006,
+   "break_even": 0.5238,
+   "excess": 0.2262,
+   "variance_test": {
+    "legs": 4,
+    "wins": 3,
+    "theoretical_sd": 0.9988655696858586,
+    "observed_sd": 0.8660254037844386,
+    "sd_ratio": 0.867008965037009,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 2,
+     "wins": 2,
+     "hit": 1.0,
+     "roi": 0.9090909090909091
+    },
+    "second_half": {
+     "n": 2,
+     "wins": 1,
+     "hit": 0.5,
+     "roi": -0.04545454545454547
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 0,
+    "correlation": null,
+    "note": "needs >=4 seasons with >=25 legs; got 0"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S12",
+   "name": "Wind under",
+   "family": "environment",
+   "legs": 88,
+   "hit_rate": 0.6023,
+   "ci_low": 0.4978,
+   "break_even": 0.5238,
+   "excess": 0.0785,
+   "variance_test": {
+    "legs": 88,
+    "wins": 53,
+    "theoretical_sd": 4.685094809999559,
+    "observed_sd": 4.591246612255266,
+    "sd_ratio": 0.979968772981074,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 44,
+     "wins": 31,
+     "hit": 0.7045454545454546,
+     "roi": 0.3450413223140495
+    },
+    "second_half": {
+     "n": 44,
+     "wins": 22,
+     "hit": 0.5,
+     "roi": -0.02272727272727274
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 1,
+    "correlation": null,
+    "note": "needs >=4 seasons with >=25 legs; got 1"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S13",
+   "name": "Primetime home dog",
+   "family": "market-structure",
+   "legs": 170,
+   "hit_rate": 0.4647,
+   "ci_low": 0.3913,
+   "break_even": 0.5238,
+   "excess": -0.0591,
+   "variance_test": {
+    "legs": 170,
+    "wins": 79,
+    "theoretical_sd": 6.511806824370163,
+    "observed_sd": 6.502940511346974,
+    "sd_ratio": 0.9986384250543171,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 85,
+     "wins": 34,
+     "hit": 0.4,
+     "roi": -0.2010695187165775
+    },
+    "second_half": {
+     "n": 85,
+     "wins": 45,
+     "hit": 0.5294117647058824,
+     "roi": 0.0342245989304813
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.1273763091701786,
+    "ci_low": -1.8326,
+    "ci_high": 2.0874,
+    "skill_share": 0.1274,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S14",
+   "name": "Thursday short-week home",
+   "family": "schedule",
+   "legs": 86,
+   "hit_rate": 0.5,
+   "ci_low": 0.3966,
+   "break_even": 0.5238,
+   "excess": -0.0238,
+   "variance_test": {
+    "legs": 86,
+    "wins": 43,
+    "theoretical_sd": 4.631549110776316,
+    "observed_sd": 4.636809247747852,
+    "sd_ratio": 1.001135718707872,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 43,
+     "wins": 18,
+     "hit": 0.4186046511627907,
+     "roi": -0.10782241014799156
+    },
+    "second_half": {
+     "n": 43,
+     "wins": 25,
+     "hit": 0.5813953488372093,
+     "roi": 0.1099365750528541
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 0,
+    "correlation": null,
+    "note": "needs >=4 seasons with >=25 legs; got 0"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S15",
+   "name": "Large-loss overreaction fade",
+   "family": "behaviour",
+   "legs": 356,
+   "hit_rate": 0.5,
+   "ci_low": 0.4483,
+   "break_even": 0.5238,
+   "excess": -0.0238,
+   "variance_test": {
+    "legs": 356,
+    "wins": 178,
+    "theoretical_sd": 9.423278937877361,
+    "observed_sd": 9.433981132056603,
+    "sd_ratio": 1.0011357187078718,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 178,
+     "wins": 81,
+     "hit": 0.4550561797752809,
+     "roi": -0.10878447395301327
+    },
+    "second_half": {
+     "n": 178,
+     "wins": 97,
+     "hit": 0.5449438202247191,
+     "roi": 0.045965270684371805
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": -0.3284033243242188,
+    "ci_low": -2.2884,
+    "ci_high": 1.6316,
+    "skill_share": 0.0,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves; season-to-season edge does not persist"
+  },
+  {
+   "id": "S16",
+   "name": "Divisional under",
+   "family": "market-structure",
+   "legs": 480,
+   "hit_rate": 0.5083,
+   "ci_low": 0.4637,
+   "break_even": 0.5238,
+   "excess": -0.0155,
+   "variance_test": {
+    "legs": 480,
+    "wins": 244,
+    "theoretical_sd": 10.942024088643864,
+    "observed_sd": 10.952929592883663,
+    "sd_ratio": 1.0009966624229165,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 240,
+     "wins": 129,
+     "hit": 0.5375,
+     "roi": 0.03863636363636362
+    },
+    "second_half": {
+     "n": 240,
+     "wins": 115,
+     "hit": 0.4791666666666667,
+     "roi": -0.08522727272727272
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": -0.13469181630152655,
+    "ci_low": -2.0947,
+    "ci_high": 1.8253,
+    "skill_share": 0.0,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves; season-to-season edge does not persist"
+  },
+  {
+   "id": "S17",
+   "name": "Late-season under",
+   "family": "schedule",
+   "legs": 319,
+   "hit_rate": 0.4796,
+   "ci_low": 0.4254,
+   "break_even": 0.5238,
+   "excess": -0.0442,
+   "variance_test": {
+    "legs": 319,
+    "wins": 153,
+    "theoretical_sd": 8.920154763104305,
+    "observed_sd": 8.92286696409479,
+    "sd_ratio": 1.0003040531316456,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 159,
+     "wins": 82,
+     "hit": 0.5157232704402516,
+     "roi": -0.01543739279588337
+    },
+    "second_half": {
+     "n": 160,
+     "wins": 71,
+     "hit": 0.44375,
+     "roi": -0.15284090909090908
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.2611922109345332,
+    "ci_low": -1.6988,
+    "ci_high": 2.2212,
+    "skill_share": 0.2612,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even"
+  },
+  {
+   "id": "S18",
+   "name": "Heavy favourite cover",
+   "family": "market-structure",
+   "legs": 264,
+   "hit_rate": 0.5152,
+   "ci_low": 0.4551,
+   "break_even": 0.5238,
+   "excess": -0.0087,
+   "variance_test": {
+    "legs": 264,
+    "wins": 136,
+    "theoretical_sd": 8.114822249196493,
+    "observed_sd": 8.120307502760836,
+    "sd_ratio": 1.0006759548633226,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 132,
+     "wins": 69,
+     "hit": 0.5227272727272727,
+     "roi": 0.04338842975206612
+    },
+    "second_half": {
+     "n": 132,
+     "wins": 67,
+     "hit": 0.5075757575757576,
+     "roi": -0.030991735537190063
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": -0.46798766577212436,
+    "ci_low": -2.428,
+    "ci_high": 1.492,
+    "skill_share": 0.0,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves; season-to-season edge does not persist"
+  },
+  {
+   "id": "S19",
+   "name": "Rest-advantage spread",
+   "family": "schedule",
+   "legs": 143,
+   "hit_rate": 0.4685,
+   "ci_low": 0.3886,
+   "break_even": 0.5238,
+   "excess": -0.0553,
+   "variance_test": {
+    "legs": 143,
+    "wins": 67,
+    "theoretical_sd": 5.972347464805008,
+    "observed_sd": 5.96727673301579,
+    "sd_ratio": 0.9991509650402794,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 71,
+     "wins": 36,
+     "hit": 0.5070422535211268,
+     "roi": 0.024327784891165178
+    },
+    "second_half": {
+     "n": 72,
+     "wins": 31,
+     "hit": 0.4305555555555556,
+     "roi": -0.16414141414141417
+    },
+    "same_sign_roi": false
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": 0.7144852593168454,
+    "ci_low": -1.2455,
+    "ci_high": 2.6745,
+    "skill_share": 0.7145,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; ROI sign flips between halves"
+  },
+  {
+   "id": "S20",
+   "name": "Model moneyline dog 6pt+",
+   "family": "model-ml",
+   "legs": 561,
+   "hit_rate": 0.2727,
+   "ci_low": 0.2375,
+   "break_even": 0.3093,
+   "excess": -0.0366,
+   "variance_test": {
+    "legs": 561,
+    "wins": 153,
+    "theoretical_sd": 10.947763852749564,
+    "observed_sd": 10.54858887589839,
+    "sd_ratio": 0.9635382181950409,
+    "interpretation": "sd_ratio near 1.0 = indistinguishable from chance"
+   },
+   "split_half": {
+    "first_half": {
+     "n": 280,
+     "wins": 83,
+     "hit": 0.29642857142857143,
+     "roi": -0.1237857142857143
+    },
+    "second_half": {
+     "n": 281,
+     "wins": 70,
+     "hit": 0.2491103202846975,
+     "roi": -0.2112455516014235
+    },
+    "same_sign_roi": true
+   },
+   "persistence": {
+    "seasons": 5,
+    "correlation": -0.5501300433829047,
+    "ci_low": -2.5101,
+    "ci_high": 1.4099,
+    "skill_share": 0.0,
+    "note": "share of a season's edge that repeats the next season; 0 = pure luck"
+   },
+   "luck_verdict": "LUCK-DOMINATED: hit rate not distinguishable from break-even; season-to-season edge does not persist"
+  }
+ ],
+ "generated_utc": "2026-11-12T04:54:10Z"
+}

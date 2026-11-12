@@ -1,0 +1,220 @@
+{
+ "prop_correlation": {
+  "verified": false,
+  "status": "UNVERIFIED",
+  "why": "No historical player-prop line archive is reachable from this environment. Prop-to-prop correlations therefore cannot be measured from outcomes, and no number is published rather than an estimate.",
+  "what_would_fix_it": [
+   "A licensed prop-line history (e.g. a sportsbook API or a paid odds archive) for at least three seasons, with closing prices.",
+   "Player-week box scores joined by game id, so each prop can be settled.",
+   "Enough same-game prop pairs to estimate a phi coefficient per pair."
+  ],
+  "structural_relationships_only": [
+   {
+    "leg_a": "QB passing yards OVER",
+    "leg_b": "WR receiving yards OVER",
+    "sign": "+",
+    "reason": "the same completions produce both; a parlay of the two is one bet on the passing game, not two independent bets."
+   },
+   {
+    "leg_a": "QB passing TDs OVER",
+    "leg_b": "WR/TE receiving TDs OVER",
+    "sign": "+",
+    "reason": "a touchdown pass is the receiving touchdown; the two legs are almost the same event."
+   },
+   {
+    "leg_a": "RB rushing yards OVER",
+    "leg_b": "Team total OVER",
+    "sign": "+",
+    "reason": "a run-heavy game script raises both."
+   },
+   {
+    "leg_a": "RB rushing yards OVER",
+    "leg_b": "WR receiving yards OVER",
+    "sign": "-",
+    "reason": "run-heavy and pass-heavy game scripts trade off against each other."
+   },
+   {
+    "leg_a": "Team A moneyline",
+    "leg_b": "Team A skill player OVER",
+    "sign": "+",
+    "reason": "winning teams run more plays and keep the ball."
+   },
+   {
+    "leg_a": "Game total OVER",
+    "leg_b": "QB passing yards OVER",
+    "sign": "+",
+    "reason": "a higher-scoring game is usually a higher-volume passing game."
+   },
+   {
+    "leg_a": "Sacks OVER (defence)",
+    "leg_b": "Opponent passing yards UNDER",
+    "sign": "+",
+    "reason": "sacks end drives and suppress passing volume."
+   },
+   {
+    "leg_a": "Kicking points OVER",
+    "leg_b": "Game total UNDER",
+    "sign": "+",
+    "reason": "field goals replace touchdowns in low-scoring games."
+   }
+  ]
+ },
+ "team_score_correlation": {
+  "n_games": 3404,
+  "corr_home_score_away_score": -0.0303,
+  "interpretation": "Scores are close to uncorrelated, so opposing team-total overs are closer to independent than the pace story implies."
+ },
+ "slate": {
+  "available": true,
+  "source": "DraftKings main-slate salary export, Week 9 2026 (11/08/2026), mirrored in-repo at pipeline/data/raw/dfs/",
+  "verified": true,
+  "rows": 570,
+  "games": [
+   {
+    "game": "ARI@SEA",
+    "players": 54,
+    "qb": 6,
+    "rb": 15,
+    "wr": 19,
+    "te": 12
+   },
+   {
+    "game": "CLE@NO",
+    "players": 50,
+    "qb": 7,
+    "rb": 13,
+    "wr": 16,
+    "te": 12
+   },
+   {
+    "game": "DAL@IND",
+    "players": 48,
+    "qb": 6,
+    "rb": 9,
+    "wr": 19,
+    "te": 12
+   },
+   {
+    "game": "DEN@CAR",
+    "players": 52,
+    "qb": 6,
+    "rb": 12,
+    "wr": 20,
+    "te": 12
+   },
+   {
+    "game": "DET@MIA",
+    "players": 49,
+    "qb": 6,
+    "rb": 11,
+    "wr": 18,
+    "te": 12
+   },
+   {
+    "game": "GB@NE",
+    "players": 52,
+    "qb": 6,
+    "rb": 11,
+    "wr": 20,
+    "te": 13
+   },
+   {
+    "game": "HOU@LAC",
+    "players": 52,
+    "qb": 7,
+    "rb": 12,
+    "wr": 20,
+    "te": 11
+   },
+   {
+    "game": "LAR@WAS",
+    "players": 52,
+    "qb": 8,
+    "rb": 11,
+    "wr": 18,
+    "te": 13
+   },
+   {
+    "game": "LV@SF",
+    "players": 54,
+    "qb": 6,
+    "rb": 13,
+    "wr": 22,
+    "te": 11
+   },
+   {
+    "game": "NYG@PHI",
+    "players": 55,
+    "qb": 8,
+    "rb": 13,
+    "wr": 21,
+    "te": 11
+   },
+   {
+    "game": "NYJ@KC",
+    "players": 52,
+    "qb": 6,
+    "rb": 13,
+    "wr": 20,
+    "te": 11
+   }
+  ],
+  "status_counts": {
+   "active": 457,
+   "IR": 75,
+   "Q": 30,
+   "OUT": 7,
+   "D": 1
+  },
+  "note_on_status": "IR / OUT / Q / D flags are the book's own availability markers on this export. They are not the NFL's official designations and must be cross-checked against the official injury report before use."
+ },
+ "parlay_vig": [
+  {
+   "legs": 2,
+   "book_decimal_odds": 3.6446,
+   "book_american": 264,
+   "book_implied_prob": 0.274376,
+   "fair_implied_prob_50_50": 0.25,
+   "hold_pct": 8.884,
+   "fair_american": 300
+  },
+  {
+   "legs": 3,
+   "book_decimal_odds": 6.9579,
+   "book_american": 596,
+   "book_implied_prob": 0.143721,
+   "fair_implied_prob_50_50": 0.125,
+   "hold_pct": 13.026,
+   "fair_american": 700
+  },
+  {
+   "legs": 4,
+   "book_decimal_odds": 13.2833,
+   "book_american": 1228,
+   "book_implied_prob": 0.075282,
+   "fair_implied_prob_50_50": 0.0625,
+   "hold_pct": 16.979,
+   "fair_american": 1500
+  },
+  {
+   "legs": 5,
+   "book_decimal_odds": 25.3591,
+   "book_american": 2436,
+   "book_implied_prob": 0.039434,
+   "fair_implied_prob_50_50": 0.03125,
+   "hold_pct": 20.753,
+   "fair_american": 3100
+  },
+  {
+   "legs": 6,
+   "book_decimal_odds": 48.4127,
+   "book_american": 4741,
+   "book_implied_prob": 0.020656,
+   "fair_implied_prob_50_50": 0.015625,
+   "hold_pct": 24.355,
+   "fair_american": 6300
+  }
+ ],
+ "recommendation": "Until prop history exists, price player-prop combos with the structural sign map plus a wide safety margin, and treat the game-level correlations in correlation.json as the only verified correlation inputs.",
+ "generated_utc": "2026-11-12T04:54:10Z"
+}
