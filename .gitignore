@@ -1,15 +1,18 @@
-# Combined ignore rules from all parallel sessions (merged, nothing discarded)
 # local scratch
 .arena/
-.cache/
 __pycache__/
-*.pyc
+*.py[cod]
 .venv/
 node_modules/
+.DS_Store
+*.tmp
+# Combined ignore rules from all parallel sessions (merged, nothing discarded)
+# local scratch
+.cache/
+*.pyc
 pipeline/.cache/
 pipeline/out/
 # Local scratch / editor / OS files
-.DS_Store
 *.swp
 *~
 .idea/

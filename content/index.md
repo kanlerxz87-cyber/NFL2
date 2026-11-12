@@ -1,0 +1,76 @@
+# NFL2 — Decision Dashboard
+> Collect, organise and analyse NFL data so we can originate our own lines, rank strategies on a leaderboard that must survive validation gates, and publish every number with the official source it came from.
+
+{{kpis}}
+
+## Read this first
+
+This site has two kinds of pages and they never mix on one page without a divider:
+
+- **Measured** (green badge) — tables generated from `data/*.csv`, every row carrying a link to the official league page it was transcribed from.
+- **Specified** (blue badge) — the design of the pricing engine, signals, gates and competition rules. These are proposals, not results.
+- **Decisions** (amber badge) — the [question register](questions.html), the [suggestion register](suggestions.html) and the [review queue](flagged-for-review.html). Nothing on these pages has been implemented on your instruction.
+
+There are no scores, no model outputs and no edges on this site, because none exist yet. Blank cells are rendered as `not published` rather than filled with an estimate — see [verification method](methodology.html).
+
+## What the repository held at the start of this session
+
+| Item | State found | Where checked |
+| --- | --- | --- |
+| Tracked files | 1 (`README.md`, 6 bytes, contents `# NFL2`) | [repository root](https://github.com/kanlerxz87-cyber/NFL2) |
+| Commits | 1 — `01f2271 Initial commit` | `git log` |
+| Requirements document | none | repository root |
+| Code, data, tests, CI | none | repository root |
+| GitHub Pages | already configured: legacy build, branch `main`, path `/` | GitHub Pages API |
+
+Everything on this site was therefore created in this session, in one branch, against the brief you wrote. The requirement list in the brief is now [a tracked file](requirements.html) so it stops living only in chat.
+
+## State of the workstreams
+
+| Workstream | State | Evidence in repo | Blocking |
+| --- | --- | --- | --- |
+| Injury and availability collection | running — 254 rows, 28 clubs, Week 10 | `data/injuries_2026_wk10.csv` | one filing per week, not three (FL-09) |
+| Depth, IR and roster events | running — 227 rows | `data/depth_changes_2026_wk10.csv` | no official depth chart exists (FL-06) |
+| Standings and schedule | running — 32 + 14 rows, reconciled | `data/standings_2026.csv`, `data/schedule_2026_wk10.csv` | seven official columns left out (FL-07) |
+| Line origination | specified only | `content/line-origination.md` | no price data of any kind (FL-10) |
+| Signal catalogue | specified — 18 families, 6 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
+| Strategy registry | 14 entries, none tracked | `data/strategies.csv` | pre-registration + tracking ledger |
+| Validation gates | 14 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |
+| Correlation | method defined; 12 pair classes; **no rho asserted** | `data/correlation.csv` | joint-outcome data (Q-12) |
+| Skill-vs-luck protocol | derived and computed in-repo | `content/skill-vs-luck.md` | sample must still be collected |
+| Competition and rewards | tiers and rules written; payout mechanism unfunded | `content/leaderboard.md` | owner decision (Q-26) |
+
+## The blocking chain
+
+Four items sit in front of almost everything else. They are decisions and access, not coding:
+
+1. **Prices.** Without an opening and closing price per market there is no vig to strip, no fair value to deviate from, no CLV to measure skill with, and no way to know whether a line we originate is right. This is [Q-01](questions.html) and it blocks 9 of 14 gates.
+2. **Player-level entitlement.** Snaps, routes and targets are what turn "a starter is out" into "the replacement costs 2.1 yards per carry". This is [Q-02](questions.html).
+3. **A defensible depth answer.** The league publishes no depth chart, so "2nd/3rd/4th string replacing a starter" must be reconstructed from roster status, participation, designations and actual playing time ([S-06](suggestions.html), [FL-06](flagged-for-review.html)).
+4. **Point-in-time storage.** Three filings a week and a dated event log, or the availability signals cannot be built at all ([FL-09](flagged-for-review.html)).
+
+## Page map
+
+| Category | Page | What you get |
+| --- | --- | --- |
+| Overview | [Executive summary](executive-summary.html) | the whole project in one read |
+| Overview | [Requirements](requirements.html) | {{metric requirements}} requirements, each traced to a page and a status |
+| Overview | [Build plan](roadmap.html) | ordered work after your decisions |
+| Decisions | [Open questions](questions.html) | {{metric questions}} questions with what we have / what we lack / how to close |
+| Decisions | [Suggestion register](suggestions.html) | {{metric suggestions}} suggestions with impact, effort, risk, reversibility — pick a path |
+| Decisions | [Flagged for review](flagged-for-review.html) | {{metric flags}} irregularities and unverifiable items, with source links |
+| Origination | [Originate our own lines](line-origination.html) | model architecture, inputs, no-vig math, publication of residuals |
+| Origination | [Signals](signals.html) | 18 signal families with decay, capacity and blocking gate |
+| Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos |
+| Origination | [Bet types](bet-types.html) | singles, parlays and prop combos priced consistently |
+| Origination | [Removing luck](skill-vs-luck.html) | sample sizes, CLV, bootstrap, split-half, luck-adjusted P&L |
+| Competition | [Strategy registry](strategies.html) | 14 entries including two negative controls |
+| Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
+| Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
+| Data | [Week 10 injury report](injuries.html) | all 254 official rows, per-row source links |
+| Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
+| Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
+| Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
+| Governance | [Verification method](methodology.html) | the rules this project will not bend |
+| Governance | [Source registry](sources.html) → *Parallel builds* | three other trees exist and are labelled: this session's audited dashboard is the root; [review/index.html](review/index.html) is session `01b698ef`'s register dashboard (16 pages, own CI); [archive/session-009ec582/index.html](archive/session-009ec582/index.html) and [docs/index.html](docs/index.html) are `009ec582`'s two builds; [portal/index.html](portal/index.html) is session `e143a7ca`'s 10-page quantitative portal with its own engine and verifier. Only the game log was adopted here, after re-audit |
+| Governance | [Source registry](sources.html) | {{metric sources}} sources with tier, access time and what each was used for |

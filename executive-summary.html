@@ -1,65 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Executive Summary — NFL2</title>
-<meta name="description" content="Executive summary of verified 2026 NFL data, the originated-lines system, and what must be decided next.">
+<title>Executive Summary · NFL2</title>
+<meta name="description" content="What exists, what is verified, what is missing, and the four decisions that unlock the rest — for Week 10 of the 2026 season, fetched 12 November 2026.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-<header class="top"><div class="wrap">
-  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Executive summary</span><span class="tag">2026-11-12</span></div>
-  <nav class="main" aria-label="Main">
-    <a href="index.html">Dashboard</a><a class="active" href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
-  </nav>
-</div></header>
-<main><div class="wrap">
-  <h1>Executive Summary</h1>
-  <p class="lead">What we know (verified), what we can build (model), and what we must decide before spending effort. One page, no new numbers — everything below links to its detail page.</p>
-
-  <h2>1 · Where the league stands (verified 2026-11-12)</h2>
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Fact</th><th>Value</th><th>Detail</th></tr></thead>
-    <tbody>
-      <tr><td>League leaders</td><td>BUF 7-1 (.875) in AFC; SF 7-1 (.875) in NFC</td><td><a href="standings.html">Standings</a> · <a href="https://www.nfl.com/standings/division/2026/reg">NFL.com</a></td></tr>
-      <tr><td>Strongest point differential</td><td>JAX +108 (229 PF / 121 PA) — best net in the league on this snapshot</td><td><a href="standings.html">Standings</a></td></tr>
-      <tr><td>Winless</td><td>LAC 0-8 (.000), net −98</td><td><a href="standings.html">Standings</a></td></tr>
-      <tr><td>Next slate</td><td>Week 11: 13 games, Thu Nov 19 – Mon Nov 23; 6 byes (ATL, CLE, GB, LAR, NE, SEA)</td><td><a href="schedule.html">Schedule</a> · <a href="https://www.nfl.com/news/week-11-schedule-change">NFL.com</a></td></tr>
-      <tr><td>Week 10 injuries (summary)</td><td>5 OUT (WAS ×2, NE ×3) + 1 Questionable (NYG ×1). Other 12 games: no designation in summary — unverified, check full report.</td><td><a href="injuries.html">Injuries</a> · <a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
-      <tr><td>Rules anchor</td><td>TD 6 · FG 3 · Safety 2 · Try 1/2 (NFL Official Playing Rules)</td><td><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf">Rules PDF</a></td></tr>
-    </tbody>
-  </table></div>
-
-  <h2>2 · The system we are building</h2>
-  <ul>
-    <li><strong>Verified data layer</strong> — standings, schedule, injuries transcribed from NFL.com with per-row source links (<a href="standings.html">Standings</a>, <a href="schedule.html">Schedule</a>, <a href="injuries.html">Injuries</a>). Anything unverified stays blank and flagged.</li>
-    <li><strong>Lines Lab</strong> — originate your own fair spread/total/moneyline from verified inputs with fully shown math (<a href="lines-lab.html">Lines Lab</a>). Baseline v0 is live; opponent-adjusted v1+ is the next build.</li>
-    <li><strong>Strategy Leaderboard</strong> — single bets, parlays, and prop combos compete under validation gates G1–G7 (pre-registration, sample size, out-of-sample, CLV, ROI with CI, correlation, stability) so luck cannot rank (<a href="strategies.html">Leaderboard</a>). No results claimed yet.</li>
-    <li><strong>Injury &amp; depth tracker</strong> — starter-out → replacement → deficiency signal, filled only from official reports + team depth charts (<a href="injuries.html">Injuries</a>). Depth charts are the current bottleneck (F-03).</li>
-  </ul>
-
-  <h2>3 · What we do NOT know yet (decision blockers)</h2>
-  <ul>
-    <li><strong>Play-by-play / EPA data</strong> — needed for v2 ratings and real backtests (Q-04, Q-05).</li>
-    <li><strong>Historical odds (open + close)</strong> — needed for CLV and ROI; without them the leaderboard cannot run (Q-05).</li>
-    <li><strong>Official depth charts</strong> — needed to quantify backup deficiencies (Q-07, F-03).</li>
-    <li><strong>Market-line capture method</strong> — which licensed books, timestamps, and storage for “market vs your fair” comparisons (Q-06).</li>
-  </ul>
-  <p>Full register: <a href="questions.html">Questions &amp; Gaps</a>. Proposed next builds ranked by impact: <a href="suggestions.html">Suggestions Board</a>.</p>
-
-  <h2>4 · Recommended path (pick one — see Suggestions Board)</h2>
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Path</th><th>First step</th><th>Unblocks</th></tr></thead>
-    <tbody>
-      <tr><td><strong>A · Data first</strong> (recommended)</td><td>Secure play-by-play + historical odds; build v1 opponent-adjusted ratings</td><td>Real backtests, leaderboard, prop models</td></tr>
-      <tr><td><strong>B · Depth first</strong></td><td>Capture all 32 official depth charts + injury history</td><td>Injury-adjusted lines (v3), deficiency signals</td></tr>
-      <tr><td><strong>C · Market first</strong></td><td>Define licensed-book capture (open/close, timestamps)</td><td>CLV, edge tracking, leaderboard scoring</td></tr>
-    </tbody>
-  </table></div>
-  <div class="note warn"><strong>Risk note:</strong> This project produces models and research, not betting advice. Odds and legality vary by jurisdiction; age limits apply. Never risk money you cannot afford to lose. If gambling is no longer fun, call/text 1-800-GAMBLER (US).</div>
-  <p><a class="btn ghost" href="index.html">← Dashboard</a> <a class="btn" href="suggestions.html">Decide on Suggestions Board →</a></p>
-</div></main>
-<footer><div class="wrap"><p>NFL2 · Executive summary synthesizes verified pages only. <a href="sources.html">Sources</a></p></div></footer>
-<script src="assets/app.js"></script>
+<body class="kind-program">
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> <span>Decision dashboard</span></a>
+  <div class="asof">Data fetched <strong>2026-11-12 04:45 UTC</strong> · official league sources only · <a href="methodology.html">how this is verified</a></div>
+</header>
+<div class="shell">
+  <aside class="side">
+    <div class="navgroup"><span>Overview</span><a class="" href="index.html">Dashboard</a><a class="on" href="executive-summary.html">Executive Summary</a><a class="" href="requirements.html">Requirements</a><a class="" href="roadmap.html">Build Plan &amp; Roadmap</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Open Questions</a><a class="" href="suggestions.html">Suggestion Register</a><a class="" href="flagged-for-review.html">Flagged for Review</a></div><div class="navgroup"><span>Origination</span><a class="" href="line-origination.html">Originate Our Own Lines</a><a class="" href="signals.html">Signal Catalogue</a><a class="" href="correlation.html">Correlation</a><a class="" href="bet-types.html">Bet Types</a><a class="" href="skill-vs-luck.html">Removing Luck</a></div><div class="navgroup"><span>Competition</span><a class="" href="strategies.html">Strategy Registry</a><a class="" href="leaderboard.html">Leaderboard &amp; Rewards</a><a class="" href="validation-gates.html">Validation Gates</a></div><div class="navgroup"><span>Data</span><a class="" href="injuries.html">Week 10 Injury Report</a><a class="" href="depth-impact.html">Depth &amp; Deficiencies</a><a class="" href="league-data.html">Standings &amp; Schedule</a><a class="" href="data-dictionary.html">Data Dictionary</a></div><div class="navgroup"><span>Governance</span><a class="" href="methodology.html">Verification Method</a><a class="" href="sources.html">Source Registry</a></div>
+    <div class="sidefoot"><a href="flagged-for-review.html">20 open flags</a> · <a href="sources.html">28 sources</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge program">Report</span>
+      <h1>Executive Summary</h1>
+      What exists, what is verified, what is missing, and the four decisions that unlock the rest — for Week 10 of the 2026 season, fetched 12 November 2026.
+    </div>
+    <nav class="toc"><span>On this page</span><a href="#the-one-paragraph-version">The one-paragraph version</a><a href="#what-is-verified-and-how-we-know">What is verified and how we know</a><a href="#five-findings-that-matter-for-decisions">Five findings that matter for decisions</a><a href="#what-the-system-can-and-cannot-do-today">What the system can and cannot do today</a><a href="#the-four-decisions-to-make-now">The four decisions to make now</a><a href="#standing-risk-to-name-plainly">Standing risk to name plainly</a></nav>
+    <div class="body"><h2 id="the-one-paragraph-version">The one-paragraph version</h2>
+<p>The collection layer now exists and is genuinely verified: 254 rows of the official Week 10 practice report across 28 clubs, 227 official roster and depth events, 32 reconciled standings rows and a 14-game schedule, every row carrying a link to the official page it came from and nothing inferred to fill a gap. The analysis layer is specified in full — line-origination architecture, 18 signal families, 14 validation gates, a correlation framework with twelve pair classes, a sample-size protocol for removing luck, and a 14-entry strategy registry — but it produces no numbers yet, because two inputs do not exist in this project: licensed market prices and player-level participation data. The honest summary is that the pipeline and the rules are real, the data spine is real, and every performance claim you might want from this system is currently un-earnable rather than absent.</p>
+<h2 id="what-is-verified-and-how-we-know">What is verified and how we know</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Dataset</th><th>Volume</th><th>Official source</th><th>Reconciliation performed</th></tr></thead><tbody><tr><td>Week 10 practice snapshot</td><td>254 rows / 28 clubs</td><td><a href="https://www.nfl.com/injuries/" rel="noopener">nfl.com/injuries</a></td><td>transcribed row by row from the rendered table; participation strings mapped to three codes; no cell backfilled</td></tr><tr><td>Game-status designations</td><td>6 rows populated</td><td><a href="https://www.nfl.com/injuries/" rel="noopener">nfl.com/injuries</a>, <a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season" rel="noopener">week-10 report</a></td><td>the two official pages agree on every one; the remaining rows are blank in the source, which is not the same as zero</td></tr><tr><td>Roster / depth / IR events</td><td>227 rows</td><td><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11" rel="noopener">Wed 11-Nov roundup</a></td><td>per-team blocks transcribed; typos in the source preserved and annotated</td></tr><tr><td>Completed results, weeks 1–9</td><td>136 games</td><td><a href="https://www.nfl.com/schedules/2026/REG/" rel="noopener">nfl.com/schedules</a> plus one <a href="https://www.nfl.com/games/" rel="noopener">official game page</a> per row</td><td>imported from a parallel session and re-audited here: every row cites its own game page, and the recount matches the standings row for <strong>32 of 32 clubs</strong> on W, L, T, PF and PA — the strongest independent check available in this repo</td></tr><tr><td>Standings</td><td>32 rows</td><td><a href="https://www.nfl.com/standings/" rel="noopener">nfl.com/standings</a></td><td>winning pct recomputed with ties counted as half; ΣPF (6246) = ΣPA (6246) and Σnet = 0 across the league, so the transcription is arithmetically closed</td></tr><tr><td>Week 10 schedule</td><td>14 games</td><td><a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season" rel="noopener">week-10 report</a></td><td>venues, kickoff times and network match the injury hub's own headers</td></tr><tr><td>Quarterback chain changes</td><td>5 quarterback depth items: 3 confirmed starting changes, 1 coach declining to commit, 1 backup assignment</td><td><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11" rel="noopener">roundup</a>, <a href="https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again" rel="noopener">Darnold article</a></td><td>each is a direct coach or league statement, not a report about a report</td></tr></tbody></table></div>
+<h2 id="five-findings-that-matter-for-decisions">Five findings that matter for decisions</h2>
+<ol>
+<li><strong>The injury hub is a practice document, not an availability answer.</strong> On the day we fetched, only five of 254 rows carried a game status, and the Injury column was populated for six. Anyone modelling availability off this table without the prose feed is modelling an empty column. ([FL-02](flagged-for-review.html), [FL-08](flagged-for-review.html))</li>
+<li><strong>"No Injuries Reported" is a data state, not a health statement.</strong> Four clubs show that label; one of them (Seattle) is contradicted on the same site the same week, with twelve players injured and a confirmed quarterback rule-out. Reading the label as zero is the single most likely silent error in this whole system. ([FL-01](flagged-for-review.html))</li>
+<li><strong>There is no official depth chart to buy or scrape.</strong> The obvious URL is a 400-style error page, so the requirement about second, third and fourth-stringers has to be met by reconstruction — roster status, participation, designations, then actual playing time. That is a build item, not a lookup. ([FL-06](flagged-for-review.html))</li>
+<li><strong>Roster churn in 2026 is large enough to break joins.</strong> Players appear on clubs a naive pipeline would flag as errors; four of the surprising cases are independently confirmed by the same official page. We transcribed everything as published and made the 32-team roster sweep a gate (G-02) rather than quietly "fixing" the league's own data. ([FL-03](flagged-for-review.html))</li>
+<li><strong>The parlay and prop-combo problem is a correlation problem before it is a pricing problem.</strong> Same-game legs share a cause; independent-leg multiplication overstates parlay value; and the one piece of public research quantifying a cross-game parlay markup has an openly disputed matching method. We therefore publish the framework and the signs we can defend, and leave every rho value blank. ([correlation](correlation.html))</li>
+<h2 id="what-the-system-can-and-cannot-do-today">What the system can and cannot do today</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Capability</th><th>Today</th><th>Earliest realistic state</th></tr></thead><tbody><tr><td>Answer "who is hurt and who is starting instead" for the current week</td><td>yes, from verified rows, with depth rank left blank</td><td>improves immediately with the roster sweep</td></tr><tr><td>Detect availability surprise (trend → designation)</td><td>no — needs three dated filings per week</td><td>after point-in-time storage lands (G-03)</td></tr><tr><td>Originate a number and publish the residual</td><td>no — no prices</td><td>needs a price feed; 1 gate (G-01) and 1 vendor decision (Q-01)</td></tr><tr><td>Score a strategy on the leaderboard</td><td>no — zero tracked bets, by design</td><td>first week of forward tracking after pre-registration</td></tr><tr><td>Quantify replacement cost in points</td><td>no — needs snaps</td><td>after Q-02 closes</td></tr><tr><td>Prove an edge is not luck</td><td>protocol ready, no sample</td><td>400 bets for the gate, 1,000 for promotion (S-08)</td></tr></tbody></table></div>
+<h2 id="the-four-decisions-to-make-now">The four decisions to make now</h2>
+<ol>
+<li>Choose the price tier we originate against and start ingesting three seasons (unblocks 9 of 14 gates).</li>
+<li>Approve the pre-registration rule that backtest numbers never appear on the leaderboard (S-04) — this is the decision that keeps the competition honest.</li>
+<li>Decide whether v1 scope is spreads/totals/ML plus game props only (S-05), or the wider market set with a longer gate build.</li>
+<li>Decide what the leaderboard actually pays (S-25); until then it is a readiness board, which is what we published.</li>
+<h2 id="standing-risk-to-name-plainly">Standing risk to name plainly</h2>
+<p>Everything on the blue pages is a specification written before the data existed. Specifications are cheap in this domain and the record of betting models is poor; the gates and the negative controls (ST-12 do-nothing, ST-13 public-news echo) exist precisely so that a specification has to survive contact with results. Until then the correct posture toward any number on the origination pages is scepticism, and the site is built so that the blanks are visible rather than hidden.</p></div>
+    <footer class="pagefoot">
+      <a class="pager" href="index.html">&larr; Dashboard</a>
+      <a class="pager right" href="requirements.html">Requirements &rarr;</a>
+      <div class="foot-meta">Rendered from <code>data/</code> by <code>tools/build_site.py</code> — the build is byte-deterministic, so this page is exactly what the audited data says · <a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a></div>
+    </footer>
+  </main>
+</div>
 </body></html>

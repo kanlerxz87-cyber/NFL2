@@ -1,0 +1,15 @@
+rank|strategy|bet_type|tier|gates_passed|gates_blocking|tracked_bets|settled|mean_clv|roi_units_per_100|max_drawdown|selectivity|reward|status
+unranked|ST-01 Availability-surprise totals|single|T0 - prospective|0 of 14|G-03, G-07|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-02 Quarterback chain change|single|T0 - prospective|0 of 14|G-01, G-07|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-03 Depth-gap pass-catchers|single|T0 - prospective|0 of 14|G-01, G-02|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-04 Short-week fatigue|single|T0 - prospective|0 of 14|G-07|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-05 Own-line residual|single|T0 - prospective|0 of 14|G-01, G-06, G-07|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-06 Two-leg availability stack|parlay|T0 - prospective|0 of 14|G-05, G-06|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-07 Cross-game parlay discipline|parlay|T0 - prospective|0 of 14|G-05, G-07|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-08 Same-game QB/WR stack|prop combo|T0 - prospective|0 of 14|G-01, G-06|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-09 Teammate negation pair|prop combo|T0 - prospective|0 of 14|G-01, G-02|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-10 Rush/reception volume coupling|prop combo|T0 - measurement|0 of 14|G-01|0|0|not published|not published|not published|not published|none|measurement only - no bet rule
+unranked|ST-11 Deficiency-driven alternate lines|single|T0 - prospective|0 of 14|G-01, G-07|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-12 Do-nothing control|none|control|14 of 14|none|0|0|0.00|0.00|0.00|0.00% of games|none|baseline - defines the zero line
+unranked|ST-13 Public-news echo control|single|control|0 of 14|G-07|0|0|not published|not published|not published|not published|none|baseline - falsifier for every other entry
+unranked|ST-14 Late-window origination|single|T0 - prospective|0 of 14|G-01, G-03, G-07|0|0|not published|not published|not published|not published|none|not eligible for staking

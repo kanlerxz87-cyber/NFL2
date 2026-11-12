@@ -1,0 +1,224 @@
+{
+  "asOf": "2026-11-12",
+  "competitionDesign": {
+    "rankingFormula": "LeaderboardScore = 0.45 * Z(OOS_CLV) + 0.30 * Z(BrierSkillScore) + 0.25 * Z(RiskAdj_ROI_Lower95CI) * GatePassIndicator(G1..G7 == 1)",
+    "antiLuckPrinciple": "Raw win-loss ROI over <50 games is ~85% variance. Strategies are ranked primarily on Out-of-Sample Closing Line Value (CLV) and Proper Scoring Rule calibration (Brier / Log-Loss), gated by Benjamini-Hochberg multiple-testing FDR control."
+  },
+  "rewardTiers": [
+    {
+      "tier": "Tier 0 \u2014 Sandbox / Paper Quarantine",
+      "eligibility": "Any newly submitted or unvalidated strategy (<7 gates passed)",
+      "bankrollAllocationCap": "0.00% (Paper ledger only)",
+      "kellyMultiplier": "0.00x",
+      "computeAndDataReward": "Baseline public NFL.com + Operations feed access",
+      "demotionTrigger": "Remains quarantined until Gates G1-G7 all pass out-of-sample",
+      "officialSource": "https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language"
+    },
+    {
+      "tier": "Tier 1 \u2014 Bronze Seed Allocation",
+      "eligibility": "Passes all Gates G1-G7; n >= 200 (Singles) or >= 150 (Parlays/Props); OOS CLV t-stat >= 2.0",
+      "bankrollAllocationCap": "Max 0.50% bankroll risk per ticket",
+      "kellyMultiplier": "0.15x Fractional Kelly",
+      "computeAndDataReward": "1.0x research budget + automated pre-kickoff injury diff alerts",
+      "demotionTrigger": "Rolling 100-bet CLV drops below 0.0% or calibration p < 0.05",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "tier": "Tier 2 \u2014 Silver Core Allocation",
+      "eligibility": "Passes G1-G7; OOS CLV >= +1.5%; Brier Skill Score >= +0.020; FDR q-value < 0.05",
+      "bankrollAllocationCap": "Max 1.00% bankroll risk per ticket",
+      "kellyMultiplier": "0.25x Fractional Kelly",
+      "computeAndDataReward": "1.5x capital pool weight + priority line-shopping execution slot",
+      "demotionTrigger": "Drawdown exceeds 95th-pct bootstrap envelope or 75-bet CLV < +0.25%",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "tier": "Tier 3 \u2014 Gold Syndicate Champion",
+      "eligibility": "Multi-season walk-forward stability (>=2 seasons); CLV t-stat >= 3.0; positive edge across >=3 bookmakers",
+      "bankrollAllocationCap": "Max 1.75% bankroll risk per ticket",
+      "kellyMultiplier": "0.35x Fractional Kelly",
+      "computeAndDataReward": "2.5x capital pool share + highest execution priority + syndicate fee bonus",
+      "demotionTrigger": "Regime-shift structural break (e.g. NFL rule change) or rolling CLV < +0.75%",
+      "officialSource": "https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf"
+    }
+  ],
+  "validationGates": [
+    {
+      "gateId": "G1",
+      "name": "Point-in-Time Leakage & Pre-Registration Audit",
+      "threshold": "Zero post-kickoff data leakage; immutable git commit hash before OOS window",
+      "luckRemovalMechanism": "Eliminates look-ahead bias (e.g. using final Sunday status on Wednesday opening lines) and hindsight parameter tuning.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/commits/main"
+    },
+    {
+      "gateId": "G2",
+      "name": "Minimum Independent Effective Sample Size (n_eff)",
+      "threshold": "n_eff >= 200 single bets; >= 150 parlay/prop tickets adjusted for intra-week correlation",
+      "luckRemovalMechanism": "At -110 odds, n=30 has +/-17.9% 95% win-rate noise; n>=200 shrinks standard error to <=3.5%.",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "gateId": "G3",
+      "name": "Walk-Forward Out-of-Sample Proper Scoring (Brier & Log-Loss)",
+      "threshold": "OOS Brier Score & Log-Loss strictly beat vig-stripped closing market baseline",
+      "luckRemovalMechanism": "Evaluates probability calibration on every play rather than noisy binary 0/1 fumble/overtime outcomes.",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "gateId": "G4",
+      "name": "Closing Line Value (CLV) Skill Gate",
+      "threshold": "Mean vig-free CLV > +1.0% with one-sided t-stat >= 2.0 (p <= 0.023)",
+      "luckRemovalMechanism": "Closing NFL lines aggregate sharp syndicate information; beating the close proves genuine price-discovery skill.",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "gateId": "G5",
+      "name": "Multiple-Testing & Data-Snooping Control (Benjamini-Hochberg FDR)",
+      "threshold": "FDR-adjusted q-value <= 0.05 across all N candidate strategies tested on the board",
+      "luckRemovalMechanism": "Testing 50 random strategies yields ~2.5 false 'winners' at p<0.05 by pure luck; FDR penalizes strategy mining.",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "gateId": "G6",
+      "name": "Joint Correlation & SGP Vig-Tax Verification",
+      "threshold": "Empirical copula/Pearson r estimated OOS; ticket EV > +3.0% over correlated joint fair probability",
+      "luckRemovalMechanism": "Prevents double-counting correlated legs (CORR-10 / CORR-11) or paying hidden sportsbook SGP correlation markups.",
+      "officialSource": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "gateId": "G7",
+      "name": "Regime Stability & Bootstrap Drawdown Stress Gate",
+      "threshold": "Positive CLV in both halves of season, indoor/outdoor, and 95th-pct 10,000-run bootstrap max DD < 20%",
+      "luckRemovalMechanism": "Rejects fragile strategies driven by a single outlier week, team, or weather freak event.",
+      "officialSource": "https://www.nfl.com/schedules"
+    }
+  ],
+  "strategies": [
+    {
+      "strategyId": "STRAT-S01",
+      "betType": "Single Bet (Spread / Total)",
+      "name": "Shrunk Efficiency + Net-YPP Line Originator",
+      "signalInputs": "Bayesian-shrunk PF/PA + Net Yds/Dropback (CORR-03 r=+0.8049) + 3rd-Down % (CORR-06 r=+0.7074) + Key-Number 3/7 filter",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical odds archive",
+      "officialSource": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "strategyId": "STRAT-S02",
+      "betType": "Single Bet (Spread / Moneyline)",
+      "name": "Pythagorean Luck-Regression Contrarian Filter",
+      "signalInputs": "Fade clubs with Luck Residual >= +1.25 wins vs Pythagorean Skill Win % (CORR-02); buy clubs <= -1.25 wins",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical odds archive",
+      "officialSource": "https://www.nfl.com/standings/"
+    },
+    {
+      "strategyId": "STRAT-S03",
+      "betType": "Single Bet (Team Total Under / Spread)",
+      "name": "Offensive Line 2nd/3rd-String Cascade Mismatch",
+      "signalInputs": ">=2 starting/backup OL OUT/DNP on club depth chart vs Top-10 Def Sack Rate opponent (CORR-05)",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical odds & snap-EPA archive",
+      "officialSource": "https://www.patriots.com/team/depth-chart"
+    },
+    {
+      "strategyId": "STRAT-S04",
+      "betType": "Single Bet (Spread / Team Total)",
+      "name": "Emergency / Backup QB Early-Market Repricing Signal",
+      "signalInputs": "Verified starter->2nd/3rd string QB change (e.g. MIA, SEA Week 10) + Offensive Passer Rating delta (CORR-04)",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical odds archive",
+      "officialSource": "https://www.nfl.com/injuries/"
+    },
+    {
+      "strategyId": "STRAT-P01",
+      "betType": "Parlay (2-Leg Cross-Game)",
+      "name": "Orthogonal 2-Leg High-CLV Key-Number Parlay",
+      "signalInputs": "Two independent games (r ~ 0) each crossing key number 3 or 7 with independent model edge > 3.5%",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical odds archive",
+      "officialSource": "https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf"
+    },
+    {
+      "strategyId": "STRAT-P02",
+      "betType": "Parlay (2-Leg Neutral/Weather Totals)",
+      "name": "International Neutral-Site & Outdoor Wind Total Pair",
+      "signalInputs": "HFA=0 international adjustment (Munich / Mexico City) paired with verified NWS >15 mph wind outdoor total",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical odds & NWS archive",
+      "officialSource": "https://www.nfl.com/schedules"
+    },
+    {
+      "strategyId": "STRAT-C01",
+      "betType": "Player Prop Combo (Cross-Team SGP)",
+      "name": "Trailing-Script Opposing QB Attempts OVER + Favorite Cover",
+      "signalInputs": "Favorite spread cover + trailing opponent QB Pass Attempts OVER exploiting game-script divergence (CORR-10 / CORR-11)",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical prop odds & PBP archive",
+      "officialSource": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "strategyId": "STRAT-C02",
+      "betType": "Player Prop Combo (Matchup SGP)",
+      "name": "Boundary CB 2nd/3rd-String Deficiency + WR1 Receiving OVER",
+      "signalInputs": "Verified CB1 OUT/DNP on club depth chart (e.g. NE, DET, DAL, SF) + opposing WR1 target/yardage prop + QB Pass Yds",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical prop odds & PBP archive",
+      "officialSource": "https://www.detroitlions.com/team/depth-chart"
+    },
+    {
+      "strategyId": "STRAT-C03",
+      "betType": "Player Prop Combo (Trench SGP)",
+      "name": "Interior OL Backup Cascade + Opposing Pass-Rusher Sack Prop",
+      "signalInputs": "Starting C/G OUT/DNP + backup OL DNP (e.g. NE, GB, WAS) paired with opposing EDGE Sack OVER & QB Passing Under",
+      "currentGateStage": "G1 Registered (Quarantined in Tier 0)",
+      "realizedSampleN": "",
+      "realizedCLVPct": "",
+      "realizedROIPct": "",
+      "leaderboardScore": "",
+      "rewardTier": "Tier 0 \u2014 Sandbox (0.00% Capital)",
+      "verificationStatus": "UNVERIFIED \u2014 Blank pending historical prop odds & PBP archive",
+      "officialSource": "https://www.packers.com/team/depth-chart"
+    }
+  ]
+}

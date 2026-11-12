@@ -1,48 +1,28 @@
-name: validate site
-
+name: build-and-audit
 on:
   push:
-    branches: [main]
+    branches: ["**"]
   pull_request:
-  workflow_dispatch:
-
 jobs:
-  validate:
+  audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install pipeline dependencies
-        run: pip install numpy pandas scipy pyarrow
-
-      - name: Rebuild every dataset from the vendored sources
-        run: python3 -m pipeline.build
-
-      - name: Verify the committed data reproduces exactly (ignoring timestamps)
+        with: { python-version: "3.11" }
+      - name: Rebuild the site from data/ and content/
+        run: python tools/build_site.py
+      - name: Audit the data (official sources, reconciliations, no fabricated results)
+        run: python tools/verify.py
+      - name: Audit the site (links, empty cells, template markers, official source coverage)
+        run: python tools/check_site.py
+      - name: Fail if the published HTML does not match the data it was built from
         run: |
-          set +e
-          python3 scripts/check_reproducible.py 2>&1 | tee /tmp/repro.log
-          code=${PIPESTATUS[0]}
-          if [ "$code" -ne 0 ]; then
-            echo "::error::reproducibility check failed"
-            while IFS= read -r line; do
-              case "$line" in
-                *DIFF*|*first*difference*|*BAD*|*"do not reproduce"*)
-                  echo "::error::$line" ;;
-              esac
-            done < /tmp/repro.log
-            git status --porcelain site/data | head -20
+          git add -A
+          if git diff --cached --quiet; then
+            echo "site is in sync with data/ and content/"
+          else
+            echo "::error::committed HTML differs from a rebuild of the data — commit the output of tools/build_site.py"
+            git diff --cached --stat
+            exit 1
           fi
-          exit "$code"
-
-      - name: Render every page against the real JSON
-        run: node scripts/render_test.js
-
-      - name: Check internal links and data references
-        run: python3 scripts/check_links.py

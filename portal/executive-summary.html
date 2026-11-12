@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Summary — NFL2 Quantitative Decision Portal</title>
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-head">
+        <div class="brand">
+          <span class="brand-mark">NFL2</span>
+          <span>Verified Line Origination, Depth Deficiency &amp; Strategy Portal</span>
+        </div>
+        <div class="meta-pills">
+          <span class="meta-pill">Snapshot: 2026-11-12 (Week 10)</span>
+          <span class="meta-pill">Zero-Sum Verified: 11/11</span>
+          <a href="../index.html" class="meta-pill" style="color:#93c5fd;">&larr; Root Site</a>
+          <a href="../review/index.html" class="meta-pill" style="color:#93c5fd;">Review Build</a>
+          <a href="../docs/index.html" class="meta-pill" style="color:#93c5fd;">Docs Build</a>
+        </div>
+      </div>
+      <nav class="nav-bar" aria-label="Portal Navigation">
+        <a href="index.html" class="">Overview</a>
+<a href="executive-summary.html" class="active">Executive Summary</a>
+<a href="suggestions.html" class="">Suggestions Hub</a>
+<a href="questions-discovery.html" class="">Questions &amp; Missing Info</a>
+<a href="line-origination.html" class="">Originate NFL Lines</a>
+<a href="leaderboard-gates.html" class="">Leaderboard &amp; Gates</a>
+<a href="correlations-skill.html" class="">Correlations &amp; Skill</a>
+<a href="injuries-depth.html" class="">Injuries &amp; 1st–4th Depth</a>
+<a href="repo-audit.html" class="">Repo Line-by-Line Audit</a>
+<a href="flagged-review.html" class="">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-header">
+      <h1>Executive Summary</h1>
+      <p>High-level synthesis of verified 2026 NFL statistical signals, skill-vs-luck separation, 1st–4th string injury cascades, and leaderboard governance.</p>
+    </div>
+    
+    <div class="callout">
+      <strong>Architecture Summary:</strong> This system separates <em>what is proven now</em> (32-club zero-sum efficiency, Pythagorean skill vs. luck, official Week 10 injuries, and 1st–4th string club depth chains) from <em>what requires external licensing or governance sign-off</em> (closing market odds, play-by-play snap EPA, and SGP player copulas — all left blank rather than guessed).
+    </div>
+    <section class="section-card">
+      <h2>Executive Findings Matrix (2026 NFL Season Snapshot — As of 2026-11-12)</h2>
+      <p class="section-desc">Ten core takeaways governing line origination, personnel deficiency adjustments, strategy leaderboard gating, and immediate roadmap decisions.</p>
+      
+    <div class="toolbar">
+      <input type="search" class="search-input" data-table-filter="tbl-exec" placeholder="Filter executive findings..." aria-label="Filter executive findings...">
+      <span class="kpi-sub">10 verified rows &bull; Click any column header to sort &bull; Blank amber cells = intentionally unverified</span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-exec" data-sortable="true">
+        <thead><tr><th>ID</th><th>Domain</th><th>Verified Finding (Blank if Unconfirmed)</th><th>Status</th><th>Official Source</th></tr></thead>
+        <tbody>
+          <tr><td>FIND-01</td><td>League Baseline</td><td>136 games completed (135W=135L, 2T); 6,246 PF = 6,246 PA (22.963 pts/team/G); 11/11 Off=Def identities exact.</td><td><span class="badge verified">VERIFIED</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">NFL.com Standings &#8599;</a></td></tr>
+<tr><td>FIND-02</td><td>Top Defensive Predictor</td><td>Defensive Passer Rating Allowed vs Points Allowed/G: r = +0.8151 (r² = 66.44%, t = +7.71, p &lt; 0.000001) — 3x stronger than Rush YPC Allowed (r² = 21.82%).</td><td><span class="badge verified">VERIFIED (n=32)</span></td><td><a href="https://www.nfl.com/stats/team-stats/defense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Def Passing &#8599;</a></td></tr>
+<tr><td>FIND-03</td><td>Top Offensive Predictors</td><td>Net Yards/Dropback vs PF/G r = +0.8049 (r² = 64.78%); 3rd-Down % vs PF/G r = +0.7074; Sack Rate Allowed vs PF/G r = -0.6353.</td><td><span class="badge verified">VERIFIED (n=32)</span></td><td><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Off Passing &#8599;</a></td></tr>
+<tr><td>FIND-04</td><td>Positive Luck Outliers (Fade)</td><td>Through Week 9, 23.1% of W-L variance is non-skill sequencing luck: DEN +2.17 luck wins (7-2 on +12 net), BUF +1.58W, CLE +1.53W (5-4 on -35 net).</td><td><span class="badge verified">VERIFIED (n=32)</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">NFL.com Standings &#8599;</a></td></tr>
+<tr><td>FIND-05</td><td>Unlucky Skill Outliers (Buy-Low)</td><td>Tampa Bay is 3-6 despite +24 net points (5.17 Pythagorean wins -&gt; -2.17 luck wins); LAC (-1.57W) and TEN (-1.54W) also trail true scoring skill.</td><td><span class="badge verified">VERIFIED (n=32)</span></td><td><a href="https://www.nfl.com/standings/" target="_blank" rel="noopener">NFL.com Standings &#8599;</a></td></tr>
+<tr><td>FIND-06</td><td>Week 10 QB Backup Switches</td><td>Miami places Malik Willis on IR (Kyle McCord in line for 1st start); Seattle rules out Sam Darnold (Drew Lock expected starter vs LV).</td><td><span class="badge verified">VERIFIED</span></td><td><a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener">NFL.com Injuries &#8599;</a></td></tr>
+<tr><td>FIND-07</td><td>1st–4th String Club Depth Chains</td><td>Official club depth charts (NE, DET, GB, WAS) expose 3rd/4th-string cascades: NE RB Corey Kiner/Lan Larison, DET CB Ya-Sin/Dorsey/Whiteside, GB RB Lloyd/Strong/Johnson, WAS C Matt Gulbin.</td><td><span class="badge verified">VERIFIED</span></td><td><a href="https://www.packers.com/team/depth-chart" target="_blank" rel="noopener">Packers Depth Chart &#8599;</a></td></tr>
+<tr><td>FIND-08</td><td>Roster &amp; 8-OL Compression Rules</td><td>NFL CBA caps gameday actives at 48 (47 if &lt;8 OL) and limits Practice Squad standard elevations to 3 per player/season — forcing street 4th-stringers during trench clusters.</td><td><span class="badge verified">VERIFIED</span></td><td><a href="https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language" target="_blank" rel="noopener">NFL Operations CBA &#8599;</a></td></tr>
+<tr><td>FIND-09</td><td>Market Odds &amp; Realized Backtests</td><td class="blank-cell"></td><td><span class="badge unverified">UNVERIFIED (Blank)</span></td><td><a href="https://www.nfl.com/schedules" target="_blank" rel="noopener">NFL.com Schedules &#8599;</a></td></tr>
+<tr><td>FIND-10</td><td>Recommended Next Action</td><td>Approve Strategic Path Alpha (SUG-03 Odds/CLV Ledger -&gt; SUG-12 Pre-Kickoff Hash Log -&gt; SUG-04 PBP EPA &amp; Prop Copula Engine) on Suggestions Hub.</td><td><span class="badge model">PROPOSED</span></td><td><a href="https://dlmf.nist.gov/7.2" target="_blank" rel="noopener">NIST DLMF §7.2 &#8599;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </section>
+    
+  </main>
+  <footer>
+    <div class="container">
+      <strong>NFL2 Quantitative Decision &amp; Verification Portal</strong> &bull;
+      Repository: <a href="https://github.com/kanlerxz87-cyber/NFL2" target="_blank" rel="noopener">kanlerxz87-cyber/NFL2</a> &bull;
+      Every table row cites an official source (<code>nfl.com</code>, <code>operations.nfl.com</code>, official NFL club sites, <code>github.com</code>). Unconfirmed values remain strictly blank and flagged on <a href="flagged-review.html">Flagged for Review</a>.
+    </div>
+  </footer>
+  <script src="assets/portal.js"></script>
+</body>
+</html>

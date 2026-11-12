@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Plan &amp; Roadmap · NFL2</title>
+<meta name="description" content="The order of work after the decisions are made — written so that no step depends on a number the previous step cannot produce.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="kind-design">
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> <span>Decision dashboard</span></a>
+  <div class="asof">Data fetched <strong>2026-11-12 04:45 UTC</strong> · official league sources only · <a href="methodology.html">how this is verified</a></div>
+</header>
+<div class="shell">
+  <aside class="side">
+    <div class="navgroup"><span>Overview</span><a class="" href="index.html">Dashboard</a><a class="" href="executive-summary.html">Executive Summary</a><a class="" href="requirements.html">Requirements</a><a class="on" href="roadmap.html">Build Plan &amp; Roadmap</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Open Questions</a><a class="" href="suggestions.html">Suggestion Register</a><a class="" href="flagged-for-review.html">Flagged for Review</a></div><div class="navgroup"><span>Origination</span><a class="" href="line-origination.html">Originate Our Own Lines</a><a class="" href="signals.html">Signal Catalogue</a><a class="" href="correlation.html">Correlation</a><a class="" href="bet-types.html">Bet Types</a><a class="" href="skill-vs-luck.html">Removing Luck</a></div><div class="navgroup"><span>Competition</span><a class="" href="strategies.html">Strategy Registry</a><a class="" href="leaderboard.html">Leaderboard &amp; Rewards</a><a class="" href="validation-gates.html">Validation Gates</a></div><div class="navgroup"><span>Data</span><a class="" href="injuries.html">Week 10 Injury Report</a><a class="" href="depth-impact.html">Depth &amp; Deficiencies</a><a class="" href="league-data.html">Standings &amp; Schedule</a><a class="" href="data-dictionary.html">Data Dictionary</a></div><div class="navgroup"><span>Governance</span><a class="" href="methodology.html">Verification Method</a><a class="" href="sources.html">Source Registry</a></div>
+    <div class="sidefoot"><a href="flagged-for-review.html">20 open flags</a> · <a href="sources.html">28 sources</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge design">Specification</span>
+      <h1>Build Plan &amp; Roadmap</h1>
+      The order of work after the decisions are made — written so that no step depends on a number the previous step cannot produce.
+    </div>
+    <nav class="toc"><span>On this page</span><a href="#stage-0-already-in-this-build">Stage 0 — already in this build</a><a href="#stage-1-trust-the-join-no-new-data-needed">Stage 1 — trust the join (no new data needed)</a><a href="#stage-2-the-availability-graph-the-differentiator">Stage 2 — the availability graph (the differentiator)</a><a href="#stage-3-prices-and-the-fair-value-spine">Stage 3 — prices and the fair-value spine</a><a href="#stage-4-correlation-parlays-and-prop-combos">Stage 4 — correlation, parlays and prop combos</a><a href="#stage-5-competition-gates-rewards">Stage 5 — competition, gates, rewards</a><a href="#explicitly-out-of-scope-until-the-data-exists">Explicitly out of scope until the data exists</a></nav>
+    <div class="body"><p>Every stage below is a specification with acceptance criteria. Nothing is scheduled here that assumes market data we do not yet have, and no stage is allowed to publish a performance number before stage 5.</p>
+<h2 id="stage-0-already-in-this-build">Stage 0 — already in this build</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Artefact</th><th>State</th><th>Acceptance evidence</th></tr></thead><tbody><tr><td>Verified Week 10 dataset (254 + 227 + 32 + 14 rows)</td><td>done</td><td>per-row sources; standings reconciled to the unit</td></tr><tr><td>Requirement, question, suggestion, flag registers</td><td>done</td><td>40 / 29 / 28 / 20 rows</td></tr><tr><td>Parallel-session integration (game log imported, standings cross-checked, their build archived)</td><td>done</td><td>136 rows re-audited; 32 of 32 clubs reconcile; two new flags published</td></tr><tr><td>Site generator with source enforcement and field-count strictness</td><td>done</td><td>build fails on an unsourced row — demonstrated during this session</td></tr><tr><td>GitHub Pages deployment from <code>main</code></td><td>done</td><td>site reachable at the published URL</td></tr></tbody></table></div>
+<h2 id="stage-1-trust-the-join-no-new-data-needed">Stage 1 — trust the join (no new data needed)</h2>
+<ol>
+<li><strong>32-team roster sweep</strong>, one page per club, status vocabulary enumerated from the data rather than assumed (closes FL-14, feeds S-15). Acceptance: 32 × 1 roster files, each with fetch time and source id; the set of status codes observed is written into the data dictionary.</li>
+<li><strong>Stable athlete keys.</strong> Adopt the numeric id, keep the URL slug for display only, and assert one-row-per-player-per-game across every table (closes Q-22, FL-15). Acceptance: zero unresolved ids in <code>verify.py</code> (gate G-02).</li>
+<li><strong>Event store.</strong> Every fact carries <code>observed_at</code> and <code>published_at</code>; a snapshot rebuild must reproduce exactly (gate G-03). Acceptance: replay of Week 10 from stored events produces byte-identical inputs.</li>
+<h2 id="stage-2-the-availability-graph-the-differentiator">Stage 2 — the availability graph (the differentiator)</h2>
+<ol>
+<li>Model each club-week as <em>roster status → practice participation → designation → projected available → actual active → snaps</em>. Acceptance: for Week 10, all 14 games reconstruct to a stated projected starter and actual starter for QB, with the "who is missing and what replaced them" answer derived rather than hand-written.</li>
+<li><strong>Deficiency index by unit</strong> — base front, base back, nickel, goal-line, short-yardage — computed from the participation and designation facts, with the <em>effect</em> columns left blank until playing-time data exists (S-07). Acceptance: index published for all 32 clubs; effect columns visibly not published, and the reason is a flag link.</li>
+<li><strong>Late-designation capture.</strong> Store all three filings per week; publish the delta per player (unblocks SIG-01, SIG-02).</li>
+<h2 id="stage-3-prices-and-the-fair-value-spine">Stage 3 — prices and the fair-value spine</h2>
+<ol>
+<li>Ingest opening and closing prices for spread, total, ML plus game props, with quote timestamps and the venue of the quote; build the consensus close as the median of at least three quotes with dispersion stored (S-09, closes the input side of Q-01).</li>
+<li>Strip vig into no-vig probabilities, publish the vig distribution per market (Q-09). Acceptance: for every market, the sum of the two sides' implied probabilities and the median overround are reported.</li>
+<li><strong>Origination card</strong> published weekly (S-22): our number, the consensus, the residual — with any column that cannot yet be computed printed as not published and the blocking gate named.</li>
+<h2 id="stage-4-correlation-parlays-and-prop-combos">Stage 4 — correlation, parlays and prop combos</h2>
+<ol>
+<li>Joint-outcome table from settled legs; publish fitted ρ with intervals per pair class in <code>data/correlation.csv</code>, replacing "not published" only where the fit exists (Q-12).</li>
+<li>Structural priors for volume-conservation pairs (S-11), validated against the operator's own same-game pricing gap versus the independence baseline (C-03, C-04).</li>
+<li>Parlay pricing through our own joint distribution, never by multiplying leg prices; a parlay is only bettable when its price beats the joint estimate (SIG-14, gate G-05).</li>
+<h2 id="stage-5-competition-gates-rewards">Stage 5 — competition, gates, rewards</h2>
+<ol>
+<li>Register every strategy with a spec hash before its first tracked bet (S-04, gate G-11); open the forward ledger (gate G-08 at 400 bets, G-09 at 1,000).</li>
+<li>Publish the luck-removal panel weekly (S-18): mean CLV with interval, bootstrap p-value, split-half agreement, luck-adjusted P&amp;L.</li>
+<li>Award tiers by the rules on the [leaderboard page](leaderboard.html), with the do-nothing and public-news-echo controls reported next to every entry — a strategy that cannot beat ST-13 has not demonstrated information, only enthusiasm.</li>
+<h2 id="explicitly-out-of-scope-until-the-data-exists">Explicitly out of scope until the data exists</h2>
+<p>Live and in-play pricing; futures; team-total alternates beyond the ST-11 experiment; anything requiring a bettor-behaviour assumption; any auto-betting execution; and any public claim of an edge. Each of these is gated behind stage 3 or 4, and staging them earlier is the fastest known way to produce a confident, wrong number.</p></div>
+    <footer class="pagefoot">
+      <a class="pager" href="requirements.html">&larr; Requirements</a>
+      <a class="pager right" href="questions.html">Open Questions &rarr;</a>
+      <div class="foot-meta">Rendered from <code>data/</code> by <code>tools/build_site.py</code> — the build is byte-deterministic, so this page is exactly what the audited data says · <a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a></div>
+    </footer>
+  </main>
+</div>
+</body></html>

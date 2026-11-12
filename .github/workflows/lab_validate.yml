@@ -1,0 +1,49 @@
+name: lab-validate
+
+on:
+  push:
+    paths: ["pipeline/**", "site/**", "docs/**", "scripts/render_test.js", "scripts/check_links.py", "scripts/check_reproducible.py", ".github/workflows/lab_validate.yml"]
+  pull_request:
+    paths: ["pipeline/**", "site/**", "docs/**", "scripts/**", ".github/workflows/lab_validate.yml"]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pipeline dependencies
+        run: pip install numpy pandas scipy pyarrow
+
+      - name: Rebuild every dataset from the vendored sources
+        run: python3 -m pipeline.build
+
+      - name: Verify the committed data reproduces exactly (ignoring timestamps)
+        run: |
+          set +e
+          python3 scripts/check_reproducible.py 2>&1 | tee /tmp/repro.log
+          code=${PIPESTATUS[0]}
+          if [ "$code" -ne 0 ]; then
+            echo "::error::reproducibility check failed"
+            while IFS= read -r line; do
+              case "$line" in
+                *DIFF*|*first*difference*|*BAD*|*"do not reproduce"*)
+                  echo "::error::$line" ;;
+              esac
+            done < /tmp/repro.log
+            git status --porcelain site/data | head -20
+          fi
+          exit "$code"
+
+      - name: Render every page against the real JSON
+        run: node scripts/render_test.js
+
+      - name: Check internal links and data references
+        run: python3 scripts/check_links.py
