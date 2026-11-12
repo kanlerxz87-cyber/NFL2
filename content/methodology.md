@@ -53,3 +53,46 @@ python3 tools/build_site.py && python3 tools/verify.py && python3 tools/check_si
 ```
 
 The generator is deterministic: same inputs, same bytes out. If it fails, that is the intended behaviour — the site is not allowed to publish a table it cannot vouch for.
+
+## Independent live-source re-verification (session `8361cc7a`, 12 November 2026)
+
+Every check above compares the published site to `data/`. None of them compares `data/` to the league.
+That is a real gap: a snapshot can be internally consistent and months out of date. This session closed the
+gap by hand, once, and recorded the result here so the claim is auditable rather than asserted.
+
+**What was re-fetched and compared, row by row**
+
+| Official page | Rows compared | Result |
+| --- | --- | --- |
+| [nfl.com/standings](https://www.nfl.com/standings/) (division view, both chunks) | 32 clubs × W-L-T, PCT, PF, PA, net, streak | **32 / 32 exact.** No correction needed. |
+| [nfl.com/schedules/2026/by-week/week-10](https://www.nfl.com/schedules/2026/by-week/week-10) | 14 fixtures × date, time ET, broadcaster, venue | **14 / 14 exact.** No correction needed. |
+| [nfl.com/injuries](https://www.nfl.com/injuries/) (Week 10, all 7 chunks) | every club block, every player, position, practice status, game status | **25 of 28 clubs exact.** Three differed: SEA absent, CIN absent, IND 11 of 13 rows. Published as [FL-22](flagged-for-review.html) and [FL-01](flagged-for-review.html). |
+
+**What that comparison found in our own prose** — all corrected in this session, all listed on
+[Flagged for Review](flagged-for-review.html):
+
+1. The Week 10 snapshot's coverage was overstated on the landing page, in the executive summary and in the
+   source registry; the file holds **24 of the 28** clubs playing, and the page's own availability table already
+   showed 24. Coverage is now a measured metric, not a sentence.
+2. The four clubs with no injury rows were described as SEA, CIN, LAC and BAL. Only **LAC and BAL** read
+   "No Injuries Reported"; SEA and CIN publish full blocks and are simply missing from our file.
+3. Three register rows quoted stale sizes of other registers: 25 suggestions (29 exist), 28 questions
+   (29 exist), 15 flags (22 exist, including the two added here).
+4. The landing page described the repository as containing one tracked file created in one session. It
+   tracks **384 files across seven merged sessions**, which is what the page now says.
+
+**The guard added so this cannot recur.** Two checks now fail the build rather than warn:
+
+- `tools/verify.py` → `register_counts_match_files()` — any "N suggestions / questions / flags / gates /
+  signals / strategies / sources" written inside a register row must equal the real file length.
+- `tools/verify.py` → `injury_coverage_is_measured_not_named()` — the set of clubs with no injury rows must
+  be derived from `schedule_2026_wk10.csv`, and the builder may not hand-name that set. It also fails if any
+  page overstates the club coverage as a bare count.
+
+Negative control run during this session: restoring the literal list to `tools/build_site.py` fails with
+`build_site.py still hand-names the empty-club list`, and writing a bare coverage count into a page fails
+with `claims 28 clubs as coverage; the file holds 24 of 28`. Both revert to `41 passed · 0 failures`.
+
+**What this does *not* establish.** A one-off manual re-fetch is not a substitute for scheduled ingest
+(FL-11) and it cannot establish point-in-time completeness (FL-09). It establishes that on 12 November 2026
+the standings and fixtures matched the league exactly, and that the injury snapshot's coverage claim did not.

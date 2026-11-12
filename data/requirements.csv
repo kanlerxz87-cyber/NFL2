@@ -1,9 +1,9 @@
 id|requirement|category|raised_in|site_section|status|note
 R-01|Collect, organize and analyze NFL data using a full list of requirements|Program|project brief|Requirements|in progress|Collection layer exists for injuries/standings/schedule/depth; analysis layer is specified but not fitted
 R-02|Maintain the full requirement list inside the repo|Program|project brief|Requirements|done|40 rows in data/requirements.csv; the repo previously contained no requirements document at all
-R-03|Make suggestions on how to improve the site to improve decision making|Decision support|project brief|Suggestion Register|done|25 suggestions S-01…S-25 with impact/effort/risk scoring
+R-03|Make suggestions on how to improve the site to improve decision making|Decision support|project brief|Suggestion Register|done|29 suggestions S-01…S-29 with impact/effort/risk scoring
 R-04|Create a dedicated section so a human can review suggestions and pick a path before implementing|Decision support|project brief|Suggestion Register|done|Every suggestion ships with decision=pending; nothing was implemented on the site except what the brief itself mandated
-R-05|Clear list of questions to be answered before any decision can reasonably be made|Decision support|project brief|Open Questions|done|28 questions, each with "what we have / what we lack / how to close"
+R-05|Clear list of questions to be answered before any decision can reasonably be made|Decision support|project brief|Open Questions|done|29 questions, each with "what we have / what we lack / how to close"
 R-06|State explicitly which information we already have and which we do not|Decision support|project brief|Open Questions|done|Two-column have/lack structure on every question row
 R-07|Suggestions must be made to discover missing information|Decision support|project brief|Open Questions|done|Each question carries a closure method; several suggestions are data-acquisition suggestions
 R-08|Originate our own NFL lines rather than only consuming market prices|Modeling|project brief|Line Origination|specified|Full architecture specified; cannot be fitted until market data and player-level data are licensed (Q-01, Q-02)
@@ -23,7 +23,7 @@ R-21|Same for offenses (starters vs backups)|Data|project brief|Depth & Deficien
 R-22|Executive summary of important details|Reporting|project brief|Executive Summary|done|Written for a reader who will not open the other 18 pages.
 R-23|No manual input required from the owner|Process|project brief|Methodology|done|All ingestion, transcription, verification, build and publishing performed by the agent
 R-24|Review the repo line by line with links for manual review|Verification|project brief|Methodology|done|Repo review recorded in COORDINATION.md (1 file, 6 bytes, 1 commit)
-R-25|Flag irregularities for review|Verification|project brief|Flagged for Review|done|15 flags published
+R-25|Flag irregularities for review|Verification|project brief|Flagged for Review|done|22 flags published
 R-26|No hallucination; unconfirmable values left blank|Verification|project brief|Methodology|done|verify.py fails the build if a row lacks a source or a blank is filled by inference
 R-27|GitHub Pages live site|Delivery|project brief|(site root)|in progress|Pushed to main this session; Pages source already configured to main /
 R-28|Clean landing page|Delivery|project brief|Dashboard|done|Landing page with KPI strip, blocking chain and page map.

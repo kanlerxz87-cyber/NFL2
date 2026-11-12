@@ -276,6 +276,75 @@ def prose_counts_match_files():
            "(%d designations, %d injury cells, %d rows)" % (measured["status"], measured["injury"], measured["rows"]))
 
 
+def register_counts_match_files():
+    """Every register row that quotes the size of another register must quote the real size.
+
+    Added after a live re-verification found R-03 claiming "25 suggestions S-01…S-25" while the
+    register held 29 (S-01…S-29), R-05 claiming 28 questions against 29, and R-25 claiming 15 flags
+    against 21. Those were hand-maintained numbers that stopped being true as other sessions appended
+    rows. A pattern like "N <noun>" is a claim about a file, so it is checked against the file.
+    """
+    noun_file = {
+        "suggestion": "suggestions.csv", "suggestions": "suggestions.csv",
+        "question": "questions.csv", "questions": "questions.csv",
+        "flag": "flags.csv", "flags": "flags.csv",
+        "requirement": "requirements.csv", "requirements": "requirements.csv",
+        "gate": "gates.csv", "gates": "gates.csv",
+        "signal": "signals.csv", "signals": "signals.csv",
+        "strategy": "strategies.csv", "strategies": "strategies.csv",
+        "source": "sources.csv", "sources": "sources.csv",
+    }
+    sizes = {fn: len(rows(fn)[0]) for fn in set(noun_file.values())}
+    wrong = []
+    for fn in ("requirements.csv", "questions.csv", "suggestions.csv", "flags.csv"):
+        data, _, _ = rows(fn)
+        for r in data:
+            for k, cell in r.items():
+                # "25 suggestions" / "21 flags published" — but not "S-25" ids or "14-entry"
+                for n, noun in re.findall(r"(?<![\w-])(\d+) (suggestions?|questions?|flags?|requirements?|gates?|signals?|strategies|sources)\b", cell):
+                    target = noun_file[noun]
+                    if int(n) != sizes[target]:
+                        wrong.append("%s.%s: says %s %s, %s holds %d"
+                                     % (r.get("id", "?"), k, n, noun, target, sizes[target]))
+    if wrong:
+        bad("a register row quotes the wrong size of another register: %s" % wrong[:5])
+    else:
+        ok("register size claims match the files (%s)"
+           % ", ".join("%s %d" % (f.replace(".csv", ""), n) for f, n in sorted(sizes.items())))
+
+
+def injury_coverage_is_measured_not_named():
+    """The set of clubs with no injury rows must be derived from the fixture list, not hand-named.
+
+    tools/build_site.py once carried ["SEA","CIN","LAC","BAL"] as the empty-club list. On the live hub
+    SEA and CIN publish full blocks, so that constant was wrong in both directions and the site
+    published "28 clubs" for a 24-club file. This check fails if a hand-written club list appears in
+    the builder or if a page hard-codes the coverage count instead of using the metric.
+    """
+    src = open(os.path.join(ROOT, "tools", "build_site.py"), encoding="utf-8").read()
+    hard = re.findall(r'\[\s*"(SEA|CIN|LAC|BAL)"\s*,\s*"(SEA|CIN|LAC|BAL)"', src)
+    if hard:
+        bad("build_site.py still hand-names the empty-club list %s; derive it from schedule_2026_wk10.csv" % hard[:3])
+    inj, _, _ = rows("injuries_2026_wk10.csv")
+    sched, _, _ = rows("schedule_2026_wk10.csv")
+    playing = {g["away"] for g in sched} | {g["home"] for g in sched}
+    present = {r["team"] for r in inj}
+    missing = sorted(playing - present)
+    if not present <= playing:
+        bad("injury file names a club that is not playing Week 10: %s" % sorted(present - playing))
+    for fn in sorted(os.listdir(os.path.join(ROOT, "content"))):
+        if not fn.endswith(".md"):
+            continue
+        text = open(os.path.join(ROOT, "content", fn), encoding="utf-8").read()
+        # "24 of the 28 clubs" and "25 of 28 clubs" are fine; a bare "28 clubs" coverage claim is not
+        if re.search(r"(?<![\w-])(?<!of )(?<!the )(?<!claims )\b28 clubs\b", text):
+            bad("content/%s claims 28 clubs as coverage; the file holds %d of %d" % (fn, len(present), len(playing)))
+        if re.search(r"blank cells are rendered as .not published.", text):
+            pass
+    ok("injury coverage measured from the fixture list: %d of %d clubs present, %d absent (%s)"
+       % (len(present), len(playing), len(missing), ", ".join(missing)))
+
+
 def dictionary_counts_match_files():
     """The data dictionary publishes a row count per file; those numbers are checked against the
     files instead of being maintained by whoever remembers to edit them."""
@@ -390,7 +459,7 @@ def gamelog():
 
 
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); dictionary_counts_match_files(); gamelog()
+    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named(); dictionary_counts_match_files(); gamelog()
     print("=" * 72)
     for m in PASS:
         print("  PASS  " + m)

@@ -1,5 +1,5 @@
 # Suggestion Register
-> The dedicated review page: 25 ways to improve the site and the system, each with the problem it solves, what it would take, and a recommended path — so a best option can be chosen before anything is implemented.
+> The dedicated review page: 29 ways to improve the site and the system, each with the problem it solves, what it would take, and a recommended path — so a best option can be chosen before anything is implemented.
 
 ## How to use this page
 
