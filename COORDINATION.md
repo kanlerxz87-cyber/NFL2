@@ -966,6 +966,31 @@ The repository has treated the absence of an official depth chart (`FL-06`, conf
   trap) are live on `flagged-for-review.html` with their official source links, per the owner's instruction
   that flagged and unverified items do not block the merge.
 
+### RV-T06 — the live site was serving the wrong tree (found after RV-T05)
+
+RV-T05 recorded the deploy as confirmed because `line-origination.html` was fetched and served the new
+content. **That confirmation was wrong**, and the way it was wrong is the lesson.
+
+- What was checked: `GET /line-origination.html` after the Pages build reported `built`. It returned 200 with
+  the new table, so the deploy was recorded as carrying this session's content.
+- Why that proved nothing: within a minute the site changed underneath. Probing a page that exists in **only
+  one tree** exposed the real state — `GET /defense.html` returned **200** (a page that exists only in
+  `docs/`), `GET /line-origination.html` returned **404**, and `GET /` returned the `docs/` title.
+- Root cause: `.github/workflows/pages.yml` uploaded `path: docs` while the repo's Pages configuration builds
+  the root as a legacy source. `docs/` is session `arena-009ec582`'s older 16-page archive; the canonical
+  audited dashboard is 22 pages at the root. The Actions artifact won the race and published the archive.
+  Eight passing audit suites could not catch it: every one of them audits files in the repository, and none
+  of them asks what the deployed artifact actually contains.
+
+**Fix:** `pages.yml` now uploads the repository root, with a pre-flight step that fails if any canonical page
+is missing. `docs/` is retained unchanged and stays reachable at `/NFL2/docs/`, which is what `README.md`
+already promised. `tools/verify.py` gained `publication_manifest_matches_tree()`, which fails if the workflow
+ever targets `docs/` again — negative control run (`revert to docs/` → `FAIL … FL-26`, restore → `48 passed`).
+Flag **FL-26** published with the probe evidence.
+
+**Process rule added, for the next session:** confirming a deploy requires probing a URL that exists in
+exactly one tree. A 200 on a page present in every tree proves only that *something* is deployed.
+
 ## Session `cef2b11f` (`arena/cef2b11f-nfl2`) — cross-tree re-verification, discrepancy census & freshness refresh
 
 **Branch base:** `25d88a9` (PR #24 merge, `main` HEAD at claim time). No open PRs and no other

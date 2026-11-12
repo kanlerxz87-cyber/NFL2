@@ -23,7 +23,7 @@ R-21|Same for offenses (starters vs backups)|Data|project brief|Depth & Deficien
 R-22|Executive summary of important details|Reporting|project brief|Executive Summary|done|Written for a reader who will not open the other 18 pages.
 R-23|No manual input required from the owner|Process|project brief|Methodology|done|All ingestion, transcription, verification, build and publishing performed by the agent
 R-24|Review the repo line by line with links for manual review|Verification|project brief|Methodology|done|Repo review recorded in COORDINATION.md (1 file, 6 bytes, 1 commit)
-R-25|Flag irregularities for review|Verification|project brief|Flagged for Review|done|25 flags published
+R-25|Flag irregularities for review|Verification|project brief|Flagged for Review|done|26 flags published
 R-26|No hallucination; unconfirmable values left blank|Verification|project brief|Methodology|done|verify.py fails the build if a row lacks a source or a blank is filled by inference
 R-27|GitHub Pages live site|Delivery|project brief|(site root)|in progress|Pushed to main this session; Pages source already configured to main /
 R-28|Clean landing page|Delivery|project brief|Dashboard|done|Landing page with KPI strip, blocking chain and page map.
