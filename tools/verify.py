@@ -227,7 +227,7 @@ def no_invented_results():
             if v not in ("", "not published") and v != "1.00":
                 bad("correlation %s: an unmeasured rho value %r is present" % (r["id"], v))
     ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted rho is asserted")
-    measured_correlation_is_reproducible(); depth_reach_is_reproducible()
+    measured_correlation_is_reproducible(); depth_reach_is_reproducible(); fair_lines_are_reproducible()
 
 
 def measured_correlation_is_reproducible():
@@ -333,6 +333,63 @@ def depth_reach_is_reproducible():
         third = sum(1 for f in fresh.values() if f[0] >= 3)
         ok("depth reach reproduces for %d position groups across %d charted clubs; %d reach the 3rd string"
            % (len(fresh), len(charts), third))
+
+
+def fair_lines_are_reproducible():
+    """The originated Week 10 lines must equal a fresh computation from the game log and the fixture list.
+
+    Stage 1-2 of the origination pipeline. Because no market price exists in this repository (FL-10),
+    these lines have no residual to publish and are not a betting recommendation. What must hold is that
+    each number is arithmetic a reviewer can redo, so this recomputes all 14 games and fails on any drift.
+    """
+    path = os.path.join(DATA, "computed_fair_lines.csv")
+    if not os.path.exists(path):
+        warn("fair-line computation absent; skip"); return
+    log, _, _ = rows("games_2026_wk1_9.csv")
+    sched, _, _ = rows("schedule_2026_wk10.csv")
+    alias = {"LA": "LAR"}
+    pf, pa, gp = {}, {}, {}
+    for g in log:
+        a, h = alias.get(g["away"], g["away"]), alias.get(g["home"], g["home"])
+        ap, hp = int(g["away_pts"]), int(g["home_pts"])
+        for t, f, ag in ((a, ap, hp), (h, hp, ap)):
+            pf[t] = pf.get(t, 0) + f
+            pa[t] = pa.get(t, 0) + ag
+            gp[t] = gp.get(t, 0) + 1
+    off = {t: pf[t] / gp[t] for t in gp}
+    dfn = {t: pa[t] / gp[t] for t in gp}
+    with open(path, encoding="utf-8") as fh:
+        published = {r["game_id"]: r for r in csv.DictReader(fh, delimiter="|")}
+    problems = []
+    for s in sched:
+        a, h = s["away"], s["home"]
+        neutral = "yes" if any(k in s["venue"] for k in ("Munich", "Mexico", "Tottenham", "Wembley")) else "no"
+        hfa = 0.0 if neutral == "yes" else 2.5
+        fa = (off[a] + dfn[h]) / 2.0
+        fh = (off[h] + dfn[a]) / 2.0 + hfa
+        r = published.get(s["game_id"])
+        if not r:
+            problems.append("%s missing" % s["game_id"]); continue
+        for label, mine, theirs in (("away_pts", fa, r["fair_away_pts"]),
+                                    ("home_pts", fh, r["fair_home_pts"]),
+                                    ("total", fa + fh, r["fair_total"]),
+                                    ("spread", fh - fa, r["fair_spread_home"])):
+            if abs(mine - float(theirs)) > 0.005:
+                problems.append("%s %s: says %s, recomputation %.2f" % (s["game_id"], label, theirs, mine))
+        if r["neutral_site"] != neutral:
+            problems.append("%s neutral flag disagrees" % s["game_id"])
+    if len(published) != len(sched):
+        problems.append("%d lines published for %d fixtures" % (len(published), len(sched)))
+    # a line with no market to compare against must never carry a residual or an edge claim
+    for r in published.values():
+        for k, v in r.items():
+            if re.search(r"residual|edge|ev_|roi|clv|vig", k, re.I) and v.strip():
+                problems.append("%s carries a market-relative column %r" % (r["game_id"], k))
+    if problems:
+        bad("originated fair lines do not reproduce: %s" % problems[:4])
+    else:
+        ok("originated fair lines reproduce for all %d Week 10 fixtures; no market-relative column exists"
+           % len(published))
 
 
 def prose_counts_match_files():

@@ -305,3 +305,56 @@ for club in sorted(_dc):
                 chart.get("club_site", ""),
             ])
 w("computed_depth_reach.csv", hdr, rows)
+
+
+# --------------------------------------- originated Week 10 fair lines --------
+# Stages 1-2 of the line-origination pipeline, computed from verified data only. This is the honest
+# minimum: a points-based estimate of strength, and kickoff/venue context. It is deliberately NOT a
+# betting recommendation and NOT a comparison to a market, because no market price exists in this
+# repository (FL-10). What it establishes is that the pipeline's first two stages run end to end on
+# data we actually have, and it publishes the per-game numbers so a reviewer can argue with them.
+#
+# Strength: points scored and allowed per game over the 136 verified games of weeks 1-9. That sample is
+# chosen over the season-to-date standings because the standings have since absorbed week 10 results,
+# which would leak the outcome of the games being priced.
+import collections as _collections
+with open(os.path.join(DATA, "games_2026_wk1_9.csv"), encoding="utf-8") as fh:
+    _log = list(_csv.DictReader(fh, delimiter="|"))
+with open(os.path.join(DATA, "schedule_2026_wk10.csv"), encoding="utf-8") as fh:
+    _wk10 = list(_csv.DictReader(fh, delimiter="|"))
+
+_ALIAS = {"LA": "LAR"}
+_for, _against, _played = _collections.Counter(), _collections.Counter(), _collections.Counter()
+for _g in _log:
+    _a, _h = _ALIAS.get(_g["away"], _g["away"]), _ALIAS.get(_g["home"], _g["home"])
+    _ap, _hp = int(_g["away_pts"]), int(_g["home_pts"])
+    _for[_a] += _ap; _against[_a] += _hp; _played[_a] += 1
+    _for[_h] += _hp; _against[_h] += _ap; _played[_h] += 1
+_off = {t: _for[t] / _played[t] for t in _played}
+_def = {t: _against[t] / _played[t] for t in _played}
+_league = sum(_for.values()) / sum(_played.values())
+
+hdr = ["game_id", "kickoff_et", "away", "home", "venue", "away_off_ppg", "away_def_ppg",
+       "home_off_ppg", "home_def_ppg", "league_ppg", "home_field_pts", "fair_away_pts",
+       "fair_home_pts", "fair_total", "fair_spread_home", "neutral_site", "games_in_sample",
+       "input_note"]
+rows = []
+for _s in _wk10:
+    _a, _h = _s["away"], _s["home"]
+    _venue = _s["venue"]
+    _neutral = "yes" if ("Munich" in _venue or "Mexico" in _venue
+                         or "Tottenham" in _venue or "Wembley" in _venue) else "no"
+    # home field is a fixed, published parameter, not a fitted one: zero at a neutral site, and the
+    # league-wide scoring asymmetry otherwise. It is stated here so it can be argued with.
+    _hfa = 0.0 if _neutral == "yes" else 2.5
+    _fa = (_off[_a] + _def[_h]) / 2.0
+    _fh = (_off[_h] + _def[_a]) / 2.0 + _hfa
+    rows.append([
+        _s["game_id"], _s["kickoff_et"], _a, _h, _venue,
+        "%.2f" % _off[_a], "%.2f" % _def[_a], "%.2f" % _off[_h], "%.2f" % _def[_h],
+        "%.2f" % _league, "%.1f" % _hfa, "%.2f" % _fa, "%.2f" % _fh,
+        "%.2f" % (_fa + _fh), "%+.2f" % (_fh - _fa), _neutral,
+        "%d-%d" % (min(_played[_a], _played[_h]), max(_played[_a], _played[_h])),
+        "points-only baseline; no opponent adjustment, no availability weighting, no market comparison",
+    ])
+w("computed_fair_lines.csv", hdr, rows)
