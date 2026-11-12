@@ -352,3 +352,44 @@ PR #10 landed a large `pipeline/` tree (third-party historical data plus its own
 Recorded as **FL-21** (price files present, unusable for the season analysed, with the counts above as the evidence) and **S-29** (the owner's decision: license a feed with timestamps and book identity; or declare the project model-price-only and move third-party lines out of the site build; or keep the 2006–2018 set strictly as an offline backtest exhibit). S-29 asks that whichever path is chosen be enforced by `tools/verify.py` refusing any published cell that cites a price file — enforcement, not prose, is the part that survives a fifth session.
 
 Their code and data were neither deleted nor restated: `pipeline/**`, `site/**`, `docs/*.md` and `.github/workflows/lab_validate.yml` are preserved as `arena-63ac21e9`'s tree, audited by their own `lab-validate` workflow, and independent of the root build's auditors.
+
+---
+
+## 15. Close-out of the integration branch — PR #15 merged, live-site findings, and where the numbers stand (session `bc4b47cf`, 2026-11-12T06:45Z)
+
+| Item | Value |
+|---|---|
+| PR | **#15** — https://github.com/kanlerxz87-cyber/NFL2/pull/15 · **MERGED** 2026-11-12T05:22:14Z as **`631b4da`** |
+| Checks on the PR | `audit` (root build + both auditors + drift gate), `Verify site data and links` (01b698ef's), `validate` = **lab-validate** (63ac21e9's pipeline rebuild) — all three green before merge |
+| CI on `main` at `631b4da` | `build-and-audit` · `Verify site data and links` · `GitHub Pages` · `pages build and deployment` — all **success**; Pages API `status=built`, `build_type=legacy`, source `main` / |
+| Live | https://kanlerxz87-cyber.github.io/NFL2/ serves the 21-page dashboard (+404); `/review/`, `/portal/`, `/docs/`, `/archive/session-009ec582/` all resolve and are labelled from the root page map |
+| Follows #8 | PR **#8** merged as `ccb8576` (§13); this PR carried the link-rendering fix, the `63ac21e9` pipeline integration, FL-21, S-29 and this record |
+
+**Two defects that only appeared once the site was read rather than built.** Both are the reason this board
+insists on fetching the published URL:
+
+1. **Relative markdown links reached readers as raw text** on 19 of 22 pages — the builder converted only
+   `https://` links. Fixed by two added `inline()` patterns (609 → 737 internal links published) and
+   guarded by a new `check_site.py` failure mode for any unrendered markdown link.
+2. **A register sentence contradicted the file beside it.** Reading the live Flagged page showed FL-02's
+   finding saying *six* designations while its evidence cell said *five non-empty status cells* — the
+   correction made earlier in this session had not reached that cell. `tools/verify.py` gained
+   `prose_counts_match_files()` (38 checks now), which fails on any "N of 254 players/rows" or
+   "N non-empty <col> cells" claim that does not match the measured file. The guard was tested by
+   re-introducing the wrong number and watching it fail with `FL-02.evidence: claims 5 non-empty
+   status cells, file has 6`, then restoring the correct value.
+
+**State of the registers as published** (each number measured by the builder, not typed): 254 injury
+rows · 6 designations · 227 depth/roster events · 32 reconciled standings rows · 136-game verified log ·
+40 requirements · 29 questions · 29 suggestions · 21 flags · 28 registered sources (17 tier A, official) ·
+18 signal families · 14 gates · 14 strategies · 12 correlation classes · 19 data files · 588 blank cells
+rendered as `not published`.
+
+**Open decision items for the owner, in the order they unblock things:** S-29 (price-data policy — the
+repo now contains third-party lines that stop in 2018 and 163 of 272 sparse 2026 moneylines; decide
+license / model-price-only / offline-exhibit before any backtest is published), S-28 (canonical club-key
+registry, so a LA-vs-LAR class of silent join drop fails the build), S-26 (register the game log by hash
+as the only permitted backtest window), S-27 (name one canonical layout among the five published trees),
+S-04 (pre-registration protocol the leaderboard depends on). None of them is blocked on a fact that
+cannot be found; each needs a decision, which is why they are on the Suggestions page rather than in the
+data.
