@@ -1,0 +1,41 @@
+id|requirement|category|raised_in|site_section|status|note
+R-01|Collect, organize and analyze NFL data using a full list of requirements|Program|project brief|Requirements|in progress|Collection layer exists for injuries/standings/schedule/depth; analysis layer is specified but not fitted
+R-02|Maintain the full requirement list inside the repo|Program|project brief|Requirements|done|40 rows in data/requirements.csv; the repo previously contained no requirements document at all
+R-03|Make suggestions on how to improve the site to improve decision making|Decision support|project brief|Suggestion Register|done|25 suggestions S-01…S-25 with impact/effort/risk scoring
+R-04|Create a dedicated section so a human can review suggestions and pick a path before implementing|Decision support|project brief|Suggestion Register|done|Every suggestion ships with decision=pending; nothing was implemented on the site except what the brief itself mandated
+R-05|Clear list of questions to be answered before any decision can reasonably be made|Decision support|project brief|Open Questions|done|28 questions, each with "what we have / what we lack / how to close"
+R-06|State explicitly which information we already have and which we do not|Decision support|project brief|Open Questions|done|Two-column have/lack structure on every question row
+R-07|Suggestions must be made to discover missing information|Decision support|project brief|Open Questions|done|Each question carries a closure method; several suggestions are data-acquisition suggestions
+R-08|Originate our own NFL lines rather than only consuming market prices|Modeling|project brief|Line Origination|specified|Full architecture specified; cannot be fitted until market data and player-level data are licensed (Q-01, Q-02)
+R-09|Research and develop strategies that generate useful signals|Modeling|project brief|Signals|specified|18 signal families documented with inputs, direction, decay and capacity
+R-10|Treat strategy development as a leaderboard competition|Competition|project brief|Leaderboard|done|Leaderboard schema + promotion rules published; table is empty by design until real results exist
+R-11|Rewards for top-performing strategies|Competition|project brief|Leaderboard & Rewards|done|Four tiers, staking allocation as the reward, with clawback conditions
+R-12|Cover single bets (straight wagers)|Modeling|project brief|Bet Types|done|EV, no-vig, CLV and stake formulas published
+R-13|Cover parlays|Modeling|project brief|Bet Types|done|Independence baseline, correlation-adjusted joint, and the pricing wedge
+R-14|Cover player-prop bet combos|Modeling|project brief|Bet Types|done|Prop-specific correlation (volume-sharing, game-stack, snap-count coupling)
+R-15|Every strategy must pass validation gates before promotion|Governance|project brief|Validation Gates|done|14 gates; hard-fail vs soft-fail; current status = blocked for all strategies
+R-16|Determine correlation values|Modeling|project brief|Correlation|specified|Estimation methods published; no rho value is asserted, because we have no fitted data
+R-17|Remove luck from the equation|Governance|project brief|Skill vs Luck|done|Sample-size, CLV, bootstrap and split-half requirements; formulas computed in-repo
+R-18|Build strategies that are selectively skill-based|Governance|project brief|Skill vs Luck|done|Selectivity metrics (play-rate, coverage) required alongside accuracy
+R-19|Track injuries|Data|project brief|Week 10 Injury Report|done|254-row official snapshot ingested with per-row source links
+R-20|Know defensive deficiencies when 2nd/3rd/4th-string backups replace starters|Data|project brief|Depth & Deficiencies|partial|Injury + IR + designation evidence captured; official depth-chart source does not exist publicly (Q-05), so depth rank is unresolved
+R-21|Same for offenses (starters vs backups)|Data|project brief|Depth & Deficiencies|partial|227-row roster-move / practice log ingested
+R-22|Executive summary of important details|Reporting|project brief|Executive Summary|done|Written for a reader who will not open the other 18 pages.
+R-23|No manual input required from the owner|Process|project brief|Methodology|done|All ingestion, transcription, verification, build and publishing performed by the agent
+R-24|Review the repo line by line with links for manual review|Verification|project brief|Methodology|done|Repo review recorded in COORDINATION.md (1 file, 6 bytes, 1 commit)
+R-25|Flag irregularities for review|Verification|project brief|Flagged for Review|done|15 flags published
+R-26|No hallucination; unconfirmable values left blank|Verification|project brief|Methodology|done|verify.py fails the build if a row lacks a source or a blank is filled by inference
+R-27|GitHub Pages live site|Delivery|project brief|(site root)|in progress|Pushed to main this session; Pages source already configured to main /
+R-28|Clean landing page|Delivery|project brief|Dashboard|done|Landing page with KPI strip, blocking chain and page map.
+R-29|Subpages organized by category|Delivery|project brief|nav|done|6 categories, 19 pages
+R-30|UI clean, user friendly, simple, dashboard-like|Delivery|project brief|assets/style.css|done|Single stylesheet, no framework, no tracking, no JS dependency
+R-31|All entries and findings in simple readable tables|Delivery|project brief|all data pages|done|Tables generated from CSV; no hand-written HTML tables
+R-32|Include analysis and findings|Delivery|project brief|all pages|done|Findings sections on the data pages; no findings invented on the design pages.
+R-33|Every table row has a source link to an official site|Verification|project brief|all data pages|done|Enforced mechanically by tools/verify.py at build time
+R-34|If a value cannot be confirmed from an official source, leave it blank and flag it|Verification|project brief|Flagged for Review|done|Blank cells render as "not published" and are counted in the flag ledger
+R-35|COORDINATION.md shared task board with status, owner session, file scope|Process|project brief|COORDINATION.md|done|COORDINATION.md committed and pushed before any other edit.
+R-36|Keep scopes non-overlapping; rebase before push; claim before edit|Process|project brief|COORDINATION.md|done|No competing sessions found; claim committed and pushed before edits
+R-37|PR to main with summary, sources and flagged items; merge without waiting|Process|project brief|GitHub|pending|Created in the final step of this session
+R-38|Confirm GitHub Pages deploys successfully|Process|project brief|GitHub|pending|Checked with gh api repos/.../pages after merge
+R-39|Flagged/unverified items do not block merge but must be on a labeled page|Process|project brief|Flagged for Review|done|Flagged for Review page publishes all 16 items with their source links.
+R-40|Never merge a broken site; fix build/link failures and retry|Process|project brief|CI|done|GitHub Action runs build + audit; both must be clean before merge

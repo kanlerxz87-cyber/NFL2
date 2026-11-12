@@ -1,50 +1,39 @@
-# Suggestions — improvement paths for decision making (T05)
+# Suggestion Register
+> The dedicated review page: 25 ways to improve the site and the system, each with the problem it solves, what it would take, and a recommended path — so a best option can be chosen before anything is implemented.
 
-**Purpose:** this section exists so a reviewer can compare paths and **choose the best path
-before any change is implemented**. Nothing in the table below has been implemented as a
-product change; these are options. The interactive chooser is on `suggestions.html`.
+## How to use this page
 
-## Decision rule
+Nothing here has been implemented except what your brief itself required (the coordination board, the source-linked tables, the blanks-not-guesses rule, the review page). Everything else is queued for a decision.
 
-1. Read the paths in priority order.
-2. Select one path (A–E) with the chooser, or record a custom path.
-3. Only after a selection is recorded may an implementation session claim a task from it.
-4. Unresolved blocking questions from `decisions.html` remain blocking even after a path is chosen.
+- **I / E** are impact and effort, on an H/M/L scale. They are my judgement about this codebase and data state, not measurements — recorded as judgement so they can be argued with.
+- **Reversible** is the important column: a reversible change with high impact should be approved on judgement alone; an irreversible one deserves a look first.
+- **Decision** is yours. `adopted (v1)` means it is already visible in this build, so the honest record says so rather than claiming a future win. `recommended` means approve-and-build. `blocked` means it cannot proceed until a question on the [question register](questions.html) is answered.
 
-## Ranked improvement paths
+## Tier 1 — approve now (highest impact per unit of risk)
 
-| Path | Suggestion | Improves decision making by | Effort | Impact | Depends on | Official basis | Status |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| A | Lock the evidence layer: source registry, allowlist, row-level verification and the Flagged for Review page | Prevents unverified numbers from ever entering a decision | Low | High | nothing | https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages | recommended |
-| B | Answer the blocking questions D01–D17 before building any model | Converts speculation into a bounded, testable scope | Medium | High | A | https://www.nfl.com/injuries/league/2026/REG10 | recommended |
-| C | Build the injury / depth snapshot pipeline (official injury report + club depth chart + 90-minute inactive list) | Creates the only verified, decision-relevant dataset currently available | Medium | High | A, B | https://operations.nfl.com/game-operations-logistics/preparation-safety/game-and-stadium-prep | candidate |
-| D | Acquire a licensed historical odds + play-by-play dataset, then compute correlations and validation gates | Unblocks every numeric gate, CLV and skill-vs-luck test | High | High | A, B, licence answer to D04 | https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners | candidate (blocked) |
-| E | Run a recognition-only, no-money leaderboard with public/private split | Tests strategy quality without legal or financial exposure | Medium | Medium | A, B, D07 | https://operations.nfl.com/programs-initiatives/innovation/big-data-bowl | candidate |
+{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,problem_it_solves:Problem it solves,proposal:What we would build,impact:I,effort:E,reversible:Reversible,depends_on:Depends on,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=recommended_path:recommended;;caption=Rows containing "recommended" in the recommended-path column, in any state — including those blocked behind a data decision.}}
 
-## Site usability suggestions (small, independent)
+## Tier 2 — everything else, including what is already live
 
-| ID | Suggestion | Why it helps | Source link | Status |
-| --- | --- | --- | --- | --- |
-| S01 | Add a global filter box to every table | Finds a row without scrolling | https://github.com/kanlerxz87-cyber/NFL2 | proposal |
-| S02 | Add sortable column headers | Compare verified vs unverified rows quickly | https://github.com/kanlerxz87-cyber/NFL2 | proposal |
-| S03 | Colour-only signals must also have text badges | Accessibility; a red cell alone is ambiguous | https://www.ncpgambling.org/ | proposal |
-| S04 | Show a "captured at" timestamp on every live-data snapshot | Official pages change during the week | https://www.nfl.com/injuries/ | proposal |
-| S05 | Put official source links in a dedicated last column on every table | Satisfies the verification rule visibly | https://www.nfl.com/injuries/league/2026/REG10 | proposal |
-| S06 | One category per subpage, with the same navigation on every page | Consistent dashboard mental model | https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages | proposal |
-| S07 | Keep a single machine-readable evidence registry as the only source of URLs | Prevents link drift and duplicate sources | https://operations.nfl.com/rules-officiating/2026-nfl-rulebook | proposal |
-| S08 | Publish a decision record table with "chosen path / chosen by / date" | Makes the pre-implementation choice auditable | https://github.com/kanlerxz87-cyber/NFL2/blob/arena/01b698ef-nfl2/COORDINATION.md | proposal |
-| S09 | Add a 404 page that returns to the dashboard | No dead ends | https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site | proposal |
-| S10 | Run the row-level verifier in CI on every push | A broken row or link fails the build, not the reviewer | https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site | proposal |
+{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,proposal:What we would build,risk:Risk,depends_on:Depends on,evidence:Evidence behind it,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=recommended_path:!recommended}}
 
-## Decision record
+## What I would actually do first, in order
 
-| Field | Value |
-| --- | --- |
-| Chosen path |  |
-| Chosen by |  |
-| Date |  |
-| Blocking questions still open | D01–D17 (see `decisions.html`) — blank until answered officially |
-| Implementation started | No — intentionally blank; no change is implemented before a path is chosen |
+| Step | Suggestion | Why this order |
+| --- | --- | --- |
+| 1 | S-04 pre-registration, no backtests on the leaderboard | Costs nothing and it is the only rule that stops the whole competition becoming self-deception later |
+| 2 | S-01 + S-02 + S-13 + S-24 (already adopted) | the honesty layer: timestamps, blanks as first-class, frozen verification vocabulary, no unsourced numerics |
+| 3 | S-19 refuse "No Injuries Reported" as zero | protects every downstream feature from the most likely silent error in this dataset |
+| 4 | S-15 32-team roster sweep | makes joins trustworthy; without it no team-level number is defensible |
+| 5 | S-06 availability graph as a dataset | this, not the model, is the project's differentiator — and it is the only path to the depth requirement |
+| 6 | S-09 + S-10 + S-11 pricing, parlay and prop-combo framework | only once Q-01 (prices) and Q-12 (joint data) close |
+| 7 | S-18 luck-removal panel on the dashboard | becomes meaningful with the first tracked bets, worthless before |
 
-The blank cells above are deliberate. They are `UNVERIFIED / AWAITING REVIEW`, not omissions
-to be filled in by an agent.
+## The decisions I cannot make for you
+
+| ID | Decision | Why it is not mine |
+| --- | --- | --- |
+| S-25 / Q-26 | What the leaderboard pays out | it is a budget and incentive question |
+| S-05 / Q-11 | Whether v1 covers live, futures and alternate markets | it is a scope and cost trade-off |
+| S-27 / Q-27 | Whether losing records are published | transparency preference |
+| S-28 / Q-28 | Sign-off on the verification vocabulary | it defines what the project is allowed to claim in public |

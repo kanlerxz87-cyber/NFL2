@@ -1,15 +1,8 @@
-# Combined ignore rules from all parallel sessions (merged, nothing discarded)
 # local scratch
 .arena/
 __pycache__/
-*.pyc
+*.py[cod]
 .venv/
 node_modules/
-# Local scratch / editor / OS files
 .DS_Store
-*.swp
-*~
-.idea/
-.vscode/
-.pytest_cache/
-.env
+*.tmp

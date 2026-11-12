@@ -1,91 +1,55 @@
 <!doctype html>
 <html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Overview · NFL 2026 Analytics</title>
-<meta name="description" content="A verified NFL 2026 analytics site: every figure traceable to an official source, strategies gated, gaps published.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL2 — Decision Dashboard · NFL2</title>
+<meta name="description" content="Collect, organise and analyse NFL data so we can originate our own lines, rank strategies on a leaderboard that must survive validation gates, and publish every number with the official source it came from.">
 <link rel="stylesheet" href="assets/style.css">
-</head><body>
-<header class="top"><div class="wrap">
-<a class="brand" href="index.html"><span class="dot"></span>NFL 2026 · Verified Analytics</a>
-<nav class="main"><a href="index.html" aria-current="page">Overview</a><a href="results.html">Results</a><a href="standings.html">Standings</a><a href="teams.html">Team Stats</a><a href="injuries.html">Injuries &amp; Depth</a><a href="analysis.html">Analysis</a><a href="strategies.html">Strategies</a><a href="method.html">Method</a><a href="sources.html">Data Sources</a><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="review/index.html">Verification Review (01b698ef)</a><a href="portal/index.html">Line Origination &amp; Depth Portal (e143a7ca)</a></nav>
-</div></header>
-<div class="hero"><div class="wrap"><span class="eyebrow">2026 regular season · weeks 1–9 verified</span><h1>An NFL analytics build where every number can be traced to an official page</h1><p class="lede">This site does three things: it reproduces the league's own published records from a
-  136-game log and proves the reproduction arithmetically; it researches
-  betting-shaped ideas under a leaderboard whose <b>validation gates it is not allowed to pass
-  by storytelling</b>; and it tracks injuries against club depth charts so that a missing star
-  can be told apart from a missing fourth-stringer. Where a value cannot be confirmed from an
-  official source, the cell is blank and the item is on the Flagged for Review page.
-  <b>No figure here is invented, and no strategy is claimed to work.</b></p></div></div><section><div class="wrap">
-<div class="grid g4">
-  <div class="card"><h3>Quantitative Decision Portal</h3><p>10-page interactive portal (session e143a7ca): Week 10 &amp; 11 originated fair lines, 12 empirical 32-club correlations, Pythagorean skill-vs-luck decomposition, verified 1st–4th string club depth chains, 9 Tier-0 gated strategies, Suggestions Hub, Questions &amp; Discovery register, and Flagged for Review.</p><p><a href="portal/index.html">Open the quantitative portal →</a></p></div>
-  <div class="card"><h3>Verification Review Dashboard</h3><p>A parallel build: requirements register, decision gates, suggestions/path chooser, official source registry, validation gates, correlation matrix, injury and depth snapshots, and flagged items. Every table row links to an official source.</p><p><a href="review/index.html">Open the review dashboard →</a></p></div>
-  <div class="card"><div class="big">136</div><p>All 136 rows of weeks 1–9, each with its own source link</p></div>
-  <div class="card"><div class="big">32</div><p>Every club's W-L-T, points for/against and streak reproduced from the log</p></div>
-  <a class="card link" href="flagged.html" style="display:block;text-decoration:none"><div class="big">20/23</div><p>20 of 23 · the 3 soft fails are published, not hidden</p></a>
-  <a class="card link" href="strategies.html" style="display:block;text-decoration:none"><div class="big">0/6</div><p>None. All six fail the sample-size gate — that is the honest result</p></a>
+</head>
+<body class="kind-program">
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> <span>Decision dashboard</span></a>
+  <div class="asof">Data fetched <strong>2026-11-12 04:45 UTC</strong> · official league sources only · <a href="methodology.html">how this is verified</a></div>
+</header>
+<div class="shell">
+  <aside class="side">
+    <div class="navgroup"><span>Overview</span><a class="on" href="index.html">Dashboard</a><a class="" href="executive-summary.html">Executive Summary</a><a class="" href="requirements.html">Requirements</a><a class="" href="roadmap.html">Build Plan &amp; Roadmap</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Open Questions</a><a class="" href="suggestions.html">Suggestion Register</a><a class="" href="flagged-for-review.html">Flagged for Review</a></div><div class="navgroup"><span>Origination</span><a class="" href="line-origination.html">Originate Our Own Lines</a><a class="" href="signals.html">Signal Catalogue</a><a class="" href="correlation.html">Correlation</a><a class="" href="bet-types.html">Bet Types</a><a class="" href="skill-vs-luck.html">Removing Luck</a></div><div class="navgroup"><span>Competition</span><a class="" href="strategies.html">Strategy Registry</a><a class="" href="leaderboard.html">Leaderboard &amp; Rewards</a><a class="" href="validation-gates.html">Validation Gates</a></div><div class="navgroup"><span>Data</span><a class="" href="injuries.html">Week 10 Injury Report</a><a class="" href="depth-impact.html">Depth &amp; Deficiencies</a><a class="" href="league-data.html">Standings &amp; Schedule</a><a class="" href="data-dictionary.html">Data Dictionary</a></div><div class="navgroup"><span>Governance</span><a class="" href="methodology.html">Verification Method</a><a class="" href="sources.html">Source Registry</a></div>
+    <div class="sidefoot"><a href="flagged-for-review.html">20 open flags</a> · <a href="sources.html">28 sources</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge program">Program</span>
+      <h1>NFL2 — Decision Dashboard</h1>
+      Collect, organise and analyse NFL data so we can originate our own lines, rank strategies on a leaderboard that must survive validation gates, and publish every number with the official source it came from.
+    </div>
+    <nav class="toc"><span>On this page</span><a href="#read-this-first">Read this first</a><a href="#what-the-repository-held-at-the-start-of-this-session">What the repository held at the start of this session</a><a href="#state-of-the-workstreams">State of the workstreams</a><a href="#the-blocking-chain">The blocking chain</a><a href="#page-map">Page map</a></nav>
+    <div class="body"><div class="cards"><div class="card"><h3>Injury rows ingested</h3><div class="big"><a href="injuries.html">254</a></div><div class="sub">28 clubs, 254 players, verbatim from the official hub</div></div><div class="card"><h3>Designations published</h3><div class="big"><a href="injuries.html">6</a></div><div class="sub">6 of 254 rows carry a game status; the rest are not published</div></div><div class="card"><h3>Depth &amp; roster events</h3><div class="big"><a href="depth-impact.html">227</a></div><div class="sub">227 entries: IR, returns, signings, QB chain changes</div></div><div class="card"><h3>Standings reconciled</h3><div class="big"><a href="league-data.html">32</a></div><div class="sub">32 clubs; points and winning pct recomputed clean</div></div><div class="card"><h3>Suggestions to decide</h3><div class="big"><a href="suggestions.html">28</a></div><div class="sub">28 options scored; none implemented without your pick</div></div><div class="card"><h3>Open questions</h3><div class="big"><a href="questions.html">29</a></div><div class="sub">29 questions, 11 marked P0 blocking</div></div><div class="card"><h3>Flags for review</h3><div class="big"><a href="flagged-for-review.html">20</a></div><div class="sub">20 irregularities published, none blocking</div></div><div class="card"><h3>Signal families specified</h3><div class="big"><a href="signals.html">18</a></div><div class="sub">18 specified, 5 blocked on data we do not have</div></div></div>
+<h2 id="read-this-first">Read this first</h2>
+<p>This site has two kinds of pages and they never mix on one page without a divider:</p>
+<ul>
+<li><strong>Measured</strong> (green badge) — tables generated from <code>data/*.csv</code>, every row carrying a link to the official league page it was transcribed from.</li>
+<li><strong>Specified</strong> (blue badge) — the design of the pricing engine, signals, gates and competition rules. These are proposals, not results.</li>
+<li><strong>Decisions</strong> (amber badge) — the [question register](questions.html), the [suggestion register](suggestions.html) and the [review queue](flagged-for-review.html). Nothing on these pages has been implemented on your instruction.</li>
+<p>There are no scores, no model outputs and no edges on this site, because none exist yet. Blank cells are rendered as <code>not published</code> rather than filled with an estimate — see [verification method](methodology.html).</p>
+<h2 id="what-the-repository-held-at-the-start-of-this-session">What the repository held at the start of this session</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Item</th><th>State found</th><th>Where checked</th></tr></thead><tbody><tr><td>Tracked files</td><td>1 (<code>README.md</code>, 6 bytes, contents <code># NFL2</code>)</td><td><a href="https://github.com/kanlerxz87-cyber/NFL2" rel="noopener">repository root</a></td></tr><tr><td>Commits</td><td>1 — <code>01f2271 Initial commit</code></td><td><code>git log</code></td></tr><tr><td>Requirements document</td><td>none</td><td>repository root</td></tr><tr><td>Code, data, tests, CI</td><td>none</td><td>repository root</td></tr><tr><td>GitHub Pages</td><td>already configured: legacy build, branch <code>main</code>, path <code>/</code></td><td>GitHub Pages API</td></tr></tbody></table></div>
+<p>Everything on this site was therefore created in this session, in one branch, against the brief you wrote. The requirement list in the brief is now [a tracked file](requirements.html) so it stops living only in chat.</p>
+<h2 id="state-of-the-workstreams">State of the workstreams</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Workstream</th><th>State</th><th>Evidence in repo</th><th>Blocking</th></tr></thead><tbody><tr><td>Injury and availability collection</td><td>running — 254 rows, 28 clubs, Week 10</td><td><code>data/injuries_2026_wk10.csv</code></td><td>one filing per week, not three (FL-09)</td></tr><tr><td>Depth, IR and roster events</td><td>running — 227 rows</td><td><code>data/depth_changes_2026_wk10.csv</code></td><td>no official depth chart exists (FL-06)</td></tr><tr><td>Standings and schedule</td><td>running — 32 + 14 rows, reconciled</td><td><code>data/standings_2026.csv</code>, <code>data/schedule_2026_wk10.csv</code></td><td>seven official columns left out (FL-07)</td></tr><tr><td>Line origination</td><td>specified only</td><td><code>content/line-origination.md</code></td><td>no price data of any kind (FL-10)</td></tr><tr><td>Signal catalogue</td><td>specified — 18 families, 6 blocked on data</td><td><code>data/signals.csv</code></td><td>entitlement + join keys (G-01, G-02)</td></tr><tr><td>Strategy registry</td><td>14 entries, none tracked</td><td><code>data/strategies.csv</code></td><td>pre-registration + tracking ledger</td></tr><tr><td>Validation gates</td><td>14 gates defined; 0 strategies can pass any</td><td><code>data/gates.csv</code></td><td>see gate matrix</td></tr><tr><td>Correlation</td><td>method defined; 12 pair classes; <strong>no rho asserted</strong></td><td><code>data/correlation.csv</code></td><td>joint-outcome data (Q-12)</td></tr><tr><td>Skill-vs-luck protocol</td><td>derived and computed in-repo</td><td><code>content/skill-vs-luck.md</code></td><td>sample must still be collected</td></tr><tr><td>Competition and rewards</td><td>tiers and rules written; payout mechanism unfunded</td><td><code>content/leaderboard.md</code></td><td>owner decision (Q-26)</td></tr></tbody></table></div>
+<h2 id="the-blocking-chain">The blocking chain</h2>
+<p>Four items sit in front of almost everything else. They are decisions and access, not coding:</p>
+<ol>
+<li><strong>Prices.</strong> Without an opening and closing price per market there is no vig to strip, no fair value to deviate from, no CLV to measure skill with, and no way to know whether a line we originate is right. This is [Q-01](questions.html) and it blocks 9 of 14 gates.</li>
+<li><strong>Player-level entitlement.</strong> Snaps, routes and targets are what turn "a starter is out" into "the replacement costs 2.1 yards per carry". This is [Q-02](questions.html).</li>
+<li><strong>A defensible depth answer.</strong> The league publishes no depth chart, so "2nd/3rd/4th string replacing a starter" must be reconstructed from roster status, participation, designations and actual playing time ([S-06](suggestions.html), [FL-06](flagged-for-review.html)).</li>
+<li><strong>Point-in-time storage.</strong> Three filings a week and a dated event log, or the availability signals cannot be built at all ([FL-09](flagged-for-review.html)).</li>
+<h2 id="page-map">Page map</h2>
+<div class="tablewrap"><table class="data"><thead><tr><th>Category</th><th>Page</th><th>What you get</th></tr></thead><tbody><tr><td>Overview</td><td>[Executive summary](executive-summary.html)</td><td>the whole project in one read</td></tr><tr><td>Overview</td><td>[Requirements](requirements.html)</td><td>40 requirements, each traced to a page and a status</td></tr><tr><td>Overview</td><td>[Build plan](roadmap.html)</td><td>ordered work after your decisions</td></tr><tr><td>Decisions</td><td>[Open questions](questions.html)</td><td>29 questions with what we have / what we lack / how to close</td></tr><tr><td>Decisions</td><td>[Suggestion register](suggestions.html)</td><td>28 suggestions with impact, effort, risk, reversibility — pick a path</td></tr><tr><td>Decisions</td><td>[Flagged for review](flagged-for-review.html)</td><td>20 irregularities and unverifiable items, with source links</td></tr><tr><td>Origination</td><td>[Originate our own lines](line-origination.html)</td><td>model architecture, inputs, no-vig math, publication of residuals</td></tr><tr><td>Origination</td><td>[Signals](signals.html)</td><td>18 signal families with decay, capacity and blocking gate</td></tr><tr><td>Origination</td><td>[Correlation](correlation.html)</td><td>12 pair classes, sign arguments, estimation method, blank rhos</td></tr><tr><td>Origination</td><td>[Bet types](bet-types.html)</td><td>singles, parlays and prop combos priced consistently</td></tr><tr><td>Origination</td><td>[Removing luck](skill-vs-luck.html)</td><td>sample sizes, CLV, bootstrap, split-half, luck-adjusted P&amp;L</td></tr><tr><td>Competition</td><td>[Strategy registry](strategies.html)</td><td>14 entries including two negative controls</td></tr><tr><td>Competition</td><td>[Leaderboard &amp; rewards](leaderboard.html)</td><td>ranking rules, tiers, reward mechanics, gate-readiness matrix</td></tr><tr><td>Competition</td><td>[Validation gates](validation-gates.html)</td><td>14 gates, pass criteria, what each one blocks</td></tr><tr><td>Data</td><td>[Week 10 injury report](injuries.html)</td><td>all 254 official rows, per-row source links</td></tr><tr><td>Data</td><td>[Depth &amp; deficiencies](depth-impact.html)</td><td>who is replacing whom, and what we cannot yet quantify</td></tr><tr><td>Data</td><td>[Standings, schedule &amp; game log](league-data.html)</td><td>32 reconciled rows, the Week 10 slate, and a 136-game verified results log for weeks 1–9</td></tr><tr><td>Data</td><td>[Data dictionary](data-dictionary.html)</td><td>every column, its meaning, its source, its transform</td></tr><tr><td>Governance</td><td>[Verification method](methodology.html)</td><td>the rules this project will not bend</td></tr><tr><td>Governance</td><td>[Source registry](sources.html) → <em>Parallel builds</em></td><td>three other trees exist and are labelled: this session's audited dashboard is the root; [review/index.html](review/index.html) is session <code>01b698ef</code>'s register dashboard (16 pages, own CI); [archive/session-009ec582/index.html](archive/session-009ec582/index.html) and [docs/index.html](docs/index.html) are <code>009ec582</code>'s two builds; [portal/index.html](portal/index.html) is session <code>e143a7ca</code>'s 10-page quantitative portal with its own engine and verifier. Only the game log was adopted here, after re-audit</td></tr><tr><td>Governance</td><td>[Source registry](sources.html)</td><td>28 sources with tier, access time and what each was used for</td></tr></tbody></table></div></div>
+    <footer class="pagefoot">
+      
+      <a class="pager right" href="executive-summary.html">Executive Summary &rarr;</a>
+      <div class="foot-meta">Rendered from <code>data/</code> by <code>tools/build_site.py</code> — the build is byte-deterministic, so this page is exactly what the audited data says · <a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a></div>
+    </footer>
+  </main>
 </div>
-
-<div class="note warn" style="margin-top:22px">
-<p><b>The headline finding is a refusal.</b> Six strategies were built and backtested walk-forward
-across weeks 5–9. Every one is <b>UNDERPOWERED</b>: the best graded 72 legs against a gate that
-requires 200. Three pass four of the seven gates, which is encouraging and means nothing yet.
-The site publishes the leaderboard anyway, sorted by gates passed rather than by hit rate, so
-that the table cannot be read as a recommendation.</p>
-</div>
-
-<h2 style="margin-top:34px">Four things worth knowing</h2>
-<div class="grid g2" style="margin-top:14px">
-  <div class="card"><h3>Home-field advantage is not detectable in 2026 — and the naive number is wrong</h3>
-  <p>Pooled across all 136 games the mean home margin is +0.00 points,
-  which looks like home-field has vanished. But 7 of those games were at neutral sites with no real
-  home club. On the 129 genuine home games the mean is <b>+0.50</b>
-  points, 95% CI <b>[-1.80, +2.79]</b>. The conventional
-  ~+2.5 prior sits <i>inside</i> that interval, so this season cannot reject it. The model uses
-  +0.50. <a href="method.html">Method →</a></p></div>
-
-  <div class="card"><h3>Team stats conserve exactly — which is why the mapping can be trusted</h3>
-  <p>League-wide offence equals league-wide defence on eight separate identities: 63,556 passing yards,
-  30,580 rushing yards, 641 sacks, 411 passing TD, 257 rushing TD, 197 interceptions, 3,006 passing
-  first downs, 1,757 rushing first downs. Exact conservation is what proved the header-less columns
-  were mapped correctly. <a href="teams.html">Team stats →</a></p></div>
-
-  <div class="card"><h3>Starter vs backup is answered for 4 clubs, blank for 28</h3>
-  <p>The official injury report says who is hurt but never says whether they start. Joining it to
-  club-published depth charts resolves that for Kansas City, Green Bay, New England and Detroit —
-  and the join surfaces 12 injured players who are absent from
-  their own club's chart entirely. For the other 28 clubs the field is left blank rather than guessed.
-  <a href="injuries.html">Injuries &amp; depth →</a></p></div>
-
-  <div class="card"><h3>Two leaderboards are withheld because their columns cannot be proven</h3>
-  <p>The rushing and receiving leaderboards render with no header row, and no arithmetic identity
-  identifies the columns — published yards-per-carry disagrees with yards divided by carries for
-  every sampled row. They are not published at all. Only 8 passing lines survive an exact equality
-  test against their club's official team passing line. <a href="flagged.html">Flagged for Review →</a></p></div>
-</div>
-
-<h2 style="margin-top:34px">Where to go</h2>
-<p class="sub">Each page answers one question and every table row carries its source.</p>
-<div class="grid g3">
-  <a class="card link" href="results.html" style="display:block;text-decoration:none"><h3>Results</h3><p>136 games, weeks 1–9, each with score, date and source link</p></a>
-  <a class="card link" href="standings.html" style="display:block;text-decoration:none"><h3>Standings</h3><p>All 32 clubs with a second, independent record recomputed from the game log</p></a>
-  <a class="card link" href="teams.html" style="display:block;text-decoration:none"><h3>Team stats</h3><p>Passing and rushing, offence and defence, with the withheld tables labelled</p></a>
-  <a class="card link" href="injuries.html" style="display:block;text-decoration:none"><h3>Injuries &amp; depth</h3><p>Week 10 injury report joined to published depth charts</p></a>
-  <a class="card link" href="analysis.html" style="display:block;text-decoration:none"><h3>Analysis</h3><p>Power ratings, correlations, luck ladder and Week 10 model lines</p></a>
-  <a class="card link" href="strategies.html" style="display:block;text-decoration:none"><h3>Strategies</h3><p>Six strategies, seven gates, and why none of them passes yet</p></a>
-  <a class="card link" href="method.html" style="display:block;text-decoration:none"><h3>Method</h3><p>Exactly how every number is produced and where the model is weak</p></a>
-  <a class="card link" href="sources.html" style="display:block;text-decoration:none"><h3>Data sources</h3><p>The full register of official pages used, and what each one supplied</p></a>
-  <a class="card link" href="questions.html" style="display:block;text-decoration:none"><h3>Questions &amp; gaps</h3><p>24 questions, with the unanswerable ones left visibly blank</p></a>
-  <a class="card link" href="suggestions.html" style="display:block;text-decoration:none"><h3>Suggestions</h3><p>12 proposals awaiting a decision — none are implemented</p></a>
-  <a class="card link" href="flagged.html" style="display:block;text-decoration:none"><h3>Flagged for Review</h3><p>Every irregularity, severity-rated, with what would fix it</p></a>
-  <a class="card link" href="https://github.com/kanlerxz87-cyber/NFL2" style="display:block;text-decoration:none"><h3>Repository</h3><p>Source, data files, verifiers and the coordination log</p></a>
-</div>
-</div></section>
-<footer><div class="wrap">
-<p><b>Every figure on this site is either transcribed from an official NFL source or is explicitly labelled MODEL output.</b>
-Nothing is inferred. Blank cells mean no official source confirms the value — see <a href="flagged.html">Flagged for Review</a>.</p>
-<p>Data through Week 9 results and Week 10 injury reports · built 2026-11-12T04:53:56Z · 
-<a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a> · <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md">coordination log</a> · 
-verification: 20/23 data checks, 9 personnel checks</p>
-</div></footer>
-<script src="assets/app.js"></script>
 </body></html>

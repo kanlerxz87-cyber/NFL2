@@ -19,6 +19,7 @@ enforced to keep concurrent work non-overlapping.
 | Session ID | Branch | Started (UTC) | Notes |
 |---|---|---|---|
 | `arena-009ec582` | `arena/009ec582-nfl2` | 2026-11-12T04:30Z | Owner of all tasks below. No other session was present at claim time. |
+| `bc4b47cf` | `arena/bc4b47cf-nfl2` | 2026-11-12T04:10Z | **Integration session** (PR #8). Owns the root build and `tools/build_site.py`, `tools/verify.py`, `tools/check_site.py`, `content/*.md`, `data/*.csv`; see §9–§12. |
 
 ---
 
@@ -342,4 +343,187 @@ No files were deleted or overwritten. This is flagged for review rather than hid
   - Root site: https://kanlerxz87-cyber.github.io/NFL2/
   - Quantitative Decision Portal (`e143a7ca`): https://kanlerxz87-cyber.github.io/NFL2/portal/index.html
   - Flagged for Review (`e143a7ca`): https://kanlerxz87-cyber.github.io/NFL2/portal/flagged-review.html
+## 9. Session `bc4b47cf` board (kept intact from `arena/bc4b47cf-nfl2`)
 
+> This session's claims, log and verification record as they stood before the merge. Headings are demoted one level so this file keeps one numbering scheme.
+
+This file is the coordination mechanism for all agent sessions working on `kanlerxz87-cyber/NFL2`.
+Read it before touching anything. Claim work before you start it. Never edit files inside another session's scope.
+
+- **Board owner:** whichever session is currently integrating.
+- **Session ID convention:** short id from the branch name (`arena/<id>-<repo>` → `<id>`).
+- **Stale claim rule:** a claim older than 60 minutes with no commits may be taken over; record the handoff in the Log below.
+- **Statuses:** `unclaimed` · `in progress` · `done` · `needs review`
+- **`needs review`** means the item is published on the *Flagged for Review* page and does not block other sessions.
+
+---
+
+### Repo review (as of session `bc4b47cf`, 2026-11-12)
+
+| Fact | Detail |
+| --- | --- |
+| Files tracked | 1 — `README.md` (6 bytes, contents: `# NFL2`) |
+| Commits on `main` | 1 — `01f2271 Initial commit` |
+| Code / data / config / docs | none present |
+| Requirements document | **absent** — no `REQUIREMENTS.md`, no spec, no issue tracker content in repo |
+| GitHub Pages | already configured: `legacy` build, source branch `main`, path `/` → https://kanlerxz87-cyber.github.io/NFL2/ |
+| Consequence | the site must be buildable from the repo root (`index.html` at root); the requirements register is reconstructed from the project brief in `data/requirements.csv` |
+
+---
+
+### Task board
+
+| ID | Task | Status | Owner session | File scope | Notes |
+| --- | --- | --- | --- | --- | --- |
+| T1 | Coordination board + repo review | done | `bc4b47cf` | `COORDINATION.md` | this file |
+| T2 | Ingestion: Week 10 official injury report (practice snapshot) | done | `bc4b47cf` | `data/raw/nfl_injuries_2026_wk10.md`, `data/injuries_2026_wk10.csv` | 254 rows, 28 teams, 14 games, from nfl.com/injuries/ |
+| T3 | Ingestion: Week 10 schedule + standings | done | `bc4b47cf` | `data/schedule_2026_wk10.csv`, `data/standings_2026.csv` | nfl.com/standings/, nfl.com/news week-10 report |
+| T4 | Ingestion: roster moves / depth-chart changes (official news roundup) | done | `bc4b47cf` | `data/depth_changes_2026_wk10.csv` | nfl.com Wed 11-Nov-2026 roundup, 4 chunks |
+| T5 | Source registry + verification tooling | done | `bc4b47cf` | `data/sources.csv`, `tools/verify.py` | every table row must carry a source id |
+| T6 | Requirements register (reconstructed from brief) | done | `bc4b47cf` | `data/requirements.csv` | 34 requirements, traceable to site sections |
+| T7 | Questions / known-unknowns / missing information | done | `bc4b47cf` | `data/questions.csv` | 28 decision-blocking questions |
+| T8 | Suggestion register (review & choose path) | done | `bc4b47cf` | `data/suggestions.csv` | 25 suggestions, none implemented that the brief did not require — decision pending |
+| T9 | Line-origination methodology + signal catalogue | done | `bc4b47cf` | `content/line-origination.md`, `content/signals.md`, `data/signals.csv` | design only, no model output yet |
+| T10 | Strategy registry + leaderboard + reward rules | done | `bc4b47cf` | `content/strategies.md`, `content/leaderboard.md`, `data/strategies.csv` | zero strategies have live results; all rows unranked by design |
+| T11 | Validation gates definition + current status | done | `bc4b47cf` | `content/validation-gates.md`, `data/gates.csv` | 12 gates; status = blocked pending data |
+| T12 | Correlation framework | done | `bc4b47cf` | `content/correlation.md`, `data/correlation.csv` | no estimated rho values yet — placeholders flagged unverified |
+| T13 | Skill-vs-luck / sample-size math | done | `bc4b47cf` | `content/skill-vs-luck.md` | analytic formulas, computed locally, no external claims |
+| T14 | Bet-type economics (single / parlay / prop combo) | done | `bc4b47cf` | `content/bet-types.md` | math derived, no live odds captured (no verified source) |
+| T15 | Site generator + template + styles | done | `bc4b47cf` | `tools/build_site.py`, `assets/**`, `content/index.md` | markdown → static HTML |
+| T16 | Link + source audit, `needs review` publication | done | `bc4b47cf` | `tools/check_site.py`, `data/flags.csv`, `content/flagged-for-review.md` | 16 flags |
+| T17 | GitHub Actions validation workflow | done | `bc4b47cf` | `.github/workflows/validate.yml` | build + audit on PR/push |
+| T18 | Integration: merge to `main`, publish GitHub Pages | in progress | `bc4b47cf` | `*.html`, `README.md`, `.github/**`, `assets/**` | final session only; site is flat at the repo root because Pages is configured for `main` / |
+
+---
+
+### Rules of engagement
+
+1. **Claim before editing.** Write your session id + file scope in the row, `git commit && git push` the claim, then start.
+2. **Non-overlapping scope.** One task = one branch `session-<id>/<task>` (or a worktree). Touch only files in your claimed scope.
+3. **Requests across scopes.** If you need to change a file owned by another session, add a row to *Change requests* below; do not edit it.
+4. **Small, frequent commits.** `git pull --rebase` before every push.
+5. **Conflicts.** Stop, resolve without discarding the other session's work, record it in *Log*.
+6. **Finish line.** Record sources, verification performed, and irregularities here, then mark the task `done`.
+7. **Never mark verified without an official source link.** Unconfirmable values stay blank and get a row in `data/flags.csv`.
+8. **Shared outputs** (table data, site index/nav) are only touched by the final integration session.
+
+---
+
+### Change requests
+
+| # | Requested by | Owned by | File | Request | Status |
+| --- | --- | --- | --- | --- | --- |
+| 1 | — | — | — | none open | — |
+
+### Handoffs
+
+| # | From session | To session | Task | Reason | Timestamp (UTC) |
+| --- | --- | --- | --- | --- | --- |
+| 1 | — | — | — | none | — |
+
+### Log
+
+| # | UTC | Session | Event |
+| --- | --- | --- | --- |
+| 1 | 2026-11-12 04:3x | `bc4b47cf` | Repo review: single 6-byte README, no code/data; claimed T1–T18 (sole session so far) |
+| 2 | 2026-11-12 04:4x | `bc4b47cf` | Pulled official Week 10 injury report (nfl.com/injuries/, 7 chunks), standings (2 chunks), week-10 status article, Wed 11-Nov roundup (4 chunks) |
+| 3 | 2026-11-12 04:4x | `bc4b47cf` | Bash egress to nfl.com blocked by sandbox allowlist → all external data obtained through the fetch/search tools; recorded as a constraint in `data/questions.csv` (Q-24) |
+| 4 | 2026-11-12 05:0x | `bc4b47cf` | Audit caught 3 real defects before publishing: (a) 6 shifted rows in `suggestions.csv` + 5 in `requirements.csv` (short rows silently moving columns) → strict field-count check added to the builder and `verify.py`; (b) my own prose said "5 designations" and "9 injury cells" where the data says 6 and 6 → corrected at every occurrence; (c) `nfl.com` player-slug/name mismatches enumerated and turned into FL-15 rather than silently "fixed" |
+| 5 | 2026-11-12 05:1x | `bc4b47cf` | CI `build-and-audit` failed on the drift step. Root cause: a `tools/__pycache__/*.pyc` file had been committed by an earlier `git add -A` and `check_site.py` rewrote it. Fix: `.gitignore` for bytecode, `git rm --cached`, `sys.dont_write_bytecode` in the auditor, and the build made byte-deterministic (no wall-clock stamp in any page). Verified by a clean `git clone` + rebuild + `git diff --cached` showing nothing |
+| 6 | 2026-11-12 05:2x | `bc4b47cf` | Final state before PR: `tools/verify.py` 29 pass / 0 warn / 0 fail; `tools/check_site.py` 8 pass / 1 warn (non-league hosts appear only on the Source Registry, by design) / 0 fail; 22 HTML pages, 588 blank cells rendered as `not published` |
+
+---
+
+### Verification record (T2–T5)
+
+Sources used, all fetched 2026-11-12 (UTC) from the official league site:
+
+| Data | Official URL | Verification performed | Result |
+| --- | --- | --- | --- |
+| Week 10 practice-snapshot injury report (254 player rows) | https://www.nfl.com/injuries/ | Row-by-row transcription from the rendered official tables; each row keeps the official player link; participation strings kept verbatim | 254 rows verified against the official page text; **injury column blank wherever the official table left it blank** (246 of 254) |
+| Week 10 game status (Out / Questionable) | https://www.nfl.com/injuries/ and https://www.nfl.com/news/nfl-week-10-injury-report-2026-season | Cross-checked the two official pages; the article lists designations only for the 12-Nov and 15-Patriots cases | 6 designations confirmed (5 Out + 1 Questionable); Sunday/Monday designations **not yet published at fetch time** → flagged |
+| 2026 standings (32 teams, W/L/T, PF/PA, streak) | https://www.nfl.com/standings/ | Both chunks transcribed; win % and net points recomputed locally and compared to the published columns | 32/32 rows recomputed clean |
+| Week 10 schedule (14 games: date, kickoff, venue, TV) | https://www.nfl.com/news/nfl-week-10-injury-report-2026-season | Schedule block of the official article vs. the official injuries page header | 14/14 games agree |
+| Depth-chart / IR / roster moves (Wed 11-Nov) | https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11 | 4 chunks, transcribed per team | 3 confirmed QB changes + 1 unresolved + 1 backup assignment, 13 designated-to-return, 1 activated off IR, 6 ruled-out statements, plus signings and cuts |
+
+### Irregularities found (published on *Flagged for Review*, not blocking)
+
+| # | Irregularity | Evidence |
+| --- | --- | --- |
+| 1 | Official injury page shows **“No Injuries Reported” for Seattle** on 15-Nov, yet the same official news page reports Darnold ruled out and 12 Seahawks participants with injuries. | https://www.nfl.com/injuries/ vs https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again |
+| 2 | Third-party sites publish game statuses (Nacua *Out*, Jacobs *Out*) that the official page does not carry at fetch time — timing difference, not a data conflict, but it shows why third-party "official-looking" tables must not be used as the system of record. | https://www.nfl.com/injuries/ vs https://dknetwork.draftkings.com/2026-11-10/nfl-injury-report-week-10/ |
+| 3 | Roster-movement volume this season is extreme (Garrett on LAR, Parsons on GB, Evans on SF, Watson on CLE, Jacobs on GB, etc.). Every row was transcribed as published and **not** corrected, but the roster-join keys need an official 53-man roster pull before any team-level model uses them. | https://www.nfl.com/teams/new-england-patriots/roster |
+| 4 | The 2026 roster-manual mechanics (4-game IR minimum, 8 return designations, 21-day window) could only be found on non-official sites; the NFL Football Operations landing page does not expose them in a fetchable rule page. Marked **unverified against an official source**. | https://operations.nfl.com/ |
+| 5 | `nfl.com/teams/<slug>/depth-chart/` returns a 404 page — there is **no official public depth chart** at that path, so "2nd/3rd/4th-string replacement" cannot be derived from an official depth chart; it must be derived from the roster list + injury report + game reports. | https://www.nfl.com/teams/new-england-patriots/depth-chart/ |
+| 6 | Market data (closing/opening lines, prop prices) has no official NFL endpoint reachable from this sandbox; the sandbox blocks egress outside an allowlist. Line-origination therefore ships as a **spec**, not a fitted model. | tool-level observation, recorded in `data/flags.csv` |
+
+### No-conflict statement
+
+At the time of this integration there are **no other active sessions** on this repo: `git branch -r` shows only `origin/main`, and the task board above is the only claim record. Nothing was merged, discarded, or overwritten from another session.
+
+---
+
+## 10. Integration decisions recorded by session `bc4b47cf` (2026-11-12T05:40Z)
+
+Resolves the open issue flagged at the end of §6 — "the repository now carries two site builds ... consolidate by picking one build and deprecating the other explicitly".
+
+| Question | Decision | Why |
+|---|---|---|
+| Which build owns the published root? | The `bc4b47cf` dashboard (21 pages + 404, generated from `content/*.md` + `data/*.csv`) | Pages is a **legacy build from `main` / **, so the root *is* the site; the root build is the one whose generator refuses to render an unsourced row and whose two auditors run in CI |
+| Was the other session's root build deleted? | **No** — all 15 pages plus their `assets/style.css`, `assets/app.js`, `assets/meta.json` moved verbatim to `archive/session-009ec582/` | The archive renders standalone at `/NFL2/archive/session-009ec582/index.html`; nothing that a session published is destroyed by the integration merge |
+| What about `docs/`? | Untouched, still published at `/NFL2/docs/` | It is that session's earlier complete build; deleting it would remove the only copy of their defence/depth-chart/stats pages |
+| What was absorbed from `arena-009ec582`? | Only the **verified 136-game week 1–9 log** (`data/games_2026.json` → `data/games_2026_wk1_9.csv`), via `tools/import_parallel.py` | It is the one artefact that could be re-derived and independently checked here: per-row official game URLs on 136/136 rows, and a recount that matches `data/standings_2026.csv` for 32/32 clubs on W-L-T, PF and PA |
+| What was **not** absorbed? | Their team-stat, player-leader, depth-chart and derived-analysis JSON | Their column mapping and walk-forward folds were not re-derived in this session; publishing them as ours would break rule 2 of this repo's own method. Recorded as **Q-29**, with **S-26** proposing the corpus be registered by hash before any backtest is run |
+| New irregularities published | **FL-17** LA vs LAR club codes across official pages · **FL-18** `meta.games = 122` vs 136 rows in the imported file · **FL-19** two publish paths (root legacy + `docs` workflow) · **FL-20** log stops at week 9, so no trend feature crosses into week 10 | FL-17 and FL-18 were found by arithmetic during the import, not by reading; both are left un-corrected in the source file and handled by a published alias + a printed contradiction |
+| New suggestions for the owner | **S-26** pre-registered backtest corpus · **S-27** label the canonical layout in the other two trees · **S-28** canonical club-key registry so a key mismatch fails the build instead of dropping a club | S-28 is the fix that makes FL-17 impossible to repeat |
+| Tooling changes that affect other sessions | `tools/build_site.py` now accepts a raw official URL in a row's source column (`source_col`); `tools/check_site.py` fails on stale output on disk and on a manifest/input digest mismatch; `tools/verify.py` grew a `gamelog()` check (37 checks total) | The stale-output guard exists because an import error left the *previous* build of a page on disk with a passing link audit — exactly the failure mode a parallel session would hit next |
+| CI | `build-and-audit` green: build → `verify.py` (37 pass) → `check_site.py` (10 pass, 1 expected warning) → byte-determinism drift check | The drift check failed on the first push because a committed `__pycache__` file was rewritten by the auditor; fixed with `.gitignore` + `sys.dont_write_bytecode` + a timestamp-free build, not by deleting the check |
+
+**Handoff note for any session still working:** do not write to the repository root `*.html` — root pages are generated and a hand-edited page there will fail the drift check. Page text belongs in `content/<slug>.md`, data in `data/*.csv` (pipe-delimited, fixed field count), and any new data file must be added to `tools/verify.py` with the source rule enforced. `scripts/**`, `data/*.json`, `docs/**` and `archive/**` remain `arena-009ec582`'s scope.
+
+---
+## 11. Second integration step — the root/tool collision with `arena-01b698ef` (session `bc4b47cf`, 2026-11-12T05:55Z)
+
+`arena-01b698ef` merged PR #9 and #11 into `main` while PR #8 was open, and both sessions had
+written a generator and an auditor under the **same two paths**. This is how it was resolved, and
+nothing was deleted on either side.
+
+| Collision | Resolution | Behaviour after the merge |
+|---|---|---|
+| `tools/build_site.py`, `tools/verify.py` | root build keeps the names; `arena-01b698ef`'s copies moved to `tools/review_build_site.py` and `tools/review_verify.py` with a header note and **no logic change** | verified by running both after the merge: `Built 16 pages, 41 tables, 423 rows` and `OK: all rows, sources, blank cells and links verified. No broken links.` |
+| `.github/workflows/validate.yml` (root) vs `verify.yml` (review) | both kept, each auditing its own tree | two independent gates on `main`; neither can be satisfied by the other's output |
+| `content/*.md` (8 files, 5 name clashes) | the root build's markdown keeps `content/`; `arena-01b698ef`'s prose docs moved to `review/content/` | their builder never read those files (it reads `data/content.py`), so their build is unaffected |
+| root `index.html`, `404.html`, `README.md`, `.gitignore`, `assets/style.css` | root build wins, because Pages publishes `main:/` | the link to `review/index.html` that `arena-01b698ef` added to their root index was re-added to **this** site's page map, so their dashboard stays discoverable from the live URL |
+| `data/records.json`, `data/verification-report.json`, `data/content.py`, `review/**`, `research/**`, `site/README.md`, `docs/index.html` | taken as-is from `main` | their cross-build link audit now reports **54 pages** across all four trees with 0 broken links — that number is computed by their verifier, not asserted here |
+
+**What was and was not adopted.** No figure from `arena-01b698ef`'s registers was copied into this
+site's data: their requirement, gate and validation registers overlap this site's `requirements.csv`,
+`gates.csv` and `validation-gates.html`, and merging two registers written from two briefs would
+manufacture agreement where none exists. The choice is published as **S-27** with the multi-tree state
+recorded as **FL-19**, and `review/` is linked from the page map instead of being silently absorbed.
+
+**Rule for the next session, from the integration owner:** the paths `tools/build_site.py`,
+`tools/verify.py`, `tools/check_site.py`, `content/*.md`, `data/*.csv`, root `*.html` and
+`.github/workflows/validate.yml` belong to the root build; anything else lives in its own subtree with
+its own tool names. A root `*.html` file is generated and the CI drift check fails the commit if it is
+hand-edited.
+
+---
+
+## 12. Third integration step — `arena-e143a7ca`'s portal meets the root build (session `bc4b47cf`, 2026-11-12T06:10Z)
+
+`e143a7ca` merged PRs #12 and #13 while PR #8 was open. Their work is self-contained
+(`portal/`, `engine/`, `datasets/e143a7ca/`, `reports/`) **except** for four shared files, which is
+where the conflicts were:
+
+| Shared file | Their change | Resolution |
+|---|---|---|
+| `index.html`, `404.html` (root) | nav link to `portal/index.html` + an overview card | root build wins — those files are generated by `tools/build_site.py`, and the CI drift check fails any hand-edit. Their intent is preserved by adding the portal to the root site's **page map**, so `portal/index.html` is reachable from the live URL |
+| `README.md` | portal section | union: their tree documented, root layout unchanged |
+| `COORDINATION.md` | their §7 cross-session merge note and portal log | their text kept verbatim; this session's board and integration record follow as §9–§12 |
+| `data/verification-report.json` | regenerated by their run | taken from `main`, then re-run here: their verifier reports 54 combined pages / 0 broken links across root, `docs/`, `review/` and `portal/` |
+
+Not adopted: their `datasets/e143a7ca/*.json` (correlations, lines, leaderboard, depth chains). They
+are a fifth opinion on the same objects this site publishes as registers with per-row sources; fusing
+them would create agreement between briefs that never consulted each other. `FL-19` now records five
+published trees, and `S-27` (pick a canonical layout, label the rest) is the item that decides it.

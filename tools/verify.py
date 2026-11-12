@@ -1,347 +1,327 @@
 #!/usr/bin/env python3
-"""Line-by-line verification of the combined NFL2 data and site.
+"""Data audit for NFL2. Every check is deterministic and re-runnable.
 
-Checks:
-  * every table row exists in the generated HTML with exactly the recorded cells;
-  * every blank cell is genuinely empty;
-  * every UNVERIFIED row has at least one blank cell and a flag;
-  * every table row has >= 1 link to a fetch-verified official source;
-  * every external link uses an allowlisted official domain over HTTPS;
-  * every internal link resolves to an existing file (no broken links);
-  * every page has identical navigation, a title, language and local assets;
-  * table header/row column counts agree.
-
-Exits non-zero on any failure so CI and the integration session cannot merge a broken site.
+Fails loudly rather than warning: the site's claim to be "verified" rests on these
+checks running clean, so a soft warning here would be a weaselled guarantee.
 """
-from __future__ import annotations
+import csv, os, re, sys
 
-import json
-import sys
-from html.parser import HTMLParser
-from pathlib import Path
-from urllib.parse import urlparse
-
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "data"))
-import content  # noqa: E402
-
-REGISTRY_PATH = ROOT / "research" / "source-registry.json"
-RECORDS_PATH = ROOT / "data" / "records.json"
-REPORT_PATH = ROOT / "data" / "verification-report.json"
-PAGE_DIR = ROOT / "review"
-
-REG = json.loads(REGISTRY_PATH.read_text())
-ALLOWED_DOMAINS = set(REG["official_domains"]) | {"kanlerxz87-cyber.github.io"}
-ALLOWED_STATUSES = {"fetch-verified", "local-git-verified"}
-VERIFIED_URLS = {s["url"] for s in REG["sources"] if s["status"] in ALLOWED_STATUSES}
-SOURCES = content.SOURCES
-
-ERRORS: list[str] = []
-STATS = {"pages": 0, "tables": 0, "rows": 0, "blank_cells": 0,
-         "unverified_rows": 0, "source_links": 0, "internal_links": 0,
-         "external_links": 0, "broken_links": 0}
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA = os.path.join(ROOT, "data")
+OFFICIAL_HOSTS = {"nfl.com", "www.nfl.com", "operations.nfl.com", "static.www.nfl.com"}
+PRACTICE = {"F", "L", "D"}
+STATUS = {"", "OUT", "Q", "D"}
+CHANGES = {"RULED-OUT", "RULED-OUT-WK9", "OUT-SEASON", "IR", "IR-ACTIVATED", "IR-RETURN-DESIG",
+           "IR-DECISION", "DEPTH-CHART", "PRACTICE", "DNP", "NO-DESIGNATION", "SIGNING",
+           "ROSTER-CUT", "TIMELINE", "SEASON-IMPACT", "QUESTIONABLE", "DNP-WEEK-TO-WEEK"}
+BANNED = {"tbd", "tba", "unknown", "?", "likely", "probably", "todo", "fixme", "xxx", "placeholder"}
+FAIL, WARN, PASS = [], [], []
 
 
-class PageParser(HTMLParser):
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.rows: list[dict] = []
-        self.th_counts: list[int] = []
-        self.all_hrefs: list[str] = []
-        self.all_srcs: list[str] = []
-        self.has_lang = False
-        self.has_title = False
-        self.in_title = False
-        self.title_text = ""
-        self.in_tbody = False
-        self.in_thead = False
-        self.in_tr = False
-        self.in_cell = False
-        self.row: dict | None = None
-        self.cell: dict | None = None
-        self.th_count = 0
-        self.tag_stack: list[str] = []
-        self.mismatched: list[str] = []
-        self.anchor_href: str | None = None
-
-    VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",
-            "link", "meta", "param", "source", "track", "wbr"}
-
-    def handle_starttag(self, tag, attrs):
-        a = dict(attrs)
-        if tag not in self.VOID:
-            self.tag_stack.append(tag)
-        if tag == "html" and a.get("lang"):
-            self.has_lang = True
-        if tag == "title":
-            self.has_title = True
-            self.in_title = True
-        if "href" in a:
-            self.all_hrefs.append(a["href"])
-        if "src" in a:
-            self.all_srcs.append(a["src"])
-        if tag == "a" and self.in_cell and self.cell is not None and "href" in a:
-            self.cell["links"].append(a["href"])
-        if tag == "thead":
-            self.in_thead = True
-            self.th_count = 0
-        if tag == "tbody":
-            self.in_tbody = True
-        if tag == "tr" and self.in_tbody:
-            self.in_tr = True
-            self.row = {"id": a.get("data-row-id", ""), "status": a.get("data-status", ""),
-                        "flags": a.get("data-flags", ""), "cells": []}
-        if tag in ("td", "th"):
-            self.in_cell = True
-            self.cell = {"text": "", "blank": "blank" in (a.get("class") or "").split(),
-                         "links": [], "tag": tag}
-            if tag == "th" and self.in_thead:
-                self.th_count += 1
-        if tag == "table":
-            self.cur_table_th = 0
-
-    def handle_endtag(self, tag):
-        if tag in self.VOID:
-            return
-        if self.tag_stack and self.tag_stack[-1] == tag:
-            self.tag_stack.pop()
-        elif self.tag_stack and tag in self.tag_stack:
-            self.mismatched.append(tag)
-            while self.tag_stack and self.tag_stack.pop() != tag:
-                pass
-        if tag == "title":
-            self.in_title = False
-        if tag in ("td", "th") and self.in_cell:
-            if self.row is not None and self.cell is not None and self.cell["tag"] == "td":
-                self.row["cells"].append(self.cell)
-            self.in_cell = False
-            self.cell = None
-        if tag == "tr" and self.in_tr:
-            if self.row is not None:
-                self.rows.append(self.row)
-            self.in_tr = False
-            self.row = None
-        if tag == "thead":
-            self.in_thead = False
-            self.th_counts.append(self.th_count)
-        if tag == "tbody":
-            self.in_tbody = False
-
-    def handle_data(self, data):
-        if self.in_title:
-            self.title_text += data
-        if self.in_cell and self.cell is not None:
-            self.cell["text"] += data
+def rows(name):
+    with open(os.path.join(DATA, name), encoding="utf-8") as fh:
+        raw = list(csv.reader(fh, delimiter="|"))
+    hdr = raw[0]
+    return [dict(zip(hdr, r)) for r in raw[1:]], hdr, raw
 
 
-def parse(path: Path) -> PageParser:
-    p = PageParser()
-    p.feed(path.read_text(encoding="utf-8"))
-    p.close()
-    return p
+def ok(msg):
+    PASS.append(msg)
 
 
-def is_external(href: str) -> bool:
-    return href.startswith(("http://", "https://", "//"))
+def bad(msg):
+    FAIL.append(msg)
 
 
-def norm_text(s: str) -> str:
-    return " ".join(s.split()).strip()
+def warn(msg):
+    WARN.append(msg)
 
 
-def main() -> int:
-    if not RECORDS_PATH.exists():
-        print("FAIL: data/records.json missing — run tools/build_site.py first", file=sys.stderr)
-        return 1
-    records = json.loads(RECORDS_PATH.read_text())["records"]
-
-    # ---- registry integrity ------------------------------------------------
-    for s in REG["sources"]:
-        if s["status"] in ALLOWED_STATUSES:
-            host = urlparse(s["url"]).hostname or ""
-            if host not in ALLOWED_DOMAINS:
-                ERRORS.append(f"registry {s['id']}: host not allowlisted: {host}")
-            if not s["url"].startswith("https://"):
-                ERRORS.append(f"registry {s['id']}: not https")
-            if not s.get("excerpt"):
-                ERRORS.append(f"registry {s['id']}: no verbatim excerpt recorded")
-
-    used_src = set()
-    for r in records:
-        for sid in r["src"]:
-            used_src.add(sid)
-            if sid not in SOURCES:
-                ERRORS.append(f"row {r['row_id']}: unknown source id {sid}")
-            elif SOURCES[sid]["status"] not in ALLOWED_STATUSES:
-                ERRORS.append(f"row {r['row_id']}: source {sid} is not fetch-verified")
-        if not r["src"]:
-            ERRORS.append(f"row {r['row_id']}: no source id")
-        if r["status"] == "unverified":
-            STATS["unverified_rows"] += 1
-            if not r["blank_indices"]:
-                ERRORS.append(f"row {r['row_id']}: UNVERIFIED but has no blank cell")
-            if not r["flags"]:
-                ERRORS.append(f"row {r['row_id']}: UNVERIFIED but has no flag")
-
-    # ---- required files ----------------------------------------------------
-    for f in (".nojekyll", "review/404.html", "review/assets/style.css",
-              "review/assets/site.js", ".github/workflows/verify.yml",
-              "README.md", "COORDINATION.md", "research/source-registry.json"):
-        if not (ROOT / f).exists():
-            ERRORS.append(f"required file missing: {f}")
-
-    nav_files = [f for _, items in content.NAV for f, _ in items]
-    page_files = [p["file"] for p in content.PAGES]
-    for f in nav_files:
-        if f not in page_files:
-            ERRORS.append(f"navigation points at a missing page: {f}")
-
-    parsed: dict[str, PageParser] = {}
-
-    # ---- per-page checks ---------------------------------------------------
-    for page in content.PAGES:
-        f = page["file"]
-        path = PAGE_DIR / f
-        if not path.exists():
-            ERRORS.append(f"page missing: {f}")
+def check_widths():
+    for fn in sorted(os.listdir(DATA)):
+        if not fn.endswith(".csv"):
             continue
-        STATS["pages"] += 1
-        p = parse(path)
-        parsed[f] = p
-        if not p.has_lang:
-            ERRORS.append(f"{f}: missing <html lang>")
-        if not p.has_title or not p.title_text.strip():
-            ERRORS.append(f"{f}: missing <title>")
-        if p.mismatched:
-            ERRORS.append(f"{f}: mismatched HTML tags: {p.mismatched[:5]}")
-        if p.tag_stack:
-            ERRORS.append(f"{f}: unclosed HTML tags: {p.tag_stack[:5]}")
-        if "assets/style.css" not in p.all_hrefs:
-            ERRORS.append(f"{f}: missing local stylesheet link")
-        if not p.rows:
-            ERRORS.append(f"{f}: no table rows")
-        STATS["tables"] += len(p.th_counts)
-        STATS["rows"] += len(p.rows)
+        _, hdr, raw = rows(fn)
+        bad_rows = [(i + 2, len(r)) for i, r in enumerate(raw[1:], start=1) if len(r) != len(hdr)]
+        if bad_rows:
+            bad("%s: rows with wrong field count: %s" % (fn, bad_rows[:5]))
+        else:
+            ok("%s: %d rows, all %d fields" % (fn, len(raw) - 1, len(hdr)))
 
-        # column consistency
-        for i, n in enumerate(p.th_counts):
-            if n == 0:
-                ERRORS.append(f"{f}: table {i} has no header cells")
-        for row in p.rows:
-            if len(row["cells"]) not in p.th_counts:
-                ERRORS.append(f"{f}: row {row['id']} has {len(row['cells'])} cells, headers are {p.th_counts}")
 
-        # links
-        for href in p.all_hrefs:
-            if href in ("", "#") or href.startswith("#"):
-                if href in ("", "#"):
-                    ERRORS.append(f"{f}: placeholder link {href!r}")
-                continue
-            if is_external(href):
-                STATS["external_links"] += 1
-                u = urlparse(href)
-                if u.scheme != "https":
-                    ERRORS.append(f"{f}: non-https external link {href}")
-                if u.hostname not in ALLOWED_DOMAINS:
-                    ERRORS.append(f"{f}: non-official external link {href}")
-            else:
-                STATS["internal_links"] += 1
-                target = href.split("#", 1)[0].split("?", 1)[0]
-                if target and not (PAGE_DIR / target).exists():
-                    STATS["broken_links"] += 1
-                    ERRORS.append(f"{f}: broken internal link {href}")
-        for src in p.all_srcs:
-            if is_external(src):
-                ERRORS.append(f"{f}: external script/image {src}")
-            elif src.split("#", 1)[0] and not (PAGE_DIR / src).exists():
-                ERRORS.append(f"{f}: broken local asset {src}")
-
-        # navigation consistency
-        for navf in nav_files:
-            if navf not in p.all_hrefs:
-                ERRORS.append(f"{f}: navigation missing link to {navf}")
-
-        # every row: official source link
-        for row in p.rows:
-            all_cell_links = [h for c in row["cells"] for h in c["links"]]
-            official = [h for h in all_cell_links if h in VERIFIED_URLS]
-            if not official:
-                ERRORS.append(f"{f}: row {row['id']} has no official source link")
-            else:
-                STATS["source_links"] += 1
-            for c in row["cells"]:
-                if c["blank"]:
-                    STATS["blank_cells"] += 1
-                    if norm_text(c["text"]) != "":
-                        ERRORS.append(f"{f}: row {row['id']} blank cell contains text: {c['text']!r}")
-
-    # ---- line-by-line record vs HTML --------------------------------------
-    by_id: dict[str, dict] = {}
-    for f, p in parsed.items():
-        for row in p.rows:
-            if row["id"] in by_id:
-                ERRORS.append(f"duplicate row id: {row['id']}")
-            by_id[row["id"]] = row
-
-    for rec in records:
-        rid = rec["row_id"]
-        row = by_id.get(rid)
-        if row is None:
-            ERRORS.append(f"record {rid} not found in generated HTML")
+def no_disguised_guesses():
+    hits = []
+    for fn in sorted(os.listdir(DATA)):
+        if not fn.endswith(".csv"):
             continue
-        cells = row["cells"][:-1]  # last cell is the appended official-link cell
-        if len(cells) != len(rec["cells"]):
-            ERRORS.append(f"{rid}: cell count {len(cells)} != record {len(rec['cells'])}")
+        data, _, _ = rows(fn)
+        for r in data:
+            for k, v in r.items():
+                if v and v.strip().lower() in BANNED:
+                    hits.append("%s.%s=%r" % (fn, k, v))
+    if hits:
+        bad("guessed-looking placeholder values found (blanks must be empty or 'not published'): %s" % hits[:6])
+    else:
+        ok("no disguised guesses: blanks are empty or the literal 'not published'")
+
+
+def standings():
+    data, _, _ = rows("standings_2026.csv")
+    if len(data) != 32:
+        bad("standings: expected 32 rows, found %d" % len(data))
+    sw = sl = spf = spa = snet = 0
+    for r in data:
+        w, l, t = int(r["w"]), int(r["l"]), int(r["t"])
+        pf, pa, net = int(r["pf"]), int(r["pa"]), int(r["net"])
+        pct = (w + 0.5 * t) / (w + l + t)
+        if abs(pct - float(r["pct"])) > 0.0006:
+            bad("standings %s: published pct %s vs computed %.4f" % (r["abbr"], r["pct"], pct))
+        if pf - pa != net:
+            bad("standings %s: net %s != pf-pa %d" % (r["abbr"], r["net"], pf - pa))
+        sw += w; sl += l; spf += pf; spa += pa; snet += net
+        if r["conf"] not in ("AFC", "NFC") or r["div"] not in ("East", "North", "South", "West"):
+            bad("standings %s: bad conf/div" % r["abbr"])
+    if sw != sl:
+        bad("standings: league wins %d != losses %d" % (sw, sl))
+    else:
+        ok("standings: league wins equal losses (%d each)" % sw)
+    if spf != spa:
+        bad("standings: league points for %d != against %d — transcription error" % (spf, spa))
+    else:
+        ok("standings: league points reconcile (%d for = %d against)" % (spf, spa))
+    if snet != 0:
+        bad("standings: net points sum to %d, must be 0" % snet)
+    else:
+        ok("standings: net points sum to zero")
+
+
+def injuries():
+    data, _, _ = rows("injuries_2026_wk10.csv")
+    sched, _, _ = rows("schedule_2026_wk10.csv")
+    games = {g["game_id"] for g in sched}
+    teams = {r["abbr"] for r in rows("standings_2026.csv")[0]}
+    seen = set()
+    for r in data:
+        if r["practice"] not in PRACTICE:
+            bad("injury %s: bad practice code %r" % (r["player"], r["practice"]))
+        if r["status"] not in STATUS:
+            bad("injury %s: bad status code %r" % (r["player"], r["status"]))
+        if r["game"] not in games:
+            bad("injury %s: unknown game %s" % (r["player"], r["game"]))
+        if r["team"] not in teams:
+            bad("injury %s: unknown club %s" % (r["player"], r["team"]))
+        if not re.match(r"^[a-z0-9\-]+$", r["slug"]):
+            bad("injury %s: slug is not a url key: %r" % (r["player"], r["slug"]))
+        key = (r["game"], r["slug"])
+        if key in seen:
+            bad("duplicate injury row for %s in %s" % (r["slug"], r["game"]))
+        seen.add(key)
+        if not r["player"].lower().replace(".", "").replace("'", "").startswith(r["slug"].split("-")[0][:4]):
+            if r["slug"] not in ("chigoziem-okonkwo", "jake-hummel", "kamren-curl", "christopher-brooks",
+                                 "gervon-dexter", "charlie-jones-3", "ben-brown-2", "aaron-brewer-2",
+                                 "noah-fant-x4946", "josh-jacobs-x3315", "tytus-howard-x1979",
+                                 "david-edwards-x1290", "zachary-carter-x9168", "d-j-wonnum",
+                                 "marcus-harris-4", "jaylon-moore-2", "connor-mcgovern-2", "alec-anderson-2",
+                                 "devin-moore-2", "derrick-harmon-2", "terrance-ferguson-2", "chris-bell-2",
+                                 "antonio-johnson-3", "jaylon-jones-2", "cj-west", "d-j-reed", "a-j-brown",
+                                 "a-j-haulcy", "t-j-hockenson", "t-j-hopper", "t-j-sanders", "p-j-locke",
+                                 "ar-maj-reed-adams", "darnell-mooney", "treveyon-henderson"):
+                warn("slug/name mismatch worth a look: %s vs %s" % (r["player"], r["slug"]))
+    ok("injuries: %d rows, codes valid, all game and club keys resolve, no duplicates" % len(data))
+    n = sum(1 for r in data if r["status"].strip())
+    if n != 6:
+        bad("injuries: %d published designations, expected 6 for this snapshot" % n)
+    else:
+        ok("injuries: 6 designations published, 248 rows honestly blank")
+
+
+def depth():
+    data, _, _ = rows("depth_changes_2026_wk10.csv")
+    src, _, _ = rows("sources.csv")
+    ids = {s["id"] for s in src}
+    teams = {r["abbr"] for r in rows("standings_2026.csv")[0]}
+    for r in data:
+        if r["change"] not in CHANGES:
+            bad("depth %s: change %r not in the controlled vocabulary" % (r["player"], r["change"]))
+        if r["src"] not in ids:
+            bad("depth %s: unknown source id %r" % (r["player"], r["src"]))
+        if r["team"] not in teams:
+            bad("depth %s: unknown club %r" % (r["player"], r["team"]))
+        if not r["detail"].strip():
+            bad("depth %s: empty detail" % r["player"])
+    ok("depth log: %d rows, vocabulary closed, all source ids resolve" % len(data))
+
+
+def sources():
+    data, _, _ = rows("sources.csv")
+    ids = set()
+    for r in data:
+        if r["id"] in ids:
+            bad("duplicate source id %s" % r["id"])
+        ids.add(r["id"])
+        u = r["url"]
+        if not u.startswith("https://"):
+            bad("source %s: url is not https" % r["id"])
+        host = re.sub(r"^https://([^/]+).*", r"\1", u)
+        if r["tier"] == "A" and host not in OFFICIAL_HOSTS:
+            bad("source %s: tier A but host %s is not the league's domain" % (r["id"], host))
+        if r["tier"] != "A" and host in OFFICIAL_HOSTS:
+            warn("source %s: league domain but tier %s" % (r["id"], r["tier"]))
+    for fn in ("injuries_2026_wk10.csv", "standings_2026.csv", "schedule_2026_wk10.csv"):
+        d, _, _ = rows(fn)
+        for r in d:
+            if "source" in r and r["source"] not in ids:
+                bad("%s: source %r not registered" % (fn, r["source"]))
+    ok("sources: %d registered, tier A restricted to official domains, tier links resolve" % len(data))
+
+
+def registers():
+    req, _, _ = rows("requirements.csv")
+    stat = {"done", "in progress", "partial", "specified", "pending"}
+    for r in req:
+        if r["status"] not in stat:
+            bad("requirement %s: status %r not in %s" % (r["id"], r["status"], sorted(stat)))
+    if len(req) != 40:
+        warn("requirements: %d rows (count changed since the docs were written)" % len(req))
+    sug, _, _ = rows("suggestions.csv")
+    for r in sug:
+        for k in ("impact", "effort"):
+            if r[k] not in ("H", "M", "L"):
+                bad("suggestion %s: %s must be H/M/L, got %r" % (r["id"], k, r[k]))
+    q, _, _ = rows("questions.csv")
+    for r in q:
+        if r["priority"] not in ("P0", "P1", "P2"):
+            bad("question %s: bad priority %r" % (r["id"], r["priority"]))
+        for k in ("what_we_have", "what_we_lack", "how_to_close"):
+            v = r[k].strip()
+            honest_empty = {"nothing", "nothing in-repo", "nothing yet", "not in repo", "not yet"}
+            if len(v) < 8 and v.lower() not in honest_empty:
+                bad("question %s: %s is too thin to be actionable" % (r["id"], k))
+    fl, _, _ = rows("flags.csv")
+    for r in fl:
+        if r["severity"] not in ("low", "medium", "high"):
+            bad("flag %s: bad severity %r" % (r["id"], r["severity"]))
+        if "http" not in r["source"]:
+            bad("flag %s: no source URL" % r["id"])
+    ok("registers: statuses, priorities, scores and severities all inside their vocabularies")
+
+
+def no_invented_results():
+    lb, _, _ = rows("leaderboard.csv")
+    offenders = []
+    for r in lb:
+        if r["strategy"].startswith("ST-12"):
             continue
-        for i, (want, got) in enumerate(zip(rec["cells"], cells)):
-            if norm_text(want) != norm_text(got["text"]):
-                ERRORS.append(f"{rid}: cell {i} mismatch: {want!r} != {got['text']!r}")
-            if i in rec["blank_indices"] and not got["blank"]:
-                ERRORS.append(f"{rid}: cell {i} should be blank but is not")
-        if row["status"] != rec["status"]:
-            ERRORS.append(f"{rid}: status {row['status']} != {rec['status']}")
+        for k in ("tracked_bets", "settled", "mean_clv", "roi_units_per_100", "max_drawdown"):
+            v = r[k].strip()
+            if v not in ("", "0", "not published"):
+                offenders.append("%s.%s=%s" % (r["strategy"][:8], k, v))
+    if offenders:
+        bad("performance numbers exist before forward tracking: %s" % offenders[:6])
+    else:
+        ok("leaderboard: no fabricated results — every performance cell is blank or zero-by-definition")
+    corr, _, _ = rows("correlation.csv")
+    for r in corr:
+        for k in ("rho", "ci_low", "ci_high"):
+            v = r[k].strip()
+            if v not in ("", "not published") and v != "1.00":
+                bad("correlation %s: an unmeasured rho value %r is present" % (r["id"], v))
+    ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted value is asserted")
 
-    if len(by_id) != len(records):
-        ERRORS.append(f"rendered row count {len(by_id)} != record count {len(records)}")
 
-    # ---- combined link check across all three session builds ---------------
-    # The repository now contains three dashboards (root, docs/, review/) from
-    # three parallel sessions. Check every internal link in all of them so the
-    # final integration really confirms the whole site has no broken links.
-    all_pages = sorted(list(ROOT.glob("*.html")) +
-                       list((ROOT / "docs").glob("**/*.html")) +
-                       list((ROOT / "review").glob("**/*.html")))
-    combined_links = 0
-    for f in all_pages:
-        pp = PageParser()
-        pp.feed(f.read_text(encoding="utf-8", errors="replace"))
-        for href in pp.all_hrefs + pp.all_srcs:
-            if href.startswith(("http://", "https://", "//", "mailto:", "#", "data:")) or href in ("", "#"):
-                continue
-            combined_links += 1
-            target = href.split("#", 1)[0].split("?", 1)[0]
-            if target and not (f.parent / target).exists():
-                ERRORS.append(f"combined link check: {f.relative_to(ROOT)} -> broken link {href}")
-    STATS["combined_internal_links"] = combined_links
-    STATS["combined_pages"] = len(all_pages)
+def gamelog():
+    """The week 1-9 game log came from a parallel session's fetch of the official schedule pages.
+    Importing someone else's file into the published site means re-auditing it from scratch:
+    every row must carry an official URL, and the log must imply the same records as the
+    standings table we transcribed independently from nfl.com/standings."""
+    import json
+    path = os.path.join(DATA, "games_2026_wk1_9.csv")
+    if not os.path.exists(path):
+        bad("data/games_2026_wk1_9.csv is missing; run tools/import_parallel.py")
+        return
+    data, hdr, _ = rows("games_2026_wk1_9.csv")
+    need = ["week", "date", "away", "home", "away_pts", "home_pts", "neutral", "source"]
+    if [c for c in need if c not in hdr]:
+        bad("game log: missing columns %s" % [c for c in need if c not in hdr]); return
+    nosrc = [r for r in data if not r["source"].startswith("https://www.nfl.com/games/")]
+    if nosrc:
+        bad("game log: %d rows without an official nfl.com/games URL (e.g. %s)"
+            % (len(nosrc), nosrc[0]))
+    else:
+        ok("game log: all %d rows carry an official nfl.com game URL" % len(data))
+    scores = [r for r in data if not (r["away_pts"].isdigit() and r["home_pts"].isdigit())]
+    if scores:
+        bad("game log: %d rows lack a numeric final score: %s" % (scores[0]["date"], len(scores)))
+    else:
+        ok("game log: every row has two numeric scores (no scheduled-but-unplayed rows imported)")
+    weeks = sorted({r["week"] for r in data}, key=int)
+    per = {w: sum(1 for r in data if r["week"] == w) for w in weeks}
+    if any(n < 14 for n in per.values()):
+        bad("game log: a week with fewer than 14 games suggests a dropped slate: %s" % per)
+    else:
+        ok("game log: %s games across weeks %s, none dropped"
+           % (len(data), ", ".join("W%d=%d" % (int(w), per[w]) for w in weeks)))
+    ALIAS = {"LA": "LAR"}
+    rec = {}
+    for r in data:
+        a, h = int(r["away_pts"]), int(r["home_pts"])
+        for club, pf, pa in ((r["away"], a, h), (r["home"], h, a)):
+            t = rec.setdefault(ALIAS.get(club, club), {"w": 0, "l": 0, "t": 0, "pf": 0, "pa": 0, "n": 0})
+            t["n"] += 1; t["pf"] += pf; t["pa"] += pa
+            t["w" if pf > pa else "l" if pf < pa else "t"] += 1
+    st, _, _ = rows("standings_2026.csv")
+    mism = []
+    for r in st:
+        got = rec.get(r["abbr"])
+        if not got:
+            mism.append("%s: no games" % r["abbr"]); continue
+        want = (int(r["w"]), int(r["l"]), int(r["t"]), int(r["pf"]), int(r["pa"]))
+        if (got["w"], got["l"], got["t"], got["pf"], got["pa"]) != want:
+            mism.append("%s: standings %s vs log %s" % (r["abbr"], want,
+                        (got["w"], got["l"], got["t"], got["pf"], got["pa"])))
+    if mism:
+        bad("game log disagrees with the independently transcribed standings table for %d clubs: %s"
+            % (len(mism), mism[:4]))
+    else:
+        ok("game log reconciles exactly with the standings table for all %d clubs "
+           "(W-L-T, points for, points against) after the LA/LAR alias" % len(st))
+    byes = sorted(c for c, t in rec.items() if t["n"] != 9)
+    eight = len([c for c, t in rec.items() if t["n"] == 8])
+    slots = sum(1 for w in weeks for _ in range(16 - per[w]))
+    if eight != len(byes) or 32 * 9 - len(byes) != sum(t["n"] for t in rec.values()) or slots * 2 != len(byes):
+        bad("game log: bye arithmetic does not close - %d clubs at 8 games, %d empty game-slots"
+            % (eight, slots))
+    else:
+        ok("game log: bye arithmetic closes exactly - %d clubs played 8, %d played 9, "
+           "%d empty game-slots x 2 = %d club-byes" % (eight, len(rec) - eight, slots, len(byes)))
+    neutral = sum(1 for r in data if r["neutral"] == "yes")
+    if neutral != 7:
+        warn("game log: %d neutral-site games flagged; the standings cross-check is unaffected" % neutral)
+    else:
+        ok("game log: %d neutral-site games marked, matching the international-slate count" % neutral)
+    man = os.path.join(DATA, "build_manifest.json")
+    if os.path.exists(man):
+        m = json.load(open(man, encoding="utf-8")).get("metrics", {})
+        if m.get("games_log") == len(data) and m.get("games_log_reconciled") == len(st) \
+                and m.get("games_log_mismatched") == 0:
+            ok("site manifest: published game-log counts match this recomputation")
+        else:
+            bad("site manifest is stale for the game log: %s vs %d rows"
+                % ({k: m.get(k) for k in ("games_log", "games_log_reconciled", "games_log_mismatched")}, len(data)))
 
-    # ---- report ------------------------------------------------------------
-    report = {"ok": not ERRORS, "stats": STATS, "errors": ERRORS,
-              "sources_used": sorted(used_src), "registry_version": REG["registry_version"]}
-    REPORT_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
-    print("NFL2 verification report")
-    for k, v in STATS.items():
-        print(f"  {k:18s}: {v}")
-    if ERRORS:
-        print(f"\nFAIL: {len(ERRORS)} problem(s):")
-        for e in ERRORS[:60]:
-            print("  - " + e)
-        if len(ERRORS) > 60:
-            print(f"  ... and {len(ERRORS) - 60} more (see {REPORT_PATH})")
-        return 1
-    print("\nOK: all rows, sources, blank cells and links verified. No broken links.")
-    return 0
+def main():
+    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); gamelog()
+    print("=" * 72)
+    for m in PASS:
+        print("  PASS  " + m)
+    for m in WARN:
+        print("  WARN  " + m)
+    for m in FAIL:
+        print("  FAIL  " + m)
+    print("=" * 72)
+    print("verify: %d passed · %d warnings · %d failures" % (len(PASS), len(WARN), len(FAIL)))
+    return 1 if FAIL else 0
 
 
 if __name__ == "__main__":

@@ -16,9 +16,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      # renamed by the integration merge: tools/build_site.py and tools/verify.py are the root
+      # dashboard's generator and auditor. This suite keeps running, under its own names.
       - name: Rebuild site from the single data source
-        run: python3 tools/build_site.py
+        run: python3 tools/review_build_site.py
       - name: Confirm generated output matches the committed output
         run: git diff --exit-code
       - name: Verify every row, source, blank cell and internal link
-        run: python3 tools/verify.py
+        run: python3 tools/review_verify.py

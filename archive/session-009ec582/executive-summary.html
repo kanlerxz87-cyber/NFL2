@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Summary — NFL2</title>
+<meta name="description" content="Executive summary of verified 2026 NFL data, the originated-lines system, and what must be decided next.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Executive summary</span><span class="tag">2026-11-12</span></div>
+  <nav class="main" aria-label="Main">
+    <a href="index.html">Dashboard</a><a class="active" href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+  <h1>Executive Summary</h1>
+  <p class="lead">What we know (verified), what we can build (model), and what we must decide before spending effort. One page, no new numbers — everything below links to its detail page.</p>
+
+  <h2>1 · Where the league stands (verified 2026-11-12)</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Fact</th><th>Value</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>League leaders</td><td>BUF 7-1 (.875) in AFC; SF 7-1 (.875) in NFC</td><td><a href="standings.html">Standings</a> · <a href="https://www.nfl.com/standings/division/2026/reg">NFL.com</a></td></tr>
+      <tr><td>Strongest point differential</td><td>JAX +108 (229 PF / 121 PA) — best net in the league on this snapshot</td><td><a href="standings.html">Standings</a></td></tr>
+      <tr><td>Winless</td><td>LAC 0-8 (.000), net −98</td><td><a href="standings.html">Standings</a></td></tr>
+      <tr><td>Next slate</td><td>Week 11: 13 games, Thu Nov 19 – Mon Nov 23; 6 byes (ATL, CLE, GB, LAR, NE, SEA)</td><td><a href="schedule.html">Schedule</a> · <a href="https://www.nfl.com/news/week-11-schedule-change">NFL.com</a></td></tr>
+      <tr><td>Week 10 injuries (summary)</td><td>5 OUT (WAS ×2, NE ×3) + 1 Questionable (NYG ×1). Other 12 games: no designation in summary — unverified, check full report.</td><td><a href="injuries.html">Injuries</a> · <a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
+      <tr><td>Rules anchor</td><td>TD 6 · FG 3 · Safety 2 · Try 1/2 (NFL Official Playing Rules)</td><td><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf">Rules PDF</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>2 · The system we are building</h2>
+  <ul>
+    <li><strong>Verified data layer</strong> — standings, schedule, injuries transcribed from NFL.com with per-row source links (<a href="standings.html">Standings</a>, <a href="schedule.html">Schedule</a>, <a href="injuries.html">Injuries</a>). Anything unverified stays blank and flagged.</li>
+    <li><strong>Lines Lab</strong> — originate your own fair spread/total/moneyline from verified inputs with fully shown math (<a href="lines-lab.html">Lines Lab</a>). Baseline v0 is live; opponent-adjusted v1+ is the next build.</li>
+    <li><strong>Strategy Leaderboard</strong> — single bets, parlays, and prop combos compete under validation gates G1–G7 (pre-registration, sample size, out-of-sample, CLV, ROI with CI, correlation, stability) so luck cannot rank (<a href="strategies.html">Leaderboard</a>). No results claimed yet.</li>
+    <li><strong>Injury &amp; depth tracker</strong> — starter-out → replacement → deficiency signal, filled only from official reports + team depth charts (<a href="injuries.html">Injuries</a>). Depth charts are the current bottleneck (F-03).</li>
+  </ul>
+
+  <h2>3 · What we do NOT know yet (decision blockers)</h2>
+  <ul>
+    <li><strong>Play-by-play / EPA data</strong> — needed for v2 ratings and real backtests (Q-04, Q-05).</li>
+    <li><strong>Historical odds (open + close)</strong> — needed for CLV and ROI; without them the leaderboard cannot run (Q-05).</li>
+    <li><strong>Official depth charts</strong> — needed to quantify backup deficiencies (Q-07, F-03).</li>
+    <li><strong>Market-line capture method</strong> — which licensed books, timestamps, and storage for “market vs your fair” comparisons (Q-06).</li>
+  </ul>
+  <p>Full register: <a href="questions.html">Questions &amp; Gaps</a>. Proposed next builds ranked by impact: <a href="suggestions.html">Suggestions Board</a>.</p>
+
+  <h2>4 · Recommended path (pick one — see Suggestions Board)</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Path</th><th>First step</th><th>Unblocks</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A · Data first</strong> (recommended)</td><td>Secure play-by-play + historical odds; build v1 opponent-adjusted ratings</td><td>Real backtests, leaderboard, prop models</td></tr>
+      <tr><td><strong>B · Depth first</strong></td><td>Capture all 32 official depth charts + injury history</td><td>Injury-adjusted lines (v3), deficiency signals</td></tr>
+      <tr><td><strong>C · Market first</strong></td><td>Define licensed-book capture (open/close, timestamps)</td><td>CLV, edge tracking, leaderboard scoring</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note warn"><strong>Risk note:</strong> This project produces models and research, not betting advice. Odds and legality vary by jurisdiction; age limits apply. Never risk money you cannot afford to lose. If gambling is no longer fun, call/text 1-800-GAMBLER (US).</div>
+  <p><a class="btn ghost" href="index.html">← Dashboard</a> <a class="btn" href="suggestions.html">Decide on Suggestions Board →</a></p>
+</div></main>
+<footer><div class="wrap"><p>NFL2 · Executive summary synthesizes verified pages only. <a href="sources.html">Sources</a></p></div></footer>
+<script src="assets/app.js"></script>
+</body></html>
