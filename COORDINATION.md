@@ -644,10 +644,10 @@ That check found published prose that contradicts the repository's own data. Tho
 
 | Task | Status | Owner | Exclusive paths | Notes |
 |---|---|---|---|---|
-| RV-T01 | in progress | 8361cc7a-nfl2 | `data/flags.csv`, `content/injuries.md`, `content/flagged-for-review.md` | Week 10 injury snapshot: club coverage claim and the FL-01 "empty block" finding re-verified against `nfl.com/injuries/` |
-| RV-T02 | in progress | 8361cc7a-nfl2 | `content/index.md`, `content/executive-summary.md`, `content/suggestions.md`, `content/questions.md`, `data/requirements.csv` | Stale prose counts: "28 clubs", "25 suggestions", "28 questions", "15 flags" and the session-start inventory paragraph |
-| RV-T03 | in progress | 8361cc7a-nfl2 | `tools/verify.py`, `tests/session_8361cc7a/**` | Add a repo-wide guard so a prose club count and a prose register count can never age away again |
-| RV-T04 | in progress | 8361cc7a-nfl2 | `content/methodology.md` (additive section only) | Publish the independent live-source re-verification result so the owner can see what was re-checked |
+| RV-T01 | done | 8361cc7a-nfl2 | `data/flags.csv`, `content/injuries.md`, `content/flagged-for-review.md` | Week 10 injury snapshot: club coverage claim and the FL-01 "empty block" finding re-verified against `nfl.com/injuries/` |
+| RV-T02 | done | 8361cc7a-nfl2 | `content/index.md`, `content/executive-summary.md`, `content/suggestions.md`, `content/questions.md`, `data/requirements.csv` | Stale prose counts: "28 clubs", "25 suggestions", "28 questions", "15 flags" and the session-start inventory paragraph |
+| RV-T03 | done | 8361cc7a-nfl2 | `tools/verify.py`, `tests/session_8361cc7a/**` | Add a repo-wide guard so a prose club count and a prose register count can never age away again |
+| RV-T04 | done | 8361cc7a-nfl2 | `content/methodology.md` (additive section only) | Publish the independent live-source re-verification result so the owner can see what was re-checked |
 | RV-T05 | pending (final integration) | 8361cc7a-nfl2 | this file | Re-verify combined data, confirm build + links, PR to `main`, merge, confirm Pages |
 
 ### Sources used for this re-verification
@@ -681,3 +681,42 @@ official page exactly (all 32 standings rows, all 14 Week 10 fixtures, all 254 i
 | 22:35Z | Ran all eight in-repo verifiers on the untouched tree: `tools/verify.py` 39/0, `tools/check_site.py` 10 passed/1 disclosed warning, `tools/review_verify.py` OK, `tests/q51` 36 tests OK, `scripts/audit_all_pages.py` 96 pages/0 broken, `scripts/verify_s53126614.py` 116 pages/0 broken, `engine/verify_repo_and_site.py` 0 broken, `scripts/audit_q51_current.py`. **All pass — none of them catches RV-F01..F07**, because they compare the site to `data/`, not `data/` to the league. |
 | 22:40Z | Re-read all 7 chunks of `nfl.com/injuries/` and both chunks of `nfl.com/standings/`. Standings: all 32 rows match `data/standings_2026.csv` exactly on W-L-T, PCT, PF, PA, net, streak. |
 | 22:50Z | RV-F01..RV-F07 recorded above with exact evidence. |
+
+### RV-T01..RV-T04 completion record
+
+All seven findings in the table above were corrected and verified. Beyond the corrections, this session
+closed three gaps where the repository held the data but had never computed the answer:
+
+| Deliverable | What it establishes | Reproducibility gate |
+|---|---|---|
+| `data/computed_fair_lines.csv` (14 rows) | stages 1-2 of the origination pipeline run end to end; all 14 Week 10 games priced | `fair_lines_are_reproducible()` recomputes every game and rejects any market-relative column |
+| `data/computed_correlation.csv` (2 rows) | C-07 r=+0.076, C-08 r=-0.161 on 136 settled games; both 95% intervals include zero | `measured_correlation_is_reproducible()` re-derives both from the game log and forbids a measured r in the rho column |
+| `data/computed_depth_reach.csv` (18 rows) | 18 starter-to-backup cases across 4 charted clubs; 3 reach a 3rd string; 1 is a vacancy | `depth_reach_is_reproducible()` re-derives the whole join and checks vacancies too |
+
+Plus 5 suggestions (S-30..S-34), 4 questions (Q-30..Q-33, one P0) and 1 flag (FL-23), all sourced.
+
+### Second defect found by re-checking the source, not the file
+
+Re-fetching all four charted clubs' own depth chart pages (GB 22/22 groups exact, NE 11/11, DET 21/21,
+KC 19/22) confirmed the transcription but exposed a bug in **this session's own** first computation: a
+position group where *no* player at any depth was available was silently dropped, so New England's
+vacancy at left guard (Ben Brown Out, Walter Rouse also did not practise) was missing from a table whose
+entire purpose is to surface that case. Fixed, published as `depth_reached=vacant`, and the verifier now
+re-derives vacancies. Recorded on the methodology page and as FL-23 (KC latent indexing trap).
+
+### Final verification run (combined tree, before PR)
+
+```
+tools/build_site.py            22 pages, 590 blank cells as 'not published'
+tools/verify.py                47 passed / 0 warnings / 0 failures   (was 39 before this session)
+tools/check_site.py            10 passed / 1 disclosed warning / 0 failures
+tools/review_verify.py         all rows, sources, blanks and links OK
+scripts/audit_all_pages.py     96 pages, 230 tables, 3498 rows, 0 broken, 0 column mismatches
+scripts/verify_s53126614.py    116 pages, 3308 internal links, 0 broken
+engine/verify_repo_and_site.py 0 broken links across all repo builds
+tests/q51                      36 tests OK
+tools/compute_tables.py        byte-identical on rerun (deterministic)
+```
+
+Every new check was exercised with a negative control (tamper, observe failure, restore, observe pass);
+the controls are recorded on the methodology page.
