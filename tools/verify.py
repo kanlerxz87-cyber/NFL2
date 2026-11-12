@@ -502,7 +502,10 @@ def injury_coverage_is_measured_not_named():
         # A claim that the INJURY SNAPSHOT covers 28 clubs is false: it holds 24. A sentence about
         # depth charts, rosters or the league is a different claim about a different file, so the
         # check looks for sentence-level co-occurrence rather than a bare number.
-        for sent in re.split(r"(?<=[.!?])\s+|\n", text):
+        # a value inside backticks is a quotation of a claim (usually of a defect being reported),
+        # not an assertion by this page, so strip code spans before scanning
+        scan = re.sub(r"`[^`]*`", "", text)
+        for sent in re.split(r"(?<=[.!?])\s+|\n", scan):
             if not re.search(r"\b28 clubs\b", sent):
                 continue
             # on the injury page every club-count claim is a coverage claim by definition
