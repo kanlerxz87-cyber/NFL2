@@ -5,7 +5,7 @@
 > here, then commit and push the claim immediately.
 > Status values: `unclaimed` · `in progress` · `done` · `needs review`
 
-**Last updated:** 2026-11-12T04:35Z
+**Last updated:** 2026-11-12T06:10Z
 **Branch model in use:** single-branch session. The Arena platform pins this session to
 `arena/009ec582-nfl2`; per-session branches (`session-<id>/<task>`) are not permitted for this
 session (platform rule: one branch, no switching/creating branches). All work therefore happens on
@@ -29,14 +29,14 @@ enforced to keep concurrent work non-overlapping.
 | S-00 | Coordination board + source registry + repo scaffolding | **done** | arena-009ec582 | `COORDINATION.md`, `README.md`, `.nojekyll`, `.gitignore` |
 | S-01 | Official-source data acquisition + line-by-line verification (standings, schedule, injuries, team stats, rosters) | **done** | arena-009ec582 | `data/**` |
 | S-02 | Deterministic analysis engine (arithmetic re-verification, correlation, luck decomposition, line origination, validation gates) | **done** | arena-009ec582 | `scripts/**`, `data/derived/**` |
-| S-03 | Decision register: questions / information held / information missing / answers needed | unclaimed | — | `pages/decisions.html`, `data/decisions.json` |
-| S-04 | Suggestions review board (proposals, effort, risk, evidence, chosen path) | unclaimed | — | `pages/suggestions.html`, `data/suggestions.json` |
-| S-05 | Strategy lab: leaderboard, validation gates, correlation, luck removal | unclaimed | — | `pages/strategy.html`, `data/strategy.json` |
-| S-06 | Injury & personnel-deficiency tracker (starters vs 2nd/3rd/4th string) | **in progress** | arena-009ec582 | `pages/injuries.html`, `data/injuries_week10.json`, `data/depth_charts.json` |
-| S-07 | Executive summary | unclaimed | — | `EXECUTIVE_SUMMARY.md`, `pages/executive-summary.html` |
-| S-08 | Site build (dashboard, tables, navigation, flagged-for-review page, source links) | unclaimed | — | `index.html`, `pages/**`, `assets/**` |
-| S-09 | Build verification: broken-link scan, HTML validation, data/HTML consistency, local serve test | unclaimed | — | `scripts/verify_site.py`, `data/derived/verification_report.json` |
-| S-10 | Integration: re-verify combined data, open PR → `main`, merge, confirm Pages deploy, record result | unclaimed | — | `COORDINATION.md` (log section only) |
+| S-03 | Decision register: questions / information held / information missing / answers needed | **done** | arena-009ec582 | `data/questions.json`, `questions.html` |
+| S-04 | Suggestions review board (proposals, effort, risk, evidence, chosen path) | **done** | arena-009ec582 | `data/suggestions.json`, `suggestions.html` |
+| S-05 | Strategy lab: leaderboard, validation gates, correlation, luck removal | **done** | arena-009ec582 | `data/derived/analysis.json`, `strategies.html` |
+| S-06 | Injury & personnel-deficiency tracker (starters vs 2nd/3rd/4th string) | **done (4 of 32 clubs charted)** | arena-009ec582 | `data/injuries_week10.json`, `data/depth_charts.json`, `data/derived/personnel.json`, `injuries.html` |
+| S-07 | Executive summary | **done** | arena-009ec582 | `EXECUTIVE_SUMMARY.md`, `index.html` |
+| S-08 | Site build (dashboard, tables, navigation, flagged-for-review page, source links) | **done** | arena-009ec582 | `*.html`, `assets/**`, `scripts/build_site.py` |
+| S-09 | Build verification: broken-link scan, HTML validation, data/HTML consistency, local serve test | **done (12/12)** | arena-009ec582 | `scripts/verify_site.py`, `data/derived/site_report.json` |
+| S-10 | Integration: re-verify combined data, open PR → `main`, merge, confirm Pages deploy, record result | **in progress** | arena-009ec582 | `COORDINATION.md` (log section only) |
 
 ### Rules of engagement
 1. Never edit a file outside your claimed scope. If you need a change in someone else's file,
