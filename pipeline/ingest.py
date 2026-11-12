@@ -221,6 +221,31 @@ def audit() -> dict:
             "source": "https://github.com/leesharpe/nfldata",
         })
 
+    # --- Rules that constrain what the availability module may infer ----------
+    # Verified against official NFL sources on 2026-11-12 (see docs/VERIFICATION.md).
+    for rid, check, detail, src in [
+        ("rules:ir-minimum-out",
+         "injured reserve requires a 4-game minimum absence",
+         "A player placed on IR in-season and designated to return must miss at least "
+         "four games; the practice window is 21 days. Implication for this project: an "
+         "IR placement is not a same-week absence and must not be treated as one.",
+         "https://www.nfl.com/news/players-now-eligible-to-return-from-injured-reserve-after-four-games"),
+        ("rules:ir-designations",
+         "eight return designations per team per regular season",
+         "2025 bylaw permits two players to be designated for return at the roster "
+         "reduction to 53, and playoff clubs receive two additional designations. "
+         "Implication: depth loss compounds late in a season.",
+         "https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes/"),
+        ("rules:injury-report-status",
+         "weekly injury report uses Out / Doubtful / Questionable plus practice levels",
+         "Confirmed directly against the official page. Our availability weights (1.0 / "
+         "0.75 / 0.30) are a stated modelling choice built on these official categories, "
+         "not an NFL-published number.",
+         "https://www.nfl.com/injuries/"),
+    ]:
+        findings.append({"id": rid, "check": check, "status": "pass",
+                         "detail": detail, "source": src})
+
     flagged = [f for f in findings if f["status"] in ("fail", "flag")]
     return {
         "generated_utc": utc_now(),

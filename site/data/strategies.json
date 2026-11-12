@@ -3595,7 +3595,7 @@
   "rejected": 22,
   "best_holdout_roi": 0.43181818181818177
  },
- "generated_utc": "2026-11-12T04:55:35Z",
+ "generated_utc": "2026-11-12T05:00:38Z",
  "gate_definitions": {
   "G1_sample": ">= 100 settled legs",
   "G2_statistical": "Wilson 95% lower bound on hit rate > break-even rate",
