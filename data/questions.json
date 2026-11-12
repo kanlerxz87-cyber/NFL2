@@ -1,25 +1,261 @@
 {
-  "note": "QIA Register: Questions / Informations / Answers that must be addressed before any decision can reasonably be made. Status: Open = unknown, Partial = some info verified, Answered = verified from official source (link required). See docs/questions.html.",
+  "meta": {
+    "title": "Open questions, information gaps and the answers we can and cannot give",
+    "updated_utc": "2026-11-12T05:40Z",
+    "how_to_read": "Every row is a question a decision-maker would ask before acting. The ANSWER column contains only what an official source states. Where no official source can settle it the answer is left blank, the row is marked OPEN, and the DISCOVERY column says exactly how it could be closed.",
+    "status_legend": {
+      "ANSWERED": "Settled from an official source, link supplied.",
+      "PARTIAL": "One part is official, another part is not obtainable from an official source.",
+      "OPEN": "Not answerable from any source this project is permitted to use. Left blank on purpose.",
+      "BLOCKED": "Needs a data source that does not exist officially (see the note)."
+    },
+    "counts": {
+      "ANSWERED": 12,
+      "BLOCKED": 3,
+      "OPEN": 2,
+      "PARTIAL": 7
+    }
+  },
   "questions": [
-    {"id": "Q-01", "question": "What is the current (Week 11) official injury status for every starter?", "information_needed": "Fresh NFL.com + club injury reports for Week 11 (Wed/Thu/Fri practice + game status + inactives)", "why": "Injuries move lines by multiple points; Nov 11 snapshot is Week 10 and stale (F-02).", "current_answer": "UNKNOWN for Week 11. Nov 11 Week-10 snapshot verified (see injuries page).", "status": "Open", "source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"},
-    {"id": "Q-02", "question": "Who is the confirmed starting QB for each team in Week 11?", "information_needed": "Club depth-chart announcements + NFL.com news for Week 11", "why": "QB is the highest-leverage input; backup lists conflict (F-03).", "current_answer": "PARTIAL: Week-10 starters verified for AZ (Beck), CLE (Watson); MIN undecided (Cousins). Week 11 unknown.", "status": "Partial", "source_url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11"},
-    {"id": "Q-03", "question": "What are the market (sportsbook) lines for Week 11 — open and close?", "information_needed": "Licensed odds feed with timestamps (spread, ML, total, props)", "why": "Own lines are meaningless without market comparison; no edge can be claimed (F-05).", "current_answer": "UNKNOWN — no odds feed collected.", "status": "Open", "source_url": ""},
-    {"id": "Q-04", "question": "What is the model's home-field advantage value?", "information_needed": "Historical home/away scoring split from play-by-play (multiple seasons)", "why": "HFA directly sets the fair spread; guessing it biases every line.", "current_answer": "UNKNOWN — not yet estimated from data. Calculator default is a placeholder, labelled as such.", "status": "Open", "source_url": ""},
-    {"id": "Q-05", "question": "How should ties, pushes, and overtime be handled in grading?", "information_needed": "Market settlement rules per bet type (spread push, total push, ML tie handling)", "why": "Grading ambiguity corrupts ROI/CLV.", "current_answer": "PARTIAL: Standard rules documented in lines.html (whole-number push = refund). Confirm per-book rules when feed is chosen.", "status": "Partial", "source_url": "https://www.gamblingsite.com/football-betting/nfl-odds/"},
-    {"id": "Q-06", "question": "What sample size proves skill vs luck?", "information_needed": "Pre-registered gates: n, ROI, CLV, log-loss/Brier, significance tests", "why": "Without gates, lucky streaks look like skill.", "current_answer": "FRAMEWORK SET (strategies.html gates G0-G7), not yet applied — no graded bets exist.", "status": "Partial", "source_url": ""},
-    {"id": "Q-07", "question": "What are the empirical correlations between parlay/prop legs?", "information_needed": "Play-by-play joint-outcome data to estimate P(A and B) vs P(A)*P(B)", "why": "Parlay pricing depends on correlation; theoretical categories are not measurements (F-07).", "current_answer": "UNKNOWN — only qualitative categories documented. No coefficients claimed.", "status": "Open", "source_url": ""},
-    {"id": "Q-08", "question": "What is the bankroll, risk budget, and staking rule?", "information_needed": "Operator decision: bankroll size, per-bet cap, loss limits, Kelly fraction", "why": "Staking determines ruin risk more than pick selection.", "current_answer": "UNKNOWN — S-12 proposes 1% cap + quarter-Kelly. Awaiting decision.", "status": "Open", "source_url": ""},
-    {"id": "Q-09", "question": "Which data sources are licensed/allowed for odds + play-by-play?", "information_needed": "Terms review for nflverse, odds vendors, NFL.com reuse", "why": "Legal/ToS compliance; scraping may violate terms.", "current_answer": "UNKNOWN — S-01/S-02 pending decision.", "status": "Open", "source_url": ""},
-    {"id": "Q-10", "question": "What weather is forecast for each Week 11 outdoor game?", "information_needed": "Timestamped forecast (wind, temp, precip) per stadium at bet time", "why": "Totals/passing props are weather-sensitive.", "current_answer": "UNKNOWN — no weather data collected (S-07).", "status": "Open", "source_url": ""},
-    {"id": "Q-11", "question": "What are snap counts / target shares / route participation for prop candidates?", "information_needed": "Official snap data or licensed equivalent, weekly", "why": "Prop lines without usage data are guesses.", "current_answer": "UNKNOWN — not collected.", "status": "Open", "source_url": ""},
-    {"id": "Q-12", "question": "What are the official 2026 season dates + playoff structure?", "information_needed": "NFL.com 2026 schedule release / operations pages", "why": "Season framing for backtests and leaderboard periods.", "current_answer": "PARTIAL: Week 11 dates verified. Full season dates not yet transcribed — leave blank until verified.", "status": "Partial", "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11"},
-    {"id": "Q-13", "question": "Are the Week 11 bye teams really 6 (ATL, CLE, GB, LAR, NE, SEA)?", "information_needed": "Official 2026 schedule PDF cross-check", "why": "6 byes is unusual; transcription must be confirmed (F-08).", "current_answer": "AS PUBLISHED on NFL.com schedule page; confirmation pending.", "status": "Partial", "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11"},
-    {"id": "Q-14", "question": "What are each team's stadium, surface, and roof status?", "information_needed": "Official NFL/club stadium pages", "why": "Needed for weather/roof adjustments.", "current_answer": "UNKNOWN — deliberately left blank (not verified).", "status": "Open", "source_url": ""},
-    {"id": "Q-15", "question": "What are offensive/defensive EPA and success rates by team?", "information_needed": "Play-by-play derived EPA (nflverse) with reproducible code", "why": "Totals-only stats cannot separate efficiency from volume/pace.", "current_answer": "UNKNOWN — totals verified; EPA not yet computed.", "status": "Open", "source_url": ""},
-    {"id": "Q-16", "question": "How are player props settled (e.g. void if player doesn't play)?", "information_needed": "Per-book prop settlement rules", "why": "Voids affect grading and ROI.", "current_answer": "UNKNOWN — pending odds vendor.", "status": "Open", "source_url": ""},
-    {"id": "Q-17", "question": "What is the legal/regulatory status of this analysis in the operator's jurisdiction?", "information_needed": "Legal review; responsible-gambling requirements", "why": "Betting analysis has legal constraints.", "current_answer": "UNKNOWN — S-09 guardrails proposed; legal review required before real-money use.", "status": "Open", "source_url": "https://www.ncpgambling.org/ncpg/"},
-    {"id": "Q-18", "question": "Which suggestions (S-01…S-12) are approved, and in what order?", "information_needed": "Reviewer decisions on suggestions board", "why": "No change should be implemented without review (project rule).", "current_answer": "ALL Proposed. None implemented.", "status": "Open", "source_url": ""},
-    {"id": "Q-19", "question": "What are the closing-line (CLV) benchmarks per market?", "information_needed": "Closing odds per market + timestamp policy", "why": "CLV is the primary skill-vs-luck metric.", "current_answer": "UNKNOWN — pending Q-03.", "status": "Open", "source_url": ""},
-    {"id": "Q-20", "question": "What is the data-retention + versioning policy for snapshots?", "information_needed": "Operator decision: raw snapshots immutable, derived data versioned", "why": "Reproducibility; prevents silent overwrites.", "current_answer": "UNKNOWN — proposed: immutable JSON snapshots in /data with snapshot dates.", "status": "Open", "source_url": ""}
+    {
+      "id": "Q-01",
+      "category": "Data integrity",
+      "question": "Does the game log on this site agree with the league's own published records?",
+      "answer": "Yes. The 136-game log reproduces every club's PF, PA, W, L, T, win percentage, net points and current streak. All 32 clubs match on all seven fields.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/standings/2026/reg/",
+      "evidence": "scripts/verify_data.py checks V3a, V3b, V4, V5, V6, V8, V10 — 10/10 hard checks pass.",
+      "discovery": "Re-run `python3 scripts/verify_data.py`."
+    },
+    {
+      "id": "Q-02",
+      "category": "Data integrity",
+      "question": "Do the team offensive and defensive yardage tables balance against each other?",
+      "answer": "Yes, exactly, on eight separate identities: 63,556 passing yards, 30,580 rushing yards, 641 sacks, 411 passing TD, 257 rushing TD, 197 interceptions, 3,006 passing first downs, 1,757 rushing first downs. League offence equals league defence on every one.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all",
+      "evidence": "checks V12a–V12h.",
+      "discovery": "Re-run `python3 scripts/verify_data.py`."
+    },
+    {
+      "id": "Q-03",
+      "category": "Data integrity",
+      "question": "Are the league's published derived rates all internally consistent?",
+      "answer": "No. Three do not reconstruct: Washington's completion percentage computes to 61.7 but is published as 61.6; Kansas City, Jacksonville, Seattle and Pittsburgh's yards-per-attempt disagree under every candidate denominator tested; and Kansas City's club page total-offence figure (3,069) is 70 yards short of its own team-stat components (2,037 + 1,102 = 3,139).",
+      "status": "PARTIAL",
+      "source": "https://www.nfl.com/teams/kansas-city-chiefs/stats",
+      "evidence": "FL-05, FL-06, FL-07 on the Flagged for Review page.",
+      "discovery": "Not closable without the league's own formula definitions; NFL.com publishes no glossary for these columns."
+    },
+    {
+      "id": "Q-04",
+      "category": "Injuries",
+      "question": "Who is injured for Week 10, and how much did they practise?",
+      "answer": "Fully captured: 254 player rows across the 14 Week 10 games, each with club, position, injury, practice participation and game status exactly as published.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/injuries/",
+      "evidence": "data/injuries_week10.json.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-05",
+      "category": "Injuries",
+      "question": "Are those injured players starters or backups?",
+      "answer": "Only for four clubs. Kansas City, Green Bay, New England and Detroit publish depth charts that were transcribed and cross-checked here. For those four, the join identifies e.g. five Green Bay starters who did not practise. For the other 28 clubs the official injury report does not say starter or backup, so the field is left blank rather than guessed.",
+      "status": "PARTIAL",
+      "source": "https://www.detroitlions.com/team/depth-chart",
+      "evidence": "203 of 254 rows are depth-unmapped; 39 map to a published chart slot; 12 injured players are not on their club's chart at all.",
+      "discovery": "Transcribe the remaining 28 club depth charts from each club's own `/team/depth-chart` page and re-run `scripts/personnel.py`. No API key needed — it is 28 page reads and 28 manual verifications."
+    },
+    {
+      "id": "Q-06",
+      "category": "Injuries",
+      "question": "How many points is a missing starter worth?",
+      "answer": "",
+      "status": "BLOCKED",
+      "source": "",
+      "evidence": "No official source publishes a depth-chart-slot-to-points conversion.",
+      "discovery": "Would require a multi-season dataset of starter absences joined to closing lines. Neither dataset is available from an official source, and this project has no odds feed (FL-01). Until then the site publishes a stated, auditable weighting index and explicitly does not call it points."
+    },
+    {
+      "id": "Q-07",
+      "category": "Injuries",
+      "question": "What is each injured player's game status (Out / Doubtful / Questionable)?",
+      "answer": "Partially. The per-week league article carries real statuses for some clubs (Washington: Yankoff and Patrick OUT; New England: Ben Brown, Carlton Davis and Henderson OUT). Club injury pages show practice codes reliably but print 'UNSPECIFIED' for game status early in the week.",
+      "status": "PARTIAL",
+      "source": "https://www.nfl.com/news/nfl-week-10-injury-report-2026-season",
+      "evidence": "Game status is blank for 243 of 254 rows.",
+      "discovery": "Re-read the club `/team/injury-report/` pages after the final practice of the week (Saturday for Sunday games, Wednesday for Thursday games) — statuses populate late."
+    },
+    {
+      "id": "Q-08",
+      "category": "Model",
+      "question": "Is there a home-field advantage in the 2026 data?",
+      "answer": "Not detectable at this sample size, and the naive figure is misleading. Pooling all 136 games gives a mean home margin of +0.00. But 7 games were at neutral sites with no true home club. On the 129 genuine home games the mean home margin is +0.50 points, 95% CI [-1.80, +2.79]. The conventional ~+2.5 prior sits inside that interval, so 2026 cannot reject it. The model uses +0.50.",
+      "status": "PARTIAL",
+      "source": "https://www.nfl.com/schedules/2026/REG/",
+      "evidence": "IR-04. Neutral-site games are excluded from the estimate and disclosed, not silently pooled. See `analysis.json → home_field`.",
+      "discovery": "Close it with P-05: recompute the same split over 2023-2025 to see whether 2026 is an artefact of one partial season."
+    },
+    {
+      "id": "Q-09",
+      "category": "Model",
+      "question": "Does the model beat the market?",
+      "answer": "",
+      "status": "BLOCKED",
+      "source": "",
+      "evidence": "FL-01: no NFL.com property publishes spreads, totals, moneylines or prop prices, so there is no market to beat and no basis for any ROI or closing-line-value claim.",
+      "discovery": "An odds archive would be required. This project will not fabricate one."
+    },
+    {
+      "id": "Q-10",
+      "category": "Model",
+      "question": "Do any of the six strategies clear the validation gates?",
+      "answer": "None. All six are UNDERPOWERED — the walk-forward backtest grades 15-72 legs per strategy against a gate that requires 200. S1, S2 and S3 pass four of the seven gates but cannot be certified on sample size.",
+      "status": "PARTIAL",
+      "source": "https://www.nfl.com/schedules/2026/REG/",
+      "evidence": "Gate table on the Strategies page; G2 (n ≥ 200) fails for every strategy.",
+      "discovery": "Keep appending weeks; G2 needs roughly three further seasons of the same walk-forward to clear organically. Widening the fold window is the alternative and is proposed as proposal P-03."
+    },
+    {
+      "id": "Q-11",
+      "category": "Model",
+      "question": "Which club metrics actually correlate with winning?",
+      "answer": "Net rating (r = +0.876), power (r = +0.876), Pythagorean residual (r = +0.805), offensive rating (r = +0.694) and defensive rating (r = +0.666) all correlate strongly with win percentage across 32 clubs. The strongest single driver is net yards per play.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all",
+      "evidence": "Correlation table on the Analysis page, n = 32.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-12",
+      "category": "Model",
+      "question": "Are game totals and margins independent of each other?",
+      "answer": "Yes, effectively. Total points vs margin correlates at −0.161, total points vs absolute margin at −0.016, and the two clubs' scores within a game correlate at only +0.076. That is the empirical justification for treating 'who wins' and 'how high' as separate research problems.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/schedules/2026/REG/",
+      "evidence": "Game-level correlation table, n = 136.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-13",
+      "category": "Player props",
+      "question": "How correlated are a player's prop and his club's total?",
+      "answer": "",
+      "status": "BLOCKED",
+      "source": "",
+      "evidence": "FL-09. Only season aggregates exist in this dataset — there are no per-game box scores — so the dependence between a player's line and his club's total cannot be measured. Quoting a number here would be invented.",
+      "discovery": "Per-game player box scores would close it. NFL.com's gamebook pages carry them but each is a separate page fetch per game; at 14 games per week that is ~250 page reads for a season. This is proposed as suggestion P-01."
+    },
+    {
+      "id": "Q-14",
+      "category": "Player stats",
+      "question": "Who are the rushing and receiving leaders, and are those tables usable?",
+      "answer": "No. The rushing and receiving leaderboards render without a header row, and no arithmetic identity identifies the columns: published yards-per-carry, yards-per-reception and yards-per-game disagree with the published totals for every one of the 25 sampled rows under every candidate column ordering. Those leaderboards are withheld entirely rather than published with unknown columns.",
+      "status": "PARTIAL",
+      "source": "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all",
+      "evidence": "FL-08. Only 8 passing lines survive an equality test against their club's official team passing line and are published.",
+      "discovery": "The league's own player pages show per-player season splits with labelled headers. Those are per-player page reads and were out of this session's budget; see suggestion P-01."
+    },
+    {
+      "id": "Q-15",
+      "category": "Player stats",
+      "question": "How were the 8 published passing lines proven?",
+      "answer": "By equality. A passer is published only when all 15 of his values — attempts, completions, yards, touchdown passes, interceptions, completion percentage, yards per attempt, sacks, sack yards and the rest — are identical to his club's official team passing line, which can only happen if he is the club's sole passer. Detroit's Jared Goff fails this test (2,134 vs a Detroit team figure of 2,145) and is therefore excluded, not reconciled.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all",
+      "evidence": "Rule stated on the Data Sources page; 8 passers pass, Goff is the counter-example that establishes the rule.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-16",
+      "category": "Rules",
+      "question": "How large is a roster, and how many players can actually play on game day?",
+      "answer": "53 on the active/inactive list, and 47 or 48 on the game-day roster — 48 only if at least eight offensive linemen are active, otherwise 47. Practice-squad elevation can lift the active list to 54 or 55.",
+      "status": "ANSWERED",
+      "source": "https://operations.nfl.com/inside-football-ops/nfl-operations/nfl-free-agency/contract-language",
+      "evidence": "Cited directly on the Injuries page.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-17",
+      "category": "Coverage",
+      "question": "Is the injury report complete for all 14 Week 10 games?",
+      "answer": "Yes. All 14 games are covered. Four clubs (Seattle, Cincinnati, Los Angeles Chargers, Baltimore) printed 'No Injuries Reported' — that is the source's statement, not an inference that those clubs are healthy.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/injuries/",
+      "evidence": "data/injuries_week10.json, `no_injuries_reported` array.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-18",
+      "category": "Coverage",
+      "question": "Does this site cover the whole season so far?",
+      "answer": "Yes for results: all 136 games of weeks 1–9, every one with its source URL and date. Player-level and depth-chart coverage is explicitly partial and labelled as such on every page.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/schedules/2026/REG/",
+      "evidence": "data/games_2026.json.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-19",
+      "category": "Betting",
+      "question": "What does a parlay pay, and how correlated should its legs be?",
+      "answer": "The arithmetic is published exactly: a two-leg parlay of two −110 legs at fair odds pays +264.46 and returns $364.46 on $100, and the same calculation is shown for three, four and five legs with the correlation adjustment spelled out. What cannot be given is the actual payoff, because no official pricing source exists.",
+      "status": "PARTIAL",
+      "source": "",
+      "evidence": "Parlay table on the Strategies page. It is a paytable, not a quote.",
+      "discovery": "Requires a licensed odds feed; explicitly out of scope (FL-01)."
+    },
+    {
+      "id": "Q-20",
+      "category": "Betting",
+      "question": "Are same-game parlay legs positively correlated here?",
+      "answer": "",
+      "status": "OPEN",
+      "source": "",
+      "evidence": "Direction is theorised but unmeasured. Q-12 shows the two clubs' scores are near-independent, and FL-09 shows player-level dependence cannot be measured at all from this dataset.",
+      "discovery": "Needs per-game player box scores plus per-game team totals — see P-01. Until then the site states the sign of the effect and refuses to state a magnitude."
+    },
+    {
+      "id": "Q-21",
+      "category": "Process",
+      "question": "Can another session safely work on this repo at the same time?",
+      "answer": "Yes. COORDINATION.md holds the task board, each task declares a file scope, claims are committed before work starts, and a claim older than 60 minutes is treated as stale and takeable.",
+      "status": "ANSWERED",
+      "source": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md",
+      "evidence": "COORDINATION.md task board.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-22",
+      "category": "Process",
+      "question": "Is anything on this site unverified or contradictory?",
+      "answer": "Yes, and it is all on one page. Nine irregularities and eight flagged items are published with severity, exactly what is wrong, and what would fix them. Nothing flagged is silently dropped and nothing flagged is used in the model.",
+      "status": "ANSWERED",
+      "source": "https://kanlerxz87-cyber.github.io/NFL2/flagged.html",
+      "evidence": "Flagged for Review page.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-23",
+      "category": "Model",
+      "question": "Is the line sign convention correct, or is the model upside down?",
+      "answer": "It is checked, not assumed. A power-rating line picks the home side correctly 64.6% of the time; an inverted sign would score below 50%. The build asserts this and aborts if it ever inverts.",
+      "status": "ANSWERED",
+      "source": "https://www.nfl.com/schedules/2026/REG/",
+      "evidence": "`analysis.json → sign_check`.",
+      "discovery": "—"
+    },
+    {
+      "id": "Q-24",
+      "category": "Model",
+      "question": "How many points should be added for a missing starting quarterback specifically?",
+      "answer": "",
+      "status": "OPEN",
+      "source": "",
+      "evidence": "The Week 10 injury data contains no starting-quarterback absence in any of the four charted clubs, so there is nothing to measure. No official conversion exists.",
+      "discovery": "Would need several seasons of QB absences joined to results; the join is possible from official sources, the sample is not yet there."
+    }
   ]
 }

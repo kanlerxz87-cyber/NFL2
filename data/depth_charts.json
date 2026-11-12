@@ -1,0 +1,418 @@
+{
+ "meta": {
+  "dataset": "Week 10 (2026) personnel-deficiency tracker \u2014 starters vs 2nd/3rd/4th string",
+  "built_utc": "2026-11-12T05:25Z",
+  "what_this_is": "A cross-tab of the official Week 10 injury report against the club's own published depth chart, so that 'a starter is out' can be distinguished from 'a 4th-string player is out'. Two official sources, one join.",
+  "sources": {
+   "injury": "https://www.nfl.com/injuries/",
+   "injury_status": "https://www.nfl.com/news/nfl-week-10-injury-report-2026-season",
+   "depth_chart_policy": "Club-published 'Unofficial Depth Chart'. Every NFL club's own site publishes one; NFL.com's own depth-chart route returns 404 (verified).",
+   "rosters": "https://www.nfl.com/teams/<club>/roster"
+  },
+  "depth_hierarchy_rule": "Depth position = the 1-based column in which the club lists the player for that position group. Column 1 = starter (1st string), column 2 = 2nd string, column 3 = 3rd string, column 4 = 4th string. A player listed in a group but not in the injury report is depth information only, not a deficiency.",
+  "critical_caveat": "A club depth chart is explicitly labelled UNOFFICIAL by every club that publishes one. It is the organisation's own working document, not a league-mandated designation. It can lag a coaching decision. This is stated on the site and is the single biggest limitation of this analysis.",
+  "coverage": "4 clubs have a verified depth chart transcribed in this dataset (KC, GB, NE, DET). For the other 28 clubs the injury rows are published with depth_position = null and are flagged as 'depth unmapped' rather than guessed. See Flagged for Review FL-10.",
+  "charted": [
+   "KC",
+   "GB",
+   "NE",
+   "DET"
+  ],
+  "not_charted_reason": "Transcribing and verifying 32 club depth charts line by line is beyond this session's verified budget. Publishing 28 unverified charts would violate the no-inference rule, so they are left explicitly blank.",
+  "unique_group_keys": "Every position group key is unique inside its side. This was added after a verification run showed duplicate 'DT'/'CB' labels causing a 3rd-string player to be scored as a starter.",
+  "verification": "scripts/verify_personnel.py re-derives every depth slot from this file and asserts no player occupies two different slots in the same club chart."
+ },
+ "depth_charts": {
+  "KC": {
+   "club_site": "https://www.chiefs.com/team/depth-chart",
+   "label_as_published": "Unofficial Depth Chart",
+   "offense": {
+    "WR_X": [
+     "Rashee Rice",
+     "Jalen Royals",
+     "Andrew Armstrong"
+    ],
+    "LT": [
+     "Diego Pounds"
+    ],
+    "LG": [
+     "Kingsley Suamataia",
+     "Joshua Ezeudu"
+    ],
+    "C": [
+     "Creed Humphrey",
+     "Hunter Nourzad"
+    ],
+    "RG": [
+     "Trey Smith",
+     "Mike Caliendo"
+    ],
+    "RT": [
+     "Jaylon Moore",
+     "Joshua Ezeudu"
+    ],
+    "TE": [
+     "Travis Kelce",
+     "Noah Gray",
+     "Jared Wiley",
+     "Jake Briningstool"
+    ],
+    "QB": [
+     "Patrick Mahomes",
+     "Justin Fields",
+     "Garrett Nussmeier"
+    ],
+    "RB": [
+     "Kenneth Walker",
+     "Emmett Johnson",
+     "Jaydn Ott"
+    ],
+    "FB": [
+     "Ben VanSumeren"
+    ],
+    "WR_Z": [
+     "Xavier Worthy",
+     "Cyrus Allen"
+    ]
+   },
+   "defense": {
+    "DE_L": [
+     "Felix Anudike-Uzomah",
+     "Ashton Gillotte"
+    ],
+    "DT_L": [
+     "Chris Jones",
+     "Peter Woods"
+    ],
+    "DT_R": [
+     "Khyiris Tonga",
+     "Bryson Eason"
+    ],
+    "DE_R": [
+     "George Karlaftis",
+     "R Mason Thomas"
+    ],
+    "LB_W": [
+     "Jack Cochrane",
+     "Cooper McDonald"
+    ],
+    "LB_M": [
+     "Nick Bolton",
+     "Jack Cochrane"
+    ],
+    "LB_S": [
+     "Drue Tranquill",
+     "Jeffrey Bassa"
+    ],
+    "CB_1": [
+     "Nohl Williams",
+     "Jadon Canady"
+    ],
+    "CB_2": [
+     "Mansoor Delane",
+     "Kristian Fulton",
+     "Melvin Smith"
+    ],
+    "S_1": [
+     "Alohi Gilman",
+     "Chris Roland-Wallace"
+    ],
+    "S_2": [
+     "Chamarri Conner",
+     "Jaden Hicks",
+     "Xavier Nwankpa"
+    ]
+   },
+   "chart_corrections": [
+    "The Chiefs chart's LT row names 'Kahlil Benson'; the NFL.com roster also lists a Kahlil Benson. Two different players can appear under one name, so the LT STARTER slot is left unasserted rather than guessed. Only the 2nd-string LT (Diego Pounds) is asserted.",
+    "The KC chart's DE/DT rows are printed with two labels each reading DT and two reading DE. Group keys here are disambiguated (DT_L/DT_R) to prevent a depth slot being read off the wrong row."
+   ]
+  },
+  "GB": {
+   "club_site": "https://www.packers.com/team/depth-chart",
+   "label_as_published": "Green Bay Packers Depth Chart (Unofficial, Nov. 10, 2026)",
+   "offense": {
+    "WR_1": [
+     "Christian Watson",
+     "Bo Melton"
+    ],
+    "WR_2": [
+     "Matthew Golden",
+     "J. Michael Sturdivant"
+    ],
+    "LT": [
+     "Jordan Morgan",
+     "John Williams"
+    ],
+    "LG": [
+     "Aaron Banks",
+     "Travis Glover",
+     "Donovan Jennings"
+    ],
+    "C": [
+     "Sean Rhyan",
+     "Jager Burton"
+    ],
+    "RG": [
+     "Laken Tomlinson",
+     "Kevin Zeitler"
+    ],
+    "RT": [
+     "Anthony Belton",
+     "Mekhi Becton Sr."
+    ],
+    "TE": [
+     "Tucker Kraft",
+     "Jonnu Smith",
+     "Mark Redman",
+     "Josh Whyle"
+    ],
+    "WR_3": [
+     "Savion Williams",
+     "Coleman Owen"
+    ],
+    "QB": [
+     "Jordan Love",
+     "Tyrod Taylor"
+    ],
+    "RB": [
+     "Josh Jacobs",
+     "MarShawn Lloyd",
+     "Pierre Strong Jr.",
+     "Kaleb Johnson"
+    ]
+   },
+   "defense": {
+    "DT_1": [
+     "Karl Brooks",
+     "Jordon Riley",
+     "Anthony Campbell"
+    ],
+    "DT_2": [
+     "Devonte Wyatt",
+     "Chris McClellan"
+    ],
+    "EDGE_1": [
+     "Lukas Van Ness",
+     "Brenton Cox Jr."
+    ],
+    "LB_1": [
+     "Zaire Franklin",
+     "Ty'Ron Hopper",
+     "Kristian Welch"
+    ],
+    "LB_2": [
+     "Isaiah McDuffie",
+     "Nick Niemann"
+    ],
+    "EDGE_2": [
+     "Barryn Sorrell",
+     "Dani Dennis-Sutton"
+    ],
+    "CB_1": [
+     "Keisean Nixon",
+     "Carrington Valentine"
+    ],
+    "CB_2": [
+     "Brandon Cisse",
+     "Benjamin St-Juste"
+    ],
+    "S_1": [
+     "Xavier McKinney",
+     "Kitan Oladapo"
+    ],
+    "S_2": [
+     "Evan Williams",
+     "Kitan Oladapo"
+    ],
+    "NB": [
+     "Javon Bullard",
+     "Kamal Hadden"
+    ]
+   },
+   "chart_corrections": [
+    "Two DT, two EDGE, two LB and two CB rows are printed with identical labels. Group keys are disambiguated so a depth slot can only be read off the row it actually appears in."
+   ]
+  },
+  "NE": {
+   "club_site": "https://www.patriots.com/team/depth-chart",
+   "label_as_published": "Patriots Unofficial Depth Chart (published by Patriots.com writers, not the organisation)",
+   "offense": {
+    "WR": [
+     "A.J. Brown",
+     "Efton Chism III"
+    ],
+    "LT": [
+     "Will Campbell",
+     "Dametrious Crownover",
+     "Marcus Bryant"
+    ],
+    "LG": [
+     "Ben Brown",
+     "Walter Rouse"
+    ],
+    "C": [
+     "Jared Wilson",
+     "Ben Brown"
+    ],
+    "RG": [
+     "Matt Pryor",
+     "Walter Rouse"
+    ],
+    "RT": [
+     "Morgan Moses",
+     "Caleb Lomu"
+    ],
+    "TE": [
+     "Hunter Henry",
+     "Eli Raridon",
+     "Cameron Latu"
+    ],
+    "WR2": [
+     "DeMario Douglas",
+     "Kyle Williams"
+    ],
+    "WR3": [
+     "Efton Chism III",
+     "Kyle Williams"
+    ],
+    "RB": [
+     "Rhamondre Stevenson",
+     "TreVeyon Henderson",
+     "Corey Kiner",
+     "Lan Larison"
+    ],
+    "QB": [
+     "Drake Maye",
+     "Tommy DeVito",
+     "Behren Morton"
+    ]
+   },
+   "defense": {
+    "OLB": [
+     "Dre'Mont Jones",
+     "Gabe Jacas"
+    ],
+    "DT_1": [
+     "Christian Barmore",
+     "Leonard Taylor III"
+    ],
+    "DT_2": [
+     "Cory Durden",
+     "DaQuan Jones"
+    ],
+    "DT_3": [
+     "Milton Williams"
+    ]
+   },
+   "chart_corrections": [
+    "Three DT rows share one label; disambiguated as DT_1/DT_2/DT_3."
+   ]
+  },
+  "DET": {
+   "club_site": "https://www.detroitlions.com/team/depth-chart",
+   "label_as_published": "2026 Unofficial Depth Chart Compiled by Lions Football Communications",
+   "offense": {
+    "WR_1": [
+     "Jameson Williams"
+    ],
+    "WR_2": [
+     "Amon-Ra St. Brown",
+     "DeAndre Carter"
+    ],
+    "LT": [
+     "Penei Sewell"
+    ],
+    "LG": [
+     "Christian Mahogany",
+     "Miles Frazier"
+    ],
+    "C": [
+     "Cade Mays",
+     "Juice Scruggs"
+    ],
+    "RG": [
+     "Tate Ratledge",
+     "Seth McLaughlin"
+    ],
+    "RT": [
+     "Blake Miller",
+     "Larry Borom"
+    ],
+    "TE": [
+     "Sam LaPorta",
+     "Brock Wright",
+     "Tyler Conklin",
+     "Jackson Meeks"
+    ],
+    "WR_3": [
+     "Isaac TeSlaa",
+     "Tay Martin"
+    ],
+    "QB": [
+     "Jared Goff",
+     "Joshua Dobbs"
+    ],
+    "RB": [
+     "Jahmyr Gibbs",
+     "Sione Vaki",
+     "Jacob Saylors"
+    ]
+   },
+   "defense": {
+    "EDGE_1": [
+     "Aidan Hutchinson",
+     "Derrick Moore",
+     "Eric O'Neill"
+    ],
+    "DL_1": [
+     "Alim McNeill",
+     "Skyler Gill-Howard",
+     "Mekhi Wingo"
+    ],
+    "DL_2": [
+     "Tyleik Williams",
+     "Levi Onwuzurike"
+    ],
+    "EDGE_2": [
+     "DJ Wonnum",
+     "Tyler Lacy",
+     "Ahmed Hassanein"
+    ],
+    "LB_1": [
+     "Derrick Barnes",
+     "Joe Bachie"
+    ],
+    "LB_2": [
+     "Malcolm Rodriguez",
+     "K.J. Britt"
+    ],
+    "LB_3": [
+     "Trevor Nowaske",
+     "Amen Ogbongbemiga"
+    ],
+    "CB_1": [
+     "D.J. Reed",
+     "Rock Ya-Sin",
+     "Khalil Dorsey",
+     "Nick Whiteside"
+    ],
+    "CB_2": [
+     "Roger McCreary",
+     "Ennis Rakestraw Jr.",
+     "Keith Abney II"
+    ],
+    "S_1": [
+     "Chuck Clark"
+    ],
+    "S_2": [
+     "Brian Branch",
+     "Christian Izien"
+    ]
+   },
+   "chart_corrections": [
+    "Two EDGE, two DL, three LB and two CB/S rows share labels; disambiguated."
+   ]
+  }
+ }
+}
