@@ -439,11 +439,26 @@ def render_csv_table(body):
         raise BuildError("%s has no source column %r" % (name, src_col))
     group = opts.get("group", "")
     link_player = "link_player" in opts
-    filters = [f.split("=", 1) for f in opts.get("filter", "").split(",") if "=" in f]
+    # A filter clause must be key=value. The old parser dropped anything else on the floor, which is
+    # how three tables on the live site ended up unfiltered: a colon instead of an equals sign reads
+    # fine to a human ("status:!recommended") and silently means "no filter at all" to the builder.
+    raw_filters = [f for f in opts.get("filter", "").split(",") if f.strip()]
+    for f in raw_filters:
+        if "=" not in f:
+            raise BuildError("table %s: filter clause %r is not key=value and would be ignored" % (name, f))
+        if f.split("=", 1)[0].strip() not in rows[0]:
+            raise BuildError("table %s: filter key %r is not a column of %s" % (name, f.split("=", 1)[0], name))
+    filters = [f.split("=", 1) for f in raw_filters]
     for k, v in filters:
+        k, v = k.strip(), v.strip()
         neg = v.startswith("!")
         v = v[1:] if neg else v
-        if v == "":
+        if v == "*":
+            # "*" means "this cell is filled in". Written out explicitly because "field:!" reads as
+            # "not blank" to a human and means "is blank" to the negation branch below - an
+            # inverted filter once put 248 rows in a section captioned "the six designations".
+            keep = lambda cell: cell.strip() != ""
+        elif v == "":
             keep = (lambda cell: cell.strip() == "") if neg else (lambda cell: cell.strip() != "")
         else:
             keep = (lambda cell: v.lower() not in cell.lower()) if neg else (lambda cell: v.lower() in cell.lower())

@@ -90,7 +90,12 @@ def main():
         if leaks:
             bad("%s: %d markdown link(s) never rendered into an <a> tag: %s"
                 % (name, len(leaks), leaks[:3]))
-        for m in re.finditer(r"\{\{[^}]{0,120}\}\}", text):
+        # Any "{{" left in the page is an unexpanded directive. The pattern is deliberately
+        # permissive: an EARLIER audit required a closing "}}", which meant a directive whose
+        # terminator had been lost in an edit rendered as raw template text on the live page and
+        # still passed. Code samples are stripped so documenting the syntax is not a failure.
+        plain = re.sub(r"<code>.*?</code>", "", visible, flags=re.S)
+        for m in re.finditer(r"\{\{[^\n]{0,160}", plain):
             unexpanded.append("%s: %s" % (name, m.group(0)[:60]))
         for m in re.finditer(r'(?:href|src)="([^"]+)"', text):
             u = m.group(1)

@@ -25,4 +25,4 @@ This is the **practice** report, not an availability answer. Each club files par
 
 ## The six designations that were published
 
-{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;filter=status:!;;caption=Every row the league had designated at fetch time. Three of the five are Patriots rule-outs for the Munich game, which is the whole reason that game's total is fragile.
+{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;filter=status=*;;caption=Every row the league had designated at fetch time. Three of the five are Patriots rule-outs for the Munich game, which is the whole reason that game's total is fragile.}}

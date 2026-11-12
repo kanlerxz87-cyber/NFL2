@@ -11,11 +11,11 @@ Nothing here has been implemented except what your brief itself required (the co
 
 ## Tier 1 — approve now (highest impact per unit of risk)
 
-{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,problem_it_solves:Problem it solves,proposal:What we would build,impact:I,effort:E,reversible:Reversible,depends_on:Depends on,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=recommended_path:recommended;;caption=Rows containing "recommended" in the recommended-path column, in any state — including those blocked behind a data decision.}}
+{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,problem_it_solves:Problem it solves,proposal:What we would build,impact:I,effort:E,reversible:Reversible,depends_on:Depends on,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=decision=recommended;;caption=Rows containing "recommended" in the recommended-path column, in any state — including those blocked behind a data decision.}}
 
 ## Tier 2 — everything else, including what is already live
 
-{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,proposal:What we would build,risk:Risk,depends_on:Depends on,evidence:Evidence behind it,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=recommended_path:!recommended}}
+{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,proposal:What we would build,risk:Risk,depends_on:Depends on,evidence:Evidence behind it,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=decision=!recommended}}
 
 ## What I would actually do first, in order
 

@@ -425,8 +425,59 @@ def reverification_holds():
            % (len(data), sum(1 for r in data if r["result"].strip() == "SUPERSEDED")))
 
 
+def filter_clauses_do_something():
+    """Every {{csv ... filter=key=value}} clause on the site is recomputed here from the data file.
+
+    Why this exists: the builder once accepted only key=value clauses and silently ignored any other
+    spelling, so three published tables - including the injury-designations table and both suggestion
+    tiers - shipped unfiltered, i.e. showing every row under a caption that promised a subset. A
+    filter that matches nothing is visible; a filter that is skipped is not. This check fails on both,
+    and on a filtered table that returns the whole file."""
+    import glob, re
+    problems, tables = [], 0
+    for path in sorted(glob.glob(os.path.join(ROOT, "content", "*.md"))):
+        text = open(path, encoding="utf-8").read()
+        for d in re.findall(r"\{\{csv.*?\}\}", text, flags=re.S):
+            m = re.search(r"([A-Za-z0-9_\-.]+\.csv)", d)
+            f = re.search(r";;filter=([^;]*?)(?:;;|\}\})?$", d.split("\n")[0]) or re.search(r";;filter=([^;]*)", d)
+            if not m:
+                continue
+            tables += 1
+            data, _, _ = rows(m.group(1))
+            if not f:
+                continue
+            kept = data
+            clauses = f.group(1).rstrip("}").split(",")
+            for clause in [c for c in clauses if c.strip()]:
+                if "=" not in clause:
+                    problems.append("%s: clause %r is not key=value" % (os.path.basename(path), clause))
+                    continue
+                k, v = [x.strip() for x in clause.split("=", 1)]
+                if k not in (data[0] if data else {}):
+                    problems.append("%s: filter key %r is not a column" % (os.path.basename(path), k))
+                    continue
+                neg = v.startswith("!")
+                v = v[1:] if neg else v
+                if v == "*":
+                    keep = lambda cell: cell.strip() != ""
+                elif v == "":
+                    keep = (lambda cell: cell.strip() == "") if neg else (lambda cell: cell.strip() != "")
+                else:
+                    keep = (lambda cell: v.lower() not in cell.lower()) if neg else (lambda cell: v.lower() in cell.lower())
+                kept = [r for r in kept if keep(r.get(k, "").strip())]
+            if len(kept) == 0:
+                problems.append("%s: filter %r matches no rows in %s" % (os.path.basename(path), f.group(1), m.group(1)))
+            elif len(kept) == len(data) and len(data) > 12:
+                problems.append("%s: filter %r returns every row of %s (a no-op clause?)"
+                                % (os.path.basename(path), f.group(1), m.group(1)))
+    if problems:
+        bad("csv filters that do nothing: %s" % problems[:4])
+    else:
+        ok("every filtered table on the site selects a real subset (%d csv tables checked)" % tables)
+
+
 def main():
-    check_widths(); no_disguised_guesses(); datasets_documented(); reverification_holds(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); dictionary_counts_match_files(); gamelog()
+    check_widths(); no_disguised_guesses(); filter_clauses_do_something(); datasets_documented(); reverification_holds(); standings(); injuries(); depth(); sources(); registers(); no_invented_results(); prose_counts_match_files(); dictionary_counts_match_files(); gamelog()
     print("=" * 72)
     for m in PASS:
         print("  PASS  " + m)
