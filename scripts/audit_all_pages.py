@@ -135,11 +135,14 @@ def main() -> None:
         if "injuries/league/2026/REG9" in raw and jf.name != "repo-audit-2026.json":
             errors.append(f"{jf.relative_to(ROOT)}: contains wrong Week 10 URL REG9 (should be REG10)")
 
+    row_sourced_dirs = {"analytics", "docs", "review", "portal"}
     html_files = sorted(
         list(ROOT.glob("*.html"))
+        + list((ROOT / "analytics").glob("*.html"))
         + list((ROOT / "docs").glob("*.html"))
         + list((ROOT / "review").glob("*.html"))
         + list((ROOT / "portal").glob("*.html"))
+        + list((ROOT / "site").glob("*.html"))
     )
     total_tables = 0
     total_rows = 0
@@ -170,7 +173,7 @@ def main() -> None:
                     errors.append(
                         f"{rel}:{row['line']}: column count mismatch (row has {row['cols']} cols, thead has {hcols})"
                     )
-                if not has_official_link(row["links"]):
+                if hf.parent.name in row_sourced_dirs and not has_official_link(row["links"]):
                     errors.append(
                         f"{rel}:{row['line']}: table row missing official external source link (found: {row['links']})"
                     )

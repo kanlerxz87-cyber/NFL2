@@ -11,6 +11,8 @@ Run after any data change:  python3 scripts/build_site.py
 import json, os, html, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT = os.path.join(ROOT, "analytics")
+os.makedirs(os.path.join(OUT, "assets"), exist_ok=True)
 D = os.path.join(ROOT, "data"); DER = os.path.join(D, "derived")
 
 def load(p, d=None):
@@ -78,7 +80,8 @@ NAV = [
  ("strategies.html","Strategies"),("method.html","Method"),
  ("suggestions.html","Suggestions"),("questions.html","Questions"),
  ("repo-audit.html","Repo Audit"),("flagged.html","Flagged for Review"),
- ("sources.html","Sources"),("review/index.html","Review Build"),("portal/index.html","Portal Build"),
+ ("sources.html","Sources"),("../index.html","Root Dashboard"),
+ ("../review/index.html","Review Build"),("../portal/index.html","Portal Build"),("../site/index.html","Lab Build"),
 ]
 
 def page(fname, title, body, active=None, desc=""):
@@ -108,7 +111,7 @@ verification: {VER['totals']['pass']}/{VER['totals']['checks']} data checks, {le
 </div></footer>
 <script src="assets/app.js"></script>
 </body></html>"""
-    with open(os.path.join(ROOT, fname), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT, fname), "w", encoding="utf-8") as f:
         f.write(doc)
     return len(doc)
 
@@ -258,9 +261,11 @@ that the table cannot be read as a recommendation.</p>
   {card("Repo audit", "Line-by-line audit of commits, upstream source blindspots, and verification gates", "repo-audit.html")}
   {card("Flagged for Review", "Every irregularity, severity-rated, with what would fix it", "flagged.html")}
   {card("Data sources", "The full register of official pages used, and what each one supplied", "sources.html")}
-  {card("Verification Review Dashboard", "Parallel 15-page build (session 01b698ef): requirements register, decision gates, path chooser & 423 sourced rows", "review/index.html")}
-  {card("Quantitative Decision Portal", "Parallel 10-page portal (session e143a7ca): Week 10/11 originated lines, correlations, depth chains & Tier-0 gated strategies", "portal/index.html")}
-  {card("Parallel docs/ Dashboard", "Parallel 16-page build (session 85d79210): player leaders, defense breakdown & interactive calculators", "docs/index.html")}
+  {card("Root Decision Dashboard", "Root 21-page specification & measured data dashboard (session bc4b47cf)", "../index.html")}
+  {card("Verification Review Dashboard", "Parallel 15-page build (session 01b698ef): requirements register, decision gates, path chooser & 423 sourced rows", "../review/index.html")}
+  {card("Quantitative Decision Portal", "Parallel 10-page portal (session e143a7ca): Week 10/11 originated lines, correlations, depth chains & Tier-0 gated strategies", "../portal/index.html")}
+  {card("Walk-Forward Lab Site", "Parallel 14-page lab site (session 63ac21e9): calibration, ratings, availability & backtest", "../site/index.html")}
+  {card("Parallel docs/ Dashboard", "Parallel 16-page build (session 85d79210): player leaders, defense breakdown & interactive calculators", "../docs/index.html")}
   {card("Repository", "Source, data files, verifiers and the coordination log", SRC['repo'])}
 </div>
 </div></section>"""
@@ -1121,7 +1126,7 @@ meta = {}
 for fname, (title, body, desc) in PAGES.items():
     meta[fname] = page(fname, title, body, active=fname, desc=desc)
 
-with open(os.path.join(ROOT, "assets", "meta.json"), "w", encoding="utf-8") as f:
+with open(os.path.join(OUT, "assets", "meta.json"), "w", encoding="utf-8") as f:
     json.dump({"built_utc": BUILD, "pages": sorted(PAGES), "bytes": meta}, f, indent=1)
 
 total = sum(meta.values())

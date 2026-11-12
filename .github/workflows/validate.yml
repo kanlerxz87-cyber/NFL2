@@ -1,0 +1,28 @@
+name: build-and-audit
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Rebuild the site from data/ and content/
+        run: python tools/build_site.py
+      - name: Audit the data (official sources, reconciliations, no fabricated results)
+        run: python tools/verify.py
+      - name: Audit the site (links, empty cells, template markers, official source coverage)
+        run: python tools/check_site.py
+      - name: Fail if the published HTML does not match the data it was built from
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "site is in sync with data/ and content/"
+          else
+            echo "::error::committed HTML differs from a rebuild of the data — commit the output of tools/build_site.py"
+            git diff --cached --stat
+            exit 1
+          fi

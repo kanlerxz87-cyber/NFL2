@@ -1,0 +1,11 @@
+case|legs|p_each|rho_target|shock_s|joint_independence|joint_model|fair_dec_indep|fair_dec_model|fair_american_model|overstatement_pct|read
+two-leg same-game stack (positively coupled)|2|0.53|0.20|0.2232|0.2809|0.3307|3.560|3.024|+202|-15.1|independence understates the true joint by 15.1% of the joint
+two-leg same-game stack (positively coupled)|2|0.53|0.45|0.3348|0.2809|0.3930|3.560|2.545|+154|-28.5|independence understates the true joint by 28.5% of the joint
+three-leg same-game combo (positively coupled)|3|0.53|0.20|0.2232|0.1489|0.2281|6.717|4.384|+338|-34.7|independence understates the true joint by 34.7% of the joint
+three-leg same-game combo (positively coupled)|3|0.53|0.45|0.3348|0.1489|0.3271|6.717|3.057|+206|-54.5|independence understates the true joint by 54.5% of the joint
+four-leg multi, treated as cross-game|4|0.53|0.05|0.1116|0.0789|0.1001|12.673|9.995|+899|-21.1|independence understates the true joint by 21.1% of the joint
+five-leg multi, treated as cross-game|5|0.53|0.05|0.1116|0.0418|0.0608|23.912|16.455|+1545|-31.2|independence understates the true joint by 31.2% of the joint
+two teammates' receiving overs (negatively coupled)|2|0.53|-0.20|0.2232|0.2809|0.2311|3.560|4.328|+333|21.6|independence overstates the true joint by 21.6% of the joint
+three teammates' receiving overs (negatively coupled)|3|0.53|-0.20|0.2232|0.1489|0.1225|6.717|8.165|+717|21.6|independence overstates the true joint by 21.6% of the joint
+two-leg parlay of heavy favourites|2|0.80|0.15|0.1549|0.6400|0.6640|1.562|1.506|-198|-3.6|independence understates the true joint by 3.6% of the joint
+two-leg parlay of longshots|2|0.25|0.15|0.1677|0.0625|0.0906|16.000|11.034|+1003|-31.0|independence understates the true joint by 31.0% of the joint

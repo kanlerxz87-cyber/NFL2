@@ -17,6 +17,7 @@ The failures this guards against are the ones that make a page look fine and be 
 """
 import os, re, sys, json, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_DIR = os.path.join(ROOT, "analytics")
 PAGES = ["index.html","executive-summary.html","results.html","schedule.html",
          "standings.html","teams.html","injuries.html","depth-deficiencies.html",
          "lines-lab.html","analysis.html","correlations.html","strategies.html",
@@ -45,7 +46,7 @@ def add(cid, name, ok, detail=""):
 
 docs={}
 for p in PAGES:
-    fp=os.path.join(ROOT,p)
+    fp=os.path.join(SITE_DIR,p)
     docs[p]=open(fp,encoding="utf-8").read() if os.path.exists(fp) else None
 
 missing=[p for p in PAGES if docs[p] is None]
@@ -79,7 +80,7 @@ for p,d in docs.items():
         if href.startswith(("http","#","mailto")): continue
         target=href.split("#")[0]
         if not target: continue
-        if not os.path.exists(os.path.join(ROOT,target)):
+        if not os.path.exists(os.path.normpath(os.path.join(SITE_DIR,target))):
             bad4.append(f"{p} -> {href}")
 add("H4","Every internal link resolves to a real file",not bad4,"; ".join(sorted(set(bad4))))
 

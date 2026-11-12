@@ -1,0 +1,331 @@
+{
+ "generated_utc": "2026-11-12T05:11:01Z",
+ "upstream": {
+  "repo": "leesharpe/nfldata",
+  "url": "https://github.com/leesharpe/nfldata",
+  "commit": "692e5f9f8ac9f4e2ee751c630817a7c290a04390",
+  "commit_date": "2026-11-12T03:45:18+00:00",
+  "license_note": "Repository publishes no LICENSE file; data is aggregated from Pro Football Reference and nflverse and redistributed publicly by the author. Treated as third-party, attribution given; see pipeline/data/SOURCES.md."
+ },
+ "files": [
+  {
+   "file": "games.csv",
+   "rows": 7548,
+   "columns": 46,
+   "sha256": "8f051df19b4dde5f5e815ffff1079b5e06ca5d2d39e431bdda410608abd3033b",
+   "bytes": 2189964,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "rosters.csv",
+   "rows": 28617,
+   "columns": 12,
+   "sha256": "0e9582602289c790348b08bd71d94103bb9ddbd3119b2ff8b5223d6c0fa01a39",
+   "bytes": 1606485,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "teams.csv",
+   "rows": 800,
+   "columns": 18,
+   "sha256": "b7cfab98e6ac35c684432f6ace65d6065b0b89b90e3a2e91116a69ae38e04d42",
+   "bytes": 90927,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "officials.csv",
+   "rows": 51359,
+   "columns": 4,
+   "sha256": "495f6d86bc12c145d2308268580701488aee65f9f17a402a3fcf3c5c3eb2c705",
+   "bytes": 2068251,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "win_totals.csv",
+   "rows": 576,
+   "columns": 5,
+   "sha256": "6228fe8c2cf41b340a9df27dc862b63f3da765068ee7c09474397279c1b75c20",
+   "bytes": 12811,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "closing_lines.csv",
+   "rows": 20490,
+   "columns": 7,
+   "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729",
+   "bytes": 942229,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "initial_lines.csv",
+   "rows": 1088,
+   "columns": 6,
+   "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+   "bytes": 45068,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "sc_lines.csv",
+   "rows": 4092,
+   "columns": 7,
+   "sha256": "384039e92630831eaf4d851471ba9e521f4a7b0207d0d7da7d376c4a1cc5004e",
+   "bytes": 140765,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "standings.csv",
+   "rows": 800,
+   "columns": 16,
+   "sha256": "fbe2640037c449b1317bfe811f79cc7e01ff9aa05a2066c445849049629f0052",
+   "bytes": 56864,
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "file": "positions.csv",
+   "rows": 65,
+   "columns": 4,
+   "sha256": "78e7421c852a93781c9a3e2891bc6e511a74066a6a3afe0029796e8bf06b3068",
+   "bytes": 765,
+   "source": "https://github.com/leesharpe/nfldata"
+  }
+ ],
+ "findings": [
+  {
+   "id": "schema:games.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:rosters.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:teams.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:officials.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:win_totals.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:closing_lines.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:initial_lines.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "rows:initial_lines.csv",
+   "check": "row count >= expected",
+   "status": "warn",
+   "detail": "1088 rows < expected 9000",
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "id": "schema:sc_lines.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:standings.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "schema:positions.csv",
+   "check": "documented columns present",
+   "status": "pass",
+   "detail": "all required columns present",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "games:unique-id",
+   "check": "game_id unique",
+   "status": "pass",
+   "detail": "0 duplicate game_id values",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "games:result-identity",
+   "check": "result == home_score - away_score",
+   "status": "pass",
+   "detail": "max abs deviation 0 across 7412 played games",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "games:total-identity",
+   "check": "total == home_score + away_score",
+   "status": "pass",
+   "detail": "max abs deviation 0",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "games:score-range",
+   "check": "game totals within plausible range 0-120",
+   "status": "pass",
+   "detail": "0 games outside range",
+   "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
+  },
+  {
+   "id": "games:score-of-one-impossible",
+   "check": "no team scores exactly 1 (impossible under Rule 11)",
+   "status": "pass",
+   "detail": "0 games contain a team total of exactly 1",
+   "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
+  },
+  {
+   "id": "games:ties",
+   "check": "ties present (allowed by Rule 16)",
+   "status": "pass",
+   "detail": "16 tied games",
+   "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
+  },
+  {
+   "id": "odds:total-positive",
+   "check": "posted total line > 0",
+   "status": "pass",
+   "detail": "0 non-positive totals",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "odds:total-coverage",
+   "check": "closing total present for completed regular-season games",
+   "status": "pass",
+   "detail": "0 of 6967 completed games lack a total_line",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "odds:ml-coverage",
+   "check": "moneyline present (1999-2006 not covered upstream)",
+   "status": "warn",
+   "detail": "1902 of 6967 completed games lack a moneyline",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "season:game-counts",
+   "check": "regular-season game counts match the era's schedule (248 / 256 / 272)",
+   "status": "pass",
+   "detail": "all seasons complete",
+   "source": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/"
+  },
+  {
+   "id": "weather:coverage",
+   "check": "temperature recorded for outdoor games",
+   "status": "warn",
+   "detail": "308 played outdoor games have no temperature",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md"
+  },
+  {
+   "id": "rosters:starts-le-games",
+   "check": "starts <= games for every player-season",
+   "status": "pass",
+   "detail": "0 rows where starts > games",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters"
+  },
+  {
+   "id": "rosters:years-defined",
+   "check": "years of experience >= 0",
+   "status": "flag",
+   "detail": "7 rows carry a negative experience value (players: ['Chris Williams', 'Jordan Norwood']); all are upstream identity/deduplication artefacts, left untouched",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters"
+  },
+  {
+   "id": "rosters:starts-populated",
+   "check": "starts field populated for every season",
+   "status": "warn",
+   "detail": "seasons with zero starts recorded for every player: [2019]. Any metric using starts is withheld for those seasons rather than estimated.",
+   "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters"
+  },
+  {
+   "id": "teams:conf-domain",
+   "check": "conference column present",
+   "status": "flag",
+   "detail": "teams.csv has no conf column; conference taken from standings.csv",
+   "source": "https://github.com/leesharpe/nfldata"
+  },
+  {
+   "id": "rules:ir-minimum-out",
+   "check": "injured reserve requires a 4-game minimum absence",
+   "status": "pass",
+   "detail": "A player placed on IR in-season and designated to return must miss at least four games; the practice window is 21 days. Implication for this project: an IR placement is not a same-week absence and must not be treated as one.",
+   "source": "https://www.nfl.com/news/players-now-eligible-to-return-from-injured-reserve-after-four-games"
+  },
+  {
+   "id": "rules:ir-designations",
+   "check": "eight return designations per team per regular season",
+   "status": "pass",
+   "detail": "2025 bylaw permits two players to be designated for return at the roster reduction to 53, and playoff clubs receive two additional designations. Implication: depth loss compounds late in a season.",
+   "source": "https://operations.nfl.com/the-rules/rules-changes/2025-rules-changes/"
+  },
+  {
+   "id": "rules:injury-report-status",
+   "check": "weekly injury report uses Out / Doubtful / Questionable plus practice levels",
+   "status": "pass",
+   "detail": "Confirmed directly against the official page. Our availability weights (1.0 / 0.75 / 0.30) are a stated modelling choice built on these official categories, not an NFL-published number.",
+   "source": "https://www.nfl.com/injuries/"
+  }
+ ],
+ "summary": {
+  "checks": 29,
+  "pass": 23,
+  "warn": 4,
+  "fail": 0,
+  "flag": 2,
+  "irregularities": [
+   {
+    "id": "rosters:years-defined",
+    "check": "years of experience >= 0",
+    "status": "flag",
+    "detail": "7 rows carry a negative experience value (players: ['Chris Williams', 'Jordan Norwood']); all are upstream identity/deduplication artefacts, left untouched",
+    "source": "https://github.com/leesharpe/nfldata/blob/master/DATASETS.md#rosters"
+   },
+   {
+    "id": "teams:conf-domain",
+    "check": "conference column present",
+    "status": "flag",
+    "detail": "teams.csv has no conf column; conference taken from standings.csv",
+    "source": "https://github.com/leesharpe/nfldata"
+   }
+  ]
+ },
+ "coverage": {
+  "games": 7548,
+  "played_games": 7412,
+  "seasons": [
+   1999,
+   2026
+  ],
+  "regular_season_games_before_2026": 6967,
+  "last_completed_game_utc": "2026-11-09",
+  "roster_player_seasons": 28617
+ }
+}

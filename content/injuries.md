@@ -1,85 +1,28 @@
-# Injury, lineup and depth-chart tracking (T08)
+# Week 10 Injury Report — Official Practice Snapshot
+> All 254 rows the league published for Week 10 of the 2026 season, transcribed from nfl.com on 12 November 2026, with the practice-status code and the game status exactly as filed.
 
-## Verified official facts that constrain the design
+This is the **practice** report, not an availability answer. Each club files participation for players with a reportable condition; the game status column (Out / Doubtful / Questionable) is only populated once the club has filed designations. At fetch time six rows in 254 carried one, which is why the column is mostly `not published` below — those are not zeros and they are not omissions by us. The same goes for the injury column: the hub populates it only where a designation has been filed, so 248 of 254 cells are blank in the source and stay blank here.
 
-| ID | Fact | Official source |
+**How to read the codes.** `Full` / `Limited` / `Did not practice` map to the league's strings "Full Participation in Practice", "Limited Participation in Practice" and "Did Not Participate In Practice". `Out` / `Questionable` are the filed game statuses. Position is the league's abbreviation. Every player name links to that player's official page; every row's Source cell links the official hub page it was transcribed from.
+
+{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;group=game;;caption=Grouped by game in the order the official page lists them. Club abbreviations are the league's own. Rows are stored verbatim; nothing was corrected, added or removed.}}
+
+## What this snapshot already tells us
+
+| Finding | Number behind it | Consequence for a model |
 | --- | --- | --- |
-| I01 | The Week 10, 2026 official injury report lists Player, Position, Injuries, Practice Status, Game Status for each club | https://www.nfl.com/injuries/league/2026/REG10 |
-| I02 | Practice status = Did Not Participate / Limited Participation (<100% of normal repetitions) / Full Participation (100%) | https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693 |
-| I03 | Game status = Questionable (uncertain) / Doubtful (unlikely) / Out (will not play); "Probable" eliminated; a player certain to play is not listed on the game status report | https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693 |
-| I04 | A club depth chart can expose First / Second / Third / Fourth string, but the club labels it "Unofficial Depth Chart" | https://www.chiefs.com/team/depth-chart |
-| I05 | The definitive availability checkpoint is the Game Day Administration Report (inactive list) exchanged at the 90-minute officiating meeting | https://operations.nfl.com/game-operations-logistics/preparation-safety/game-and-stadium-prep |
-| I06 | Active game-day list is 47/48 players; the 53-player roster is the eligibility base | https://www.nfl.com/news/nfl-emergency-third-quarterback-rule-questions-and-answers |
-| I07 | Game Operations Manual requires certified athletic-trainer injury spotters and an injury video review system | https://operations.nfl.com/game-operations-logistics/preparation-safety/game-ops-manual |
-| I08 | NFL integrity policy prohibits wagers tied to injuries and those knowable in advance | https://www.nfl.com/news/nfl-draftkings-fanduel-fanatics-sports-betting-partners |
+| Designations published at fetch time | 6 of 254 (2 Commanders OUT, 1 Giant QUESTIONABLE, 3 Patriots OUT) | availability features must be built on participation *trend*, not on the status column, until designations land |
+| Injury detail published in the hub table | 6 of 254 | body-part features have to come from the prose feed with an explicit join, not from this table |
+| Clubs whose hub block is empty | 4 — BAL, CIN, LAC, SEA | must be read as "not published"; Seattle is the worked counter-example ([FL-01](flagged-for-review.html)) |
+| Rows marked "did not practice" | {{metric dnp}} | the single strongest pre-designation availability signal we can compute today |
+| Rows marked "limited" | {{metric limited}} | the ambiguous middle; the transition matters more than the level ([SIG-02](signals.html)) |
+| Rows marked "full" | {{metric full}} | near-noise for availability, but useful as the denominator |
+| Quarterback depth items | 5, of which 3 are confirmed starting changes (AZ, CLE, SEA), 1 unresolved (MIN) and 1 backup assignment (SEA) | each confirmed change moves a team total and pass-volume props far more than the spread |
 
-## Verified snapshot — Week 10, Thursday 12 November 2026, Commanders at Giants
+## Availability load by club (arithmetic on the rows above)
 
-Captured 2026-11-12 (UTC) from the official injury report. Blank cells mean the official
-source shows a blank field; they are not filled in.
+{{team_availability}}
 
-| Club | Player | Position | Injury | Practice status | Game status | Source |
-| --- | --- | --- | --- | --- | --- | --- |
-| Commanders | John Bates | TE |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Treylon Burks | WR |  | Did Not Participate In Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Jayden Daniels | QB |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Matt Gulbin | C |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Chig Okonkwo | TE |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Lucas Patrick | C | Concussion | Did Not Participate In Practice | Out | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Amik Robertson | CB |  | Limited Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Shy Tuttle | DT |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Commanders | Colson Yankoff | TE | Knee | Did Not Participate In Practice | Out | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Abdul Carter | LB |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Jermaine Eluemunor | T |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Malik Harrison | LB | Groin | Limited Participation in Practice | Questionable | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Colton Hood | CB |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Theo Johnson | TE |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Charlie Jones | WR |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | J.J. McCarthy | QB |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Darnell Mooney | WR |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Malik Nabers | WR |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Cam Skattebo | RB |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
-| Giants | Andrew Thomas | T |  | Full Participation in Practice |  | https://www.nfl.com/injuries/league/2026/REG10 |
+## The six designations that were published
 
-## Verified depth snapshot — Kansas City Chiefs (club-published, "unofficial")
-
-Blank 4th-string cells are blank on the source. Both offense and defense are represented,
-as requested. Source: https://www.chiefs.com/team/depth-chart
-
-| Unit | Position | 1st | 2nd | 3rd | 4th | Source |
-| --- | --- | --- | --- | --- | --- | --- |
-| Offense | QB | Patrick Mahomes | Justin Fields | Garrett Nussmeier |  | https://www.chiefs.com/team/depth-chart |
-| Offense | TE | Travis Kelce | Noah Gray | Jared Wiley | Jake Briningstool | https://www.chiefs.com/team/depth-chart |
-| Offense | RB | Kenneth Walker | Emmett Johnson | Jaydn Ott |  | https://www.chiefs.com/team/depth-chart |
-| Offense | WR | Rashee Rice | Jalen Royals | Andrew Armstrong |  | https://www.chiefs.com/team/depth-chart |
-| Offense | LT | Kahlil Benson | Diego Pounds |  |  | https://www.chiefs.com/team/depth-chart |
-| Defense | CB | Mansoor Delane | Kristian Fulton | Melvin Smith |  | https://www.chiefs.com/team/depth-chart |
-| Defense | S | Chamarri Conner | Jaden Hicks | Xavier Nwankpa |  | https://www.chiefs.com/team/depth-chart |
-| Defense | DE | Felix Anudike-Uzomah | Ashton Gillotte |  |  | https://www.chiefs.com/team/depth-chart |
-| Defense | LB | Drue Tranquill | Jeffrey Bassa |  |  | https://www.chiefs.com/team/depth-chart |
-| Defense | DT | Chris Jones | Peter Woods |  |  | https://www.chiefs.com/team/depth-chart |
-
-## Tracker design (proposal, not yet built)
-
-| Field | Definition | Source of truth | Computed? | Status |
-| --- | --- | --- | --- | --- |
-| player_id | Official NFL.com player slug | https://www.nfl.com/players/ | no | proposal |
-| club, position | From official report row | https://www.nfl.com/injuries/league/2026/REG10 | no | proposal |
-| injury_text | Verbatim injury field, blank if absent | https://www.nfl.com/injuries/league/2026/REG10 | no | proposal |
-| practice_status | DNP / LP / FP, verbatim | https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693 | no | proposal |
-| game_status | Questionable / Doubtful / Out / blank | https://www.nfl.com/injuries/league/2026/REG10 | no | proposal |
-| depth_rank | 1–4 from club chart, with "unofficial" marker | https://www.chiefs.com/team/depth-chart | no | proposal |
-| unit | offense / defense / special teams | https://www.chiefs.com/team/depth-chart | no | proposal |
-| inactive_final | From Game Day Administration Report at 90-minute meeting | https://operations.nfl.com/game-operations-logistics/preparation-safety/game-and-stadium-prep | no | proposal |
-| replacement_depth | Computed depth rank of the player who actually took the snaps | play-by-play / snap counts (not licensed) | yes | UNVERIFIED — data unavailable |
-| deficiency_index | Computed unit-level weakness from replacements | derived | yes | UNVERIFIED — data unavailable |
-| captured_at_utc | Timestamp of each snapshot | local ingestion clock | no | proposal |
-
-## Irregularities / limitations
-
-* Club depth charts are "unofficial" (F03); ranking is a club estimate, not a league fact.
-* The weekly injury report is not the final lineup; the 90-minute inactive list is (F05).
-* Injury-linked wagering markets may be prohibited by league integrity policy (F07).
-* The injury report is live and changes during the week; all snapshots are point-in-time (F14).
-* No per-snap participation data was available, so `replacement_depth` and
-  `deficiency_index` are blank + `UNVERIFIED` rather than estimated.
+{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;filter=status:!;;caption=Every row the league had designated at fetch time. Three of the five are Patriots rule-outs for the Munich game, which is the whole reason that game's total is fragile.

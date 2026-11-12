@@ -10,6 +10,8 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+OUT = ROOT / "analytics"
+OUT.mkdir(parents=True, exist_ok=True)
 
 NAV = [
     ("index.html", "Overview"),
@@ -30,8 +32,10 @@ NAV = [
     ("repo-audit.html", "Repo Audit"),
     ("flagged.html", "Flagged for Review"),
     ("sources.html", "Sources"),
-    ("review/index.html", "Review Build"),
-    ("portal/index.html", "Portal Build"),
+    ("../index.html", "Root Dashboard"),
+    ("../review/index.html", "Review Build"),
+    ("../portal/index.html", "Portal Build"),
+    ("../site/index.html", "Lab Build"),
 ]
 
 
@@ -69,7 +73,7 @@ Nothing is inferred. Blank cells mean no official source confirms the value — 
 <p>Data through Week 9 results, Week 10 injury reports &amp; Week 11 schedule ·
 <a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a> ·
 <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md">coordination log</a> ·
-<a href="docs/index.html">parallel docs/ view</a></p>
+<a href="../docs/index.html">parallel docs/ view</a></p>
 </div></footer>
 <script src="assets/app.js"></script>
 </body></html>
@@ -198,7 +202,7 @@ def build_depth_page() -> None:
   <tbody>{"".join(club_rows)}</tbody>
 </table></div>
 """
-    (ROOT / "depth-deficiencies.html").write_text(
+    (OUT / "depth-deficiencies.html").write_text(
         page_shell(
             "1st–4th String Deficiencies",
             "Verified 1st, 2nd, 3rd, and 4th-string offense and defense depth-chart replacement deficiencies from official NFL.com and club sources.",
@@ -332,7 +336,7 @@ def build_correlations_page() -> None:
   <tbody>{"".join(eff_rows)}</tbody>
 </table></div>
 """
-    (ROOT / "correlations.html").write_text(
+    (OUT / "correlations.html").write_text(
         page_shell(
             "Correlations & Skill",
             "Reproducible 2026 NFL team correlations (n=32), SGP/prop correlation register, and luck-vs-skill residuals.",
@@ -384,7 +388,7 @@ def build_repo_audit_page() -> None:
   </tbody>
 </table></div>
 """
-    (ROOT / "repo-audit.html").write_text(
+    (OUT / "repo-audit.html").write_text(
         page_shell(
             "Repository Audit",
             "Line-by-line repository and upstream official NFL source verification audit.",
@@ -440,7 +444,7 @@ def build_exec_summary_page() -> None:
 
 <div class="note warn" style="margin-top:20px"><p><b>Research disclosure:</b> This repository produces transparent statistical models and data verification audits — not betting or financial advice. Full markdown brief also committed at <code>EXECUTIVE_SUMMARY.md</code>.</p></div>
 """
-    (ROOT / "executive-summary.html").write_text(
+    (OUT / "executive-summary.html").write_text(
         page_shell(
             "Executive Summary",
             "Executive summary of verified 2026 NFL data, line origination, gated strategy leaderboard, depth-chart tracking, and next decisions.",
@@ -530,7 +534,7 @@ Win Prob &amp; ML: P(home) = Φ(fairMargin / 13.32)  →  Fair ML = −100·P/(1
   <tbody>{"".join(wk11_rows)}</tbody>
 </table></div>
 """
-    (ROOT / "lines-lab.html").write_text(
+    (OUT / "lines-lab.html").write_text(
         page_shell(
             "Lines Lab",
             "Transparent methodology and interactive calculator for originating fair NFL spreads, totals, and moneylines from verified data.",
@@ -586,7 +590,7 @@ def build_schedule_page() -> None:
   <tbody>{"".join(bye_rows)}</tbody>
 </table></div>
 """
-    (ROOT / "schedule.html").write_text(
+    (OUT / "schedule.html").write_text(
         page_shell(
             "Week 11 Schedule",
             "Official NFL Week 11 2026 schedule, Nov 9 flex changes, and bye teams transcribed from NFL.com.",
