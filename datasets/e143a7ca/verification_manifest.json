@@ -1,0 +1,14 @@
+{
+  "asOf": "2026-11-12",
+  "ok": true,
+  "zeroSumIdentitiesVerified": 11,
+  "portalPagesVerified": 10,
+  "portalTablesVerified": 24,
+  "portalTableRowsVerified": 326,
+  "portalRowsWithOfficialHttpsSource": 326,
+  "portalStrictBlankCellsVerified": 293,
+  "wholeRepoHtmlPagesScanned": 58,
+  "wholeRepoInternalLinksVerified": 1677,
+  "wholeRepoBrokenLinks": 0,
+  "errors": []
+}
