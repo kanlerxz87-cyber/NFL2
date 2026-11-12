@@ -464,7 +464,9 @@ def register_counts_match_files():
         for r in data:
             for k, cell in r.items():
                 # "25 suggestions" / "21 flags published" — but not "S-25" ids or "14-entry"
-                for n, noun in re.findall(r"(?<![\w-])(\d+) (suggestions?|questions?|flags?|requirements?|gates?|signals?|strategies|sources)\b", cell):
+                # a count inside backticks is a quotation of a defect, not an assertion
+                scan = re.sub(r"`[^`]*`", "", cell)
+                for n, noun in re.findall(r"(?<![\w-])(\d+) (suggestions?|questions?|flags?|requirements?|gates?|signals?|strategies|sources)\b", scan):
                     target = noun_file[noun]
                     if int(n) != sizes[target]:
                         wrong.append("%s.%s: says %s %s, %s holds %d"

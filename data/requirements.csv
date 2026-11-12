@@ -1,7 +1,7 @@
 id|requirement|category|raised_in|site_section|status|note
 R-01|Collect, organize and analyze NFL data using a full list of requirements|Program|project brief|Requirements|in progress|Collection layer exists for injuries/standings/schedule/depth; analysis layer is specified but not fitted
 R-02|Maintain the full requirement list inside the repo|Program|project brief|Requirements|done|40 rows in data/requirements.csv; the repo previously contained no requirements document at all
-R-03|Make suggestions on how to improve the site to improve decision making|Decision support|project brief|Suggestion Register|done|29 suggestions S-01…S-29 with impact/effort/risk scoring
+R-03|Make suggestions on how to improve the site to improve decision making|Decision support|project brief|Suggestion Register|done|34 suggestions S-01…S-34 with impact/effort/risk scoring
 R-04|Create a dedicated section so a human can review suggestions and pick a path before implementing|Decision support|project brief|Suggestion Register|done|Every suggestion ships with decision=pending; nothing was implemented on the site except what the brief itself mandated
 R-05|Clear list of questions to be answered before any decision can reasonably be made|Decision support|project brief|Open Questions|done|29 questions, each with "what we have / what we lack / how to close"
 R-06|State explicitly which information we already have and which we do not|Decision support|project brief|Open Questions|done|Two-column have/lack structure on every question row
