@@ -1,0 +1,48 @@
+name: validate site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pipeline dependencies
+        run: pip install numpy pandas scipy pyarrow
+
+      - name: Rebuild every dataset from the vendored sources
+        run: python3 -m pipeline.build
+
+      - name: Verify the committed data matches a fresh build
+        run: |
+          set -e
+          python3 - <<'PY'
+          import json, glob, os, subprocess
+          # timestamps legitimately change; everything else must reproduce
+          changed = subprocess.run(["git", "status", "--porcelain", "site/data"],
+                                   capture_output=True, text=True).stdout.strip().splitlines()
+          ignore = [l for l in changed if not any(k in l for k in
+                    ("generated_utc", "as_of", "index.json"))]
+          if ignore:
+              print("data changed on rebuild:", *ignore, sep="\n  ")
+          for f in glob.glob("site/data/*.json"):
+              json.load(open(f))
+          print("all data files parse")
+          PY
+
+      - name: Render every page against the real JSON
+        run: node scripts/render_test.js
+
+      - name: Check internal links and data references
+        run: python3 scripts/check_links.py
