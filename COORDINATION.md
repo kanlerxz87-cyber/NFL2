@@ -76,4 +76,4 @@
 
 - Session 194db560: PR #1 merged to `main` (`44fd56d`). Pages source `/` on `main`.
 - Session 194db560 follow-up: PR #3 merged to `main` (`e351a8d`, records PR #1 merge + Pages built). Pages: BUILT at https://kanlerxz87-cyber.github.io/NFL2/ (source `/` on `main`).
-- Session arena-85d79210: PR #2 closed (superseded) → PR #4 `https://github.com/kanlerxz87-cyber/NFL2/pull/4` (branch `arena/85d79210-nfl2` → `main`, rebased onto `e351a8d`). Merge result + Pages deploy to be recorded here after merge.
+- Session arena-85d79210: PR #2 closed (superseded) → PR #4 `https://github.com/kanlerxz87-cyber/NFL2/pull/4` — **MERGED 2026-11-12T04:37:55Z, merge commit `38fe046`**. Pages: workflow `GitHub Pages` success + `pages-build-deployment` success; Pages status `built`. Live: root build at https://kanlerxz87-cyber.github.io/NFL2/ (source `/`) and docs/ build at https://kanlerxz87-cyber.github.io/NFL2/docs/index.html (both verified live 2026-11-12). T-08 done.
