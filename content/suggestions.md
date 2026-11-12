@@ -1,5 +1,5 @@
 # Suggestion Register
-> The dedicated review page: 25 ways to improve the site and the system, each with the problem it solves, what it would take, and a recommended path — so a best option can be chosen before anything is implemented.
+> The dedicated review page: {{metric suggestions}} ways to improve the site and the system, each with the problem it solves, what it would take, and a recommended path — so a best option can be chosen before anything is implemented.
 
 ## How to use this page
 
@@ -41,7 +41,7 @@ Nothing here has been implemented except what your brief itself required (the co
 
 ## What the second verification pass adds (session `a392a193`, 12 Nov 2026)
 
-Seven new items, all of them born from a check rather than from a wish: each one traces to a measured result or a defect found by comparing two official pages. S-30 and S-31 are the two that change what the project can do next.
+Seven new items, all of them born from a check rather than from a wish: each one traces to a measured result or a defect found by comparing two official pages. S-35 and S-36 are the two that change what the project can do next.
 
 {{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,problem_it_solves:Problem it solves,proposal:Proposal,impact:Impact,effort:Effort,risk:Risk,reversible:Reversible,depends_on:Depends on,evidence:Evidence behind it,recommended_path:Recommended path,decision:Decision;;filter=id=S-3;;source=S-BRIEF;;caption=Filtered to the seven rows this pass added. The full board is above; nothing here is implemented on your instruction.}}
 
@@ -51,10 +51,10 @@ The order at the top of this page was written before the lab existed. Two of its
 
 | Step | Suggestion | Why it moved |
 | --- | --- | --- |
-| 1 | S-30 daily stored injury snapshot | the second read of the hub proved the drift is real (25 rows in 18 hours) and that no availability signal can be built without a history — this is now the binding constraint on half the brief |
-| 2 | S-31 alias table + join-row-count check | half a day, and it is the difference between a cross-check and a false confirmation |
-| 3 | S-32 publish spread as a line, totals as a diagnostic | the measurement is in and it says our totals do not beat a league mean |
-| 4 | S-33 paired-error admission gate | the board needs it before any strategy can be promoted on lab numbers |
-| 5 | S-34 all-32-club depth-chain transcription | the pattern works on two clubs; the gap is cadence, not method |
-| 6 | S-35 correlation-adjusted parlay pricing with a one-ticket cap | measured coupling is large enough to matter (42.4%) and small-sample enough to cap |
-| 7 | S-36 repository map on the landing page | implemented in this pass as a build-computed table, so page counts cannot drift from the tree |
+| 1 | S-35 daily stored injury snapshot | the second read of the hub proved the drift is real (25 rows in 18 hours) and that no availability signal can be built without a history — this is now the binding constraint on half the brief |
+| 2 | S-36 alias table + join-row-count check | half a day, and it is the difference between a cross-check and a false confirmation |
+| 3 | S-37 publish spread as a line, totals as a diagnostic | the measurement is in and it says our totals do not beat a league mean |
+| 4 | S-38 paired-error admission gate | the board needs it before any strategy can be promoted on lab numbers |
+| 5 | S-39 all-32-club depth-chain transcription | the pattern works on two clubs; the gap is cadence, not method |
+| 6 | S-40 correlation-adjusted parlay pricing with a one-ticket cap | measured coupling is large enough to matter (42.4%) and small-sample enough to cap |
+| 7 | S-41 repository map on the landing page | implemented in this pass as a build-computed table, so page counts cannot drift from the tree |

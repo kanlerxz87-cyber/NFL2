@@ -7,7 +7,7 @@ The brief's central ask — *originate our own lines* — needs a benchmark, so 
 
 ## The three things a reader must not conclude
 
-1. **"Closing line" is a file name, not a verified property.** The upstream schema document for `games.csv` defines `spread_line` and `total_line` — and has not been updated since **13 May 2020** — but it never says whether those numbers are the open or the close, and it does not document the moneyline and spread-odds columns at all. So a CLV statistic computed against this column is measuring *something*, and we cannot yet say what. Published as [FL-25](flagged-for-review.html); the decision it forces is [Q-30](questions.html).
+1. **"Closing line" is a file name, not a verified property.** The upstream schema document for `games.csv` defines `spread_line` and `total_line` — and has not been updated since **13 May 2020** — but it never says whether those numbers are the open or the close, and it does not document the moneyline and spread-odds columns at all. So a CLV statistic computed against this column is measuring *something*, and we cannot yet say what. Published as [FL-30](flagged-for-review.html); the decision it forces is [Q-35](questions.html).
 2. **No official source for prices exists, and never will.** The league publishes standings, schedules, participation and designations; it does not publish betting lines. Any price on this site is therefore tier-B-or-worse by construction, and the build marks every non-official link inline so a reader can never mistake a community number for a league one.
 3. **Prices are historical, not live.** Nothing in this repository is a feed. The `data_fetched` timestamp on every page is the whole of our freshness story, and the archive is a snapshot of a snapshot: a pinned commit of a third-party redistribution of publicly aggregated data.
 
@@ -17,7 +17,7 @@ A **walk-forward benchmark**. The [origination lab](model-lab.html) scores our l
 
 It also unlocks a second, cheaper verification that matters more than it looks: the archive transcribed the same 136 results independently of the nfl.com game pages, and after the club-code alias is applied, **136 of 136 scores agree cell for cell, zero disagree**. Two transcriptions that never met each other agreeing on every final score is the strongest evidence in this repository that the game log everything else joins to is clean.
 
-And it exposes a defect that would have been invisible: joining the two sources by team code without an alias table **silently drops all nine Arizona Cardinals games** (`ARI` vs `AZ`), and mis-keys the Rams (`LA` vs `LAR`). Any model trained that way loses a club and still prints an error rate. The fix and the check are in [FL-23](flagged-for-review.html) and [S-31](suggestions.html).
+And it exposes a defect that would have been invisible: joining the two sources by team code without an alias table **silently drops all nine Arizona Cardinals games** (`ARI` vs `AZ`), and mis-keys the Rams (`LA` vs `LAR`). Any model trained that way loses a club and still prints an error rate. The fix and the check are in [FL-28](flagged-for-review.html) and [S-36](suggestions.html).
 
 ## What is still missing to originate properly
 
@@ -26,6 +26,6 @@ And it exposes a defect that would have been invisible: joining the two sources 
 | Point-in-time open *and* close, with a capture timestamp | a single undocumented column cannot separate "the market moved" from "the vendor's snapshot date" | [Q-01](questions.html), gate G-01 |
 | Player-prop prices | no prop line exists in any file here, so the prop-combo and SGP correlations stay blank | [Q-12](questions.html), [Correlation](correlation.html) |
 | A licence and an owner decision on tier | the legal and cost question precedes the technical one | [Q-01](questions.html) |
-| Historical injuries and participation, to test availability signals | our injury register begins at week 10 of 2026; there is no history to join a price to | [S-30](suggestions.html), gate G-03 |
+| Historical injuries and participation, to test availability signals | our injury register begins at week 10 of 2026; there is no history to join a price to | [S-35](suggestions.html), gate G-03 |
 
 Until the first two are answered, the site publishes model output as **a diagnostic with an error bar**, never as a line to bet, and the leaderboard stays at zero settled bets for every entry ([Leaderboard & rewards](leaderboard.html)).

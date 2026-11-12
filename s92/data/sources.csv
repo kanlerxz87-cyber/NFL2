@@ -1,0 +1,16 @@
+id|name|org|url|retrieved_utc|used_for
+OFF-STAND|Official 2026 NFL league standings|nfl.com|https://www.nfl.com/standings/league/2026/reg|2026-11-12T22:27Z|All 32 clubs, W-L-T, PCT, PF, PA, NET, streaks; the check on data/standings_2026.csv
+OFF-INJ|Official 2026 injury report, Week 10|nfl.com|https://www.nfl.com/injuries/|2026-11-12T22:28Z|277 practice-participation rows, 26 clubs, Thursday 12 Nov filing; 6 game-status cells
+OFF-SCH11|2026 Week 11 schedule|nfl.com|https://www.nfl.com/schedules/2026/by-week/week-11|2026-11-12T22:29Z|13 games, kickoff times, networks, 6 byes, Mexico City venue
+OFF-RULES|2026 NFL Rulebook and rule changes|operations.nfl.com|https://operations.nfl.com/rules-officiating/2026-nfl-rulebook|2026-11-12T22:31Z|Four 2026 rule changes, 6-1-3 / 6-1-5 / 6-1-6 / 19-2
+OFF-DC-NE|New England Patriots depth chart (unofficial)|patriots.com|https://www.patriots.com/team/depth-chart|2026-11-12T22:32Z|23 position lines; page states the chart is unofficial
+OFF-DC-DET|Detroit Lions depth chart (unofficial)|detroitlions.com|https://www.detroitlions.com/team/depth-chart|2026-11-12T22:32Z|22 position lines; compiled by Lions Football Communications
+OFF-DC-WAS|Washington Commanders depth chart|commanders.com|https://www.commanders.com/team/depth-chart|2026-11-12T22:33Z|23 position lines; no unofficial label on the page
+OFF-P-JF|Justin Fields player page|nfl.com|https://www.nfl.com/players/justin-fields/|2026-11-12T22:34Z|Club membership check: Kansas City Chiefs, active
+OFF-P-MG|Myles Garrett player page|nfl.com|https://www.nfl.com/players/myles-garrett/|2026-11-12T22:34Z|Club membership check: Los Angeles Rams, active
+OFF-G-CHI-CAR|Game page, Bears at Panthers Week 1|nfl.com|https://www.nfl.com/games/bears-at-panthers-2026-reg-1|2026-11-12T22:35Z|Negative result: score box renders as Hidden Score
+REPO-LOG|Verified 2026 game log, weeks 1-9|repository|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/games_2026_wk1_9.csv|2026-11-12T22:20Z|136 games; every model number on this dashboard derives from it
+REPO-STAND|Stored 2026 standings|repository|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/standings_2026.csv|2026-11-12T22:20Z|Checked line by line against OFF-STAND: 0 mismatches
+REPO-INJ|Stored Week 10 injury table|repository|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/injuries_2026_wk10.csv|2026-11-12T22:20Z|254 rows; differs from OFF-INJ at row level (RA-01..RA-04)
+REPO-SCH11|Stored Week 11 schedule|repository|https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/schedule_week11_2026.json|2026-11-12T22:20Z|Checked against OFF-SCH11: 2 TV cells differ (RA-06)
+REPO-Q51|Q51 statistics primitives|repository|https://github.com/kanlerxz87-cyber/NFL2/blob/main/engine/q51/statistics.py|2026-11-12T22:21Z|Pearson, phi, joint metrics, cluster bootstrap; methods reused, not restated

@@ -41,7 +41,7 @@ ALIAS = {"LA": "LAR"}
 # ARI where the league writes AZ, and LA where the league's own standings write LAR. Joining the
 # two without this map silently drops every Arizona game (9 of the 136) and mis-keys every Rams
 # game. It is the single most dangerous defect in this data layer, so the count is published, not
-# buried: see data/code_collision_a392.csv and the flag FL-24 it generated.
+# buried: see data/code_collision_a392.csv and the flag FL-29 it generated.
 ARCHIVE_ALIAS = {"LA": "LAR", "ARI": "AZ"}
 
 

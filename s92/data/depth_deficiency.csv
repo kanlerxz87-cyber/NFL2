@@ -1,0 +1,13 @@
+club|unit|pos|line|starter|starter_state|next_man_up|next_man_state|first_available|first_available_state|depth_rank_used|cascade|evidence|note
+NE|defense|CB|8|Carlton Davis III|OUT|Channing Canada|NOT-LISTED|Channing Canada|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.patriots.com/team/depth-chart|next man up unaffected
+NE|offense|WR|1|A.J. Brown|LIMITED|Efton Chism III|NOT-LISTED|Efton Chism III|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.patriots.com/team/depth-chart|next man up unaffected
+NE|offense|LG|3|Ben Brown|OUT|Walter Rouse|DNP||||no|https://www.nfl.com/injuries/ :: https://www.patriots.com/team/depth-chart|no further backup listed
+NE|offense|RT|6|Morgan Moses|LIMITED|Caleb Lomu|NOT-LISTED|Caleb Lomu|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.patriots.com/team/depth-chart|next man up unaffected
+NE|offense|TE|7|Hunter Henry|LIMITED|Eli Raridon|NOT-LISTED|Eli Raridon|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.patriots.com/team/depth-chart|next man up unaffected
+NE|offense|RB|10|Rhamondre Stevenson|DNP|TreVeyon Henderson|OUT|Corey Kiner|NOT-LISTED|3|yes|https://www.nfl.com/injuries/ :: https://www.patriots.com/team/depth-chart|down to depth 3
+DET|defense|CB|8|D.J. Reed|DNP|Rock Ya-Sin|NOT-LISTED|Rock Ya-Sin|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.detroitlions.com/team/depth-chart|next man up unaffected
+DET|defense|S|11|Brian Branch|LIMITED|Christian Izien|NOT-LISTED|Christian Izien|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.detroitlions.com/team/depth-chart|next man up unaffected
+DET|offense|WR|2|Amon-Ra St. Brown|LIMITED|DeAndre Carter|NOT-LISTED|DeAndre Carter|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.detroitlions.com/team/depth-chart|next man up unaffected
+DET|offense|C|5|Cade Mays|DNP|Juice Scruggs|NOT-LISTED|Juice Scruggs|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.detroitlions.com/team/depth-chart|next man up unaffected
+DET|offense|QB|10|Jared Goff|LIMITED|Joshua Dobbs|NOT-LISTED|Joshua Dobbs|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.detroitlions.com/team/depth-chart|next man up unaffected
+WAS|defense|CB|8|Amik Robertson|LIMITED|Rasul Douglas|NOT-LISTED|Rasul Douglas|NOT-LISTED|2|no|https://www.nfl.com/injuries/ :: https://www.commanders.com/team/depth-chart|next man up unaffected

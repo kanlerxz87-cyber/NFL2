@@ -8,7 +8,7 @@
 
 The existing implementation covers the requested decision workflow: a landing dashboard and category pages; requirements; open questions; a separately reviewable suggestion register; line-originating methods and signals; singles/parlays/prop-combo design; correlation methodology; skill-vs-luck gates; injury and depth/availability records; strategy leaderboard/rewards; an executive summary; and a Flagged for Review page. These are already present on the live root site. The separate Q51 pages describe their outputs as **paper-only and unvalidated**.
 
-The independent build and local verification commands all exited successfully. This does **not** mean the proposed strategies have demonstrated skill or that all NFL availability inputs are complete. The project itself correctly leaves those conclusions blocked or unverified.
+The independent build and local verification commands all exited successfully. The canonical Flagged for Review register now has 23 entries, including FL-22 (corrected provenance statement) and FL-23 (open Pages deployment-mode review). This does **not** mean the proposed strategies have demonstrated skill or that all NFL availability inputs are complete. The project itself correctly leaves those conclusions blocked or unverified.
 
 ## Verification performed
 
@@ -16,8 +16,8 @@ The independent build and local verification commands all exited successfully. T
 |---|---|
 | `python3 tools/build_site.py` | Built 22 root pages; 588 missing cells displayed as “not published”. |
 | `python3 tools/verify.py` | 39 checks passed, 0 warnings, 0 failures. Checks include register schemas, standings arithmetic, 254 injury rows, 227 depth events, 136 game rows with per-row NFL game links, and game-log/standings reconciliation. |
-| `python3 tools/check_site.py` | 10 checks passed, 0 failures. All 22 pages are generated and navigable; 1,295 links point to NFL.com; internal links/anchors resolve; no blank cells or unresolved template markers. It emits one disclosed warning for four non-league hosts on the source-registry page (see findings). |
-| `python3 scripts/audit_all_pages.py` | 96 HTML pages, 36 JSON files, 222 tables, 3,423 rows; 0 broken links and 0 column mismatches. The repository auditor reports all table rows sourced under its official/canonical-source rules. |
+| `python3 tools/check_site.py` | 10 checks passed, 0 failures. All 22 pages are generated and navigable; 1,302 links point to NFL.com; internal links/anchors resolve; no blank cells or unresolved template markers. One disclosed warning covers four non-league research/corroboration hosts on `sources.html` plus the GitHub API reference on the review flag page (see findings). |
+| `python3 scripts/audit_all_pages.py` | 96 HTML pages, 36 JSON files, 222 tables, 3,425 rows; 0 broken links and 0 column mismatches. The repository auditor reports all table rows sourced under its official/canonical-source rules. |
 | `python3 -m unittest discover -s tests/q51 -v` | 36 tests passed. |
 | `python3 scripts/verify_q51.py` | 10 Q51 pages; 155/155 rows have an official or canonical source; 130 explicit blanks; 0 errors. |
 | `python3 engine/verify_repo_and_site.py` | 326 portal rows have official HTTPS source links; 1,619 repository internal links checked; 0 broken. |
@@ -27,12 +27,12 @@ The independent build and local verification commands all exited successfully. T
 
 The machine-readable source register and row-level audits are in `data/sources.csv`, `data/verification-report.json`, `q51/`, and the scripts listed above. Official manual-review starting points include the [NFL injury hub](https://www.nfl.com/injuries/), [NFL standings](https://www.nfl.com/standings/), [NFL regular-season schedules](https://www.nfl.com/schedules/2026/REG/), and [NFL Football Operations](https://operations.nfl.com/). Where the official source does not expose a needed value, the site flags the gap and leaves the value blank.
 
-## Findings requiring review
+## Findings published for review
 
-1. **Landing-page historical attribution is inaccurate as currently worded.** `content/index.md` says, “Everything on this site was therefore created in this session, in one branch,” immediately after describing the original one-file repository state. The current repository and site were assembled by multiple parallel sessions and merged PRs. The initial-state description is historical context, but that sentence over-attributes the final site to one session. Suggested correction: say the project was built across multiple documented sessions and link to the coordination/integration log. This audit did not edit the canonical page because it is generated shared output outside this task's scope.
-2. **Pages publishing configuration merits a deployment-owner check.** The GitHub Pages API currently reports legacy publication from `main` `/`, while `.github/workflows/pages.yml` uploads the `docs/` tree as an Actions Pages artifact. The live root currently serves the root dashboard and the latest recorded deployment checks succeeded, but those two configuration descriptions should be reconciled/documented to avoid a future deployment publishing the wrong tree. No workflow/config file was changed in this audit.
-3. **Non-league source-registry links are intentionally not primary NFL evidence.** `tools/check_site.py` warns about four non-league hosts on `sources.html` (DraftKings Network, Patriots Wire/USA Today, Morgan Stanley, NBER). The registry classifies them as third-party/research/corroboration and states their restricted use; they are not substitutes for official injury, standings, schedule, or game evidence. The warning is non-failing, but those entries should remain visibly distinguished from official-league sources.
-4. **The coordination board's original T18 row remains marked `in progress` despite the later PR #24 integration and successful main-branch Pages/CI records.** This is a stale board-state inconsistency; this audit did not rewrite another integration session's row.
+1. **Landing-page historical attribution was inaccurate.** The old `content/index.md` sentence said, “Everything on this site was therefore created in this session, in one branch.” It has been corrected to say the current site was built across multiple documented sessions and link to `COORDINATION.md`. Flag FL-22 preserves the issue and its provenance for reader review.
+2. **Pages publishing configuration merits a deployment-owner check.** The GitHub Pages API reports legacy publication from `main` `/`, while `.github/workflows/pages.yml` uploads the `docs/` tree as an Actions Pages artifact. Both the root and `/docs/` pages currently serve and post-merge deployment checks succeeded, but those descriptions should be reconciled/documented to avoid ambiguity about the canonical tree. Flag FL-23 is published with the GitHub Pages API and workflow source links. No workflow/config file was changed.
+3. **Non-league source-registry links are intentionally not primary NFL evidence.** `tools/check_site.py` warns about non-league hosts on `sources.html` (DraftKings Network, Patriots Wire/USA Today, Morgan Stanley, NBER) and now the GitHub Pages API link on `flagged-for-review.html`. The registry classifies the former links as third-party/research/corroboration; the GitHub API is official evidence for GitHub Pages configuration, not NFL facts. None substitutes for official injury, standings, schedule, or game evidence. This warning is non-failing; the page labels them as review/source references.
+4. **The original T18 board row was stale.** The >60-minute stale claim was documented and taken over under the board's own rule. T18 has now been completed for this audit's final-site follow-up; it does not alter the already-completed main integration.
 
 ## Decision/product limits that remain explicit
 
@@ -42,6 +42,14 @@ The machine-readable source register and row-level audits are in `data/sources.c
 - Injury/practice data are point-in-time snapshots with incomplete published designations. The root flags report that only 6 of 254 rows had game-status values in the captured Week 10 snapshot. The official NFL hub is the source of record: https://www.nfl.com/injuries/ . Do not treat missing rows/fields as “healthy.”
 - The official depth-chart evidence needed to label second-/third-/fourth-string replacements is incomplete; the project flags the gap rather than infer ranks. NFL news and injury evidence cited in the register include https://www.nfl.com/news/nfl-week-10-injury-report-2026-season and https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11 .
 
+## Publication record
+
+- Independent audit PR: [#25](https://github.com/kanlerxz87-cyber/NFL2/pull/25), merged 2026-11-12T22:25:38Z as `d2c0af0e7c2008ba4b64a7c1dcd03c44a6b4293e`.
+- Final site follow-up PR: [#27](https://github.com/kanlerxz87-cyber/NFL2/pull/27), merged 2026-11-12T22:30:56Z as `5906ed26f02b5326a2d63536760d954ebc641f97`.
+- Post-merge CI and publication: `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the final merge commit. GitHub Pages API reports `status=built`, with the latest build commit `5906ed2`.
+- Fetched the refreshed root dashboard and Flagged for Review page after deployment; the landing page now shows 23 flags and corrected multi-session attribution, and the flag table contains FL-22 and FL-23. Manual-review links: [live dashboard](https://kanlerxz87-cyber.github.io/NFL2/), [Flagged for Review](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html).
+- Pages is still configured as legacy `main` `/` while `.github/workflows/pages.yml` also uploads `docs/`; that mismatch remains reported as FL-23 rather than silently treated as resolved.
+
 ## Scope boundary
 
-No facts, source values, generated pages, datasets, models, or other sessions' tools were altered. The only code-repository additions for this task are this report and the appended coordination log/change requests. The canonical-site wording and Pages configuration findings are requests for the shared site/deployment owner, not unreviewed changes.
+This follow-up corrected one inaccurate provenance sentence and added two sourced review rows to the canonical `data/flags.csv`; the root site pages were rebuilt from those sources. No NFL facts, league data, models, or other sessions' tools were altered. The Pages workflow/configuration itself remains unchanged; its ambiguous deployment mode is published as FL-23 for owner review.

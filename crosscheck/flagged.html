@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for review · NFL2 crosscheck</title>
+<meta name="description" content="Everything this build could not verify to its own standard, or verified as wrong. Published rather than fixed silently.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> <span>Crosscheck · session 2063673b</span></a>
+  <div class="asof">Official league sources fetched <strong>2026-11-12 22:35 UTC</strong> · every row carries its source · blanks are labelled</div>
+</header>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Start</span><a class="" href="index.html">Overview</a><a class="" href="executive-summary.html">Executive Summary</a><a class="" href="method.html">How this was verified</a></div><div class="navgroup"><span>Verification</span><a class="" href="recheck.html">Live re-check, row by row</a><a class="" href="differences.html">What changed since the snapshot</a><a class="" href="schema.html">Files, counts and checks</a></div><div class="navgroup"><span>Repo audit</span><a class="" href="tree-claims.html">Cross-tree claim audit</a><a class="" href="copy-audit.html">Copy that aged</a><a class="" href="lineage.html">Number lineage &amp; recomputation</a></div><div class="navgroup"><span>Decisions</span><a class="" href="questions.html">Questions that block a decision</a><a class="" href="information.html">What we have / lack</a><a class="" href="suggestions.html">Suggestions — pick a path</a><a class="" href="decision-guide.html">How to choose</a></div><div class="navgroup"><span>Flagged</span><a class="on" href="flagged.html">Flagged for review</a></div>
+    <div class="sidefoot">Sibling trees are evidence, not sources.<br><a href="flagged.html">Flagged for review</a> · <a href="../index.html">Root dashboard</a></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge info">Verified audit</span>
+      <h1>Flagged for review</h1>
+      <p class="lead">Everything this build could not verify to its own standard, or verified as wrong. Published rather than fixed silently.</p>
+    </div>
+    <p>This page is deliberately the least flattering one in the build. Each item below is either an error found and not yet corrected, or a question this session could not close. Nothing here blocks publication; everything here changes what a number means.</p>
+
+<h2>1. Errors verified today</h2>
+<div class="twrap"><table><thead><tr><th>Where</th><th>What is wrong</th><th>Correct value</th><th>Source</th></tr></thead><tbody><tr><td><code>analytics/flagged.html</code> and <code>analytics/questions.html</code></td><td>Both say the game status column is missing for 243 of 254 rows.</td><td>248 of 254 rows carry no status; 6 are present. The root tree already publishes 248.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr><td><code>data/schedule-week11-2026.json</code></td><td>Miami at Buffalo is listed on FOX.</td><td>CBS, on both the league's 9 November release and the game page.</td><td><a href="https://www.nfl.com/games/dolphins-at-bills-2026-reg-11" target="_blank" rel="noopener">www.nfl.com</a></td></tr><tr><td><code>data/schedule_week11_2026.json</code></td><td>Tampa Bay at Detroit is listed on CBS.</td><td>FOX, on both the release and the game page.</td><td><a href="https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11" target="_blank" rel="noopener">www.nfl.com</a></td></tr></tbody></table></div>
+<blockquote>Two files disagree with the league in opposite directions, so neither can be fixed by copying the other. Both need the league page.</blockquote>
+
+<h2>2. Claims that could not be verified in this session</h2>
+<div class="twrap"><table><thead><tr><th>id</th><th>dataset</th><th>result</th><th>detail</th><th>source</th></tr></thead><tbody><tr><td>LV-07</td><td>Published game log, weeks 1-9 (136 results)</td><td><span class="tag warn">partial</span></td><td>Row-level source links and internal reconciliation verified in-repo (points, records, byes all close). Three games added to the public spot-check below; the remaining 133 were not re-opened individually in this session.</td><td><a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">www.nfl.com</a></td></tr></tbody></table></div>
+<h2>3. Structural questions left open</h2>
+<div class="twrap"><table><thead><tr><th>#</th><th>Open item</th><th>Why it stays open</th><th>What would close it</th></tr></thead><tbody><tr><td>1</td><td>Injured-reserve return rule</td><td>No citable league page carrying the rule text was located. Thirteen repository rows depend on the label.</td><td>A league or operations page stating the minimum absence, archived with its fetch date.</td></tr><tr><td>2</td><td>Which of the 25 added injury rows involve a starter</td><td>Requires the game-book lineup join, which is proposed but not built.</td><td>XS-01 implemented, then a join against the week-10 inactives.</td></tr><tr><td>3</td><td>Reproducibility of the published backtest</td><td>The price archive it was measured against is not committed and is not licensable here.</td><td>XQ-01, then committing the archive.</td></tr><tr><td>4</td><td>Club depth ranks used by two trees</td><td>Ranks come from club sites and press reports, not from the league. Club coverage is about a third of the league.</td><td>XS-02, replacing rank with measured participation.</td></tr><tr><td>5</td><td>Prop and same-game correlation</td><td>Needs player-level snap and route data plus a price archive.</td><td>A licensed player-level feed.</td></tr></tbody></table></div>
+<h2>4. Data quality observations that are not errors</h2>
+<div class="twrap"><table><thead><tr><th>Observation</th><th>Detail</th><th>Why it is flagged rather than fixed</th></tr></thead><tbody><tr><td>Duplicate events in the depth register</td><td>Lamar Jackson's reserve placement appears at least twice in the 227-row depth file, under two different sources.</td><td>Deduplication changes a published count. That is a decision, not a cleanup.</td></tr><tr><td>One article carries most of the depth register</td><td>218 of 227 rows cite a single roundup article.</td><td>It means the register's independence is lower than its row count suggests.</td></tr><tr><td>Empty club blocks</td><td>Seattle and Cincinnati read "No Injuries Reported" in the snapshot and publish full blocks today; Los Angeles Chargers and Baltimore still read empty.</td><td>Treating an empty block as zero is a modelling error, not a transcription error.</td></tr><tr><td>Team code inconsistency</td><td>The league's schedule pages code the Rams LA; its standings and game pages code them LAR.</td><td>It needs a committed crosswalk, not a hard-coded alias.</td></tr></tbody></table></div>
+<h2>5. Session integrity</h2>
+<p>This session claimed its scope in <code>COORDINATION.md</code> before creating any file, worked only inside <code>crosscheck/</code>, and modified no file owned by another session. Its claim commit, its verification method and every source are recorded there. Where it relied on another session's arithmetic instead of re-deriving it — 133 of the 136 game rows — it says so on the page that publishes them.</p>
+
+    <footer class="pagefoot"><a class="pager" href="decision-guide.html">&larr; How to choose</a>
+      <div class="foot-meta">Generated by <code>crosscheck/build.py</code> from <code>crosscheck/data/*.csv</code>. Read the <a href="method.html">verification method</a>.</div>
+    </footer>
+  </main>
+</div>
+</body></html>

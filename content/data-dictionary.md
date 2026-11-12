@@ -15,6 +15,10 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | 40 / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | design rows | S-DESIGN |
+| `data/computed_fair_lines.csv` | 14 | one Week 10 fixture; stages 1–2 of the origination pipeline | S-CALC |
+| `data/computed_correlation.csv` | 2 | one pair class with a measured Pearson r | S-CALC |
+| `data/computed_depth_reach.csv` | 18 | one position group where the 1st string is unavailable, for charted clubs | S-CALC |
+| `data/computed_vig.csv` / `computed_parlays.csv` / `computed_sample_sizes.csv` / `computed_luck.csv` | 5 / 10 / 5 / 8 | closed-form exhibits, no market data | S-CALC |
 | `data/build_manifest.json` | — | build output, counts, allowlist | generated |
 | `data/injuries_wk10_2026_hubrefresh.csv` | 279 | one player × club, re-read from the hub at 22:35Z, side of the ball assigned from the league's own position code | S-INJ-2235 |
 | `data/injury_delta_a392.csv` | 40 | one row that appeared, disappeared or changed between the 04:45Z and 22:35Z official reads | S-INJ, S-INJ-2235 |

@@ -6,13 +6,13 @@ Two official documents, and only these two:
 1. **nfl.com/injuries/** — the practice and game-status filing, transcribed row by row at **22:35Z on 12 Nov 2026** (279 rows, 26 clubs with entries).
 2. **the club's own depth chart** — seahawks.com and therams.com in this build. Every club publishes one and every club labels it *unofficial*; it is a working document, not a league designation. That label is part of the data, and it is why no string claim on this site is stronger than "the club printed it in column 2".
 
-Nothing else is used. No depth is inferred from salary, draft round, jersey number or last season's starts. Where a club's chart has not been transcribed into this build, the replacement column says `not published` — that is the honest state of 26 of 28 clubs, and it is the single biggest gap in the injury workstream ([S-34](suggestions.html)).
+Nothing else is used. No depth is inferred from salary, draft round, jersey number or last season's starts. Where a club's chart has not been transcribed into this build, the replacement column says `not published` — that is the honest state of 26 of 28 clubs, and it is the single biggest gap in the injury workstream ([S-39](suggestions.html)).
 
 ## refreshed: what the hub actually says today
 
 The hub is a rolling document. Our published snapshot was taken at 04:45Z; a second read at 22:35Z has **25 more rows and 15 re-filed practice codes**, and **no row withdrawn**. So the earlier table is not wrong, it is a timestamp — and the delta is the part a model needs.
 
-{{csv data/reverification_a392.csv;;cols=check:Check,scope:Scope,official_value:Official (22:35Z),published_value:Published in this build,result:Result,note:Note,source:Source;;source_col=source;;caption=Every re-verification run against the live official page, with its outcome. Two rows read "superseded": the hub moved, the transcription did not. See [Flagged for review](flagged-for-review.html) FL-22.}}
+{{csv data/reverification_a392.csv;;cols=check:Check,scope:Scope,official_value:Official (22:35Z),published_value:Published in this build,result:Result,note:Note,source:Source;;source_col=source;;caption=Every re-verification run against the live official page, with its outcome. Two rows read "superseded": the hub moved, the transcription did not. See [Flagged for review](flagged-for-review.html) FL-27.}}
 
 {{csv data/injury_delta_a392.csv;;cols=kind:Change,team:Club,player:Player,pos:Pos,side:Side,practice_at_2235:Practice 22:35,status_at_2235:Game status,note:What changed,game:Game;;source_col=source;;group=kind;;caption=The row-level diff between the two official reads. Rows the clubs added late are mostly defensive — which is exactly the population a spread model misses if it only reads the Wednesday filing.}}
 

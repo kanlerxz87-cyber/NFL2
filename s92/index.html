@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home &middot; NFL2 s92</title>
+<meta name="description" content="What this repository knows, and what it does not.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="kind-program">
+<header class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> <span>s92 evidence &amp; decision dashboard</span></a>
+  <div class="asof">Official sources fetched <strong>2026-11-12 22:35 UTC</strong> &middot; every row links its source &middot;
+    <a href="../index.html">root dashboard</a></div>
+</header>
+<div class="shell">
+  <aside class="side">
+    <div class="navgroup"><span>Overview</span><a class="on" href="index.html">Home</a><a class="" href="decision-brief.html">Decision brief</a><a class="" href="executive-summary.html">Executive summary</a></div><div class="navgroup"><span>Decide</span><a class="" href="questions.html">Questions &amp; answers</a><a class="" href="missing-info.html">Missing information</a><a class="" href="suggestions.html">Suggestion board</a><a class="" href="assumptions.html">Assumptions &amp; bounds</a></div><div class="navgroup"><span>Origination</span><a class="" href="line-lab.html">Line lab</a><a class="" href="strategies.html">Strategies &amp; gates</a><a class="" href="correlation.html">Correlation &amp; luck</a></div><div class="navgroup"><span>Data</span><a class="" href="availability.html">Injuries &amp; backups</a><a class="" href="official-audit.html">Repository audit</a><a class="" href="sources.html">Sources</a></div><div class="navgroup"><span>Review</span><a class="" href="flagged.html">Flagged for review</a></div>
+    <div class="sidefoot">Session <code>8b4bdcb3</code><br>Branch <code>arena/8b4bdcb3-nfl2</code></div>
+  </aside>
+  <main>
+    <div class="pagehead">
+      <span class="badge program">Programme</span>
+      <h1>Home</h1>
+      <p class="lead">What this repository knows, and what it does not.</p>
+    </div>
+    <nav class="toc"><span>On this page</span><a href="#what-this-dashboard-is">What this dashboard is</a><a href="#the-five-findings-that-matter">The five findings that matter</a><a href="#read-the-dashboard-in-this-order">Read the dashboard in this order</a><a href="#what-is-verified-what-is-designed-what-is-unknown">What is verified, what is designed, what is unknown</a></nav>
+    <div class="body"><h2 id="what-this-dashboard-is">What this dashboard is</h2>
+<p>A second, additive dashboard inside the NFL2 repository. It does not restate the numbers published by the other trees; it <strong>re-derives</strong> the ones it can and links to the rest. Its job is to answer three questions honestly: what do we actually know, what is missing, and what would we build first.</p>
+<p>The whole build follows one rule: <strong>a number with no official source is not printed</strong>. Where a value cannot be confirmed, the cell says <em>not published</em> and the row says why.</p>
+<h2 id="the-five-findings-that-matter">The five findings that matter</h2>
+<ol><li><strong>The standings table is exact.</strong> All 32 clubs, 7 shared fields, 224 cells: zero mismatches against</li></ol>
+<p>the official league table, and points-for equals points-against at 6,246.</p>
+<ol><li><strong>The injury table is stale and incomplete.</strong> The official hub now carries 277 practice-participation</li></ol>
+<p>rows across 26 clubs; the stored table has 254 rows across 24 clubs, with two clubs missing entirely. Five players disagree on practice status and two stored rows are no longer on the official page.</p>
+<ol><li><strong>No market data exists.</strong> Not one price, in any file. Every expected-value, closing-line and vig</li></ol>
+<p>statement in the repository is therefore unverifiable, and this dashboard leaves those cells blank.</p>
+<ol><li><strong>Our model is not yet better than guessing.</strong> Leave-one-week-out over 136 games: spread MAE 10.55</li></ol>
+<p>against a zero-line baseline of 10.62 (difference interval includes zero). Total MAE is <em>worse</em> than the league average: 12.86 vs 11.62.</p>
+<ol><li><strong>Depth charts are unofficial by their own labels.</strong> Two of the three club charts inspected say so in</li></ol>
+<p>as many words. Three clubs are covered; twenty-nine are not.</p><div class="cards"><div class="card"><h3>Clubs reconciled to official standings</h3><div class="big"><a href="official-audit.html">32 / 32</a></div><div class="sub">zero mismatches across 224 shared cells <a class="more" href="official-audit.html">evidence &rarr;</a></div></div><div class="card"><h3>Official injury rows at fetch</h3><div class="big"><a href="availability.html">277</a></div><div class="sub">across 26 clubs; stored table has 254 rows across 24 <a class="more" href="availability.html">evidence &rarr;</a></div></div><div class="card"><h3>Rows verified line by line</h3><div class="big"><a href="official-audit.html">7 of 21</a></div><div class="sub">14 flagged for review <a class="more" href="official-audit.html">evidence &rarr;</a></div></div><div class="card"><h3>Open questions to answer</h3><div class="big"><a href="questions.html">15</a></div><div class="sub">8 are P0 blockers <a class="more" href="questions.html">evidence &rarr;</a></div></div><div class="card"><h3>Suggestions on the board</h3><div class="big"><a href="suggestions.html">20</a></div><div class="sub">each with impact, effort, risk and a recommended path <a class="more" href="suggestions.html">evidence &rarr;</a></div></div><div class="card"><h3>Spread MAE vs baseline</h3><div class="big"><a href="line-lab.html">10.55 vs 10.62</a></div><div class="sub">136 games, leave-one-week-out; the interval includes zero <a class="more" href="line-lab.html">evidence &rarr;</a></div></div><div class="card"><h3>Depth lines where the starter is affected</h3><div class="big"><a href="availability.html">12</a></div><div class="sub">3 clubs charted, 1 true cascade (NE running back) <a class="more" href="availability.html">evidence &rarr;</a></div></div><div class="card"><h3>Prices in the repository</h3><div class="big"><a href="questions.html">0</a></div><div class="sub">no market data exists, so no edge can be computed <a class="more" href="questions.html">evidence &rarr;</a></div></div></div><h2 id="read-the-dashboard-in-this-order">Read the dashboard in this order</h2>
+<div class="twrap"><table class="data"><thead><tr><th>If you want to</th><th>Open</th></tr></thead><tbody><tr><td>Decide something today</td><td>the <a href="decision-brief.html">decision brief</a> — the shortest path from question to choice</td></tr><tr><td>See what is missing</td><td>the <a href="missing-info.html">missing-information register</a> — what would have to arrive before a decision is reasonable</td></tr><tr><td>Choose improvements</td><td>the <a href="suggestions.html">suggestion board</a> — 20 options scored, none implemented without a choice</td></tr><tr><td>Understand the line lab</td><td>the <a href="line-lab.html">line lab</a> — Week 11 lines, and the backtest that says they are not yet good</td></tr><tr><td>Check our work</td><td>the <a href="official-audit.html">repository audit</a> — 21 rows, each with the official page that settles it</td></tr></tbody></table></div>
+<h2 id="what-is-verified-what-is-designed-what-is-unknown">What is verified, what is designed, what is unknown</h2>
+<div class="twrap"><table class="data"><thead><tr><th>Class</th><th>Meaning</th><th>Pages</th></tr></thead><tbody><tr><td><strong>Verified</strong></td><td>checked line by line against an official league or club page today</td><td>repository audit, availability, sources</td></tr><tr><td><strong>Computed</strong></td><td>arithmetic over the repository's verified game log, reproducible from <code>s92/sources.json</code></td><td>line lab, correlation &amp; luck</td></tr><tr><td><strong>Designed</strong></td><td>a specification, not a result; nothing has been bet or paid</td><td>strategies &amp; gates, suggestions</td></tr><tr><td><strong>Unknown</strong></td><td>no data exists; the cell is blank on purpose</td><td>questions, missing information</td></tr></tbody></table></div><div class="callout warn"><strong>Nothing here is betting advice.</strong> No price data exists, no bet has been placed, no strategy has passed its gates, and the leaderboard is empty on purpose. The one strategy that clears the data-provenance gate still fails the sample gate.</div></div>
+    <footer class="pagefoot">
+       <a class="pager right" href="decision-brief.html">Decision brief &rarr;</a>
+      <div class="foot-meta">Generated by <code>s92/build.py</code> from <code>s92/data/</code> &middot;
+        row sources verified against official league and club pages on 2026-11-12 &middot;
+        blanket cells are rendered as <span class="np">not published</span>, never estimated.</div>
+    </footer>
+  </main>
+</div>
+</body></html>
