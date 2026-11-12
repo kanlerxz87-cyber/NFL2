@@ -1,0 +1,247 @@
+{
+  "auditMetadata": {
+    "session": "e143a7ca",
+    "branch": "arena/e143a7ca-nfl2",
+    "auditedAtUTC": "2026-11-12T04:39:00Z",
+    "initialBaseCommit": "01f227119ee8df4223b0aa697d08ed92257773c3",
+    "auditedMainHead": "e351a8d",
+    "repositoryUrl": "https://github.com/kanlerxz87-cyber/NFL2",
+    "pagesUrl": "https://kanlerxz87-cyber.github.io/NFL2/"
+  },
+  "fileInventory": [
+    {
+      "path": "README.md (initial @ 01f2271)",
+      "lines": 1,
+      "verificationStatus": "Verified (Flagged Minor Formatting)",
+      "finding": "Line 1 contained '# NFL2' (6 bytes, no trailing newline) at initial commit 01f227119ee8df4223b0aa697d08ed92257773c3.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3",
+      "irregularityId": "IR-REPO-01"
+    },
+    {
+      "path": "README.md (main @ e351a8d)",
+      "lines": 39,
+      "verificationStatus": "Verified",
+      "finding": "Documents 12 root HTML pages, 3 data JSON files, responsible gambling notice, and Pages root configuration.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/README.md",
+      "irregularityId": ""
+    },
+    {
+      "path": "COORDINATION.md",
+      "lines": 48,
+      "verificationStatus": "Verified (Flagged Typo)",
+      "finding": "Task board for session 194db560; line 41 cites 'PR #2' for follow-up merge e351a8d, whereas GitHub PR ledger shows PR #3 was merged (PR #2 belongs to arena/85d79210-nfl2).",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/pulls?q=is%3Apr",
+      "irregularityId": "IR-REPO-09"
+    },
+    {
+      "path": "data/standings-2026.json",
+      "lines": 42,
+      "verificationStatus": "Verified (100% Match)",
+      "finding": "All 32 team rows verified cell-by-cell against live NFL.com 2026 Division Standings. League conservation holds exactly: sum(W)=135, sum(L)=135, sum(T)=2 (136 games), sum(PF)=6246, sum(PA)=6246, Home+Road=Total for all 32 clubs.",
+      "officialSource": "https://www.nfl.com/standings/",
+      "irregularityId": ""
+    },
+    {
+      "path": "data/schedule-week11-2026.json",
+      "lines": 25,
+      "verificationStatus": "Verified (Flagged Coverage Gap)",
+      "finding": "13 Week 11 games + 6 bye clubs = 32 teams verified against NFL.com Week 11 schedule change, but active Week 10 slate (Nov 12-16, 2026; 14 games) is omitted despite Week 10 injuries being tracked.",
+      "officialSource": "https://www.nfl.com/schedules",
+      "irregularityId": "IR-REPO-05"
+    },
+    {
+      "path": "data/injuries-week10-2026.json",
+      "lines": 32,
+      "verificationStatus": "Needs Review (3 Irregularities)",
+      "finding": "(1) Line 6 links 'fullReport' to REG9 URL while labeling it Week 10; (2) Line 12 lists NE Ben Brown pos as 'OL' whereas official NFL.com Injury Report lists 'C' (and 'Carlton Davis III'); (3) Captures only 6 summary designations and omits full DNP/Limited practice statuses live on nfl.com/injuries/.",
+      "officialSource": "https://www.nfl.com/injuries/",
+      "irregularityId": "IR-REPO-02, IR-REPO-03, IR-REPO-04"
+    },
+    {
+      "path": "index.html",
+      "lines": 74,
+      "verificationStatus": "Verified (Inherits Ben Brown Pos)",
+      "finding": "7 summary table rows all carry official external links (nfl.com and static.www.nfl.com Rules PDF); line 47 repeats Ben Brown (OL) summary label.",
+      "officialSource": "https://www.nfl.com/injuries/",
+      "irregularityId": "IR-REPO-03"
+    },
+    {
+      "path": "standings.html",
+      "lines": 64,
+      "verificationStatus": "Verified (100% Match)",
+      "finding": "32/32 tbody rows match NFL.com 2026 division standings line-by-line and include official nfl.com source links.",
+      "officialSource": "https://www.nfl.com/standings/",
+      "irregularityId": ""
+    },
+    {
+      "path": "schedule.html",
+      "lines": 58,
+      "verificationStatus": "Verified",
+      "finding": "13 game rows + 6 bye rows = 19 tbody rows, each carrying an official nfl.com source link.",
+      "officialSource": "https://www.nfl.com/news/week-11-schedule-change",
+      "irregularityId": ""
+    },
+    {
+      "path": "teams.html",
+      "lines": 64,
+      "verificationStatus": "Verified",
+      "finding": "32/32 NFL club alignment rows carry official nfl.com/teams/<slug>/ links.",
+      "officialSource": "https://www.nfl.com/standings/",
+      "irregularityId": ""
+    },
+    {
+      "path": "injuries.html",
+      "lines": 75,
+      "verificationStatus": "Needs Review",
+      "finding": "Links full report to REG9 URL (lines 25-27, 32, 51, 74) and states no official club depth charts were found, leaving all 2nd-4th string replacement cells empty despite official NFL club sites (e.g. commanders.com, giants.com) publishing 1st-4th string depth charts.",
+      "officialSource": "https://www.commanders.com/news/commanders-release-2026-unofficial-depth-chart",
+      "irregularityId": "IR-REPO-02, IR-REPO-08"
+    },
+    {
+      "path": "lines-lab.html",
+      "lines": 84,
+      "verificationStatus": "Needs Review (HTML & Source-Link Defect)",
+      "finding": "(1) Line 56 ('NO at CHI') has only 7 <td> cells in an 8-column table; (2) 18 tbody rows across roadmap and Week 11 template tables lack per-row official https:// source links.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/lines-lab.html",
+      "irregularityId": "IR-REPO-06, IR-REPO-07"
+    },
+    {
+      "path": "strategies.html",
+      "lines": 90,
+      "verificationStatus": "Needs Review (Source-Link & Depth Gap)",
+      "finding": "10 tbody rows across Gates G1-G7 and Singles/Parlays/Props tables carry zero per-row official https:// source links; empirical correlations and concrete strategy competition entries not populated.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/strategies.html",
+      "irregularityId": "IR-REPO-07"
+    },
+    {
+      "path": "executive-summary.html",
+      "lines": 65,
+      "verificationStatus": "Needs Review (Source-Link Gap)",
+      "finding": "Rows 2-3 of table 1 and all 3 rows of table 2 lack external official https:// source links.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/executive-summary.html",
+      "irregularityId": "IR-REPO-07"
+    },
+    {
+      "path": "suggestions.html",
+      "lines": 48,
+      "verificationStatus": "Needs Review (Source-Link Gap)",
+      "finding": "11 tbody rows across Suggestions S-01..S-10 and Decision Log carry no external official https:// source links.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/suggestions.html",
+      "irregularityId": "IR-REPO-07"
+    },
+    {
+      "path": "questions.html",
+      "lines": 54,
+      "verificationStatus": "Needs Review (Source-Link Gap & REG9 URL)",
+      "finding": "12 open-question rows (Q-01..Q-12) carry no external official https:// links; A-02 links to REG9 URL.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/questions.html",
+      "irregularityId": "IR-REPO-02, IR-REPO-07"
+    },
+    {
+      "path": "flagged.html",
+      "lines": 42,
+      "verificationStatus": "Needs Review (Self-Referential Links & REG9 URL)",
+      "finding": "Rows F-04, F-06, F-07 link only to internal pages rather than external official sources; F-02 links to REG9 URL.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/flagged.html",
+      "irregularityId": "IR-REPO-02, IR-REPO-07"
+    },
+    {
+      "path": "sources.html",
+      "lines": 59,
+      "verificationStatus": "Verified (Flagged REG9 URL)",
+      "finding": "All 7 source registry rows carry external official URLs; row 5 points to nfl.com/injuries/league/2026/REG9 while labeled Week 10.",
+      "officialSource": "https://www.nfl.com/injuries/",
+      "irregularityId": "IR-REPO-02"
+    },
+    {
+      "path": "assets/app.js & assets/style.css",
+      "lines": 149,
+      "verificationStatus": "Verified",
+      "finding": "Client-side table search filter, Abramowitz-Stegun 7.1.26 normal CDF approximation (max error 1.5e-7), and Pearson correlation calculator verified arithmetically.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/tree/main/assets",
+      "irregularityId": ""
+    }
+  ],
+  "irregularities": [
+    {
+      "id": "IR-REPO-01",
+      "severity": "Low",
+      "location": "README.md @ 01f227119ee8df4223b0aa697d08ed92257773c3:1",
+      "description": "Initial repository commit contained only '# NFL2' (6 bytes) with no trailing newline, no .nojekyll, and no verification scripts.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/commit/01f227119ee8df4223b0aa697d08ed92257773c3",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-02",
+      "severity": "Medium",
+      "location": "data/injuries-week10-2026.json:6, injuries.html:25-27,32,51,74, flagged.html:26, questions.html:44, sources.html:28",
+      "description": "URL/Label mismatch: cites 'NFL.com Official Injury Report — Week 10' while linking to .../2026/REG9 instead of canonical live Week 10 report https://www.nfl.com/injuries/.",
+      "officialSource": "https://www.nfl.com/injuries/",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-03",
+      "severity": "Low",
+      "location": "data/injuries-week10-2026.json:12-13, injuries.html:38-39, index.html:47",
+      "description": "Lists New England Patriots Ben Brown position as 'OL' and omits suffix 'III' on Carlton Davis III; official NFL.com Week 10 Injury Report lists Ben Brown as 'C' and 'Carlton Davis III'.",
+      "officialSource": "https://www.nfl.com/injuries/",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-04",
+      "severity": "High",
+      "location": "data/injuries-week10-2026.json:8-31, injuries.html:30-53",
+      "description": "Summary-only Week 10 injury transcription (6 rows) omits full official Week 10 DNP and Limited practice participation rows published live on https://www.nfl.com/injuries/ across all 14 games.",
+      "officialSource": "https://www.nfl.com/injuries/",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-05",
+      "severity": "Medium",
+      "location": "data/schedule-week11-2026.json vs data/injuries-week10-2026.json",
+      "description": "Temporal slate mismatch: repository includes Week 11 schedule (Nov 19-23) alongside Week 10 injuries (Nov 12-16) without including the active Week 10 game slate from https://www.nfl.com/schedules.",
+      "officialSource": "https://www.nfl.com/schedules",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-06",
+      "severity": "Medium",
+      "location": "lines-lab.html:56",
+      "description": "Malformed HTML row: 'NO at CHI' <tr> contains 7 <td> cells inside an 8-column table, omitting the 8th 'Source / time' cell.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/lines-lab.html#L56",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-07",
+      "severity": "High",
+      "location": "lines-lab.html, strategies.html, executive-summary.html, suggestions.html, questions.html, flagged.html",
+      "description": "59 tbody table rows in root build lack external official https:// source links despite project requirement ('Every table row must have a source link to an official site'). Addressed in 100% of portal/*.html rows; change request logged for session 194db560 scope in COORDINATION.md.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/tree/main",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-08",
+      "severity": "Medium",
+      "location": "injuries.html:56, flagged.html:27",
+      "description": "Root build left all 2nd/3rd/4th-string depth-chart cells unpopulated citing lack of league-wide NFL.com chart, whereas official NFL club websites (e.g., commanders.com, giants.com, lions, chiefs) publish official club 1st-4th string offense & defense depth charts.",
+      "officialSource": "https://www.commanders.com/news/commanders-release-2026-unofficial-depth-chart",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-REPO-09",
+      "severity": "Low",
+      "location": "COORDINATION.md:41",
+      "description": "Merge log line 41 references 'PR #2' for commit e351a8d, whereas GitHub PR ledger confirms PR #3 merged e351a8d (PR #2 is branch arena/85d79210-nfl2).",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/pull/3",
+      "status": "needs review"
+    },
+    {
+      "id": "IR-ENV-01",
+      "severity": "Low",
+      "location": "Git branch topology (arena/e143a7ca-nfl2)",
+      "description": "Execution sandbox enforces single-branch operation on arena/e143a7ca-nfl2 rather than creating per-task branches session-<id>/<task>; non-overlapping file-scope isolation enforced via COORDINATION.md.",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/branches",
+      "status": "needs review"
+    }
+  ]
+}

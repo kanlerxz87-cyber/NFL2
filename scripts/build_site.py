@@ -78,7 +78,7 @@ NAV = [
  ("strategies.html","Strategies"),("method.html","Method"),
  ("suggestions.html","Suggestions"),("questions.html","Questions"),
  ("repo-audit.html","Repo Audit"),("flagged.html","Flagged for Review"),
- ("sources.html","Sources"),("review/index.html","Review Build"),
+ ("sources.html","Sources"),("review/index.html","Review Build"),("portal/index.html","Portal Build"),
 ]
 
 def page(fname, title, body, active=None, desc=""):
@@ -259,6 +259,7 @@ that the table cannot be read as a recommendation.</p>
   {card("Flagged for Review", "Every irregularity, severity-rated, with what would fix it", "flagged.html")}
   {card("Data sources", "The full register of official pages used, and what each one supplied", "sources.html")}
   {card("Verification Review Dashboard", "Parallel 15-page build (session 01b698ef): requirements register, decision gates, path chooser & 423 sourced rows", "review/index.html")}
+  {card("Quantitative Decision Portal", "Parallel 10-page portal (session e143a7ca): Week 10/11 originated lines, correlations, depth chains & Tier-0 gated strategies", "portal/index.html")}
   {card("Parallel docs/ Dashboard", "Parallel 16-page build (session 85d79210): player leaders, defense breakdown & interactive calculators", "docs/index.html")}
   {card("Repository", "Source, data files, verifiers and the coordination log", SRC['repo'])}
 </div>

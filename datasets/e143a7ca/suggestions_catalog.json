@@ -1,0 +1,176 @@
+{
+  "asOf": "2026-11-12",
+  "reviewPolicy": "All suggestions below are in 'PROPOSED — AWAITING REVIEW' status. Review the Strategic Paths and individual suggestions, resolve prerequisite Questions (Q-E01..Q-E07), and approve a path BEFORE implementing production changes.",
+  "strategicPaths": [
+    {
+      "pathId": "PATH-ALPHA",
+      "name": "Market & Validation Infrastructure First (Recommended)",
+      "sequence": "SUG-03 (Odds & CLV Ledger) -> SUG-12 (Pre-Kickoff Hash Log) -> SUG-04 (Play-by-Play EPA & Prop Copula Engine)",
+      "primaryBenefit": "Unlocks Validation Gates G3, G4, and G6 immediately so strategies can be ranked by true Out-of-Sample CLV rather than staying quarantined in Tier 0.",
+      "effort": "Medium-High",
+      "prerequisites": "Q-E01, Q-E02, Q-E03",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "pathId": "PATH-BETA",
+      "name": "32-Club Injury & Backup String Advantage First",
+      "sequence": "SUG-02 (32-Club Depth-Chart Crawler) -> SUG-09 (PS 3-Elevation Cap Tracker) -> SUG-01 (Friday/90-Min Inactive Diff Banner)",
+      "primaryBenefit": "Captures early-week line movement caused by 2nd/3rd/4th-string OL and CB cascades (where 2026 Def Passer Rtg vs PA/G r=+0.8151 and Sack Rate vs PF/G r=-0.6353).",
+      "effort": "Medium",
+      "prerequisites": "Q-E02, Q-E05",
+      "officialSource": "https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language"
+    },
+    {
+      "pathId": "PATH-GAMMA",
+      "name": "Pricing Precision & Situational Edge First",
+      "sequence": "SUG-06 (Discrete Key-Number 3/7 Pricing) -> SUG-07 (NOAA/NWS Stadium Wind Overlay) -> SUG-08 (SGP Vig-Tax Auditor)",
+      "primaryBenefit": "Eliminates Gaussian push mispricing around key numbers 3 & 7, prices outdoor wind totals, and blocks negative-EV SGP parlay markups.",
+      "effort": "Low-Medium",
+      "prerequisites": "Q-E04, Q-E07",
+      "officialSource": "https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf"
+    },
+    {
+      "pathId": "PATH-DELTA",
+      "name": "UI Decision-Safety & Repo Hygiene First",
+      "sequence": "SUG-05 (Go/No-Go Pre-Bet Checklist Drawer) -> SUG-10 (Calibration Reliability Curves) -> SUG-11 (Cross-Session CR-01/CR-02 Cleanup)",
+      "primaryBenefit": "Hardens operator decision workflow against stale data, cognitive bias, and HTML/URL inconsistencies with zero external API cost.",
+      "effort": "Low",
+      "prerequisites": "Q-E06",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SUG-01",
+      "category": "UI / Data Freshness",
+      "title": "Automated Data-Staleness Banner & Wed/Thu/Fri Injury Diff View",
+      "decisionImprovement": "Highlights player practice upgrades/downgrades (e.g., DNP -> Limited or Questionable -> Out) and blocks line use if snapshot >24h old.",
+      "impact": "High",
+      "effort": "Low",
+      "dependsOn": "Q-E05",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://www.nfl.com/injuries/"
+    },
+    {
+      "id": "SUG-02",
+      "category": "Personnel / Depth Tracking",
+      "title": "All-32 Official Club Depth-Chart Archiver (1st–4th String Offense & Defense)",
+      "decisionImprovement": "Expands our verified 4-club depth-chart proof-of-concept (NE, DET, GB, WAS) to all 32 official club domains with weekly diffs.",
+      "impact": "Very High",
+      "effort": "Medium",
+      "dependsOn": "Q-E05",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://www.packers.com/team/depth-chart"
+    },
+    {
+      "id": "SUG-03",
+      "category": "Market / CLV Measurement",
+      "title": "Timestamped Multi-Book Open/Close Odds Ledger & Shin Vig Stripper",
+      "decisionImprovement": "Computes exact vig-free market probabilities and Closing Line Value (CLV) so strategies can pass Gate G4 scientifically.",
+      "impact": "Critical",
+      "effort": "Medium",
+      "dependsOn": "Q-E01",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "id": "SUG-04",
+      "category": "Modeling / Calibration",
+      "title": "Multi-Season Play-by-Play EPA & On/Off Replacement-Value Engine",
+      "decisionImprovement": "Replaces blank injury point-deltas and blank SGP game-level correlations with empirical snap-weighted estimates.",
+      "impact": "Critical",
+      "effort": "High",
+      "dependsOn": "Q-E02, Q-E03",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all"
+    },
+    {
+      "id": "SUG-05",
+      "category": "UI / Decision Workflow",
+      "title": "Interactive Pre-Decision Go/No-Go Gate Checklist on Every Matchup Row",
+      "decisionImprovement": "Requires checking 6 mandatory boxes (Freshness, 90-min Inactives, Neutral/Weather, Key #3/#7, Gate Pass, Kelly Cap) before marking a play actionable.",
+      "impact": "High",
+      "effort": "Low",
+      "dependsOn": "Q-E06",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://operations.nfl.com/"
+    },
+    {
+      "id": "SUG-06",
+      "category": "Line Origination Math",
+      "title": "Discrete NFL Key-Number Margin Distribution (3, 7, 6, 10, 4, 14)",
+      "decisionImprovement": "Prices buying/selling half-points across -2.5/-3/-3.5 and -6.5/-7/-7.5 using empirical NFL scoring quanta instead of smooth Normal CDF.",
+      "impact": "High",
+      "effort": "Medium",
+      "dependsOn": "Q-E04",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf"
+    },
+    {
+      "id": "SUG-07",
+      "category": "Situational / Totals",
+      "title": "NOAA / National Weather Service Stadium Wind & Roof-Status Feed",
+      "decisionImprovement": "Automatically flags outdoor games with >=15 mph sustained wind or precipitation where passing YPA and FG % drop sharply.",
+      "impact": "Medium-High",
+      "effort": "Low-Medium",
+      "dependsOn": "Q-E07",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://www.nfl.com/schedules"
+    },
+    {
+      "id": "SUG-08",
+      "category": "Parlays & Player Props",
+      "title": "Same-Game Parlay (SGP) Hidden Vig-Tax & Copula Fair-Odds Inspector",
+      "decisionImprovement": "Compares sportsbook SGP payout against bivariate copula joint probability so users reject heavily taxed correlated parlays.",
+      "impact": "High",
+      "effort": "Medium",
+      "dependsOn": "Q-E01, Q-E03",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "id": "SUG-09",
+      "category": "Roster / Depth Rules",
+      "title": "Practice-Squad 3-Elevation Cap & <8-OL Penalty Alert Tracker",
+      "decisionImprovement": "Tracks official NFL Operations 3-elevation player limits and 8-OL gameday active minimums to spot forced 4th-string street signings early.",
+      "impact": "Medium-High",
+      "effort": "Low-Medium",
+      "dependsOn": "Q-E05, Q-E08",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language"
+    },
+    {
+      "id": "SUG-10",
+      "category": "UI / Model Diagnostics",
+      "title": "Out-of-Sample Reliability Diagram & Rolling CLV Control Chart",
+      "decisionImprovement": "Visualizes model overconfidence and detects strategy decay early via cumulative sum (CUSUM) CLV control limits.",
+      "impact": "Medium",
+      "effort": "Low-Medium",
+      "dependsOn": "Q-E01",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://dlmf.nist.gov/7.2"
+    },
+    {
+      "id": "SUG-11",
+      "category": "Repository Hygiene",
+      "title": "Apply Logged Cross-Session Patches CR-01 & CR-02 to Legacy Root Pages",
+      "decisionImprovement": "Fixes legacy REG9 link mismatch, Ben Brown C position, lines-lab.html:56 missing <td>, and unsourced legacy rows.",
+      "impact": "Medium",
+      "effort": "Low",
+      "dependsOn": "Owner approval of CR-01 / CR-02",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md"
+    },
+    {
+      "id": "SUG-12",
+      "category": "Leaderboard Integrity",
+      "title": "Cryptographic Pre-Kickoff Strategy Pick Hash Ledger (Gate G1)",
+      "decisionImprovement": "Commits SHA-256 hashes of timestamped strategy picks prior to kickoff so no strategy can retroactively cherry-pick results.",
+      "impact": "High",
+      "effort": "Low",
+      "dependsOn": "Q-E06",
+      "status": "Proposed — Awaiting Review",
+      "officialSource": "https://github.com/kanlerxz87-cyber/NFL2/commits/main"
+    }
+  ]
+}

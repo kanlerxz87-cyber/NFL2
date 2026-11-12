@@ -31,6 +31,7 @@ NAV = [
     ("flagged.html", "Flagged for Review"),
     ("sources.html", "Sources"),
     ("review/index.html", "Review Build"),
+    ("portal/index.html", "Portal Build"),
 ]
 
 

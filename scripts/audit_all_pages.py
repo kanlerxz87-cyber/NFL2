@@ -30,6 +30,7 @@ OFFICIAL_DOMAINS = {
     "github.com",
     "kanlerxz87-cyber.github.io",
     "www.itl.nist.gov",
+    "dlmf.nist.gov",
     "www.weather.gov",
     "api.weather.gov",
     "www.ncpgambling.org",
@@ -138,6 +139,7 @@ def main() -> None:
         list(ROOT.glob("*.html"))
         + list((ROOT / "docs").glob("*.html"))
         + list((ROOT / "review").glob("*.html"))
+        + list((ROOT / "portal").glob("*.html"))
     )
     total_tables = 0
     total_rows = 0

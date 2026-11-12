@@ -1,0 +1,511 @@
+{
+  "season": 2026,
+  "week": 10,
+  "asOf": "2026-11-12",
+  "scheduleSource": "https://www.nfl.com/schedules",
+  "injurySource": "https://www.nfl.com/injuries/",
+  "byesWeek10": [
+    {
+      "team": "Chicago Bears",
+      "abbr": "CHI",
+      "record": "7-2",
+      "source": "https://www.nfl.com/schedules"
+    },
+    {
+      "team": "Denver Broncos",
+      "abbr": "DEN",
+      "record": "7-2",
+      "source": "https://www.nfl.com/schedules"
+    },
+    {
+      "team": "Philadelphia Eagles",
+      "abbr": "PHI",
+      "record": "2-7",
+      "source": "https://www.nfl.com/schedules"
+    },
+    {
+      "team": "Tampa Bay Buccaneers",
+      "abbr": "TB",
+      "record": "3-6",
+      "source": "https://www.nfl.com/schedules"
+    }
+  ],
+  "games": [
+    {
+      "gameId": "2026-W10-01",
+      "date": "Thu, Nov 12",
+      "timeET": "8:15 PM",
+      "away": "WAS",
+      "home": "NYG",
+      "neutralSite": false,
+      "venue": "MetLife Stadium",
+      "network": "PRIME",
+      "source": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-02",
+      "date": "Sun, Nov 15",
+      "timeET": "9:30 AM",
+      "away": "NE",
+      "home": "DET",
+      "neutralSite": true,
+      "venue": "Munich, Germany",
+      "network": "FOX",
+      "source": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-03",
+      "date": "Sun, Nov 15",
+      "timeET": "1:00 PM",
+      "away": "KC",
+      "home": "ATL",
+      "neutralSite": false,
+      "venue": "Mercedes-Benz Stadium",
+      "network": "CBS",
+      "source": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-04",
+      "date": "Sun, Nov 15",
+      "timeET": "1:00 PM",
+      "away": "HOU",
+      "home": "CLE",
+      "neutralSite": false,
+      "venue": "Huntington Bank Field",
+      "network": "FOX",
+      "source": "https://www.nfl.com/games/texans-at-browns-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-05",
+      "date": "Sun, Nov 15",
+      "timeET": "1:00 PM",
+      "away": "MIN",
+      "home": "GB",
+      "neutralSite": false,
+      "venue": "Lambeau Field",
+      "network": "FOX",
+      "source": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-06",
+      "date": "Sun, Nov 15",
+      "timeET": "1:00 PM",
+      "away": "MIA",
+      "home": "IND",
+      "neutralSite": false,
+      "venue": "Lucas Oil Stadium",
+      "network": "CBS",
+      "source": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-07",
+      "date": "Sun, Nov 15",
+      "timeET": "1:00 PM",
+      "away": "CAR",
+      "home": "NO",
+      "neutralSite": false,
+      "venue": "Caesars Superdome",
+      "network": "FOX",
+      "source": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-08",
+      "date": "Sun, Nov 15",
+      "timeET": "1:00 PM",
+      "away": "BUF",
+      "home": "NYJ",
+      "neutralSite": false,
+      "venue": "MetLife Stadium",
+      "network": "CBS",
+      "source": "https://www.nfl.com/games/bills-at-jets-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-09",
+      "date": "Sun, Nov 15",
+      "timeET": "1:00 PM",
+      "away": "JAX",
+      "home": "TEN",
+      "neutralSite": false,
+      "venue": "Nissan Stadium",
+      "network": "FOX",
+      "source": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-10",
+      "date": "Sun, Nov 15",
+      "timeET": "4:05 PM",
+      "away": "LA",
+      "home": "AZ",
+      "neutralSite": false,
+      "venue": "State Farm Stadium",
+      "network": "CBS",
+      "source": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-11",
+      "date": "Sun, Nov 15",
+      "timeET": "4:05 PM",
+      "away": "SEA",
+      "home": "LV",
+      "neutralSite": false,
+      "venue": "Allegiant Stadium",
+      "network": "CBS",
+      "source": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-12",
+      "date": "Sun, Nov 15",
+      "timeET": "4:25 PM",
+      "away": "SF",
+      "home": "DAL",
+      "neutralSite": false,
+      "venue": "AT&T Stadium",
+      "network": "FOX",
+      "source": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-13",
+      "date": "Sun, Nov 15",
+      "timeET": "8:20 PM",
+      "away": "PIT",
+      "home": "CIN",
+      "neutralSite": false,
+      "venue": "Paycor Stadium",
+      "network": "NBC",
+      "source": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10"
+    },
+    {
+      "gameId": "2026-W10-14",
+      "date": "Mon, Nov 16",
+      "timeET": "8:15 PM",
+      "away": "LAC",
+      "home": "BAL",
+      "neutralSite": false,
+      "venue": "M&T Bank Stadium",
+      "network": "ESPN",
+      "source": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10"
+    }
+  ],
+  "verifiedKeyInjuriesAndLineupChanges": [
+    {
+      "club": "WAS",
+      "side": "Offense",
+      "player": "Lucas Patrick",
+      "pos": "C",
+      "injury": "Concussion",
+      "practice": "DNP",
+      "gameStatus": "Out",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "WAS",
+      "side": "Offense",
+      "player": "Colson Yankoff",
+      "pos": "TE",
+      "injury": "Knee",
+      "practice": "DNP",
+      "gameStatus": "Out",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "WAS",
+      "side": "Offense",
+      "player": "Treylon Burks",
+      "pos": "WR",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "WAS",
+      "side": "Defense",
+      "player": "Amik Robertson",
+      "pos": "CB",
+      "injury": "",
+      "practice": "Limited",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NYG",
+      "side": "Defense",
+      "player": "Malik Harrison",
+      "pos": "LB",
+      "injury": "Groin",
+      "practice": "Limited",
+      "gameStatus": "Questionable",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NE",
+      "side": "Offense",
+      "player": "Ben Brown",
+      "pos": "C",
+      "injury": "Knee",
+      "practice": "DNP",
+      "gameStatus": "Out",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NE",
+      "side": "Offense",
+      "player": "Walter Rouse",
+      "pos": "T",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NE",
+      "side": "Offense",
+      "player": "TreVeyon Henderson",
+      "pos": "RB",
+      "injury": "Illness",
+      "practice": "DNP",
+      "gameStatus": "Out",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NE",
+      "side": "Offense",
+      "player": "Rhamondre Stevenson",
+      "pos": "RB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NE",
+      "side": "Defense",
+      "player": "Carlton Davis III",
+      "pos": "CB",
+      "injury": "Knee",
+      "practice": "DNP",
+      "gameStatus": "Out",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NE",
+      "side": "Defense",
+      "player": "Kevin Byard",
+      "pos": "S",
+      "injury": "",
+      "practice": "Limited",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "NE",
+      "side": "Defense",
+      "player": "Brenden Schooler",
+      "pos": "S",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "DET",
+      "side": "Offense",
+      "player": "Cade Mays",
+      "pos": "C",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "DET",
+      "side": "Offense",
+      "player": "Sione Vaki",
+      "pos": "RB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "DET",
+      "side": "Defense",
+      "player": "D.J. Reed",
+      "pos": "CB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "GB",
+      "side": "Offense",
+      "player": "Josh Jacobs",
+      "pos": "RB",
+      "injury": "Finger (surgery scheduled)",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/news/packers-rb-josh-jacobs-to-undergo-surgery-on-finger-this-week"
+    },
+    {
+      "club": "GB",
+      "side": "Offense",
+      "player": "Sean Rhyan",
+      "pos": "C",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "GB",
+      "side": "Defense",
+      "player": "Zaire Franklin",
+      "pos": "LB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "GB",
+      "side": "Defense",
+      "player": "Javon Bullard",
+      "pos": "S",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "GB",
+      "side": "Defense",
+      "player": "Lukas Van Ness",
+      "pos": "LB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "MIA",
+      "side": "Offense",
+      "player": "Malik Willis",
+      "pos": "QB",
+      "injury": "Groin (placed on IR; Kyle McCord in line to start)",
+      "practice": "IR",
+      "gameStatus": "Injured Reserve",
+      "source": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start"
+    },
+    {
+      "club": "SEA",
+      "side": "Offense",
+      "player": "Sam Darnold",
+      "pos": "QB",
+      "injury": "Ruled out (Drew Lock expected to start)",
+      "practice": "Out",
+      "gameStatus": "Out",
+      "source": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again"
+    },
+    {
+      "club": "LA",
+      "side": "Offense",
+      "player": "Puka Nacua",
+      "pos": "WR",
+      "injury": "Turf toe / MCL / PCL (likely IR)",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl"
+    },
+    {
+      "club": "LA",
+      "side": "Defense",
+      "player": "Trent McDuffie",
+      "pos": "CB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "SF",
+      "side": "Offense",
+      "player": "Trent Williams",
+      "pos": "T",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "SF",
+      "side": "Defense",
+      "player": "Deommodore Lenoir",
+      "pos": "CB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "SF",
+      "side": "Defense",
+      "player": "Renardo Green",
+      "pos": "CB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "DAL",
+      "side": "Defense",
+      "player": "Joey Porter Jr.",
+      "pos": "CB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "DAL",
+      "side": "Defense",
+      "player": "Malik Hooker",
+      "pos": "S",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "DAL",
+      "side": "Defense",
+      "player": "P.J. Locke",
+      "pos": "S",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "PIT",
+      "side": "Defense",
+      "player": "T.J. Watt",
+      "pos": "LB",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "club": "PIT",
+      "side": "Defense",
+      "player": "Cameron Heyward",
+      "pos": "DT",
+      "injury": "",
+      "practice": "DNP",
+      "gameStatus": "",
+      "source": "https://www.nfl.com/injuries/"
+    }
+  ]
+}
