@@ -44,10 +44,11 @@ The machine-readable source register and row-level audits are in `data/sources.c
 
 ## Publication record
 
-- Audit PR: [#25](https://github.com/kanlerxz87-cyber/NFL2/pull/25), merged 2026-11-12T22:25:38Z as `d2c0af0e7c2008ba4b64a7c1dcd03c44a6b4293e`.
-- Post-merge CI: `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the merge commit.
-- GitHub Pages API after deployment: `status=built`, `build_type=legacy`, `source=main /`.
-- Both the canonical root dashboard (https://kanlerxz87-cyber.github.io/NFL2/) and the separate `/docs/` site were fetched successfully after deployment. The API/workflow destination mismatch remains reported above rather than silently treated as resolved.
+- Independent audit PR: [#25](https://github.com/kanlerxz87-cyber/NFL2/pull/25), merged 2026-11-12T22:25:38Z as `d2c0af0e7c2008ba4b64a7c1dcd03c44a6b4293e`.
+- Final site follow-up PR: [#27](https://github.com/kanlerxz87-cyber/NFL2/pull/27), merged 2026-11-12T22:30:56Z as `5906ed26f02b5326a2d63536760d954ebc641f97`.
+- Post-merge CI and publication: `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded on the final merge commit. GitHub Pages API reports `status=built`, with the latest build commit `5906ed2`.
+- Fetched the refreshed root dashboard and Flagged for Review page after deployment; the landing page now shows 23 flags and corrected multi-session attribution, and the flag table contains FL-22 and FL-23. Manual-review links: [live dashboard](https://kanlerxz87-cyber.github.io/NFL2/), [Flagged for Review](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html).
+- Pages is still configured as legacy `main` `/` while `.github/workflows/pages.yml` also uploads `docs/`; that mismatch remains reported as FL-23 rather than silently treated as resolved.
 
 ## Scope boundary
 

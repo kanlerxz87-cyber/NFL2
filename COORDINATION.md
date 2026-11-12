@@ -662,3 +662,11 @@ T18 still named `bc4b47cf` as in progress although the merged integration record
 - Official NFL evidence streams were not changed; FL-23 is a GitHub deployment/configuration finding, and the GitHub API link is intentionally identified as non-NFL evidence.
 - Verification after the changes: `tools/verify.py` 39 passed / 0 failures; `tools/check_site.py` 10 passed / 0 failures (one disclosed warning now includes api.github.com on the new review row); `scripts/audit_all_pages.py` 96 HTML / 36 JSON / 222 tables / 3,425 rows / 0 broken links / 0 column mismatches; Q51 36 tests pass and 155/155 rows sourced; portal and S53 checks pass. Full report: `reports/fd94fccd/FINAL_AUDIT.md`.
 - Source references: GitHub Pages API https://api.github.com/repos/kanlerxz87-cyber/NFL2/pages and checked-in deployment workflow https://github.com/kanlerxz87-cyber/NFL2/blob/main/.github/workflows/pages.yml. These support only the deployment finding; NFL facts remain linked to NFL.com/operations.nfl.com in the datasets.
+
+### T18 publication result — session `fd94fccd`
+
+- **Final integration PR:** [#27](https://github.com/kanlerxz87-cyber/NFL2/pull/27) merged `2026-11-12T22:30:56Z` as `5906ed26f02b5326a2d63536760d954ebc641f97`.
+- **Main-branch checks:** `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, and `pages-build-deployment` all succeeded for `5906ed2`.
+- **Pages:** latest API build reports `built` at `5906ed2`; the refreshed live root page and Flagged for Review page were fetched after deploy and show the corrected provenance copy plus 23 flags, including FL-22/FL-23. Pages settings remain legacy `main` `/`; FL-23 retains the unresolved workflow artifact `docs/` ambiguity for owner review.
+- **Live review:** https://kanlerxz87-cyber.github.io/NFL2/ · https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html
+- Full final audit: `reports/fd94fccd/FINAL_AUDIT.md`.
