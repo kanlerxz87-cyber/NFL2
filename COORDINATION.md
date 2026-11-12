@@ -310,6 +310,48 @@ Verification **on the merged tree**:
 
 Both suites pass simultaneously, which is the test that actually matters when trees coexist.
 
+---
+
+## 13. Merge record for PR #8 — and the one defect the live site showed afterwards (session `bc4b47cf`)
+
+| Item | Value |
+|---|---|
+| PR | **#8** — https://github.com/kanlerxz87-cyber/NFL2/pull/8 (base `main`, head `arena/bc4b47cf-nfl2`) |
+| Merge result | **MERGED** 2026-11-12T05:14:27Z · merge commit **`ccb8576`** · `gh pr merge --merge`, no reviewer approval required |
+| Integration work inside it | two upstream merges resolved: `arena-009ec582` (`f875036`, root build archived, game log imported and re-audited) and `arena-01b698ef` (`2f5d2eb`, tool-name collision resolved by renaming their copies to `tools/review_*.py` and patching their workflow) |
+| CI on the merge commit | `build-and-audit` **success**, `Verify site data and links` **success**, `GitHub Pages` **success**, `pages build and deployment` **success** (all four green on `ccb8576`) |
+| Pages | source `main` / root, legacy builder; API status `built` — https://kanlerxz87-cyber.github.io/NFL2/ now serves the 21-page audited dashboard (verified by fetching the published `league-data.html`, which shows the standings table, the 136-game log section and the reconciliation counts) |
+| Sibling trees still live | `/NFL2/review/` (01b698ef), `/NFL2/portal/` (e143a7ca), `/NFL2/docs/` and `/NFL2/archive/session-009ec582/` (009ec582) — each labelled, each reachable from the root site's page map |
+
+**What the live site caught that the local audits did not.** After the merge, the published page
+showed literal `[FL-07](flagged-for-review.html)` text instead of a link. Root cause:
+`tools/build_site.py` converted only absolute `https://` markdown links, so **every relative link in
+19 of 22 pages rendered as raw markdown text to a reader**. Fixed on the follow-up PR: two more
+`inline()` patterns now render `.html` targets and in-page anchors (609 → 737 internal links on the
+published site), and `tools/check_site.py` fails the audit if a markdown link ever survives
+unrendered — the class of bug, not just this instance. This is recorded here rather than quietly
+shipped because it is evidence that a green local audit is not the same as a checked live page: the
+verification that caught it was fetching the URL.
+
+---
+
+## 14. Fourth integration step — `arena-63ac21e9`'s pipeline, and what its price data does and does not prove (session `bc4b47cf`, 2026-11-12T06:35Z)
+
+PR #10 landed a large `pipeline/` tree (third-party historical data plus its own builder, into `site/`) while PR #15 was open. **Only this file conflicted** — the root build, its tools, its HTML and its data were untouched, which is the coordination protocol working rather than being worked around.
+
+**Their provenance, as they state it.** `pipeline/common.py` declares upstream `leesharpe/nfldata` at commit `692e5f9f8ac9f4e2ee751c630817a7c290a04390` (2026-11-12T03:45Z), aggregated from Pro Football Reference and nflverse, and notes that the upstream repository **publishes no LICENSE file**.
+
+**What was measured here, in the merged tree, before anyone treats that as price data:**
+
+| File | Measured | Consequence for this site |
+|---|---|---|
+| `pipeline/data/raw/closing_lines.csv` | 20,490 data rows, game years **2006 → 2018**, **0 rows for 2026** | a historical exhibit, not a current price source: it cannot supply a closing line for a single game this site analyses |
+| `pipeline/data/raw/games.csv` | 7,548 rows, seasons 1999 → 2026; for 2026: 272 rows of which **163 carry a moneyline** and 109 do not | a 60 %-coverage, timestamp-free, book-less field from a redistributor cannot establish vig, CLV or a fair-price benchmark |
+| both | no capture time, no book identity, no revision history | **FL-10 stands unchanged.** No vig, CLV or edge figure is published anywhere on the root site, and adopting these columns would replace a documented absence with an undocumented number |
+
+Recorded as **FL-21** (price files present, unusable for the season analysed, with the counts above as the evidence) and **S-29** (the owner's decision: license a feed with timestamps and book identity; or declare the project model-price-only and move third-party lines out of the site build; or keep the 2006–2018 set strictly as an offline backtest exhibit). S-29 asks that whichever path is chosen be enforced by `tools/verify.py` refusing any published cell that cites a price file — enforcement, not prose, is the part that survives a fifth session.
+
+Their code and data were neither deleted nor restated: `pipeline/**`, `site/**`, `docs/*.md` and `.github/workflows/lab_validate.yml` are preserved as `arena-63ac21e9`'s tree, audited by their own `lab-validate` workflow, and independent of the root build's auditors.
 
 ---
 

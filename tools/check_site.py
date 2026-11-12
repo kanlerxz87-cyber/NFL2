@@ -66,6 +66,11 @@ def main():
     for path in htmls:
         name = os.path.basename(path)
         text = open(path, encoding="utf-8").read()
+        visible = re.sub(r"<pre>.*?</pre>", "", text, flags=re.S)
+        leaks = re.findall(r"\[[^\]\n]{1,60}\]\((?!https?://)[A-Za-z0-9_.\-/]+\.html[^)]*\)", visible)
+        if leaks:
+            bad("%s: %d markdown link(s) never rendered into an <a> tag: %s"
+                % (name, len(leaks), leaks[:3]))
         for m in re.finditer(r"\{\{[^}]{0,120}\}\}", text):
             unexpanded.append("%s: %s" % (name, m.group(0)[:60]))
         for m in re.finditer(r'(?:href|src)="([^"]+)"', text):

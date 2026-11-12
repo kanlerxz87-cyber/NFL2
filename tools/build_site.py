@@ -83,6 +83,14 @@ def inline(text):
     out = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)",
                  lambda m: '<a href="%s"%s>%s</a>' % (m.group(2), ' rel="noopener"' if not m.group(2).startswith("/") else "", m.group(1)),
                  out)
+    # Relative targets are the same-site links: page-to-page references, in-page anchors and the
+    # labelled trees of other sessions (review/, portal/, archive/, docs/). They used to survive as
+    # literal markdown text in the output, which is how 19 of 22 pages shipped visible "[Q-01](...)"
+    # brackets to a reader - check_site.py now fails the audit if any such leak comes back.
+    out = re.sub(r"\[([^\]]+)\]\((?!https?://|#)([A-Za-z0-9_.\-/]+\.html(?:#[A-Za-z0-9_.\-/]+)?)\)",
+                 lambda m: '<a href="%s">%s</a>' % (m.group(2), m.group(1)), out)
+    out = re.sub(r"\[([^\]]+)\]\((#[A-Za-z0-9_.\-/]+)\)",
+                 lambda m: '<a href="%s">%s</a>' % (m.group(2), m.group(1)), out)
     return out
 
 
