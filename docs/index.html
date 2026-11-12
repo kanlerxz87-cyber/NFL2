@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NFL2 — NFL Intelligence Dashboard</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand">NFL<span>2</span> Dashboard</div>
+<nav class="nav">
+<a class="active" href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="teams.html">Teams</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries</a><a href="depth-charts.html">Depth Charts</a><a href="defense.html">Defense</a><a href="stats.html">Stats</a><a href="lines.html">Own Lines</a><a href="strategies.html">Leaderboard</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Q&amp;A Register</a><a href="methodology.html">Methodology</a><a href="flagged.html">Flagged ⚠</a><a href="sources.html">Sources</a>
+<a href="../review/index.html">Verification Review (01b698ef)</a>
+</nav></div></header>
+<main class="wrap">
+<div class="hero">
+<h1>NFL Intelligence Dashboard</h1>
+<p>Collect · Organize · Analyze — every factual row verified line-by-line against official sources (NFL.com). Anything that cannot be confirmed is left blank and flagged <span class="badge b-unverified">UNVERIFIED</span>. No hallucinations. No manual input required to read this site.</p>
+<p class="small muted">Snapshot: 2026-11-12 · Season: 2026 REG · Next games: Week 11 (Nov 19–23, 2026) · <a href="methodology.html">How verification works →</a></p>
+<div class="callout"><strong>⚠️ Read this first:</strong> Injury data on this site is a <strong>Nov 11 (Week 10) snapshot</strong> — Week 11 statuses will have changed. Fair lines for Week 11 are <strong>TBD</strong> (not yet calibrated). The leaderboard is <strong>empty by design</strong> (no strategy has passed any gate). See <a href="flagged.html">Flagged for Review</a> and <a href="questions.html">Q&amp;A Register</a> before making any decision.</div>
+</div>
+
+<div class="grid">
+<div class="card"><div class="kpi-label">Teams tracked</div><div class="kpi">32</div><p>8 divisions · AFC + NFC · <a href="teams.html">View teams →</a></p></div>
+<div class="card"><div class="kpi-label">Standings verified</div><div class="kpi">32 / 32</div><p>All rows from NFL.com · <a href="standings.html">View standings →</a></p></div>
+<div class="card"><div class="kpi-label">Week 11 games</div><div class="kpi">13</div><p>Nov 19–23 · 6 bye teams as published · <a href="schedule.html">View schedule →</a></p></div>
+<div class="card"><div class="kpi-label">Open questions</div><div class="kpi">20</div><p>QIA register — decisions blocked until answered · <a href="questions.html">View Q&amp;A →</a></p></div>
+</div>
+
+<h2>Start here — decision path</h2>
+<div class="grid">
+<div class="card"><h3>1 · Executive Summary</h3><p>What we know, what we don't, and what to decide next. One page.</p><p><a class="btn" href="executive-summary.html">Read summary</a></p></div>
+<div class="card"><h3>2 · Suggestions Board</h3><p>12 proposals (S-01…S-12) awaiting review. Nothing is implemented until marked Accepted.</p><p><a class="btn secondary" href="suggestions.html">Review suggestions</a></p></div>
+<div class="card"><h3>3 · Q&amp;A Register</h3><p>20 questions / informations / answers that must be resolved before any bet or build decision.</p><p><a class="btn secondary" href="questions.html">Open register</a></p></div>
+<div class="card"><h3>4 · Flagged for Review</h3><p>9 irregularities (F-01…F-09) with source links. None block publication; all need your review.</p><p><a class="btn secondary" href="flagged.html">View flagged items</a></p></div>
+</div>
+
+<h2>Data sections</h2>
+<div class="grid">
+<div class="card"><h3>Standings &amp; Schedule</h3><p>2026 REG standings + Week 11 fixtures, times, TV — all NFL.com-verified.</p><p><a href="standings.html">Standings →</a> · <a href="schedule.html">Schedule →</a></p></div>
+<div class="card"><h3>Injuries &amp; Depth Charts</h3><p>Nov 11 snapshot + QB depth-chart conflicts flagged. Fresh Week 11 report required.</p><p><a href="injuries.html">Injuries →</a> · <a href="depth-charts.html">Depth charts →</a></p></div>
+<div class="card"><h3>Defense &amp; Stats</h3><p>Points/yards allowed + player leaders. Derived per-game values labelled.</p><p><a href="defense.html">Defense →</a> · <a href="stats.html">Stats →</a></p></div>
+<div class="card"><h3>Own Lines &amp; Leaderboard</h3><p>Fair-odds methodology + working calculators. Week 11 lines TBD. Leaderboard empty until gates pass.</p><p><a href="lines.html">Own lines →</a> · <a href="strategies.html">Leaderboard →</a></p></div>
+</div>
+
+<h2>How to use this site</h2>
+<ul class="tight">
+<li><strong>Every table row has a Source link.</strong> Click it to verify the value at the official source. If a value is blank, it could not be confirmed — it was not guessed.</li>
+<li><strong>Badges:</strong> <span class="badge b-verified">VERIFIED</span> = checked against official source · <span class="badge b-unverified">UNVERIFIED</span> = conflict / missing · <span class="badge b-tbd">TBD</span> = pending data · <span class="badge b-info">DERIVED</span> = calculated from verified inputs (formula shown).</li>
+<li><strong>Search:</strong> Use the filter box above any table to find a team/player instantly.</li>
+<li><strong>Raw data:</strong> All tables are backed by JSON in <code>/data</code> in the repo (e.g. <code>data/standings_2026.json</code>) with <code>source_url</code> per file. Run <code>python3 scripts/validate_data.py</code> to re-check.</li>
+</ul>
+
+<div class="callout info"><strong>Responsible gambling:</strong> This site is for analysis and education. Betting involves risk. If gambling stops being fun, help is available: National Council on Problem Gambling — call/text <strong>1-800-MY-RESET</strong> (1-800-522-4700), chat at 1800myreset.org. Source: <a href="https://www.ncpgambling.org/ncpg/">ncpgambling.org</a>. Never bet money you cannot afford to lose. See <a href="lines.html#safety">safety guardrails</a>.</div>
+</main>
+<footer><div class="footer-inner">NFL2 Dashboard · Data: NFL.com (official) · Snapshot 2026-11-12 · <a href="sources.html">Full source directory</a> · <a href="methodology.html">Verification methodology</a><br>Built with no hallucinations: unverified = blank + flagged. See <a href="flagged.html">Flagged for Review</a>.</div></footer>
+<script src="assets/app.js"></script>
+</body></html>

@@ -304,6 +304,27 @@ def main() -> int:
     if len(by_id) != len(records):
         ERRORS.append(f"rendered row count {len(by_id)} != record count {len(records)}")
 
+    # ---- combined link check across all three session builds ---------------
+    # The repository now contains three dashboards (root, docs/, review/) from
+    # three parallel sessions. Check every internal link in all of them so the
+    # final integration really confirms the whole site has no broken links.
+    all_pages = sorted(list(ROOT.glob("*.html")) +
+                       list((ROOT / "docs").glob("**/*.html")) +
+                       list((ROOT / "review").glob("**/*.html")))
+    combined_links = 0
+    for f in all_pages:
+        pp = PageParser()
+        pp.feed(f.read_text(encoding="utf-8", errors="replace"))
+        for href in pp.all_hrefs + pp.all_srcs:
+            if href.startswith(("http://", "https://", "//", "mailto:", "#", "data:")) or href in ("", "#"):
+                continue
+            combined_links += 1
+            target = href.split("#", 1)[0].split("?", 1)[0]
+            if target and not (f.parent / target).exists():
+                ERRORS.append(f"combined link check: {f.relative_to(ROOT)} -> broken link {href}")
+    STATS["combined_internal_links"] = combined_links
+    STATS["combined_pages"] = len(all_pages)
+
     # ---- report ------------------------------------------------------------
     report = {"ok": not ERRORS, "stats": STATS, "errors": ERRORS,
               "sources_used": sorted(used_src), "registry_version": REG["registry_version"]}

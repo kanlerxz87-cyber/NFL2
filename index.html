@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview · NFL 2026 Analytics</title>
+<meta name="description" content="A verified NFL 2026 analytics site: every figure traceable to an official source, strategies gated, gaps published.">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html"><span class="dot"></span>NFL 2026 · Verified Analytics</a>
+<nav class="main"><a href="index.html" aria-current="page">Overview</a><a href="results.html">Results</a><a href="standings.html">Standings</a><a href="teams.html">Team Stats</a><a href="injuries.html">Injuries &amp; Depth</a><a href="analysis.html">Analysis</a><a href="strategies.html">Strategies</a><a href="method.html">Method</a><a href="sources.html">Data Sources</a><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="review/index.html">Verification Review (01b698ef)</a></nav>
+</div></header>
+<div class="hero"><div class="wrap"><span class="eyebrow">2026 regular season · weeks 1–9 verified</span><h1>An NFL analytics build where every number can be traced to an official page</h1><p class="lede">This site does three things: it reproduces the league's own published records from a
+  136-game log and proves the reproduction arithmetically; it researches
+  betting-shaped ideas under a leaderboard whose <b>validation gates it is not allowed to pass
+  by storytelling</b>; and it tracks injuries against club depth charts so that a missing star
+  can be told apart from a missing fourth-stringer. Where a value cannot be confirmed from an
+  official source, the cell is blank and the item is on the Flagged for Review page.
+  <b>No figure here is invented, and no strategy is claimed to work.</b></p></div></div><section><div class="wrap">
+<div class="grid g4">
+  <div class="card"><h3>Verification Review Dashboard</h3><p>A parallel build: requirements register, decision gates, suggestions/path chooser, official source registry, validation gates, correlation matrix, injury and depth snapshots, and flagged items. Every table row links to an official source.</p><p><a href="review/index.html">Open the review dashboard →</a></p></div>
+  <div class="card"><div class="big">136</div><p>All 136 rows of weeks 1–9, each with its own source link</p></div>
+  <div class="card"><div class="big">32</div><p>Every club's W-L-T, points for/against and streak reproduced from the log</p></div>
+  <a class="card link" href="flagged.html" style="display:block;text-decoration:none"><div class="big">20/23</div><p>20 of 23 · the 3 soft fails are published, not hidden</p></a>
+  <a class="card link" href="strategies.html" style="display:block;text-decoration:none"><div class="big">0/6</div><p>None. All six fail the sample-size gate — that is the honest result</p></a>
+</div>
+
+<div class="note warn" style="margin-top:22px">
+<p><b>The headline finding is a refusal.</b> Six strategies were built and backtested walk-forward
+across weeks 5–9. Every one is <b>UNDERPOWERED</b>: the best graded 72 legs against a gate that
+requires 200. Three pass four of the seven gates, which is encouraging and means nothing yet.
+The site publishes the leaderboard anyway, sorted by gates passed rather than by hit rate, so
+that the table cannot be read as a recommendation.</p>
+</div>
+
+<h2 style="margin-top:34px">Four things worth knowing</h2>
+<div class="grid g2" style="margin-top:14px">
+  <div class="card"><h3>Home-field advantage is not detectable in 2026 — and the naive number is wrong</h3>
+  <p>Pooled across all 136 games the mean home margin is +0.00 points,
+  which looks like home-field has vanished. But 7 of those games were at neutral sites with no real
+  home club. On the 129 genuine home games the mean is <b>+0.50</b>
+  points, 95% CI <b>[-1.80, +2.79]</b>. The conventional
+  ~+2.5 prior sits <i>inside</i> that interval, so this season cannot reject it. The model uses
+  +0.50. <a href="method.html">Method →</a></p></div>
+
+  <div class="card"><h3>Team stats conserve exactly — which is why the mapping can be trusted</h3>
+  <p>League-wide offence equals league-wide defence on eight separate identities: 63,556 passing yards,
+  30,580 rushing yards, 641 sacks, 411 passing TD, 257 rushing TD, 197 interceptions, 3,006 passing
+  first downs, 1,757 rushing first downs. Exact conservation is what proved the header-less columns
+  were mapped correctly. <a href="teams.html">Team stats →</a></p></div>
+
+  <div class="card"><h3>Starter vs backup is answered for 4 clubs, blank for 28</h3>
+  <p>The official injury report says who is hurt but never says whether they start. Joining it to
+  club-published depth charts resolves that for Kansas City, Green Bay, New England and Detroit —
+  and the join surfaces 12 injured players who are absent from
+  their own club's chart entirely. For the other 28 clubs the field is left blank rather than guessed.
+  <a href="injuries.html">Injuries &amp; depth →</a></p></div>
+
+  <div class="card"><h3>Two leaderboards are withheld because their columns cannot be proven</h3>
+  <p>The rushing and receiving leaderboards render with no header row, and no arithmetic identity
+  identifies the columns — published yards-per-carry disagrees with yards divided by carries for
+  every sampled row. They are not published at all. Only 8 passing lines survive an exact equality
+  test against their club's official team passing line. <a href="flagged.html">Flagged for Review →</a></p></div>
+</div>
+
+<h2 style="margin-top:34px">Where to go</h2>
+<p class="sub">Each page answers one question and every table row carries its source.</p>
+<div class="grid g3">
+  <a class="card link" href="results.html" style="display:block;text-decoration:none"><h3>Results</h3><p>136 games, weeks 1–9, each with score, date and source link</p></a>
+  <a class="card link" href="standings.html" style="display:block;text-decoration:none"><h3>Standings</h3><p>All 32 clubs with a second, independent record recomputed from the game log</p></a>
+  <a class="card link" href="teams.html" style="display:block;text-decoration:none"><h3>Team stats</h3><p>Passing and rushing, offence and defence, with the withheld tables labelled</p></a>
+  <a class="card link" href="injuries.html" style="display:block;text-decoration:none"><h3>Injuries &amp; depth</h3><p>Week 10 injury report joined to published depth charts</p></a>
+  <a class="card link" href="analysis.html" style="display:block;text-decoration:none"><h3>Analysis</h3><p>Power ratings, correlations, luck ladder and Week 10 model lines</p></a>
+  <a class="card link" href="strategies.html" style="display:block;text-decoration:none"><h3>Strategies</h3><p>Six strategies, seven gates, and why none of them passes yet</p></a>
+  <a class="card link" href="method.html" style="display:block;text-decoration:none"><h3>Method</h3><p>Exactly how every number is produced and where the model is weak</p></a>
+  <a class="card link" href="sources.html" style="display:block;text-decoration:none"><h3>Data sources</h3><p>The full register of official pages used, and what each one supplied</p></a>
+  <a class="card link" href="questions.html" style="display:block;text-decoration:none"><h3>Questions &amp; gaps</h3><p>24 questions, with the unanswerable ones left visibly blank</p></a>
+  <a class="card link" href="suggestions.html" style="display:block;text-decoration:none"><h3>Suggestions</h3><p>12 proposals awaiting a decision — none are implemented</p></a>
+  <a class="card link" href="flagged.html" style="display:block;text-decoration:none"><h3>Flagged for Review</h3><p>Every irregularity, severity-rated, with what would fix it</p></a>
+  <a class="card link" href="https://github.com/kanlerxz87-cyber/NFL2" style="display:block;text-decoration:none"><h3>Repository</h3><p>Source, data files, verifiers and the coordination log</p></a>
+</div>
+</div></section>
+<footer><div class="wrap">
+<p><b>Every figure on this site is either transcribed from an official NFL source or is explicitly labelled MODEL output.</b>
+Nothing is inferred. Blank cells mean no official source confirms the value — see <a href="flagged.html">Flagged for Review</a>.</p>
+<p>Data through Week 9 results and Week 10 injury reports · built 2026-11-12T04:50:09Z · 
+<a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a> · <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md">coordination log</a> · 
+verification: 20/23 data checks, 9 personnel checks</p>
+</div></footer>
+<script src="assets/app.js"></script>
+</body></html>
