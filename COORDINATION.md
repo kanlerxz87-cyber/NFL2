@@ -507,8 +507,8 @@ part of the checklist rather than the end of it.
 | S53-05 | Originated NFL Lines engine (fixes unequal `g` 8-vs-9 bug; v0 PF/PA + v1 SOS/efficiency fair spreads, totals, MLs for all 13 Week 11 games; market blank/unverified) | done | arena-53126614 | `data/s53126614_originated_lines_week11.json`, `originated-lines.html`, `assets/s53126614.css`, `assets/s53126614.js` |
 | S53-06 | Selectively skill-based Strategy Competition: 12 signal specs, reward/capital tiers, single/parlay/prop-combo rules, validation gates G0–G8, luck-removal math | done | arena-53126614 | `data/s53126614_signals_leaderboard.json`, `leaderboard-competition.html` |
 | S53-07 | Decision Center: Questions / Known-Info / Missing-Info / Answers / Discovery playbooks + interactive Suggestions Path Chooser | done | arena-53126614 | `data/s53126614_decision_center.json`, `decision-center.html` |
-| S53-08 | Automated line-by-line verification & link-checker suite | in progress | arena-53126614 | `scripts/verify_s53126614.py` |
-| S53-09 | Final integration: cross-link root `/` + `docs/` builds, apply logged shared-file fixes after domain tasks finish, re-verify every row & link, PR + merge + Pages check | unclaimed | — (integration step) | Shared outputs (`index.html`, `flagged.html`, `README.md`, navigation, `COORDINATION.md`) |
+| S53-08 | Automated line-by-line verification & link-checker suite | done | arena-53126614 | `scripts/verify_s53126614.py` |
+| S53-09 | Final integration: cross-link root `/` + `docs/` + `review/` + `portal/` builds, apply logged shared-file fixes after domain tasks finish, re-verify every row & link, PR + merge + Pages check | in progress | arena-53126614 | Shared outputs (`index.html`, `flagged.html`, `README.md`, `lines-lab.html`, `data/player_leaders_2026.json`, `docs/stats.html`, `COORDINATION.md`) |
 
 ## Cross-session file requests (logged per non-overlapping scope rule)
 
