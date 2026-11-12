@@ -318,10 +318,11 @@ def div_tables():
                   E(s["c8"] or ""), E(s["c9"] or ""), E(s["streak"] or ""),
                   f'{lg["w"]}-{lg["l"]}-{lg["t"]}', f'{lg["pf"]}', f'{lg["pa"]}',
                   b("match","ok") if ok else b("MISMATCH","bad"),
+                  src(SRC["standings"], "NFL.com"),
                 ])
             out += f'<h3>{E(conf)} {E(dv)}</h3>' + tbl(
               [("Team",0),("",0),("W",1),("L",1),("T",1),("PCT",1),("PF",1),("PA",1),("Net",1),
-               ("Home",1),("Road",1),("Strk",1),("Log W-L-T",1),("Log PF",1),("Log PA",1),("Check",0)],
+               ("Home",1),("Road",1),("Strk",1),("Log W-L-T",1),("Log PF",1),("Log PA",1),("Check",0),("Source",0)],
               rs)
     return out
 
@@ -494,13 +495,14 @@ for g in INJ["games"]:
                        .replace("Full Participation in Practice","FP")) if p["practice"] else '<span class="blank">—</span>',
           (b(p["status"], "bad" if p["status"]=="Out" else "warn" if p["status"]=="Questionable" else "dim")
              if p["status"] else '<span class="blank">—</span>'),
+          src(SRC["injuries"], "NFL.com"),
         ])
 noinj = INJ["meta"].get("no_injuries_reported", [])
 body += f"""<div class="note" style="margin-top:6px"><p>Clubs that printed
 <b>"No Injuries Reported"</b>: {E(", ".join(n.replace('/',' and ') for n in noinj)) if noinj else "none"}. That is the source's own statement,
 not an inference that those clubs are healthy. Source: {src(SRC['injuries'],'NFL.com injuries')} ·
 {src(SRC['inj_news'],'week 10 report')}</p></div>"""
-body += tbl([("Game",0),("Kickoff ET",1),("Team",0),("Player",0),("Pos",0),("Injury",0),("Practice",0),("Status",0)],
+body += tbl([("Game",0),("Kickoff ET",1),("Team",0),("Player",0),("Pos",0),("Injury",0),("Practice",0),("Status",0),("Source",0)],
             irows, caption=f"All {len(irows)} player rows. Blanks are the source printing nothing; they are not zeros or 'unknown' entries here.")
 body += f"""
 <div class="note" style="margin-top:18px"><p><b>Roster rules behind this page.</b> A club may carry 53 on its
@@ -651,9 +653,9 @@ for s in AN["strategies"]:
       f'{E(s["name"])}<div class="tiny" style="color:var(--dim);margin-top:3px">{E(s["kind"])} · {E(s["hypothesis"])}</div>',
       s["n"], num(s["hit_rate"]*100,1),
       num(s["brier_skill"],4,True), num(s["brier"],4), num(s["mean_abs_line_error"],2),
-      f'{gp}/7 {bar}', b(s["status"], kind), b("UNPAID","dim"),
+      f'{gp}/7 {bar}', b(s["status"], kind), b("UNPAID","dim"), src(SRC["schedule"], "backtest"),
     ])
-body += tbl([("ID",0),("Strategy",0),("Legs",1),("Hit %",1),("Brier skill",1),("Brier",1),("Mean line err",1),("Gates",0),("Status",0),("Reward",0)],
+body += tbl([("ID",0),("Strategy",0),("Legs",1),("Hit %",1),("Brier skill",1),("Brier",1),("Mean line err",1),("Gates",0),("Status",0),("Reward",0),("Source",0)],
             srows, caption="Reward points are earned by passing gates, not by winning bets — that is the point of a "
                            "gate-based leaderboard. No reward is paid while a strategy is UNDERPOWERED.")
 
@@ -910,7 +912,8 @@ for cat in ["Data integrity","Rules","Injuries","Model","Player stats","Player p
           f'<b>{E(q["id"])}</b>',
           f'<b>{E(q["question"])}</b><div class="tiny" style="color:var(--dim);margin-top:4px">{ans}</div>',
           b(q["status"], STATUS_KIND.get(q["status"],"dim")),
-          (src(q["source"], "source") if q["source"] else '<span class="blank">none exists</span>'),
+          (src(q["source"], "source") if q["source"]
+            else '<span class="blank" title="No official source publishes this">no source exists</span>'),
           f'<span class="tiny">{E(q["discovery"])}</span>',
           f'<span class="tiny" style="color:var(--dim)">{E(q["evidence"])}</span>',
         ])
@@ -937,8 +940,9 @@ for s in SUG["suggestions"]:
       b(s["status"], STATUS_KIND.get(s["status"],"dim")),
       E(s["effort"]), E(s["impact"]),
       f'<span class="tiny"><b>Validated by:</b> {E(s["validation"])}<br><b>Risk:</b> {E(s["risk"])}<br><b>Unlocks:</b> {E(s["unlocks"])}</span>',
+      src(SRC["repo"], "repo"),
     ])
-body += tbl([("ID",0),("Suggestion",0),("Status",0),("Effort",0),("Impact",0),("Validation, risk, payoff",0)], rows,
+body += tbl([("ID",0),("Suggestion",0),("Status",0),("Effort",0),("Impact",0),("Validation, risk, payoff",0),("Source",0)], rows,
             caption="Sorted by priority. Effort and impact are the author's judgement and are labelled as such, not measured.")
 
 body += """
@@ -1005,12 +1009,24 @@ body += ('<div class="note bad"><p><b>This page is part of the deliverable, not 
          'claims 100% completeness on a partial season is either not checking or not telling you. The items below '
          'are the difference between those two.</p></div>')
 
+IRR_SRC = {
+ "IR-01":"https://www.detroitlions.com/team/depth-chart",
+ "IR-02":"https://www.packers.com/team/depth-chart",
+ "IR-03":SRC["standings"],
+ "IR-04":SRC["schedule"],
+ "IR-05":SRC["club_stats"].format(slug="kansas-city-chiefs"),
+ "IR-06":SRC["ts_off_pass"],
+ "IR-07":SRC["ts_off_pass"],
+ "IR-08":"https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all",
+ "IR-09":"https://www.nfl.com/injuries/",
+}
 rows = []
 for iid, sev, title, what, does, fix in IRR:
     kind = {"High":"bad","Medium":"warn","Low":"dim"}[sev]
     rows.append([f'<b>{E(iid)}</b>', b(sev, kind), f'<b>{E(title)}</b><div class="tiny" style="color:var(--dim);margin-top:4px">{E(what)}</div>',
-                 f'<span class="tiny">{E(does)}</span>', f'<span class="tiny">{E(fix)}</span>'])
-body += tbl([("ID",0),("Severity",0),("Irregularity",0),("What the site does",0),("What would fix it",0)], rows,
+                 f'<span class="tiny">{E(does)}</span>', f'<span class="tiny">{E(fix)}</span>',
+                 src(IRR_SRC.get(iid,""), "the page")])
+body += tbl([("ID",0),("Severity",0),("Irregularity",0),("What the site does",0),("What would fix it",0),("Source",0)], rows,
             caption="Severity High = a reader could reach a wrong conclusion if this were hidden. Medium = a value is missing or contested. Low = a labelling or convention difference.")
 
 body += """

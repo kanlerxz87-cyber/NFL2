@@ -5,7 +5,7 @@
 > here, then commit and push the claim immediately.
 > Status values: `unclaimed` · `in progress` · `done` · `needs review`
 
-**Last updated:** 2026-11-12T06:10Z
+**Last updated:** 2026-11-12T05:00Z
 **Branch model in use:** single-branch session. The Arena platform pins this session to
 `arena/009ec582-nfl2`; per-session branches (`session-<id>/<task>`) are not permitted for this
 session (platform rule: one branch, no switching/creating branches). All work therefore happens on
@@ -36,7 +36,7 @@ enforced to keep concurrent work non-overlapping.
 | S-07 | Executive summary | **done** | arena-009ec582 | `EXECUTIVE_SUMMARY.md`, `index.html` |
 | S-08 | Site build (dashboard, tables, navigation, flagged-for-review page, source links) | **done** | arena-009ec582 | `*.html`, `assets/**`, `scripts/build_site.py` |
 | S-09 | Build verification: broken-link scan, HTML validation, data/HTML consistency, local serve test | **done (12/12)** | arena-009ec582 | `scripts/verify_site.py`, `data/derived/site_report.json` |
-| S-10 | Integration: re-verify combined data, open PR → `main`, merge, confirm Pages deploy, record result | **in progress** | arena-009ec582 | `COORDINATION.md` (log section only) |
+| S-10 | Integration: re-verify combined data, open PR → `main`, merge, confirm Pages deploy, record result | **done** | arena-009ec582 | `COORDINATION.md` (log section only) |
 
 ### Rules of engagement
 1. Never edit a file outside your claimed scope. If you need a change in someone else's file,
@@ -104,8 +104,8 @@ market line.
 | Item | Value |
 |---|---|
 | PR | **#6** — https://github.com/kanlerxz87-cyber/NFL2/pull/6 (base `main`, head `arena/009ec582-nfl2`) |
-| Merge result | _pending at time of writing_ |
-| Pages deploy | Source `main`, path `/`, legacy builder, https enforced |
+| Merge result | **MERGED** 2026-11-12T04:52:33Z · merge commit **`93a2f9d`** · squash-free merge commit (`--merge`) · no reviewer approval required, per project rule |
+| Pages deploy | Source `main`, path `/`, legacy builder, https enforced. **`pages build and deployment` succeeded for `93a2f9d` at 04:52:36Z**, `GitHub Pages` workflow succeeded at 04:52:37Z, Pages API status `built`. Live: https://kanlerxz87-cyber.github.io/NFL2/ · prior session's build still reachable at /NFL2/docs/index.html |
 
 ### Merge conflict with concurrent session work — how it was resolved
 
