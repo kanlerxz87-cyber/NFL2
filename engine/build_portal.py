@@ -97,6 +97,8 @@ def layout(filename, title, subtitle, body_html):
           <span class="meta-pill">Snapshot: 2026-11-12 (Week 10)</span>
           <span class="meta-pill">Zero-Sum Verified: 11/11</span>
           <a href="../index.html" class="meta-pill" style="color:#93c5fd;">&larr; Root Site</a>
+          <a href="../review/index.html" class="meta-pill" style="color:#93c5fd;">Review Build</a>
+          <a href="../docs/index.html" class="meta-pill" style="color:#93c5fd;">Docs Build</a>
         </div>
       </div>
       <nav class="nav-bar" aria-label="Portal Navigation">
