@@ -103,9 +103,9 @@ market line.
 
 | Item | Value |
 |---|---|
-| PR | **#6** — https://github.com/kanlerxz87-cyber/NFL2/pull/6 (base `main`, head `arena/009ec582-nfl2`) |
-| Merge result | **MERGED** 2026-11-12T04:52:33Z · merge commit **`93a2f9d`** · squash-free merge commit (`--merge`) · no reviewer approval required, per project rule |
-| Pages deploy | Source `main`, path `/`, legacy builder, https enforced. **`pages build and deployment` succeeded for `93a2f9d` at 04:52:36Z**, `GitHub Pages` workflow succeeded at 04:52:37Z, Pages API status `built`. Live: https://kanlerxz87-cyber.github.io/NFL2/ · prior session's build still reachable at /NFL2/docs/index.html |
+| PR | **#6** — https://github.com/kanlerxz87-cyber/NFL2/pull/6 · **#7** — https://github.com/kanlerxz87-cyber/NFL2/pull/7 (both base `main`, head `arena/009ec582-nfl2`) |
+| Merge result | **#6 MERGED** 2026-11-12T04:52:33Z · merge commit **`93a2f9d`** — full site, data, model, verifiers. **#7 MERGED** 2026-11-12T04:54:23Z · merge commit **`e0cd76f`** — per-row source links + row-level H11 check. Both merged with `--merge` and no reviewer approval, per project rule. |
+| Pages deploy | Source `main`, path `/`, legacy builder, https enforced. **`pages build and deployment` succeeded for `93a2f9d` at 04:52:36Z and for `e0cd76f` at 04:54:25Z**, `GitHub Pages` workflow succeeded at 04:52:37Z, Pages API status `built`. Live: https://kanlerxz87-cyber.github.io/NFL2/ · prior session's build still reachable at /NFL2/docs/index.html |
 
 ### Merge conflict with concurrent session work — how it was resolved
 
