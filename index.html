@@ -7,7 +7,7 @@
 </head><body>
 <header class="top"><div class="wrap">
 <a class="brand" href="index.html"><span class="dot"></span>NFL 2026 · Verified Analytics</a>
-<nav class="main"><a href="index.html" aria-current="page">Overview</a><a href="results.html">Results</a><a href="standings.html">Standings</a><a href="teams.html">Team Stats</a><a href="injuries.html">Injuries &amp; Depth</a><a href="analysis.html">Analysis</a><a href="strategies.html">Strategies</a><a href="method.html">Method</a><a href="sources.html">Data Sources</a><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a></nav>
+<nav class="main"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Exec Summary</a><a href="results.html">Results</a><a href="schedule.html">Week 11</a><a href="standings.html">Standings</a><a href="teams.html">Team Stats</a><a href="injuries.html">Injuries</a><a href="depth-deficiencies.html">1st–4th String</a><a href="lines-lab.html">Lines Lab</a><a href="analysis.html">Analysis</a><a href="correlations.html">Correlations</a><a href="strategies.html">Strategies</a><a href="method.html">Method</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Questions</a><a href="repo-audit.html">Repo Audit</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a></nav>
 </div></header>
 <div class="hero"><div class="wrap"><span class="eyebrow">2026 regular season · weeks 1–9 verified</span><h1>An NFL analytics build where every number can be traced to an official page</h1><p class="lede">This site does three things: it reproduces the league's own published records from a
   136-game log and proves the reproduction arithmetically; it researches
@@ -64,24 +64,30 @@ that the table cannot be read as a recommendation.</p>
 <h2 style="margin-top:34px">Where to go</h2>
 <p class="sub">Each page answers one question and every table row carries its source.</p>
 <div class="grid g3">
-  <a class="card link" href="results.html" style="display:block;text-decoration:none"><h3>Results</h3><p>136 games, weeks 1–9, each with score, date and source link</p></a>
+  <a class="card link" href="executive-summary.html" style="display:block;text-decoration:none"><h3>Executive summary</h3><p>Architecture, core findings, verification boundary, and open blockers</p></a>
+  <a class="card link" href="results.html" style="display:block;text-decoration:none"><h3>Results (Weeks 1–9)</h3><p>136 games, weeks 1–9, each with score, date and source link</p></a>
+  <a class="card link" href="schedule.html" style="display:block;text-decoration:none"><h3>Week 11 schedule</h3><p>All 13 Week 11 games + 6 bye teams, including Nov 9 official flex changes</p></a>
   <a class="card link" href="standings.html" style="display:block;text-decoration:none"><h3>Standings</h3><p>All 32 clubs with a second, independent record recomputed from the game log</p></a>
   <a class="card link" href="teams.html" style="display:block;text-decoration:none"><h3>Team stats</h3><p>Passing and rushing, offence and defence, with the withheld tables labelled</p></a>
   <a class="card link" href="injuries.html" style="display:block;text-decoration:none"><h3>Injuries &amp; depth</h3><p>Week 10 injury report joined to published depth charts</p></a>
+  <a class="card link" href="depth-deficiencies.html" style="display:block;text-decoration:none"><h3>1st–4th string deficiencies</h3><p>12 official club depth charts & 18 offense/defense backup cascades</p></a>
+  <a class="card link" href="lines-lab.html" style="display:block;text-decoration:none"><h3>Lines Lab</h3><p>Interactive fair-line & correlation calculators + Week 11 originated baselines</p></a>
   <a class="card link" href="analysis.html" style="display:block;text-decoration:none"><h3>Analysis</h3><p>Power ratings, correlations, luck ladder and Week 10 model lines</p></a>
+  <a class="card link" href="correlations.html" style="display:block;text-decoration:none"><h3>Correlations &amp; skill</h3><p>14 verified team correlations (n=32), SGP copula checks & luck residuals</p></a>
   <a class="card link" href="strategies.html" style="display:block;text-decoration:none"><h3>Strategies</h3><p>Six strategies, seven gates, and why none of them passes yet</p></a>
   <a class="card link" href="method.html" style="display:block;text-decoration:none"><h3>Method</h3><p>Exactly how every number is produced and where the model is weak</p></a>
-  <a class="card link" href="sources.html" style="display:block;text-decoration:none"><h3>Data sources</h3><p>The full register of official pages used, and what each one supplied</p></a>
-  <a class="card link" href="questions.html" style="display:block;text-decoration:none"><h3>Questions &amp; gaps</h3><p>24 questions, with the unanswerable ones left visibly blank</p></a>
   <a class="card link" href="suggestions.html" style="display:block;text-decoration:none"><h3>Suggestions</h3><p>12 proposals awaiting a decision — none are implemented</p></a>
+  <a class="card link" href="questions.html" style="display:block;text-decoration:none"><h3>Questions &amp; gaps</h3><p>24 questions, with the unanswerable ones left visibly blank</p></a>
+  <a class="card link" href="repo-audit.html" style="display:block;text-decoration:none"><h3>Repo audit</h3><p>Line-by-line audit of commits, upstream source blindspots, and verification gates</p></a>
   <a class="card link" href="flagged.html" style="display:block;text-decoration:none"><h3>Flagged for Review</h3><p>Every irregularity, severity-rated, with what would fix it</p></a>
+  <a class="card link" href="sources.html" style="display:block;text-decoration:none"><h3>Data sources</h3><p>The full register of official pages used, and what each one supplied</p></a>
   <a class="card link" href="https://github.com/kanlerxz87-cyber/NFL2" style="display:block;text-decoration:none"><h3>Repository</h3><p>Source, data files, verifiers and the coordination log</p></a>
 </div>
 </div></section>
 <footer><div class="wrap">
 <p><b>Every figure on this site is either transcribed from an official NFL source or is explicitly labelled MODEL output.</b>
 Nothing is inferred. Blank cells mean no official source confirms the value — see <a href="flagged.html">Flagged for Review</a>.</p>
-<p>Data through Week 9 results and Week 10 injury reports · built 2026-11-12T04:50:09Z · 
+<p>Data through Week 9 results and Week 10 injury reports · built 2026-11-12T05:05:25Z · 
 <a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a> · <a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md">coordination log</a> · 
 verification: 20/23 data checks, 9 personnel checks</p>
 </div></footer>

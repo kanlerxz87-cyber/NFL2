@@ -70,12 +70,15 @@ SLUG = {
 NAME = {c: d["name"] for c, d in AN["clubs"].items()} if False else {}
 
 NAV = [
- ("index.html","Overview"),("results.html","Results"),("standings.html","Standings"),
- ("teams.html","Team Stats"),("injuries.html","Injuries & Depth"),
- ("analysis.html","Analysis"),("strategies.html","Strategies"),
- ("method.html","Method"),("sources.html","Data Sources"),
- ("questions.html","Questions"),("suggestions.html","Suggestions"),
- ("flagged.html","Flagged for Review"),
+ ("index.html","Overview"),("executive-summary.html","Exec Summary"),
+ ("results.html","Results"),("schedule.html","Week 11"),("standings.html","Standings"),
+ ("teams.html","Team Stats"),("injuries.html","Injuries"),
+ ("depth-deficiencies.html","1st–4th String"),("lines-lab.html","Lines Lab"),
+ ("analysis.html","Analysis"),("correlations.html","Correlations"),
+ ("strategies.html","Strategies"),("method.html","Method"),
+ ("suggestions.html","Suggestions"),("questions.html","Questions"),
+ ("repo-audit.html","Repo Audit"),("flagged.html","Flagged for Review"),
+ ("sources.html","Sources"),
 ]
 
 def page(fname, title, body, active=None, desc=""):
@@ -238,17 +241,23 @@ that the table cannot be read as a recommendation.</p>
 <h2 style="margin-top:34px">Where to go</h2>
 <p class="sub">Each page answers one question and every table row carries its source.</p>
 <div class="grid g3">
-  {card("Results", f"{len(GAMES['games'])} games, weeks 1–9, each with score, date and source link", "results.html")}
+  {card("Executive summary", "Architecture, core findings, verification boundary, and open blockers", "executive-summary.html")}
+  {card("Results (Weeks 1–9)", f"{len(GAMES['games'])} games, weeks 1–9, each with score, date and source link", "results.html")}
+  {card("Week 11 schedule", "All 13 Week 11 games + 6 bye teams, including Nov 9 official flex changes", "schedule.html")}
   {card("Standings", "All 32 clubs with a second, independent record recomputed from the game log", "standings.html")}
   {card("Team stats", "Passing and rushing, offence and defence, with the withheld tables labelled", "teams.html")}
   {card("Injuries & depth", "Week 10 injury report joined to published depth charts", "injuries.html")}
+  {card("1st–4th string deficiencies", "12 official club depth charts & 18 offense/defense backup cascades", "depth-deficiencies.html")}
+  {card("Lines Lab", "Interactive fair-line & correlation calculators + Week 11 originated baselines", "lines-lab.html")}
   {card("Analysis", "Power ratings, correlations, luck ladder and Week 10 model lines", "analysis.html")}
+  {card("Correlations & skill", "14 verified team correlations (n=32), SGP copula checks & luck residuals", "correlations.html")}
   {card("Strategies", "Six strategies, seven gates, and why none of them passes yet", "strategies.html")}
   {card("Method", "Exactly how every number is produced and where the model is weak", "method.html")}
-  {card("Data sources", "The full register of official pages used, and what each one supplied", "sources.html")}
-  {card("Questions & gaps", f"{len(Q['questions'])} questions, with the unanswerable ones left visibly blank", "questions.html")}
   {card("Suggestions", f"{len(SUG['suggestions'])} proposals awaiting a decision — none are implemented", "suggestions.html")}
+  {card("Questions & gaps", f"{len(Q['questions'])} questions, with the unanswerable ones left visibly blank", "questions.html")}
+  {card("Repo audit", "Line-by-line audit of commits, upstream source blindspots, and verification gates", "repo-audit.html")}
   {card("Flagged for Review", "Every irregularity, severity-rated, with what would fix it", "flagged.html")}
+  {card("Data sources", "The full register of official pages used, and what each one supplied", "sources.html")}
   {card("Repository", "Source, data files, verifiers and the coordination log", SRC['repo'])}
 </div>
 </div></section>"""
@@ -318,10 +327,11 @@ def div_tables():
                   E(s["c8"] or ""), E(s["c9"] or ""), E(s["streak"] or ""),
                   f'{lg["w"]}-{lg["l"]}-{lg["t"]}', f'{lg["pf"]}', f'{lg["pa"]}',
                   b("match","ok") if ok else b("MISMATCH","bad"),
+                  src(SRC["standings"], "NFL.com"),
                 ])
             out += f'<h3>{E(conf)} {E(dv)}</h3>' + tbl(
               [("Team",0),("",0),("W",1),("L",1),("T",1),("PCT",1),("PF",1),("PA",1),("Net",1),
-               ("Home",1),("Road",1),("Strk",1),("Log W-L-T",1),("Log PF",1),("Log PA",1),("Check",0)],
+               ("Home",1),("Road",1),("Strk",1),("Log W-L-T",1),("Log PF",1),("Log PA",1),("Check",0),("Source",0)],
               rs)
     return out
 
@@ -418,17 +428,19 @@ That is the closest official thing to "a starter is out". It is not a points est
 prows = []
 for s in PER["by_club"]:
     d = b("mapped","ok") if s["charted"] else b("chart not transcribed","dim")
+    row_src = src(DEPTH["depth_charts"][s["team"]]["club_site"], "Club") if s["charted"] else src("https://www.nfl.com/injuries/league/2026/REG10", "REG10")
     prows.append([
       f'<b>{team_link(s["team"])}</b>', s["listed"], s["dnp"], s["lp"], s["fp"],
       s["game_status_out"], s["starters_dnp"], s["second_string_dnp"],
       s["third_string_dnp"], s["fourth_string_dnp"],
       f'<b>{s["deficiency_index"]}</b>' if s["charted"] else '<span class="blank">—</span>',
-      d])
+      d, row_src])
 body += tbl([("Team",0),("Listed",1),("DNP",1),("LP",1),("FP",1),("Out",1),
-             ("Starter DNP",1),("2nd",1),("3rd",1),("4th",1),("Deficiency idx",1),("Depth chart",0)],
+             ("Starter DNP",1),("2nd",1),("3rd",1),("4th",1),("Deficiency idx",1),("Depth chart",0),("Source",0)],
             prows, caption="DNP = did not practise, LP = limited, FP = full. 'Out' is the published game status. "
                            "The deficiency index is a stated weighting (starter ×3, 2nd ×2, 3rd/4th ×1) used only to sort "
                            "clubs — it is explicitly not a points value, because no official source converts a depth slot into points.")
+body += '<div class="note ok" style="margin-top:14px"><p><b>Expanded 12-Club 1st–4th String Cascade View:</b> See <a href="depth-deficiencies.html">1st–4th String Deficiencies →</a> for 18 verified offense &amp; defense starter-to-backup replacement chains across 12 official NFL club depth charts plus IR blindspot joins.</p></div>'
 
 body += f"""
 <h2 style="margin-top:34px">Verified starter-level absences</h2>
@@ -457,8 +469,8 @@ body += """
 <p>These players appear on the official injury report but not on their own club's published depth chart.
 That usually means the chart predates a signing, or lists him under a different designation. They are
 flagged rather than silently assigned a depth.</p>
-""" + tbl([("Team",0),("Player",0)],
-   [[team_link(r["team"]), E(r["player"])] for r in PER["rows"] if r["map_status"]=="not on published chart"],
+""" + tbl([("Team",0),("Player",0),("Source",0)],
+   [[team_link(r["team"]), E(r["player"]), src("https://www.nfl.com/injuries/league/2026/REG10","REG10")] for r in PER["rows"] if r["map_status"]=="not on published chart"],
    caption="No depth position is asserted for any of these.") + """
 </div>
 <div class="card"><h3>Players listed at two positions</h3>
@@ -474,8 +486,8 @@ for club, ch in DEPTH["depth_charts"].items():
             for i, pl in enumerate(ps):
                 if pl: seen.setdefault(pl, []).append(f"{grp} ({i+1})")
     for pl, slots in seen.items():
-        if len(slots) > 1: multi.append([team_link(club), E(pl), E(", ".join(slots))])
-body += tbl([("Team",0),("Player",0),("Listed at",0)], multi,
+        if len(slots) > 1: multi.append([team_link(club), E(pl), E(", ".join(slots)), src(ch["club_site"], "chart")])
+body += tbl([("Team",0),("Player",0),("Listed at",0),("Source",0)], multi,
             caption="Multi-slot listings are declared, and the join records which slot it used.") + """
 </div></div>
 
@@ -494,13 +506,14 @@ for g in INJ["games"]:
                        .replace("Full Participation in Practice","FP")) if p["practice"] else '<span class="blank">—</span>',
           (b(p["status"], "bad" if p["status"]=="Out" else "warn" if p["status"]=="Questionable" else "dim")
              if p["status"] else '<span class="blank">—</span>'),
+          src("https://www.nfl.com/injuries/league/2026/REG10", "REG10"),
         ])
 noinj = INJ["meta"].get("no_injuries_reported", [])
 body += f"""<div class="note" style="margin-top:6px"><p>Clubs that printed
 <b>"No Injuries Reported"</b>: {E(", ".join(n.replace('/',' and ') for n in noinj)) if noinj else "none"}. That is the source's own statement,
 not an inference that those clubs are healthy. Source: {src(SRC['injuries'],'NFL.com injuries')} ·
 {src(SRC['inj_news'],'week 10 report')}</p></div>"""
-body += tbl([("Game",0),("Kickoff ET",1),("Team",0),("Player",0),("Pos",0),("Injury",0),("Practice",0),("Status",0)],
+body += tbl([("Game",0),("Kickoff ET",1),("Team",0),("Player",0),("Pos",0),("Injury",0),("Practice",0),("Status",0),("Source",0)],
             irows, caption=f"All {len(irows)} player rows. Blanks are the source printing nothing; they are not zeros or 'unknown' entries here.")
 body += f"""
 <div class="note" style="margin-top:18px"><p><b>Roster rules behind this page.</b> A club may carry 53 on its
@@ -539,18 +552,19 @@ for c in cc:
     strong = abs(c["pearson_r"]) >= 0.6
     crows.append([E(c["label"]), c["n"], f'<b>{num(c["pearson_r"],3,True)}</b>' if strong else num(c["pearson_r"],3,True),
                   num(c["spearman_rho"],3,True), num(c["r_squared"],3), num(c["t_stat"],2,True),
-                  b("strong","ok") if strong else b("weak","dim")])
-body += tbl([("Metric",0),("n",1),("Pearson r",1),("Spearman ρ",1),("r²",1),("t",1),("Read",0)], crows,
+                  b("strong","ok") if strong else b("weak","dim"), src(SRC["ts_off_pass"], "NFL.com")])
+body += tbl([("Metric",0),("n",1),("Pearson r",1),("Spearman ρ",1),("r²",1),("t",1),("Read",0),("Source",0)], crows,
             caption="Careful: with 32 clubs and 14 metrics tested, the strongest correlations are partly selection. "
                     "The t column is given so the reader can see the precision, not to imply significance after multiple testing.")
+body += '<div class="note ok" style="margin-top:12px"><p>See also <a href="correlations.html">Correlations &amp; Skill →</a> for Fisher-z 95% CIs, two-tailed p-values, and the SGP/prop copula blank register.</p></div>'
 
 body += """
 <h2 style="margin-top:34px">Are game totals and margins independent?</h2>
 <p class="sub">This is the whole basis for how parlays are treated on this site. If these were strongly related,
 combining legs would be a different problem entirely.</p>"""
-grows = [[E(c["label"]), c["n"], num(c["pearson_r"],3,True), num(c["spearman_rho"],3,True), num(c["r_squared"],3), num(c["t_stat"],2,True)]
+grows = [[E(c["label"]), c["n"], num(c["pearson_r"],3,True), num(c["spearman_rho"],3,True), num(c["r_squared"],3), num(c["t_stat"],2,True), src(SRC["schedule"], "NFL.com")]
          for c in gc]
-body += tbl([("Relationship",0),("n",1),("Pearson r",1),("Spearman ρ",1),("r²",1),("t",1)], grows,
+body += tbl([("Relationship",0),("n",1),("Pearson r",1),("Spearman ρ",1),("r²",1),("t",1),("Source",0)], grows,
             caption="All four relationships are weak. That is a real result, not a null one: it justifies modelling winner and total separately.")
 
 body += f"""
@@ -570,9 +584,10 @@ for g in AN["week10_model_lines"]:
       num(g["model_total"],1),
       num(g["home_win_prob"]*100,1), num(g["away_win_prob"]*100,1),
       b("model","info"),
+      src("https://www.nfl.com/schedules/2026/by-week/week-10", "W10"),
     ])
 body += tbl([("Kickoff ET",0),("Game",0),("Away power",1),("Home power",1),("Home margin",1),("Total",1),
-             ("Home win %",1),("Away win %",1),("Type",0)], lrows,
+             ("Home win %",1),("Away win %",1),("Type",0),("Source",0)], lrows,
             caption="Home margin is positive when the home club is expected to win. Power is points per game above the "
                     "league-average club, adjusted for opponent. The total is the two powers' combined scoring expectation.")
 
@@ -593,9 +608,9 @@ for r in AN["luck_ladder"]:
     kind = "ok" if r["regression_flag"]=="FADE" else "warn" if r["regression_flag"]=="BUY" else "dim"
     lrows.append([f'<b>{team_link(r["team"])}</b>', E(r["name"]), r["wins"], num(r["pyth_wins"],2),
                   num(r["pyth_residual"],2,True), E(r["one_score_record"]), num(r["one_score_residual"],1,True),
-                  num(r["luck_score"],2,True), num(r["power"],2,True), b(r["regression_flag"], kind)])
+                  num(r["luck_score"],2,True), num(r["power"],2,True), b(r["regression_flag"], kind), src(SRC["standings"], "NFL.com")])
 body += tbl([("Team",0),("Club",0),("W",1),("Expected W",1),("Pyth resid",1),("1-score",1),("1-score resid",1),
-             ("Luck score",1),("Power",1),("Flag",0)], lrows,
+             ("Luck score",1),("Power",1),("Flag",0),("Source",0)], lrows,
             caption="FADE = won more than its scoring margin implies. BUY = won less. These are descriptive labels for "
                     "regression-to-the-mean candidates, NOT betting recommendations, and the site has no odds to bet against.")
 
@@ -634,8 +649,8 @@ is sorted by gates passed, not by hit rate, precisely so that a reader cannot mi
 
 <h2>The seven gates</h2>
 <p class="sub">A strategy must clear all seven. Six are hard; passing fewer than six is a rejection regardless of results.</p>"""
-grows = [[f'<b>{E(k)}</b>', E(v[1]), E(v[2]), b(v[3],"bad" if v[3]=="hard" else "dim")] for k,v in GATES.items()]
-body += tbl([("Gate",0),("Name",0),("Requirement",0),("Type",0)], grows)
+grows = [[f'<b>{E(k)}</b>', E(v[1]), E(v[2]), b(v[3],"bad" if v[3]=="hard" else "dim"), src(SRC["repo"]+"/blob/main/scripts/strategy_engine.py","engine")] for k,v in GATES.items()]
+body += tbl([("Gate",0),("Name",0),("Requirement",0),("Type",0),("Source",0)], grows)
 
 body += """
 <h2 style="margin-top:34px">Leaderboard</h2>
@@ -652,8 +667,9 @@ for s in AN["strategies"]:
       s["n"], num(s["hit_rate"]*100,1),
       num(s["brier_skill"],4,True), num(s["brier"],4), num(s["mean_abs_line_error"],2),
       f'{gp}/7 {bar}', b(s["status"], kind), b("UNPAID","dim"),
+      src(SRC["repo"]+"/blob/main/scripts/strategy_engine.py","code"),
     ])
-body += tbl([("ID",0),("Strategy",0),("Legs",1),("Hit %",1),("Brier skill",1),("Brier",1),("Mean line err",1),("Gates",0),("Status",0),("Reward",0)],
+body += tbl([("ID",0),("Strategy",0),("Legs",1),("Hit %",1),("Brier skill",1),("Brier",1),("Mean line err",1),("Gates",0),("Status",0),("Reward",0),("Source",0)],
             srows, caption="Reward points are earned by passing gates, not by winning bets — that is the point of a "
                            "gate-based leaderboard. No reward is paid while a strategy is UNDERPOWERED.")
 
@@ -666,8 +682,9 @@ for s in AN["strategies"]:
     for gk in GATES:
         v = s["gates"].get(gk, "N/A")
         cells.append(b(v, "ok" if v=="PASS" else "bad" if v=="FAIL" else "dim"))
+    cells.append(src(SRC["repo"]+"/blob/main/data/derived/analysis.json","audit"))
     drows.append(cells)
-body += tbl([("ID",0),("Strategy",0)] + [(E(g),"") for g in GATES], drows,
+body += tbl([("ID",0),("Strategy",0)] + [(E(g),"") for g in GATES] + [("Source",0)], drows,
             caption="G2 (n ≥ 200) fails universally. G6 and G7 concern correlation and implementability: G6 is N/A for "
                     "single bets and G7 fails where odds would be required to execute.")
 
@@ -680,8 +697,9 @@ for s in AN["strategies"]:
     for f in s["fold_hit_rates"]:
         r.append(f'{num(f["hit"]*100,1)}<div class="tiny" style="color:var(--dim)">n={f["n"]}</div>')
     r.append(num(s["hit_rate"]*100,1))
+    r.append(src(SRC["schedule"],"NFL.com"))
     frows.append(r)
-body += tbl([("ID",0)] + [(f'W{f["week"]}',1) for f in AN["strategies"][0]["fold_hit_rates"]] + [("Overall",1)], frows,
+body += tbl([("ID",0)] + [(f'W{f["week"]}',1) for f in AN["strategies"][0]["fold_hit_rates"]] + [("Overall",1),("Source",0)], frows,
             caption="Fold hit rates swing wildly — week 9 at 100% next to week 6 at 50% is exactly what a small sample "
                     "looks like, and is the argument for gate G5.")
 
@@ -741,8 +759,9 @@ vrows = []
 for c in VER["checks"]:
     k = STATUS_KIND.get(c["status"], "dim")
     vrows.append([f'<b>{E(c["id"])}</b>', E(c["name"]), b(c["status"], k), b(c["severity"], "bad" if c["severity"]=="hard" else "dim"),
-                  f'<span class="tiny">{E(str(c.get("detail",""))[:180])}</span>'])
-body += tbl([("ID",0),("Check",0),("Status",0),("Severity",0),("Detail",0)], vrows,
+                  f'<span class="tiny">{E(str(c.get("detail",""))[:180])}</span>',
+                  src(SRC["repo"]+"/blob/main/scripts/verify_data.py","verifier")])
+body += tbl([("ID",0),("Check",0),("Status",0),("Severity",0),("Detail",0),("Source",0)], vrows,
             caption=f"{VER['totals']['pass']} of {VER['totals']['checks']} pass. The failing three are soft: derived rates that "
                     f"the source itself publishes inconsistently.")
 
@@ -750,9 +769,10 @@ body += """
 <h2 style="margin-top:34px">Personnel checks</h2>
 <p class="sub">These guard the injury-to-depth-chart join, where a wrong answer looks right.</p>"""
 prow = [[f'<b>{E(c["id"])}</b>', E(c["name"]), b(c["status"], STATUS_KIND.get(c["status"],"dim")),
-         f'<span class="tiny">{E(str(c.get("detail",""))[:140])}</span>']
+         f'<span class="tiny">{E(str(c.get("detail",""))[:140])}</span>',
+         src(SRC["repo"]+"/blob/main/scripts/verify_personnel.py","verifier")]
         for c in PER["meta"]["personnel_verification"]]
-body += tbl([("ID",0),("Check",0),("Status",0),("Detail",0)], prow)
+body += tbl([("ID",0),("Check",0),("Status",0),("Detail",0),("Source",0)], prow)
 
 body += f"""
 <h2 style="margin-top:34px">The model, stated plainly</h2>
@@ -850,31 +870,34 @@ body += f"""
 <h2 style="margin-top:34px">Sources that were tried and rejected</h2>
 <p class="sub">Recorded so nobody repeats the attempt.</p>"""
 rej = [
- ["nfl.com/teams/&lt;club&gt;/depth-chart/","404 — NFL.com does not host club depth charts","Use the club's own site: &lt;club&gt;.com/team/depth-chart"],
- ["nfl.com/stats/team-stats/offense/points/2026/reg/","404 — wrong route","Use /offense/scoring/2026/reg/all"],
- ["operations.nfl.com/football-ops/league-media-injury-report/","404 — the policy page has moved","Use the 2026 rulebook for roster rules; injury-reporting mechanics cited from the published report itself"],
- ["nfl.com/injuries/ (as the sole injury source)","Renders without Injury and Game Status columns","Cross-read the per-week news article and the club injury pages"],
- ["nfl.com/stats/player-stats/category/rushing/2026/reg/all","Header-less; column order unprovable — every identity fails","Withheld (FL-08); needs per-player pages instead (suggestion P-01)"],
- ["nfl.com/stats/team-stats/offense/scoring/2026/reg/all","Header-less; no identity holds for columns 3–4","Withheld (FL-04)"],
+ ["nfl.com/teams/&lt;club&gt;/depth-chart/","404 — NFL.com does not host club depth charts","Use the club's own site: &lt;club&gt;.com/team/depth-chart", src("https://www.patriots.com/team/depth-chart","example")],
+ ["nfl.com/stats/team-stats/offense/points/2026/reg/","404 — wrong route","Use /offense/scoring/2026/reg/all", src("https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all","NFL.com")],
+ ["operations.nfl.com/football-ops/league-media-injury-report/","404 — the policy page has moved","Use the 2026 rulebook for roster rules; injury-reporting mechanics cited from the published report itself", src(SRC["rulebook"],"Rulebook")],
+ ["nfl.com/injuries/ (as the sole injury source)","Renders without Injury and Game Status columns","Cross-read the per-week news article and the club injury pages", src("https://www.nfl.com/injuries/league/2026/REG10","REG10")],
+ ["nfl.com/stats/player-stats/category/rushing/2026/reg/all","Header-less; column order unprovable — every identity fails","Withheld (FL-08); needs per-player pages instead (suggestion P-01)", src("https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all","NFL.com")],
+ ["nfl.com/stats/team-stats/offense/scoring/2026/reg/all","Header-less; no identity holds for columns 3–4","Withheld (FL-04)", src("https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all","NFL.com")],
 ]
-body += tbl([("Source",0),("What went wrong",0),("What replaced it",0)], rej)
+body += tbl([("Source",0),("What went wrong",0),("What replaced it",0),("Verify",0)], rej)
 body += f"""
 <h2 style="margin-top:34px">Data files produced</h2>
 <p class="sub">Each file is committed and is the single source of truth for the pages built from it.</p>"""
 files = [
- ["<code>data/games_2026.json</code>","136 game rows, weeks 1–9, each with date, venue type and source URL"],
- ["<code>data/standings_raw.json</code>","32 clubs, published standings verbatim, unidentifiable columns omitted"],
- ["<code>data/team_stats.json</code>","32 clubs × 4 stat families, with the withheld scoring tables recorded in meta"],
- ["<code>data/player_verified.json</code>","8 passing lines proven by exact equality with club team lines"],
- ["<code>data/injuries_week10.json</code>","254 player rows across all 14 Week 10 games"],
- ["<code>data/depth_charts.json</code>","4 club depth charts, transcribed and normalised"],
- ["<code>data/questions.json</code>",f"{len(Q['questions'])} questions, with answer status and discovery path"],
- ["<code>data/suggestions.json</code>",f"{len(SUG['suggestions'])} proposals, none implemented"],
- ["<code>data/derived/verification_report.json</code>",f"{VER['totals']['checks']} checks, generated by the verifier"],
- ["<code>data/derived/personnel.json</code>","The injury × depth-chart join plus 9 integrity checks"],
- ["<code>data/derived/analysis.json</code>","Power ratings, correlations, backtests, gates, model lines"],
+ ["<code>data/games_2026.json</code>","136 game rows, weeks 1–9, each with date, venue type and source URL", src(SRC["repo"]+"/blob/main/data/games_2026.json","GitHub")],
+ ["<code>data/standings_raw.json</code>","32 clubs, published standings verbatim, unidentifiable columns omitted", src(SRC["repo"]+"/blob/main/data/standings_raw.json","GitHub")],
+ ["<code>data/team_stats.json</code>","32 clubs × 4 stat families, with the withheld scoring tables recorded in meta", src(SRC["repo"]+"/blob/main/data/team_stats.json","GitHub")],
+ ["<code>data/player_verified.json</code>","8 passing lines proven by exact equality with club team lines", src(SRC["repo"]+"/blob/main/data/player_verified.json","GitHub")],
+ ["<code>data/injuries_week10.json</code>","254 player rows across all 14 Week 10 games", src(SRC["repo"]+"/blob/main/data/injuries_week10.json","GitHub")],
+ ["<code>data/depth_charts.json</code>","4 club depth charts, transcribed and normalised", src(SRC["repo"]+"/blob/main/data/depth_charts.json","GitHub")],
+ ["<code>data/depth-charts-2026.json</code>","12 official club depth charts &amp; 18 1st–4th string deficiency cascades", src(SRC["repo"]+"/blob/main/data/depth-charts-2026.json","GitHub")],
+ ["<code>data/correlations-2026.json</code>","14 verified 2026 team correlations (n=32), SGP blank register &amp; luck residuals", src(SRC["repo"]+"/blob/main/data/correlations-2026.json","GitHub")],
+ ["<code>data/nfl-rules-operations-2026.json</code>","8 verified 2026 NFL Rulebook &amp; Operations anchors", src(SRC["repo"]+"/blob/main/data/nfl-rules-operations-2026.json","GitHub")],
+ ["<code>data/questions.json</code>",f"{len(Q['questions'])} questions, with answer status and discovery path", src(SRC["repo"]+"/blob/main/data/questions.json","GitHub")],
+ ["<code>data/suggestions.json</code>",f"{len(SUG['suggestions'])} proposals, none implemented", src(SRC["repo"]+"/blob/main/data/suggestions.json","GitHub")],
+ ["<code>data/derived/verification_report.json</code>",f"{VER['totals']['checks']} checks, generated by the verifier", src(SRC["repo"]+"/blob/main/data/derived/verification_report.json","GitHub")],
+ ["<code>data/derived/personnel.json</code>","The injury × depth-chart join plus 9 integrity checks", src(SRC["repo"]+"/blob/main/data/derived/personnel.json","GitHub")],
+ ["<code>data/derived/analysis.json</code>","Power ratings, correlations, backtests, gates, model lines", src(SRC["repo"]+"/blob/main/data/derived/analysis.json","GitHub")],
 ]
-body += tbl([("File",0),("Contents",0)], files)
+body += tbl([("File",0),("Contents",0),("Source",0)], files)
 body += "</div></section>"
 PAGES["sources.html"] = ("Data Sources", body, "The complete register of official NFL sources used, and the ones rejected.")
 
@@ -910,7 +933,7 @@ for cat in ["Data integrity","Rules","Injuries","Model","Player stats","Player p
           f'<b>{E(q["id"])}</b>',
           f'<b>{E(q["question"])}</b><div class="tiny" style="color:var(--dim);margin-top:4px">{ans}</div>',
           b(q["status"], STATUS_KIND.get(q["status"],"dim")),
-          (src(q["source"], "source") if q["source"] else '<span class="blank">none exists</span>'),
+          (src(q["source"], "source") if q["source"] else f'<span class="blank">none exists</span> · {src(SRC["repo"]+"/blob/main/data/questions.json","register")}'),
           f'<span class="tiny">{E(q["discovery"])}</span>',
           f'<span class="tiny" style="color:var(--dim)">{E(q["evidence"])}</span>',
         ])
@@ -937,8 +960,9 @@ for s in SUG["suggestions"]:
       b(s["status"], STATUS_KIND.get(s["status"],"dim")),
       E(s["effort"]), E(s["impact"]),
       f'<span class="tiny"><b>Validated by:</b> {E(s["validation"])}<br><b>Risk:</b> {E(s["risk"])}<br><b>Unlocks:</b> {E(s["unlocks"])}</span>',
+      src(SRC["repo"]+"/blob/main/data/suggestions.json","register"),
     ])
-body += tbl([("ID",0),("Suggestion",0),("Status",0),("Effort",0),("Impact",0),("Validation, risk, payoff",0)], rows,
+body += tbl([("ID",0),("Suggestion",0),("Status",0),("Effort",0),("Impact",0),("Validation, risk, payoff",0),("Source",0)], rows,
             caption="Sorted by priority. Effort and impact are the author's judgement and are labelled as such, not measured.")
 
 body += """
@@ -962,39 +986,58 @@ IRR = [
  ("IR-01","Low","Depth charts are unofficial by construction",
   "Every club publishes its depth chart explicitly labelled 'unofficial'. It is the organisation's own working document.",
   "The site says so wherever a depth slot is used. Starter status should be read as the club's own current opinion.",
-  "No fix available. This is inherent to the only official source of depth information."),
- ("IR-02","Medium","Only 4 of 32 club depth charts are transcribed",
-  "Kansas City, Green Bay, New England and Detroit. The other 28 are blank rather than guessed.",
-  "The deficiency table shows a chart status per club; 203 of 254 injury rows are depth-unmapped and labelled that way.",
-  "Suggestion P-02: transcribe the remaining 28 from each club's own site and re-run the personnel checks."),
+  "No fix available. This is inherent to the only official source of depth information.",
+  "https://www.patriots.com/team/depth-chart"),
+ ("IR-02","Medium","Only 4 of 32 club depth charts are joined in personnel.json (12 charted on 1st–4th String page)",
+  "Kansas City, Green Bay, New England and Detroit in personnel.json; expanded to 12 clubs on depth-deficiencies.html. Remaining clubs stay blank rather than guessed.",
+  "The deficiency table shows a chart status per club; unmapped clubs are labelled explicitly.",
+  "Suggestion P-02: transcribe the remaining clubs from each club's own site and re-run the personnel checks.",
+  "https://www.detroitlions.com/team/depth-chart"),
  ("IR-03","Low","Standings table has unidentifiable columns",
   "The league standings render 16 data columns; the page legend names only 12.",
   "Home, road and streak columns were proven by re-deriving them from the game log. Every other unlabelled column is omitted.",
-  "Would need the league's own column definitions, which are not published."),
+  "Would need the league's own column definitions, which are not published.",
+  SRC["standings"]),
  ("IR-04","High","Home-field advantage is not detectable, and the pooled figure is misleading",
   "Pooled over all 136 games the mean home margin is +0.00 pts and home clubs are 67-68-1, which looks like home-field has vanished. Seven games were at neutral sites with no true home club.",
   "The estimate is restricted to the 129 genuine home games: +0.50 pts, 95% CI [-1.80, +2.79], win rate .5155. The conventional +2.5 prior is INSIDE that interval, so 2026 cannot reject it. The model uses +0.50 and the site states the uncertainty.",
-  "Suggestion P-05: add 2023–2025 so the estimate has enough games to settle the question."),
+  "Suggestion P-05: add 2023–2025 so the estimate has enough games to settle the question.",
+  SRC["schedule"]),
  ("IR-05","Medium","Two official total-offence figures disagree by 70 yards",
   "Kansas City's club page reports 3,069 total offensive yards while the official team-stat components sum to 2,037 + 1,102 = 3,139.",
   "Both values are published side by side and the discrepancy is stated. Nothing is reconciled by assumption.",
-  "Suggestion P-04: check whether the gap is systematic across all 32 clubs or a one-club typo."),
+  "Suggestion P-04: check whether the gap is systematic across all 32 clubs or a one-club typo.",
+  "https://www.nfl.com/teams/kansas-city-chiefs/stats"),
  ("IR-06","Low","A published completion percentage does not recompute",
   "Washington's completion percentage computes to 61.7 from 164 of 266 but is published as 61.6.",
   "The published value is shown; the recomputation is shown next to it so the disagreement is visible.",
-  "Rounding convention in the source. Not resolvable without the league's formula."),
+  "Rounding convention in the source. Not resolvable without the league's formula.",
+  SRC["ts_off_pass"]),
  ("IR-07","Medium","Yards per attempt disagrees for four clubs",
   "Kansas City, Jacksonville, Seattle and Pittsburgh disagree with every candidate denominator tested: (YDS+SACK_YDS)/(ATT+SACKS) fails for 22 of 32 clubs; YDS/(ATT+SACKS) fails for all 32.",
   "Published values are transcribed as published, and the fact that they do not recompute is stated rather than hidden.",
-  "Needs the league's official YPA definition."),
+  "Needs the league's official YPA definition.",
+  SRC["ts_off_pass"]),
  ("IR-08","High","Rushing and receiving leaderboards are unusable",
   "Both render without a header row. No arithmetic identity identifies the columns: published yards-per-carry disagrees with yards divided by carries for every sampled row (Bijan Robinson 5.2 vs 5.0, Kenneth Walker 5.5 vs 7.0, Jahmyr Gibbs 4.8 vs 9.0), and yards-per-reception and yards-per-game fail identically.",
   "Both leaderboards are withheld entirely. Only 8 passing lines that pass an exact 15-value equality test against their club's team passing line are published.",
-  "Suggestion P-01: use per-player pages with labelled headers instead of the leaderboard."),
+  "Suggestion P-01: use per-player pages with labelled headers instead of the leaderboard.",
+  "https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all"),
  ("IR-09","Medium","No official odds source exists",
   "No NFL.com property publishes spreads, totals, moneylines or player-prop prices.",
   "No market comparison, no ROI, no closing-line value. The site reports hit rate and Brier skill only, and says why.",
-  "Suggestion P-06, and it stays deferred until a legitimate timestamped source exists."),
+  "Suggestion P-06, and it stays deferred until a legitimate timestamped source exists.",
+  SRC["coord"]),
+ ("RA-05","High","Official REG10 injury report omits IR & pre-practice ruled-out QBs",
+  "nfl.com/injuries/league/2026/REG10 prints 'No Injuries Reported' for SEA, CIN, LAC, and BAL at snapshot time — yet official NFL.com news confirms SEA QB1 Sam Darnold is ruled out, CIN S Kyle Dugger was DNP Wednesday, and BAL QB1 Lamar Jackson + QB2 Tyler Huntley are on Injured Reserve.",
+  "Cross-joined REG10 with official NFL.com IR/starter announcements on depth-deficiencies.html so 'No Injuries Reported' is never misread as 'healthy'.",
+  "Always join weekly active-roster practice reports with official NFL Reserve/Injured transaction logs.",
+  "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again"),
+ ("RA-06","Medium","Official club depth charts exhibit roster lag & blank cells",
+  "Line-by-line review of official club depth charts caught retired DE Aaron Donald still listed on therams.com, a blank Kicker row on miamidolphins.com, OUT C Lucas Patrick omitted on commanders.com, and Questionable LB Malik Harrison omitted on giants.com.",
+  "Published verbatim with explicit club-lag warnings on depth-deficiencies.html and repo-audit.html.",
+  "Verify every club depth-chart slot against 53-man active roster and 90-minute pre-kickoff Inactive Lists.",
+  "https://www.therams.com/team/depth-chart"),
 ]
 body = pagehead("Flagged for Review","Every irregularity and unverified value, published rather than buried",
   f"""Nothing on this site is silently dropped. Where the data is inconsistent, incomplete, or simply not
@@ -1006,11 +1049,11 @@ body += ('<div class="note bad"><p><b>This page is part of the deliverable, not 
          'are the difference between those two.</p></div>')
 
 rows = []
-for iid, sev, title, what, does, fix in IRR:
+for iid, sev, title, what, does, fix, s_url in IRR:
     kind = {"High":"bad","Medium":"warn","Low":"dim"}[sev]
     rows.append([f'<b>{E(iid)}</b>', b(sev, kind), f'<b>{E(title)}</b><div class="tiny" style="color:var(--dim);margin-top:4px">{E(what)}</div>',
-                 f'<span class="tiny">{E(does)}</span>', f'<span class="tiny">{E(fix)}</span>'])
-body += tbl([("ID",0),("Severity",0),("Irregularity",0),("What the site does",0),("What would fix it",0)], rows,
+                 f'<span class="tiny">{E(does)}</span>', f'<span class="tiny">{E(fix)}</span>', src(s_url, "source")])
+body += tbl([("ID",0),("Severity",0),("Irregularity",0),("What the site does",0),("What would fix it",0),("Source",0)], rows,
             caption="Severity High = a reader could reach a wrong conclusion if this were hidden. Medium = a value is missing or contested. Low = a labelling or convention difference.")
 
 body += """
@@ -1018,30 +1061,31 @@ body += """
 <p class="sub">These exist in the source and are deliberately not published, because publishing them would require
 guessing what their columns mean.</p>"""
 withheld = [
- ["Team scoring — offence","4 header-less columns; no identity holds for columns 3–4 (SF 12+17=29 but published 31; TB 11+6=17 vs 19; ATL 9+11=20 vs 21; DEN 9+11=20 vs 21), and the defensive identity fails for CIN","IR-05 / FL-04","Not published"],
- ["Team scoring — defence","Same page family; CIN 1+1+0=2 but the published total column is 0","IR-05 / FL-04","Not published"],
- ["Rushing leaderboard","9 header-less columns; YDS/CAR and YDS/game fail for all 25 sampled rows under every candidate ordering","IR-08 / FL-08","Not published"],
- ["Receiving leaderboard","11 header-less columns; YDS/REC and YDS/game fail identically","IR-08 / FL-08","Not published"],
- ["Per-game player box scores","Not obtainable in this environment — NFL.com does not expose them on the fetched pages, so player-vs-team dependence cannot be measured","FL-09","Not published"],
+ ["Team scoring — offence","4 header-less columns; no identity holds for columns 3–4 (SF 12+17=29 but published 31; TB 11+6=17 vs 19; ATL 9+11=20 vs 21; DEN 9+11=20 vs 21), and the defensive identity fails for CIN","IR-05 / FL-04","Not published","https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all"],
+ ["Team scoring — defence","Same page family; CIN 1+1+0=2 but the published total column is 0","IR-05 / FL-04","Not published","https://www.nfl.com/stats/team-stats/defense/scoring/2026/reg/all"],
+ ["Rushing leaderboard","9 header-less columns; YDS/CAR and YDS/game fail for all 25 sampled rows under every candidate ordering","IR-08 / FL-08","Not published","https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all"],
+ ["Receiving leaderboard","11 header-less columns; YDS/REC and YDS/game fail identically","IR-08 / FL-08","Not published","https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all"],
+ ["Per-game player box scores","Not obtainable in this environment — NFL.com does not expose them on the fetched pages, so player-vs-team dependence cannot be measured","FL-09","Not published",SRC["coord"]],
 ]
-body += tbl([("Dataset",0),("Why it is withheld",0),("Ref",0),("Status",0)],
-            [[f'<b>{E(a)}</b>', E(why), E(ref), b(stat,"warn")] for a, why, ref, stat in withheld])
+body += tbl([("Dataset",0),("Why it is withheld",0),("Ref",0),("Status",0),("Source",0)],
+            [[f'<b>{E(a)}</b>', E(why), E(ref), b(stat,"warn"), src(u,"source")] for a, why, ref, stat, u in withheld])
 
 body += """
 <h2 style="margin-top:34px">Unverified values, by page</h2>
 <p class="sub">Where a table cell is blank, this is what the blank means.</p>"""
 uv = [
- ["Injuries & Depth","Depth position for 28 of 32 clubs","No transcribed depth chart","Blank"],
- ["Injuries & Depth","Game status for 243 of 254 rows","The report prints 'UNSPECIFIED' until later in the week","Blank, flagged"],
- ["Injuries & Depth","Injury description where the report prints none","Source states no injury for that player","Blank"],
- ["Team Stats","Scoring tables","Column meaning unprovable","Withheld"],
- ["Analysis","Rushing / receiving player leaders","Column order unprovable","Withheld"],
- ["Strategies","ROI, profit, CLV","No official odds source","Not reported at all"],
- ["Strategies","Player-prop correlations","No per-game box scores","Not reported at all"],
- ["Standings","Columns 10–14 and 16","Unidentifiable from the page","Omitted"],
+ ["Injuries & Depth","Depth position for unmapped clubs","No transcribed depth chart","Blank","https://www.nfl.com/injuries/league/2026/REG10"],
+ ["1st–4th String","Snap-adjusted EPA / point drop for backup strings","No official NFL source converts depth slots into spread points","Blank, flagged","https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language"],
+ ["Injuries & Depth","Game status for 243 of 254 rows","The report prints 'UNSPECIFIED' until later in the week","Blank, flagged","https://www.nfl.com/injuries/league/2026/REG10"],
+ ["Injuries & Depth","Injury description where the report prints none","Source states no injury for that player","Blank","https://www.nfl.com/injuries/league/2026/REG10"],
+ ["Team Stats","Scoring tables","Column meaning unprovable","Withheld","https://www.nfl.com/stats/team-stats/offense/scoring/2026/reg/all"],
+ ["Analysis","Rushing / receiving player leaders","Column order unprovable","Withheld","https://www.nfl.com/stats/player-stats/category/rushing/2026/reg/all"],
+ ["Strategies","ROI, profit, CLV","No official odds source","Not reported at all",SRC["coord"]],
+ ["Correlations & Strategies","Same-Game Parlay & player-prop play-level correlations (U-C01…U-C06)","No per-game play-by-play box scores","Blank, flagged",SRC["coord"]],
+ ["Standings","Columns 10–14 and 16","Unidentifiable from the page","Omitted",SRC["standings"]],
 ]
-body += tbl([("Page",0),("Value",0),("Why it is not there",0),("How it appears",0)],
-            [[E(a), E(vv), E(why), b(st,"dim")] for a, vv, why, st in uv])
+body += tbl([("Page",0),("Value",0),("Why it is not there",0),("How it appears",0),("Source",0)],
+            [[E(a), E(vv), E(why), b(st,"dim"), src(u,"source")] for a, vv, why, st, u in uv])
 
 body += f"""
 <h2 style="margin-top:34px">What is NOT flagged, because it passed</h2>

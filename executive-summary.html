@@ -1,65 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Executive Summary — NFL2</title>
-<meta name="description" content="Executive summary of verified 2026 NFL data, the originated-lines system, and what must be decided next.">
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive Summary · NFL 2026 Analytics</title>
+<meta name="description" content="Executive summary of verified 2026 NFL data, line origination, gated strategy leaderboard, depth-chart tracking, and next decisions.">
 <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
+</head><body>
 <header class="top"><div class="wrap">
-  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Executive summary</span><span class="tag">2026-11-12</span></div>
-  <nav class="main" aria-label="Main">
-    <a href="index.html">Dashboard</a><a class="active" href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
-  </nav>
+<a class="brand" href="index.html"><span class="dot"></span>NFL 2026 · Verified Analytics</a>
+<nav class="main"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current="page">Exec Summary</a><a href="results.html">Results</a><a href="schedule.html">Week 11</a><a href="standings.html">Standings</a><a href="teams.html">Team Stats</a><a href="injuries.html">Injuries</a><a href="depth-deficiencies.html">1st–4th String</a><a href="lines-lab.html">Lines Lab</a><a href="analysis.html">Analysis</a><a href="correlations.html">Correlations</a><a href="strategies.html">Strategies</a><a href="method.html">Method</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Questions</a><a href="repo-audit.html">Repo Audit</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a></nav>
 </div></header>
-<main><div class="wrap">
-  <h1>Executive Summary</h1>
-  <p class="lead">What we know (verified), what we can build (model), and what we must decide before spending effort. One page, no new numbers — everything below links to its detail page.</p>
+<div class="pagehead"><div class="wrap"><span class="eyebrow">Executive Summary</span><h1>Project architecture, verified 2026 findings &amp; decision blockers</h1><p>One-page synthesis of what is verified from official NFL sources, what our deterministic models show, what is flagged for review, and which path a reviewer should approve next.</p></div></div>
+<section><div class="wrap">
 
-  <h2>1 · Where the league stands (verified 2026-11-12)</h2>
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Fact</th><th>Value</th><th>Detail</th></tr></thead>
-    <tbody>
-      <tr><td>League leaders</td><td>BUF 7-1 (.875) in AFC; SF 7-1 (.875) in NFC</td><td><a href="standings.html">Standings</a> · <a href="https://www.nfl.com/standings/division/2026/reg">NFL.com</a></td></tr>
-      <tr><td>Strongest point differential</td><td>JAX +108 (229 PF / 121 PA) — best net in the league on this snapshot</td><td><a href="standings.html">Standings</a></td></tr>
-      <tr><td>Winless</td><td>LAC 0-8 (.000), net −98</td><td><a href="standings.html">Standings</a></td></tr>
-      <tr><td>Next slate</td><td>Week 11: 13 games, Thu Nov 19 – Mon Nov 23; 6 byes (ATL, CLE, GB, LAR, NE, SEA)</td><td><a href="schedule.html">Schedule</a> · <a href="https://www.nfl.com/news/week-11-schedule-change">NFL.com</a></td></tr>
-      <tr><td>Week 10 injuries (summary)</td><td>5 OUT (WAS ×2, NE ×3) + 1 Questionable (NYG ×1). Other 12 games: no designation in summary — unverified, check full report.</td><td><a href="injuries.html">Injuries</a> · <a href="https://www.nfl.com/news/nfl-week-10-injury-report-2026-season">NFL.com</a></td></tr>
-      <tr><td>Rules anchor</td><td>TD 6 · FG 3 · Safety 2 · Try 1/2 (NFL Official Playing Rules)</td><td><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf">Rules PDF</a></td></tr>
-    </tbody>
-  </table></div>
+<div class="grid g4">
+  <div class="card"><div class="big">136</div><p>Verified Weeks 1–9 games reproducing all 32 clubs’ W-L-T, PF, PA &amp; streaks</p></div>
+  <div class="card"><div class="big">8 / 8</div><p>Exact league-wide offense = defense yardage &amp; TD conservation identities</p></div>
+  <div class="card"><div class="big">18</div><p>Verified 1st→2nd→3rd→4th string offense &amp; defense replacement cascades</p></div>
+  <div class="card"><div class="big">0 / 6</div><p>Strategies promoted (all 6 honestly held back by the n ≥ 200 gate)</p></div>
+</div>
 
-  <h2>2 · The system we are building</h2>
-  <ul>
-    <li><strong>Verified data layer</strong> — standings, schedule, injuries transcribed from NFL.com with per-row source links (<a href="standings.html">Standings</a>, <a href="schedule.html">Schedule</a>, <a href="injuries.html">Injuries</a>). Anything unverified stays blank and flagged.</li>
-    <li><strong>Lines Lab</strong> — originate your own fair spread/total/moneyline from verified inputs with fully shown math (<a href="lines-lab.html">Lines Lab</a>). Baseline v0 is live; opponent-adjusted v1+ is the next build.</li>
-    <li><strong>Strategy Leaderboard</strong> — single bets, parlays, and prop combos compete under validation gates G1–G7 (pre-registration, sample size, out-of-sample, CLV, ROI with CI, correlation, stability) so luck cannot rank (<a href="strategies.html">Leaderboard</a>). No results claimed yet.</li>
-    <li><strong>Injury &amp; depth tracker</strong> — starter-out → replacement → deficiency signal, filled only from official reports + team depth charts (<a href="injuries.html">Injuries</a>). Depth charts are the current bottleneck (F-03).</li>
-  </ul>
+<h2 style="margin-top:30px">1 · Verified 2026 League Snapshot (As of 2026-11-12 UTC)</h2>
+<div class="tblwrap"><table>
+  <thead><tr><th>Domain</th><th>Verified Finding</th><th>Detail Page</th><th>Official Source</th></tr></thead>
+  <tbody>
+    <tr><td><b>Conference leaders</b></td><td>Buffalo Bills 7–1 (.875) in AFC; San Francisco 49ers 7–1 (.875) in NFC</td><td><a href="standings.html">Standings</a></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">NFL.com ↗</a></td></tr>
+    <tr><td><b>Point differential extremes</b></td><td>Jacksonville Jaguars +108 (229 PF / 121 PA) leads NFL; LA Chargers 0–8 (−98 net)</td><td><a href="standings.html">Standings</a></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">NFL.com ↗</a></td></tr>
+    <tr><td><b>Home-field advantage (2026)</b></td><td>Pooled 136-game mean is +0.00 pts (diluted by 7 neutral-site games); 129 true-home mean is <b>+0.50 pts</b> (95% CI [−1.80, +2.79])</td><td><a href="analysis.html">Analysis</a></td><td class="src"><a href="https://www.nfl.com/schedules/2026/REG/" target="_blank" rel="noopener">NFL.com ↗</a></td></tr>
+    <tr><td><b>Skill vs. noise correlations</b></td><td>Def Passer Rating Allowed vs. PA/G (<b>r = +0.815</b>) &amp; Off Passer Rating vs. PF/G (<b>r = +0.750</b>) dominate; Team Rush YPC vs. PF/G is noise (<b>r = +0.017</b>)</td><td><a href="correlations.html">Correlations</a></td><td class="src"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com ↗</a></td></tr>
+    <tr><td><b>Week 10 injuries &amp; string cascades</b></td><td>254 official REG10 player rows; critical QB/OL/CB cascades at BAL (QB3), MIA (QB2), SEA (QB2), NE (LG1+LG2, RB1+RB2, CB1), SF (3 starting DBs), DAL &amp; AZ</td><td><a href="depth-deficiencies.html">1st–4th String</a></td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">NFL.com REG10 ↗</a></td></tr>
+    <tr><td><b>Week 11 slate &amp; flex changes</b></td><td>13 games (Thu Nov 19 – Mon Nov 23) including MIN vs SF in Mexico City; 6 byes (ATL, CLE, GB, LAR, NE, SEA)</td><td><a href="schedule.html">Week 11</a></td><td class="src"><a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr>
+    <tr><td><b>2026 Rulebook &amp; roster anchors</b></td><td>TD 6 / FG 3 / Safety 2 / Try 1–2; modified 2026 kickoff setup/50-yd touchback &amp; anytime onside kick; 48 active requires ≥8 OL</td><td><a href="depth-deficiencies.html">Rules Table</a></td><td class="src"><a href="https://operations.nfl.com/rules-officiating/2026-nfl-rulebook" target="_blank" rel="noopener">Operations.nfl.com ↗</a></td></tr>
+  </tbody>
+</table></div>
 
-  <h2>3 · What we do NOT know yet (decision blockers)</h2>
-  <ul>
-    <li><strong>Play-by-play / EPA data</strong> — needed for v2 ratings and real backtests (Q-04, Q-05).</li>
-    <li><strong>Historical odds (open + close)</strong> — needed for CLV and ROI; without them the leaderboard cannot run (Q-05).</li>
-    <li><strong>Official depth charts</strong> — needed to quantify backup deficiencies (Q-07, F-03).</li>
-    <li><strong>Market-line capture method</strong> — which licensed books, timestamps, and storage for “market vs your fair” comparisons (Q-06).</li>
-  </ul>
-  <p>Full register: <a href="questions.html">Questions &amp; Gaps</a>. Proposed next builds ranked by impact: <a href="suggestions.html">Suggestions Board</a>.</p>
+<h2 style="margin-top:34px">2 · System Architecture &amp; Decision Governance</h2>
+<div class="grid g2" style="margin-top:14px">
+  <div class="card"><h3>Line Origination &amp; Skill Separation</h3><p><a href="lines-lab.html">Lines Lab</a> and <a href="analysis.html">Analysis</a> originate transparent MODEL spreads, totals, and win probabilities from verified scoring &amp; efficiency inputs while stripping out one-score/turnover luck (<a href="correlations.html">Luck Residuals</a>).</p></div>
+  <div class="card"><h3>Gated Strategy Leaderboard</h3><p><a href="strategies.html">Strategies</a> evaluates single bets, parlays, and prop combos under 7 strict gates (walk-forward out-of-sample, n ≥ 200, Brier skill, copula correlation check, fold stability). Reward status remains UNPAID while n &lt; 200.</p></div>
+  <div class="card"><h3>1st–4th String Deficiency Tracker</h3><p><a href="injuries.html">Injuries</a> and <a href="depth-deficiencies.html">1st–4th String</a> join active practice reports with IR transactions and official club depth charts on both offense and defense.</p></div>
+  <div class="card"><h3>Suggestions &amp; Information-Gap Registers</h3><p><a href="suggestions.html">Suggestions</a> presents 12 reviewable upgrade proposals with effort/impact/risk trade-offs; <a href="questions.html">Questions</a> inventories 24 answered, partial, open, and blocked questions.</p></div>
+</div>
 
-  <h2>4 · Recommended path (pick one — see Suggestions Board)</h2>
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Path</th><th>First step</th><th>Unblocks</th></tr></thead>
-    <tbody>
-      <tr><td><strong>A · Data first</strong> (recommended)</td><td>Secure play-by-play + historical odds; build v1 opponent-adjusted ratings</td><td>Real backtests, leaderboard, prop models</td></tr>
-      <tr><td><strong>B · Depth first</strong></td><td>Capture all 32 official depth charts + injury history</td><td>Injury-adjusted lines (v3), deficiency signals</td></tr>
-      <tr><td><strong>C · Market first</strong></td><td>Define licensed-book capture (open/close, timestamps)</td><td>CLV, edge tracking, leaderboard scoring</td></tr>
-    </tbody>
-  </table></div>
-  <div class="note warn"><strong>Risk note:</strong> This project produces models and research, not betting advice. Odds and legality vary by jurisdiction; age limits apply. Never risk money you cannot afford to lose. If gambling is no longer fun, call/text 1-800-GAMBLER (US).</div>
-  <p><a class="btn ghost" href="index.html">← Dashboard</a> <a class="btn" href="suggestions.html">Decide on Suggestions Board →</a></p>
-</div></main>
-<footer><div class="wrap"><p>NFL2 · Executive summary synthesizes verified pages only. <a href="sources.html">Sources</a></p></div></footer>
+<h2 style="margin-top:34px">3 · Recommended Reviewer Decision Paths (Choose Before Implementation)</h2>
+<div class="tblwrap"><table>
+  <thead><tr><th>Path</th><th>First Action</th><th>What It Unblocks</th><th>Governance Link</th></tr></thead>
+  <tbody>
+    <tr><td><b>Path A · Multi-Season + Play-by-Play Data</b> (Recommended)</td><td>Ingest 2023–2025 official game logs &amp; per-game play-by-play box scores</td><td>Clears the n ≥ 200 sample gate (G2), settles HFA CI, and measures play-level SGP/prop correlations</td><td class="src"><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/suggestions.json" target="_blank" rel="noopener">Suggestions JSON ↗</a></td></tr>
+    <tr><td><b>Path B · Full 32-Club Depth Automation</b></td><td>Extend club depth-chart parser from 12 clubs to all 32 clubs + 90-minute pre-kickoff Inactive Lists</td><td>Eliminates club PR chart lag (RA-06) and completes league-wide 1st–4th string coverage</td><td class="src"><a href="https://operations.nfl.com/calendar-events/nfl-free-agency/contract-language" target="_blank" rel="noopener">Operations.nfl.com ↗</a></td></tr>
+    <tr><td><b>Path C · Timestamped Market Capture</b></td><td>Approve licensed open/closing odds snapshot schema with strict UTC timestamps</td><td>Unlocks Closing Line Value (CLV), market edge measurement, and Gate G7 execution checks</td><td class="src"><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/questions.json" target="_blank" rel="noopener">Questions JSON ↗</a></td></tr>
+  </tbody>
+</table></div>
+
+<div class="note warn" style="margin-top:20px"><p><b>Research disclosure:</b> This repository produces transparent statistical models and data verification audits — not betting or financial advice. Full markdown brief also committed at <code>EXECUTIVE_SUMMARY.md</code>.</p></div>
+
+</div></section>
+<footer><div class="wrap">
+<p><b>Every figure on this site is either transcribed from an official NFL source or is explicitly labelled MODEL output.</b>
+Nothing is inferred. Blank cells mean no official source confirms the value — see <a href="flagged.html">Flagged for Review</a>.</p>
+<p>Data through Week 9 results, Week 10 injury reports &amp; Week 11 schedule ·
+<a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a> ·
+<a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md">coordination log</a> ·
+<a href="docs/index.html">parallel docs/ view</a></p>
+</div></footer>
 <script src="assets/app.js"></script>
 </body></html>

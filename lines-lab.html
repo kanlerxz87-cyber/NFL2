@@ -1,84 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lines Lab — Originate Your Own Lines — NFL2</title>
-<meta name="description" content="Transparent methodology for originating fair NFL lines from verified data. Model only, not betting advice.">
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lines Lab · NFL 2026 Analytics</title>
+<meta name="description" content="Transparent methodology and interactive calculator for originating fair NFL spreads, totals, and moneylines from verified data.">
 <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
+</head><body>
 <header class="top"><div class="wrap">
-  <div class="top-inner"><div class="brand">NFL<span>2</span></div><span class="tag">Model only</span><span class="tag">Not betting advice</span></div>
-  <nav class="main" aria-label="Main">
-    <a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="standings.html">Standings</a><a href="schedule.html">Schedule</a><a href="injuries.html">Injuries &amp; Depth</a><a href="teams.html">Teams</a><a class="active" href="lines-lab.html">Lines Lab</a><a href="strategies.html">Strategy Leaderboard</a><a href="suggestions.html">Suggestions Board</a><a href="questions.html">Questions &amp; Gaps</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a>
-  </nav>
+<a class="brand" href="index.html"><span class="dot"></span>NFL 2026 · Verified Analytics</a>
+<nav class="main"><a href="index.html">Overview</a><a href="executive-summary.html">Exec Summary</a><a href="results.html">Results</a><a href="schedule.html">Week 11</a><a href="standings.html">Standings</a><a href="teams.html">Team Stats</a><a href="injuries.html">Injuries</a><a href="depth-deficiencies.html">1st–4th String</a><a href="lines-lab.html" aria-current="page">Lines Lab</a><a href="analysis.html">Analysis</a><a href="correlations.html">Correlations</a><a href="strategies.html">Strategies</a><a href="method.html">Method</a><a href="suggestions.html">Suggestions</a><a href="questions.html">Questions</a><a href="repo-audit.html">Repo Audit</a><a href="flagged.html">Flagged for Review</a><a href="sources.html">Sources</a></nav>
 </div></header>
-<main><div class="wrap">
-  <h1>Lines Lab — Originate Your Own Lines</h1>
-  <p class="lead">A transparent, reproducible way to turn verified team data into <em>your own</em> fair spread, total, and moneyline — so you can compare any market line against your number instead of guessing. <strong>Everything here is a model estimate, not a sportsbook line.</strong></p>
-  <div class="note model"><strong>Model only:</strong> Outputs below are computed live in your browser from the numbers you enter. They are not odds from any sportsbook, not predictions to bet on, and not financial advice. Never stake money on a model output without independent verification and a bankroll plan. See <a href="strategies.html">validation gates</a> before trusting any signal.</div>
+<div class="pagehead"><div class="wrap"><span class="eyebrow">Line Origination Lab</span><h1>Originate your own fair spreads, totals &amp; moneylines</h1><p>Interactive browser calculators plus reproducible Week 11 MODEL fair lines derived from verified 2026 scoring and net yards-per-play efficiency — with market odds columns honestly left blank.</p></div></div>
+<section><div class="wrap">
 
-  <h2>1 · The math (baseline v0 — deliberately simple)</h2>
-  <p>Start from points for/against (verified on <a href="standings.html">Standings</a>). For a home/away pair with <em>g</em> games each:</p>
-  <div class="calc-out">avgFor = PF / g        avgAgainst = PA / g
-projHome = (homeAvgFor + awayAvgAgainst) / 2 + HFA
-projAway = (awayAvgFor + homeAvgAgainst) / 2
-fairSpread (home) = projHome − projAway     (positive = home favoured)
-fairTotal         = projHome + projAway
-P(home win) ≈ Φ( spread / SD )              (Φ = normal CDF; SD ≈ 13.5 pts typical margin SD)
-fair ML from P:  favourite −100·P/(1−P)  ·  underdog +100·(1−P)/P</div>
-  <p class="small">HFA (home-field advantage) defaults to 2.5 pts and is editable — it is a <em>model assumption</em>, not an NFL-published constant. The normal approximation ignores key numbers (3 and 7) and push probabilities; v1 should use an empirical margin distribution. Scoring values used for context: touchdown 6, field goal 3, safety 2, try 1 or 2 — <a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf">NFL Official Playing Rules 2026</a>.</p>
+<div class="note"><p><b>MODEL ONLY — Not a sportsbook line:</b> Every spread, total, and moneyline on this page is computed transparently from verified 2026 NFL.com scoring and yards-per-play statistics. Market Spread, Market Total, and Edge columns are intentionally left <b>blank</b> because no official NFL source publishes betting odds (<a href="flagged.html">IR-09</a>).</p></div>
 
-  <h2>2 · Try it — baseline calculator</h2>
-  <p class="small">Pre-filled example uses verified Week 11 pairing MIN at SF with PF/PA from <a href="standings.html">Standings</a> (SF 235/156, MIN 146/116 over 8 games). Change any input to test another matchup. All inputs are shown; nothing is hidden.</p>
-  <form id="lines-calc">
-    <label for="g">Games played (each team)</label><input id="g" type="number" value="8" min="1" max="17">
-    <label for="hPF">Home PF</label><input id="hPF" type="number" value="235">
-    <label for="hPA">Home PA</label><input id="hPA" type="number" value="156">
-    <label for="aPF">Away PF</label><input id="aPF" type="number" value="146">
-    <label for="aPA">Away PA</label><input id="aPA" type="number" value="116">
-    <label for="hfa">Home-field advantage (pts)</label><input id="hfa" type="number" value="2.5" step="0.1">
-    <label for="sd">Margin SD (pts)</label><input id="sd" type="number" value="13.5" step="0.1">
-    <p><button type="submit">Recompute fair line</button></p>
-  </form>
-  <div id="lines-out" class="calc-out" aria-live="polite"></div>
+<h2 style="margin-top:26px">1 · Origination Formula (v0 Points Baseline &amp; v1 Efficiency-Blended Model)</h2>
+<div class="calc-out">v0 Baseline:   projHome = (homePF/g + awayPA/g)/2 + HFA     projAway = (awayPF/g + homePA/g)/2
+v1 Blended:    70% PF/PA baseline + 30% Net Yards/Play adjustment (r = +0.700 with Net Pts/G)
+True-Home HFA: +0.50 pts (measured across 129 non-neutral 2026 games; 0.00 pts for Mexico City / Munich)
+Win Prob &amp; ML: P(home) = Φ(fairMargin / 13.32)  →  Fair ML = −100·P/(1−P) if P≥0.5 else +100·(1−P)/P</div>
 
-  <h2>3 · From baseline to a real rating system (roadmap)</h2>
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Version</th><th>What changes</th><th>Why</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr><td>v0 — PF/PA average (this page)</td><td>Raw points for/against, no opponent adjustment</td><td>Transparent starting point; every input verifiable on Standings</td><td><span class="pill model">Live above</span></td></tr>
-      <tr><td>v1 — Opponent-adjusted (Elo / power rating)</td><td>Iterative ratings adjusting for schedule strength; home-field + rest + travel</td><td>Raw PF/PA rewards soft schedules (e.g. check SOS on conference standings)</td><td><span class="pill warn">Not built — see Suggestions S-03</span></td></tr>
-      <tr><td>v2 — Play-level efficiency (EPA)</td><td>EPA/play, success rate, red-zone, 3rd-down — opponent-adjusted</td><td>Points alone hide efficiency; EPA is the standard play-value metric</td><td><span class="pill warn">Needs play-by-play data — Q-04</span></td></tr>
-      <tr><td>v3 — Injury &amp; depth adjustment</td><td>Starter→backup deltas from <a href="injuries.html">Injuries tracker</a> (QB/OL/CB weighted highest)</td><td>A backup center or CB moves a line more than a backup WR</td><td><span class="pill warn">Blocked on depth charts — F-03</span></td></tr>
-      <tr><td>v4 — Distribution model</td><td>Empirical margin/total distributions; key-number (3, 7) handling; weather for outdoor games</td><td>Normal approx misprices pushes and key numbers</td><td><span class="pill warn">Not built</span></td></tr>
-    </tbody>
-  </table></div>
+<div class="grid g2" style="margin-top:22px">
+  <div class="card">
+    <h3>Interactive Fair-Line Calculator (MODEL ONLY)</h3>
+    <p>Pre-filled with Week 11 MIN vs. SF (neutral site in Mexico City → set HFA = 0.0; SF 235/156, MIN 146/116 over 8 games).</p>
+    <form id="lines-calc">
+      <label for="g">Games played (each club)</label><input id="g" type="number" value="8" min="1" max="17">
+      <label for="hPF">Home PF</label><input id="hPF" type="number" value="235">
+      <label for="hPA">Home PA</label><input id="hPA" type="number" value="156">
+      <label for="aPF">Away PF</label><input id="aPF" type="number" value="146">
+      <label for="aPA">Away PA</label><input id="aPA" type="number" value="116">
+      <label for="hfa">Home-field advantage (pts; 0.50 true-home, 0.0 neutral)</label><input id="hfa" type="number" value="0.0" step="0.1">
+      <label for="sd">Margin SD (pts; 2026 measured = 13.32)</label><input id="sd" type="number" value="13.32" step="0.01">
+      <p><button type="submit">Recompute fair line</button></p>
+    </form>
+    <div id="lines-out" class="calc-out" aria-live="polite"></div>
+  </div>
 
-  <h2>4 · Originated-lines template (Week 11 — fill from the calculator)</h2>
-  <p class="small">Use this table as your own line sheet. “Your fair line” comes from the calculator above (or v1+ later). “Market line” must be copied from a licensed sportsbook with timestamp and source — never from memory. Edge = your fair − market. Leave blank until both are recorded.</p>
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Game (Week 11)</th><th>Your fair spread</th><th>Market spread</th><th>Edge</th><th>Your fair total</th><th>Market total</th><th>Edge</th><th>Source / time</th></tr></thead>
-    <tbody>
-      <tr><td>IND at HOU</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>MIA at BUF</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>BAL at CAR</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>NO at CHI</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>TEN at DAL</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>TB at DET</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>AZ at KC</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>PIT at PHI</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>NYJ at LAC</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>LV at DEN</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>JAX at NYG</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>MIN at SF (Mexico City)</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-      <tr><td>CIN at WAS</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td><td class="small">—</td></tr>
-    </tbody>
-  </table></div>
-  <div class="note warn"><strong>International / neutral-site warning:</strong> MIN at SF is in Mexico City — do not apply a standard home-field edge. Flagged as <a href="flagged.html">F-05</a>. Similarly, Munich (Week 10 NE vs DET) is neutral-site.</div>
-  <p><a class="btn ghost" href="teams.html">← Teams</a> <a class="btn" href="strategies.html">Next: Strategy Leaderboard →</a></p>
-</div></main>
-<footer><div class="wrap"><p>NFL2 · Model methodology is original to this project. Scoring values: <a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf">NFL Official Playing Rules 2026</a>. Not affiliated with the NFL.</p></div></footer>
+  <div class="card">
+    <h3>Interactive Pearson Correlation Checker</h3>
+    <p>Test any two paired weekly or team series before combining legs in a parlay or prop combo:</p>
+    <form id="corr-calc">
+      <label for="corr-x">Series X (comma or space separated, n ≥ 3)</label>
+      <input id="corr-x" type="text" value="110.2, 108.9, 103.5, 98.4, 84.1, 79.3" style="width:100%">
+      <label for="corr-y">Series Y (equal length)</label>
+      <input id="corr-y" type="text" value="32.0, 29.4, 30.0, 25.3, 18.0, 15.8" style="width:100%">
+      <p><button type="submit">Compute Pearson r</button></p>
+    </form>
+    <div id="corr-out" class="calc-out" aria-live="polite">Enter two paired series and click Compute Pearson r.</div>
+  </div>
+</div>
+
+<h2 style="margin-top:34px">2 · Model Roadmap &amp; Verification Gates</h2>
+<div class="tblwrap"><table>
+  <thead><tr><th>Version</th><th>Specification</th><th>Why It Matters</th><th>Status</th><th>Reference Source</th></tr></thead>
+  <tbody>
+    <tr><td><b>v0 — Raw PF/PA Baseline</b></td><td>Season PF/G &amp; PA/G + HFA</td><td>100% transparent browser sanity check</td><td><span class="b b-ok">Live above</span></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/reg" target="_blank" rel="noopener">NFL.com Standings ↗</a></td></tr>
+    <tr><td><b>v1 — Opponent &amp; Efficiency Adjusted</b></td><td>Opponent-shrunk power ratings (<a href="analysis.html">Analysis</a>) + Net Yds/Play blend (below)</td><td>Removes soft-schedule &amp; turnover-luck distortion</td><td><span class="b b-ok">Live below</span></td><td class="src"><a href="https://www.nfl.com/stats/team-stats/offense/passing/2026/reg/all" target="_blank" rel="noopener">NFL.com Team Stats ↗</a></td></tr>
+    <tr><td><b>v2 — Play-by-Play EPA &amp; Key Numbers</b></td><td>Down-distance EPA + empirical 3/6/7/10 discrete margin push model</td><td>Continuous normal CDF misprices NFL key numbers 3 &amp; 7</td><td><span class="b b-warn">Proposed (Suggestions)</span></td><td class="src"><a href="https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf" target="_blank" rel="noopener">2026 Rules PDF ↗</a></td></tr>
+    <tr><td><b>v3 — 1st–4th String Injury Delta Layer</b></td><td>Positional starter→backup priors gated by <a href="depth-deficiencies.html">1st–4th String</a> cascades</td><td>Captures late-week QB/OL/CB clusters invisible to season averages</td><td><span class="b b-warn"> qualitative active; pts blank</span></td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener">NFL.com REG10 ↗</a></td></tr>
+  </tbody>
+</table></div>
+
+<h2 style="margin-top:34px">3 · Week 11 Originated Fair-Line Sheet (All 13 Games · Market Columns Blank Until Captured)</h2>
+<p class="sub">Generated deterministically by <code>scripts/compute_correlations.py</code>. Note: MIN at SF is played in Mexico City (neutral site → HFA = 0.00 pts).</p>
+<div class="tblwrap"><table>
+  <thead><tr><th>Week 11 Matchup</th><th class="num">Proj Score (Away–Home)</th><th class="num">Model v1 Spread</th><th>Market Spread</th><th class="num">Model v1 Total</th><th>Market Total</th><th class="num">Home Win% (Fair ML)</th><th>Source</th></tr></thead>
+  <tbody><tr><td><b>IND at HOU</b><div class="tiny">Thu, Nov 19 · 8:15 pm ET</div></td><td class="num">19.6 – 30.1</td><td class="num"><b>HOU -10.5</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>49.7</b></td><td><span class="blank">— blank —</span></td><td class="num">78.2% (-358 / +358)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>MIA at BUF</b><div class="tiny">Sun, Nov 22 · 1:00 pm ET</div></td><td class="num">18.1 – 30.8</td><td class="num"><b>BUF -12.8</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>48.9</b></td><td><span class="blank">— blank —</span></td><td class="num">82.8% (-481 / +481)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>BAL at CAR</b><div class="tiny">Sun, Nov 22 · 1:00 pm ET</div></td><td class="num">23.2 – 26.8</td><td class="num"><b>CAR -3.5</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>50.0</b></td><td><span class="blank">— blank —</span></td><td class="num">60.3% (-152 / +152)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>NO at CHI</b><div class="tiny">Sun, Nov 22 · 1:00 pm ET</div></td><td class="num">21.5 – 28.6</td><td class="num"><b>CHI -7.1</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>50.1</b></td><td><span class="blank">— blank —</span></td><td class="num">70.0% (-233 / +233)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>TEN at DAL</b><div class="tiny">Sun, Nov 22 · 1:00 pm ET</div></td><td class="num">21.0 – 28.0</td><td class="num"><b>DAL -7.0</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>49.0</b></td><td><span class="blank">— blank —</span></td><td class="num">69.8% (-231 / +231)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>TB at DET</b><div class="tiny">Sun, Nov 22 · 1:00 pm ET</div></td><td class="num">21.6 – 25.1</td><td class="num"><b>DET -3.5</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>46.6</b></td><td><span class="blank">— blank —</span></td><td class="num">60.2% (-151 / +151)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>AZ at KC</b><div class="tiny">Sun, Nov 22 · 1:00 pm ET</div></td><td class="num">15.6 – 30.0</td><td class="num"><b>KC -14.3</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>45.6</b></td><td><span class="blank">— blank —</span></td><td class="num">85.6% (-594 / +594)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>PIT at PHI</b><div class="tiny">Sun, Nov 22 · 1:00 pm ET</div></td><td class="num">22.4 – 16.1</td><td class="num"><b>PHI +6.3</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>38.6</b></td><td><span class="blank">— blank —</span></td><td class="num">32.1% (+211 / -211)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>NYJ at LAC</b><div class="tiny">Sun, Nov 22 · 4:05 pm ET</div></td><td class="num">23.6 – 19.6</td><td class="num"><b>LAC +3.9</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>43.2</b></td><td><span class="blank">— blank —</span></td><td class="num">38.5% (+160 / -160)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>LV at DEN</b><div class="tiny">Sun, Nov 22 · 4:25 pm ET</div></td><td class="num">22.0 – 26.8</td><td class="num"><b>DEN -4.8</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>48.8</b></td><td><span class="blank">— blank —</span></td><td class="num">63.8% (-176 / +176)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>JAX at NYG</b><div class="tiny">Sun, Nov 22 · 4:25 pm ET</div></td><td class="num">24.3 – 19.7</td><td class="num"><b>NYG +4.5</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>44.0</b></td><td><span class="blank">— blank —</span></td><td class="num">36.8% (+172 / -172)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>MIN at SF</b><div class="tiny">Sun, Nov 22 · 8:20 pm ET</div></td><td class="num">16.6 – 22.7</td><td class="num"><b>SF -6.1</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>39.3</b></td><td><span class="blank">— blank —</span></td><td class="num">67.4% (-207 / +207)</td><td class="src"><span class="b b-warn">Mexico City (HFA=0)</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr><tr><td><b>CIN at WAS</b><div class="tiny">Mon, Nov 23 · 8:15 pm ET</div></td><td class="num">27.6 – 23.7</td><td class="num"><b>WAS +3.9</b></td><td><span class="blank">— blank —</span></td><td class="num"><b>51.3</b></td><td><span class="blank">— blank —</span></td><td class="num">38.6% (+159 / -159)</td><td class="src"><span class="b b-info">Model v1</span> · <a href="https://www.nfl.com/news/week-11-schedule-change" target="_blank" rel="noopener">NFL.com ↗</a></td></tr></tbody>
+</table></div>
+
+</div></section>
+<footer><div class="wrap">
+<p><b>Every figure on this site is either transcribed from an official NFL source or is explicitly labelled MODEL output.</b>
+Nothing is inferred. Blank cells mean no official source confirms the value — see <a href="flagged.html">Flagged for Review</a>.</p>
+<p>Data through Week 9 results, Week 10 injury reports &amp; Week 11 schedule ·
+<a href="https://github.com/kanlerxz87-cyber/NFL2">repository</a> ·
+<a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md">coordination log</a> ·
+<a href="docs/index.html">parallel docs/ view</a></p>
+</div></footer>
 <script src="assets/app.js"></script>
 </body></html>

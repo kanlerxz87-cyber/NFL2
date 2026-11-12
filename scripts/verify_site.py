@@ -17,9 +17,11 @@ The failures this guards against are the ones that make a page look fine and be 
 """
 import os, re, sys, json, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ["index.html","results.html","standings.html","teams.html","injuries.html",
-         "analysis.html","strategies.html","method.html","sources.html",
-         "questions.html","suggestions.html","flagged.html"]
+PAGES = ["index.html","executive-summary.html","results.html","schedule.html",
+         "standings.html","teams.html","injuries.html","depth-deficiencies.html",
+         "lines-lab.html","analysis.html","correlations.html","strategies.html",
+         "method.html","sources.html","questions.html","suggestions.html",
+         "repo-audit.html","flagged.html"]
 # Official NFL club sites are the ONLY place depth charts and club injury pages exist.
 # They are official club properties, not third-party aggregators, so they are allowed
 # by explicit enumeration -- never by pattern (no wildcard, no "any *.com").
@@ -32,9 +34,9 @@ CLUB_OFFICIAL = {
  "www.dallascowboys.com","www.giants.com","www.philadelphiaeagles.com","www.washington.com",
  "www.chicagobears.com","www.lions.com","www.packers.com","www.vikings.com",
  "www.atlantafalcons.com","www.panthers.com","www.neworleanssaints.com","www.buccaneers.com",
- "www.azcardinals.com","www.rams.com","www.49ers.com","www.seahawks.com",
+ "www.azcardinals.com","www.rams.com","www.therams.com","www.49ers.com","www.seahawks.com",
 }
-OFFICIAL_HOSTS = {"www.nfl.com","nfl.com","operations.nfl.com","github.com","kanlerxz87-cyber.github.io"}
+OFFICIAL_HOSTS = {"www.nfl.com","nfl.com","static.www.nfl.com","operations.nfl.com","github.com","kanlerxz87-cyber.github.io"}
 OFFICIAL = ("nfl.com","operations.nfl.com","github.com","kanlerxz87-cyber.github.io")
 
 checks=[]
@@ -47,7 +49,7 @@ for p in PAGES:
     docs[p]=open(fp,encoding="utf-8").read() if os.path.exists(fp) else None
 
 missing=[p for p in PAGES if docs[p] is None]
-add("H0","All 12 pages exist",not missing,f"missing={missing}")
+add("H0",f"All {len(PAGES)} pages exist",not missing,f"missing={missing}")
 
 # H1 structural balance
 bad1=[]

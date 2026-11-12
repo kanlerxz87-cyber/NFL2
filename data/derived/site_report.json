@@ -2,7 +2,7 @@
  "checks": [
   {
    "id": "H0",
-   "name": "All 12 pages exist",
+   "name": "All 18 pages exist",
    "ok": true,
    "detail": "missing=[]"
   },
@@ -77,16 +77,22 @@
  "total": 12,
  "pages": [
   "index.html",
+  "executive-summary.html",
   "results.html",
+  "schedule.html",
   "standings.html",
   "teams.html",
   "injuries.html",
+  "depth-deficiencies.html",
+  "lines-lab.html",
   "analysis.html",
+  "correlations.html",
   "strategies.html",
   "method.html",
   "sources.html",
   "questions.html",
   "suggestions.html",
+  "repo-audit.html",
   "flagged.html"
  ]
 }
