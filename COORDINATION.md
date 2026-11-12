@@ -331,4 +331,15 @@ No files were deleted or overwritten. This is flagged for review rather than hid
 | E5 | Executive Summary & Strategy/Operations Technical Reports | done | e143a7ca | `reports/EXECUTIVE_SUMMARY_E143A7CA.md`, `reports/LINE_ORIGINATION_AND_LEADERBOARD.md`, `datasets/e143a7ca/week11_schedule_verified.json` | Synthesizes 11/11 zero-sum league stats, `CORR-01..12`, Pythagorean luck residuals, 1st–4th string depth chains, and Gates `G1–G7` | None |
 | E6 | Clean Analytical Portal UI (landing + categorized subpages + Flagged for Review table view) | done | e143a7ca | `portal/**`, `engine/build_portal.py` | 10 clean responsive dashboard pages generated deterministically with 100% per-row `https://` official links and strict blank cells | None |
 | E7 | Automated line-by-line source-link, blank-unverified, & broken-link verification suite | done | e143a7ca | `engine/verify_repo_and_site.py`, `datasets/e143a7ca/verification_manifest.json` | PASS: `10/10` portal pages, `24` tables, `326/326` rows with official `https://` sources, `293` strict blank cells, `58` repo HTML pages & `1,677` internal links checked (`0` broken); upstream `tools/verify.py` also PASS | None (`0` broken links) |
-| E8 | Final integration: merge `origin/main`, link shared navigation non-destructively, re-verify all tables/links, PR merge & Pages confirm | in progress | e143a7ca | `index.html`, `README.md`, `COORDINATION.md`, `portal/**` | Claimed — non-destructively linking `/portal/index.html`, running all repo verifiers, opening/merging PR, and confirming live Pages | Pending |
+| E8 | Final integration: merge `origin/main`, link shared navigation non-destructively, re-verify all tables/links, PR merge & Pages confirm | done | e143a7ca | `index.html`, `404.html`, `README.md`, `COORDINATION.md`, `portal/**` | PR **#12** merged (`2719801cfb6e52e472eb269dcf42c9907cbef943`); all 3 repo verifiers PASS (`1,700` internal links across `58` pages, `0` broken); GitHub Pages build `1362201288` `built` and live-fetched | None (`0` broken links; 11 irregularities & 6 blank-metric groups published on `portal/flagged-review.html`) |
+
+### Session `e143a7ca` PR & Live GitHub Pages Deployment Record
+
+- **Pull Request**: **#12** — https://github.com/kanlerxz87-cyber/NFL2/pull/12 (`arena/e143a7ca-nfl2` → `main`)
+- **Merge Result**: `MERGED` at `2026-11-12T05:10:08Z`, merge commit `2719801cfb6e52e472eb269dcf42c9907cbef943` (CI check `Row-level verification, link check and build reproducibility`: **PASS**)
+- **GitHub Pages Build**: `status: "built"`, build ID `1362201288` on commit `2719801cfb6e52e472eb269dcf42c9907cbef943`
+- **Live URLs Confirmed (HTTP 200)**:
+  - Root site: https://kanlerxz87-cyber.github.io/NFL2/
+  - Quantitative Decision Portal (`e143a7ca`): https://kanlerxz87-cyber.github.io/NFL2/portal/index.html
+  - Flagged for Review (`e143a7ca`): https://kanlerxz87-cyber.github.io/NFL2/portal/flagged-review.html
+
