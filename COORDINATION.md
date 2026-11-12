@@ -22,7 +22,7 @@
 | T8 | Injury & depth-chart deficiency tracker | done | 194db560 | `injuries.html` | NFL.com Week 10 injury report article + official injury report pages | Depth-chart (1st/2nd/3rd/4th string) not published by NFL — flagged |
 | T9 | Site build (landing + subpages, clean dashboard UI) | done | 194db560 | `index.html`, `*.html`, `assets/style.css`, `assets/app.js` | — | — |
 | T10 | Final integration: re-verify combined data, link check, Pages deploy | done | 194db560 | All (merge only) | Re-check every table row has a source link | — |
-| T11 | PR to `main`, merge, confirm Pages deploy | in progress | 194db560 | — | Record PR link + merge result below | — |
+| T11 | PR to `main`, merge, confirm Pages deploy | done | 194db560 | — | Record PR link + merge result below | — |
 
 ## Claim log
 
@@ -35,9 +35,10 @@
 
 ## PR & merge record
 
-- PR: (pending)
-- Merge result: (pending)
-- Pages deploy: (pending — Pages currently built from `/` on `main`; will re-confirm after merge)
+- PR: https://github.com/kanlerxz87-cyber/NFL2/pull/1 (merged 2026-11-12T04:32:24Z, merge commit 44fd56d)
+- Merge result: MERGED — main now at 44fd56d (was 01f2271)
+- Pages deploy: BUILT — https://kanlerxz87-cyber.github.io/NFL2/ (source `/` on `main`, status `built` confirmed 2026-11-12)
+- Follow-up: this COORDINATION update via PR #2 (records T11 done on main)
 
 ## Rules reminder (from task brief)
 
