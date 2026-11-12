@@ -162,4 +162,94 @@ for market, a, b in [("both sides -110", -110, -110), ("both sides -115", -115, 
                  "%.2f" % (100 * (s - 1)), "%.4f / %.4f" % (ia / s, ib / s),
                  "a bettor must clear %s%% to break even on this pair" % ("%.2f" % (100 * (1 - 1 / s)))])
 w("computed_vig.csv", hdr, rows)
+
+# ------------------------------------------- measured game-level correlation --
+# Two entries in data/correlation.csv are measurable from data already in this repository: the 136
+# settled results of weeks 1-9 carry both sides' final scores, which is exactly the joint outcome
+# C-07 and C-08 need. These are *scores*, not prices, so what is measured is the correlation between
+# real game outcomes - not between bet settlements, which would need a market archive. The
+# distinction is stated in the read column and in the register row's verification cell.
+def _pearson(x, y):
+    n = len(x)
+    mx, my = sum(x) / n, sum(y) / n
+    sxy = sum((a - mx) * (b - my) for a, b in zip(x, y))
+    sxx = sum((a - mx) ** 2 for a in x)
+    syy = sum((b - my) ** 2 for b in y)
+    return sxy / math.sqrt(sxx * syy)
+
+
+def _fisher(r, n):
+    z = 0.5 * math.log((1 + r) / (1 - r))
+    se = 1.0 / math.sqrt(n - 3)
+    return z - 1.96 * se, z + 1.96 * se
+
+
+def _inv(z):
+    return (math.exp(2 * z) - 1) / (math.exp(2 * z) + 1)
+
+
+import csv as _csv
+with open(os.path.join(DATA, "games_2026_wk1_9.csv"), encoding="utf-8") as fh:
+    _games = list(_csv.DictReader(fh, delimiter="|"))
+_home = [int(r["home_pts"]) for r in _games]
+_away = [int(r["away_pts"]) for r in _games]
+_margin = [h - a for h, a in zip(_home, _away)]
+_total = [h + a for h, a in zip(_home, _away)]
+_N = len(_games)
+
+hdr = ["id", "quantity_a", "quantity_b", "n", "r", "r_squared", "t", "ci_low", "ci_high",
+       "p_value_two_sided", "source_file", "read"]
+rows = []
+for cid, qa, qb, x, y, read in [
+    ("C-07", "home team points", "away team points", _home, _away,
+     "same-game coupled scoring: measured effect is small and the 95% interval spans zero"),
+    ("C-08", "margin (home - away)", "total (home + away)", _margin, _total,
+     "near-zero to slightly negative as the sign argument predicted; interval spans zero at n=136, "
+     "so the magnitude is not established"),
+]:
+    if cid == "C-08":
+        # the register names this pair "spread and total"; margin and spread are the same quantity
+        # up to sign and the sign is irrelevant to a correlation coefficient
+        pass
+    r = _pearson(x, y)
+    lo_z, hi_z = _fisher(r, _N)
+    t = r * math.sqrt((_N - 2) / (1 - r * r))
+    # two-sided p from the t distribution with n-2 df, via the regularised incomplete beta
+    df = _N - 2
+    xx = df / (df + t * t)
+    # regularised incomplete beta I_x(df/2, 1/2) by continued fraction
+    def _betacf(a, b, x, itmax=200):
+        qab, qap, qam = a + b, a + 1, a - 1
+        c, d = 1.0, 1 - qab * x / qap
+        d = 1.0 / (d if abs(d) > 1e-30 else 1e-30)
+        h = d
+        for m in range(1, itmax + 1):
+            m2 = 2 * m
+            aa = m * (b - m) * x / ((qam + m2) * (a + m2))
+            d = 1 + aa * d; d = 1.0 / (d if abs(d) > 1e-30 else 1e-30)
+            c = 1 + aa / c; c = c if abs(c) > 1e-30 else 1e-30
+            h *= d * c
+            aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+            d = 1 + aa * d; d = 1.0 / (d if abs(d) > 1e-30 else 1e-30)
+            c = 1 + aa / c; c = c if abs(c) > 1e-30 else 1e-30
+            de = d * c
+            h *= de
+            if abs(de - 1) < 1e-12:
+                break
+        return h
+
+    def _betai(a, b, x):
+        if x <= 0: return 0.0
+        if x >= 1: return 1.0
+        lbeta = math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b)
+        bt = math.exp(lbeta + a * math.log(x) + b * math.log(1 - x))
+        if x < (a + 1) / (a + b + 2):
+            return bt * _betacf(a, b, x) / a
+        return 1 - bt * _betacf(b, a, 1 - x) / b
+
+    p = _betai(df / 2.0, 0.5, xx)
+    rows.append([cid, qa, qb, str(_N), "%+.4f" % r, "%.4f" % (r * r), "%+.3f" % t,
+                 "%+.4f" % _inv(lo_z), "%+.4f" % _inv(hi_z), "%.4f" % p,
+                 "data/games_2026_wk1_9.csv", read])
+w("computed_correlation.csv", hdr, rows)
 print("done")

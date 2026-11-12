@@ -226,7 +226,54 @@ def no_invented_results():
             v = r[k].strip()
             if v not in ("", "not published") and v != "1.00":
                 bad("correlation %s: an unmeasured rho value %r is present" % (r["id"], v))
-    ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted value is asserted")
+    ok("correlation: only the two by-construction 1.00 cases carry a number; no fitted rho is asserted")
+    measured_correlation_is_reproducible()
+
+
+def measured_correlation_is_reproducible():
+    """The two empirically measured correlations must equal a fresh recomputation from the game log.
+
+    C-07 and C-08 are the only register rows that quote a measured statistic. Rather than trusting the
+    number written into the register, this recomputes Pearson r from data/games_2026_wk1_9.csv and fails
+    if the published value disagrees beyond rounding. It also enforces the distinction the register
+    makes: r is not rho, so a measured r may never be written into the rho column.
+    """
+    import math
+    games, _, _ = rows("games_2026_wk1_9.csv")
+    home = [int(g["home_pts"]) for g in games]
+    away = [int(g["away_pts"]) for g in games]
+    margin = [h - a for h, a in zip(home, away)]
+    total = [h + a for h, a in zip(home, away)]
+    n = len(games)
+
+    def pearson(x, y):
+        mx, my = sum(x) / len(x), sum(y) / len(y)
+        sxy = sum((a - mx) * (b - my) for a, b in zip(x, y))
+        sxx = sum((a - mx) ** 2 for a in x)
+        syy = sum((b - my) ** 2 for b in y)
+        return sxy / math.sqrt(sxx * syy)
+
+    expect = {"C-07": pearson(home, away), "C-08": pearson(margin, total)}
+    corr, _, _ = rows("correlation.csv")
+    problems = []
+    for r in corr:
+        if r["id"] not in expect:
+            if "measured - Pearson r" in r["verification"]:
+                problems.append("%s claims a measured r that no computation supports" % r["id"])
+            continue
+        m = re.search(r"Pearson r = ([+-]\d+\.\d+)", r["verification"])
+        if not m:
+            problems.append("%s quotes no measured r" % r["id"]); continue
+        claimed, fresh = float(m.group(1)), expect[r["id"]]
+        if abs(claimed - fresh) > 0.0001:
+            problems.append("%s says r=%+.4f, the game log gives %+.4f" % (r["id"], claimed, fresh))
+        if r["rho"].strip() not in ("", "not published"):
+            problems.append("%s puts a measured r into the rho column" % r["id"])
+    if problems:
+        bad("measured correlations do not reproduce: %s" % problems[:4])
+    else:
+        ok("measured correlations reproduce from the game log (C-07 r=%+.4f, C-08 r=%+.4f, n=%d)"
+           % (expect["C-07"], expect["C-08"], n))
 
 
 def prose_counts_match_files():

@@ -22,6 +22,34 @@ That gives one knob with an interpretable meaning — how much of each leg's var
 
 {{csv data/correlation.csv;;cols=id:ID,pair_class:Pair class,example_legs:Example legs,expected_sign:Sign we assert,sign_basis:Why that sign,magnitude:Magnitude,estimation_method:How it will be estimated,rho:rho,ci_low:CI low,ci_high:CI high,verification:Verification state;;source=S-DESIGN;;caption=Two rows are 1.00 by construction, not by measurement: a main line and its own alternate, and the same position at two books, are one bet. Every other row is a sign argument plus an estimation plan.}}
 
+## Two correlations we have actually measured
+
+Most of this page is method, because most of it cannot be measured without prices. Two pair classes can
+be measured from data already in the repository: the 136 settled results of weeks 1–9 carry both teams'
+final scores, which *is* the joint outcome those classes need. What is measured below is the correlation
+between **real game scores**. It is not ρ, which is the correlation between **bet settlements** and needs
+a market archive. Writing the first as the second is the single most common way this analysis becomes
+dishonest, so the register keeps `rho` blank and records the measured `r` separately.
+
+{{csv data/computed_correlation.csv;;cols=id:ID,quantity_a:Quantity A,quantity_b:Quantity B,n:n,r:Pearson r,r_squared:r-squared,t:t,ci_low:95% CI low,ci_high:95% CI high,p_value_two_sided:p (two-sided),read:Read;;source=S-CALC;;link_col=source_file;;caption=Recomputed on every build from data/games_2026_wk1_9.csv and re-derived independently by tools/verify.py, which fails if the register disagrees with a fresh calculation. 95 per cent intervals use the Fisher z transform.}}
+
+How to read the two rows:
+
+- **C-07 (both team totals).** r = +0.076, and the interval runs from −0.094 to +0.241. The sign matches the
+  argument that scoring is coupled through pace, but at n = 136 the effect is indistinguishable from zero.
+  This is a case where the honest answer is "small, and we cannot yet say it is not noise" — which is a
+  more useful input to a pricing decision than a number borrowed from a paper.
+- **C-08 (spread and total).** r = −0.161, interval −0.321 to +0.008, p = 0.062. The sign is the one the page
+  predicted six sections ago: a game that stays close suppresses the total. It is the more interesting
+  result precisely because it is not significant — it says the effect, if real, is small enough that
+  treating spread and total as independent costs very little, and that claiming otherwise would need more
+  than one season of data.
+
+What this does **not** license: multiplying these into a parlay price. A correlation between scores is not a
+correlation between *settled bets at a line*, because the line moves, pushes void legs, and each leg's
+payoff depends on where the number sits relative to the actual score. That distinction is the whole reason
+the `rho` column stays blank.
+
 ## What must exist before a ρ can be published
 
 | Requirement | Why it is the bottleneck | Status |

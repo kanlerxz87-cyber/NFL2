@@ -47,7 +47,7 @@ data — the counts, the club coverage and one flag — and those are corrected 
 | Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
 | Strategy registry | 14 entries, none tracked | `data/strategies.csv` | pre-registration + tracking ledger |
 | Validation gates | 14 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |
-| Correlation | method defined; 12 pair classes; **no rho asserted** | `data/correlation.csv` | joint-outcome data (Q-12) |
+| Correlation | method defined; 12 pair classes; **no rho asserted**; 2 measured as Pearson *r* on game scores | `data/correlation.csv`, `data/computed_correlation.csv` | joint bet-settlement data (Q-12) for any rho |
 | Skill-vs-luck protocol | derived and computed in-repo | `content/skill-vs-luck.md` | sample must still be collected |
 | Competition and rewards | tiers and rules written; payout mechanism unfunded | `content/leaderboard.md` | owner decision (Q-26) |
 
@@ -72,7 +72,7 @@ Four items sit in front of almost everything else. They are decisions and access
 | Decisions | [Flagged for review](flagged-for-review.html) | {{metric flags}} irregularities and unverifiable items, with source links |
 | Origination | [Originate our own lines](line-origination.html) | model architecture, inputs, no-vig math, publication of residuals |
 | Origination | [Signals](signals.html) | 18 signal families with decay, capacity and blocking gate |
-| Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos |
+| Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos, and 2 measured from the game log |
 | Origination | [Bet types](bet-types.html) | singles, parlays and prop combos priced consistently |
 | Origination | [Removing luck](skill-vs-luck.html) | sample sizes, CLV, bootstrap, split-half, luck-adjusted P&L |
 | Competition | [Strategy registry](strategies.html) | 14 entries including two negative controls |
