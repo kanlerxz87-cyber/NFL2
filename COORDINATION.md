@@ -590,3 +590,5 @@ Arena fixes the branch to `arena/51ce8d8e-nfl2`. Upstream task IDs T12–T18 are
 - 2026-11-12T06:03Z: required rebase onto `faecd39` found completed PRs #8–#22, existing `engine/*` files owned by `e143a7ca`, and an active final-integration claim by `bc4b47cf`. Stop destructive integration. Namespace all new artifacts under `q51`; preserve all upstream files. No takeover of completed work. Shared-site integration is deferred until the active owner finishes or the 60-minute stale rule is demonstrably satisfied.
 - Cross-scope request CR-Q51-01: expose the independent audit and tested engine through the canonical dashboard only during final integration; do not replace existing analytics or source registers.
 - The baseline audit found factual errors that were subsequently repaired by PR #19 (Warren/Chase TD and other column shifts). Q51 preserves the historical findings and must re-audit current main before publication.
+
+- Pre-push rejection after rebasing: merged the already-pushed original claim commit instead of force-pushing; preserved the current upstream board and namespaced artifacts.
