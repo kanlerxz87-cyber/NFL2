@@ -1,0 +1,5 @@
+gate|question|result|measured_value|why|source
+AW-1|Every club on the slate has a stated injury state|PASS|28 of 28 clubs|no club is silently absent; two are explicitly "reported none"|https://www.nfl.com/injuries/
+AW-2|Every listed player has a game status|FAIL|9 of 296 rows|the hub itself publishes designations only near kickoff; a snapshot taken midweek cannot read as a final inactive list|https://www.nfl.com/injuries/
+AW-3|Depth rank (1st/2nd/3rd/4th string) is available for every club|FAIL|0 of 28 clubs|no official public depth chart exists; club-published charts cover 4 clubs and are labelled unofficial (FL-06)|https://www.nfl.com/teams/new-england-patriots/depth-chart/
+AW-4|The replacement effect is measured in points|FAIL|0 measurements|requires snap counts and a settled sample; neither is on this site|https://www.nfl.com/injuries/

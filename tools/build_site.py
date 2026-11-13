@@ -37,7 +37,9 @@ NAV = [
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
-              ("league-data", "Standings & Schedule"), ("deficiencies", "Depth Deficiencies by Side"),
+              ("league-data", "Standings & Schedule"),
+              ("availability-watch", "Availability Watch (dated)"),
+              ("deficiencies", "Depth Deficiencies by Side"),
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
                    ("sources", "Source Registry")]),
@@ -389,7 +391,31 @@ def build_metrics():
         "empty_club_count": len(empty),
     }
     m.update(gamelog_metrics(st))
+    m.update(availability_metrics())
     return m, inj, agg
+
+
+# The dated availability snapshot is its own register (session c3ec1487). Its counts are read from
+# the file on every build for the same reason the standings totals are: a sentence that quotes a
+# count must never be a number somebody remembered.
+AW_SNAP = "availability_watch_c3ec1487.csv"
+
+
+def availability_metrics():
+    path = os.path.join(DATA, AW_SNAP)
+    if not os.path.exists(path):
+        return {"aw_rows": "not published", "aw_clubs": "not published",
+                "aw_designations": "not published", "aw_designation_share": "not published"}
+    snap = read_rows(AW_SNAP)
+    desig = sum(1 for r in snap if r["game_status"].strip())
+    return {
+        "aw_rows": len(snap),
+        "aw_clubs": len({r["club"] for r in snap}),
+        "aw_designations": desig,
+        "aw_club_states": len(read_rows("availability_watch_by_club_c3ec1487.csv")),
+        "aw_designation_share": "%.1f%%" % (100.0 * desig / len(snap)) if snap else "not published",
+        "aw_practice_changes": len(read_rows("availability_watch_practice_deltas_c3ec1487.csv")),
+    }
 
 
 # Team codes are not stable across league pages; the schedule/game pages code the Rams LA while
@@ -692,6 +718,7 @@ PAGE_KIND = {
     "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
     "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
     "week10-settled": ("measured", "Computed result"),
+    "availability-watch": ("measured", "Dated snapshot"),
 }
 
 CSS_HREF = "assets/style.css"
