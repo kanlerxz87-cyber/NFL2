@@ -4,7 +4,7 @@
 Fails loudly rather than warning: the site's claim to be "verified" rests on these
 checks running clean, so a soft warning here would be a weaselled guarantee.
 """
-import csv, os, re, sys
+import csv, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -93,6 +93,147 @@ def standings():
         bad("standings: net points sum to %d, must be 0" % snet)
     else:
         ok("standings: net points sum to zero")
+
+
+def standings_capture_metadata():
+    """Every standings row must name its source-read time, not just a live URL that can drift."""
+    data, header, _ = rows("standings_2026.csv")
+    if not {"source", "captured_utc"}.issubset(set(header)):
+        bad("standings: missing source or captured_utc column")
+        return
+    all_sources, _, _ = rows("sources.csv")
+    official = [s for s in all_sources
+                if s["url"] == "https://www.nfl.com/standings/" and s["tier"] == "A"]
+    if not official:
+        bad("standings: no official NFL standings source in sources.csv")
+        return
+    latest = max(official, key=lambda s: s["accessed_utc"])
+    ids = {r["source"].strip() for r in data}
+    stamps = {r["captured_utc"].strip() for r in data}
+    if ids != {latest["id"]}:
+        bad("standings: row source ids %s do not point to latest official read %s"
+            % (sorted(ids), latest["id"]))
+    elif stamps != {latest["accessed_utc"]}:
+        bad("standings: capture times %s do not match latest source read %s"
+            % (sorted(stamps), latest["accessed_utc"]))
+    elif not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$", latest["accessed_utc"]):
+        bad("standings: source-read time is not minute-precision UTC: %r" % latest["accessed_utc"])
+    else:
+        ok("standings: all %d rows stamped %s and linked to the latest official NFL read"
+           % (len(data), latest["accessed_utc"]))
+
+
+def standings_official_recheck():
+    """Compare every published standings field to the saved official-page transcription."""
+    fields = ("w", "l", "t", "pct", "pf", "pa", "net", "streak")
+    current, current_header, _ = rows("standings_2026.csv")
+    snapshot, snapshot_header, _ = rows("standings_recheck_20261113.csv")
+    required = {"abbr", "source", "captured_utc", *fields}
+    if not required.issubset(set(current_header)) or not required.issubset(set(snapshot_header)):
+        bad("standings recheck: current table or official snapshot is missing required columns")
+        return
+    problems = []
+    local_by = {r["abbr"].strip(): r for r in current}
+    official_by = {r["abbr"].strip(): r for r in snapshot}
+    if len(local_by) != len(current) or len(official_by) != len(snapshot):
+        problems.append("duplicate club abbreviation")
+    if len(current) != 32 or len(snapshot) != 32:
+        problems.append("row counts current=%d official=%d (expected 32 each)" % (len(current), len(snapshot)))
+    if set(local_by) != set(official_by):
+        problems.append("club sets differ: current-only=%s official-only=%s" %
+                        (sorted(set(local_by) - set(official_by)), sorted(set(official_by) - set(local_by))))
+    for abbr in sorted(set(local_by) & set(official_by)):
+        local, official = local_by[abbr], official_by[abbr]
+        for field in fields:
+            if local[field].strip() != official[field].strip():
+                problems.append("%s.%s current=%r official=%r" %
+                                (abbr, field, local[field], official[field]))
+    source_rows, _, _ = rows("sources.csv")
+    official_sources = [r for r in source_rows
+                        if r["url"] == "https://www.nfl.com/standings/" and r["tier"] == "A"]
+    latest = max(official_sources, key=lambda r: r["accessed_utc"]) if official_sources else None
+    if latest is None:
+        problems.append("no official NFL standings source record")
+    else:
+        for abbr, row in official_by.items():
+            if row["source"].strip() != latest["id"]:
+                problems.append("%s snapshot source=%s, latest=%s" % (abbr, row["source"], latest["id"]))
+            if row["captured_utc"].strip() != latest["accessed_utc"]:
+                problems.append("%s snapshot time=%s, latest=%s" %
+                                (abbr, row["captured_utc"], latest["accessed_utc"]))
+        if sum(1 for r in source_rows if r["id"].strip() == latest["id"].strip()) != 1:
+            problems.append("latest source id is not unique")
+    if problems:
+        bad("standings official recheck failed: %s" % problems[:8])
+    else:
+        ok("official standings recheck: 32/32 clubs × 8 published fields (256 values) match at %s" %
+           latest["accessed_utc"])
+
+
+def source_read_times_visible():
+    """The generated banner and manifest must distinguish every tracked source snapshot."""
+    manifest_path = os.path.join(DATA, "build_manifest.json")
+    index_path = os.path.join(ROOT, "index.html")
+    if not os.path.exists(manifest_path) or not os.path.exists(index_path):
+        bad("source-read visibility: build manifest or generated index is missing")
+        return
+    with open(manifest_path, encoding="utf-8") as fh:
+        manifest = json.load(fh)
+    times = manifest.get("source_read_times_utc", {})
+    required = {
+        "week10_injury_file_capture",
+        "week10_injury_full_hub_reread",
+        "week10_injury_settled_game_subset_recheck",
+        "week10_injury_latest_full_hub_snapshot",
+        "standings",
+    }
+    missing = required - set(times)
+    if missing:
+        bad("source-read visibility: manifest omits %s" % sorted(missing))
+        return
+    with open(index_path, encoding="utf-8") as fh:
+        page = fh.read()
+    absent = []
+    for key in sorted(required):
+        value = times[key]
+        rendered = value if value.endswith(" UTC") else value.replace("T", " ").replace("Z", " UTC")
+        if rendered not in page:
+            absent.append("%s=%s" % (key, rendered))
+    if absent:
+        bad("source-read visibility: banner omits %s" % absent)
+    else:
+        ok("source-read visibility: injury capture, both full-hub reads, subset recheck and standings time are distinct in banner and manifest")
+
+
+def gamebook_rights_gate():
+    """Game Book evidence must stay blocked behind the documented written-permission question."""
+    urls = (
+        "https://static.www.nfl.com/image/upload/v1789038923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf",
+        "https://static.www.nfl.com/image/upload/v1791805921/gamecenter/aa94b906-4feb-11f1-abca-2c54536568a9.pdf",
+    )
+    questions, _, _ = rows("questions.csv")
+    suggestions, _, _ = rows("suggestions.csv")
+    flags, _, _ = rows("flags.csv")
+    q = [r for r in questions if r["id"] == "Q-50"]
+    s = [r for r in suggestions if r["id"] == "S-58"]
+    f = [r for r in flags if r["id"] == "FL-55"]
+    problems = []
+    if len(q) != 1 or q[0]["status"] != "blocked-on-owner":
+        problems.append("Q-50 is missing or no longer blocked on owner review")
+    if len(s) != 1 or "Q-50" not in s[0]["depends_on"] or "blocked" not in s[0]["decision"]:
+        problems.append("S-58 is missing or not blocked on Q-50")
+    if len(f) != 1 or f[0]["status"] != "open":
+        problems.append("FL-55 rights flag is missing or closed")
+    text = " ".join((q[0].get("what_we_have", "") if q else "",
+                     s[0].get("evidence", "") if s else "",
+                     f[0].get("source", "") if f else ""))
+    for url in urls:
+        if url not in text:
+            problems.append("official gamebook URL missing from Q-50/S-58/FL-55: " + url)
+    if problems:
+        bad("gamebook rights gate: %s" % problems)
+    else:
+        ok("gamebook rights gate: both official books cited; collection remains blocked on Q-50 with FL-55 open")
 
 
 def injuries():
@@ -1186,7 +1327,7 @@ def availability_watch_holds():
 
 
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results();
+    check_widths(); no_disguised_guesses(); standings(); standings_capture_metadata(); standings_official_recheck(); source_read_times_visible(); injuries(); depth(); sources(); registers(); gamebook_rights_gate(); no_invented_results();
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
     settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()

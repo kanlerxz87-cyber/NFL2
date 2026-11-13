@@ -11,7 +11,7 @@ This site has two kinds of pages and they never mix on one page without a divide
 
 - **Measured** (green badge) — tables generated from `data/*.csv`, every row carrying a link to the official league page it was transcribed from.
 - **Specified** (blue badge) — the design of the pricing engine, signals, gates and competition rules. These are proposals, not results.
-- **Decisions** (amber badge) — the [question register](questions.html), the [suggestion register](suggestions.html) and the [review queue](flagged-for-review.html). Nothing on these pages has been implemented on your instruction.
+- **Decisions** (amber badge) — the [question register](questions.html), the [suggestion register](suggestions.html) and the [review queue](flagged-for-review.html). Each suggestion is labeled as adopted, recommended, owner-only, or blocked; a recommendation is not an owner decision.
 
 The root register remains design-only. Independent Q51 research outputs are labelled unvalidated and paper-only; no betting edge is claimed. Blank cells are rendered as `not published` rather than filled with an estimate — see [verification method](methodology.html).
 
@@ -42,9 +42,9 @@ data — the counts, the club coverage and one flag — and those are corrected 
 
 | Workstream | State | Evidence in repo | Blocking |
 | --- | --- | --- | --- |
-| Injury and availability collection | running — 254 rows snapshotted at 04:45Z, **re-read at 22:35Z: 279 rows across 26 clubs** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/injury_delta_a392.csv` | no stored history, so no availability signal can be backtested (FL-27, Q-36) |
+| Injury and availability collection | separate reads: 254-row primary file (12 Nov 04:45Z), 279-row full re-read (12 Nov 22:35Z), latest 296-row full-hub file (13 Nov 12:46Z) | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/injuries_wk10_83246f00.csv`, `data/injury_delta_a392.csv` | canonical display remains owner-only (Q-42); repeated-read cadence and history remain open (Q-43, S-35) |
 | Depth, IR and roster events | running — 227 rows | `data/depth_changes_2026_wk10.csv` | no official depth chart exists (FL-06) |
-| Standings and schedule | running — 32 + 14 rows, reconciled | `data/standings_2026.csv`, `data/schedule_2026_wk10.csv` | seven official columns left out (FL-07) |
+| Standings and schedule | 32 club rows × 8 published fields; official re-read captured at `2026-11-13T12:53Z`, exact match | `data/standings_2026.csv`, `data/standings_recheck_20261113.csv`, `data/schedule_2026_wk10.csv` | remaining split-record columns are omitted rather than inferred (FL-07) |
 | Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; verified 1st-to-4th string chains for the 2 clubs whose charts were transcribed | [Depth Deficiencies](deficiencies.html), `data/deficiency_by_club_a392.csv` | 30 club charts not transcribed (Q-37, S-39) |
 | Line origination | **computed** — walk-forward ridge ratings on 136 official games: spread MAE 9.278 vs a 10.455 do-nothing baseline, paired +0.295 pts against the archived price | [Fair-Line Lab](model-lab.html), `data/model_backtest_2026_a392.csv` | totals are worse than a league mean and are published as a diagnostic, not a line (S-37, FL-32) |
 | Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
@@ -108,9 +108,27 @@ Four new decisions came out of it — which register is canonical ([Q-42](questi
 hub must be read ([Q-43](questions.html)), what replaces depth rank ([Q-44](questions.html)), and whether
 to buy snap counts ([Q-45](questions.html)).
 
+## Latest official reads — 13 November 2026
+
+The time labels now identify different source snapshots rather than one global “last updated” date:
+
+| Read | Capture time (UTC) | What it represents |
+| --- | --- | --- |
+| Primary Week 10 injury file | 2026-11-12 04:45 | Original player-filing snapshot; not the later hub states |
+| Full injury-hub re-read | 2026-11-12 22:35 | 279 rows across 26 clubs with filed rows |
+| Settled-game injury recheck | 2026-11-13 06:52 | Only the 20 WAS–NYG rows; **not** a full hub re-read |
+| Latest full injury-hub snapshot in this tree | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
+| NFL division standings | **2026-11-13 12:53** | 32 clubs × W/L/T/PCT/PF/PA/NET PTS/STREAK: **256/256 values matched** the independent saved re-read; no standings value changed |
+
+The standings timestamp appears in the site-wide source-read banner and on each standings row. `tools/verify.py` checks it against the latest registered NFL standings source and compares every value against [`data/standings_recheck_20261113.csv`](data/standings_recheck_20261113.csv) on each run. The injury times above are intentionally separate; they describe different data snapshots and coverage, not a shared live refresh.
+
+A second discovery is useful for availability research but does **not** close the ordinal-depth or snap-count gap: official gamebooks for [NE at SEA, Week 1](https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1) and [NYG at WAS, Week 5](https://www.nfl.com/games/giants-at-commanders-2026-reg-5) contain starting lineups, substitutions, Did Not Play, Not Active, and player-stat sections. They record game-day evidence, not second/third/fourth-string rank or snap counts. Each PDF carries an NFL notice requiring written permission for other use. No gamebook data has been copied into the repository; the rights question is [Q-50](questions.html), with the source-backed but blocked proposal [S-58](suggestions.html).
+
+**Current review order:** S-43 is partly adopted (visible, machine-checked timestamps); the refresh cadence remains the owner’s open choice in Q-40. S-44 and S-45 are already adopted upstream (auto-grading and sample-size context). The dated injury-register choice remains owner-only ([Q-42](questions.html), [S-46](suggestions.html)); gamebook collection remains blocked on written-use rights ([Q-50](questions.html)). Existing blanks and flags remain in place.
+
 ## Depth cascades re-verified on 13 November 2026
 
-The eighteen depth cascades on this site were checked player by player against the twelve clubs' own depth charts and the league's Week 10 injury report. Five are verified, nine are only partly confirmed and four are contradicted by the official pages. Nine statuses on the earlier labels are wrong, and two more are understated. The full line-by-line table, with each club chart and report link, is on [Depth Cascades (re-verified)](depth-cascades.html). Every irregularity is on [Flagged for Review](flagged-for-review.html) as FL-45 to FL-53.
+The eighteen depth cascades on this site were checked player by player against the twelve clubs' own depth charts and the league's Week 10 injury report. Five are verified, nine are only partly confirmed and four are contradicted by the official pages. Nine statuses on the earlier labels are wrong, and two more are understated. The full line-by-line table, with each club chart and report link, is on [Depth Cascades (re-verified)](depth-cascades.html). Every irregularity is on [Flagged for Review](flagged-for-review.html) as FL-46 to FL-54.
 
 ## Repository map
 
