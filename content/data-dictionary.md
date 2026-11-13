@@ -42,6 +42,47 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/computed_vig.csv` | 5 | one price pair × implied probability, overround and the no-vig line | S-CALC |
 | `data/computed_parlays.csv` | 10 | one parlay construction × joint probability under independence and under a modelled coupling | S-CALC |
 
+### Session 745f788e — all-club depth register and decision console
+
+| File | Rows | Grain | Source of record |
+| --- | --- | --- | --- |
+| `data/s745_depth_charts.csv` | 1558 | one printed slot on one club's own published depth chart: club × unit × position group × depth (1st–4th string) × player | S-DEPTH-745 |
+| `data/s745_depth_deficiencies.csv` | 705 | club × unit × position group: the starter the club prints, his official practice and game status, who is next, and how deep the club has to reach | S-DEPTH-745, S-INJ-1113 |
+| `data/s745_depth_summary.csv` | 32 | club × availability roll-up, with the club's own chart page on every row | S-DEPTH-745 |
+| `data/s745_injury_refresh.csv` | 298 | one player × club, re-read from the official injury hub at 2026-11-13T12:45Z, plus 2 explicit "No Injuries Reported" markers | S-INJ-1113 |
+| `data/s745_suggestion_scores.csv` | 45 | one suggestion from `suggestions.csv`, scored on that register's own impact/effort/risk fields and assigned to a candidate path | S-REGISTER-745 |
+| `data/s745_decision_paths.csv` | 4 | one candidate path: the suggestion ids in it, what it unblocks, what it does not fix, and its first milestone | S-REGISTER-745 |
+| `data/s745_information_gaps.csv` | 40 | one question from `questions.csv`, restated as have / lack / how-to-close | S-REGISTER-745 |
+
+Rules these seven files obey, all of them re-checked by `scripts/verify_s745.py`:
+
+* **Depth comes from the club, status comes from the league.** No row mixes the two. The chart
+  column cites the club's own page; the injury columns cite `nfl.com/injuries`. The league
+  publishes no central depth chart — `nfl.com/teams/<club>/depth-chart` returns 404 (FL-05) — so
+  a club's own site is the only official chart that exists for it, and it is registered as tier B
+  (official club, not league-operated) rather than passed off as tier A.
+* **`depth` is 1–4 and is what the club printed.** Where a club prints two names in one column,
+  both are recorded at that depth; the join does not pick a winner. Where a club prints nothing,
+  there is no row at all, because an absent cell on an official page is not a player.
+* **`projected_starter` and `starter_injury_name` are different columns on purpose.** The first
+  is what the club's chart prints; the second is what the league's report prints for the same
+  man (`Kevin Byard III` against `Kevin Byard`). Keeping both is what lets `verify_s745.py`
+  re-check every matched starter instead of trusting a normaliser.
+* **`starter_availability_tier`** is one of `not on report`, `full`, `limited`,
+  `did not practice`, `out`. `not on report` means the league's page does not list him — a
+  different fact from healthy, and never rendered as healthy (FL-01).
+* **`depth_reached`** counts from 1. A value of 2 means the club's 1st string is out and the 2nd
+  string starts; nothing in this file reaches 3 or 4 this week. It is **blank** where the club
+  prints no first string at all — promoting the second line into a "next man up" would be an
+  inference about a starter the club never published (2 groups this week).
+* **`official_route_exists` = `not established`** is a keyword-match miss over the register's
+  own prose, not a claim that no route exists. The word `unknown` is banned in this repository's
+  data files, and rightly so — a cell reading `unknown` usually means a value somebody should
+  have gone and found.
+* **The scoring files add no facts.** They re-arrange fields the registers already publish. The
+  `priority_score` column is arithmetic (`impact / (effort + risk)`), and the page that publishes
+  it says so in those words.
+
 ### Grains introduced by the origination lab
 
 | Column pattern | Meaning | Rule |
