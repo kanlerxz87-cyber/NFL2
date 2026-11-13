@@ -39,7 +39,7 @@ The tamper guard was tested the same way. Editing one spread in the pre-register
 
 ## The slate these lines are built on
 
-{{csv data/schedule_week11_2026.csv;;cols=game_id:Game,date:Date,kickoff_et:Kickoff (ET),away:Away,home:Home,site:Site,neutral:Neutral,tv:Broadcaster,game_url:Official game page;;source_col=source;;caption=Read from the official Week 11 schedule page on 2026-11-13T12:39Z. The venue column is blank on thirteen of thirteen rows because the official schedule page does not publish venues - only the game centre does, and it was not read for every fixture in this session (S-52). The Mexico City row is the one fixture the official page marks as an international game.}}
+{{csv data/schedule_week11_2026.csv;;cols=game_id:Game,date:Date,kickoff_et:Kickoff (ET),away:Away,home:Home,site:Site,neutral:Neutral,tv:Broadcaster,game_url:Official game page;;source_col=source;;caption=Read from the official Week 11 schedule page on 2026-11-13T12:39Z. The venue column is blank on thirteen of thirteen rows because the official schedule page does not publish venues - only the game centre does, and it was not read for every fixture in this session (S-55). The Mexico City row is the one fixture the official page marks as an international game.}}
 
 ## Two broadcasters moved, and the evidence that says so
 

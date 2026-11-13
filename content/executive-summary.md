@@ -1,9 +1,9 @@
 # Executive Summary
-> What exists, what is verified, what is missing, and the four decisions that unlock the rest — as of 13 November 2026, with the Week 11 forward sample published and pre-registered.
+> What exists, what is verified, what is missing, and the four decisions that unlock the rest — for Week 10 of the 2026 season, fetched 12 November 2026.
 
 ## The one-paragraph version
 
-The collection layer now exists and is genuinely verified: 254 rows of the official Week 10 practice report across 24 of the 28 clubs playing that week, 227 official roster and depth events, 32 reconciled standings rows and a 14-game schedule, every row carrying a link to the official page it came from and nothing inferred to fill a gap. The analysis layer is specified in full — line-origination architecture, 18 signal families, 14 validation gates, a correlation framework with twelve pair classes, a sample-size protocol for removing luck, and a 14-entry strategy registry — and it has now produced its first **forward** output: thirteen Week 11 lines, written and hashed before any of those games was played, with a grader that refuses to score them if a single one has been edited since. The honest summary is that the pipeline and the rules are real, the data spine is real, the measurement apparatus now runs end to end, and every performance claim you might want from this system is still un-earnable rather than absent — because the required sample is about 1,400 games and we have one.
+The collection layer now exists and is genuinely verified: 254 rows of the official Week 10 practice report across 24 of the 28 clubs playing that week, 227 official roster and depth events, 32 reconciled standings rows and a 14-game schedule, every row carrying a link to the official page it came from and nothing inferred to fill a gap. The analysis layer is specified in full — line-origination architecture, 18 signal families, 14 validation gates, a correlation framework with twelve pair classes, a sample-size protocol for removing luck, and a 14-entry strategy registry — but it produces no numbers yet, because two inputs do not exist in this project: licensed market prices and player-level participation data. The honest summary is that the pipeline and the rules are real, the data spine is real, and every performance claim you might want from this system is currently un-earnable rather than absent.
 
 ## Update — 13 November 2026, 12:45Z (session `c3ec1487`)
 
@@ -60,11 +60,11 @@ page, which prints its read time and derives every count.
 
 | Capability | Today | Earliest realistic state |
 | --- | --- | --- |
-| Answer "who is hurt and who is starting instead" for the current week | **yes for 4 charted clubs** — 17 measured cascades, 3 reaching a third string; depth rank blank for the other 28 | improves immediately with the 32-club roster sweep |
+| Answer "who is hurt and who is starting instead" for the current week | **yes for {{metric pr_charts}} charted clubs** — {{metric pr_resolved}} of {{metric pr_rows}} listed players resolve to a string on their own club's chart, each with the club URL; blank and flagged for the other 18 clubs playing ([Personnel Relief](personnel-relief.html)) | improves immediately with the 32-club sweep; S-47 costs it |
 | Detect availability surprise (trend → designation) | no — needs three dated filings per week | after point-in-time storage lands (G-03) |
-| Originate a number | **yes, stages 1–2** — 14 Week 10 fair totals and spreads, plus **13 pre-registered Week 11 lines**, fully reproducible | stage 3 onward needs player data (Q-02) |
+| Originate a number | **yes, stages 1–2** — 14 Week 10 fair totals and spreads, fully reproducible | stage 3 onward needs player data (Q-02) |
 | Publish the residual against the market | no — no prices, so a residual would be invented | needs a price feed; 1 gate (G-01) and 1 vendor decision (Q-01) |
-| Score a strategy on the leaderboard | no — zero tracked bets, by design; the apparatus now exists and has 13 pre-registered lines waiting | first grades on 23 November, when Week 11 finishes |
+| Score a strategy on the leaderboard | no — zero tracked bets, by design | first week of forward tracking after pre-registration |
 | Quantify replacement cost in points | no — needs snaps | after Q-02 closes |
 | Prove an edge is not luck | protocol ready, no sample | 400 bets for the gate, 1,000 for promotion (S-08) |
 
@@ -142,7 +142,30 @@ What the forward sample says about the lines themselves is on the [Week 11 page]
 
 The measurement apparatus now exists and is proven. Whether the lines are any good is a question the next eleven days answer, and thirteen observations cannot answer it.
 
+## What the 13 November personnel pass changed (session `83246f00`)
+
+The brief's depth question — *which 2nd, 3rd or 4th-string player is replacing a starter, on offence and on defence* — now has an answer for a third of the league instead of an eighth. Ten clubs' own published depth charts were transcribed from the clubs' own pages and joined to the same day's official injury hub. The join is on the [Personnel Relief](personnel-relief.html) page, and it is the first page on this site that answers that question with a string in the cell rather than a justification for leaving it blank.
+
+| What changed | Before this pass | After |
+| --- | --- | --- |
+| Clubs with a transcribed depth chart | 4 of 32 (KC, GB, NE, DET) | **{{metric pr_charts}}** (adds WAS, NYG, MIA, SEA, BAL, LAC) |
+| Injury-hub filings on record | 279 rows at the 12 Nov evening read | **{{metric pr_hub_rows}}** at the 13 Nov read, in its own dated file |
+| Listed players that resolve to a 1st/2nd/3rd/4th string | 17 cascades across 2 clubs | **{{metric pr_resolved}} of {{metric pr_rows}}**, each carrying the club-chart URL it came from |
+| 1st-string players who did not practise, both sides of the ball | not measurable at scale | **{{metric pr_first_dnp}}** ({{metric pr_offence_first_dnp}} offence, {{metric pr_defence_first_dnp}} defence) |
+| Position units where *no* published rung is clean | not measurable | **{{metric pr_full_unit_units}}** — {{metric pr_full_unit_list}} |
+
+**The finding, stated narrowly.** Two clubs have a guard spot where the club's own published 1st and 2nd string are both on the report: New England (Ben Brown did not practise, Walter Rouse limited) and Seattle (Quenton Nelson did not practise, Anthony Bradford limited). That is a two-rung deficiency read off the clubs' own documents. It is **not** a claim that either club will lose yards, it moves no line, and no strategy consumes it — the availability signals stay behind [G-03](validation-gates.html) because a one-day register cannot be a point-in-time backtest.
+
+**Three things this pass established that change other decisions.**
+
+1. **The site's own coverage claim was too generous and is now measured.** It said the depth join covered 4 clubs; it covered two clubs' chains. The uncovered set is now a generated table, not a sentence ([FL-40](flagged-for-review.html)).
+2. **A club's depth chart can be stale in a way nothing warns you about.** Nine of ten clubs print no date on it, and the Chargers' chart still lists a player an official 10 November roundup reports traded to Denver ([FL-39](flagged-for-review.html)). A string and a practice code therefore look equally fresh in a table when only one is.
+3. **"The sandbox cannot reach nfl.com" was wrong, and half the repository's plan rests on it.** Raw shell HTTPS does fail, but the agent's page-fetch path reaches nfl.com and the club sites, which is how this pass was done at all. [Q-24](questions.html) has to be split into "a CI job cannot fetch" and "a session can" ([FL-37](flagged-for-review.html)).
+
+**What it did not do, and why.** Eighteen clubs remain uncovered. They are cheap in principle — ten charts took twelve minutes of reading — but the clubs use incompatible position vocabularies (WAS prints `DL` where SEA prints `DT` and `NT`) and a fast transcription of eighteen charts is how a confident wrong string gets published. [S-47](suggestions.html) turns that into a costed backlog rather than a caveat.
+
 ## Standing risk to name plainly
+
 Everything on the blue pages is a specification written before the data existed. Specifications are cheap in this domain and the record of betting models is poor; the gates and the negative controls (ST-12 do-nothing, ST-13 public-news echo) exist precisely so that a specification has to survive contact with results. Until then the correct posture toward any number on the origination pages is scepticism, and the site is built so that the blanks are visible rather than hidden.
 
 
