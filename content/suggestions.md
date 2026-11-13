@@ -3,7 +3,7 @@
 
 ## How to use this page
 
-Nothing here has been implemented except what your brief itself required (the coordination board, the source-linked tables, the blanks-not-guesses rule, the review page). Everything else is queued for a decision.
+Some suggestions have since been adopted by this or earlier sessions; their decision field says so. This register does not treat an owner-only question as approved. S-43 is partly implemented here (read-time display and an exact-field verifier), while its refresh cadence remains open as Q-40; S-44 and S-45 are already adopted upstream. The current order below separates completed work from owner decisions and rights-blocked work.
 
 - **I / E** are impact and effort, on an H/M/L scale. They are my judgement about this codebase and data state, not measurements — recorded as judgement so they can be argued with.
 - **Reversible** is the important column: a reversible change with high impact should be approved on judgement alone; an irreversible one deserves a look first.
@@ -11,23 +11,26 @@ Nothing here has been implemented except what your brief itself required (the co
 
 ## Tier 1 — approve now (highest impact per unit of risk)
 
-{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,problem_it_solves:Problem it solves,proposal:What we would build,impact:I,effort:E,reversible:Reversible,depends_on:Depends on,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=decision=recommended;;caption=Rows containing "recommended" in the recommended-path column, in any state — including those blocked behind a data decision.}}
+{{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,problem_it_solves:Problem it solves,proposal:What we would build,impact:I,effort:E,reversible:Reversible,depends_on:Depends on,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=decision=recommended;;caption=Rows whose decision is exactly "recommended"; blocked, partly adopted and owner-only items remain visible in Tier 2.}}
 
 ## Tier 2 — everything else, including what is already live
 
 {{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,proposal:What we would build,risk:Risk,depends_on:Depends on,evidence:Evidence behind it,recommended_path:Recommended path,decision:Decision;;source=S-DESIGN;;filter=decision=!recommended}}
 
-## What I would actually do first, in order
+## Current order — 13 November 2026, 12:53Z
 
-| Step | Suggestion | Why this order |
+This is a review order, not approval to make owner-only decisions. “Adopted” means the work is already present; it is not a new task. No gamebook data collection is authorized by this recommendation.
+
+| Step | Suggestion / question | State and next action |
 | --- | --- | --- |
-| 1 | S-04 pre-registration, no backtests on the leaderboard | Costs nothing and it is the only rule that stops the whole competition becoming self-deception later |
-| 2 | S-01 + S-02 + S-13 + S-24 (already adopted) | the honesty layer: timestamps, blanks as first-class, frozen verification vocabulary, no unsourced numerics |
-| 3 | S-19 refuse "No Injuries Reported" as zero | protects every downstream feature from the most likely silent error in this dataset |
-| 4 | S-15 32-team roster sweep | makes joins trustworthy; without it no team-level number is defensible |
-| 5 | S-06 availability graph as a dataset | this, not the model, is the project's differentiator — and it is the only path to the depth requirement |
-| 6 | S-09 + S-10 + S-11 pricing, parlay and prop-combo framework | only once Q-01 (prices) and Q-12 (joint data) close |
-| 7 | S-18 luck-removal panel on the dashboard | becomes meaningful with the first tracked bets, worthless before |
+| 1 | Q-42 / S-46 — choose the canonical injury register | Owner decision. Preserve the 04:45Z and 22:35Z historical files; choose how the dated series and current coverage metric are presented before changing the dashboard's lead number. |
+| 2 | Q-50 / S-58 — gamebook use rights | Rights review is a blocker. The two verified PDFs establish lineups and explicit game-day status, not ordinal depth or snaps; do not bulk-fetch, retain, parse, or republish gamebook-derived data until written permission or applicable terms are confirmed. |
+| 3 | Q-40 / S-43 — cumulative-table refresh cadence | Partly adopted: standings show `2026-11-13T12:53Z` and the verifier checks source, timestamp, and all 256 values. The owner still chooses per-settlement, weekly, or per-build refresh and how that affects prior grades. |
+| 4 | S-44 + S-45 — auto-grade and disclose the required sample | Adopted upstream and verified: hashes are checked before grading, and every performance figure carries its observed count and sample requirement. No duplicate implementation is needed. |
+| 5 | S-47 / S-35 — retain dated injury reads and measure deltas | Continue only under an agreed cadence; the 04:45Z, 22:35Z, 06:52Z subset, and 12:46Z full-hub reads are separate records, not a single continuous series. |
+| 6 | S-39 / S-53 — expand club-chart depth coverage | Keep the club's UNOFFICIAL label and source URL attached; do not claim league-wide 2nd/3rd/4th-string coverage from the two gamebooks. |
+
+The earlier generic priority list is superseded by this dated order. Existing owner-only decisions listed below remain open.
 
 ## The decisions I cannot make for you
 
@@ -37,6 +40,9 @@ Nothing here has been implemented except what your brief itself required (the co
 | S-05 / Q-11 | Whether v1 covers live, futures and alternate markets | it is a scope and cost trade-off |
 | S-27 / Q-27 | Whether losing records are published | transparency preference |
 | S-28 / Q-28 | Sign-off on the verification vocabulary | it defines what the project is allowed to claim in public |
+| S-43 / Q-40 | Refresh cadence for standings and other cumulative tables | it determines when each rolling source is re-read and whether earlier grades are superseded |
+| S-46 / Q-42 | Which dated injury register is canonical | it changes the coverage number the dashboard leads with; older snapshots must remain preserved |
+| S-58 / Q-50 | Permission to retain, parse, and reuse NFL Game Books | the PDFs require written permission for other use; no permission is presumed or obtained here |
 
 
 ## What the second verification pass adds (session `a392a193`, 12 Nov 2026)
@@ -45,9 +51,9 @@ Seven new items, all of them born from a check rather than from a wish: each one
 
 {{csv data/suggestions.csv;;cols=id:ID,title:Suggestion,category:Area,problem_it_solves:Problem it solves,proposal:Proposal,impact:Impact,effort:Effort,risk:Risk,reversible:Reversible,depends_on:Depends on,evidence:Evidence behind it,recommended_path:Recommended path,decision:Decision;;filter=id=S-3;;source=S-BRIEF;;caption=Filtered to the seven rows this pass added. The full board is above; nothing here is implemented on your instruction.}}
 
-### Revised order of first moves
+### Historical order of first moves (12 Nov; superseded by the current order above)
 
-The order at the top of this page was written before the lab existed. Two of its steps have now been done or superseded, so the short version is:
+The order at the top of this historical verification-pass section predates the later injury and forward-sample work. It is retained as a dated record; use the current 13 Nov order above for present decisions:
 
 | Step | Suggestion | Why it moved |
 | --- | --- | --- |

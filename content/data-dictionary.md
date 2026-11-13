@@ -9,10 +9,11 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | --- | --- | --- | --- |
 | `data/injuries_2026_wk10.csv` | 254 | one player × game × filing | S-INJ |
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
-| `data/standings_2026.csv` | 32 | club × season-to-date | S-STAND |
+| `data/standings_2026.csv` | 32 | club × season-to-date, with read timestamp per row | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
+| `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
 | `data/sources.csv` | {{metric sources}} | source | — |
-| `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | 40 / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
+| `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | design rows | S-DESIGN |
 | `data/computed_fair_lines.csv` | 14 | one Week 10 fixture; stages 1–2 of the origination pipeline | S-CALC |
@@ -33,10 +34,34 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/settled_wk10_5f16dcc6.csv` | 4 | settled game × predictor: the published line, the official result, and the absolute error of each | S-CALC-5F16 |
 | `data/computed_settled_5f16dcc6.csv` | 17 | one derived metric, its value, the method that produced it, and the read | S-CALC-5F16 |
 | `data/reverification_5f16dcc6.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
+| `data/schedule_week11_2026.csv` | 13 | one Week 11 fixture: date, kickoff, broadcaster, neutral-site flag and the official game URL | S-WK11-0A11 |
+| `data/originated_lines_wk11_0a113a24.csv` | 13 | one pre-registered Week 11 line: our spread and total, the model inputs beside them, and the non-official archive line it is compared against | S-CALC-0A11 |
+| `data/prereg_week11_0a113a24.csv` | 15 | one field of the pre-registration record: the decision timestamp, the SHA-256 of every artefact it covers, and what each one means | S-PREREG-0A11 |
+| `data/forward_grade_0a113a24.csv` | 13 | one pre-registered line against the official final score, with the do-nothing baseline error beside it | S-CALC-0A11 |
+| `data/forward_grade_summary_0a113a24.csv` | 10 | one derived metric of the forward grade: the hash checks, the settled count and the sample-size arithmetic | S-CALC-0A11 |
+| `data/games_week11_played.csv` | 0 | Week 11 game whose result is official. Append-only, like the Week 10 results file; empty until the games are played | S-SCORES-0A11 |
+| `data/week11_broadcaster_change_0a113a24.csv` | 2 | one fixture whose broadcaster moved between the league's dated announcement and the live schedule page | S-WK11-0A11 |
+| `data/reverification_0a113a24.csv` | 102 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-0A11, S-WK11-0A11, S-WK10, S-SCORES-0A11, S-INJ |
+| `data/availability_watch_c3ec1487.csv` | 296 | one player × club × game, transcribed from the official injury hub on 2026-11-13T12:45Z | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_by_club_c3ec1487.csv` | 28 | one club on the Week 10 slate: practice-code tallies, designations, and the two cells no official source can fill | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_movement_c3ec1487.csv` | 5 | what changed between the 2026-11-12 and 2026-11-13 reads of the hub | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_practice_deltas_c3ec1487.csv` | 49 | one player whose practice code changed between the two dated reads, and the direction | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_gates_c3ec1487.csv` | 4 | one availability readiness gate, its measured value, and why it passes or fails | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/computed_availability_watch_c3ec1487.csv` | 12 | one derived availability metric, how it is computed, and what it means | S-CALC |
+| `data/reverification_c3ec1487.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
+
 | `data/price_archive_a392.csv` | 5 | one price-bearing asset in the repository, what it proves and what it does not | S-NFLDATA-ARCHIVE, S-NFLDATA-SCHEMA |
 | `data/code_collision_a392.csv` | 2 | one cross-source join, how many games it silently dropped with and without the alias table | S-NFLDATA-ARCHIVE |
 | `data/deficiency_by_club_a392.csv` | 78 | club × side of the ball, counts off the official filing | S-INJ-2235 |
 | `data/deficiency_chains_a392.csv` | 22 | one unavailable player at a club whose depth chart this build transcribes, with the club's own next man up | S-DEPTH-SEA, S-DEPTH-LAR, S-INJ-2235 |
+| `data/injuries_wk10_83246f00.csv` | {{metric pr_hub_rows}} | one player-filing on the official Week 10 hub, read 2026-11-13T12:46Z. Its own file, because the 04:45Z and 22:35Z snapshots are the only record of what the hub said then | S-INJ-1246 |
+| `data/depth_charts_wk10_83246f00.json` | {{metric pr_charts}} clubs | one club's own published Unofficial Depth Chart, offence and defence, in the club's own left-to-right order, with the chart URL and the date the club prints on it | S-DEPTH-WAS, S-DEPTH-NYG, S-DEPTH-NE, S-DEPTH-DET, S-DEPTH-KC, S-DEPTH-GB, S-DEPTH-MIA, S-DEPTH-SEA, S-DEPTH-BAL, S-DEPTH-LAC |
+| `data/personnel_relief_wk10_83246f00.csv` | {{metric pr_rows}} | one listed player × his string on his club's chart × the next man the club names × his unit's published order matched rung by rung against the report | S-INJ-1246, S-DEPTH-* |
+| `data/personnel_relief_club_83246f00.csv` | {{metric pr_club_rows}} | club × side of the ball: how many listed players resolved to a string, how many 1st-string players did not practise, and the join state | S-INJ-1246, S-DEPTH-* |
+| `data/reverification_83246f00.csv` | 13 | one check performed against a live official page on 2026-11-13 by session 83246f00, with its outcome | S-STAND-1113, S-SCORES-1113, S-INJ-1246, S-DEPTH-* |
+
+| `data/depth_cascades_6539b6a0.csv` | 139 | one named player per depth cascade, placed against his club's own chart and the official Week 10 report | S-DEPTH-BAL, S-DEPTH-MIA, S-DEPTH-ARI, S-DEPTH-NE, S-DEPTH-DET, S-DEPTH-SF, S-DEPTH-DAL, S-DEPTH-SEA, S-DEPTH-LAR, S-DEPTH-GB, S-DEPTH-WAS, S-DEPTH-NYG, S-INJ-REG10 |
+| `data/depth_cascade_verdicts_6539b6a0.csv` | 18 | one depth cascade, with a verdict computed from its player rows | as above |
 | `data/computed_luck.csv` | 8 | bet count × probability of being ahead at four win rates — arithmetic, not data | S-CALC |
 | `data/computed_sample_sizes.csv` | 5 | one win-probability case × the sample size each gate assumes | S-CALC |
 | `data/computed_vig.csv` | 5 | one price pair × implied probability, overround and the no-vig line | S-CALC |
@@ -48,7 +73,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/availability_deficiency_66faefac.csv` | 18 | one unavailable player × the column he holds in the club's own printed order, the next man up, and how many bodies are left in that group | S-HUB-1113, S-DEPTH-KC, S-DEPTH-GB, S-DEPTH-NE, S-DEPTH-DET |
 | `data/prereg_wk10_66faefac.csv` | 14 | one Week 10 fixture × the locked decision: load by side, differential, call or no-call, our line, stake zero, with the decision timestamp | S-HUB-1113, S-CALC |
 | `data/prereg_sensitivity_66faefac.csv` | 6 | one threshold × how many fixtures the same rule would call; only the 4 row was registered, the rest are context | S-CALC |
-| `data/reverification_66faefac.csv` | 23 | one check performed against a live official page on 13 November, with its outcome, including 4 `NOT CHECKED` and 3 `MISMATCH` rows | S-HUB-1113, S-STAND-1113B, S-SCHED10-1113, S-SCHED11-1113B, S-SCORES-1113B |
+| `data/reverification_66faefac.csv` | 24 | one check performed against a live official page on 13 November, with its outcome, including 4 `NOT CHECKED` and 3 `MISMATCH` rows | S-HUB-1113, S-STAND-1113B, S-SCHED10-1113, S-SCHED11-1113B, S-SCORES-1113B |
 
 ### Grains introduced by the origination lab
 
@@ -60,6 +85,17 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `did_not_practise`, `limited`, `designated_out` by `side` | counts off the official filing, offence and defence kept separate | a zero here means the club filed nobody, which the hub also renders as "No Injuries Reported"; it is never read as healthy (FL-01) |
 | `string`, `next_man_up` | the club's own column order on its published chart | asserted only where the club's chart and the league's filing both speak; otherwise `not published` |
 
+
+## Column meanings — standings
+
+| Column | Type | Definition and rule |
+| --- | --- | --- |
+| `w`, `l`, `t` | count | Wins, losses and ties as published by the NFL; checked against the official [standings page](https://www.nfl.com/standings/). |
+| `pct` | decimal | Winning percentage as published; independently recomputed as `(W + 0.5 × T) / (W + L + T)` and checked against the same [NFL standings page](https://www.nfl.com/standings/). |
+| `pf`, `pa`, `net` | points | Points for, points against and net points; `net = pf - pa`, checked against the [NFL standings page](https://www.nfl.com/standings/). |
+| `streak` | text | Current streak string as published on the [NFL standings page](https://www.nfl.com/standings/). |
+| `source` | registry id | Source-register key for the official page read; current rows use `S-STAND-653B`, linked to [NFL.com standings](https://www.nfl.com/standings/). |
+| `captured_utc` | ISO-8601 UTC minute | Our read time for that official source, not an NFL publication time. All 32 rows currently record `2026-11-13T12:53Z`; the build checks this against the latest registered source and against all 256 values in the saved official re-read. |
 
 ## Column meanings — injury snapshot
 
@@ -73,6 +109,20 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `injury` | text | populated for {{metric injury_detail_cells}} of {{metric injury_rows}} rows because that is what the hub published; never backfilled from prose |
 | `practice` | enum | `F` = Full Participation in Practice, `L` = Limited Participation in Practice, `D` = Did Not Participate In Practice |
 | `status` | enum | `OUT` = Out, `Q` = Questionable, `D` = Doubtful; empty means no designation had been filed |
+
+### `availability_watch_c3ec1487.csv`
+
+| Column | Type | Meaning |
+| --- | --- | --- |
+| `game_id` | key | joins to `schedule_2026_wk10.csv.game_id` |
+| `club` | abbr | league club abbreviation exactly as the hub prints it |
+| `player` | text | display name as published, suffixes included |
+| `position` | code | the hub's own position string; not normalised, because normalising is interpretation |
+| `injury` | text | the hub's injury cell, verbatim; empty for the majority of rows, and never filled from a news article |
+| `practice` | enum | `F` = Full, `L` = Limited, `D` = Did Not Participate In Practice |
+| `game_status` | enum | `OUT`, `Q`, `D`, or empty. Empty is the normal state midweek — 287 of {{metric aw_rows}} rows here |
+| `captured_utc` | timestamp | the moment the page was read. A row without one is not a dated observation |
+| `source` | url | the official page the row was transcribed from |
 
 ## Controlled vocabularies
 

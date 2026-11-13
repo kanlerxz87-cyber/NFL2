@@ -76,7 +76,7 @@ KIND_NEW = KIND_OLD + '''
 METRICS_OLD = "    m.update(gamelog_metrics(st))"
 METRICS_NEW = '''    # The 13 November read and the first locked decision, counted from the registers so
     # the landing page never has to remember a number. verify.py does not yet police the
-    # hub arithmetic here - that is S-47, the proposal to promote it into the verifier.
+    # hub arithmetic here - that is S-60, the proposal to promote it into the verifier.
     avail = _safe_rows("club_availability_20261113_66faefac.csv")
     m.update({
         "avail_rows": sum(int(r["rows_today"]) for r in avail),
@@ -111,7 +111,7 @@ DICT_BLOCK = """| `data/club_availability_20261113_66faefac.csv` | 28 | club × 
 | `data/availability_deficiency_66faefac.csv` | 18 | one unavailable player × the column he holds in the club's own printed order, the next man up, and how many bodies are left in that group | S-HUB-1113, S-DEPTH-KC, S-DEPTH-GB, S-DEPTH-NE, S-DEPTH-DET |
 | `data/prereg_wk10_66faefac.csv` | 14 | one Week 10 fixture × the locked decision: load by side, differential, call or no-call, our line, stake zero, with the decision timestamp | S-HUB-1113, S-CALC |
 | `data/prereg_sensitivity_66faefac.csv` | 6 | one threshold × how many fixtures the same rule would call; only the 4 row was registered, the rest are context | S-CALC |
-| `data/reverification_66faefac.csv` | 23 | one check performed against a live official page on 13 November, with its outcome, including 4 `NOT CHECKED` and 3 `MISMATCH` rows | S-HUB-1113, S-STAND-1113B, S-SCHED10-1113, S-SCHED11-1113B, S-SCORES-1113B |
+| `data/reverification_66faefac.csv` | {{metric reverification_1113}} | one check performed against a live official page on 13 November, with its outcome, including 4 `NOT CHECKED` and 3 `MISMATCH` rows | S-HUB-1113, S-STAND-1113B, S-SCHED10-1113, S-SCHED11-1113B, S-SCORES-1113B |
 
 """
 
@@ -129,10 +129,10 @@ stay byte-frozen so the drift stays measurable.
 
 | What changed | The measured result | Where |
 | --- | --- | --- |
-| **The register grew again, and nothing shrank.** A third read of the Week 10 hub 14 hours after the second holds 296 rows instead of 279, across all 28 playing clubs: 26 with names, two publishing `No Injuries Reported`. Ten clubs gained rows, eighteen were unchanged, none lost one. | 254 · 279 · 296 rows | [Week 10 availability](availability-1113.html), [FL-38](flagged-for-review.html) |
+| **The register grew again, and nothing shrank.** A third read of the Week 10 hub 14 hours after the second holds 296 rows instead of 279, across all 28 playing clubs: 26 with names, two publishing `No Injuries Reported`. Ten clubs gained rows, eighteen were unchanged, none lost one. | 254 · 279 · 296 rows | [Week 10 availability](availability-1113.html), [FL-57](flagged-for-review.html) |
 | **Availability now joins to a depth chart, for four clubs.** Eighteen unavailable players are read against the column they hold on their club's own published order, and eight of them sit in a 1st-string column: Green Bay lost a running back, a centre, a middle linebacker and a first-string nickel to non-participation in one block, while Detroit's starting centre and starting corner are both ruled out. | 18 joined rows · 8 first-string · 3 exhausted chains | [availability_deficiency_66faefac.csv](https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/availability_deficiency_66faefac.csv) |
 | **The first locked decision.** ST-15 takes the healthier club when the availability load differs by four or more, was written at 12:45Z with a SHA-256 committed, and called 2 of the 13 un-played fixtures. Every other fixture is recorded as a no-call rather than dropped, and every stake is zero because gate G-07 is not passed. | 14 fixtures · 2 calls · 0 units staked | [Pre-registration lock](preregistration.html) |
-| **One hub row contradicts itself, in the open.** Detroit's Kerby Joseph carries a full practice and an `OUT` designation in the same row, which breaks any feature that reads only one column. It is published as a conflict, not resolved. | 1 of 9 designations | [FL-39](flagged-for-review.html), [Q-43](questions.html) |
+| **One hub row contradicts itself, in the open.** Detroit's Kerby Joseph carries a full practice and an `OUT` designation in the same row, which breaks any feature that reads only one column. It is published as a conflict, not resolved. | 1 of 9 designations | [FL-58](flagged-for-review.html), [Q-52](questions.html) |
 
 **The limitation that decides what this is worth:** the load is a sum of two published counts, so a player in both columns is counted twice. Only Washington, New England and Detroit carry both columns today, and de-duplicating those three changes no locked call. The arithmetic on required sample does not move either: 1,382 games to detect a 1.0-point error difference, 400 settled bets before any leaderboard claim. Two calls is not evidence of anything except that the mechanism runs.
 """
@@ -141,7 +141,7 @@ stay byte-frozen so the drift stays measurable.
 def exec_edits():
     """True when the third-pass section still has to be appended; idempotent by marker."""
     txt = open(p("content", "executive-summary.md"), encoding="utf-8").read()
-    if "third verification pass" in txt:
+    if "third verification pass" in txt or "availability-deficiency join" in txt:
         print("executive-summary: section already present")
         return False
     return True
@@ -149,23 +149,19 @@ def exec_edits():
 
 # ----------------------------------------------------------------------- content/index.md
 IDX_EDITS = [
-    ("| Injury and availability collection | running — 254 rows snapshotted at 04:45Z, **re-read at 22:35Z: 279 rows across 26 clubs** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/injury_delta_a392.csv` | no stored history, so no availability signal can be backtested (FL-27, Q-36) |",
-     "a third read at 12:45Z",
-     "| Injury and availability collection | running — 254 rows snapshotted at 04:45Z, re-read at 22:35Z (279 rows, 26 clubs), **a third read 13 Nov 12:45Z: 296 rows across all 28 clubs** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/club_availability_20261113_66faefac.csv`, `data/injury_delta_a392.csv` | no stored history, so no availability signal can be backtested (FL-27, Q-36, S-46) |"),
+    # Workstream table: the third read, named as a third read.
+    ("| Injury and availability collection | separate reads: 254-row primary file (12 Nov 04:45Z), 279-row full re-read (12 Nov 22:35Z), latest 296-row full-hub file (13 Nov 12:46Z) |",
+     "third read 13 Nov 12:45Z",
+     "| Injury and availability collection | separate reads: 254-row primary file (12 Nov 04:45Z), 279-row full re-read (12 Nov 22:35Z), 296-row full-hub file (13 Nov 12:46Z, session `83246f00`) and **this branch's 12:45Z read with all 28 blocks and the depth join** |"),
     ("| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; verified 1st-to-4th string chains for the 2 clubs whose charts were transcribed | [Depth Deficiencies](deficiencies.html), `data/deficiency_by_club_a392.csv` | 30 club charts not transcribed (Q-37, S-39) |",
      "18 joined rows on the 13 November read",
-     "| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; the 13 November read joins an unavailable name to the column it holds on the club's own chart — **18 joined rows on the 13 November read, 8 of them 1st string**, for the 4 clubs this build transcribes | [Depth Deficiencies](deficiencies.html), [Week 10 availability](availability-1113.html), `data/availability_deficiency_66faefac.csv` | 28 club charts not transcribed (Q-37, S-39, S-48) |"),
+     "| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; the 13 November read joins an unavailable name to the column it holds on the club's own chart — **18 joined rows on the 13 November read, 8 of them 1st string** — for the 4 clubs this build transcribes | [Depth Deficiencies](deficiencies.html), [Week 10 availability](availability-1113.html), `data/availability_deficiency_66faefac.csv` | 28 club charts not transcribed (Q-37, S-39, S-61) |"),
     ("| Strategy registry | 14 entries, none tracked | `data/strategies.csv` | pre-registration + tracking ledger |",
      "| Strategy registry | {{metric strategies}} entries",
      "| Strategy registry | {{metric strategies}} entries; **1 locked before its slate (ST-15)**, none ranked | `data/strategies.csv`, `data/prereg_wk10_66faefac.csv` | tracking ledger + settled volume (G-08) |"),
     ("| Competition | [Strategy registry](strategies.html) | 14 entries including two negative controls |",
      "| Availability | [Week 10 availability](availability-1113.html) |",
-     """| Availability | [Week 10 availability](availability-1113.html) | the 13 November hub read: 296 rows, 28 clubs, and every unavailable name from a transcribed chart joined to the column it leaves empty |
-| Availability | [Pre-registration lock](preregistration.html) | the first prediction pinned before kickoff: one rule, one threshold, fourteen fixtures, a hash, and the grading tool that fails if the file is touched |
-| Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |"""),
-    ("| Data | [Week 10 injury report](injuries.html) | all 254 official rows, per-row source links |",
-     "the frozen 04:45Z snapshot",
-     "| Data | [Week 10 injury report](injuries.html) | all 254 rows of the frozen 04:45Z snapshot, per-row source links; later reads are published beside it, never over it |"),
+     "| Availability | [Week 10 availability](availability-1113.html) | the 13 November hub read: 296 rows over the whole Week 10 slate, and every unavailable name from a transcribed chart joined to the column it leaves empty |\n| Availability | [Pre-registration lock](preregistration.html) | the first prediction pinned before kickoff: one rule, one threshold, fourteen fixtures, a hash, and the grading tool that fails if the file is touched |\n| Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |"),
 ]
 
 

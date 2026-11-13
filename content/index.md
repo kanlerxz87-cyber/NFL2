@@ -11,7 +11,7 @@ This site has two kinds of pages and they never mix on one page without a divide
 
 - **Measured** (green badge) — tables generated from `data/*.csv`, every row carrying a link to the official league page it was transcribed from.
 - **Specified** (blue badge) — the design of the pricing engine, signals, gates and competition rules. These are proposals, not results.
-- **Decisions** (amber badge) — the [question register](questions.html), the [suggestion register](suggestions.html) and the [review queue](flagged-for-review.html). Nothing on these pages has been implemented on your instruction.
+- **Decisions** (amber badge) — the [question register](questions.html), the [suggestion register](suggestions.html) and the [review queue](flagged-for-review.html). Each suggestion is labeled as adopted, recommended, owner-only, or blocked; a recommendation is not an owner decision.
 
 The root register remains design-only. Independent Q51 research outputs are labelled unvalidated and paper-only; no betting edge is claimed. Blank cells are rendered as `not published` rather than filled with an estimate — see [verification method](methodology.html).
 
@@ -42,10 +42,10 @@ data — the counts, the club coverage and one flag — and those are corrected 
 
 | Workstream | State | Evidence in repo | Blocking |
 | --- | --- | --- | --- |
-| Injury and availability collection | running — 254 rows snapshotted at 04:45Z, re-read at 22:35Z (279 rows, 26 clubs), **a third read 13 Nov 12:45Z: 296 rows, 26 of the 28 clubs filing names and 2 publishing `No Injuries Reported`** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/club_availability_20261113_66faefac.csv`, `data/injury_delta_a392.csv` | no stored history, so no availability signal can be backtested (FL-27, Q-36, S-46) |
+| Injury and availability collection | separate reads: 254-row primary file (12 Nov 04:45Z), 279-row full re-read (12 Nov 22:35Z), 296-row full-hub file (13 Nov 12:46Z, session `83246f00`) and **this branch's 12:45Z read with all 28 blocks and the depth join** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/injuries_wk10_83246f00.csv`, `data/injury_delta_a392.csv` | canonical display remains owner-only (Q-42); repeated-read cadence and history remain open (Q-43, S-35) |
 | Depth, IR and roster events | running — 227 rows | `data/depth_changes_2026_wk10.csv` | no official depth chart exists (FL-06) |
-| Standings and schedule | running — 32 + 14 rows, reconciled | `data/standings_2026.csv`, `data/schedule_2026_wk10.csv` | seven official columns left out (FL-07) |
-| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; the 13 November read joins an unavailable name to the column it holds on the club's own chart — **18 joined rows on the 13 November read, 8 of them 1st string**, for the 4 clubs this build transcribes | [Depth Deficiencies](deficiencies.html), [Week 10 availability](availability-1113.html), `data/availability_deficiency_66faefac.csv` | 28 club charts not transcribed (Q-37, S-39, S-48) |
+| Standings and schedule | 32 club rows × 8 published fields; official re-read captured at `2026-11-13T12:53Z`, exact match | `data/standings_2026.csv`, `data/standings_recheck_20261113.csv`, `data/schedule_2026_wk10.csv` | remaining split-record columns are omitted rather than inferred (FL-07) |
+| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; the 13 November read joins an unavailable name to the column it holds on the club's own chart — **18 joined rows on the 13 November read, 8 of them 1st string** — for the 4 clubs this build transcribes | [Depth Deficiencies](deficiencies.html), [Week 10 availability](availability-1113.html), `data/availability_deficiency_66faefac.csv` | 28 club charts not transcribed (Q-37, S-39, S-61) |
 | Line origination | **computed** — walk-forward ridge ratings on 136 official games: spread MAE 9.278 vs a 10.455 do-nothing baseline, paired +0.295 pts against the archived price | [Fair-Line Lab](model-lab.html), `data/model_backtest_2026_a392.csv` | totals are worse than a league mean and are published as a diagnostic, not a line (S-37, FL-32) |
 | Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
 | Strategy registry | {{metric strategies}} entries; **1 locked before its slate (ST-15)**, none ranked | `data/strategies.csv`, `data/prereg_wk10_66faefac.csv` | tracking ledger + settled volume (G-08) |
@@ -74,6 +74,62 @@ Nothing was appended to the weeks 1–9 backtest corpus. Suggestion [S-26](sugge
 
 Two items in the register came out of the re-read and are waiting on you rather than on code: the refresh cadence for cumulative tables ([Q-40](questions.html), [S-43](suggestions.html)) and a broadcaster disagreement on two Week 11 games ([FL-36](flagged-for-review.html)).
 
+## What changed on 13 November 2026, later
+
+A settlement is not a forecast. The one graded Week 10 game was published after the fact, so it proves the arithmetic runs and nothing else. The thing a competition needs is a line published **before** the games it describes, and there was none — so this session built one.
+
+1. **Thirteen Week 11 lines, pre-registered.** For the games of 19–23 November: our spread and our total for each fixture, with the model inputs beside them, published with a decision timestamp of `2026-11-13T12:39Z` and a SHA-256 over four artefacts — the lines file, the frozen weeks 1–9 corpus, the append-only settled-games file and the generator script. The full record is on the [Week 11 lines](week11-originated.html) page, and `tools/grade_forward.py` recomputes those hashes before it grades anything.
+2. **The model was proved to be the same model, not a look-alike.** The Week 11 generator re-implements the published ratings model, so before it writes anything it re-derives all fourteen already-published Week 10 lines from the frozen corpus and compares every cell. It matched 14 of 14, and `tools/verify.py` now re-runs that guard on every verification.
+3. **The pre-registration was tested, not asserted.** Editing one spread from 5.5 to 1.5 makes the grader report `BROKEN`, withhold the grade and exit non-zero. Restoring it returns `intact`.
+4. **Two flags and two questions came out of a 102-row re-verification.** All 32 standings rows, all 14 Week 10 fixtures and all 13 Week 11 fixtures were re-read against the live official pages on 13 November: 95 matches, 2 mismatches, 5 rows that say NOT CHECKED. The two mismatches are the Week 11 broadcasters — and they are now **explained**, not just flagged: the league's own announcement of 9 November matches this repository's transcription cell for cell, so the league moved the two broadcasts between 9 and 13 November ([FL-36](flagged-for-review.html)). Two new questions ask which official page is the record when the league changes a schedule after announcing it ([Q-46](questions.html)) and when participation for the next week will exist ([Q-47](questions.html)).
+5. **Two suggestions were implemented.** S-44 (auto-grade every originated line against the settled result) and S-45 (publish the required-sample number beside every performance figure) are now code, and the standings table carries the capture timestamp S-43 asked for.
+
+The honest finding on the lines themselves: **our spreads sit about 3.5 points closer to a pick'em than the community archive's** — the model's fitted home-field coefficient is 0.18 points, where the archive's widest lines are 14 and 16.5. The totals remain the weak half. And the sample-size arithmetic is unchanged and unforgiving: thirteen observations against a required ~1,400.
+
+### Later the same day — the injury hub moved, so the site now dates it
+
+A second read of the official injury hub at **2026-11-13T12:45Z** found the source had changed materially
+in 14 hours, and the new [Availability Watch](availability-watch.html) page publishes all of it:
+
+- **Coverage is now 28 of 28 clubs on the Week 10 slate.** The league published full SEA and CIN blocks, which closes the
+  collection gap [FL-24](flagged-for-review.html) recorded. This Dashboard tile still reads
+  `{{metric injury_coverage}}` from the 12 November capture, and that disagreement is [FL-37](flagged-for-review.html) —
+  published, not silently reconciled.
+- **Player rows went 254 → 279 → {{metric aw_rows}}, and the hub has only ever added.** 17 players were
+  added and none removed; **{{metric aw_practice_changes}} of 277 shared players changed practice code**
+  (37 toward full participation, 12 away from it). The availability signal is that delta, not the level
+  ([S-47](suggestions.html), [FL-38](flagged-for-review.html)).
+- **Game-status designations went 6 → {{metric aw_designations}}.** The three new ones are all Detroit,
+  all OUT: Kerby Joseph, Cade Mays, D.J. Reed.
+- **No second Week 10 game has settled**, so the [settled page](week10-settled.html) cannot gain a row
+  until 15–16 November. That is a property of the calendar, not a gap in the pipeline.
+
+Four new decisions came out of it — which register is canonical ([Q-42](questions.html)), how often the
+hub must be read ([Q-43](questions.html)), what replaces depth rank ([Q-44](questions.html)), and whether
+to buy snap counts ([Q-45](questions.html)).
+
+## Latest official reads — 13 November 2026
+
+The time labels now identify different source snapshots rather than one global “last updated” date:
+
+| Read | Capture time (UTC) | What it represents |
+| --- | --- | --- |
+| Primary Week 10 injury file | 2026-11-12 04:45 | Original player-filing snapshot; not the later hub states |
+| Full injury-hub re-read | 2026-11-12 22:35 | 279 rows across 26 clubs with filed rows |
+| Settled-game injury recheck | 2026-11-13 06:52 | Only the 20 WAS–NYG rows; **not** a full hub re-read |
+| Latest full injury-hub snapshot in this tree | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
+| NFL division standings | **2026-11-13 12:53** | 32 clubs × W/L/T/PCT/PF/PA/NET PTS/STREAK: **256/256 values matched** the independent saved re-read; no standings value changed |
+
+The standings timestamp appears in the site-wide source-read banner and on each standings row. `tools/verify.py` checks it against the latest registered NFL standings source and compares every value against [`data/standings_recheck_20261113.csv`](data/standings_recheck_20261113.csv) on each run. The injury times above are intentionally separate; they describe different data snapshots and coverage, not a shared live refresh.
+
+A second discovery is useful for availability research but does **not** close the ordinal-depth or snap-count gap: official gamebooks for [NE at SEA, Week 1](https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1) and [NYG at WAS, Week 5](https://www.nfl.com/games/giants-at-commanders-2026-reg-5) contain starting lineups, substitutions, Did Not Play, Not Active, and player-stat sections. They record game-day evidence, not second/third/fourth-string rank or snap counts. Each PDF carries an NFL notice requiring written permission for other use. No gamebook data has been copied into the repository; the rights question is [Q-50](questions.html), with the source-backed but blocked proposal [S-58](suggestions.html).
+
+**Current review order:** S-43 is partly adopted (visible, machine-checked timestamps); the refresh cadence remains the owner’s open choice in Q-40. S-44 and S-45 are already adopted upstream (auto-grading and sample-size context). The dated injury-register choice remains owner-only ([Q-42](questions.html), [S-46](suggestions.html)); gamebook collection remains blocked on written-use rights ([Q-50](questions.html)). Existing blanks and flags remain in place.
+
+## Depth cascades re-verified on 13 November 2026
+
+The eighteen depth cascades on this site were checked player by player against the twelve clubs' own depth charts and the league's Week 10 injury report. Five are verified, nine are only partly confirmed and four are contradicted by the official pages. Nine statuses on the earlier labels are wrong, and two more are understated. The full line-by-line table, with each club chart and report link, is on [Depth Cascades (re-verified)](depth-cascades.html). Every irregularity is on [Flagged for Review](flagged-for-review.html) as FL-46 to FL-54.
+
 ## Repository map
 
 {{site_map}}
@@ -99,8 +155,10 @@ Two items in the register came out of the re-read and are waiting on you rather 
 | Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
-| Data | [Week 10 injury report](injuries.html) | all 254 rows of the frozen 04:45Z snapshot, per-row source links; later reads are published beside it, never over it |
+| Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
+| Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
+| Data | [Personnel Relief](personnel-relief.html) | **new 13 Nov** — the verified join: {{metric pr_resolved}} of {{metric pr_rows}} listed players resolved to a 1st/2nd/3rd/4th string on their own club's published chart, with the next man the club names, and {{metric pr_first_dnp}} 1st-string non-participants across {{metric pr_charts}} clubs |
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |

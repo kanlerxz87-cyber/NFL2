@@ -1,6 +1,8 @@
 # Executive summary — NFL 2026 verified analytics
 
-**Built:** 2026-11-12 · **Data through:** Week 9 results, Week 10 injury reports
+**Built:** 2026-11-12 · **Updated:** 2026-11-13 (session `0a113a24`) · **Data through:** Week 9 results, Week 10 injury reports
+
+> **Current summary:** the site's [executive summary](executive-summary.html) is the maintained version. As of 13 Nov 2026 it adds a pre-registered Week 11 forward sample: 13 lines hashed before kickoff, a grader that refuses edited lines, and a 102-row re-verification register (95 match, 2 explained mismatches under FL-36, 5 not checked). The Week 11 games have not been played; no performance claim is made.
 **Live site:** https://kanlerxz87-cyber.github.io/NFL2/
 **Code and data:** https://github.com/kanlerxz87-cyber/NFL2
 
@@ -159,8 +161,9 @@ publishing `No Injuries Reported` — against 279 at 22:35Z and 254 at 04:45Z, w
 Availability is then joined to the club's own depth chart: 18 unavailable names, 8 of them sitting in a
 printed 1st-string column, 3 groups left with no charted body behind the absent player, and one row
 that contradicts itself (Detroit's Kerby Joseph: full practice, `OUT` designation) published as a
-conflict rather than resolved. Twenty-three line-by-line checks against live official pages are in
-`data/reverification_66faefac.csv` — and they include a correction against us: the previous session's
+conflict rather than resolved. Twenty-four line-by-line checks against live official pages are in
+`data/reverification_66faefac.csv` (12 confirmed, 5 newly published, 3 still standing as mismatches, 4 explicitly not
+re-checkable today) — and they include a correction against us: the previous session's
 "Minnesota DNP 6→3" claim does not reproduce (MIN holds 9 rows, unchanged), so it is withdrawn here.
 
 **A prediction pinned before the games it predicts.** Rule ST-15 — take the healthier club when the
@@ -173,7 +176,7 @@ leaderboard claim. Two calls is a mechanism working, not evidence.
 
 Pages: [Week 10 availability](https://kanlerxz87-cyber.github.io/NFL2/availability-1113.html) ·
 [Pre-registration lock](https://kanlerxz87-cyber.github.io/NFL2/preregistration.html) ·
-[Flagged for review](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html) (FL-36 to FL-40).
+[Flagged for review](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html) (FL-36 to FL-59).
 
 ---
 

@@ -5,6 +5,10 @@ These items are the reason the rest of the site has blanks in it. Each row was f
 
 Severity means what happens to a decision if the item is ignored: **high** = a number or a model built on top of this would be wrong in a way you could not see; **medium** = it degrades a feature; **low** = housekeeping.
 
+## Game Book use restriction — FL-55
+
+Two official books are verified: [NE at SEA, Week 1](https://static.www.nfl.com/image/upload/v1789038923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf) and [NYG at WAS, Week 5](https://static.www.nfl.com/image/upload/v1791805921/gamecenter/aa94b906-4feb-11f1-abca-2c54536568a9.pdf). Both include actual lineups and game-day status sections, but carry a notice that other use requires written NFL permission. No PDF or extracted Game Book data has been stored here. Bulk capture and reuse stay blocked pending a rights/terms review ([Q-50](questions.html), [S-58](suggestions.html)); the flag is review-only and does not block publication.
+
 {{csv data/flags.csv;;cols=id:ID,type:Type,severity:Severity,finding:What we found,evidence:Evidence,source:Sources:urls,decision_impact:Effect on decisions,status:State;;source=S-REPO;;caption=Source column links the official pages involved. Rows with "arithmetic" or "design" findings link the repository instead, because the claim is about our build, not about the league.}}
 
 ## Items that are blank on purpose

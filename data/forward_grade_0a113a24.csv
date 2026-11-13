@@ -1,0 +1,14 @@
+game_id|date|kickoff_et|away|home|our_spread_home_favoured|our_total|actual_away_pts|actual_home_pts|actual_home_margin|actual_total|spread_abs_error|total_abs_error|baseline_spread_abs_error|baseline_total_abs_error|spread_error_vs_baseline|total_error_vs_baseline|status|source
+W11-01|2026-11-19|20:15|IND|HOU|5.5|50.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/colts-at-texans-2026-reg-11
+W11-02|2026-11-22|13:00|MIA|BUF|10.0|48.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+W11-03|2026-11-22|13:00|BAL|CAR|2.0|50.5|||||||||||not settled - the game has not been played|https://www.nfl.com/games/ravens-at-panthers-2026-reg-11
+W11-04|2026-11-22|13:00|NO|CHI|7.0|51.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/saints-at-bears-2026-reg-11
+W11-05|2026-11-22|13:00|TEN|DAL|5.0|49.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/titans-at-cowboys-2026-reg-11
+W11-06|2026-11-22|13:00|TB|DET|-0.5|47.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+W11-07|2026-11-22|13:00|AZ|KC|8.5|46.5|||||||||||not settled - the game has not been played|https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11
+W11-08|2026-11-22|13:00|PIT|PHI|-7.5|39.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/steelers-at-eagles-2026-reg-11
+W11-09|2026-11-22|16:05|NYJ|LAC|-3.5|42.5|||||||||||not settled - the game has not been played|https://www.nfl.com/games/jets-at-chargers-2026-reg-11
+W11-10|2026-11-22|16:25|LV|DEN|4.0|50.5|||||||||||not settled - the game has not been played|https://www.nfl.com/games/raiders-at-broncos-2026-reg-11
+W11-11|2026-11-22|16:25|JAX|NYG|-8.5|43.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/jaguars-at-giants-2026-reg-11
+W11-12|2026-11-22|20:20|MIN|SF|2.5|39.0|||||||||||not settled - the game has not been played|https://www.nfl.com/games/vikings-at-49ers-2026-reg-11
+W11-13|2026-11-23|20:15|CIN|WAS|-7.5|51.5|||||||||||not settled - the game has not been played|https://www.nfl.com/games/bengals-at-commanders-2026-reg-11
