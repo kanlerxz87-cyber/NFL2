@@ -1578,6 +1578,34 @@ sessions' trees, left byte-identical.
 
 **Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 injury-coverage conflict and FL-38 hub volatility (both `c3ec1487`); FL-39 stale JSON snapshot; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
 
+### `c3ec1487` — merge note: PR #42 (session `83246f00`) landed while PR #43 was open
+
+`gh pr merge 43` was refused with a real conflict, not a stale one: `main` advanced through PR #42
+(`arena/83246f00-nfl2`, "personnel relief — the verified depth-chart join"), which had itself already
+merged PR #41 into its branch. Resolution: `git merge origin/main` on this branch. One conflicted file,
+`data/build_manifest.json` — a generated artefact — resolved by taking the merged tree's version and
+regenerating with `tools/build_site.py` (29 pages). **No session's work was discarded:** `83246f00`'s
+ten-club depth-chart join, its registers and its page are intact, and this session's availability watch
+is intact.
+
+The convergence turned out to be useful rather than merely survivable. `83246f00` transcribed the same
+official hub read independently, into `data/injuries_wk10_83246f00.csv`. Compared key by key against
+`data/availability_watch_c3ec1487.csv`: **296 of 296 players agree on club, practice code and game
+status — zero differences, zero players on one side only.** Neither session knew the other was
+transcribing. That is published as a new row in `data/reverification_c3ec1487.csv` and a new section on
+the Availability Watch page, and it is the strongest check available on a hand transcription.
+
+Re-verified on the merged tree: `tools/verify.py` **96 passed · 0 warnings · 0 failures**;
+`tools/check_site.py` 11 passed / 1 disclosed warning; `scripts/audit_all_pages.py` 103 pages · 273 tables
+· 4,183 rows · 100% row-sourced · 0 broken links; `engine/verify_repo_and_site.py`, `verify_s92`,
+`review_verify`, `verify_q51`, `verify_s53126614` all PASS.
+
+Note for the next session: `83246f00`'s personnel-relief tree begins to answer Q-44 (what replaces depth
+rank) for 10 clubs with a club-published chart; the two datasets should be reconciled rather than one
+superseding the other, and the *two* independent 296-row transcriptions now in `data/` are a standing
+cross-check worth keeping.
+
+
 ---
 
 ## Session `6539b6a0` (`arena/6539b6a0-nfl2`) — Depth-cascade re-verification against official club charts, flag reconciliation, stale-PR close-out, integration
@@ -1685,7 +1713,48 @@ Probe a URL that exists in exactly one tree, and cache-bust it.
 | Integration PR | https://github.com/kanlerxz87-cyber/NFL2/pull/47 (`arena/6539b6a0-nfl2` → `main`) |
 | PR #35 (`8361cc7a`) | Already closed by session `0a113a24` on 2026-11-13T12:50Z ("superseded by PR #44"). This session did not close it again. Its text is carried over verbatim in this section. |
 | Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
-| Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
+| Merge result (PR #47) | **Merged 2026-11-13T12:54:05Z**, merge commit `9a31248`. Pages run for that commit: success. |
+| Follow-up PR #49 | https://github.com/kanlerxz87-cyber/NFL2/pull/49 (correct the chart-reading claim on the depth-cascades page: Seahawks and Patriots read in full; other ten on first page). **Merged 2026-11-13T13:00:25Z**, merge commit `3e4e7e1`. Checks: Row-level verification, audit, q51 all pass. Pages run for that commit: success. |
+| Live check after #49 | `depth-cascades.html` serves the corrected sentence, and `flagged-for-review.html` serves FL-54. |
+| Process note | A `pull --rebase` on #49 was interrupted by a conflict in `data/build_manifest.json`. A push and PR were run during that interrupted rebase. The PR was created from the stale remote head. The branch was then rebased, and the remote head was replaced with `--force-with-lease` (own commits only). PR #49 was re-checked: 4 files, mergeable, clean. |
+
+
+### Session `c3ec1487` — PR, merge and Pages record
+
+- **PR #41:** https://github.com/kanlerxz87-cyber/NFL2/pull/41 — MERGED 2026-11-13T12:45:46Z as `d52ed61`.
+  Checks `audit`, `q51`, `Row-level verification, link check and build reproducibility`: all **pass** pre-merge.
+- **PR #43:** https://github.com/kanlerxz87-cyber/NFL2/pull/43 — MERGED 2026-11-13T12:56:29Z as `7c9a2be`.
+  Carried the list-rendering fix and, after the merge rounds below, the independent-transcription cross-check.
+- **Pages deploy:** build `status: "built"` on `7c9a2be` (2026-11-13T12:56:31Z). Live-confirmed by fetching a
+  page that exists in exactly one tree — [availability-watch.html](https://kanlerxz87-cyber.github.io/NFL2/availability-watch.html)
+  returns the new page with its 296-row tables, and `flagged-for-review.html` renders FL-37 and FL-38 as rows.
+  (The FL-26 rule: a 200 on a page present in every tree proves only that *something* is deployed.)
+- **Merge conflicts — four rounds, none discarded work.** `main` advanced four times while PR #43 was open:
+  PR #42 (`83246f00`, personnel relief), PR #44 + #45 (`0a113a24`, Week 11), PR #46, PR #47 (`6539b6a0`).
+  Every round was resolved by `git merge origin/main` and regenerating the generated artefacts
+  (`data/build_manifest.json`, `data-dictionary.html`); the one prose conflict, in `COORDINATION.md`, kept
+  **both** sessions' records verbatim. No file owned by another session was reverted at any point.
+- **The convergence produced a new verification, not just a conflict.** `83246f00` transcribed the same
+  official hub read independently, into `data/injuries_wk10_83246f00.csv`. Key-by-key comparison against
+  `data/availability_watch_c3ec1487.csv`: **296 of 296 players agree on club, practice code and game status,
+  with zero players on one side only.** Published as a `reverification_c3ec1487.csv` row and a section on the
+  Availability Watch page. Two sessions transcribing the same rendered table without coordination and
+  agreeing completely is the strongest check available on a hand transcription.
+- **Handoff — one live defect found in the merged tree, not fixed here (another session's register).**
+  `data/questions.csv` carries **duplicate ids Q-46 and Q-47** (two different questions each), introduced when
+  two sessions numbered rows against different snapshots of the register. Rendered, the page shows two rows
+  with the same ID and no link can address either unambiguously; `tools/verify.py` does not currently check
+  register-id uniqueness, which is why CI is green. `6539b6a0` has already logged the same thing as FL-54.
+  Recommended fix belongs to the register owner: renumber the later pair to Q-48/Q-49 and add an id-uniqueness
+  assertion to `register_counts_match_files()`. Logged here rather than edited, per the ownership rule.
+
+### Session `c3ec1487` — close-out
+
+All six tasks are done; nothing is left in progress on this branch. The open items are **decisions for the
+owner**, not collection gaps: Q-42 (which injury register is canonical), Q-43 (hub read cadence), Q-44 (what
+replaces depth rank), Q-45 (snap-count entitlement), and the standing Q-01 (price feed). The order I would
+take them in, with the reasoning on each row of `data/suggestions.csv`: **Q-42 first** — it removes a
+two-answer page and costs one build change — then Q-43, then the two purchasing decisions together (S-51).
 
 ---
 
@@ -1727,4 +1796,10 @@ Probe a URL that exists in exactly one tree, and cache-bust it.
 | Date | Event | Resolution |
 |---|---|---|
 | 2026-11-13 | While the Week 11 audit implementation remained stashed, `origin/main` advanced from `172077b` to `9a31248` through PRs #44–#47 and related integrations. The required `git merge origin/main` conflicted only in this coordination log. | The complete `origin/main` log and this session's 5C-01 claim/history are both retained below. The audit stash is preserved for re-application against the integrated tree. Shared register collisions and the existing FL-36 disposition will be reconciled after re-application; no other session's tree or records are to be discarded. |
+
+### Merge/conflict log — PR #50 and the updated main tree
+
+| Date | Event | Resolution |
+|---|---|---|
+| 2026-11-13 | After the scope extension was committed, `origin/main` advanced from `9a31248` to `7b1b746` through PRs #49 and #50. The audit implementation remained stashed while `git merge origin/main` was run. | Only `COORDINATION.md` conflicted. The complete incoming PR #49/#50 log and this session's claim, extended file scope and earlier merge history are both retained. The committed incoming file also contained literal conflict-marker lines around the PR #43 merge note and the PR #47 session record; those markers were removed while retaining both complete sections. The implementation stash remains intact and will be reapplied after this integration commit. |
 

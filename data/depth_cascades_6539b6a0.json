@@ -2,7 +2,7 @@
   "task": "6539-T1",
   "session": "6539b6a0",
   "read_date_utc": "2026-11-13",
-  "method": "Each named cascade player placed against the club's own depth chart page (read in full) and the NFL Week 10 injury report (all 7 pages read). Verdict rule: VERIFIED = every named player's chart placement and report status agree with the cascade; PARTLY = core order confirmed but a status is wrong, an injury detail is news-only, or a slot is contested; CONTRADICTED = chart order or a named starter's status disagrees with the cascade.",
+  "method": "Each named cascade player placed against the club's own depth chart page (Seahawks and Patriots read in full; other ten read on the first page, page counts not re-checked) and the NFL Week 10 injury report (all 7 pages read). Verdict rule: VERIFIED = every named player's chart placement and report status agree with the cascade; PARTLY = core order confirmed but a status is wrong, an injury detail is news-only, or a slot is contested; CONTRADICTED = chart order or a named starter's status disagrees with the cascade.",
   "sources": {
     "injury_report": "https://www.nfl.com/injuries/league/2026/REG10",
     "club_charts": {

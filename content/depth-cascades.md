@@ -5,7 +5,7 @@
 
 Two sources, both read on **13 November 2026**:
 
-1. **The club's depth chart** for each of the 12 clubs named in the cascades. Each chart was read in full, every page in one piece, on the club's own website. Several clubs label their chart *unofficial*, and the Patriots' page is titled "Unofficial Depth Chart". The label on each page is recorded in [FL-50](flagged-for-review.html); it is not assumed.
+1. **The club's depth chart** for each of the 12 clubs named in the cascades. The Seahawks and Patriots charts were read in full (two and three pages); the other ten clubs' charts were read on their first page, and their page counts were not re-checked. All were read on the club's own website. Several clubs label their chart *unofficial*, and the Patriots' page is titled "Unofficial Depth Chart". The label on each page is recorded in [FL-50](flagged-for-review.html); it is not assumed.
 2. **The official NFL Week 10 injury report** at [nfl.com/injuries/league/2026/REG10](https://www.nfl.com/injuries/league/2026/REG10), read in all seven pages. Players placed on injured reserve are not on the weekly report; their status is taken from NFL.com news articles and marked `NEWS_ONLY` ([FL-52](flagged-for-review.html)).
 
 Nothing is inferred. A player who does not appear on the report is shown as *not on report*, which is a fact about the report and not a statement that he is healthy.
