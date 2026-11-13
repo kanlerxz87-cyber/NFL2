@@ -1,0 +1,5 @@
+game_id|week|matchup|actual_away_pts|actual_home_pts|actual_home_margin|actual_total|predictor|predicted_spread_home|predicted_total|spread_abs_error|total_abs_error|prediction_origin|source
+W10-01|10|WAS 24 - NYG 21|24|21|-3|45|our origination (a392 lab)|2.50|45.50|5.50|0.50|data/originated_lines_wk10_a392.csv|https://www.nfl.com/games/commanders-at-giants-2026-reg-10
+W10-01|10|WAS 24 - NYG 21|24|21|-3|45|points-only fair line|5.00|48.00|8.00|3.00|data/computed_fair_lines.csv|https://www.nfl.com/games/commanders-at-giants-2026-reg-10
+W10-01|10|WAS 24 - NYG 21|24|21|-3|45|archived community price|2.50|40.50|5.50|4.50|data/originated_lines_wk10_a392.csv|https://www.nfl.com/games/commanders-at-giants-2026-reg-10
+W10-01|10|WAS 24 - NYG 21|24|21|-3|45|do-nothing season mean|0.00|45.93|3.00|0.93|games_2026_wk1_9.csv (weeks 1-9, 136 games)|https://www.nfl.com/games/commanders-at-giants-2026-reg-10

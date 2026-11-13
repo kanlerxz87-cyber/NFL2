@@ -13,7 +13,7 @@ The collection layer now exists and is genuinely verified: 254 rows of the offic
 | Game-status designations | {{metric designations}} rows populated | [nfl.com/injuries](https://www.nfl.com/injuries/), [week-10 report](https://www.nfl.com/news/nfl-week-10-injury-report-2026-season) | the two official pages agree on every one; the remaining rows are blank in the source, which is not the same as zero |
 | Roster / depth / IR events | 227 rows | [Wed 11-Nov roundup](https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11) | per-team blocks transcribed; typos in the source preserved and annotated |
 | Completed results, weeks 1–9 | {{metric games_log}} games | [nfl.com/schedules](https://www.nfl.com/schedules/2026/REG/) plus one [official game page](https://www.nfl.com/games/) per row | imported from a parallel session and re-audited here: every row cites its own game page, and the recount matches the standings row for **{{metric games_log_reconciled}} of 32 clubs** on W, L, T, PF and PA — the strongest independent check available in this repo |
-| Standings | 32 rows | [nfl.com/standings](https://www.nfl.com/standings/) | winning pct recomputed with ties counted as half; ΣPF (6246) = ΣPA (6246) and Σnet = 0 across the league, so the transcription is arithmetically closed |
+| Standings | 32 rows | [nfl.com/standings](https://www.nfl.com/standings/) | winning pct recomputed with ties counted as half; ΣPF ({{metric league_pf}}) = ΣPA ({{metric league_pf}}) and Σnet = 0 across the league, so the transcription is arithmetically closed |
 | Week 10 schedule | 14 games | [week-10 report](https://www.nfl.com/news/nfl-week-10-injury-report-2026-season) | venues, kickoff times and network match the injury hub's own headers |
 | Quarterback chain changes | 5 quarterback depth items: 3 confirmed starting changes, 1 coach declining to commit, 1 backup assignment | [roundup](https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11), [Darnold article](https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again) | each is a direct coach or league statement, not a report about a report |
 
@@ -74,6 +74,26 @@ on the [verification method](methodology.html) page.
 **The lesson, for whoever runs next.** A number a file can be asked about must either be measured from that
 file on every build or be absent. Prose counts rot silently, and a green audit suite is not evidence that
 the data is still true — only that the site still agrees with it.
+
+## What the 13 November settlement changed
+
+One Week 10 game became official after the previous build — **Washington 24, NY Giants 21** on Thursday 12 November — and it is the first result any line on this site has been measured against. It is worth reading carefully, because it is a small sample that produces one flattering number and one unflattering one.
+
+| What we published | What happened | Read |
+| --- | --- | --- |
+| Our spread, NYG −2.5 | Giants lost by 3 | **5.50 pts of error.** A predictor that wrote the league average of 0.00 every week was off by 3.00. Our lean cost 2.5 points against knowing nothing. |
+| Our total, 45.5 | Actual total 45 | **0.50 pts of error** — the best number on the site, and the least meaningful. |
+| Archived community price, 40.5 | Actual total 45 | 4.50 pts of error. We beat it by 4.0, but the league mean is 45.93, so the archive was the outlier. |
+| Points-only fair line, NYG −5.0 / 48.0 | — | 8.00 and 3.00 pts of error. The simplest model here is also the worst on this game. |
+
+The reason the 0.5 does not mean what it looks like is on the [Settled Week 10](week10-settled.html) page: this game's total landed 0.93 points from the league mean, and only **8 of the 136** verified games are that average or closer. A near-average game hands every predictor a cheap win. Detecting a 1.0-point difference in mean absolute error at 80% power needs roughly **1,400–1,600 games**; one settled game is 0.07% of that.
+
+Two consequences for the programme:
+
+1. **The standings refresh exposed a process gap, not a data one.** NYG and WAS were each one game stale. The two rows are corrected, but no cumulative table on this site states when it was read, so the next staleness will be just as invisible. That is [FL-35](flagged-for-review.html), [Q-40](questions.html) and [S-43](suggestions.html).
+2. **The backtest corpus is now explicitly frozen.** The weeks 1–9 file keeps its published SHA-256 (`f0dffce0…6f33`) and week 10 results go into a separate append-only file, so no grade already published is silently re-baselined by a refresh.
+
+The settlement pipeline works end to end. That is genuinely new and genuinely useful — it is the mechanism the leaderboard needs. It is not evidence that the model works, and nothing yet published could be.
 
 ## Standing risk to name plainly
 
