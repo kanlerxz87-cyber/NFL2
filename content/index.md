@@ -63,6 +63,17 @@ Four items sit in front of almost everything else. They are decisions and access
 3. **A defensible depth answer.** The league publishes no depth chart, so "2nd/3rd/4th string replacing a starter" must be reconstructed from roster status, participation, designations and actual playing time ([S-06](suggestions.html), [FL-06](flagged-for-review.html)).
 4. **Point-in-time storage.** Three filings a week and a dated event log, or the availability signals cannot be built at all ([FL-09](flagged-for-review.html)).
 
+## What changed on 13 November 2026
+
+The league made one Week 10 game official after the last build. Two things follow from it, and both are on the site rather than in a commit message:
+
+1. **The standings were one game stale.** `NYG` and `WAS` each moved by exactly the settled 24–21 game. Both rows are refreshed, the league identities still close (136–136, 6291 points for and against), and the episode is recorded as [FL-35](flagged-for-review.html) because the real defect is that no cumulative table on this site states when it was read.
+2. **The site has a settled result for the first time.** Every line this repository originated for that game is now scored against the official final score on the [Settled Week 10](week10-settled.html) page. Our spread lost to a predictor that knows nothing about either team by 2.5 points; our total beat the archived price by 4.0 points, on a game whose total landed 0.93 points from the league mean — only 8 of the 136 verified games are that average. The page publishes the arithmetic rather than the flattering reading: detecting a 1.0-point difference at 80% power needs about 1,400 games, so one settled game is 0.07% of the evidence required.
+
+Nothing was appended to the weeks 1–9 backtest corpus. Suggestion [S-26](suggestions.html) asks for that file to be the pre-registered corpus with its hash published, so week 10 results go into a separate append-only file and the corpus stays byte-identical at `sha256 f0dffce0…6f33`.
+
+Two items in the register came out of the re-read and are waiting on you rather than on code: the refresh cadence for cumulative tables ([Q-40](questions.html), [S-43](suggestions.html)) and a broadcaster disagreement on two Week 11 games ([FL-36](flagged-for-review.html)).
+
 ## Repository map
 
 {{site_map}}
@@ -82,6 +93,7 @@ Four items sit in front of almost everything else. They are decisions and access
 | Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos, and 2 measured from the game log |
 | Origination | [Bet types](bet-types.html) | singles, parlays and prop combos priced consistently |
 | Origination | [Removing luck](skill-vs-luck.html) | sample sizes, CLV, bootstrap, split-half, luck-adjusted P&L |
+| Origination | [Settled Week 10 (graded)](week10-settled.html) | the first result any line here has been scored against: our spread, our total, the archived price and a do-nothing baseline, measured against WAS 24 – NYG 21 |
 | Competition | [Strategy registry](strategies.html) | 14 entries including two negative controls |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |

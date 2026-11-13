@@ -1,11 +1,11 @@
 # Standings, Schedule & Game Log
 > The tables everything else joins to: 32 reconciled standings rows, the 14 Week 10 games, and a {{metric games_log}}-game completed-results log for weeks 1–9 that cross-checks the standings exactly.
 
-Standings rows are not simply copied — they were recomputed. Winning percentage in the NFL counts a tie as half a win, so a 5–2–1 club is listed at 0.688, not 0.625, and that formula reconciles for all 32 clubs. Net points reconciles to points for minus points against everywhere. Two league-wide checks then close the transcription: ΣPF equals ΣPA to the unit (6246 each) and Σnet points equals 0, which can only hold if every points value was read off the right row.
+Standings rows are not simply copied — they were recomputed. Winning percentage in the NFL counts a tie as half a win, so a 5–3–1 club is listed at 0.611, not 0.556, and that formula reconciles for all 32 clubs. Net points reconciles to points for minus points against everywhere. Two league-wide checks then close the transcription: ΣPF equals ΣPA to the unit ({{metric league_pf}} each) and Σnet points equals 0, which can only hold if every points value was read off the right row.
 
 The official standings page renders sixteen value columns and the fetched markup carries no header row. Seven columns have unambiguous meaning from their format and arithmetic and are published; the remaining split-record columns are **omitted rather than guessed** ([FL-07](flagged-for-review.html)).
 
-{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak;;source=S-STAND;;caption=Division-view standings as published on 12 November 2026 (week 10 of the 2026 regular season, in progress).}}
+{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak;;source=S-STAND;;caption=Division-view standings as published on nfl.com. The table was re-read on 13 November 2026 after the Week 10 Thursday game: NYG and WAS each moved by exactly one game and the league identities still close. See FL-35.}}
 
 ## Completed results, weeks 1–9
 
@@ -14,8 +14,8 @@ This is the only historical corpus in the project, and it came from a **parallel
 The reconciliation is computed on every build (`tools/verify.py` → 37 checks) and published from the measurement, not from a note:
 
 - {{metric games_log}} rows, {{metric games_log_weeks}} weeks, **{{metric games_log_links}} of {{metric games_log}} rows carry an official nfl.com game URL** — the import refused to write a row without one.
-- Recounting the log gives ΣW = ΣL = 135, ΣT = 2, ΣPF = ΣPA = {{metric games_log_pf}} — identical to the standings table's own totals.
-- Per-club match: **{{metric games_log_reconciled}} of 32 clubs match exactly on W, L, T, PF and PA; {{metric games_log_mismatched}} mismatch**.
+- Recounting the log gives {{metric games_log}} games — {{metric games_log_away_wins}} away wins, {{metric games_log_home_wins}} home wins and {{metric games_log_ties}} tie — with ΣPF = ΣPA = {{metric games_log_pf}}. At club level that is {{metric games_log_club_w}} W / {{metric games_log_club_l}} L / {{metric games_log_club_t}} T, which is exactly what the standings table showed for weeks 1–9 (one tie counts for two clubs, which is why the club totals sum to twice the game count).
+- Per-club match: **{{metric games_log_reconciled}} of 32 clubs match exactly on W, L, T, PF and PA; {{metric games_log_mismatched}} mismatch** — measured against the standings table, which additionally carries the {{metric games_log_settled_after_corpus}} Week 10 game that has settled since this corpus was cut.
 - Bye arithmetic closes: {{metric games_log_byes}} clubs show 8 games and the rest show 9, and the empty game-slots (16 per week × 9 weeks − {{metric games_log}} games = 8) times two clubs equals the {{metric games_log_byes}} byes exactly.
 - {{metric games_log_neutral}} games are neutral-site/International Games; any home-field feature must exclude them, which is why the log carries the flag per row.
 
@@ -36,12 +36,12 @@ Two of these games are structural exceptions a model must not treat as ordinary,
 
 | Check | Result |
 | --- | --- |
-| Σ wins = Σ losses across 32 clubs | pass — 135 and 135, with 2 ties counted on both sides |
-| Σ points for = Σ points against | pass — 6246 and 6246 |
+| Σ wins = Σ losses across 32 clubs | pass — {{metric league_w}} and {{metric league_l}}, with {{metric league_t}} ties counted on both sides |
+| Σ points for = Σ points against | pass — {{metric league_pf}} and {{metric league_pf}} |
 | Σ net points = 0 | pass |
 | Winning pct = (W + ½T) ÷ (W + L + T) | pass for all 32 rows |
 | Net = PF − PA | pass for all 32 rows |
-| Games played consistent with week 10 of the schedule | pass — 8 or 9 games per club depending on bye placement |
+| Games played consistent with week 10 of the schedule | pass — 8 or 9 games per club depending on bye placement, {{metric league_club_games}} club-games in total |
 | Game log ({{metric games_log}} games) implies the standings table | pass — {{metric games_log_reconciled}} of 32 clubs identical on W-L-T, PF, PA |
 | Every game-log row cites an official game page | pass — {{metric games_log_links}} of {{metric games_log}} |
 | Neutral-site count agrees with the international slate | pass — {{metric games_log_neutral}} games |

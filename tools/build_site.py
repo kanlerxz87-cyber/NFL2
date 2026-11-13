@@ -32,7 +32,8 @@ NAV = [
                      ("correlation", "Correlation"), ("bet-types", "Bet Types"),
                      ("skill-vs-luck", "Removing Luck"),
                      ("model-lab", "Fair-Line Lab (computed)"),
-                     ("measured-correlations", "Measured Correlations")]),
+                     ("measured-correlations", "Measured Correlations"),
+                     ("week10-settled", "Settled Week 10 (graded)")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
@@ -362,6 +363,16 @@ def build_metrics():
         "ruled_out_rows": sum(1 for r in depth if r["change"] in ("RULED-OUT", "RULED-OUT-WK9")),
         "qb_depth_rows": sum(1 for r in depth if r["change"] == "DEPTH-CHART" and r["pos"] == "QB"),
         "standings_teams": len(st),
+        # League-wide identities, recomputed rather than typed. A season-to-date table is the one
+        # thing on this site that moves every time a game settles, so every prose sentence that
+        # quotes these totals has to read them from the file instead of remembering them - the
+        # standings refresh on 13 November 2026 made two hand-written totals stale and this is
+        # what stops that happening again.
+        "league_w": sum(int(r["w"]) for r in st),
+        "league_l": sum(int(r["l"]) for r in st),
+        "league_t": sum(int(r["t"]) for r in st),
+        "league_pf": sum(int(r["pf"]) for r in st),
+        "league_club_games": sum(int(r["w"]) + int(r["l"]) + int(r["t"]) for r in st),
         "sources": len(SOURCES),
         "official_sources": sum(1 for r in SOURCES.values() if r["tier"] == "A"),
         "suggestions": len(read_rows("suggestions.csv")),
@@ -389,13 +400,31 @@ TEAM_ALIAS = {"LA": "LAR"}
 def gamelog_metrics(st):
     """Cross-check the imported week 1-9 game log against the independently transcribed
     standings table. Pure arithmetic over checked-in files, recomputed on every build, so the
-    number on the site is a measurement and not a claim copied from a note."""
+    number on the site is a measurement and not a claim copied from a note.
+
+    The weeks 1-9 file is the frozen backtest corpus and is never appended to (suggestion S-26),
+    so games that settle after it was cut live in games_2026_wk10_played.csv. Reconciliation
+    against the standings therefore folds that file in; every other count below stays a property
+    of the corpus alone.
+    """
     path = os.path.join(DATA, "games_2026_wk1_9.csv")
     if not os.path.exists(path):
         return {"games_log": 0, "games_log_missing": 1}
     rows = read_rows("games_2026_wk1_9.csv")
     rec = {}
     for g in rows:
+        a, h = int(g["away_pts"]), int(g["home_pts"])
+        for club, pf, pa in ((g["away"], a, h), (g["home"], h, a)):
+            club = TEAM_ALIAS.get(club, club)
+            t = rec.setdefault(club, {"w": 0, "l": 0, "t": 0, "pf": 0, "pa": 0, "n": 0})
+            t["n"] += 1; t["pf"] += pf; t["pa"] += pa
+            t["w" if pf > pa else "l" if pf < pa else "t"] += 1
+    # deep copy: rec's values are per-club dicts that the settled loop below mutates in place, so a
+    # shallow dict(rec) would report the combined bye count instead of the corpus's own
+    corpus_rec = {club: dict(t) for club, t in rec.items()}
+    played_path = os.path.join(DATA, "games_2026_wk10_played.csv")
+    settled = read_rows("games_2026_wk10_played.csv") if os.path.exists(played_path) else []
+    for g in settled:
         a, h = int(g["away_pts"]), int(g["home_pts"])
         for club, pf, pa in ((g["away"], a, h), (g["home"], h, a)):
             club = TEAM_ALIAS.get(club, club)
@@ -414,11 +443,30 @@ def gamelog_metrics(st):
         "games_log_missing": 0,
         "games_log_weeks": len({g["week"] for g in rows}),
         "games_log_neutral": sum(1 for g in rows if g["neutral"] == "yes"),
+        # game-level and club-level splits are different numbers and the prose used to mix them:
+        # one tie produces TWO club-ties. Publishing both, computed, so a sentence cannot confuse
+        # "68 away wins" with "135 wins across 32 clubs".
+        "games_log_away_wins": sum(1 for g in rows if int(g["away_pts"]) > int(g["home_pts"])),
+        "games_log_home_wins": sum(1 for g in rows if int(g["home_pts"]) > int(g["away_pts"])),
+        "games_log_ties": sum(1 for g in rows if int(g["away_pts"]) == int(g["home_pts"])),
+        "games_log_club_w": sum(
+            sum(1 for a, h in ((int(g["away_pts"]), int(g["home_pts"])),
+                               (int(g["home_pts"]), int(g["away_pts"]))) if a > h) for g in rows),
+        "games_log_club_l": sum(
+            sum(1 for a, h in ((int(g["away_pts"]), int(g["home_pts"])),
+                               (int(g["home_pts"]), int(g["away_pts"]))) if a < h) for g in rows),
+        "games_log_club_t": sum(
+            sum(1 for a, h in ((int(g["away_pts"]), int(g["home_pts"])),
+                               (int(g["home_pts"]), int(g["away_pts"]))) if a == h) for g in rows),
         "games_log_links": sum(1 for g in rows if g["source"].startswith("https://www.nfl.com/games/")),
         "games_log_pf": sum(int(g["away_pts"]) + int(g["home_pts"]) for g in rows),
         "games_log_reconciled": matched,
         "games_log_mismatched": mismatched,
-        "games_log_byes": sum(1 for r in rec.values() if r["n"] == 8),
+        # byes are a property of the frozen corpus, not of the combined set: a week that is only
+        # partly played would otherwise make it look as though clubs had not taken their bye
+        "games_log_byes": sum(1 for club, t in corpus_rec.items() if t["n"] == 8),
+        "games_log_settled_after_corpus": len(settled),
+        "games_log_settled_pf": sum(int(g["away_pts"]) + int(g["home_pts"]) for g in settled),
     }
 
 
@@ -643,6 +691,7 @@ PAGE_KIND = {
     "methodology": ("program", "Policy"), "sources": ("program", "Register"),
     "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
     "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
+    "week10-settled": ("measured", "Computed result"),
 }
 
 CSS_HREF = "assets/style.css"

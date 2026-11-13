@@ -650,6 +650,43 @@ def gamelog():
             t = rec.setdefault(ALIAS.get(club, club), {"w": 0, "l": 0, "t": 0, "pf": 0, "pa": 0, "n": 0})
             t["n"] += 1; t["pf"] += pf; t["pa"] += pa
             t["w" if pf > pa else "l" if pf < pa else "t"] += 1
+    # Week 10 results are deliberately NOT appended to the corpus: suggestion S-26 makes the
+    # weeks 1-9 file the pre-registered backtest corpus, so editing it would silently re-baseline
+    # every grade already published against it. They live in their own append-only file and are
+    # folded in here, at reconciliation time only.
+    extra, extra_hdr = [], []
+    extra_path = os.path.join(DATA, "games_2026_wk10_played.csv")
+    if os.path.exists(extra_path):
+        extra, extra_hdr, _ = rows("games_2026_wk10_played.csv")
+        need_extra = [c for c in need if c not in extra_hdr]
+        if need_extra:
+            bad("week 10 results: missing the columns the corpus uses: %s" % need_extra)
+        else:
+            ok("week 10 results file carries the corpus schema (%d settled games)" % len(extra))
+        bad_src = [r for r in extra if not r["source"].startswith("https://www.nfl.com/games/")]
+        if bad_src:
+            bad("week 10 results: %d rows without an official nfl.com/games URL" % len(bad_src))
+        else:
+            ok("week 10 results: all %d rows carry an official nfl.com game URL" % len(extra))
+        bad_sc = [r for r in extra if not (r["away_pts"].isdigit() and r["home_pts"].isdigit())]
+        if bad_sc or any(r["status"].strip().lower() != "final" for r in extra):
+            bad("week 10 results: only Final games may be published (%d bad rows)" % (len(bad_sc) or 1))
+        else:
+            ok("week 10 results: every row is a Final game with two numeric scores")
+        seen = {(r["week"], r["away"], r["home"]) for r in data}
+        dupes = [r for r in extra if (r["week"], r["away"], r["home"]) in seen]
+        if dupes:
+            bad("week 10 results: %d games already present in the frozen corpus" % len(dupes))
+        else:
+            ok("week 10 results: no game is double-counted against the frozen corpus")
+        for r in extra:
+            a, h = int(r["away_pts"]), int(r["home_pts"])
+            for club, pf, pa in ((r["away"], a, h), (r["home"], h, a)):
+                t = rec.setdefault(ALIAS.get(club, club),
+                                   {"w": 0, "l": 0, "t": 0, "pf": 0, "pa": 0, "n": 0})
+                t["n"] += 1; t["pf"] += pf; t["pa"] += pa
+                t["w" if pf > pa else "l" if pf < pa else "t"] += 1
+
     st, _, _ = rows("standings_2026.csv")
     mism = []
     for r in st:
@@ -664,8 +701,17 @@ def gamelog():
         bad("game log disagrees with the independently transcribed standings table for %d clubs: %s"
             % (len(mism), mism[:4]))
     else:
-        ok("game log reconciles exactly with the standings table for all %d clubs "
-           "(W-L-T, points for, points against) after the LA/LAR alias" % len(st))
+        ok("game log + week 10 results reconcile exactly with the standings table for all %d "
+           "clubs (W-L-T, points for, points against) after the LA/LAR alias" % len(st))
+    # Bye arithmetic and the neutral-site count are properties of the frozen weeks 1-9 corpus, not
+    # of the combined set: a partially-played week would break both identities without being wrong.
+    rec9 = {}
+    for r in data:
+        a, h = int(r["away_pts"]), int(r["home_pts"])
+        for club, pf, pa in ((r["away"], a, h), (r["home"], h, a)):
+            t = rec9.setdefault(ALIAS.get(club, club), {"w": 0, "l": 0, "t": 0, "pf": 0, "pa": 0, "n": 0})
+            t["n"] += 1
+    rec = rec9
     byes = sorted(c for c, t in rec.items() if t["n"] != 9)
     eight = len([c for c, t in rec.items() if t["n"] == 8])
     slots = sum(1 for w in weeks for _ in range(16 - per[w]))
@@ -685,7 +731,8 @@ def gamelog():
         m = json.load(open(man, encoding="utf-8")).get("metrics", {})
         if m.get("games_log") == len(data) and m.get("games_log_reconciled") == len(st) \
                 and m.get("games_log_mismatched") == 0:
-            ok("site manifest: published game-log counts match this recomputation")
+            ok("site manifest: published game-log counts match this recomputation of the "
+               "frozen weeks 1-9 corpus")
         else:
             bad("site manifest is stale for the game log: %s vs %d rows"
                 % ({k: m.get(k) for k in ("games_log", "games_log_reconciled", "games_log_mismatched")}, len(data)))
@@ -773,10 +820,137 @@ def filter_clauses_do_something():
         ok("every filtered table on the site selects a real subset (%d csv tables checked)" % tables)
 
 
+def settled_week10_reproduces():
+    """The first out-of-sample settlement on this site must not be a number someone typed.
+
+    Every cell of the settled table is recomputed here from the official result and the two
+    published prediction files, and compared against what the page will render. The do-nothing
+    baseline is refitted from the frozen corpus so that if anyone edits the corpus, the whole
+    settled page moves with it instead of quietly disagreeing.
+    """
+    import statistics as st
+    for fn in ("games_2026_wk10_played.csv", "settled_wk10_5f16dcc6.csv",
+               "computed_settled_5f16dcc6.csv"):
+        if not os.path.exists(os.path.join(DATA, fn)):
+            warn("%s absent; run tools/compute_settled_wk10.py" % fn)
+            return
+    played, _, _ = rows("games_2026_wk10_played.csv")
+    corpus, _, _ = rows("games_2026_wk1_9.csv")
+    orig = {r["game"]: r for r in rows("originated_lines_wk10_a392.csv")[0]}
+    fair = {r["game_id"]: r for r in rows("computed_fair_lines.csv")[0]}
+    published, _, _ = rows("settled_wk10_5f16dcc6.csv")
+
+    margins = [int(r["home_pts"]) - int(r["away_pts"]) for r in corpus]
+    totals = [int(r["home_pts"]) + int(r["away_pts"]) for r in corpus]
+    mean_margin, mean_total = st.mean(margins), st.mean(totals)
+
+    if len(published) != 4 * len(played):
+        bad("settled table holds %d rows, expected 4 predictors x %d settled games"
+            % (len(published), len(played)))
+        return
+    wrong = []
+    for g in played:
+        gid = g["game_id"]
+        a, h = int(g["away_pts"]), int(g["home_pts"])
+        act_m, act_t = h - a, h + a
+        o, f = orig.get(gid, {}), fair.get(gid, {})
+        expected = [
+            ("our origination (a392 lab)", o.get("our_spread_home_favoured"), o.get("our_total")),
+            ("points-only fair line", f.get("fair_spread_home"), f.get("fair_total")),
+            ("archived community price", o.get("archive_spread_home_favoured"), o.get("archive_total")),
+            ("do-nothing season mean", mean_margin, mean_total),
+        ]
+        pub = [r for r in published if r["game_id"] == gid]
+        for (name, ps, pt), row in zip(expected, pub):
+            if row["predictor"] != name:
+                wrong.append("%s: predictor order %r vs %r" % (gid, row["predictor"], name)); continue
+            if row["actual_home_margin"].strip() != str(act_m):
+                wrong.append("%s/%s: margin %s vs %d" % (gid, name, row["actual_home_margin"], act_m))
+            if row["actual_total"].strip() != str(act_t):
+                wrong.append("%s/%s: total %s vs %d" % (gid, name, row["actual_total"], act_t))
+            for col, pred in (("predicted_spread_home", ps), ("predicted_total", pt)):
+                want = "%.2f" % float(pred)
+                if row[col].strip() != want:
+                    wrong.append("%s/%s: %s %s vs %s" % (gid, name, col, row[col], want))
+            for col, pred, act in (("spread_abs_error", ps, act_m), ("total_abs_error", pt, act_t)):
+                want = "%.2f" % abs(act - float(pred))
+                if row[col].strip() != want:
+                    wrong.append("%s/%s: %s %s vs %s" % (gid, name, col, row[col], want))
+    if wrong:
+        bad("settled week 10 table does not reproduce: %s" % wrong[:4])
+    else:
+        ok("settled week 10 table reproduces for %d predictor(s) on %d settled game(s) "
+           "from the official result" % (4, len(played)))
+
+    # the two headline derived numbers, recomputed independently
+    comp, _, _ = rows("computed_settled_5f16dcc6.csv")
+    byname = {r["metric"]: r["value"] for r in comp}
+    g = played[0]
+    a, h = int(g["away_pts"]), int(g["home_pts"])
+    o, f = orig.get(g["game_id"], {}), fair.get(g["game_id"], {})
+    our_spread = float(o.get("our_spread_home_favoured"))
+    want_spread_gap = "%+.2f" % (abs((h - a) - our_spread) - abs((h - a) - mean_margin))
+    if byname.get("our spread vs the do-nothing baseline", "").startswith(want_spread_gap):
+        ok("headline spread verdict reproduces (%s pts against knowing nothing)" % want_spread_gap)
+    else:
+        bad("headline spread verdict is stale: %r vs recomputed %s"
+            % (byname.get("our spread vs the do-nothing baseline"), want_spread_gap))
+    sd_t = st.stdev(totals)
+    want_n = "%.0f" % (((1.96 + 0.8416) ** 2) * sd_t ** 2 / 1.0 ** 2)
+    if byname.get("games needed to detect a 1.0-pt total-MAE difference") != want_n:
+        bad("required-sample arithmetic is stale: %r vs %s"
+            % (byname.get("games needed to detect a 1.0-pt total-MAE difference"), want_n))
+    else:
+        ok("required-sample arithmetic reproduces from the corpus (%s games for a 1.0-pt "
+           "total difference at 80%% power)" % want_n)
+    blank = [r for r in published if not r["source"].startswith("https://www.nfl.com/games/")]
+    if blank:
+        bad("settled table: %d rows without an official game URL" % len(blank))
+    else:
+        ok("settled table: every row cites the official game page the result came from")
+
+
+def reverification_5f16dcc6_holds():
+    """A register that reports a disagreement with an official page must name the flag that carries
+    it, or the disagreement lives only in a table nobody reads."""
+    fn = os.path.join(DATA, "reverification_5f16dcc6.csv")
+    if not os.path.exists(fn):
+        warn("dated re-verification register absent")
+        return
+    data, _, _ = rows("reverification_5f16dcc6.csv")
+    vocab = {"MATCH", "CORRECTED", "NEW", "MISMATCH", "NOT CHECKED"}
+    bad_rows = [r for r in data if r["result"].strip().upper() not in vocab]
+    if bad_rows:
+        bad("re-verification 2026-11-13: result %r is outside the vocabulary %s"
+            % (bad_rows[0]["result"], sorted(vocab)))
+        return
+    flag_ids = {r["id"] for r in rows("flags.csv")[0]}
+    unflagged = []
+    for r in data:
+        res = r["result"].strip().upper()
+        if res in ("MISMATCH", "CORRECTED"):
+            cited = set(re.findall(r"FL-\d+", r["note"])) | set(re.findall(r"FL-\d+", r["check"]))
+            if not cited & flag_ids:
+                unflagged.append(r["check"][:48])
+    if unflagged:
+        bad("re-verification 2026-11-13: rows that disagree with the official page cite no "
+            "register flag: %s" % unflagged)
+    else:
+        n_m = sum(1 for r in data if r["result"].strip().upper() == "MISMATCH")
+        n_c = sum(1 for r in data if r["result"].strip().upper() == "CORRECTED")
+        n_n = sum(1 for r in data if r["result"].strip().upper() == "NOT CHECKED")
+        ok("re-verification 2026-11-13: %d checks, %d corrected in this session, %d published as "
+           "flags, %d explicitly not checked" % (len(data), n_c, n_m, n_n))
+    nosrc = [r for r in data if not r["source"].startswith("https://")]
+    if nosrc:
+        bad("re-verification 2026-11-13: %d rows without an https source" % len(nosrc))
+
+
 def main():
     check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results();
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
+    settled_week10_reproduces(); reverification_5f16dcc6_holds()
     
     print("=" * 72)
     for m in PASS:
