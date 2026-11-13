@@ -1,0 +1,1078 @@
+{
+ "meta": {
+  "dataset": "Week 10 (2026) club depth charts, transcribed from each club's own published 'Unofficial Depth Chart' page",
+  "built_utc": "2026-11-13T12:52Z",
+  "session": "83246f00",
+  "why": "The repository's depth-chart join covered 4 of 32 clubs (KC, GB, NE, DET) and resolved chains for 2 (LAR, SEA). Suggestions S-33 and S-39 and question Q-37 name the 32-club transcription as the blocking data task. This file adds six clubs whose charts were read live today, so the join covers 10 of 32.",
+  "string_rule": "Depth string = the position of a player's name in his club's row, counting from the club's own left-hand (1st string) entry. A club that prints two names in one cell has both recorded at that slot; a club that prints a hole (WAS LB2 middle cell) keeps the hole, so the player after it is 3rd string, which is what the club published.",
+  "best_slot_rule": "Where a club lists one player at more than one slot, the shallowest slot is used as his string and the duplicate is recorded in also_listed_at. A player absent from his club's chart has string = not published, never a guess.",
+  "official_status": "Unofficial. Every club labels these charts 'Unofficial'. They are the club's own published document and the only club-level depth source that exists: nfl.com's own /team/depth-chart route returns 404 (verified by an earlier session). They are not the game-day active list.",
+  "sources": "One https:// URL per club, recorded under charts.<club>.url. The chart's own printed date is recorded where the club prints one; several clubs print none, and that cell stays 'not published'."
+ },
+ "charts": {
+  "WAS": {
+   "url": "https://www.commanders.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Terry McLaurin",
+     "Treylon Burks"
+    ],
+    "LT": [
+     "Brandon Coleman",
+     "Andrew Wylie"
+    ],
+    "LG": [
+     "Chris Paul",
+     "Tanoa Togiai"
+    ],
+    "C": [
+     "Nick Allegretti",
+     "Matt Gulbin"
+    ],
+    "RG": [
+     "Sam Cosmi",
+     "Tanoa Togiai"
+    ],
+    "RT": [
+     "Josh Conerly Jr.",
+     "Andrew Wylie"
+    ],
+    "TE1": [
+     "Chig Okonkwo",
+     "Ben Sinnott"
+    ],
+    "TE2": [
+     "John Bates",
+     "Colson Yankoff"
+    ],
+    "WR2": [
+     "Stefon Diggs",
+     "Jaylin Lane"
+    ],
+    "WR3": [
+     "Dyami Brown",
+     "Antonio Williams",
+     "Luke McCaffrey"
+    ],
+    "QB": [
+     "Jayden Daniels",
+     "Marcus Mariota",
+     "Athan Kaliakmanis"
+    ],
+    "RB": [
+     "Jacory Croskey-Merritt",
+     "Rachaad White",
+     "Austin Ekeler"
+    ]
+   },
+   "defence": {
+    "DL1": [
+     "Daron Payne"
+    ],
+    "DL2": [
+     "Tim Settle",
+     "Shy Tuttle"
+    ],
+    "DL3": [
+     "Javon Kinlaw",
+     "Charles Omenihu"
+    ],
+    "OLB1": [
+     "Odafe Oweh",
+     "Joshua Josephs"
+    ],
+    "LB1": [
+     "Sonny Styles",
+     "Kain Medrano"
+    ],
+    "LB2": [
+     "Frankie Luvu",
+     null,
+     "Kain Medrano"
+    ],
+    "OLB2": [
+     "K'Lavon Chaisson",
+     "Dorance Armstrong",
+     "Javontae Jean-Baptiste"
+    ],
+    "CB1": [
+     "Amik Robertson",
+     "Rasul Douglas"
+    ],
+    "CB2": [
+     "Mike Sainristil",
+     "Fabian Moreau"
+    ],
+    "SS": [
+     "Nick Cross",
+     "Tyler Owens"
+    ],
+    "FS": [
+     "Jeremy Reaves",
+     "Quan Martin",
+     "Percy Butler"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "NYG": {
+   "url": "https://www.giants.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Malik Nabers",
+     "Malachi Fields",
+     "Jalin Hyatt"
+    ],
+    "WR2": [
+     "Darnell Mooney",
+     "Charlie Jones"
+    ],
+    "LT": [
+     "Andrew Thomas",
+     "J.C. Davis"
+    ],
+    "LG": [
+     "Jon Runyan Jr.",
+     "Aaron Stinnie",
+     "Josh Sills"
+    ],
+    "C": [
+     "Bryan Hudson",
+     "John Michael Schmitz Jr."
+    ],
+    "RG": [
+     "Francis Mauigoa",
+     "Aaron Stinnie"
+    ],
+    "RT": [
+     "Jermaine Eluemunor",
+     "Marcus Mbow"
+    ],
+    "TE": [
+     "Isaiah Likely",
+     "Theo Johnson",
+     "Chris Manhertz",
+     "Thomas Fidone II"
+    ],
+    "QB": [
+     "J.J. McCarthy",
+     "Jameis Winston"
+    ],
+    "FB": [
+     "Patrick Ricard"
+    ],
+    "RB": [
+     "Cam Skattebo",
+     "Devin Singletary",
+     "Gregory Desrosiers"
+    ]
+   },
+   "defence": {
+    "DT1": [
+     "Shelby Harris",
+     "Darius Alexander",
+     "Bobby Jamison-Travis"
+    ],
+    "NT": [
+     "DJ Reader",
+     "C.J. Okoye"
+    ],
+    "DE": [
+     "Darius Alexander"
+    ],
+    "RUSH": [
+     "Kayvon Thibodeaux",
+     "Trace Ford"
+    ],
+    "MLB": [
+     "Micah McFadden",
+     "Zaire Barnes"
+    ],
+    "WLB": [
+     "Arvell Reese",
+     "Jack Kelly"
+    ],
+    "SAM": [
+     "Abdul Carter",
+     "Kayvon Thibodeaux"
+    ],
+    "CB1": [
+     "Deonte Banks",
+     "Paulson Adebo",
+     "Nikko Reed"
+    ],
+    "SS": [
+     "Tyler Nubin",
+     "Jason Pinnock"
+    ],
+    "FS": [
+     "Jevon Holland",
+     "Ar'Darius Washington",
+     "Elijah Campbell"
+    ],
+    "CB2": [
+     "Greg Newsome II",
+     "Colton Hood"
+    ],
+    "NB": [
+     "Dru Phillips",
+     "Nic Jones"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "NE": {
+   "url": "https://www.patriots.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "A.J. Brown",
+     "Efton Chism III"
+    ],
+    "LT": [
+     "Will Campbell",
+     "Dametrious Crownover",
+     "Marcus Bryant"
+    ],
+    "LG": [
+     "Ben Brown",
+     "Walter Rouse"
+    ],
+    "C": [
+     "Jared Wilson",
+     "Ben Brown"
+    ],
+    "RG": [
+     "Matt Pryor",
+     "Walter Rouse"
+    ],
+    "RT": [
+     "Morgan Moses",
+     "Caleb Lomu"
+    ],
+    "TE": [
+     "Hunter Henry",
+     "Eli Raridon",
+     "Cameron Latu"
+    ],
+    "WR2": [
+     "DeMario Douglas",
+     "Kyle Williams"
+    ],
+    "WR3": [
+     "Efton Chism III",
+     "Kyle Williams"
+    ],
+    "RB": [
+     "Rhamondre Stevenson",
+     "TreVeyon Henderson",
+     "Corey Kiner",
+     "Lan Larison"
+    ],
+    "QB": [
+     "Drake Maye",
+     "Tommy DeVito",
+     "Behren Morton"
+    ]
+   },
+   "defence": {
+    "OLB1": [
+     "Dre'Mont Jones",
+     "Gabe Jacas"
+    ],
+    "DT1": [
+     "Christian Barmore",
+     "Leonard Taylor III"
+    ],
+    "DT2": [
+     "Cory Durden",
+     "DaQuan Jones"
+    ],
+    "DT3": [
+     "Milton Williams",
+     "Joshua Farmer"
+    ],
+    "OLB2": [
+     "Elijah Ponder",
+     "Gabe Jacas"
+    ],
+    "LB1": [
+     "Robert Spillane",
+     "Darius Muasau",
+     "Erick Hunter"
+    ],
+    "LB2": [
+     "Christian Elliss",
+     "Namdi Obiazor"
+    ],
+    "CB1": [
+     "Carlton Davis III",
+     "Channing Canada"
+    ],
+    "S1": [
+     "Craig Woodson",
+     "Mike Brown"
+    ],
+    "S2": [
+     "Kevin Byard III",
+     "Jaylen Reed",
+     "Brenden Schooler"
+    ],
+    "CB2": [
+     "Marcus Jones",
+     "Charles Woods"
+    ],
+    "CB3": [
+     "Christian Gonzalez",
+     "Karon Prunty"
+    ]
+   },
+   "special_teams": {},
+   "note": "Club states the chart is published by Patriots.com writers and is not the organisation's own view."
+  },
+  "DET": {
+   "url": "https://www.detroitlions.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Jameson Williams"
+    ],
+    "WR2": [
+     "Amon-Ra St. Brown",
+     "DeAndre Carter"
+    ],
+    "LT": [
+     "Penei Sewell"
+    ],
+    "LG": [
+     "Christian Mahogany",
+     "Miles Frazier"
+    ],
+    "C": [
+     "Cade Mays",
+     "Juice Scruggs"
+    ],
+    "RG": [
+     "Tate Ratledge",
+     "Seth McLaughlin"
+    ],
+    "RT": [
+     "Blake Miller",
+     "Larry Borom"
+    ],
+    "TE": [
+     "Sam LaPorta",
+     "Brock Wright",
+     "Tyler Conklin",
+     "Jackson Meeks"
+    ],
+    "WR3": [
+     "Isaac TeSlaa",
+     "Tay Martin"
+    ],
+    "QB": [
+     "Jared Goff",
+     "Joshua Dobbs"
+    ],
+    "RB": [
+     "Jahmyr Gibbs",
+     "Sione Vaki",
+     "Jacob Saylors"
+    ]
+   },
+   "defence": {
+    "EDGE1": [
+     "Aidan Hutchinson",
+     "Derrick Moore",
+     "Eric O'Neill"
+    ],
+    "DL1": [
+     "Alim McNeill",
+     "Skyler Gill-Howard",
+     "Mekhi Wingo"
+    ],
+    "DL2": [
+     "Tyleik Williams",
+     "Levi Onwuzurike"
+    ],
+    "EDGE2": [
+     "DJ Wonnum",
+     "Tyler Lacy",
+     "Ahmed Hassanein"
+    ],
+    "LB1": [
+     "Derrick Barnes",
+     "Joe Bachie"
+    ],
+    "LB2": [
+     "Malcolm Rodriguez",
+     "K.J. Britt"
+    ],
+    "LB3": [
+     "Trevor Nowaske",
+     "Amen Ogbongbemiga"
+    ],
+    "CB1": [
+     "D.J. Reed",
+     "Rock Ya-Sin",
+     "Khalil Dorsey",
+     "Nick Whiteside"
+    ],
+    "CB2": [
+     "Roger McCreary",
+     "Ennis Rakestraw Jr.",
+     "Keith Abney II"
+    ],
+    "S1": [
+     "Chuck Clark"
+    ],
+    "S2": [
+     "Brian Branch",
+     "Christian Izien"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "KC": {
+   "url": "https://www.chiefs.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Rashee Rice",
+     "Jalen Royals",
+     "Andrew Armstrong"
+    ],
+    "LT": [
+     "Kahlil Benson",
+     "Diego Pounds"
+    ],
+    "LG": [
+     "Kingsley Suamataia",
+     "Joshua Ezeudu"
+    ],
+    "C": [
+     "Creed Humphrey",
+     "Hunter Nourzad"
+    ],
+    "RG": [
+     "Trey Smith",
+     "Mike Caliendo"
+    ],
+    "RT": [
+     "Jaylon Moore",
+     "Joshua Ezeudu"
+    ],
+    "TE": [
+     "Travis Kelce",
+     "Noah Gray",
+     "Jared Wiley",
+     "Jake Briningstool"
+    ],
+    "QB": [
+     "Patrick Mahomes",
+     "Justin Fields",
+     "Garrett Nussmeier"
+    ],
+    "RB": [
+     "Kenneth Walker",
+     "Emmett Johnson",
+     "Jaydn Ott"
+    ],
+    "FB": [
+     "Ben VanSumeren"
+    ],
+    "WR2": [
+     "Xavier Worthy",
+     "Cyrus Allen",
+     "Josh Downs"
+    ]
+   },
+   "defence": {
+    "DE1": [
+     "Felix Anudike-Uzomah",
+     "Ashton Gillotte"
+    ],
+    "DT1": [
+     "Chris Jones",
+     "Peter Woods",
+     "Marcus Harris"
+    ],
+    "DT2": [
+     "Khyiris Tonga",
+     "Bryson Eason"
+    ],
+    "DE2": [
+     "George Karlaftis",
+     "R Mason Thomas"
+    ],
+    "LB1": [
+     "Jack Cochrane",
+     "Cooper McDonald"
+    ],
+    "LB2": [
+     "Nick Bolton",
+     "Jack Cochrane"
+    ],
+    "LB3": [
+     "Drue Tranquill",
+     "Jeffrey Bassa"
+    ],
+    "CB1": [
+     "Nohl Williams",
+     "Jadon Canady"
+    ],
+    "CB2": [
+     "Mansoor Delane",
+     "Kristian Fulton",
+     "Melvin Smith"
+    ],
+    "S1": [
+     "Alohi Gilman",
+     "Chris Roland-Wallace"
+    ],
+    "S2": [
+     "Chamarri Conner",
+     "Jaden Hicks",
+     "Xavier Nwankpa"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "GB": {
+   "url": "https://www.packers.com/team/depth-chart",
+   "chart_date_label": "Unofficial, Nov. 10, 2026",
+   "offence": {
+    "WR1": [
+     "Christian Watson",
+     "Bo Melton"
+    ],
+    "WR2": [
+     "Matthew Golden",
+     "J. Michael Sturdivant"
+    ],
+    "LT": [
+     "Jordan Morgan",
+     "John Williams"
+    ],
+    "LG": [
+     "Aaron Banks",
+     "Travis Glover",
+     "Donovan Jennings"
+    ],
+    "C": [
+     "Sean Rhyan",
+     "Jager Burton"
+    ],
+    "RG": [
+     "Laken Tomlinson",
+     "Kevin Zeitler"
+    ],
+    "RT": [
+     "Anthony Belton",
+     "Mekhi Becton Sr."
+    ],
+    "TE": [
+     "Tucker Kraft",
+     "Jonnu Smith",
+     "Mark Redman",
+     "Josh Whyle"
+    ],
+    "WR3": [
+     "Savion Williams",
+     "Coleman Owen"
+    ],
+    "QB": [
+     "Jordan Love",
+     "Tyrod Taylor"
+    ],
+    "RB": [
+     "Josh Jacobs",
+     "MarShawn Lloyd",
+     "Pierre Strong Jr.",
+     "Kaleb Johnson"
+    ]
+   },
+   "defence": {
+    "DT1": [
+     "Karl Brooks",
+     "Jordon Riley",
+     "Anthony Campbell"
+    ],
+    "DT2": [
+     "Devonte Wyatt",
+     "Chris McClellan"
+    ],
+    "EDGE1": [
+     "Lukas Van Ness",
+     "Brenton Cox Jr"
+    ],
+    "LB1": [
+     "Zaire Franklin",
+     "Ty'Ron Hopper",
+     "Kristian Welch"
+    ],
+    "LB2": [
+     "Isaiah McDuffie",
+     "Nick Niemann"
+    ],
+    "EDGE2": [
+     "Barryn Sorrell",
+     "Dani Dennis-Sutton"
+    ],
+    "CB1": [
+     "Keisean Nixon",
+     "Carrington Valentine"
+    ],
+    "CB2": [
+     "Brandon Cisse",
+     "Benjamin St-Juste"
+    ],
+    "S1": [
+     "Xavier McKinney",
+     "Kitan Oladapo"
+    ],
+    "S2": [
+     "Evan Williams",
+     "Kitan Oladapo"
+    ],
+    "NB": [
+     "Javon Bullard",
+     "Kamal Hadden"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "MIA": {
+   "url": "https://www.miamidolphins.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Caleb Douglas",
+     "Jared Wayne"
+    ],
+    "LT": [
+     "Patrick Paul",
+     "Chukwuebuka Godrick"
+    ],
+    "LG": [
+     "Kadyn Proctor",
+     "Jarrett Kingston"
+    ],
+    "C": [
+     "Aaron Brewer",
+     "Andrew Meyer"
+    ],
+    "RG": [
+     "Jonah Savaiinaea",
+     "Caedan Wallace",
+     "Christian Haynes"
+    ],
+    "RT": [
+     "Austin Jackson",
+     "Caedan Wallace"
+    ],
+    "TE": [
+     "Greg Dulcich",
+     "Will Kacmarek",
+     "Seydou Traore",
+     "Justin Joly"
+    ],
+    "FB": [
+     "DJ Herman"
+    ],
+    "RB": [
+     "Ollie Gordon II",
+     "Jaylen Wright",
+     "Kaytron Allen"
+    ],
+    "QB": [
+     "Kyle McCord"
+    ],
+    "WR2": [
+     "Malik Washington",
+     "Kevin Coleman Jr."
+    ],
+    "WR3": [
+     "Chris Bell",
+     "Jalen Tolbert"
+    ]
+   },
+   "defence": {
+    "DT1": [
+     "Jordan Phillips",
+     "Kenneth Grant"
+    ],
+    "DT2": [
+     "Zeek Biggers"
+    ],
+    "EDGE1": [
+     "Chop Robinson",
+     "Malik Herring",
+     "Rodney McGraw"
+    ],
+    "EDGE2": [
+     "Josh Uche",
+     "Jamree Kromah"
+    ],
+    "ILB1": [
+     "Jordyn Brooks",
+     "Jackson Woodard",
+     "Shaka Heyward"
+    ],
+    "ILB2": [
+     "Jacob Rodriguez",
+     "Willie Gay Jr."
+    ],
+    "NB": [
+     "Chris Johnson"
+    ],
+    "CB1": [
+     "JuJu Brents",
+     "Marcellas Dial Jr."
+    ],
+    "CB2": [
+     "Jason Marshall Jr.",
+     "Jaylin Simpson"
+    ],
+    "S1": [
+     "Michael Taaffe",
+     "Zayne Anderson"
+    ],
+    "S2": [
+     "Dante Trader Jr.",
+     "Kyle Louis",
+     "Julius Wood"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "SEA": {
+   "url": "https://www.seahawks.com/team/depth-chart/",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Cooper Kupp",
+     "Rashid Shaheed",
+     "Irvin Charles"
+    ],
+    "LT": [
+     "Charles Cross",
+     "Josh Jones"
+    ],
+    "LG": [
+     "Quenton Nelson",
+     "Anthony Bradford"
+    ],
+    "C": [
+     "Jalen Sundell",
+     "Olu Oluwatimi"
+    ],
+    "RG": [
+     "Grey Zabel",
+     "Anthony Bradford",
+     "Beau Stephens"
+    ],
+    "RT": [
+     "Abraham Lucas",
+     "Josh Jones"
+    ],
+    "TE": [
+     "AJ Barner",
+     "Eric Saubert",
+     "Nick Kallerup"
+    ],
+    "WR2": [
+     "Jaxon Smith-Njigba",
+     "Tory Horton"
+    ],
+    "QB": [
+     "Sam Darnold",
+     "Drew Lock",
+     "Jalen Milroe"
+    ],
+    "FB": [
+     "Brady Russell"
+    ],
+    "RB": [
+     "Zach Charbonnet",
+     "Jadarian Price",
+     "Emanuel Wilson",
+     "George Holani"
+    ]
+   },
+   "defence": {
+    "DT1": [
+     "Leonard Williams",
+     "Rylie Mills"
+    ],
+    "NT": [
+     "Byron Murphy II",
+     "Brandon Pili",
+     "Deven Eastern"
+    ],
+    "DE": [
+     "Jarran Reed",
+     "Mike Morris"
+    ],
+    "RUSH": [
+     "DeMarcus Lawrence",
+     "Derick Hall"
+    ],
+    "MLB": [
+     "Ernest Jones IV",
+     "Patrick O'Connell"
+    ],
+    "WLB": [
+     "Drake Thomas",
+     "Tyrice Knight",
+     "Chazz Surratt"
+    ],
+    "SLB": [
+     "Uchenna Nwosu",
+     "Dante Fowler Jr.",
+     "Connor O'Toole"
+    ],
+    "CB1": [
+     "Devon Witherspoon",
+     "Nehemiah Pritchett"
+    ],
+    "CB2": [
+     "Josh Jobe",
+     "Avery Smith"
+    ],
+    "S1": [
+     "Ty Okada",
+     "Rodney Thomas II"
+    ],
+    "S2": [
+     "Julian Love"
+    ],
+    "S3": [
+     "Nick Emmanwori"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "BAL": {
+   "url": "https://www.baltimoreravens.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Zay Flowers",
+     "Devontez Walker",
+     "Elijah Sarratt"
+    ],
+    "WR2": [
+     "Rashod Bateman",
+     "Ja'Kobi Lane",
+     "LaJohntay Wester"
+    ],
+    "LT": [
+     "Ronnie Stanley",
+     "Carson Vinson"
+    ],
+    "LG": [
+     "John Simpson",
+     "Ryan Neuzil"
+    ],
+    "C": [
+     "Cam Jurgens",
+     "Ryan Neuzil"
+    ],
+    "RG": [
+     "Vega Ioane",
+     "Emery Jones Jr."
+    ],
+    "RT": [
+     "Roger Rosengarten",
+     "Carson Vinson"
+    ],
+    "TE1": [
+     "Mark Andrews",
+     "Josh Cuevas"
+    ],
+    "TE2": [
+     "Matt Hibner"
+    ],
+    "QB": [
+     "Jacoby Brissett",
+     "Joe Fagnano",
+     "Kedon Slovis"
+    ],
+    "RB": [
+     "Derrick Henry",
+     "Justice Hill",
+     "Rasheen Ali"
+    ]
+   },
+   "defence": {
+    "DT1": [
+     "Nnamdi Madubuike",
+     "Broderick Washington Jr."
+    ],
+    "NT": [
+     "Travis Jones",
+     "John Jenkins"
+    ],
+    "DE": [
+     "Calais Campbell",
+     "Aeneas Peebles"
+    ],
+    "RUSH": [
+     "Trey Hendrickson",
+     "Mike Green"
+    ],
+    "MLB": [
+     "Roquan Smith",
+     "Jay Higgins IV"
+    ],
+    "WLB": [
+     "Trenton Simpson",
+     "Teddye Buchanan"
+    ],
+    "SAM": [
+     "Mike Green",
+     "Zion Young",
+     "Ethan Burke"
+    ],
+    "CB1": [
+     "Marlon Humphrey",
+     "Chidobe Awuzie"
+    ],
+    "DB": [
+     "Kyle Hamilton",
+     "Keyon Martin",
+     "Chandler Rivers"
+    ],
+    "SS": [
+     "Jaylinn Hawkins",
+     "Keondre Jackson"
+    ],
+    "FS": [
+     "Malaki Starks",
+     "K'Von Wallace"
+    ],
+    "CB2": [
+     "Nate Wiggins",
+     "T.J. Tampa Jr."
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  },
+  "LAC": {
+   "url": "https://www.chargers.com/team/depth-chart",
+   "chart_date_label": "not published",
+   "offence": {
+    "WR1": [
+     "Ladd McConkey",
+     "Tre' Harris",
+     "Derius Davis",
+     "Theo Wease Jr."
+    ],
+    "LT": [
+     "Travis Burke",
+     "Branson Taylor"
+    ],
+    "LG": [
+     "Kayode Awosika",
+     "Logan Taylor"
+    ],
+    "C": [
+     "Jake Slaughter",
+     "Jacob Spomer"
+    ],
+    "RG": [
+     "Cole Strange",
+     "Logan Taylor"
+    ],
+    "RT": [
+     "Joe Alt",
+     "Alex Harkey"
+    ],
+    "TE": [
+     "Charlie Kolar",
+     "Oronde Gadsden",
+     "Hayden Rucci"
+    ],
+    "WR2": [
+     "Quentin Johnston",
+     "Brenen Thompson"
+    ],
+    "QB": [
+     "Justin Herbert",
+     "DJ Uiagalelei"
+    ],
+    "FB": [
+     "Alec Ingold",
+     "Scott Matlock"
+    ],
+    "RB": [
+     "Omarion Hampton",
+     "Keaton Mitchell",
+     "Kimani Vidal"
+    ]
+   },
+   "defence": {
+    "EDGE1": [
+     "Khalil Mack",
+     "Akheem Mesidor"
+    ],
+    "DL1": [
+     "Jamaree Caldwell",
+     "Nick Barrett"
+    ],
+    "DL2": [
+     "Dalvin Tomlinson",
+     "Justin Eboigbe"
+    ],
+    "DL3": [
+     "Teair Tart"
+    ],
+    "EDGE2": [
+     "Tuli Tuipulotu",
+     "Bud Dupree"
+    ],
+    "LB1": [
+     "Daiyan Henley",
+     "Troy Dye"
+    ],
+    "LB2": [
+     "Del'Shawn Phillips",
+     "Marlowe Wax"
+    ],
+    "CB1": [
+     "Tarheeb Still",
+     "Cam Hart",
+     "Deane Leonard"
+    ],
+    "S1": [
+     "Derwin James Jr.",
+     "Tony Jefferson",
+     "RJ Mickens"
+    ],
+    "S2": [
+     "Elijah Molden",
+     "Genesis Smith",
+     "Kendall Williamson"
+    ],
+    "CB2": [
+     "Donte Jackson",
+     "Cam Hart",
+     "Rodney Shelley"
+    ]
+   },
+   "special_teams": {},
+   "note": ""
+  }
+ }
+}
