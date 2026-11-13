@@ -41,6 +41,10 @@ NAV = [
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
                    ("sources", "Source Registry")]),
+    # Availability read through a depth chart, and the first decision this site has
+    # locked before the games it predicts happened.
+    ("Availability", [("availability-1113", "Week 10 Availability (13 Nov)"),
+                      ("preregistration", "Pre-Registration Lock")]),
 ]
 PAGES = [slug for _, items in NAV for slug, _ in items]
 
@@ -388,6 +392,27 @@ def build_metrics():
         "empty_clubs": ", ".join(empty),
         "empty_club_count": len(empty),
     }
+    # The 13 November read and the first locked decision, counted from the registers so
+    # the landing page never has to remember a number. verify.py does not yet police the
+    # hub arithmetic here - that is S-47, the proposal to promote it into the verifier.
+    avail = _safe_rows("club_availability_20261113_66faefac.csv")
+    m.update({
+        "avail_rows": sum(int(r["rows_today"]) for r in avail),
+        "avail_clubs": sum(1 for r in avail if r["state"] == "rows published"),
+        "avail_none": sum(1 for r in avail if r["state"] == "No Injuries Reported"),
+        "avail_designations": sum(int(r["out"]) for r in avail),
+        "avail_flagged_rows": _safe_len("hub_flagged_20261113_66faefac.csv"),
+        "deficiency_rows": _safe_len("availability_deficiency_66faefac.csv"),
+        "deficiency_first_string": sum(1 for r in _safe_rows("availability_deficiency_66faefac.csv")
+                                       if r["string_depth"] == "1st string"),
+        "prereg_fixtures": _safe_len("prereg_wk10_66faefac.csv"),
+        "prereg_called": sum(1 for r in _safe_rows("prereg_wk10_66faefac.csv")
+                             if r["call"].startswith("take") and r["locked"] == "yes"),
+        "reverification_1113": _safe_len("reverification_66faefac.csv"),
+        "rv1113_confirmed": sum(1 for r in _safe_rows("reverification_66faefac.csv") if r["result"] == "MATCH"),
+        "rv1113_mismatch": sum(1 for r in _safe_rows("reverification_66faefac.csv") if r["result"] == "MISMATCH"),
+        "rv1113_notchecked": sum(1 for r in _safe_rows("reverification_66faefac.csv") if r["result"] == "NOT CHECKED"),
+    })
     m.update(gamelog_metrics(st))
     return m, inj, agg
 
@@ -692,6 +717,8 @@ PAGE_KIND = {
     "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
     "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
     "week10-settled": ("measured", "Computed result"),
+    "availability-1113": ("measured", "Measured data"),
+    "preregistration": ("measured", "Computed result"),
 }
 
 CSS_HREF = "assets/style.css"

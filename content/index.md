@@ -42,13 +42,13 @@ data — the counts, the club coverage and one flag — and those are corrected 
 
 | Workstream | State | Evidence in repo | Blocking |
 | --- | --- | --- | --- |
-| Injury and availability collection | running — 254 rows snapshotted at 04:45Z, **re-read at 22:35Z: 279 rows across 26 clubs** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/injury_delta_a392.csv` | no stored history, so no availability signal can be backtested (FL-27, Q-36) |
+| Injury and availability collection | running — 254 rows snapshotted at 04:45Z, re-read at 22:35Z (279 rows, 26 clubs), **a third read 13 Nov 12:45Z: 296 rows, 26 of the 28 clubs filing names and 2 publishing `No Injuries Reported`** | `data/injuries_2026_wk10.csv`, `data/injuries_wk10_2026_hubrefresh.csv`, `data/club_availability_20261113_66faefac.csv`, `data/injury_delta_a392.csv` | no stored history, so no availability signal can be backtested (FL-27, Q-36, S-46) |
 | Depth, IR and roster events | running — 227 rows | `data/depth_changes_2026_wk10.csv` | no official depth chart exists (FL-06) |
 | Standings and schedule | running — 32 + 14 rows, reconciled | `data/standings_2026.csv`, `data/schedule_2026_wk10.csv` | seven official columns left out (FL-07) |
-| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; verified 1st-to-4th string chains for the 2 clubs whose charts were transcribed | [Depth Deficiencies](deficiencies.html), `data/deficiency_by_club_a392.csv` | 30 club charts not transcribed (Q-37, S-39) |
+| Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; the 13 November read joins an unavailable name to the column it holds on the club's own chart — **18 joined rows on the 13 November read, 8 of them 1st string**, for the 4 clubs this build transcribes | [Depth Deficiencies](deficiencies.html), [Week 10 availability](availability-1113.html), `data/availability_deficiency_66faefac.csv` | 28 club charts not transcribed (Q-37, S-39, S-48) |
 | Line origination | **computed** — walk-forward ridge ratings on 136 official games: spread MAE 9.278 vs a 10.455 do-nothing baseline, paired +0.295 pts against the archived price | [Fair-Line Lab](model-lab.html), `data/model_backtest_2026_a392.csv` | totals are worse than a league mean and are published as a diagnostic, not a line (S-37, FL-32) |
 | Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
-| Strategy registry | 14 entries, none tracked | `data/strategies.csv` | pre-registration + tracking ledger |
+| Strategy registry | {{metric strategies}} entries; **1 locked before its slate (ST-15)**, none ranked | `data/strategies.csv`, `data/prereg_wk10_66faefac.csv` | tracking ledger + settled volume (G-08) |
 | Validation gates | 14 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |
 | Correlation | method defined; 12 pair classes; **no rho asserted**; 2 measured as Pearson *r* on game scores | `data/correlation.csv`, `data/computed_correlation.csv` | joint bet-settlement data (Q-12) for any rho |
 | Skill-vs-luck protocol | derived and computed in-repo | `content/skill-vs-luck.md` | sample must still be collected |
@@ -94,10 +94,12 @@ Two items in the register came out of the re-read and are waiting on you rather 
 | Origination | [Bet types](bet-types.html) | singles, parlays and prop combos priced consistently |
 | Origination | [Removing luck](skill-vs-luck.html) | sample sizes, CLV, bootstrap, split-half, luck-adjusted P&L |
 | Origination | [Settled Week 10 (graded)](week10-settled.html) | the first result any line here has been scored against: our spread, our total, the archived price and a do-nothing baseline, measured against WAS 24 – NYG 21 |
-| Competition | [Strategy registry](strategies.html) | 14 entries including two negative controls |
+| Availability | [Week 10 availability](availability-1113.html) | the 13 November hub read: 296 rows over the whole Week 10 slate, and every unavailable name from a transcribed chart joined to the column it leaves empty |
+| Availability | [Pre-registration lock](preregistration.html) | the first prediction pinned before kickoff: one rule, one threshold, fourteen fixtures, a hash, and the grading tool that fails if the file is touched |
+| Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
-| Data | [Week 10 injury report](injuries.html) | all 254 official rows, per-row source links |
+| Data | [Week 10 injury report](injuries.html) | all 254 rows of the frozen 04:45Z snapshot, per-row source links; later reads are published beside it, never over it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
