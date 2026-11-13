@@ -5,7 +5,7 @@
  "games_fitted": 137,
  "games_fitted_detail": "136 games from weeks 1-9 plus 1 settled Week 10 game(s); the remaining thirteen Week 10 games had not been played at the decision timestamp and are therefore unknown to this model",
  "generator": "tools/originate_week11.py",
- "generator_sha256": "62f7970b673cb603f8dd981cd84dd595e38ea1a7e6b4e9328be16a0d44842a5d",
+ "generator_sha256": "9d53d9bba5589a4f80af1a77b0e5eb97993230f874d02f7dd2e6bfa28d987c23",
  "lambda_selection": [
   {
    "games": 88,

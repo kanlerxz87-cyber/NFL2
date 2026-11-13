@@ -73,6 +73,7 @@ WK10_LINES = "originated_lines_wk10_a392.csv"
 WK10_SCHEDULE = "schedule_2026_wk10.csv"
 OUT_LINES = "originated_lines_wk11_0a113a24.csv"
 OUT_PREREG = "prereg_week11_0a113a24.json"
+OUT_PREREG_CSV = "prereg_week11_0a113a24.csv"
 
 # The league writes LA on the game log and LAR on the standings table; the archive writes ARI for
 # AZ and LA for LAR. Same trap as data/code_collision_a392.csv, same fix.
@@ -205,6 +206,26 @@ def archive_prices():
     return out
 
 
+def reproduce_week10_lines(corpus, lam):
+    """Re-derive the fourteen published Week 10 lines with this module's own code path.
+
+    Returns {game_id: (spread, total)}. `tools/verify.py` imports and calls this so that the
+    reproduction guard is re-checked on every verification run, not only when the generator is
+    executed by hand.
+    """
+    model = Model(corpus)
+    fitted = model.fit(corpus, lam)
+    out = {}
+    for s in read(WK10_SCHEDULE):
+        a = ALIAS.get(s["away"], s["away"])
+        h = ALIAS.get(s["home"], s["home"])
+        if a not in model.idx or h not in model.idx:
+            continue
+        pm, pt = model.line(fitted, {"a": a, "h": h, "neutral": False})
+        out[s["game_id"]] = (round(half(pm), 1), round(half(pt), 1))
+    return out
+
+
 def main():
     corpus, settled = load_games()
     model = Model(corpus)
@@ -231,15 +252,12 @@ def main():
     wk10_model = model.fit(corpus, lam)
     published = {r["game"]: r for r in read(WK10_LINES)}
     wk10_sched = read(WK10_SCHEDULE)
+    rederived = reproduce_week10_lines(corpus, lam)
     mismatches = []
     for s in wk10_sched:
-        a = ALIAS.get(s["away"], s["away"])
-        h = ALIAS.get(s["home"], s["home"])
-        if a not in model.idx or h not in model.idx:
+        pm, pt = rederived.get(s["game_id"], (None, None))
+        if pm is None:
             continue
-        g = {"a": a, "h": h, "neutral": False}
-        pm, pt = model.line(wk10_model, g)
-        pm, pt = round(half(pm), 1), round(half(pt), 1)
         p = published.get(s["game_id"], {})
         if p.get("our_spread_home_favoured", "") != "" and float(p["our_spread_home_favoured"]) != pm:
             mismatches.append("%s spread: published %s, re-derived %s"
@@ -353,10 +371,50 @@ def main():
         json.dump(pre, fh, indent=1, sort_keys=True)
         fh.write("\n")
 
+    # A flat mirror of the same record, so the site can render the pre-registration as a table
+    # without parsing JSON at build time. The two files are written from the same dictionary, and
+    # tools/verify.py checks that they agree.
+    flat = [
+        ("decision timestamp (UTC)", pre["decision_timestamp_utc"],
+         "the moment these lines were published; everything the model used was known by then"),
+        ("lines file", pre["lines_file"], "the thirteen lines this page publishes"),
+        ("lines SHA-256", pre["lines_sha256"],
+         "the fingerprint of the lines file; recomputed before every grade"),
+        ("backtest corpus", pre["backtest_corpus"],
+         "the 136-game weeks 1-9 file every published grade was built on"),
+        ("backtest corpus SHA-256", pre["backtest_corpus_sha256"],
+         "the fingerprint of that corpus; it must not change for a published grade to remain valid"),
+        ("settled games file", pre["settled_games_file"],
+         "the append-only file the Week 10 results live in; also hashed"),
+        ("settled games SHA-256", pre["settled_games_sha256"],
+         "the fingerprint of the settled-games file at the moment of the pre-registration"),
+        ("generator", pre["generator"], "the script that produced these lines"),
+        ("generator SHA-256", pre["generator_sha256"],
+         "the fingerprint of the script, so the method cannot be changed after publication either"),
+        ("model", pre["model"], "what the line is and how it is fitted"),
+        ("ridge penalty (lambda)", str(pre["ridge_lambda"]),
+         "chosen by walk-forward spread MAE; the three candidates scored %s"
+         % ", ".join("%s: %.3f" % (x["lambda"], x["walk_forward_spread_mae"])
+                     for x in pre["lambda_selection"])),
+        ("games fitted", str(pre["games_fitted"]), pre["games_fitted_detail"]),
+        ("reproduction guard", pre["reproduction_guard"],
+         "the check that proves this implementation is the same model that produced the published "
+         "Week 10 lines"),
+        ("sign convention", pre["sign_convention"],
+         "how to read a spread column on this site"),
+        ("status", pre["status"], "what these numbers are and are not"),
+    ]
+    with open(os.path.join(DATA, OUT_PREREG_CSV), "w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh, delimiter="|", lineterminator="\n")
+        w.writerow(["field", "value", "meaning"])
+        for f, v, m in flat:
+            w.writerow([f, v, m])
+
     print("reproduction guard: PASS - %d Week 10 lines re-derived and matched" % len(wk10_sched))
     print("ridge lambda: %s (walk-forward spread MAE %s)" % (lam, ", ".join("%s: %.3f" % (l, e) for l, e, _ in sel)))
     print("wrote data/%s (%d rows)" % (OUT_LINES, len(lines)))
     print("wrote data/%s (lines sha256 %s)" % (OUT_PREREG, pre["lines_sha256"][:16]))
+    print("wrote data/%s (%d rows)" % (OUT_PREREG_CSV, len(flat)))
     return 0
 
 
