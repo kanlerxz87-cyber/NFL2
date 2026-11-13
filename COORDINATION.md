@@ -1402,3 +1402,101 @@ was caught by `injury_coverage_is_measured_not_named()`.
 **Not done, deliberately:** no Week 10 settlement row was added, because no second Week 10 game has gone
 Final (`nfl.com/scores/2026/week-10` shows exactly one). The settlement pipeline stays re-runnable and
 will grade the remaining 13 games as they finish on 15–16 November.
+
+---
+
+## Session `83246f00` (`arena/83246f00-nfl2`) — Personnel relief: the depth-chart join the board kept deferring
+
+**Session ID:** `83246f00` · **Branch:** `arena/83246f00-nfl2` · **Started:** 2026-11-13T12:36Z
+**Branch base:** `14d0afc` (merge of PR #40 — the head of `main` at claim time)
+
+**Remote state at claim time.** `git ls-remote --heads origin` lists 18 `arena/*` branches, all already
+merged into `main`; `gh pr list` shows PR #40 merged at 07:12:36Z and one stale open PR, **#35**
+(`8361cc7a`), with no commit since 2026-11-12T22:47Z — more than 60 minutes, so takeable under the
+stale-claim rule and not a blocker. No session holds a live claim. `83246f00` is therefore the only
+live session and also acts as this round's integration session.
+
+### Why this session exists
+
+The board has carried the same open gap for three rounds and named it in its own words: **S-33**
+("Build the 32-club depth transcription as the next data task, because it is the only route to
+R-20/R-21"), **S-39** ("extend the depth-chain join to all 32 clubs") and **Q-37** ("how many club
+depth charts do we transcribe, and who owns the weekly refresh?"). Today the join covers **4 of 32
+clubs** — `data/depth_charts.json` holds KC, GB, NE, DET — and `data/deficiency_chains_a392.csv`
+resolves real 1st/2nd/3rd/4th-string chains for **two clubs only** (LAR, SEA). Meanwhile the injury
+hub has 26 clubs with filed rows and 279 players, whose *string* is exactly what makes a deficiency
+priceable or not.
+
+The brief asks the tracker to "know any deficiencies in defenses such as 2nd, 3rd or 4th string
+backups having to replace starters", and the same for offences. This session does that join for the
+clubs where both official sources can be read **today**, records the string and the next man up with
+a per-row club-chart URL, and leaves every cell it could not confirm blank and flagged.
+
+### Exclusive scope — files this session creates
+
+| Path | Contents |
+|---|---|
+| `data/depth_charts_wk10_83246f00.json` | Club depth charts transcribed from the club's own official page today, per club, with the page URL and the chart's own "Unofficial" date stamp |
+| `data/personnel_relief_wk10_83246f00.csv` | The join: one row per injured player the official hub lists, with his verified string on his own club's chart, his side of the ball, and the next man up named on that chart |
+| `data/personnel_relief_club_83246f00.csv` | Per club × side: how many 1st-string players are unavailable and which string the replacement comes from |
+| `data/reverification_83246f00.csv` | The 2026-11-13 dated re-verification register for **this** session's reads |
+| `tools/compute_personnel_relief_83246f00.py` | Deterministic script that builds the two computed tables from the transcription |
+| `content/personnel-relief.md`, `personnel-relief.html` | New page: *Personnel relief — who replaces which starter, by string* |
+
+### Shared files this session edits (change request logged)
+
+| Path | Edit | Request ID |
+|---|---|---|
+| `data/standings_2026.csv` | none — **verified, no change needed** (all 32 rows match the live page) | — |
+| `data/sources.csv` | new source ids for today's club depth-chart reads and the today-dated hub read | CR-83246-01 |
+| `tools/build_site.py` | two `NAV` entries (one new page, one under Governance) | CR-83246-02 |
+| `content/data-dictionary.md` | dictionary rows for the two new CSVs | CR-83246-03 |
+| `data/flags.csv`, `data/questions.csv`, `data/suggestions.csv` | appended rows, union-by-renumbering | CR-83246-04 |
+| `content/index.md`, `content/executive-summary.md` | link + dated executive-summary section | CR-83246-05 |
+| `tools/verify.py` | new checks: the relief table reproduces; every string cell traces to its club chart | CR-83246-06 |
+
+### Files this session will NOT touch
+
+`data/games_2026_wk1_9.csv` (frozen corpus, S-26) · `data/injuries_2026_wk10.csv` and
+`data/injuries_wk10_2026_hubrefresh.csv` (earlier sessions' dated snapshots — a new snapshot goes in a
+new file, because rewriting an old one would destroy the only record of what was true then) ·
+`data/settled_wk10_5f16dcc6.csv`, `data/computed_settled_5f16dcc6.csv`, `tools/compute_settled_wk10.py`
+(5f16dcc6's scope) · `crosscheck/`, `s92/`, `engine/q51/`, `analytics/`, `portal/`, `site/`,
+`pipeline/`, `datasets/`, `archive/`, `research/`, `review/`, `docs/`, `s53/`, `q51/` — other
+sessions' trees, left byte-identical.
+
+### Log
+
+| UTC | Entry |
+|-----|-------|
+| 12:36Z | Claim written. Verified `main` at `14d0afc`, 18 `arena/*` branches all merged, PR #35 stale. |
+| 12:37Z | **Egress finding.** Raw `curl https://www.nfl.com` fails with `SSL_ERROR_SYSCALL` in this sandbox, but the agent's page-fetch tool reaches `nfl.com` and club sites fine. Recorded because Q-24 asks exactly this and the earlier answer ("the sandbox cannot reach nfl.com") is true of curl and false of the tool. |
+| 12:38Z | Live `nfl.com/standings` re-read: **32 of 32 rows match `data/standings_2026.csv`**, including NYG 5-3-1 / 203 / 196 and WAS 3-5-1 / 196 / 223 that FL-35 corrected. No edit needed. |
+| 12:40Z | Live injury hub read (Week 10, 6 of 7 chunks): 13 fixtures, 26 clubs with rows, 2 clubs "No Injuries Reported" (LAC, BAL), 6 game-status designations. Confirms FL-27's 279-row state and adds today's dated confirmation. |
+
+### `c3ec1487` — merge note: PR #42 (session `83246f00`) landed while PR #43 was open
+
+`gh pr merge 43` was refused with a real conflict, not a stale one: `main` advanced through PR #42
+(`arena/83246f00-nfl2`, "personnel relief — the verified depth-chart join"), which had itself already
+merged PR #41 into its branch. Resolution: `git merge origin/main` on this branch. One conflicted file,
+`data/build_manifest.json` — a generated artefact — resolved by taking the merged tree's version and
+regenerating with `tools/build_site.py` (29 pages). **No session's work was discarded:** `83246f00`'s
+ten-club depth-chart join, its registers and its page are intact, and this session's availability watch
+is intact.
+
+The convergence turned out to be useful rather than merely survivable. `83246f00` transcribed the same
+official hub read independently, into `data/injuries_wk10_83246f00.csv`. Compared key by key against
+`data/availability_watch_c3ec1487.csv`: **296 of 296 players agree on club, practice code and game
+status — zero differences, zero players on one side only.** Neither session knew the other was
+transcribing. That is published as a new row in `data/reverification_c3ec1487.csv` and a new section on
+the Availability Watch page, and it is the strongest check available on a hand transcription.
+
+Re-verified on the merged tree: `tools/verify.py` **96 passed · 0 warnings · 0 failures**;
+`tools/check_site.py` 11 passed / 1 disclosed warning; `scripts/audit_all_pages.py` 103 pages · 273 tables
+· 4,183 rows · 100% row-sourced · 0 broken links; `engine/verify_repo_and_site.py`, `verify_s92`,
+`review_verify`, `verify_q51`, `verify_s53126614` all PASS.
+
+Note for the next session: `83246f00`'s personnel-relief tree begins to answer Q-44 (what replaces depth
+rank) for 10 clubs with a club-published chart; the two datasets should be reconciled rather than one
+superseding the other, and the *two* independent 296-row transcriptions now in `data/` are a standing
+cross-check worth keeping.

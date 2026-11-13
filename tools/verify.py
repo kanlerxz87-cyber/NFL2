@@ -1032,6 +1032,7 @@ def main():
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
     settled_week10_reproduces(); reverification_5f16dcc6_holds(); availability_watch_holds()
+    personnel_relief_reproduces(); reverification_83246f00_holds()
     
     print("=" * 72)
     for m in PASS:
@@ -1043,6 +1044,124 @@ def main():
     print("=" * 72)
     print("verify: %d passed · %d warnings · %d failures" % (len(PASS), len(WARN), len(FAIL)))
     return 1 if FAIL else 0
+
+
+
+
+def personnel_relief_reproduces():
+    """The personnel-relief join must be reproducible from its two inputs, and must never state a
+    string it cannot trace to the club's own published chart."""
+    import hashlib
+    import subprocess
+    names = ["injuries_wk10_83246f00.csv", "personnel_relief_wk10_83246f00.csv",
+             "personnel_relief_club_83246f00.csv", "depth_charts_wk10_83246f00.json"]
+    for fn in names:
+        if not os.path.exists(os.path.join(DATA, fn)):
+            warn("%s absent; run tools/compute_personnel_relief_83246f00.py" % fn)
+            return
+
+    script = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                          "tools", "compute_personnel_relief_83246f00.py")
+    before = {}
+    for fn in names[:3]:
+        with open(os.path.join(DATA, fn), "rb") as fh:
+            before[fn] = hashlib.sha256(fh.read()).hexdigest()
+    try:
+        subprocess.run([sys.executable, script], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as exc:
+        bad("personnel relief: the committed script would not run: %s" % exc)
+        return
+    after = {}
+    for fn in names[:3]:
+        with open(os.path.join(DATA, fn), "rb") as fh:
+            after[fn] = hashlib.sha256(fh.read()).hexdigest()
+    drifted = [fn for fn in names[:3] if before[fn] != after[fn]]
+    if drifted:
+        bad("personnel relief: %s did not reproduce from the committed script" % drifted)
+        return
+    ok("personnel relief: both computed tables reproduce byte-for-byte from the committed script")
+
+    relief, _, _ = rows("personnel_relief_wk10_83246f00.csv")
+    club, _, _ = rows("personnel_relief_club_83246f00.csv")
+    hub, _, _ = rows("injuries_wk10_83246f00.csv")
+
+    no_chart = [r for r in relief
+                if r["string"].strip() not in ("", "not published")
+                and not r["chart_url"].startswith("https://")]
+    no_hub = [r for r in relief if not r["injury_url"].startswith("https://")]
+    if no_chart:
+        bad("personnel relief: %d rows state a depth string with no club-chart URL (first: %s)"
+            % (len(no_chart), no_chart[0]["player"]))
+    elif no_hub:
+        bad("personnel relief: %d rows carry no official injury-page URL" % len(no_hub))
+    else:
+        ok("personnel relief: every stated string carries its club-chart URL, all %d rows carry "
+           "the official injury-page URL" % len(relief))
+
+    hub_keys = {(r["team"], r["player"]) for r in hub}
+    invented = [r["player"] for r in relief if (r["club"], r["player"]) not in hub_keys]
+    if invented:
+        bad("personnel relief: %d players appear in the join but not on the hub read: %s"
+            % (len(invented), invented[:4]))
+    elif len(relief) != len(hub):
+        bad("personnel relief: join holds %d rows against %d on the hub" % (len(relief), len(hub)))
+    else:
+        ok("personnel relief: the join is exactly the %d hub filings, no player added or dropped"
+           % len(hub))
+
+    first_dnp = [r for r in relief if r["string"] == "1st string" and r["practice"] == "D"]
+    full = set()
+    for r in relief:
+        if r["string"] != "1st string":
+            continue
+        if r["practice"] in ("D", "L") and "not on the official report" not in r["unit_cascade"]:
+            full.add((r["club"], r["depth_unit"]))
+    bad_cascade = [r for r in relief if r["string"] == "1st string" and r["practice"] in ("D", "L")
+                   and r["unit_cascade"] == "not published"]
+    if bad_cascade:
+        bad("personnel relief: %d 1st-string non-participants carry no unit cascade"
+            % len(bad_cascade))
+    else:
+        ok("personnel relief: %d 1st-string non-participants, %d units with no clean rung (%s)"
+           % (len(first_dnp), len(full), ", ".join("%s %s" % x for x in sorted(full)) or "none"))
+
+    claimed = [r for r in club if r["chart_state"].startswith("every listed player")
+               and r["chart_url"] == "not published"]
+    if claimed:
+        bad("personnel relief: %d club rows claim a complete join but cite no chart" % len(claimed))
+    else:
+        ok("personnel relief: no club summary claims a complete join without its chart URL")
+
+
+def reverification_83246f00_holds():
+    """This session's dated register follows the same contract as the earlier one."""
+    fn = os.path.join(DATA, "reverification_83246f00.csv")
+    if not os.path.exists(fn):
+        warn("dated re-verification register absent for 83246f00")
+        return
+    data, _, _ = rows("reverification_83246f00.csv")
+    vocab = {"MATCH", "CORRECTED", "NEW", "MISMATCH", "NOT CHECKED"}
+    off = [r for r in data if r["result"].strip().upper() not in vocab]
+    if off:
+        bad("re-verification 83246f00: result %r outside the vocabulary" % off[0]["result"])
+        return
+    flag_ids = {r["id"] for r in rows("flags.csv")[0]}
+    unflagged = []
+    for r in data:
+        if r["result"].strip().upper() in ("MISMATCH", "CORRECTED"):
+            cited = set(re.findall(r"FL-\d+", r["note"])) | set(re.findall(r"FL-\d+", r["check"]))
+            if not cited & flag_ids:
+                unflagged.append(r["check"][:48])
+    if unflagged:
+        bad("re-verification 83246f00: rows that disagree with the official page cite no flag: %s"
+            % unflagged)
+    else:
+        ok("re-verification 83246f00: %d checks, %d new findings, all https-sourced"
+           % (len(data), sum(1 for r in data if r["result"] == "NEW")))
+    nosrc = [r for r in data if not r["source"].startswith("https://")]
+    if nosrc:
+        bad("re-verification 83246f00: %d rows without an https source" % len(nosrc))
 
 
 if __name__ == "__main__":

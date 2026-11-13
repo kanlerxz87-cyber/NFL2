@@ -39,12 +39,17 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/availability_watch_practice_deltas_c3ec1487.csv` | 49 | one player whose practice code changed between the two dated reads, and the direction | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/availability_watch_gates_c3ec1487.csv` | 4 | one availability readiness gate, its measured value, and why it passes or fails | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/computed_availability_watch_c3ec1487.csv` | 12 | one derived availability metric, how it is computed, and what it means | S-CALC |
-| `data/reverification_c3ec1487.csv` | 12 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
+| `data/reverification_c3ec1487.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
 
 | `data/price_archive_a392.csv` | 5 | one price-bearing asset in the repository, what it proves and what it does not | S-NFLDATA-ARCHIVE, S-NFLDATA-SCHEMA |
 | `data/code_collision_a392.csv` | 2 | one cross-source join, how many games it silently dropped with and without the alias table | S-NFLDATA-ARCHIVE |
 | `data/deficiency_by_club_a392.csv` | 78 | club × side of the ball, counts off the official filing | S-INJ-2235 |
 | `data/deficiency_chains_a392.csv` | 22 | one unavailable player at a club whose depth chart this build transcribes, with the club's own next man up | S-DEPTH-SEA, S-DEPTH-LAR, S-INJ-2235 |
+| `data/injuries_wk10_83246f00.csv` | {{metric pr_hub_rows}} | one player-filing on the official Week 10 hub, read 2026-11-13T12:46Z. Its own file, because the 04:45Z and 22:35Z snapshots are the only record of what the hub said then | S-INJ-1246 |
+| `data/depth_charts_wk10_83246f00.json` | {{metric pr_charts}} clubs | one club's own published Unofficial Depth Chart, offence and defence, in the club's own left-to-right order, with the chart URL and the date the club prints on it | S-DEPTH-WAS, S-DEPTH-NYG, S-DEPTH-NE, S-DEPTH-DET, S-DEPTH-KC, S-DEPTH-GB, S-DEPTH-MIA, S-DEPTH-SEA, S-DEPTH-BAL, S-DEPTH-LAC |
+| `data/personnel_relief_wk10_83246f00.csv` | {{metric pr_rows}} | one listed player × his string on his club's chart × the next man the club names × his unit's published order matched rung by rung against the report | S-INJ-1246, S-DEPTH-* |
+| `data/personnel_relief_club_83246f00.csv` | {{metric pr_club_rows}} | club × side of the ball: how many listed players resolved to a string, how many 1st-string players did not practise, and the join state | S-INJ-1246, S-DEPTH-* |
+| `data/reverification_83246f00.csv` | 13 | one check performed against a live official page on 2026-11-13 by session 83246f00, with its outcome | S-STAND-1113, S-SCORES-1113, S-INJ-1246, S-DEPTH-* |
 | `data/computed_luck.csv` | 8 | bet count × probability of being ahead at four win rates — arithmetic, not data | S-CALC |
 | `data/computed_sample_sizes.csv` | 5 | one win-probability case × the sample size each gate assumes | S-CALC |
 | `data/computed_vig.csv` | 5 | one price pair × implied probability, overround and the no-vig line | S-CALC |
