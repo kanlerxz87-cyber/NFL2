@@ -1,0 +1,296 @@
+game_id|team|player|slug|pos|injury|practice|status|source
+W10-01|WAS|John Bates|john-bates|TE||F||https://www.nfl.com/injuries/
+W10-01|WAS|Treylon Burks|treylon-burks|WR||D||https://www.nfl.com/injuries/
+W10-01|WAS|Jayden Daniels|jayden-daniels|QB||F||https://www.nfl.com/injuries/
+W10-01|WAS|Matt Gulbin|matt-gulbin|C||F||https://www.nfl.com/injuries/
+W10-01|WAS|Chig Okonkwo|chigoziem-okonkwo|TE||F||https://www.nfl.com/injuries/
+W10-01|WAS|Lucas Patrick|lucas-patrick|C|Concussion|D|Out|https://www.nfl.com/injuries/
+W10-01|WAS|Amik Robertson|amik-robertson|CB||L||https://www.nfl.com/injuries/
+W10-01|WAS|Shy Tuttle|shy-tuttle|DT||F||https://www.nfl.com/injuries/
+W10-01|WAS|Colson Yankoff|colson-yankoff|TE|Knee|D|Out|https://www.nfl.com/injuries/
+W10-01|NYG|Abdul Carter|abdul-carter|LB||F||https://www.nfl.com/injuries/
+W10-01|NYG|Jermaine Eluemunor|jermaine-eluemunor|T||F||https://www.nfl.com/injuries/
+W10-01|NYG|Malik Harrison|malik-harrison|LB|Groin|L|Questionable|https://www.nfl.com/injuries/
+W10-01|NYG|Colton Hood|colton-hood|CB||F||https://www.nfl.com/injuries/
+W10-01|NYG|Theo Johnson|theo-johnson|TE||F||https://www.nfl.com/injuries/
+W10-01|NYG|Charlie Jones|charlie-jones-3|WR||F||https://www.nfl.com/injuries/
+W10-01|NYG|J.J. McCarthy|j-j-mccarthy|QB||F||https://www.nfl.com/injuries/
+W10-01|NYG|Darnell Mooney|darnell-mooney|WR||F||https://www.nfl.com/injuries/
+W10-01|NYG|Malik Nabers|malik-nabers|WR||F||https://www.nfl.com/injuries/
+W10-01|NYG|Cam Skattebo|cam-skattebo|RB||F||https://www.nfl.com/injuries/
+W10-01|NYG|Andrew Thomas|andrew-thomas|T||F||https://www.nfl.com/injuries/
+W10-02|NE|Ben Brown|ben-brown-2|C|Knee|D|Out|https://www.nfl.com/injuries/
+W10-02|NE|A.J. Brown|a-j-brown|WR||L||https://www.nfl.com/injuries/
+W10-02|NE|Kevin Byard|kevin-byard|S||L||https://www.nfl.com/injuries/
+W10-02|NE|Carlton Davis III|carlton-davis|CB|Knee|D|Out|https://www.nfl.com/injuries/
+W10-02|NE|Reggie Gilliam|reggie-gilliam|FB||L||https://www.nfl.com/injuries/
+W10-02|NE|TreVeyon Henderson|treveyon-henderson|RB|Illness|D|Out|https://www.nfl.com/injuries/
+W10-02|NE|Hunter Henry|hunter-henry|TE||L||https://www.nfl.com/injuries/
+W10-02|NE|Cameron Latu|cameron-latu|TE||L||https://www.nfl.com/injuries/
+W10-02|NE|Drake Maye|drake-maye|QB||F||https://www.nfl.com/injuries/
+W10-02|NE|Morgan Moses|morgan-moses|T||L||https://www.nfl.com/injuries/
+W10-02|NE|Walter Rouse|walter-rouse|T||L||https://www.nfl.com/injuries/
+W10-02|NE|Brenden Schooler|brenden-schooler|S||L||https://www.nfl.com/injuries/
+W10-02|NE|Rhamondre Stevenson|rhamondre-stevenson|RB||L||https://www.nfl.com/injuries/
+W10-02|NE|Greg Van Roten|greg-van-roten|G||L||https://www.nfl.com/injuries/
+W10-02|NE|Charles Woods|charles-woods|CB||L||https://www.nfl.com/injuries/
+W10-02|DET|Brian Branch|brian-branch|S||F||https://www.nfl.com/injuries/
+W10-02|DET|Jared Goff|jared-goff|QB||F||https://www.nfl.com/injuries/
+W10-02|DET|Kerby Joseph|kerby-joseph|S|Knee|F|Out|https://www.nfl.com/injuries/
+W10-02|DET|Cade Mays|cade-mays|C|Ankle|D|Out|https://www.nfl.com/injuries/
+W10-02|DET|D.J. Reed|d-j-reed|CB|Hip|D|Out|https://www.nfl.com/injuries/
+W10-02|DET|Jacob Saylors|jacob-saylors|RB||F||https://www.nfl.com/injuries/
+W10-02|DET|Amon-Ra St. Brown|amon-ra-st-brown|WR||L||https://www.nfl.com/injuries/
+W10-02|DET|Sione Vaki|sione-vaki|RB||D||https://www.nfl.com/injuries/
+W10-02|DET|DJ Wonnum|d-j-wonnum|DE||F||https://www.nfl.com/injuries/
+W10-03|KC|Jeffrey Bassa|jeffrey-bassa|LB||F||https://www.nfl.com/injuries/
+W10-03|KC|Mansoor Delane|mansoor-delane|CB||F||https://www.nfl.com/injuries/
+W10-03|KC|Justin Fields|justin-fields|QB||F||https://www.nfl.com/injuries/
+W10-03|KC|Jaden Hicks|jaden-hicks|S||F||https://www.nfl.com/injuries/
+W10-03|KC|Travis Kelce|travis-kelce|TE||F||https://www.nfl.com/injuries/
+W10-03|KC|Patrick Mahomes|patrick-mahomes|QB||F||https://www.nfl.com/injuries/
+W10-03|KC|Jaylon Moore|jaylon-moore-2|T||D||https://www.nfl.com/injuries/
+W10-03|KC|Omarr Norman-Lott|omarr-norman-lott|DT||L||https://www.nfl.com/injuries/
+W10-03|KC|Jaydn Ott|jaydn-ott|RB||L||https://www.nfl.com/injuries/
+W10-03|KC|Rashee Rice|rashee-rice|WR||F||https://www.nfl.com/injuries/
+W10-03|KC|Peter Woods|peter-woods|DT||D||https://www.nfl.com/injuries/
+W10-03|ATL|Zachariah Branch|zachariah-branch|WR||D||https://www.nfl.com/injuries/
+W10-03|ATL|Kendal Daniels|kendal-daniels|LB||L||https://www.nfl.com/injuries/
+W10-03|ATL|Divine Deablo|divine-deablo|LB||D||https://www.nfl.com/injuries/
+W10-03|ATL|Gervon Dexter Sr.|gervon-dexter|DT||L||https://www.nfl.com/injuries/
+W10-03|ATL|James Pearce Jr.|james-pearce-jr|DE||L||https://www.nfl.com/injuries/
+W10-03|ATL|Za'Darius Smith|za-darius-smith|DE||F||https://www.nfl.com/injuries/
+W10-03|ATL|Jawaan Taylor|jawaan-taylor|T||D||https://www.nfl.com/injuries/
+W10-03|ATL|Cameron Thomas|cameron-thomas|DE||L||https://www.nfl.com/injuries/
+W10-03|ATL|Josh Woods|josh-woods|LB||L||https://www.nfl.com/injuries/
+W10-04|MIN|Blake Cashman|blake-cashman|LB||D||https://www.nfl.com/injuries/
+W10-04|MIN|T.J. Hockenson|t-j-hockenson|TE||D||https://www.nfl.com/injuries/
+W10-04|MIN|Tyrion Ingram-Dawkins|tyrion-ingram-dawkins|DT||D||https://www.nfl.com/injuries/
+W10-04|MIN|Theo Jackson|theo-jackson|S||F||https://www.nfl.com/injuries/
+W10-04|MIN|Jauan Jennings|jauan-jennings|WR||D||https://www.nfl.com/injuries/
+W10-04|MIN|Kyler Murray|kyler-murray|QB||D||https://www.nfl.com/injuries/
+W10-04|MIN|Kyle Van Noy|kyle-van-noy|LB||D||https://www.nfl.com/injuries/
+W10-04|MIN|Jay Ward|jay-ward|S||L||https://www.nfl.com/injuries/
+W10-04|MIN|Carson Wentz|carson-wentz|QB||L||https://www.nfl.com/injuries/
+W10-04|GB|Aaron Banks|aaron-banks|G||L||https://www.nfl.com/injuries/
+W10-04|GB|Chris Brooks|christopher-brooks|RB||L||https://www.nfl.com/injuries/
+W10-04|GB|Javon Bullard|javon-bullard|S||D||https://www.nfl.com/injuries/
+W10-04|GB|Zaire Franklin|zaire-franklin|LB||D||https://www.nfl.com/injuries/
+W10-04|GB|Travis Glover|travis-glover|G||L||https://www.nfl.com/injuries/
+W10-04|GB|Ty'Ron Hopper|ty-ron-hopper|LB||L||https://www.nfl.com/injuries/
+W10-04|GB|Josh Jacobs|josh-jacobs-x3315|RB||D||https://www.nfl.com/injuries/
+W10-04|GB|Bo Melton|bo-melton|WR||F||https://www.nfl.com/injuries/
+W10-04|GB|Skyy Moore|skyy-moore|WR||L||https://www.nfl.com/injuries/
+W10-04|GB|Micah Parsons|micah-parsons|LB||L||https://www.nfl.com/injuries/
+W10-04|GB|Sean Rhyan|sean-rhyan|C||D||https://www.nfl.com/injuries/
+W10-04|GB|Trey Smack|trey-smack|K||F||https://www.nfl.com/injuries/
+W10-04|GB|Lukas Van Ness|lukas-van-ness|LB||D||https://www.nfl.com/injuries/
+W10-04|GB|Josh Whyle|josh-whyle|TE||D||https://www.nfl.com/injuries/
+W10-04|GB|Savion Williams|savion-williams|WR||L||https://www.nfl.com/injuries/
+W10-04|GB|Kevin Zeitler|kevin-zeitler|G||L||https://www.nfl.com/injuries/
+W10-05|JAX|Jessie Bates|jessie-bates|S||D||https://www.nfl.com/injuries/
+W10-05|JAX|Ezra Cleveland|ezra-cleveland|G||L||https://www.nfl.com/injuries/
+W10-05|JAX|Branson Combs|branson-combs|LB||L||https://www.nfl.com/injuries/
+W10-05|JAX|Jordan Davis|jordan-davis|DT||D||https://www.nfl.com/injuries/
+W10-05|JAX|BJ Green II|bj-green-ii|DE||F||https://www.nfl.com/injuries/
+W10-05|JAX|Robert Hainsey|robert-hainsey|C||L||https://www.nfl.com/injuries/
+W10-05|JAX|Antonio Johnson|antonio-johnson-3|S||L||https://www.nfl.com/injuries/
+W10-05|JAX|Jakobi Meyers|jakobi-meyers|WR||L||https://www.nfl.com/injuries/
+W10-05|JAX|Chris Rodriguez Jr.|chris-rodriguez-jr|RB||L||https://www.nfl.com/injuries/
+W10-05|JAX|Bhayshul Tuten|bhayshul-tuten|RB||D||https://www.nfl.com/injuries/
+W10-05|JAX|Travon Walker|travon-walker|DE||L||https://www.nfl.com/injuries/
+W10-05|TEN|Cody Barton|cody-barton|LB||D||https://www.nfl.com/injuries/
+W10-05|TEN|John Franklin-Myers|john-franklin-myers|DE||F||https://www.nfl.com/injuries/
+W10-05|TEN|Marcus Harris|marcus-harris-4|CB||F||https://www.nfl.com/injuries/
+W10-05|TEN|Anthony Hill Jr.|anthony-hill-jr|LB||D||https://www.nfl.com/injuries/
+W10-05|TEN|Jaylon Jones|jaylon-jones-2|CB||F||https://www.nfl.com/injuries/
+W10-05|TEN|JC Latham|jc-latham|T||F||https://www.nfl.com/injuries/
+W10-05|TEN|Tony Pollard|tony-pollard|RB||D||https://www.nfl.com/injuries/
+W10-05|TEN|Peter Skoronski|peter-skoronski|G||D||https://www.nfl.com/injuries/
+W10-05|TEN|Tyjae Spears|tyjae-spears|RB||L||https://www.nfl.com/injuries/
+W10-05|TEN|Carnell Tate|carnell-tate|WR||D||https://www.nfl.com/injuries/
+W10-05|TEN|Tommy Townsend|tommy-townsend|P||F||https://www.nfl.com/injuries/
+W10-05|TEN|Kevin Winston Jr.|kevin-winston-jr|S||L||https://www.nfl.com/injuries/
+W10-06|MIA|Tucker Addington|tucker-addington|LS||L||https://www.nfl.com/injuries/
+W10-06|MIA|Kaytron Allen|kaytron-allen|RB||F||https://www.nfl.com/injuries/
+W10-06|MIA|Darrell Baker Jr.|darrell-baker-jr|CB||L||https://www.nfl.com/injuries/
+W10-06|MIA|Chris Bell|chris-bell-2|WR||D||https://www.nfl.com/injuries/
+W10-06|MIA|Aaron Brewer|aaron-brewer-2|C||D||https://www.nfl.com/injuries/
+W10-06|MIA|Malik Herring|malik-herring|DE||L||https://www.nfl.com/injuries/
+W10-06|MIA|Will Kacmarek|will-kacmarek|TE||L||https://www.nfl.com/injuries/
+W10-06|MIA|Michael Taaffe|michael-taaffe|S||F||https://www.nfl.com/injuries/
+W10-06|MIA|Dante Trader Jr.|dante-trader-jr|S||F||https://www.nfl.com/injuries/
+W10-06|MIA|Jared Wayne|jared-wayne|WR||L||https://www.nfl.com/injuries/
+W10-06|MIA|Jaylen Wright|jaylen-wright|RB||F||https://www.nfl.com/injuries/
+W10-06|IND|Mo Alie-Cox|mo-alie-cox|TE||D||https://www.nfl.com/injuries/
+W10-06|IND|CJ Allen|cj-allen|LB||F||https://www.nfl.com/injuries/
+W10-06|IND|Jaylon Carlies|jaylon-carlies|LB||D||https://www.nfl.com/injuries/
+W10-06|IND|Akeem Davis-Gaither|akeem-davis-gaither|LB||D||https://www.nfl.com/injuries/
+W10-06|IND|A.J. Haulcy|a-j-haulcy|S||F||https://www.nfl.com/injuries/
+W10-06|IND|Arden Key|arden-key|DE||F||https://www.nfl.com/injuries/
+W10-06|IND|Luke Rhodes|luke-rhodes|LS||D||https://www.nfl.com/injuries/
+W10-06|IND|Grover Stewart|grover-stewart|DT||D||https://www.nfl.com/injuries/
+W10-06|IND|Jonathan Taylor|jonathan-taylor|RB||F||https://www.nfl.com/injuries/
+W10-06|IND|Jerry Tillery|jerry-tillery|DT||D||https://www.nfl.com/injuries/
+W10-06|IND|Jalen Travis|jalen-travis|T||D||https://www.nfl.com/injuries/
+W10-06|IND|Justin Walley|justin-walley|CB||F||https://www.nfl.com/injuries/
+W10-06|IND|Charvarius Ward|charvarius-ward|CB||F||https://www.nfl.com/injuries/
+W10-07|CAR|Jonathon Brooks|jonathon-brooks|RB||F||https://www.nfl.com/injuries/
+W10-07|CAR|Brady Christensen|brady-christensen|G||F||https://www.nfl.com/injuries/
+W10-07|CAR|Trevor Etienne|trevor-etienne|RB||F||https://www.nfl.com/injuries/
+W10-07|CAR|Chuba Hubbard|chuba-hubbard|RB||F||https://www.nfl.com/injuries/
+W10-07|CAR|Lee Hunter|lee-hunter|DT||F||https://www.nfl.com/injuries/
+W10-07|CAR|Mike Jackson|mike-jackson|CB||F||https://www.nfl.com/injuries/
+W10-07|CAR|Will Lee III|will-lee-iii|CB||F||https://www.nfl.com/injuries/
+W10-07|CAR|Xavier Legette|xavier-legette|WR||F||https://www.nfl.com/injuries/
+W10-07|CAR|Damien Lewis|damien-lewis|G||L||https://www.nfl.com/injuries/
+W10-07|CAR|Bobby Okereke|bobby-okereke|LB||D||https://www.nfl.com/injuries/
+W10-07|CAR|Jaelan Phillips|jaelan-phillips|LB||L||https://www.nfl.com/injuries/
+W10-07|CAR|Torricelli Simpkins III|torricelli-simpkins-iii|G||F||https://www.nfl.com/injuries/
+W10-07|NO|Kelvin Banks Jr.|kelvin-banks-jr|T||L||https://www.nfl.com/injuries/
+W10-07|NO|CJ Donaldson|cj-donaldson|RB||D||https://www.nfl.com/injuries/
+W10-07|NO|David Edwards|david-edwards-x1290|G||L||https://www.nfl.com/injuries/
+W10-07|NO|Martin Emerson|martin-emerson|CB||L||https://www.nfl.com/injuries/
+W10-07|NO|Travis Etienne|travis-etienne|RB||L||https://www.nfl.com/injuries/
+W10-07|NO|Noah Fant|noah-fant-x4946|TE||F||https://www.nfl.com/injuries/
+W10-07|NO|Taliese Fuaga|taliese-fuaga|T||L||https://www.nfl.com/injuries/
+W10-07|NO|Alvin Kamara|alvin-kamara|RB||F||https://www.nfl.com/injuries/
+W10-07|NO|Erik McCoy|erik-mccoy|C||D||https://www.nfl.com/injuries/
+W10-07|NO|Christen Miller|christen-miller|DT||D||https://www.nfl.com/injuries/
+W10-07|NO|Asim Richards|asim-richards|T||F||https://www.nfl.com/injuries/
+W10-07|NO|Quincy Riley|quincy-riley|CB||L||https://www.nfl.com/injuries/
+W10-08|BUF|Alec Anderson|alec-anderson-2|G||L||https://www.nfl.com/injuries/
+W10-08|BUF|Christian Benford|christian-benford|CB||L||https://www.nfl.com/injuries/
+W10-08|BUF|Spencer Brown|spencer-brown|T||D||https://www.nfl.com/injuries/
+W10-08|BUF|Dion Dawkins|dion-dawkins|T||L||https://www.nfl.com/injuries/
+W10-08|BUF|Sam Franklin Jr.|sam-franklin|S||L||https://www.nfl.com/injuries/
+W10-08|BUF|Greg Gaines|greg-gaines|DT||F||https://www.nfl.com/injuries/
+W10-08|BUF|Jordan Hancock|jordan-hancock|CB||F||https://www.nfl.com/injuries/
+W10-08|BUF|Dalton Kincaid|dalton-kincaid|TE||L||https://www.nfl.com/injuries/
+W10-08|BUF|Connor McGovern|connor-mcgovern-2|C||L||https://www.nfl.com/injuries/
+W10-08|BUF|Ar'maj Reed-Adams|ar-maj-reed-adams|G||F||https://www.nfl.com/injuries/
+W10-08|BUF|T.J. Sanders|t-j-sanders|DE||F||https://www.nfl.com/injuries/
+W10-08|BUF|Tyrell Shavers|tyrell-shavers|WR||F||https://www.nfl.com/injuries/
+W10-08|NYJ|Jarvis Brownlee Jr.|jarvis-brownlee-jr|CB||D||https://www.nfl.com/injuries/
+W10-08|NYJ|Omar Cooper Jr.|omar-cooper-jr|WR||L||https://www.nfl.com/injuries/
+W10-08|NYJ|Joseph Ossai|joseph-ossai|DE||L||https://www.nfl.com/injuries/
+W10-08|NYJ|VJ Payne|vj-payne|S||F||https://www.nfl.com/injuries/
+W10-08|NYJ|Harrison Phillips|harrison-phillips|DT||D||https://www.nfl.com/injuries/
+W10-08|NYJ|Trevin Wallace|trevin-wallace|LB||D||https://www.nfl.com/injuries/
+W10-08|NYJ|Garrett Wilson|garrett-wilson|WR||L||https://www.nfl.com/injuries/
+W10-08|NYJ|Nahshon Wright|nahshon-wright|CB||L||https://www.nfl.com/injuries/
+W10-09|HOU|Azeez Al-Shaair|azeez-al-shaair|LB||D||https://www.nfl.com/injuries/
+W10-09|HOU|Reed Blankenship|reed-blankenship|S||L||https://www.nfl.com/injuries/
+W10-09|HOU|Tank Dell|tank-dell|WR||L||https://www.nfl.com/injuries/
+W10-09|HOU|Blake Fisher|blake-fisher|T||F||https://www.nfl.com/injuries/
+W10-09|HOU|Marvin Harrison Jr.|marvin-harrison-jr|WR||L||https://www.nfl.com/injuries/
+W10-09|HOU|Jacob Hummel|jake-hummel|LB||L||https://www.nfl.com/injuries/
+W10-09|HOU|Brevin Jordan|brevin-jordan|TE||D||https://www.nfl.com/injuries/
+W10-09|HOU|Woody Marks|woody-marks|RB||L||https://www.nfl.com/injuries/
+W10-09|HOU|David Montgomery|david-montgomery|RB||D||https://www.nfl.com/injuries/
+W10-09|HOU|Keylan Rutledge|keylan-rutledge|G||D||https://www.nfl.com/injuries/
+W10-09|HOU|Jaylin Smith|jaylin-smith|CB||L||https://www.nfl.com/injuries/
+W10-09|HOU|Wyatt Teller|wyatt-teller|G||L||https://www.nfl.com/injuries/
+W10-09|HOU|Tommy Togiai|tommy-togiai|DT||F||https://www.nfl.com/injuries/
+W10-09|CLE|Austin Barber|austin-barber|T||L||https://www.nfl.com/injuries/
+W10-09|CLE|Denzel Boston|denzel-boston|WR||D||https://www.nfl.com/injuries/
+W10-09|CLE|Michael Burton|michael-burton|FB||D||https://www.nfl.com/injuries/
+W10-09|CLE|Maliek Collins|maliek-collins|DT||L||https://www.nfl.com/injuries/
+W10-09|CLE|Harold Fannin Jr.|harold-fannin-jr|TE||L||https://www.nfl.com/injuries/
+W10-09|CLE|Ronnie Hickman Jr.|ronnie-hickman-jr|S||D||https://www.nfl.com/injuries/
+W10-09|CLE|Tytus Howard|tytus-howard-x1979|T||L||https://www.nfl.com/injuries/
+W10-09|CLE|Elgton Jenkins|elgton-jenkins|C||L||https://www.nfl.com/injuries/
+W10-09|CLE|Donovan McMillon|donovan-mcmillon-2|S||L||https://www.nfl.com/injuries/
+W10-09|CLE|Carson Schwesinger|carson-schwesinger|LB||L||https://www.nfl.com/injuries/
+W10-09|CLE|Denzel Ward|denzel-ward|CB||L||https://www.nfl.com/injuries/
+W10-09|CLE|Quincy Williams|quincy-williams|LB||L||https://www.nfl.com/injuries/
+W10-10|LAR|Davis Allen|davis-allen|TE||L||https://www.nfl.com/injuries/
+W10-10|LAR|Steve Avila|steve-avila|G||D||https://www.nfl.com/injuries/
+W10-10|LAR|Joe Cardona|joe-cardona|LS||L||https://www.nfl.com/injuries/
+W10-10|LAR|Kam Curl|kamren-curl|S||D||https://www.nfl.com/injuries/
+W10-10|LAR|Terrance Ferguson|terrance-ferguson-2|TE||D||https://www.nfl.com/injuries/
+W10-10|LAR|Myles Garrett|myles-garrett|LB||L||https://www.nfl.com/injuries/
+W10-10|LAR|Trent McDuffie|trent-mcduffie|CB||D||https://www.nfl.com/injuries/
+W10-10|LAR|Puka Nacua|puka-nacua|WR||D||https://www.nfl.com/injuries/
+W10-10|LAR|Colby Parkinson|colby-parkinson|TE||L||https://www.nfl.com/injuries/
+W10-10|LAR|Matthew Stafford|matthew-stafford|QB||F||https://www.nfl.com/injuries/
+W10-10|AZ|Budda Baker|budda-baker|S||F||https://www.nfl.com/injuries/
+W10-10|AZ|Zachary Carter|zachary-carter-x9168|DT||L||https://www.nfl.com/injuries/
+W10-10|AZ|Hjalte Froholdt|hjalte-froholdt|C||D||https://www.nfl.com/injuries/
+W10-10|AZ|Jon Gaines II|jon-gaines-ii|G||D||https://www.nfl.com/injuries/
+W10-10|AZ|Bam Knight|bam-knight|RB||F||https://www.nfl.com/injuries/
+W10-10|AZ|Hunter Long|hunter-long|TE||L||https://www.nfl.com/injuries/
+W10-10|AZ|Roy Lopez|roy-lopez|DT||D||https://www.nfl.com/injuries/
+W10-10|AZ|Max Melton|max-melton|CB||L||https://www.nfl.com/injuries/
+W10-10|AZ|Darius Robinson|darius-robinson-2|DT||D||https://www.nfl.com/injuries/
+W10-10|AZ|Isaac Seumalo|isaac-seumalo|G||F||https://www.nfl.com/injuries/
+W10-10|AZ|Dante Stills|dante-stills|DT||L||https://www.nfl.com/injuries/
+W10-10|AZ|Josh Sweat|josh-sweat|LB||D||https://www.nfl.com/injuries/
+W10-10|AZ|Jayden Williams|jayden-williams|T||L||https://www.nfl.com/injuries/
+W10-10|AZ|Mack Wilson|mack-wilson|LB||F||https://www.nfl.com/injuries/
+W10-10|AZ|Andrew Wingard|andrew-wingard|S||D||https://www.nfl.com/injuries/
+W10-11|SEA|AJ Barner|aj-barner|TE||F||https://www.nfl.com/injuries/
+W10-11|SEA|Anthony Bradford|anthony-bradford|G||L||https://www.nfl.com/injuries/
+W10-11|SEA|Charles Cross|charles-cross-2|T||D||https://www.nfl.com/injuries/
+W10-11|SEA|Sam Darnold|sam-darnold|QB||D||https://www.nfl.com/injuries/
+W10-11|SEA|Derick Hall|derick-hall|LB||L||https://www.nfl.com/injuries/
+W10-11|SEA|Drew Lock|drew-lock|QB||L||https://www.nfl.com/injuries/
+W10-11|SEA|Quenton Nelson|quenton-nelson|G||D||https://www.nfl.com/injuries/
+W10-11|SEA|Uchenna Nwosu|uchenna-nwosu|LB||L||https://www.nfl.com/injuries/
+W10-11|SEA|Patrick O'Connell|patrick-o-connell|LB||L||https://www.nfl.com/injuries/
+W10-11|SEA|Connor O'Toole|connor-o-toole|LB||L||https://www.nfl.com/injuries/
+W10-11|SEA|Brandon Pili|brandon-pili|DT||D||https://www.nfl.com/injuries/
+W10-11|SEA|Jarran Reed|jarran-reed|DT||D||https://www.nfl.com/injuries/
+W10-11|SEA|Rashid Shaheed|rashid-shaheed|WR||F||https://www.nfl.com/injuries/
+W10-11|SEA|Jaxon Smith-Njigba|jaxon-smith-njigba|WR||D||https://www.nfl.com/injuries/
+W10-11|SEA|Leonard Williams|leonard-williams|DT||D||https://www.nfl.com/injuries/
+W10-11|LV|Thomas Booker|thomas-booker|DT||L||https://www.nfl.com/injuries/
+W10-11|LV|Foley Fatukasi|foley-fatukasi|DT||F||https://www.nfl.com/injuries/
+W10-11|LV|Ian Thomas|ian-thomas|TE||F||https://www.nfl.com/injuries/
+W10-11|LV|Trey Zuhn III|trey-zuhn-iii|C||L||https://www.nfl.com/injuries/
+W10-12|SF|Mike Evans|mike-evans|WR||D||https://www.nfl.com/injuries/
+W10-12|SF|Renardo Green|renardo-green|CB||D||https://www.nfl.com/injuries/
+W10-12|SF|Dre Greenlaw|dre-greenlaw-x9042|LB||D||https://www.nfl.com/injuries/
+W10-12|SF|Nate Hobbs|nate-hobbs|CB||F||https://www.nfl.com/injuries/
+W10-12|SF|Deommodore Lenoir|deommodore-lenoir|CB||D||https://www.nfl.com/injuries/
+W10-12|SF|Christian McCaffrey|christian-mccaffrey|RB||D||https://www.nfl.com/injuries/
+W10-12|SF|Siran Neal|siran-neal|S||L||https://www.nfl.com/injuries/
+W10-12|SF|Demarcus Robinson|demarcus-robinson|WR||F||https://www.nfl.com/injuries/
+W10-12|SF|Deebo Samuel Sr.|deebo-samuel|WR||L||https://www.nfl.com/injuries/
+W10-12|SF|Upton Stout|upton-stout|CB||L||https://www.nfl.com/injuries/
+W10-12|SF|C.J. West|cj-west|DT||L||https://www.nfl.com/injuries/
+W10-12|SF|Trent Williams|trent-williams|T||D||https://www.nfl.com/injuries/
+W10-12|DAL|Jonathan Bullard|jonathan-bullard|DT||F||https://www.nfl.com/injuries/
+W10-12|DAL|Alijah Clark|alijah-clark|S||D||https://www.nfl.com/injuries/
+W10-12|DAL|Donovan Ezeiruaku|donovan-ezeiruaku|LB||D||https://www.nfl.com/injuries/
+W10-12|DAL|Jake Ferguson|jake-ferguson|TE||D||https://www.nfl.com/injuries/
+W10-12|DAL|Tyler Goodson|tyler-goodson|RB||D||https://www.nfl.com/injuries/
+W10-12|DAL|Malik Hooker|malik-hooker|S||D||https://www.nfl.com/injuries/
+W10-12|DAL|Marist Liufau|marist-liufau|LB||F||https://www.nfl.com/injuries/
+W10-12|DAL|P.J. Locke|p-j-locke|S||D||https://www.nfl.com/injuries/
+W10-12|DAL|Von Miller|von-miller|LB||D||https://www.nfl.com/injuries/
+W10-12|DAL|Jonathan Mingo|jonathan-mingo|WR||D||https://www.nfl.com/injuries/
+W10-12|DAL|Devin Moore|devin-moore-2|CB||F||https://www.nfl.com/injuries/
+W10-12|DAL|DeMarvion Overshown|demarvion-overshown|LB||F||https://www.nfl.com/injuries/
+W10-12|DAL|George Pickens|george-pickens|WR||L||https://www.nfl.com/injuries/
+W10-12|DAL|Joey Porter Jr.|joey-porter-jr|CB||D||https://www.nfl.com/injuries/
+W10-12|DAL|Luke Schoonmaker|luke-schoonmaker|TE||F||https://www.nfl.com/injuries/
+W10-12|DAL|Brevyn Spann-Ford|brevyn-spann-ford|TE||F||https://www.nfl.com/injuries/
+W10-12|DAL|Juanyeh Thomas|juanyeh-thomas|S||L||https://www.nfl.com/injuries/
+W10-12|DAL|KaVontae Turpin|kavontae-turpin|WR||L||https://www.nfl.com/injuries/
+W10-13|PIT|Brandin Echols|brandin-echols|CB||F||https://www.nfl.com/injuries/
+W10-13|PIT|DeShon Elliott|deshon-elliott|S||F||https://www.nfl.com/injuries/
+W10-13|PIT|Derrick Harmon|derrick-harmon-2|DT||L||https://www.nfl.com/injuries/
+W10-13|PIT|Cameron Heyward|cameron-heyward|DT||D||https://www.nfl.com/injuries/
+W10-13|PIT|Ben Skowronek|ben-skowronek|WR||F||https://www.nfl.com/injuries/
+W10-13|PIT|Doneiko Slaughter|doneiko-slaughter|CB||F||https://www.nfl.com/injuries/
+W10-13|PIT|Darnell Washington|darnell-washington|TE||F||https://www.nfl.com/injuries/
+W10-13|PIT|T.J. Watt|t-j-watt|LB||L||https://www.nfl.com/injuries/
+W10-13|CIN|Jonathan Allen|jonathan-allen|DT||D||https://www.nfl.com/injuries/
+W10-13|CIN|Jalen Davis|jalen-davis|CB||F||https://www.nfl.com/injuries/
+W10-13|CIN|Kyle Dugger|kyle-dugger|S||D||https://www.nfl.com/injuries/
+W10-13|CIN|Dylan Fairchild|dylan-fairchild|G||F||https://www.nfl.com/injuries/
+W10-13|CIN|B.J. Hill|b-j-hill|DT||L||https://www.nfl.com/injuries/
+W10-13|CIN|Andrei Iosivas|andrei-iosivas|WR||F||https://www.nfl.com/injuries/
+W10-13|CIN|Brian Parker II|brian-parker-ii|G||F||https://www.nfl.com/injuries/
+W10-13|CIN|DJ Turner II|dj-turner-2|CB||F||https://www.nfl.com/injuries/

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Session overview — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-program">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a class="on" href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge program">session 2268bfb2</span><h1>Session overview</h1><p class="lead">A dated re-read of the official league pages, and the first pre-registered walk-forward competition in this repository.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#read-this-first">Read this first</a><a href="#what-moved">What moved</a><a href="#what-we-found">What the competition found</a><a href="#pages">Pages in this tree</a></nav>
+    <div class="body">
+<div class="cards"><div class="card"><h3>Rows on the live injury hub</h3><div class="big"><a href="refresh.html">295</a></div><div class="sub">26 clubs publish rows; LAC and BAL print &ldquo;No Injuries Reported&rdquo;</div></div><div class="card"><h3>Rows the Injuries page shows</h3><div class="big"><a href="refresh.html">254</a></div><div class="sub">41 rows behind the live page</div></div><div class="card"><h3>Week 10 game ids that disagree</h3><div class="big"><a href="refresh.html">6</a></div><div class="sub">3 of them name a completely different fixture in two published files</div></div><div class="card"><h3>Strategies scored out of sample</h3><div class="big"><a href="competition.html">10</a></div><div class="sub">596 decisions on 72 holdout games</div></div><div class="card"><h3>Candidates surviving the luck gate</h3><div class="big"><a href="luck.html">4</a></div><div class="sub">Benjamini&ndash;Hochberg at a 10% false-discovery rate</div></div><div class="card"><h3>Gates still blocking any stake</h3><div class="big"><a href="gates.html">4</a></div><div class="sub">G-C7 through G-C10 &mdash; no price feed, no forward track record</div></div></div>
+<blockquote><strong>What this session is.</strong> Every parallel session before this one had built and merged
+a large, verified dashboard at the repository root. What none of them had done was <em>score</em> anything:
+the leaderboard read &ldquo;T0 &mdash; prospective, 0 of 14 gates&rdquo; with every performance cell blank, and the
+one settled game had been graded by hand. This session does two things: it re-reads the official league
+pages on 13 November 2026 and publishes exactly what moved, and it builds the first pre-registered
+walk-forward competition so that the leaderboard has real numbers on it &mdash; including the numbers that
+say our own originated lines do not beat knowing nothing.</blockquote>
+
+<h2 id="read-this-first">Read this first</h2>
+<p>Everything here is measured, or it is labelled <span class="np">not published</span>. The competition is
+scored against the frozen weeks 1&ndash;9 corpus (136 games, every row carrying its own official
+<a href="https://www.nfl.com/scores/2026/week-9">nfl.com</a> game page). It is <strong>not</strong> a betting
+record: no price feed exists anywhere in this repository, so there is no closing line, no vig, no CLV, no
+ROI and no units. Anywhere a price would be needed, the cell is blank and says so.</p>
+
+<h2 id="what-moved">What moved on 13 November 2026</h2>
+<ul>
+<li>The official injury hub now publishes <strong>295</strong> Week 10 rows across
+<strong>26</strong> clubs. The page the site renders carries
+<strong>254</strong> rows across 24 clubs.</li>
+<li>Against the published register there are <strong>85</strong> differences
+(rows added, removed or changed); against session <code>a392a193</code>&rsquo;s later re-fetch there are
+<strong>69</strong>, which is the same league page moving in about fourteen hours.</li>
+<li>Three Week 10 game ids (<code>W10-06</code>, <code>W10-07</code>, <code>W10-08</code>) name different
+fixtures in <code>data/injuries_2026_wk10.csv</code> than they do in
+<code>data/schedule_2026_wk10.csv</code>. Any join between the two files attaches a club&rsquo;s injuries to
+the wrong opponent.</li>
+</ul>
+
+<h2 id="what-we-found">What the competition found</h2>
+<ul>
+<li>Our originated spread does <strong>not</strong> beat a prediction of zero on the holdout
+(MAE 11.03 vs 10.92); the correlation between our predicted
+home margin and the actual margin is effectively nil.</li>
+<li>Our originated total misses by 11.21 points against
+11.18 for the do-nothing league mean. Also no improvement.</li>
+<li>The best side selector wins 79% of its decisions, but it does
+so on 24 of them &mdash; below this build&rsquo;s own 40-decision floor. Ten coin-flipping selectors
+produce a best-of-ten of 0.7083 or better one time in twenty by luck alone.</li>
+<li>The strongest genuine signal is the boring one: pick the team with the better season point
+differential, 45 of 66. That is the definition of a favourite, not an edge, and without a price
+nobody can say whether it was already paid for. Its mirror image, the contrarian control, wins
+21 of 66 on the same games.</li>
+</ul>
+
+<h2 id="pages">Pages in this tree</h2>
+<p>Eleven pages. Every table row on every one of them carries a link to the official page it came from,
+except rows that state a rule rather than a fact &mdash; those say so in their caption, because there is
+nothing official to point at.</p>
+<ul><li><a href="index.html">Session overview</a> &mdash; overview, programme</li><li><a href="refresh.html">Live refresh: 13 Nov 2026</a> &mdash; verification, measured</li><li><a href="depth.html">Depth &amp; deficiencies</a> &mdash; verification, measured</li><li><a href="competition.html">Leaderboard &amp; rewards</a> &mdash; competition, decision</li><li><a href="forecast.html">Forecast track</a> &mdash; competition, measured</li><li><a href="correlations.html">Measured correlations</a> &mdash; competition, measured</li><li><a href="parlays.html">Parlays &amp; prop combos</a> &mdash; competition, design</li><li><a href="luck.html">Removing luck</a> &mdash; competition, decision</li><li><a href="gates.html">Validation gates</a> &mdash; competition, decision</li><li><a href="flagged.html">Flagged for review</a> &mdash; governance, decision</li><li><a href="sources.html">Source registry</a> &mdash; governance, programme</li></ul>
+<p>This tree is additive. Nothing in the canonical root dashboard, or in any other session&rsquo;s tree,
+was modified to build it.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:42Z</div></div>
+</body></html>

@@ -1,0 +1,16 @@
+measure|value|unit|note|source
+holdout games scored|72||weeks 5-9 of the frozen 2026 corpus|https://www.nfl.com/scores/2026/week-9
+candidate strategies scored|10||two of them are deliberate negative controls|https://www.nfl.com/scores/2026/week-9
+coin-flip null|0.5000||a side selector must beat this before anything else matters|https://www.nfl.com/scores/2026/week-9
+best hit rate achieved|0.7917||across all ten candidates|https://www.nfl.com/scores/2026/week-9
+Monte Carlo draws|20000||seeded 20261113|https://www.nfl.com/scores/2026/week-9
+Monte Carlo mean best-of-ten rate|0.6101||what ten coin flippers produce by chance alone|https://www.nfl.com/scores/2026/week-9
+Monte Carlo 95th percentile best-of-ten rate|0.7083||one in twenty runs of pure luck beats this|https://www.nfl.com/scores/2026/week-9
+is the observed best beyond the luck 95th percentile|yes||the single most important number on this page|https://www.nfl.com/scores/2026/week-9
+expected false positives at p<0.05 with ten candidates|0.50||0.05 x 10, before any correction|https://www.nfl.com/scores/2026/week-9
+Benjamini-Hochberg FDR|0.10||applied across the ten candidates|https://www.nfl.com/scores/2026/week-9
+candidates surviving FDR|4|||https://www.nfl.com/scores/2026/week-9
+price feed present in the repository|no||Q-01 still open|https://www.nfl.com/scores/2026/week-9
+ROI per 100 units|||not published - needs a closing price|https://www.nfl.com/scores/2026/week-9
+closing line value|||not published - needs a closing price|https://www.nfl.com/scores/2026/week-9
+player prop archive|||not published - no prop line history exists here|https://www.nfl.com/scores/2026/week-9

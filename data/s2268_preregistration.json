@@ -1,0 +1,21 @@
+{
+  "session": "2268bfb2",
+  "definitions_sha256": "dd8954ae1f893056ff8246c85c0c19f2ff3c9648900e3151b945655284f86bf6",
+  "frozen_at_utc": "2026-11-13T12:40Z",
+  "train_weeks": [
+    2,
+    3,
+    4
+  ],
+  "holdout_weeks": [
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "corpus": "data/games_2026_wk1_9.csv (136 games, weeks 1-9, 2026)",
+  "n_strategies": 10,
+  "n_forecasts": 6,
+  "note": "Definitions hashed before any result was computed. The scorer refuses to run if the hash does not match, so adding a strategy after seeing the leaderboard is a visible act, not a silent one."
+}

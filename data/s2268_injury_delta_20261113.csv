@@ -1,0 +1,155 @@
+game_id|club|player|pos|change|old_value|new_value|compared_against|source
+W10-03|ATL|Cameron Thomas|DE|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|Cameron Thomas|DE|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|ATL|Divine Deablo|LB|field changed|practice L -> D||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|Divine Deablo|LB|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|ATL|Gervon Dexter Sr.|DT|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|Gervon Dexter Sr.|DT|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|ATL|James Pearce Jr.|DE|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|James Pearce Jr.|DE|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|ATL|Jawaan Taylor|T|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|Jawaan Taylor|T|row added||D|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|ATL|Josh Woods|LB|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|Josh Woods|LB|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|ATL|Kendal Daniels|LB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|Kendal Daniels|LB|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|ATL|Za'Darius Smith|DE|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|ATL|Za'Darius Smith|DE|field changed|practice D -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Andrew Wingard|S|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-10|AZ|Andrew Wingard|S|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Bam Knight|RB|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-10|AZ|Bam Knight|RB|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Budda Baker|S|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-10|AZ|Budda Baker|S|field changed|practice D -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Darius Robinson|DT|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-10|AZ|Darius Robinson|DT|row added||D|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Isaac Seumalo|G|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Jon Gaines II|G|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Josh Sweat|LB|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Mack Wilson|LB|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-10|AZ|Mack Wilson|LB|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-10|AZ|Roy Lopez|DT|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-08|BUF|Sam Franklin Jr.|S|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-08|BUF|Sam Franklin Jr.|S|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-08|BUF|Spencer Brown|T|field changed|practice L -> D||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-08|BUF|Spencer Brown|T|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|CAR|Chuba Hubbard|RB|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|CAR|Chuba Hubbard|RB|field changed|practice D -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|CAR|Damien Lewis|G|field changed|practice F -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|CAR|Damien Lewis|G|field changed|practice F -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|CAR|Jaelan Phillips|LB|field changed|practice F -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|CAR|Jaelan Phillips|LB|field changed|practice F -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|CIN|Andrei Iosivas|WR|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|CIN|Andrei Iosivas|WR|row added||F|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|CIN|B.J. Hill|DT|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|CIN|B.J. Hill|DT|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|CIN|Brian Parker II|G|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|CIN|Brian Parker II|G|row added||F|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|CIN|DJ Turner II|CB|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|CIN|DJ Turner II|CB|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|CIN|Dylan Fairchild|G|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|CIN|Dylan Fairchild|G|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|CIN|Jalen Davis|CB|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|CIN|Jalen Davis|CB|row added||F|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|CIN|Jonathan Allen|DT|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|CIN|Kyle Dugger|S|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-09|CLE|Donovan McMillon|S|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-09|CLE|Donovan McMillon|S|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-09|CLE|Elgton Jenkins|C|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-09|CLE|Elgton Jenkins|C|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-09|CLE|Quincy Williams|LB|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-12|DAL|Alijah Clark|S|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-12|DAL|Alijah Clark|S|row added||D|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-12|DAL|DeMarvion Overshown|LB|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-12|DAL|DeMarvion Overshown|LB|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-12|DAL|Juanyeh Thomas|S|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-12|DAL|Juanyeh Thomas|S|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-12|DAL|Tyler Goodson|RB|field changed|practice F -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|DET|Brian Branch|S|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|DET|Brian Branch|S|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|DET|Cade Mays|C|field changed|injury '' -> 'Ankle' ; status '' -> 'Out'||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|DET|Cade Mays|C|field changed|injury '' -> 'Ankle' ; status '' -> 'Out'||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|DET|D.J. Reed|CB|field changed|injury '' -> 'Hip' ; status '' -> 'Out'||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|DET|D.J. Reed|CB|field changed|injury '' -> 'Hip' ; status '' -> 'Out'||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|DET|Jared Goff|QB|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|DET|Jared Goff|QB|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|DET|Kerby Joseph|S|field changed|practice L -> F ; injury '' -> 'Knee' ; status '' -> 'Out'||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|DET|Kerby Joseph|S|field changed|practice L -> F ; injury '' -> 'Knee' ; status '' -> 'Out'||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-04|GB|Trey Smack|K|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-04|GB|Trey Smack|K|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-09|HOU|Wyatt Teller|G|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-06|IND|A.J. Haulcy|S|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|IND|CJ Allen|LB|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|IND|Charvarius Ward|CB|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|IND|Charvarius Ward|CB|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-06|IND|Grover Stewart|DT|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|IND|Jerry Tillery|DT|field changed|practice L -> D||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|IND|Jonathan Taylor|RB|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|JAX|BJ Green II|DE|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|JAX|Jakobi Meyers|WR|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|JAX|Jakobi Meyers|WR|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-05|JAX|Travon Walker|DE|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|JAX|Travon Walker|DE|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|KC|Jaydn Ott|RB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|KC|Jaydn Ott|RB|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-11|LV|Foley Fatukasi|DT|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|LV|Foley Fatukasi|DT|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-06|MIA|Chris Bell|WR|field changed|practice L -> D||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|MIA|Chris Bell|WR|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-06|MIA|Dante Trader Jr.|S|field changed|practice D -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-06|MIA|Jared Wayne|WR|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|MIA|Jared Wayne|WR|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-06|MIA|Jaylen Wright|RB|field changed|practice D -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-06|MIA|Will Kacmarek|TE|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-06|MIA|Will Kacmarek|TE|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|NE|Brenden Schooler|S|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|NE|Brenden Schooler|S|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|NE|Cameron Latu|TE|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|NE|Cameron Latu|TE|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|NE|Rhamondre Stevenson|RB|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|NE|Rhamondre Stevenson|RB|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-02|NE|Walter Rouse|T|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-02|NE|Walter Rouse|T|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|NO|Alvin Kamara|RB|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|NO|Alvin Kamara|RB|field changed|practice D -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|NO|Christen Miller|DT|field changed|practice L -> D||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|NO|Christen Miller|DT|field changed|practice L -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|NO|Noah Fant|TE|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|NO|Noah Fant|TE|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|NO|Quincy Riley|CB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|NO|Quincy Riley|CB|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-07|NO|Taliese Fuaga|T|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-07|NO|Taliese Fuaga|T|row added||L|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-08|NYJ|Jarvis Brownlee Jr.|CB|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-08|NYJ|Jarvis Brownlee Jr.|CB|row added||D|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|PIT|Darnell Washington|TE|field changed|practice D -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|PIT|Darnell Washington|TE|field changed|practice D -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|PIT|DeShon Elliott|S|field changed|practice L -> F||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|PIT|DeShon Elliott|S|field changed|practice L -> F||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-13|PIT|T.J. Watt|LB|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-13|PIT|T.J. Watt|LB|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-11|SEA|AJ Barner|TE|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Anthony Bradford|G|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Brandon Pili|DT|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Charles Cross|T|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Connor O'Toole|LB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Derick Hall|LB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Drew Lock|QB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Jarran Reed|DT|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Jaxon Smith-Njigba|WR|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Leonard Williams|DT|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Patrick O'Connell|LB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Quenton Nelson|G|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Rashid Shaheed|WR|row added||F|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Sam Darnold|QB|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-11|SEA|Uchenna Nwosu|LB|row added||L|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-12|SF|Christian McCaffrey|RB|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-12|SF|Dre Greenlaw|LB|row added||D|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|TEN|Kevin Winston Jr.|S|field changed|practice F -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|TEN|Kevin Winston Jr.|S|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-05|TEN|Tony Pollard|RB|field changed|practice F -> D||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|TEN|Tony Pollard|RB|field changed|practice F -> D||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-05|TEN|Tyjae Spears|RB|field changed|practice D -> L||data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-05|TEN|Tyjae Spears|RB|field changed|practice D -> L||data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/
+W10-03|KC|Xavier Worthy|WR|row removed|F|no longer on the hub at 2026-11-13T12:40Z|data/injuries_2026_wk10.csv (the published Injuries page)|https://www.nfl.com/injuries/
+W10-03|KC|Xavier Worthy|WR|row removed|F|no longer on the hub at 2026-11-13T12:40Z|data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)|https://www.nfl.com/injuries/

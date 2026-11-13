@@ -1,0 +1,5 @@
+relationship|n|pearson_r|r_squared|p_value|sample_scope|source_first_week|source_last_week
+originated spread vs actual home margin|72|0.0310|0.0010|0.79606|weeks 5-9 holdout|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+originated total vs actual game total|72|-0.0914|0.0084|0.44520|weeks 5-9 holdout|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+naive team-rate total vs actual game total|72|0.0753|0.0057|0.52976|weeks 5-9 holdout|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+point-differential gap vs actual home margin|72|0.2622|0.0688|0.02607|weeks 5-9 holdout|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9

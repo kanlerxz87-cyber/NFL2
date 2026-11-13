@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forecast track — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-measured">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a class="on" href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge measured">measured</span><h1>Forecast track</h1><p class="lead">Spreads and totals, scored against the only baselines that matter: the ones that know nothing.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#headline">The headline</a><a href="#scores">Every predictor scored</a><a href="#why">Why the model failed</a><a href="#coefficients">Frozen coefficients</a></nav>
+    <div class="body">
+<blockquote>Three ways to predict the home margin and three to predict the game total, scored on the same
+72 holdout games. Two of the six are do-nothing baselines, and they are the ones that
+matter: a model that cannot beat them has no value, however sophisticated it looks.</blockquote>
+
+<h2 id="headline">The headline</h2>
+<p>Our originated spread misses by <strong>11.03 points</strong> per game. Predicting
+that the home team wins by nothing at all misses by <strong>10.92</strong>. Our
+originated total misses by <strong>11.21</strong> against
+<strong>11.18</strong> for the point-in-time league mean.</p>
+<p>In other words: <strong>on this holdout, our own lines do not beat knowing nothing.</strong> That is the
+finding, it is the same wall session <code>63ac21e9</code> hit with thirteen seasons of data (spread MAE
+10.25 against the market's 9.94), and publishing it is worth more than publishing a tuned number that
+would not survive next week.</p>
+
+<h2 id="scores">Every predictor, scored</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>id</th>
+<th>track</th>
+<th>games scored</th>
+<th>mae</th>
+<th>rmse</th>
+<th>mean bias</th>
+<th>pearson r vs actual</th>
+<th>r squared</th>
+<th>p value</th>
+<th>beats baseline rate</th>
+<th>beats baseline binomial p</th>
+<th>rule</th>
+<th>note</th>
+<th>source first week</th>
+<th>source last week</th>
+<th>sample scope</th>
+</tr></thead><tbody>
+<tr>
+<td>F-SPREAD-ZERO</td>
+<td>spread</td>
+<td>72</td>
+<td>10.92</td>
+<td>13.60</td>
+<td>0.58</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>Predict a home margin of exactly 0.00.</td>
+<td>The do-nothing baseline. A model that cannot beat this has no value.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>F-SPREAD-HFA</td>
+<td>spread</td>
+<td>72</td>
+<td>11.13</td>
+<td>13.76</td>
+<td>1.30</td>
+<td>-0.2217</td>
+<td>0.0491</td>
+<td>0.06128</td>
+<td>0.3333</td>
+<td>0.0205</td>
+<td>Predict the point-in-time mean home margin over all prior non-neutral games; predict 0.00 at a neutral site.</td>
+<td>Home-field-only baseline.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>F-SPREAD-MODEL</td>
+<td>spread</td>
+<td>72</td>
+<td>11.03</td>
+<td>13.65</td>
+<td>1.44</td>
+<td>0.0310</td>
+<td>0.0010</td>
+<td>0.79606</td>
+<td>0.4583</td>
+<td>0.5560</td>
+<td>Predict a + b * (home point differential per game minus away point differential per game), with HFA suppressed at neutral sites. a and b are fitted on weeks 2-4 only and then frozen.</td>
+<td>Our own originated spread.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>F-TOTAL-MEAN</td>
+<td>total</td>
+<td>72</td>
+<td>11.18</td>
+<td>13.71</td>
+<td>0.57</td>
+<td>-0.0604</td>
+<td>0.0036</td>
+<td>0.61423</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>Predict the point-in-time league mean game total.</td>
+<td>The do-nothing baseline for totals.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>F-TOTAL-NAIVE</td>
+<td>total</td>
+<td>72</td>
+<td>11.29</td>
+<td>13.95</td>
+<td>0.46</td>
+<td>0.0753</td>
+<td>0.0057</td>
+<td>0.52976</td>
+<td>0.4722</td>
+<td>0.7239</td>
+<td>Predict 0.5 * (home points per game + away points per game) + 0.5 * (home points allowed per game + away points allowed per game).</td>
+<td>Raw team-rate total with no regression toward the mean.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>F-TOTAL-MODEL</td>
+<td>total</td>
+<td>72</td>
+<td>11.21</td>
+<td>13.71</td>
+<td>-0.06</td>
+<td>-0.0914</td>
+<td>0.0084</td>
+<td>0.44520</td>
+<td>0.4861</td>
+<td>0.9063</td>
+<td>Predict c + d * x where x is the F-TOTAL-NAIVE quantity. c and d are fitted on weeks 2-4 only and then frozen.</td>
+<td>Our own originated total, shrunk toward the league mean by the fit.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+</tbody></table></div>
+<p class="caption">MAE is mean absolute error in points. &ldquo;Beats baseline rate&rdquo; is the share of games where this predictor was closer to the truth than the do-nothing baseline, paired on the same games; its p value is an exact two-sided binomial. The two baselines are excluded from their own comparison, so those cells are blank by construction, not by omission.</p>
+
+<h2 id="why">Why the model failed, and what that means</h2>
+<p>The slope fitted on weeks 2&ndash;4 for the spread is small enough that, after shrinkage, the model
+barely moves off the home-field baseline; the correlation between its prediction and the actual margin is
+0.031 with a p value of 0.80. The total model's slope is <em>negative</em>, which is to say the training
+window told it that teams with high scoring rates would play in lower-scoring games. On 48 games that is
+noise, and the shrinkage only partly damps it.</p>
+<p>The honest reading is that nine weeks of one season is not enough to fit anything. The league's own
+scoring environment moves, opponent quality is not adjusted for, and the only feature with real signal in
+this data &mdash; the point-differential gap &mdash; correlates with the actual margin at r = 0.26
+(p = 0.026), which explains about 7% of the variance and still does not translate into a better
+point forecast than zero.</p>
+
+<h2 id="coefficients">The frozen coefficients</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>term</th>
+<th>value</th>
+<th>fitted on</th>
+<th>n train</th>
+<th>shrinkage applied</th>
+<th>note</th>
+<th>source first training week</th>
+<th>source last training week</th>
+</tr></thead><tbody>
+<tr>
+<td>spread_intercept_unshrunk</td>
+<td>1.0289</td>
+<td>weeks 2-4, non-neutral games</td>
+<td>46</td>
+<td>0.6053</td>
+<td>Applied as baseline + k * (this - baseline); baseline is the point-in-time mean home margin</td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+<tr>
+<td>spread_slope_on_pd_gap_unshrunk</td>
+<td>0.0274</td>
+<td>weeks 2-4, non-neutral games</td>
+<td>46</td>
+<td>0.6053</td>
+<td>Slope on home PD/game minus away PD/game</td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+<tr>
+<td>total_intercept_unshrunk</td>
+<td>50.3080</td>
+<td>weeks 2-4, all games</td>
+<td>48</td>
+<td>0.6154</td>
+<td>Applied as baseline + k * (this - baseline); baseline is the point-in-time league mean total</td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+<tr>
+<td>total_slope_on_team_rate_unshrunk</td>
+<td>-0.1106</td>
+<td>weeks 2-4, all games</td>
+<td>48</td>
+<td>0.6154</td>
+<td>Slope on half the sum of both teams&#x27; points-for and points-allowed rates</td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+<tr>
+<td>pythagorean_exponent</td>
+<td>2.3700</td>
+<td>not fitted - pre-registered</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+<tr>
+<td>shrinkage_constant_K</td>
+<td>30.00</td>
+<td>not fitted - pre-registered</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+<tr>
+<td>shrinkage_rule</td>
+<td>Fitted predictions are shrunk TOWARD THE DO-NOTHING BASELINE, never toward zero: pred = baseline + (n_train / (n_train + K)) * (ols_prediction - baseline). The spread baseline is the point-in-time mean home margin (0.00 at a neutral site); the total baseline is the point-in-time league mean game total.</td>
+<td>not fitted - pre-registered</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>part of the hash</td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+<tr>
+<td>monte_carlo_seed</td>
+<td>20261113</td>
+<td>not fitted - pre-registered</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-2">nfl.com/scores/2026/week-2</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-4">nfl.com/scores/2026/week-4</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Fitted on weeks 2 to 4 only, then frozen and applied unchanged to weeks 5 to 9. The shrinkage rule is part of the pre-registration hash: predictions are blended toward the do-nothing baseline, never toward zero.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:42Z</div></div>
+</body></html>

@@ -1,0 +1,15 @@
+{
+  "fetched_utc": "2026-11-13T12:40Z",
+  "rows_on_live_hub": 295,
+  "clubs_with_rows": 26,
+  "clubs_declaring_none": [
+    "LAC",
+    "BAL"
+  ],
+  "rows_in_published_injuries_csv": 254,
+  "rows_in_hubrefresh_csv": 279,
+  "delta_vs_published": 85,
+  "delta_vs_hubrefresh": 69,
+  "game_id_disagreements": 6,
+  "game_id_rotations": 3
+}

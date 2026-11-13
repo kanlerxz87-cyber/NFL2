@@ -281,6 +281,11 @@ def html_table(header, body):
 SITE_TREES = [
     (".", "canonical — `bc4b47cf` integration, extended by `a392a193`",
      "#8 #15 #16 #18 #20 #24", "current", "the register, the verified data layer, the origination lab and the review queue"),
+    ("s2268", "`2268bfb2`", "*this PR*", "current",
+     "the 13 Nov 2026 live refresh with a row-by-row delta, the NE/DET 1st-4th string depth "
+     "cascade, and the first pre-registered walk-forward competition - ten strategies scored "
+     "out of sample on the frozen weeks 5-9 holdout, with gates, rewards and a measured "
+     "correlation matrix"),
     ("crosscheck", "`2063673b`", "#30", "as authored",
      "independent live re-verification of every dataset, cross-tree claim audit, decision registers"),
     ("s92", "`8b4bdcb3`", "#31", "as authored",

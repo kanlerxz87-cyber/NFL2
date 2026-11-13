@@ -5,6 +5,8 @@
 
 > **Independent Q51 audit and tested research engine:** [open the evidence dashboard](q51/index.html). It publishes current-snapshot research lines, descriptive correlations, fail-closed gates and the full Flagged for Review register. Outputs are paper-only and unvalidated; no betting edge is claimed.
 
+> **New this session — the competition is finally scored.** [Open the session `2268bfb2` tree](s2268/index.html). It re-reads the official league pages on 13 November 2026 and publishes every row that moved (the injury hub is 41 rows ahead of what this site shows), transcribes the New England and Detroit depth charts into a 1st-to-4th string cascade for the one unplayed game with filed designations, and runs the first pre-registered walk-forward competition: ten candidates scored on 596 decisions across 72 holdout games, with exact tests, a false-discovery correction, a seeded Monte Carlo, a measured same-game correlation matrix, disjoint-parlay arithmetic, ten validation gates and five reward tiers. The headline is uncomfortable and published anyway: **our own originated spread and total both fail to beat knowing nothing on this holdout.** Three Week 10 game ids are also shown to name different fixtures in two published files — see [FL-64](flagged-for-review.html).
+
 ## Read this first
 
 This site has two kinds of pages and they never mix on one page without a divider:

@@ -177,3 +177,37 @@ Both are verified independently in CI.
   python3 scripts/verify_s53126614.py
   ```
 
+---
+
+## Live refresh, NE/DET depth cascade & the first scored competition (Session `arena-2268bfb2`)
+
+- **Live suite (11 pages):** [`https://kanlerxz87-cyber.github.io/NFL2/s2268/index.html`](https://kanlerxz87-cyber.github.io/NFL2/s2268/index.html)
+  - [`s2268/refresh.html`](s2268/refresh.html): the official injury hub re-read at **2026-11-13T12:40Z** — 295 rows across 26 clubs — and every one of the 154 differences against the two Week 10 registers already in this repository. Six Week 10 game ids disagree between `data/injuries_2026_wk10.csv` and `data/schedule_2026_wk10.csv`; three of them name a completely different fixture ([FL-64](flagged-for-review.html)).
+  - [`s2268/depth.html`](s2268/depth.html): New England and Detroit's own published depth charts joined to the league's injury filing — a 1st-to-4th string cascade for every unavailable player, including the case the register exists for (Stevenson limited behind him, Henderson **out**, so the next man up is the **3rd** string and then the **4th**).
+  - [`s2268/competition.html`](s2268/competition.html), [`s2268/forecast.html`](s2268/forecast.html), [`s2268/correlations.html`](s2268/correlations.html), [`s2268/parlays.html`](s2268/parlays.html), [`s2268/luck.html`](s2268/luck.html), [`s2268/gates.html`](s2268/gates.html): ten pre-registered strategies scored on **596 decisions across 72 holdout games** (weeks 5–9), with exact binomial tests, a Benjamini–Hochberg correction, a seeded Monte Carlo, a measured 15-pair same-game correlation matrix, disjoint-parlay arithmetic, ten validation gates and five reward tiers.
+  - [`s2268/flagged.html`](s2268/flagged.html) and [`s2268/sources.html`](s2268/sources.html): nine flagged items (one of them a defect this session found in its own harness) and every source read, with its access time.
+
+| Result | Value |
+| --- | --- |
+| Rows on the live injury hub at 12:40Z | **295** across 26 clubs (LAC and BAL print *No Injuries Reported*) |
+| Rows the published Injuries page shows | **254** — 41 rows behind |
+| Differences against the two published registers | **154** and **68** |
+| Strategies scored out of sample | **10** (8 signals + 2 negative controls) |
+| Decisions settled | **596** on 72 holdout games |
+| Candidates surviving a 10% false-discovery rate | **4** |
+| Our originated spread vs a prediction of zero | MAE **11.03** vs **10.92** — no improvement |
+| Our originated total vs the league mean | MAE **11.21** vs **11.18** — no improvement |
+| Strongest same-game correlation measured | φ = **0.945** (home wins × home beats our spread) |
+| Reward tiers carrying a stake | **0 of 5** — all blocked on a price feed |
+
+**The honest headline:** on this holdout our own lines do not beat knowing nothing, and the best hit rate on
+the site (79.2%) sits on the smallest sample (24 decisions) and is deliberately not promoted. Both facts are
+published rather than tuned away.
+
+- **Build and verify (`arena-2268bfb2`):**
+  ```sh
+  python3 tools/s2268_competition.py    # scores the competition; refuses to run on a changed hash
+  python3 tools/s2268_refresh.py        # diffs the dated register against the two published ones
+  python3 tools/s2268_build_site.py     # renders s2268/
+  python3 tools/s2268_verify.py         # row-source, link, determinism and scope gate + every other suite
+  ```
