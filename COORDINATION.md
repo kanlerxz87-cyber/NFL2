@@ -1315,3 +1315,49 @@ go Final (15–16 November) and re-run `python3 tools/compute_settled_wk10.py &&
 Open decisions, in the order I would take them: **S-43** (capture timestamps — cheap, and it is the fix
 for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
 number on the leaderboard), **FL-36** (two broadcaster cells).
+
+## Session `c3ec1487` (`arena/c3ec1487-nfl2`) — dated availability watch, live re-verification, and a decision-ready suggestion set
+
+**Session ID:** `c3ec1487` · **Branch:** `arena/c3ec1487-nfl2` · **Claimed:** 2026-11-13T12:40Z
+**Branch base:** `14d0afc` (merge of PR #40 — `main` HEAD at claim time; `git branch -r` shows only `origin/main`)
+
+**Board read before claiming.** Every earlier session's claim in this file is marked `done` except
+`5f16dcc6`'s, which merged as PR #40 and recorded its close-out. One PR is open (#35, session
+`8361cc7a`, docs-only, no commit since 2026-11-12T22:47Z — more than 60 minutes, so takeable under
+the stale-claim rule; this session only needs the root build, so it does not take it over).
+`c3ec1487` is therefore the only live session and also acts as this round's integration session.
+
+### Why this session exists
+
+`5f16dcc6` closed with the settlement pipeline running and 13 Week 10 games still to be played
+(15–16 November). No Week 10 game other than WAS–NYG has gone Final, so **no new grade is
+possible today**; re-running the settlement script would produce the same one row. The live
+movement since the last build is somewhere else, and it is the input the brief cares most about:
+
+1. **The official injury hub has published Week 10 game-status designations for more clubs than
+   the register captured.** `FL-02` recorded 6 designation cells across 254 rows at capture time.
+   The hub now carries `Out` / `Questionable` designations for the Thursday game **and** for at
+   least the Munich game. That is the "who is actually out" input, and it changed.
+2. **The standings now agree with the repository exactly** (verified row by row this session), so
+   `FL-35`'s two corrected rows are stable and the capture-time gap is the only live defect.
+3. **`FL-36` re-confirmed on a second read a day later** — official Week 11 still has MIA@BUF on
+   CBS and TB@DET on FOX while the repository has them swapped. A second independent read that
+   agrees with the first moves this from "cannot tell" to "almost certainly a transcription swap",
+   but the flag stays open and the cells stay as published.
+
+### Task board — exclusive scope
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| C3-T1 | Row-level re-verification of the 32-club standings, the Week 11 schedule, and the Week 10 injury register against live `nfl.com`; every check recorded with its URL and UTC read time | in progress | `c3ec1487` | `data/reverification_c3ec1487.csv` |
+| C3-T2 | **Availability watch**: per-club, per-game coverage of the official Week 10 injury hub — players listed, injury rows, and game-status designations — captured as a dated snapshot with one row per club and its official URL | in progress | `c3ec1487` | `data/availability_watch_c3ec1487.csv`, `tools/build_availability_watch.py` |
+| C3-T3 | New site page *Availability Watch* publishing C3-T2 with the coverage arithmetic and the decision it unblocks | in progress | `c3ec1487` | `content/availability-watch.md`, `content/index.md` (one row) |
+| C3-T4 | Decision-ready suggestion set: new, non-duplicative suggestions derived from this session's verified findings, appended union-style to the existing register | in progress | `c3ec1487` | `data/suggestions.csv`, `data/flags.csv`, `data/questions.csv` |
+| C3-T5 | Executive summary refresh (dated "what changed" section) and root build | in progress | `c3ec1487` | `content/executive-summary.md` |
+| C3-T6 | Integration: build, all verifier suites, PR → `main`, merge, Pages deploy probe on a tree-unique URL | unclaimed | — | `COORDINATION.md` |
+
+**Files this session does not touch:** `data/games_2026_wk1_9.csv` (pre-registered corpus, frozen by
+`S-26`), other sessions' trees (`crosscheck/`, `s92/`, `s53/`, `q51/`, `analytics/`, `portal/`,
+`site/`, `pipeline/`, `engine/`, `datasets/`, `research/`, `docs/`, `archive/`, `review/`), and
+`data/schedule_week11_2026.json` (FL-36's evidence, left as published).
+
