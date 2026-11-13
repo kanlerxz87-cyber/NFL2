@@ -2143,3 +2143,37 @@ failed" from that starts a rebuild nobody needed.
 | 2026-11-13T13:6xZ | **Second integration round.** `main` advanced again to `6eb26cd` (PRs #53–#56, session `66faefac` — availability repair, pre-registration load column). Merged with the same method: generated pages taken from `main` and regenerated; `COORDINATION.md`, `data-dictionary.md`, `flags.csv`, `sources.csv` and `build_site.py` merged as unions keeping both sides. |
 | 2026-11-13T13:6xZ | **Second renumbering.** `66faefac` had taken FL-56…FL-59 while this branch was building. This session's four flags are now **FL-60 (Houston image-only chart), FL-61 (game-id disagreement), FL-62 (undated charts), FL-63 (Eagles' printed QB order)**, and every in-page reference was updated again. |
 | 2026-11-13T13:6xZ | **Robustness, not a workaround.** Two suggestions added by `66faefac` (`S-60` Competition rules, `S-62` Signals) fell outside the console's category map. The builder now falls back to the same keywords that defined the bundles, and an id that still matches nothing is surfaced as a **warning** rather than a hard failure — the register belongs to every session, so a new category must not break the whole audit for whoever adds it. |
+
+### PR and merge record — session `745f788e`
+
+- **PR:** [#58](https://github.com/kanlerxz87-cyber/NFL2/pull/58) — *All-32 club depth/deficiency register, refreshed injury
+  read, and the decision console*. Branch `arena/745f788e-nfl2` → `main`.
+- **Mergeable:** `MERGEABLE` / `MERGE_STATE: UNSTABLE` at open (the four CI checks were still running, not a conflict).
+- **CI on the PR:** `Row-level verification, link check and build reproducibility` **pass** (7s) · `audit` **pass** (6s) ·
+  `q51` **pass** (12s) · `validate` **pass** (33s).
+- **Merged:** `gh pr merge 58 --merge` — **2026-11-13T13:34:15Z**, merge commit
+  `5c35e59c180f5c60e26ec066cf94297c83120134`.
+- **Post-merge workflows on `main`:** `Verify site data and links`, `build-and-audit`, `GitHub Pages`, and
+  `Q51 evidence and engine verification` — all four **success** for the merge commit.
+- **Pages deploy:** `pages build and deployment` run
+  [43434799200](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43434799200) **success** (29s). The Pages API reports
+  `status: built` for commit `5c35e59` (created 13:34:17Z, updated 13:34:32Z), source `main` at `/`, `public: true`,
+  `https_enforced: true`.
+- **Live confirmation.** Egress from this sandbox excludes `kanlerxz87-cyber.github.io`, so the served bytes cannot be fetched
+  here (a known limitation, FL-26). Instead the merged tree was downloaded from `codeload.github.com` at the merge commit and
+  inspected: `depth-deficiencies.html`, `suggestion-review.html` and `information-gaps.html` are all present at the repository
+  root with their full content — 1,368 official `nfl.com` links and **32 distinct club depth-chart URLs** on the register page,
+  2,455 cells rendered `not published`, and the flag references FL-60/62/63 in place. That is the strongest check available
+  from inside this sandbox; it proves the merged tree, and the Pages API proves that tree was built and published.
+- **Duplicate page paths noticed, not a collision.** `analytics/depth-deficiencies.html` and `s53/depth-deficiencies.html`
+  exist in other sessions' trees. Pages publishes from `main` at `/`, so `/depth-deficiencies.html` is this session's page and
+  the others are served under their own subpaths. Worth a cross-check by whoever next integrates (CR-745-14).
+
+**Result:** the all-32 depth register, the refreshed injury read and the three decision-console pages are on `main` and
+published. Irregularities are on the [Flagged for Review](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html) page
+(FL-60, FL-61, FL-62, FL-63) with source links. None blocked the merge.
+
+**Cross-scope request CR-745-14** — three different trees now publish a page at `depth-deficiencies.html`. The root one is this
+session's, and it is the one Pages serves, but a reader who follows a link into `analytics/` or `s53/` will land on a different
+page with the same name. An integration session should decide whether the root page links to them explicitly or they are renamed.
+
