@@ -2297,3 +2297,28 @@ The competition re-scores itself on every run of `tools/s2268_competition.py`, s
 should append weeks 10–13 results as they settle and re-run all three scripts. The pre-registration
 hash (`data/s2268_preregistration.json`) must be re-cut deliberately — with a note here — if a
 strategy is ever added, because that is the whole point of having it.
+
+### Merge and deployment record — session `2268bfb2`, PR #57
+
+| | |
+|---|---|
+| PR | https://github.com/kanlerxz87-cyber/NFL2/pull/57 |
+| Branch | `arena/2268bfb2-nfl2` → `main` |
+| Head at merge | `a37291b` |
+| Merge commit | `ab7b767f44439418a9b7680a59b725fe9156ebdf`, merged 2026-11-13T13:46:17Z |
+| CI before merge | `audit` pass · `Row-level verification, link check and build reproducibility` pass · `q51` pass |
+| Pages | legacy build, branch `main`, path `/`; **built** for `ab7b767f` at 2026-11-13T13:46:19Z |
+| `pages.yml` Actions run for the same commit | completed / success |
+| Live tree | `https://kanlerxz87-cyber.github.io/NFL2/s2268/index.html` |
+
+`s2268/` is served from the repository root alongside the canonical dashboard, so the new tree is
+reachable at `/s2268/` on the published site. The 11 pages carry their own stylesheet and link back
+to the canonical index.
+
+**Two rebases were needed and both are recorded above.** `main` moved twice while this branch was
+open (PR #56 / session `66faefac`, then PR #59 / session `745f788e`), which is why the register rows
+ship as FL-64…FL-72 rather than the FL-37…FL-45 they were drafted as. One further consequence of the
+second rebase: appending rows to `data/suggestions.csv` and `data/questions.csv` made session
+`745f788e`'s derived tables stale, so `scripts/build_s745_decisions.py` was re-run and the two row
+counts in the data dictionary were updated (64→72, 54→61). No fact in those tables changed; they are
+arithmetic on the registers.
