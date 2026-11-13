@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Validation gates — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-decision">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a class="on" href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge decision">decision</span><h1>Validation gates</h1><p class="lead">Ten gates: four that stop us cheating ourselves, six that stop us betting.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#gates">Gate board</a><a href="#chain">The blocking chain</a><a href="#difference">How these differ</a></nav>
+    <div class="body">
+<blockquote>Ten gates. Four pass, six block. The four that pass are the ones that stop us cheating
+ourselves &mdash; point-in-time features, a clean fit/test split, a pre-registration hash, a minimum
+sample. The six that block are the ones that stop us betting: no price feed, no measured prop
+correlations, no forward paper track record, no elapsed seasons.</blockquote>
+
+<h2 id="gates">The gate board</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>id</th>
+<th>gate</th>
+<th>class</th>
+<th>applies to</th>
+<th>test</th>
+<th>pass criterion</th>
+<th>result</th>
+<th>evidence</th>
+<th>enforced in</th>
+</tr></thead><tbody>
+<tr>
+<td>G-C1</td>
+<td>point-in-time features</td>
+<td>hard</td>
+<td>every strategy</td>
+<td>Each decision uses only games with a strictly smaller week number</td>
+<td>0 look-ahead rows</td>
+<td>PASS</td>
+<td>enforced by construction: build_rows() cannot see future weeks</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C2</td>
+<td>fit/test separation</td>
+<td>hard</td>
+<td>both fitted models</td>
+<td>Coefficients fitted on weeks 2-4 only, frozen, then applied to weeks 5-9</td>
+<td>no holdout game in any fit</td>
+<td>PASS</td>
+<td>46 spread rows and 48 total rows in the fit</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C3</td>
+<td>pre-registration hash</td>
+<td>hard</td>
+<td>all candidates</td>
+<td>Definitions hashed before scoring; the scorer refuses to run on a changed hash</td>
+<td>hash matches</td>
+<td>PASS</td>
+<td>dd8954ae1f893056ff8246c85c0c19f2...</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C4</td>
+<td>minimum decisions</td>
+<td>hard</td>
+<td>every strategy</td>
+<td>At least 40 scored decisions on the holdout</td>
+<td>n &gt;= 40</td>
+<td>FAIL</td>
+<td>smallest n = 24</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C5</td>
+<td>luck separation</td>
+<td>hard</td>
+<td>every strategy</td>
+<td>Benjamini-Hochberg adjusted p below 0.10 against the coin-flip null</td>
+<td>at least one candidate survives</td>
+<td>PASS</td>
+<td>4 of 10 candidates survive</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C6</td>
+<td>beat the naive baseline</td>
+<td>hard</td>
+<td>both fitted models</td>
+<td>Out-of-sample MAE lower than the do-nothing baseline, paired on the same games</td>
+<td>MAE(model) &lt; MAE(baseline)</td>
+<td>FAIL</td>
+<td>spread model vs the zero baseline</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C7</td>
+<td>price feed entitlement</td>
+<td>hard</td>
+<td>any staking tier</td>
+<td>A licensed market price feed exists and every price is stored with its capture time</td>
+<td>feed present in data/sources.csv</td>
+<td>BLOCKED</td>
+<td>Q-01 open; no odds source is reachable and no market data is stored. ROI, CLV and units stay blank.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C8</td>
+<td>leg correlation published</td>
+<td>hard</td>
+<td>parlays and prop combos</td>
+<td>Every parlay and same-game combination publishes a measured correlation for its legs</td>
+<td>a phi value for every pair</td>
+<td>BLOCKED</td>
+<td>Game-level legs are measured here. Player-prop legs are not: no prop-line archive exists.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C9</td>
+<td>forward paper tracking</td>
+<td>hard</td>
+<td>promotion past T0</td>
+<td>At least 50 forward-tracked paper bets settled, each with a decision timestamp</td>
+<td>50 settled</td>
+<td>BLOCKED</td>
+<td>One Week 10 game has settled; the tracking register starts at zero.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>G-C10</td>
+<td>two full seasons elapsed</td>
+<td>hard</td>
+<td>scaled staking</td>
+<td>Two complete seasons of forward results before any stake is scaled</td>
+<td>2 seasons</td>
+<td>BLOCKED</td>
+<td>The corpus is nine weeks of one season.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">&ldquo;Hard&rdquo; means the gate cannot be waived by a good story. A blocked gate is not a defect in a strategy; it is a missing input, and each row names it.</p>
+
+<h2 id="chain">The blocking chain, in order</h2>
+<ol>
+<li><strong>G-C7, price feed.</strong> Nothing that involves money can be evaluated without one. Until a
+licensed feed exists and every price carries a capture timestamp, ROI, CLV and units stay
+<span class="np">not published</span>. This is the single decision that unblocks the most:
+<a href="../questions.html">Q-01</a>.</li>
+<li><strong>G-C8, leg correlation.</strong> Game-level legs are measured on the
+<a href="correlations.html">correlations page</a>. Player-prop legs are not, because no prop-line archive
+exists. Any same-game product involving a prop stays unpriced.</li>
+<li><strong>G-C9, forward paper tracking.</strong> One Week 10 game has settled. Fifty forward-tracked
+paper bets with decision timestamps are needed before anything is promoted past T0.</li>
+<li><strong>G-C10, two seasons.</strong> Nine weeks of one season exist. This gate cannot be argued with,
+only outlasted.</li>
+</ol>
+
+<h2 id="difference">How these differ from the root register's gates</h2>
+<p>The root <a href="../validation-gates.html">validation gates</a> page carries fourteen gates, all
+&ldquo;blocked&rdquo; or &ldquo;not started&rdquo;, because each one describes an input the repository does
+not yet have. These ten are the same idea applied to something that <em>does</em> exist: a frozen corpus and
+a scoring harness. Four of them can be evaluated today, and they pass. The point of the split is that a
+gate board on which nothing can ever pass is not a gate board, it is a wish list.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:43Z</div></div>
+</body></html>

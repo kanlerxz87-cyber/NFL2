@@ -1,0 +1,9 @@
+term|value|fitted_on|n_train|shrinkage_applied|note|source_first_training_week|source_last_training_week
+spread_intercept_unshrunk|1.0289|weeks 2-4, non-neutral games|46|0.6053|Applied as baseline + k * (this - baseline); baseline is the point-in-time mean home margin|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4
+spread_slope_on_pd_gap_unshrunk|0.0274|weeks 2-4, non-neutral games|46|0.6053|Slope on home PD/game minus away PD/game|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4
+total_intercept_unshrunk|50.3080|weeks 2-4, all games|48|0.6154|Applied as baseline + k * (this - baseline); baseline is the point-in-time league mean total|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4
+total_slope_on_team_rate_unshrunk|-0.1106|weeks 2-4, all games|48|0.6154|Slope on half the sum of both teams' points-for and points-allowed rates|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4
+pythagorean_exponent|2.3700|not fitted - pre-registered||||https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4
+shrinkage_constant_K|30.00|not fitted - pre-registered||||https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4
+shrinkage_rule|Fitted predictions are shrunk TOWARD THE DO-NOTHING BASELINE, never toward zero: pred = baseline + (n_train / (n_train + K)) * (ols_prediction - baseline). The spread baseline is the point-in-time mean home margin (0.00 at a neutral site); the total baseline is the point-in-time league mean game total.|not fitted - pre-registered|||part of the hash|https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4
+monte_carlo_seed|20261113|not fitted - pre-registered||||https://www.nfl.com/scores/2026/week-2|https://www.nfl.com/scores/2026/week-4

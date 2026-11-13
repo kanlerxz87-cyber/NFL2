@@ -1,0 +1,5411 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live refresh: 13 November 2026 — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-measured">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a class="on" href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge measured">measured</span><h1>Live refresh: 13 November 2026</h1><p class="lead">What the official league pages say today, and every difference against what this repository already publishes.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#scale">Scale of the change</a><a href="#coverage">Club coverage</a><a href="#gameids">Game-id collision</a><a href="#delta">Row-by-row delta</a><a href="#register">Full register</a></nav>
+    <div class="body">
+<blockquote>The official injury hub was read at <strong>2026-11-13T12:40Z</strong> and every row of it was
+transcribed field for field into <code>data/s2268_injuries_wk10_20261113.csv</code>. This page publishes
+the differences against the two Week 10 injury registers already in the repository. Nothing here was
+corrected in place: the differences are published, and the decision to refresh the published table is
+yours (<a href="../suggestions.html">S-43</a>, <a href="../questions.html">Q-40</a>).</blockquote>
+
+<h2 id="scale">Scale of the change</h2>
+<ul><li><strong>field changed</strong> against <code>data/injuries_2026_wk10.csv</code>: 42</li><li><strong>row added</strong> against <code>data/injuries_2026_wk10.csv</code>: 42</li><li><strong>row removed</strong> against <code>data/injuries_2026_wk10.csv</code>: 1</li></ul>
+<p class="caption">Against <code>data/injuries_2026_wk10.csv</code> &mdash; the file the
+<a href="../injuries.html">Injuries page</a> renders.</p>
+<ul><li><strong>field changed</strong> against <code>data/injuries_wk10_2026_hubrefresh.csv</code>: 51</li><li><strong>row added</strong> against <code>data/injuries_wk10_2026_hubrefresh.csv</code>: 17</li><li><strong>row removed</strong> against <code>data/injuries_wk10_2026_hubrefresh.csv</code>: 1</li></ul>
+<p class="caption">Against <code>data/injuries_wk10_2026_hubrefresh.csv</code> &mdash; session
+<code>a392a193</code>&rsquo;s re-fetch of the same page roughly fourteen hours earlier.</p>
+
+<h2 id="coverage">What the live hub publishes, club by club</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>club</th>
+<th>game id</th>
+<th>rows on hub</th>
+<th>did not participate</th>
+<th>designated</th>
+<th>note</th>
+<th>source</th>
+</tr></thead><tbody>
+<tr>
+<td>ATL</td>
+<td>W10-03</td>
+<td>9</td>
+<td>3</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>AZ</td>
+<td>W10-10</td>
+<td>15</td>
+<td>6</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/rams-at-cardinals-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>BUF</td>
+<td>W10-08</td>
+<td>12</td>
+<td>1</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>CAR</td>
+<td>W10-07</td>
+<td>12</td>
+<td>1</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/panthers-at-saints-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>CIN</td>
+<td>W10-13</td>
+<td>8</td>
+<td>2</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/steelers-at-bengals-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>CLE</td>
+<td>W10-09</td>
+<td>12</td>
+<td>3</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/texans-at-browns-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>DAL</td>
+<td>W10-12</td>
+<td>18</td>
+<td>9</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>DET</td>
+<td>W10-02</td>
+<td>9</td>
+<td>3</td>
+<td>3</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/patriots-at-lions-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>GB</td>
+<td>W10-04</td>
+<td>16</td>
+<td>6</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/vikings-at-packers-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>HOU</td>
+<td>W10-09</td>
+<td>13</td>
+<td>4</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/texans-at-browns-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>IND</td>
+<td>W10-06</td>
+<td>13</td>
+<td>7</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/dolphins-at-colts-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>JAX</td>
+<td>W10-05</td>
+<td>11</td>
+<td>3</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/jaguars-at-titans-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>KC</td>
+<td>W10-03</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>LAR</td>
+<td>W10-10</td>
+<td>10</td>
+<td>5</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/rams-at-cardinals-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>LV</td>
+<td>W10-11</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>MIA</td>
+<td>W10-06</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/dolphins-at-colts-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>W10-04</td>
+<td>9</td>
+<td>6</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/vikings-at-packers-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>NE</td>
+<td>W10-02</td>
+<td>15</td>
+<td>3</td>
+<td>3</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/patriots-at-lions-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>NO</td>
+<td>W10-07</td>
+<td>12</td>
+<td>3</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/panthers-at-saints-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>NYG</td>
+<td>W10-01</td>
+<td>11</td>
+<td>0</td>
+<td>1</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>NYJ</td>
+<td>W10-08</td>
+<td>8</td>
+<td>3</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>PIT</td>
+<td>W10-13</td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/steelers-at-bengals-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>SEA</td>
+<td>W10-11</td>
+<td>15</td>
+<td>7</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>SF</td>
+<td>W10-12</td>
+<td>12</td>
+<td>6</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>TEN</td>
+<td>W10-05</td>
+<td>12</td>
+<td>5</td>
+<td>0</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/jaguars-at-titans-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>WAS</td>
+<td>W10-01</td>
+<td>9</td>
+<td>3</td>
+<td>2</td>
+<td>rows published by the hub</td>
+<td><a href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>LAC</td>
+<td>W10-14</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>the hub prints &quot;No Injuries Reported&quot; for this club</td>
+<td><a href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>BAL</td>
+<td>W10-14</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>the hub prints &quot;No Injuries Reported&quot; for this club</td>
+<td><a href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">game page</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">The two clubs with zero rows are not absent by accident: the hub prints &ldquo;No Injuries Reported&rdquo; for both, which is a declaration, not a gap. Every other club's rows are published in full below.</p>
+
+<h2 id="gameids">Three Week 10 game ids name the wrong fixture</h2>
+<p><code>data/schedule_2026_wk10.csv</code> and <code>data/injuries_2026_wk10.csv</code> both number the
+Week 10 games <code>W10-01</code> to <code>W10-14</code>, and for three of the fourteen they number them
+differently: the injury file follows the order the hub prints its blocks in, the schedule file follows the
+order the schedule page prints its fixtures in, and those two orders disagree for the three 1:00&nbsp;pm
+Sunday games. Every id in <code>data/computed_fair_lines.csv</code> and
+<code>data/deficiency_by_club_a392.csv</code> follows the schedule convention, so the injury register is
+the odd one out &mdash; and a join on <code>game_id</code> silently attaches six clubs' injury rows to the
+wrong opponent.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>game id</th>
+<th>teams in schedule 2026 wk10 csv</th>
+<th>teams in injuries 2026 wk10 csv</th>
+<th>verdict</th>
+<th>consequence</th>
+<th>source</th>
+</tr></thead><tbody>
+<tr>
+<td>W10-01</td>
+<td>NYG WAS</td>
+<td>NYG WAS</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET NE</td>
+<td>DET NE</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/patriots-at-lions-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL KC</td>
+<td>ATL KC</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB MIN</td>
+<td>GB MIN</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/vikings-at-packers-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX TEN</td>
+<td>JAX TEN</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/jaguars-at-titans-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND MIA</td>
+<td>BUF NYJ</td>
+<td>ROTATION - id names a different fixture</td>
+<td>this id points at BUF @ NYJ, which the schedule file calls W10-08. A join between the two files attaches a club&#x27;s injuries to the wrong opponent for three of the fourteen Week 10 games.</td>
+<td><a href="https://www.nfl.com/games/dolphins-at-colts-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR NO</td>
+<td>IND MIA</td>
+<td>ROTATION - id names a different fixture</td>
+<td>this id points at IND @ MIA, which the schedule file calls W10-06. A join between the two files attaches a club&#x27;s injuries to the wrong opponent for three of the fourteen Week 10 games.</td>
+<td><a href="https://www.nfl.com/games/panthers-at-saints-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF NYJ</td>
+<td>CAR NO</td>
+<td>ROTATION - id names a different fixture</td>
+<td>this id points at CAR @ NO, which the schedule file calls W10-07. A join between the two files attaches a club&#x27;s injuries to the wrong opponent for three of the fourteen Week 10 games.</td>
+<td><a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE HOU</td>
+<td>CLE HOU</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/texans-at-browns-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ LAR</td>
+<td>AZ LAR</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/rams-at-cardinals-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>LV SEA</td>
+<td>LV</td>
+<td>incomplete</td>
+<td>one or both clubs have no rows in the injury register (SEA); a collection gap, not a rotation</td>
+<td><a href="https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL SF</td>
+<td>DAL SF</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN PIT</td>
+<td>PIT</td>
+<td>incomplete</td>
+<td>one or both clubs have no rows in the injury register (CIN); a collection gap, not a rotation</td>
+<td><a href="https://www.nfl.com/games/steelers-at-bengals-2026-reg-10">game page</a></td>
+</tr>
+<tr>
+<td>W10-14</td>
+<td>BAL LAC</td>
+<td>not published</td>
+<td>no rows</td>
+<td>the injury register has no rows for this game; the hub prints No Injuries Reported for both clubs</td>
+<td><a href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">game page</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Verdict is computed by comparing the team set under each id in the two files. &ldquo;Rotation&rdquo; means the id points at a real Week 10 fixture that the other file numbers differently; &ldquo;incomplete&rdquo; means a club's rows were never ingested at all.</p>
+
+<h2 id="delta">Every difference, row by row</h2>
+<p>154 rows. &ldquo;Field changed&rdquo; excludes pure vocabulary differences: the published
+register writes <code>OUT</code> and <code>Q</code> where the hub prints <code>Out</code> and
+<code>Questionable</code>, and those six cells are not counted as data changes.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>game id</th>
+<th>club</th>
+<th>player</th>
+<th>pos</th>
+<th>change</th>
+<th>old value</th>
+<th>new value</th>
+<th>compared against</th>
+<th>source</th>
+</tr></thead><tbody>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Cameron Thomas</td>
+<td>DE</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Cameron Thomas</td>
+<td>DE</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Divine Deablo</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Divine Deablo</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Gervon Dexter Sr.</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Gervon Dexter Sr.</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>James Pearce Jr.</td>
+<td>DE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>James Pearce Jr.</td>
+<td>DE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Jawaan Taylor</td>
+<td>T</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Jawaan Taylor</td>
+<td>T</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Josh Woods</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Josh Woods</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Kendal Daniels</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Kendal Daniels</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Za&#x27;Darius Smith</td>
+<td>DE</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Za&#x27;Darius Smith</td>
+<td>DE</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Andrew Wingard</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Andrew Wingard</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Bam Knight</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Bam Knight</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Budda Baker</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Budda Baker</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Darius Robinson</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Darius Robinson</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Isaac Seumalo</td>
+<td>G</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Jon Gaines II</td>
+<td>G</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Josh Sweat</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Mack Wilson</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Mack Wilson</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Roy Lopez</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Sam Franklin Jr.</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Sam Franklin Jr.</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Spencer Brown</td>
+<td>T</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Spencer Brown</td>
+<td>T</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Chuba Hubbard</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Chuba Hubbard</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Damien Lewis</td>
+<td>G</td>
+<td>field changed</td>
+<td>practice F -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Damien Lewis</td>
+<td>G</td>
+<td>field changed</td>
+<td>practice F -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Jaelan Phillips</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice F -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Jaelan Phillips</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice F -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Andrei Iosivas</td>
+<td>WR</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Andrei Iosivas</td>
+<td>WR</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>B.J. Hill</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>B.J. Hill</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Brian Parker II</td>
+<td>G</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Brian Parker II</td>
+<td>G</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>DJ Turner II</td>
+<td>CB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>DJ Turner II</td>
+<td>CB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Dylan Fairchild</td>
+<td>G</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Dylan Fairchild</td>
+<td>G</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Jalen Davis</td>
+<td>CB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Jalen Davis</td>
+<td>CB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Jonathan Allen</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Kyle Dugger</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Donovan McMillon</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Donovan McMillon</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Elgton Jenkins</td>
+<td>C</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Elgton Jenkins</td>
+<td>C</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Quincy Williams</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Alijah Clark</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Alijah Clark</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>DeMarvion Overshown</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>DeMarvion Overshown</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Juanyeh Thomas</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Juanyeh Thomas</td>
+<td>S</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Tyler Goodson</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice F -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Brian Branch</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Brian Branch</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Cade Mays</td>
+<td>C</td>
+<td>field changed</td>
+<td>injury &#x27;&#x27; -&gt; &#x27;Ankle&#x27; ; status &#x27;&#x27; -&gt; &#x27;Out&#x27;</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Cade Mays</td>
+<td>C</td>
+<td>field changed</td>
+<td>injury &#x27;&#x27; -&gt; &#x27;Ankle&#x27; ; status &#x27;&#x27; -&gt; &#x27;Out&#x27;</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>D.J. Reed</td>
+<td>CB</td>
+<td>field changed</td>
+<td>injury &#x27;&#x27; -&gt; &#x27;Hip&#x27; ; status &#x27;&#x27; -&gt; &#x27;Out&#x27;</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>D.J. Reed</td>
+<td>CB</td>
+<td>field changed</td>
+<td>injury &#x27;&#x27; -&gt; &#x27;Hip&#x27; ; status &#x27;&#x27; -&gt; &#x27;Out&#x27;</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Jared Goff</td>
+<td>QB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Jared Goff</td>
+<td>QB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Kerby Joseph</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice L -&gt; F ; injury &#x27;&#x27; -&gt; &#x27;Knee&#x27; ; status &#x27;&#x27; -&gt; &#x27;Out&#x27;</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Kerby Joseph</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice L -&gt; F ; injury &#x27;&#x27; -&gt; &#x27;Knee&#x27; ; status &#x27;&#x27; -&gt; &#x27;Out&#x27;</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Trey Smack</td>
+<td>K</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Trey Smack</td>
+<td>K</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Wyatt Teller</td>
+<td>G</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>A.J. Haulcy</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>CJ Allen</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Charvarius Ward</td>
+<td>CB</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Charvarius Ward</td>
+<td>CB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Grover Stewart</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Jerry Tillery</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Jonathan Taylor</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>BJ Green II</td>
+<td>DE</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Jakobi Meyers</td>
+<td>WR</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Jakobi Meyers</td>
+<td>WR</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Travon Walker</td>
+<td>DE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Travon Walker</td>
+<td>DE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Jaydn Ott</td>
+<td>RB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Jaydn Ott</td>
+<td>RB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>LV</td>
+<td>Foley Fatukasi</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>LV</td>
+<td>Foley Fatukasi</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Chris Bell</td>
+<td>WR</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Chris Bell</td>
+<td>WR</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Dante Trader Jr.</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Jared Wayne</td>
+<td>WR</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Jared Wayne</td>
+<td>WR</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Jaylen Wright</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Will Kacmarek</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Will Kacmarek</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Brenden Schooler</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Brenden Schooler</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Cameron Latu</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Cameron Latu</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Rhamondre Stevenson</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Rhamondre Stevenson</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Walter Rouse</td>
+<td>T</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Walter Rouse</td>
+<td>T</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Alvin Kamara</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Alvin Kamara</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Christen Miller</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Christen Miller</td>
+<td>DT</td>
+<td>field changed</td>
+<td>practice L -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Noah Fant</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Noah Fant</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Quincy Riley</td>
+<td>CB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Quincy Riley</td>
+<td>CB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Taliese Fuaga</td>
+<td>T</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Taliese Fuaga</td>
+<td>T</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Jarvis Brownlee Jr.</td>
+<td>CB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Jarvis Brownlee Jr.</td>
+<td>CB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Darnell Washington</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Darnell Washington</td>
+<td>TE</td>
+<td>field changed</td>
+<td>practice D -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>DeShon Elliott</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>DeShon Elliott</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice L -&gt; F</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>T.J. Watt</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>T.J. Watt</td>
+<td>LB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>AJ Barner</td>
+<td>TE</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Anthony Bradford</td>
+<td>G</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Brandon Pili</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Charles Cross</td>
+<td>T</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Connor O&#x27;Toole</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Derick Hall</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Drew Lock</td>
+<td>QB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Jarran Reed</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Jaxon Smith-Njigba</td>
+<td>WR</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Leonard Williams</td>
+<td>DT</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Patrick O&#x27;Connell</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Quenton Nelson</td>
+<td>G</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Rashid Shaheed</td>
+<td>WR</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Sam Darnold</td>
+<td>QB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Uchenna Nwosu</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Christian McCaffrey</td>
+<td>RB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Dre Greenlaw</td>
+<td>LB</td>
+<td>row added</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Kevin Winston Jr.</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice F -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Kevin Winston Jr.</td>
+<td>S</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Tony Pollard</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice F -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Tony Pollard</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice F -&gt; D</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Tyjae Spears</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Tyjae Spears</td>
+<td>RB</td>
+<td>field changed</td>
+<td>practice D -&gt; L</td>
+<td><span class="np">not published</span></td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Xavier Worthy</td>
+<td>WR</td>
+<td>row removed</td>
+<td>F</td>
+<td>no longer on the hub at 2026-11-13T12:40Z</td>
+<td>data/injuries_2026_wk10.csv (the published Injuries page)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Xavier Worthy</td>
+<td>WR</td>
+<td>row removed</td>
+<td>F</td>
+<td>no longer on the hub at 2026-11-13T12:40Z</td>
+<td>data/injuries_wk10_2026_hubrefresh.csv (a392 re-fetch)</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Each row names the register it differs from. Where the old value is blank the row simply did not exist in that register.</p>
+
+<h2 id="register">The full register as read on 13 November</h2>
+<p>295 rows, transcribed from the official hub. Practice codes are the league's own:
+<code>D</code> did not participate, <code>L</code> limited, <code>F</code> full. A blank game status is
+not a zero and not an omission by this project &mdash; the hub only populates it once a club has filed a
+designation.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>game id</th>
+<th>team</th>
+<th>player</th>
+<th>slug</th>
+<th>pos</th>
+<th>injury</th>
+<th>practice</th>
+<th>status</th>
+<th>source</th>
+</tr></thead><tbody>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>John Bates</td>
+<td>john-bates</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Treylon Burks</td>
+<td>treylon-burks</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Jayden Daniels</td>
+<td>jayden-daniels</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Matt Gulbin</td>
+<td>matt-gulbin</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Chig Okonkwo</td>
+<td>chigoziem-okonkwo</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Lucas Patrick</td>
+<td>lucas-patrick</td>
+<td>C</td>
+<td>Concussion</td>
+<td>D</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Amik Robertson</td>
+<td>amik-robertson</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Shy Tuttle</td>
+<td>shy-tuttle</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>WAS</td>
+<td>Colson Yankoff</td>
+<td>colson-yankoff</td>
+<td>TE</td>
+<td>Knee</td>
+<td>D</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Abdul Carter</td>
+<td>abdul-carter</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Jermaine Eluemunor</td>
+<td>jermaine-eluemunor</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Malik Harrison</td>
+<td>malik-harrison</td>
+<td>LB</td>
+<td>Groin</td>
+<td>L</td>
+<td>Questionable</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Colton Hood</td>
+<td>colton-hood</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Theo Johnson</td>
+<td>theo-johnson</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Charlie Jones</td>
+<td>charlie-jones-3</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>J.J. McCarthy</td>
+<td>j-j-mccarthy</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Darnell Mooney</td>
+<td>darnell-mooney</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Malik Nabers</td>
+<td>malik-nabers</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Cam Skattebo</td>
+<td>cam-skattebo</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-01</td>
+<td>NYG</td>
+<td>Andrew Thomas</td>
+<td>andrew-thomas</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Ben Brown</td>
+<td>ben-brown-2</td>
+<td>C</td>
+<td>Knee</td>
+<td>D</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>A.J. Brown</td>
+<td>a-j-brown</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Kevin Byard</td>
+<td>kevin-byard</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Carlton Davis III</td>
+<td>carlton-davis</td>
+<td>CB</td>
+<td>Knee</td>
+<td>D</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Reggie Gilliam</td>
+<td>reggie-gilliam</td>
+<td>FB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>TreVeyon Henderson</td>
+<td>treveyon-henderson</td>
+<td>RB</td>
+<td>Illness</td>
+<td>D</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Hunter Henry</td>
+<td>hunter-henry</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Cameron Latu</td>
+<td>cameron-latu</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Drake Maye</td>
+<td>drake-maye</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Morgan Moses</td>
+<td>morgan-moses</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Walter Rouse</td>
+<td>walter-rouse</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Brenden Schooler</td>
+<td>brenden-schooler</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Rhamondre Stevenson</td>
+<td>rhamondre-stevenson</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Greg Van Roten</td>
+<td>greg-van-roten</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>NE</td>
+<td>Charles Woods</td>
+<td>charles-woods</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Brian Branch</td>
+<td>brian-branch</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Jared Goff</td>
+<td>jared-goff</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Kerby Joseph</td>
+<td>kerby-joseph</td>
+<td>S</td>
+<td>Knee</td>
+<td>F</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Cade Mays</td>
+<td>cade-mays</td>
+<td>C</td>
+<td>Ankle</td>
+<td>D</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>D.J. Reed</td>
+<td>d-j-reed</td>
+<td>CB</td>
+<td>Hip</td>
+<td>D</td>
+<td>Out</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Jacob Saylors</td>
+<td>jacob-saylors</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Amon-Ra St. Brown</td>
+<td>amon-ra-st-brown</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>Sione Vaki</td>
+<td>sione-vaki</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-02</td>
+<td>DET</td>
+<td>DJ Wonnum</td>
+<td>d-j-wonnum</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Jeffrey Bassa</td>
+<td>jeffrey-bassa</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Mansoor Delane</td>
+<td>mansoor-delane</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Justin Fields</td>
+<td>justin-fields</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Jaden Hicks</td>
+<td>jaden-hicks</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Travis Kelce</td>
+<td>travis-kelce</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Patrick Mahomes</td>
+<td>patrick-mahomes</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Jaylon Moore</td>
+<td>jaylon-moore-2</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Omarr Norman-Lott</td>
+<td>omarr-norman-lott</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Jaydn Ott</td>
+<td>jaydn-ott</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Rashee Rice</td>
+<td>rashee-rice</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>KC</td>
+<td>Peter Woods</td>
+<td>peter-woods</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Zachariah Branch</td>
+<td>zachariah-branch</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Kendal Daniels</td>
+<td>kendal-daniels</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Divine Deablo</td>
+<td>divine-deablo</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Gervon Dexter Sr.</td>
+<td>gervon-dexter</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>James Pearce Jr.</td>
+<td>james-pearce-jr</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Za&#x27;Darius Smith</td>
+<td>za-darius-smith</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Jawaan Taylor</td>
+<td>jawaan-taylor</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Cameron Thomas</td>
+<td>cameron-thomas</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-03</td>
+<td>ATL</td>
+<td>Josh Woods</td>
+<td>josh-woods</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Blake Cashman</td>
+<td>blake-cashman</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>T.J. Hockenson</td>
+<td>t-j-hockenson</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Tyrion Ingram-Dawkins</td>
+<td>tyrion-ingram-dawkins</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Theo Jackson</td>
+<td>theo-jackson</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Jauan Jennings</td>
+<td>jauan-jennings</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Kyler Murray</td>
+<td>kyler-murray</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Kyle Van Noy</td>
+<td>kyle-van-noy</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Jay Ward</td>
+<td>jay-ward</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>MIN</td>
+<td>Carson Wentz</td>
+<td>carson-wentz</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Aaron Banks</td>
+<td>aaron-banks</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Chris Brooks</td>
+<td>christopher-brooks</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Javon Bullard</td>
+<td>javon-bullard</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Zaire Franklin</td>
+<td>zaire-franklin</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Travis Glover</td>
+<td>travis-glover</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Ty&#x27;Ron Hopper</td>
+<td>ty-ron-hopper</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Josh Jacobs</td>
+<td>josh-jacobs-x3315</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Bo Melton</td>
+<td>bo-melton</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Skyy Moore</td>
+<td>skyy-moore</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Micah Parsons</td>
+<td>micah-parsons</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Sean Rhyan</td>
+<td>sean-rhyan</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Trey Smack</td>
+<td>trey-smack</td>
+<td>K</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Lukas Van Ness</td>
+<td>lukas-van-ness</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Josh Whyle</td>
+<td>josh-whyle</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Savion Williams</td>
+<td>savion-williams</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-04</td>
+<td>GB</td>
+<td>Kevin Zeitler</td>
+<td>kevin-zeitler</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Jessie Bates</td>
+<td>jessie-bates</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Ezra Cleveland</td>
+<td>ezra-cleveland</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Branson Combs</td>
+<td>branson-combs</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Jordan Davis</td>
+<td>jordan-davis</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>BJ Green II</td>
+<td>bj-green-ii</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Robert Hainsey</td>
+<td>robert-hainsey</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Antonio Johnson</td>
+<td>antonio-johnson-3</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Jakobi Meyers</td>
+<td>jakobi-meyers</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Chris Rodriguez Jr.</td>
+<td>chris-rodriguez-jr</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Bhayshul Tuten</td>
+<td>bhayshul-tuten</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>JAX</td>
+<td>Travon Walker</td>
+<td>travon-walker</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Cody Barton</td>
+<td>cody-barton</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>John Franklin-Myers</td>
+<td>john-franklin-myers</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Marcus Harris</td>
+<td>marcus-harris-4</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Anthony Hill Jr.</td>
+<td>anthony-hill-jr</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Jaylon Jones</td>
+<td>jaylon-jones-2</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>JC Latham</td>
+<td>jc-latham</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Tony Pollard</td>
+<td>tony-pollard</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Peter Skoronski</td>
+<td>peter-skoronski</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Tyjae Spears</td>
+<td>tyjae-spears</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Carnell Tate</td>
+<td>carnell-tate</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Tommy Townsend</td>
+<td>tommy-townsend</td>
+<td>P</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-05</td>
+<td>TEN</td>
+<td>Kevin Winston Jr.</td>
+<td>kevin-winston-jr</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Tucker Addington</td>
+<td>tucker-addington</td>
+<td>LS</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Kaytron Allen</td>
+<td>kaytron-allen</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Darrell Baker Jr.</td>
+<td>darrell-baker-jr</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Chris Bell</td>
+<td>chris-bell-2</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Aaron Brewer</td>
+<td>aaron-brewer-2</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Malik Herring</td>
+<td>malik-herring</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Will Kacmarek</td>
+<td>will-kacmarek</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Michael Taaffe</td>
+<td>michael-taaffe</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Dante Trader Jr.</td>
+<td>dante-trader-jr</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Jared Wayne</td>
+<td>jared-wayne</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>MIA</td>
+<td>Jaylen Wright</td>
+<td>jaylen-wright</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Mo Alie-Cox</td>
+<td>mo-alie-cox</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>CJ Allen</td>
+<td>cj-allen</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Jaylon Carlies</td>
+<td>jaylon-carlies</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Akeem Davis-Gaither</td>
+<td>akeem-davis-gaither</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>A.J. Haulcy</td>
+<td>a-j-haulcy</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Arden Key</td>
+<td>arden-key</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Luke Rhodes</td>
+<td>luke-rhodes</td>
+<td>LS</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Grover Stewart</td>
+<td>grover-stewart</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Jonathan Taylor</td>
+<td>jonathan-taylor</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Jerry Tillery</td>
+<td>jerry-tillery</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Jalen Travis</td>
+<td>jalen-travis</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Justin Walley</td>
+<td>justin-walley</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-06</td>
+<td>IND</td>
+<td>Charvarius Ward</td>
+<td>charvarius-ward</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Jonathon Brooks</td>
+<td>jonathon-brooks</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Brady Christensen</td>
+<td>brady-christensen</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Trevor Etienne</td>
+<td>trevor-etienne</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Chuba Hubbard</td>
+<td>chuba-hubbard</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Lee Hunter</td>
+<td>lee-hunter</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Mike Jackson</td>
+<td>mike-jackson</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Will Lee III</td>
+<td>will-lee-iii</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Xavier Legette</td>
+<td>xavier-legette</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Damien Lewis</td>
+<td>damien-lewis</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Bobby Okereke</td>
+<td>bobby-okereke</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Jaelan Phillips</td>
+<td>jaelan-phillips</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>CAR</td>
+<td>Torricelli Simpkins III</td>
+<td>torricelli-simpkins-iii</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Kelvin Banks Jr.</td>
+<td>kelvin-banks-jr</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>CJ Donaldson</td>
+<td>cj-donaldson</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>David Edwards</td>
+<td>david-edwards-x1290</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Martin Emerson</td>
+<td>martin-emerson</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Travis Etienne</td>
+<td>travis-etienne</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Noah Fant</td>
+<td>noah-fant-x4946</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Taliese Fuaga</td>
+<td>taliese-fuaga</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Alvin Kamara</td>
+<td>alvin-kamara</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Erik McCoy</td>
+<td>erik-mccoy</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Christen Miller</td>
+<td>christen-miller</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Asim Richards</td>
+<td>asim-richards</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-07</td>
+<td>NO</td>
+<td>Quincy Riley</td>
+<td>quincy-riley</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Alec Anderson</td>
+<td>alec-anderson-2</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Christian Benford</td>
+<td>christian-benford</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Spencer Brown</td>
+<td>spencer-brown</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Dion Dawkins</td>
+<td>dion-dawkins</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Sam Franklin Jr.</td>
+<td>sam-franklin</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Greg Gaines</td>
+<td>greg-gaines</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Jordan Hancock</td>
+<td>jordan-hancock</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Dalton Kincaid</td>
+<td>dalton-kincaid</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Connor McGovern</td>
+<td>connor-mcgovern-2</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Ar&#x27;maj Reed-Adams</td>
+<td>ar-maj-reed-adams</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>T.J. Sanders</td>
+<td>t-j-sanders</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>BUF</td>
+<td>Tyrell Shavers</td>
+<td>tyrell-shavers</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Jarvis Brownlee Jr.</td>
+<td>jarvis-brownlee-jr</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Omar Cooper Jr.</td>
+<td>omar-cooper-jr</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Joseph Ossai</td>
+<td>joseph-ossai</td>
+<td>DE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>VJ Payne</td>
+<td>vj-payne</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Harrison Phillips</td>
+<td>harrison-phillips</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Trevin Wallace</td>
+<td>trevin-wallace</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Garrett Wilson</td>
+<td>garrett-wilson</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-08</td>
+<td>NYJ</td>
+<td>Nahshon Wright</td>
+<td>nahshon-wright</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Azeez Al-Shaair</td>
+<td>azeez-al-shaair</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Reed Blankenship</td>
+<td>reed-blankenship</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Tank Dell</td>
+<td>tank-dell</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Blake Fisher</td>
+<td>blake-fisher</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Marvin Harrison Jr.</td>
+<td>marvin-harrison-jr</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Jacob Hummel</td>
+<td>jake-hummel</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Brevin Jordan</td>
+<td>brevin-jordan</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Woody Marks</td>
+<td>woody-marks</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>David Montgomery</td>
+<td>david-montgomery</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Keylan Rutledge</td>
+<td>keylan-rutledge</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Jaylin Smith</td>
+<td>jaylin-smith</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Wyatt Teller</td>
+<td>wyatt-teller</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>HOU</td>
+<td>Tommy Togiai</td>
+<td>tommy-togiai</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Austin Barber</td>
+<td>austin-barber</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Denzel Boston</td>
+<td>denzel-boston</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Michael Burton</td>
+<td>michael-burton</td>
+<td>FB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Maliek Collins</td>
+<td>maliek-collins</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Harold Fannin Jr.</td>
+<td>harold-fannin-jr</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Ronnie Hickman Jr.</td>
+<td>ronnie-hickman-jr</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Tytus Howard</td>
+<td>tytus-howard-x1979</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Elgton Jenkins</td>
+<td>elgton-jenkins</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Donovan McMillon</td>
+<td>donovan-mcmillon-2</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Carson Schwesinger</td>
+<td>carson-schwesinger</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Denzel Ward</td>
+<td>denzel-ward</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-09</td>
+<td>CLE</td>
+<td>Quincy Williams</td>
+<td>quincy-williams</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Davis Allen</td>
+<td>davis-allen</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Steve Avila</td>
+<td>steve-avila</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Joe Cardona</td>
+<td>joe-cardona</td>
+<td>LS</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Kam Curl</td>
+<td>kamren-curl</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Terrance Ferguson</td>
+<td>terrance-ferguson-2</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Myles Garrett</td>
+<td>myles-garrett</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Trent McDuffie</td>
+<td>trent-mcduffie</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Puka Nacua</td>
+<td>puka-nacua</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Colby Parkinson</td>
+<td>colby-parkinson</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>LAR</td>
+<td>Matthew Stafford</td>
+<td>matthew-stafford</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Budda Baker</td>
+<td>budda-baker</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Zachary Carter</td>
+<td>zachary-carter-x9168</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Hjalte Froholdt</td>
+<td>hjalte-froholdt</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Jon Gaines II</td>
+<td>jon-gaines-ii</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Bam Knight</td>
+<td>bam-knight</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Hunter Long</td>
+<td>hunter-long</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Roy Lopez</td>
+<td>roy-lopez</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Max Melton</td>
+<td>max-melton</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Darius Robinson</td>
+<td>darius-robinson-2</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Isaac Seumalo</td>
+<td>isaac-seumalo</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Dante Stills</td>
+<td>dante-stills</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Josh Sweat</td>
+<td>josh-sweat</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Jayden Williams</td>
+<td>jayden-williams</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Mack Wilson</td>
+<td>mack-wilson</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-10</td>
+<td>AZ</td>
+<td>Andrew Wingard</td>
+<td>andrew-wingard</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>AJ Barner</td>
+<td>aj-barner</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Anthony Bradford</td>
+<td>anthony-bradford</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Charles Cross</td>
+<td>charles-cross-2</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Sam Darnold</td>
+<td>sam-darnold</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Derick Hall</td>
+<td>derick-hall</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Drew Lock</td>
+<td>drew-lock</td>
+<td>QB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Quenton Nelson</td>
+<td>quenton-nelson</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Uchenna Nwosu</td>
+<td>uchenna-nwosu</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Patrick O&#x27;Connell</td>
+<td>patrick-o-connell</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Connor O&#x27;Toole</td>
+<td>connor-o-toole</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Brandon Pili</td>
+<td>brandon-pili</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Jarran Reed</td>
+<td>jarran-reed</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Rashid Shaheed</td>
+<td>rashid-shaheed</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Jaxon Smith-Njigba</td>
+<td>jaxon-smith-njigba</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>SEA</td>
+<td>Leonard Williams</td>
+<td>leonard-williams</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>LV</td>
+<td>Thomas Booker</td>
+<td>thomas-booker</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>LV</td>
+<td>Foley Fatukasi</td>
+<td>foley-fatukasi</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>LV</td>
+<td>Ian Thomas</td>
+<td>ian-thomas</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-11</td>
+<td>LV</td>
+<td>Trey Zuhn III</td>
+<td>trey-zuhn-iii</td>
+<td>C</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Mike Evans</td>
+<td>mike-evans</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Renardo Green</td>
+<td>renardo-green</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Dre Greenlaw</td>
+<td>dre-greenlaw-x9042</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Nate Hobbs</td>
+<td>nate-hobbs</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Deommodore Lenoir</td>
+<td>deommodore-lenoir</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Christian McCaffrey</td>
+<td>christian-mccaffrey</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Siran Neal</td>
+<td>siran-neal</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Demarcus Robinson</td>
+<td>demarcus-robinson</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Deebo Samuel Sr.</td>
+<td>deebo-samuel</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Upton Stout</td>
+<td>upton-stout</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>C.J. West</td>
+<td>cj-west</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>SF</td>
+<td>Trent Williams</td>
+<td>trent-williams</td>
+<td>T</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Jonathan Bullard</td>
+<td>jonathan-bullard</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Alijah Clark</td>
+<td>alijah-clark</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Donovan Ezeiruaku</td>
+<td>donovan-ezeiruaku</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Jake Ferguson</td>
+<td>jake-ferguson</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Tyler Goodson</td>
+<td>tyler-goodson</td>
+<td>RB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Malik Hooker</td>
+<td>malik-hooker</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Marist Liufau</td>
+<td>marist-liufau</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>P.J. Locke</td>
+<td>p-j-locke</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Von Miller</td>
+<td>von-miller</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Jonathan Mingo</td>
+<td>jonathan-mingo</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Devin Moore</td>
+<td>devin-moore-2</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>DeMarvion Overshown</td>
+<td>demarvion-overshown</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>George Pickens</td>
+<td>george-pickens</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Joey Porter Jr.</td>
+<td>joey-porter-jr</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Luke Schoonmaker</td>
+<td>luke-schoonmaker</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Brevyn Spann-Ford</td>
+<td>brevyn-spann-ford</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>Juanyeh Thomas</td>
+<td>juanyeh-thomas</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-12</td>
+<td>DAL</td>
+<td>KaVontae Turpin</td>
+<td>kavontae-turpin</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Brandin Echols</td>
+<td>brandin-echols</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>DeShon Elliott</td>
+<td>deshon-elliott</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Derrick Harmon</td>
+<td>derrick-harmon-2</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Cameron Heyward</td>
+<td>cameron-heyward</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Ben Skowronek</td>
+<td>ben-skowronek</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Doneiko Slaughter</td>
+<td>doneiko-slaughter</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>Darnell Washington</td>
+<td>darnell-washington</td>
+<td>TE</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>PIT</td>
+<td>T.J. Watt</td>
+<td>t-j-watt</td>
+<td>LB</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Jonathan Allen</td>
+<td>jonathan-allen</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Jalen Davis</td>
+<td>jalen-davis</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Kyle Dugger</td>
+<td>kyle-dugger</td>
+<td>S</td>
+<td><span class="np">not published</span></td>
+<td>D</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Dylan Fairchild</td>
+<td>dylan-fairchild</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>B.J. Hill</td>
+<td>b-j-hill</td>
+<td>DT</td>
+<td><span class="np">not published</span></td>
+<td>L</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Andrei Iosivas</td>
+<td>andrei-iosivas</td>
+<td>WR</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>Brian Parker II</td>
+<td>brian-parker-ii</td>
+<td>G</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+<tr>
+<td>W10-13</td>
+<td>CIN</td>
+<td>DJ Turner II</td>
+<td>dj-turner-2</td>
+<td>CB</td>
+<td><span class="np">not published</span></td>
+<td>F</td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Player links go to the official nfl.com player page printed by the hub.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:43Z</div></div>
+</body></html>

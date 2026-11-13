@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leaderboard &amp; rewards — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-decision">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a class="on" href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge decision">decision</span><h1>Leaderboard &amp; rewards</h1><p class="lead">Ten pre-registered candidates, scored out of sample, with every economics cell left blank because there is no price.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#result">The result</a><a href="#read-this">How to read the hit rates</a><a href="#rewards">Rewards</a><a href="#definitions">Pre-registered definitions</a></nav>
+    <div class="body">
+<blockquote><strong>Nothing on this leaderboard is a betting record.</strong> There is no price feed in
+this repository, so there is no closing line, no vig, no CLV and no return on investment. The competition
+ranks selection skill, which is measurable without a price, and it leaves every economics cell blank. The
+moment a price exists, the ROI column can be filled; until then, filling it would be invention.</blockquote>
+
+<h2 id="result">The result</h2>
+<p>Ten candidates were pre-registered &mdash; eight real signals and two deliberate negative controls
+&mdash; then scored on 72 holdout games (weeks 5&ndash;9) that no fitted coefficient
+ever saw. 596 decisions were settled. 4 candidates survive a
+Benjamini&ndash;Hochberg correction at a 10% false-discovery rate; two of those are the negative controls
+doing their job in the wrong direction or the right one.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>rank</th>
+<th>id</th>
+<th>name</th>
+<th>bet type</th>
+<th>tier</th>
+<th>decisions</th>
+<th>wins</th>
+<th>hit rate</th>
+<th>log loss</th>
+<th>binomial p</th>
+<th>survives fdr</th>
+<th>roi units per 100</th>
+<th>closing line value</th>
+<th>max drawdown</th>
+<th>stake multiplier</th>
+<th>reward earned</th>
+<th>gates blocking</th>
+<th>source first week</th>
+<th>source last week</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>P-REST</td>
+<td>Rest advantage</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>24</td>
+<td>19</td>
+<td>0.7917</td>
+<td>0.5117</td>
+<td>0.0066</td>
+<td>yes</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>P-PD</td>
+<td>Point-differential favourite</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>66</td>
+<td>45</td>
+<td>0.6818</td>
+<td>0.6255</td>
+<td>0.0043</td>
+<td>yes</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>P-CONTRA</td>
+<td>Contrarian dog</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>66</td>
+<td>21</td>
+<td>0.3182</td>
+<td>0.6255</td>
+<td>0.0043</td>
+<td>yes</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>P-PYTH</td>
+<td>Pythagorean favourite</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>68</td>
+<td>46</td>
+<td>0.6765</td>
+<td>0.6295</td>
+<td>0.0049</td>
+<td>yes</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>P-SOS</td>
+<td>Schedule-adjusted differential</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>68</td>
+<td>42</td>
+<td>0.6176</td>
+<td>0.6652</td>
+<td>0.0681</td>
+<td>no</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>P-L3</td>
+<td>Last-three momentum</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>70</td>
+<td>43</td>
+<td>0.6143</td>
+<td>0.6668</td>
+<td>0.0722</td>
+<td>no</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>P-SPREAD-MODEL</td>
+<td>Our originated spread</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>25</td>
+<td>11</td>
+<td>0.4400</td>
+<td>0.6859</td>
+<td>0.6900</td>
+<td>no</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>P-HOME</td>
+<td>Home side</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>67</td>
+<td>30</td>
+<td>0.4478</td>
+<td>0.6877</td>
+<td>0.4638</td>
+<td>no</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>P-AWAY</td>
+<td>Away side</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>67</td>
+<td>37</td>
+<td>0.5522</td>
+<td>0.6877</td>
+<td>0.4638</td>
+<td>no</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>P-FAV-DOG</td>
+<td>Home unless clearly worse</td>
+<td>single</td>
+<td>T0 - research, unstaked</td>
+<td>67</td>
+<td>32</td>
+<td>0.4776</td>
+<td>0.6921</td>
+<td>0.8072</td>
+<td>no</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>0.00</td>
+<td>listed for research only; carries no stake and earns nothing</td>
+<td>G-C7, G-C9, G-C10</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Ranked by log loss, a proper scoring rule: it rewards being right and penalises being confidently wrong, so a lucky streak on few bets cannot top the table. The rank column reads &ldquo;unranked&rdquo; when no candidate clears the luck gate, because ranking noise is how a competition talks itself into a bad strategy.</p>
+
+<h2 id="read-this">How to read the hit rates</h2>
+<p>The favourite signal wins 45 of 66 decisions, 68.2%,
+with an exact binomial p of 0.0043. Every fibre of a betting brain wants to call that an edge. It is not one: a team with the
+better season point differential <em>is</em> the favourite, and winning two times in three is what being a
+favourite means. Whether that was already in the price is unknowable here, because there is no price. The
+one number that would settle it &mdash; the closing line &mdash; is the one number this repository does
+not have.</p>
+<p>The contrarian control wins 21 of 66 on the same games, which is the exact complement. That is the
+point of including it: it prices the multiple-comparisons problem by showing what the mirror image of a
+real signal looks like to the same test.</p>
+
+<h2 id="rewards">Rewards</h2>
+<p>Five tiers, each with a stake multiplier and a list of gates that unlock it. Every tier above T0 is
+blocked, and the table says exactly which gate blocks it and why. Nothing is staked and nothing is earned
+until a licensed price feed exists and a forward track record has been paper-tracked and settled.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>tier</th>
+<th>name</th>
+<th>stake multiplier</th>
+<th>stake rule</th>
+<th>requirement</th>
+<th>gates</th>
+<th>status</th>
+<th>evidence</th>
+<th>defined in</th>
+</tr></thead><tbody>
+<tr>
+<td>T0</td>
+<td>Research listing</td>
+<td>0.00</td>
+<td>no stake</td>
+<td>Scored out of sample on a frozen holdout and published with its full statistics</td>
+<td>G-C1, G-C2, G-C3, G-C4</td>
+<td>OPEN</td>
+<td>10 strategies listed; ranking shown only if a candidate clears G-C5</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>T1</td>
+<td>Paper tracking</td>
+<td>0.00</td>
+<td>no stake</td>
+<td>50 forward-tracked paper bets settled with a decision timestamp each, graded automatically</td>
+<td>G-C9 forward paper tracking</td>
+<td>BLOCKED</td>
+<td>One Week 10 game has settled; the register is at zero</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>T2</td>
+<td>Small stake</td>
+<td>0.25 units</td>
+<td>quarter Kelly fraction of the T3 stake</td>
+<td>200 settled tracked bets, positive after an assumed -110 vig, and a licensed price feed</td>
+<td>G-C7 price feed, G-C8 leg correlation</td>
+<td>BLOCKED</td>
+<td>No price feed exists, so no ROI can be computed and no vig can be beaten on paper</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>T3</td>
+<td>Scaled stake</td>
+<td>1.00 units</td>
+<td>the reference stake</td>
+<td>Two full seasons forward, drawdown inside the published limit, capacity stated</td>
+<td>G-C10 two seasons elapsed</td>
+<td>BLOCKED</td>
+<td>Nine weeks of one season exist</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+<tr>
+<td>T4</td>
+<td>Extended stake</td>
+<td>4.00 units</td>
+<td>four times the reference stake</td>
+<td>T3 held for a further full season with no gate regression</td>
+<td>T3 plus one more season</td>
+<td>BLOCKED</td>
+<td>Nothing has reached T3</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/tools/s2268_competition.py">https://github.com/kanlerxz87-cyber/NFL2/bl...</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Stake multipliers are fractions of a notional reference unit, not recommendations. The reference unit is undefined until there is a bankroll policy, which is another open decision.</p>
+
+<h2 id="definitions">Pre-registered definitions</h2>
+<p>These ten rules were written down and hashed <em>before</em> any result was computed. The hash is
+<code>dd8954ae1f893056ff8246c85c0c19f2ff3c9648&hellip;</code>, stored in
+<code>data/s2268_preregistration.json</code>. The scorer refuses to run if the definitions change and the
+hash is not deliberately re-cut, so adding a strategy after seeing the leaderboard is a visible act rather
+than a silent one.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>id</th>
+<th>name</th>
+<th>track</th>
+<th>market</th>
+<th>family</th>
+<th>selection rule</th>
+<th>abstention rule</th>
+<th>pre registration note</th>
+<th>source</th>
+</tr></thead><tbody>
+<tr>
+<td>P-HOME</td>
+<td>Home side</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>venue</td>
+<td>Select the home team.</td>
+<td>Abstain on neutral-site games.</td>
+<td>The home-field control. Everything else has to beat this, not 50%.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-AWAY</td>
+<td>Away side</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>venue</td>
+<td>Select the away team.</td>
+<td>Abstain on neutral-site games.</td>
+<td>Negative control. If the harness is sound this must not rank highly.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-PD</td>
+<td>Point-differential favourite</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>level</td>
+<td>Select the team with the higher season-to-date points-scored-minus-allowed per game.</td>
+<td>Abstain when the two rates are within 0.50 points of each other.</td>
+<td>The obvious favourite signal; the bar any availability signal has to clear.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-PYTH</td>
+<td>Pythagorean favourite</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>level</td>
+<td>Select the team with the higher Pythagorean expectation, exponent 2.37, from season-to-date points for and against.</td>
+<td>Abstain when the two expectations are within 0.020 of each other.</td>
+<td>The same idea with the blowout noise damped.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-L3</td>
+<td>Last-three momentum</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>momentum</td>
+<td>Select the team with the better point differential over its last three games.</td>
+<td>Abstain if either team has fewer than three games played or the two are exactly equal.</td>
+<td>Short-window recency. Expected to be the noisiest real signal here.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-REST</td>
+<td>Rest advantage</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>scheduling</td>
+<td>Select the team with more days since its previous game.</td>
+<td>Abstain unless the difference in rest is at least two days.</td>
+<td>Selective by construction: it only fires on bye and short-week mismatches.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-CONTRA</td>
+<td>Contrarian dog</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>level</td>
+<td>Select the team with the WORSE season-to-date point differential per game.</td>
+<td>Abstain when the two rates are within 0.50 points of each other.</td>
+<td>Second negative control. It exists to price the multiple-comparisons problem.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-SPREAD-MODEL</td>
+<td>Our originated spread</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>model</td>
+<td>Select the side our own fitted spread model favours (the sign of the predicted home margin).</td>
+<td>Abstain when the absolute predicted home margin is below 1.00 point.</td>
+<td>Uses the coefficients fitted on weeks 2-4 only.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-FAV-DOG</td>
+<td>Home unless clearly worse</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>composite</td>
+<td>Select the home team unless the away team&#x27;s point differential per game is better by more than 7.00 points.</td>
+<td>Abstain on neutral-site games.</td>
+<td>Home field plus a threshold, i.e. the simplest version of a real handicap model.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+<tr>
+<td>P-SOS</td>
+<td>Schedule-adjusted differential</td>
+<td>pick</td>
+<td>moneyline side</td>
+<td>level</td>
+<td>Select the team with the higher point differential per game after subtracting the average point differential per game of the opponents it has faced.</td>
+<td>Abstain when the two adjusted rates are within 0.50 points of each other.</td>
+<td>Strength of schedule, one iteration, no convergence.</td>
+<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s2268_preregistration.json">official source</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">These rows state rules, not league facts, so they carry no source link: there is nothing official to point at. The hash above is the provenance.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:43Z</div></div>
+</body></html>

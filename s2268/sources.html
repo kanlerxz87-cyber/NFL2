@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Source registry — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-program">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a class="on" href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge program">program</span><h1>Source registry</h1><p class="lead">Every source this session read, with its access time and what it was used for.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#sources">Sources</a><a href="#inherited">Inherited inputs</a><a href="#reproduce">Reproduce this tree</a></nav>
+    <div class="body">
+<blockquote>Every source this session read, with the access time and what it was used for. Club sites are
+tier A because they are the clubs' own publications, and they are the only published statement of depth
+order anywhere; the league itself publishes no depth chart.</blockquote>
+
+<h2 id="sources">Sources</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>id</th>
+<th>source</th>
+<th>tier</th>
+<th>label</th>
+<th>accessed utc</th>
+<th>used for</th>
+</tr></thead><tbody>
+<tr>
+<td>S-2268-01</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+<td>A</td>
+<td>Official NFL injury hub, Week 10</td>
+<td>2026-11-13T12:40Z</td>
+<td>The full 295-row Week 10 register: every club&#x27;s practice participation and game status.</td>
+</tr>
+<tr>
+<td>S-2268-02</td>
+<td><a href="https://www.nfl.com/schedules/2026/by-week/week-10">official source</a></td>
+<td>A</td>
+<td>Official Week 10 schedule</td>
+<td>2026-11-13T12:40Z</td>
+<td>The canonical Week 10 fixture list, used to verify game ids and to attach a game page to every row.</td>
+</tr>
+<tr>
+<td>S-2268-03</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+<td>A</td>
+<td>Official Week 9 scores</td>
+<td>2026-11-13T12:40Z</td>
+<td>The weeks 1-9 corpus this competition is scored against; every one of its 136 rows carries an individual nfl.com game page of its own.</td>
+</tr>
+<tr>
+<td>S-2268-04</td>
+<td><a href="https://www.patriots.com/team/depth-chart">club depth chart</a></td>
+<td>A</td>
+<td>Patriots unofficial depth chart</td>
+<td>2026-11-13T12:40Z</td>
+<td>String order for every New England position group, offense, defense and special teams.</td>
+</tr>
+<tr>
+<td>S-2268-05</td>
+<td><a href="https://www.detroitlions.com/team/depth-chart">club depth chart</a></td>
+<td>A</td>
+<td>Lions unofficial depth chart</td>
+<td>2026-11-13T12:40Z</td>
+<td>String order for every Detroit position group, offense, defense and special teams.</td>
+</tr>
+<tr>
+<td>S-2268-06</td>
+<td><a href="https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again">official source</a></td>
+<td>A</td>
+<td>League news: Sam Darnold ruled out</td>
+<td>2026-11-13T12:40Z</td>
+<td>Confirms the quarterback chain change the injury hub implies for SEA.</td>
+</tr>
+</tbody></table></div>
+<p class="caption">No third-party site, aggregator or statistics reseller was used for anything on this tree. Where a fact could not be confirmed from a source on this list, it is blank.</p>
+
+<h2 id="inherited">Inputs inherited from earlier sessions</h2>
+<ul>
+<li><code>data/games_2026_wk1_9.csv</code> &mdash; the frozen 136-game corpus, imported and re-audited by
+session <code>bc4b47cf</code> and designated the pre-registered backtest corpus by
+<a href="../suggestions.html">S-26</a>. Every row carries its own nfl.com game URL. Not modified here.</li>
+<li><code>data/schedule_2026_wk10.csv</code> &mdash; the Week 10 fixture list, used as the canonical
+game-id convention.</li>
+<li><code>data/injuries_2026_wk10.csv</code> and <code>data/injuries_wk10_2026_hubrefresh.csv</code>
+&mdash; the two earlier Week 10 injury registers, used here only as the comparison baseline for the
+refresh. Neither was edited.</li>
+</ul>
+
+<h2 id="reproduce">Reproduce this tree</h2>
+<pre><code>python3 tools/s2268_competition.py     # scores the competition, writes data/s2268_*.csv
+python3 tools/s2268_refresh.py         # diffs the dated register, writes the delta tables
+python3 tools/s2268_build_site.py      # renders s2268/ from the CSVs</code></pre>
+<p>The competition script is deterministic and refuses to run if the pre-registered strategy definitions
+change without the hash being deliberately re-cut. The only randomness anywhere is the Monte Carlo, seeded
+from <code>20261113</code>.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:43Z</div></div>
+</body></html>

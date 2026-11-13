@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Removing luck — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-decision">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a class="on" href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge decision">decision</span><h1>Removing luck</h1><p class="lead">Exact tests, a false-discovery correction, a seeded Monte Carlo, and the sample size each result would need.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#headline">The headline number</a><a href="#instruments">The four instruments</a><a href="#candidates">Every candidate tested</a><a href="#rest">The rest signal</a></nav>
+    <div class="body">
+<blockquote>&ldquo;Remove luck from the equation.&rdquo; You cannot remove it, but you can measure it, and
+you can refuse to promote anything that has not been separated from it. Four instruments do that here: an
+exact binomial test, a false-discovery correction across the whole candidate set, a seeded Monte Carlo that
+asks what ten coin-flipping selectors would have produced, and the sample size each observed effect would
+need before it could be believed.</blockquote>
+
+<h2 id="headline">The headline number</h2>
+<p>Ten candidates were scored. The best hit rate achieved is
+<strong>0.7917</strong>. Ten selectors flipping coins, given the same number of decisions
+each, produce a best-of-ten of <strong>0.6101</strong> on average and
+<strong>0.7083 or better one time in twenty</strong>. So the observed best does clear the
+luck threshold &mdash; and it does so on 24 decisions, which is below this build's own 40-decision
+floor and far below the 21 the effect size would nominally need.</p>
+
+<h2 id="instruments">The four instruments</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>measure</th>
+<th>value</th>
+<th>unit</th>
+<th>note</th>
+<th>source</th>
+</tr></thead><tbody>
+<tr>
+<td>holdout games scored</td>
+<td>72</td>
+<td><span class="np">not published</span></td>
+<td>weeks 5-9 of the frozen 2026 corpus</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>candidate strategies scored</td>
+<td>10</td>
+<td><span class="np">not published</span></td>
+<td>two of them are deliberate negative controls</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>coin-flip null</td>
+<td>0.5000</td>
+<td><span class="np">not published</span></td>
+<td>a side selector must beat this before anything else matters</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>best hit rate achieved</td>
+<td>0.7917</td>
+<td><span class="np">not published</span></td>
+<td>across all ten candidates</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>Monte Carlo draws</td>
+<td>20000</td>
+<td><span class="np">not published</span></td>
+<td>seeded 20261113</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>Monte Carlo mean best-of-ten rate</td>
+<td>0.6101</td>
+<td><span class="np">not published</span></td>
+<td>what ten coin flippers produce by chance alone</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>Monte Carlo 95th percentile best-of-ten rate</td>
+<td>0.7083</td>
+<td><span class="np">not published</span></td>
+<td>one in twenty runs of pure luck beats this</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>is the observed best beyond the luck 95th percentile</td>
+<td>yes</td>
+<td><span class="np">not published</span></td>
+<td>the single most important number on this page</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>expected false positives at p&lt;0.05 with ten candidates</td>
+<td>0.50</td>
+<td><span class="np">not published</span></td>
+<td>0.05 x 10, before any correction</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>Benjamini-Hochberg FDR</td>
+<td>0.10</td>
+<td><span class="np">not published</span></td>
+<td>applied across the ten candidates</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>candidates surviving FDR</td>
+<td>4</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>price feed present in the repository</td>
+<td>no</td>
+<td><span class="np">not published</span></td>
+<td>Q-01 still open</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>ROI per 100 units</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>not published - needs a closing price</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>closing line value</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>not published - needs a closing price</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+<tr>
+<td>player prop archive</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>not published - no prop line history exists here</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Every value is computed at build time by tools/s2268_competition.py from the frozen corpus. The Monte Carlo is seeded, so re-running the build reproduces these numbers exactly.</p>
+
+<h2 id="candidates">Every candidate, tested</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>id</th>
+<th>name</th>
+<th>decisions</th>
+<th>wins</th>
+<th>hit rate</th>
+<th>edge over coin flip</th>
+<th>binomial p two sided</th>
+<th>bh adjusted p</th>
+<th>survives fdr 0 10</th>
+<th>log loss</th>
+<th>required n for 80pct power</th>
+<th>monte carlo percentile best of ten</th>
+<th>monte carlo percentile single selector</th>
+<th>roi units per 100</th>
+<th>closing line value</th>
+<th>source first week</th>
+<th>source last week</th>
+<th>sample scope</th>
+</tr></thead><tbody>
+<tr>
+<td>P-HOME</td>
+<td>Home side</td>
+<td>67</td>
+<td>30</td>
+<td>0.4478</td>
+<td>-0.0522</td>
+<td>0.4638</td>
+<td>0.5798</td>
+<td>no</td>
+<td>0.6877</td>
+<td>717</td>
+<td>0.0000</td>
+<td>0.1635</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-AWAY</td>
+<td>Away side</td>
+<td>67</td>
+<td>37</td>
+<td>0.5522</td>
+<td>0.0522</td>
+<td>0.4638</td>
+<td>0.5798</td>
+<td>no</td>
+<td>0.6877</td>
+<td>717</td>
+<td>0.0755</td>
+<td>0.7633</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-PD</td>
+<td>Point-differential favourite</td>
+<td>66</td>
+<td>45</td>
+<td>0.6818</td>
+<td>0.1818</td>
+<td>0.0043</td>
+<td>0.0163</td>
+<td>yes</td>
+<td>0.6255</td>
+<td>57</td>
+<td>0.9356</td>
+<td>0.9979</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-PYTH</td>
+<td>Pythagorean favourite</td>
+<td>68</td>
+<td>46</td>
+<td>0.6765</td>
+<td>0.1765</td>
+<td>0.0049</td>
+<td>0.0163</td>
+<td>yes</td>
+<td>0.6295</td>
+<td>61</td>
+<td>0.9023</td>
+<td>0.9970</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-L3</td>
+<td>Last-three momentum</td>
+<td>70</td>
+<td>43</td>
+<td>0.6143</td>
+<td>0.1143</td>
+<td>0.0722</td>
+<td>0.1204</td>
+<td>no</td>
+<td>0.6668</td>
+<td>148</td>
+<td>0.5881</td>
+<td>0.9644</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-REST</td>
+<td>Rest advantage</td>
+<td>24</td>
+<td>19</td>
+<td>0.7917</td>
+<td>0.2917</td>
+<td>0.0066</td>
+<td>0.0165</td>
+<td>yes</td>
+<td>0.5117</td>
+<td>21</td>
+<td>0.9942</td>
+<td>0.9967</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-CONTRA</td>
+<td>Contrarian dog</td>
+<td>66</td>
+<td>21</td>
+<td>0.3182</td>
+<td>-0.1818</td>
+<td>0.0043</td>
+<td>0.0163</td>
+<td>yes</td>
+<td>0.6255</td>
+<td>57</td>
+<td>0.0000</td>
+<td>0.0013</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-SPREAD-MODEL</td>
+<td>Our originated spread</td>
+<td>25</td>
+<td>11</td>
+<td>0.4400</td>
+<td>-0.0600</td>
+<td>0.6900</td>
+<td>0.7667</td>
+<td>no</td>
+<td>0.6859</td>
+<td>543</td>
+<td>0.0000</td>
+<td>0.2127</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-FAV-DOG</td>
+<td>Home unless clearly worse</td>
+<td>67</td>
+<td>32</td>
+<td>0.4776</td>
+<td>-0.0224</td>
+<td>0.8072</td>
+<td>0.8072</td>
+<td>no</td>
+<td>0.6921</td>
+<td>3913</td>
+<td>0.0000</td>
+<td>0.3073</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+<tr>
+<td>P-SOS</td>
+<td>Schedule-adjusted differential</td>
+<td>68</td>
+<td>42</td>
+<td>0.6176</td>
+<td>0.1176</td>
+<td>0.0681</td>
+<td>0.1204</td>
+<td>no</td>
+<td>0.6652</td>
+<td>140</td>
+<td>0.5976</td>
+<td>0.9631</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+<td>weeks 5-9 holdout</td>
+</tr>
+</tbody></table></div>
+<p class="caption">The p value is an exact two-sided binomial against a coin flip. The BH column is the Benjamini-Hochberg adjusted p at a 10% false-discovery rate across all ten candidates. &ldquo;Required n&rdquo; is the number of decisions needed to detect the observed edge at 80% power. The two Monte Carlo columns place each result against the best of ten coin flippers and against a single one.</p>
+
+<h3>The trap on this page, stated plainly</h3>
+<p>P-REST wins 19 of 24 &mdash; 79.2%, the best
+number on the site, with a p value of 0.0066 that survives
+the false-discovery correction. It is also the smallest sample on the page, it is one season, it is six
+weeks, and the effect is larger than any rest effect has a right to be. A large effect on a small sample is
+the classic signature of something that will not repeat. It is published because it is what the data says,
+and it is not promoted because our own 40-decision floor exists precisely to stop a number like this from
+being promoted.</p>
+
+<h2 id="rest">The rest signal, decision by decision</h2>
+<p>Every one of the 24 decisions, with the days of rest each side had and the official game page the
+result came from. Read it and judge for yourself whether &ldquo;the better-rested team wins&rdquo; is a
+signal or a small sample wearing one.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>week</th>
+<th>date</th>
+<th>game</th>
+<th>team selected</th>
+<th>rest days selected</th>
+<th>team other</th>
+<th>rest days other</th>
+<th>rest gap</th>
+<th>result</th>
+<th>source</th>
+</tr></thead><tbody>
+<tr>
+<td>5</td>
+<td>2026-10-11</td>
+<td>CLE @ NYJ</td>
+<td>CLE</td>
+<td>10</td>
+<td>NYJ</td>
+<td>7</td>
+<td>3</td>
+<td>loss</td>
+<td><a href="https://www.nfl.com/games/browns-at-jets-2026-reg-5">game page</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>2026-10-11</td>
+<td>IND @ PIT</td>
+<td>PIT</td>
+<td>10</td>
+<td>IND</td>
+<td>7</td>
+<td>3</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/colts-at-steelers-2026-reg-5">game page</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>2026-10-18</td>
+<td>DAL @ GB</td>
+<td>DAL</td>
+<td>10</td>
+<td>GB</td>
+<td>7</td>
+<td>3</td>
+<td>loss</td>
+<td><a href="https://www.nfl.com/games/cowboys-at-packers-2026-reg-6">game page</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>2026-10-18</td>
+<td>LAC @ KC</td>
+<td>KC</td>
+<td>14</td>
+<td>LAC</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/chargers-at-chiefs-2026-reg-6">game page</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>2026-10-18</td>
+<td>CAR @ PHI</td>
+<td>CAR</td>
+<td>14</td>
+<td>PHI</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/panthers-at-eagles-2026-reg-6">game page</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>2026-10-18</td>
+<td>PIT @ TB</td>
+<td>TB</td>
+<td>10</td>
+<td>PIT</td>
+<td>7</td>
+<td>3</td>
+<td>loss</td>
+<td><a href="https://www.nfl.com/games/steelers-at-buccaneers-2026-reg-6">game page</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>2026-10-25</td>
+<td>DEN @ AZ</td>
+<td>DEN</td>
+<td>10</td>
+<td>AZ</td>
+<td>7</td>
+<td>3</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/broncos-at-cardinals-2026-reg-7">game page</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>2026-10-25</td>
+<td>CIN @ BAL</td>
+<td>CIN</td>
+<td>14</td>
+<td>BAL</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/bengals-at-ravens-2026-reg-7">game page</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>2026-10-25</td>
+<td>GB @ DET</td>
+<td>DET</td>
+<td>14</td>
+<td>GB</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/packers-at-lions-2026-reg-7">game page</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>2026-10-25</td>
+<td>IND @ MIN</td>
+<td>MIN</td>
+<td>14</td>
+<td>IND</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/colts-at-vikings-2026-reg-7">game page</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>2026-10-25</td>
+<td>MIA @ NYJ</td>
+<td>MIA</td>
+<td>14</td>
+<td>NYJ</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/dolphins-at-jets-2026-reg-7">game page</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>2026-10-25</td>
+<td>KC @ SEA</td>
+<td>SEA</td>
+<td>10</td>
+<td>KC</td>
+<td>7</td>
+<td>3</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/chiefs-at-seahawks-2026-reg-7">game page</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>2026-11-01</td>
+<td>BAL @ BUF</td>
+<td>BUF</td>
+<td>14</td>
+<td>BAL</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/ravens-at-bills-2026-reg-8">game page</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>2026-11-01</td>
+<td>IND @ JAX</td>
+<td>JAX</td>
+<td>14</td>
+<td>IND</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/colts-at-jaguars-2026-reg-8">game page</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>2026-11-01</td>
+<td>LAC @ LA</td>
+<td>LAC</td>
+<td>14</td>
+<td>LA</td>
+<td>7</td>
+<td>7</td>
+<td>loss</td>
+<td><a href="https://www.nfl.com/games/chargers-at-rams-2026-reg-8">game page</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>2026-11-01</td>
+<td>NE @ MIA</td>
+<td>NE</td>
+<td>10</td>
+<td>MIA</td>
+<td>7</td>
+<td>3</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/patriots-at-dolphins-2026-reg-8">game page</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>2026-11-01</td>
+<td>PHI @ WAS</td>
+<td>WAS</td>
+<td>13</td>
+<td>PHI</td>
+<td>6</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/eagles-at-commanders-2026-reg-8">game page</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>2026-11-02</td>
+<td>CHI @ SEA</td>
+<td>CHI</td>
+<td>11</td>
+<td>SEA</td>
+<td>8</td>
+<td>3</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/bears-at-seahawks-2026-reg-8">game page</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>2026-11-08</td>
+<td>DEN @ CAR</td>
+<td>CAR</td>
+<td>10</td>
+<td>DEN</td>
+<td>7</td>
+<td>3</td>
+<td>loss</td>
+<td><a href="https://www.nfl.com/games/broncos-at-panthers-2026-reg-9">game page</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>2026-11-08</td>
+<td>HOU @ LAC</td>
+<td>HOU</td>
+<td>14</td>
+<td>LAC</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/texans-at-chargers-2026-reg-9">game page</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>2026-11-08</td>
+<td>GB @ NE</td>
+<td>GB</td>
+<td>10</td>
+<td>NE</td>
+<td>7</td>
+<td>3</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/packers-at-patriots-2026-reg-9">game page</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>2026-11-08</td>
+<td>CLE @ NO</td>
+<td>NO</td>
+<td>14</td>
+<td>CLE</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/browns-at-saints-2026-reg-9">game page</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>2026-11-08</td>
+<td>NYG @ PHI</td>
+<td>NYG</td>
+<td>14</td>
+<td>PHI</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/giants-at-eagles-2026-reg-9">game page</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>2026-11-08</td>
+<td>LV @ SF</td>
+<td>SF</td>
+<td>14</td>
+<td>LV</td>
+<td>7</td>
+<td>7</td>
+<td>win</td>
+<td><a href="https://www.nfl.com/games/raiders-at-49ers-2026-reg-9">game page</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Rest is whole days between a team's previous game and this one, computed from the calendar. The signal only fires when the difference is at least two days, which is why it appears mostly on bye weeks and short turnarounds.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:43Z</div></div>
+</body></html>

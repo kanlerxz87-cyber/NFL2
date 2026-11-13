@@ -1,0 +1,25 @@
+week|date|game|team_selected|rest_days_selected|team_other|rest_days_other|rest_gap|result|source
+5|2026-10-11|CLE @ NYJ|CLE|10|NYJ|7|3|loss|https://www.nfl.com/games/browns-at-jets-2026-reg-5
+5|2026-10-11|IND @ PIT|PIT|10|IND|7|3|win|https://www.nfl.com/games/colts-at-steelers-2026-reg-5
+6|2026-10-18|DAL @ GB|DAL|10|GB|7|3|loss|https://www.nfl.com/games/cowboys-at-packers-2026-reg-6
+6|2026-10-18|LAC @ KC|KC|14|LAC|7|7|win|https://www.nfl.com/games/chargers-at-chiefs-2026-reg-6
+6|2026-10-18|CAR @ PHI|CAR|14|PHI|7|7|win|https://www.nfl.com/games/panthers-at-eagles-2026-reg-6
+6|2026-10-18|PIT @ TB|TB|10|PIT|7|3|loss|https://www.nfl.com/games/steelers-at-buccaneers-2026-reg-6
+7|2026-10-25|DEN @ AZ|DEN|10|AZ|7|3|win|https://www.nfl.com/games/broncos-at-cardinals-2026-reg-7
+7|2026-10-25|CIN @ BAL|CIN|14|BAL|7|7|win|https://www.nfl.com/games/bengals-at-ravens-2026-reg-7
+7|2026-10-25|GB @ DET|DET|14|GB|7|7|win|https://www.nfl.com/games/packers-at-lions-2026-reg-7
+7|2026-10-25|IND @ MIN|MIN|14|IND|7|7|win|https://www.nfl.com/games/colts-at-vikings-2026-reg-7
+7|2026-10-25|MIA @ NYJ|MIA|14|NYJ|7|7|win|https://www.nfl.com/games/dolphins-at-jets-2026-reg-7
+7|2026-10-25|KC @ SEA|SEA|10|KC|7|3|win|https://www.nfl.com/games/chiefs-at-seahawks-2026-reg-7
+8|2026-11-01|BAL @ BUF|BUF|14|BAL|7|7|win|https://www.nfl.com/games/ravens-at-bills-2026-reg-8
+8|2026-11-01|IND @ JAX|JAX|14|IND|7|7|win|https://www.nfl.com/games/colts-at-jaguars-2026-reg-8
+8|2026-11-01|LAC @ LA|LAC|14|LA|7|7|loss|https://www.nfl.com/games/chargers-at-rams-2026-reg-8
+8|2026-11-01|NE @ MIA|NE|10|MIA|7|3|win|https://www.nfl.com/games/patriots-at-dolphins-2026-reg-8
+8|2026-11-01|PHI @ WAS|WAS|13|PHI|6|7|win|https://www.nfl.com/games/eagles-at-commanders-2026-reg-8
+8|2026-11-02|CHI @ SEA|CHI|11|SEA|8|3|win|https://www.nfl.com/games/bears-at-seahawks-2026-reg-8
+9|2026-11-08|DEN @ CAR|CAR|10|DEN|7|3|loss|https://www.nfl.com/games/broncos-at-panthers-2026-reg-9
+9|2026-11-08|HOU @ LAC|HOU|14|LAC|7|7|win|https://www.nfl.com/games/texans-at-chargers-2026-reg-9
+9|2026-11-08|GB @ NE|GB|10|NE|7|3|win|https://www.nfl.com/games/packers-at-patriots-2026-reg-9
+9|2026-11-08|CLE @ NO|NO|14|CLE|7|7|win|https://www.nfl.com/games/browns-at-saints-2026-reg-9
+9|2026-11-08|NYG @ PHI|NYG|14|PHI|7|7|win|https://www.nfl.com/games/giants-at-eagles-2026-reg-9
+9|2026-11-08|LV @ SF|SF|14|LV|7|7|win|https://www.nfl.com/games/raiders-at-49ers-2026-reg-9

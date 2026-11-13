@@ -1,0 +1,16 @@
+pair|leg_a|leg_b|n|rate_a|rate_b|rate_if_independent|actual_joint_rate|phi_correlation|p_value|source_first_week|source_last_week
+L1 x L2|Home team wins|Game total finishes over our originated total|72|0.4167|0.5417|0.2257|0.1806|-0.2431|0.0396|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L1 x L3|Home team wins|Home margin beats our originated spread|72|0.4167|0.4167|0.1736|0.4167|0.9449|0.0000|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L1 x L4|Home team wins|Home team scores 24 or more|72|0.4167|0.4028|0.1678|0.2500|0.2913|0.0130|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L1 x L5|Home team wins|Away team scores 24 or more|72|0.4167|0.5139|0.2141|0.0694|-0.6400|0.0000|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L1 x L6|Home team wins|Final margin is 7 points or fewer|72|0.4167|0.5000|0.2083|0.2083|-0.0559|0.6409|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L2 x L3|Game total finishes over our originated total|Home margin beats our originated spread|72|0.5417|0.4167|0.2257|0.1667|-0.2403|0.0420|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L2 x L4|Game total finishes over our originated total|Home team scores 24 or more|72|0.5417|0.4028|0.2182|0.3333|0.4713|0.0000|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L2 x L5|Game total finishes over our originated total|Away team scores 24 or more|72|0.5417|0.5139|0.2784|0.4306|0.6112|0.0000|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L2 x L6|Game total finishes over our originated total|Final margin is 7 points or fewer|72|0.5417|0.5000|0.2708|0.2778|0.0279|0.8162|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L3 x L4|Home margin beats our originated spread|Home team scores 24 or more|72|0.4167|0.4028|0.1678|0.2361|0.2824|0.0162|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L3 x L5|Home margin beats our originated spread|Away team scores 24 or more|72|0.4167|0.5139|0.2141|0.0556|-0.6435|0.0000|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L3 x L6|Home margin beats our originated spread|Final margin is 7 points or fewer|72|0.4167|0.5000|0.2083|0.1806|-0.1127|0.3460|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L4 x L5|Home team scores 24 or more|Away team scores 24 or more|72|0.4028|0.5139|0.2070|0.2222|0.0622|0.6039|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L4 x L6|Home team scores 24 or more|Final margin is 7 points or fewer|72|0.4028|0.5000|0.2014|0.2222|0.0850|0.4780|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9
+L5 x L6|Away team scores 24 or more|Final margin is 7 points or fewer|72|0.5139|0.5000|0.2569|0.3056|0.1945|0.1016|https://www.nfl.com/scores/2026/week-5|https://www.nfl.com/scores/2026/week-9

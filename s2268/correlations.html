@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Measured correlations — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-measured">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a class="on" href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge measured">measured</span><h1>Measured correlations</h1><p class="lead">Predictor correlations, same-game leg correlations, and the correlation matrix between strategies.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#predictors">Signal strength</a><a href="#sgp">Same-game legs</a><a href="#strategies">Between strategies</a><a href="#props">Player props</a></nav>
+    <div class="body">
+<blockquote>Three correlation tables, all measured rather than assumed, because a parlay priced as if its
+legs were independent is a parlay priced wrong. The correlations the repository previously left blank were
+the market, backtest and same-game-parlay cells; the same-game ones below are now filled from real
+settled games. The prop ones are still blank, and the reason is on this page.</blockquote>
+
+<h2 id="predictors">How much signal is in the signal</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>relationship</th>
+<th>n</th>
+<th>pearson r</th>
+<th>r squared</th>
+<th>p value</th>
+<th>sample scope</th>
+<th>source first week</th>
+<th>source last week</th>
+</tr></thead><tbody>
+<tr>
+<td>originated spread vs actual home margin</td>
+<td>72</td>
+<td>0.0310</td>
+<td>0.0010</td>
+<td>0.79606</td>
+<td>weeks 5-9 holdout</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>originated total vs actual game total</td>
+<td>72</td>
+<td>-0.0914</td>
+<td>0.0084</td>
+<td>0.44520</td>
+<td>weeks 5-9 holdout</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>naive team-rate total vs actual game total</td>
+<td>72</td>
+<td>0.0753</td>
+<td>0.0057</td>
+<td>0.52976</td>
+<td>weeks 5-9 holdout</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>point-differential gap vs actual home margin</td>
+<td>72</td>
+<td>0.2622</td>
+<td>0.0688</td>
+<td>0.02607</td>
+<td>weeks 5-9 holdout</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Pearson r between each prediction and what actually happened, on the weeks 5-9 holdout. r-squared is the share of variance explained. A sports model with an r-squared of 0.07 is not useless and is not a business; it is roughly the real ceiling for pre-game margin prediction from season-to-date rates.</p>
+
+<h2 id="sgp">Same-game legs &mdash; the correlations a parlay needs</h2>
+<p>These six legs are the building blocks of a same-game parlay or a prop combination. The
+<strong>phi</strong> column is the measured correlation between two legs' outcomes (phi is Pearson's r for
+two binary series). The <strong>rate if independent</strong> column is what a book would charge if it
+assumed the legs had nothing to do with each other; the <strong>actual joint rate</strong> is what
+happened.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>pair</th>
+<th>leg a</th>
+<th>leg b</th>
+<th>n</th>
+<th>rate a</th>
+<th>rate b</th>
+<th>rate if independent</th>
+<th>actual joint rate</th>
+<th>phi correlation</th>
+<th>p value</th>
+<th>source first week</th>
+<th>source last week</th>
+</tr></thead><tbody>
+<tr>
+<td>L1 x L2</td>
+<td>Home team wins</td>
+<td>Game total finishes over our originated total</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.5417</td>
+<td>0.2257</td>
+<td>0.1806</td>
+<td>-0.2431</td>
+<td>0.0396</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L1 x L3</td>
+<td>Home team wins</td>
+<td>Home margin beats our originated spread</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.4167</td>
+<td>0.1736</td>
+<td>0.4167</td>
+<td>0.9449</td>
+<td>0.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L1 x L4</td>
+<td>Home team wins</td>
+<td>Home team scores 24 or more</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.4028</td>
+<td>0.1678</td>
+<td>0.2500</td>
+<td>0.2913</td>
+<td>0.0130</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L1 x L5</td>
+<td>Home team wins</td>
+<td>Away team scores 24 or more</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.5139</td>
+<td>0.2141</td>
+<td>0.0694</td>
+<td>-0.6400</td>
+<td>0.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L1 x L6</td>
+<td>Home team wins</td>
+<td>Final margin is 7 points or fewer</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.5000</td>
+<td>0.2083</td>
+<td>0.2083</td>
+<td>-0.0559</td>
+<td>0.6409</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L2 x L3</td>
+<td>Game total finishes over our originated total</td>
+<td>Home margin beats our originated spread</td>
+<td>72</td>
+<td>0.5417</td>
+<td>0.4167</td>
+<td>0.2257</td>
+<td>0.1667</td>
+<td>-0.2403</td>
+<td>0.0420</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L2 x L4</td>
+<td>Game total finishes over our originated total</td>
+<td>Home team scores 24 or more</td>
+<td>72</td>
+<td>0.5417</td>
+<td>0.4028</td>
+<td>0.2182</td>
+<td>0.3333</td>
+<td>0.4713</td>
+<td>0.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L2 x L5</td>
+<td>Game total finishes over our originated total</td>
+<td>Away team scores 24 or more</td>
+<td>72</td>
+<td>0.5417</td>
+<td>0.5139</td>
+<td>0.2784</td>
+<td>0.4306</td>
+<td>0.6112</td>
+<td>0.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L2 x L6</td>
+<td>Game total finishes over our originated total</td>
+<td>Final margin is 7 points or fewer</td>
+<td>72</td>
+<td>0.5417</td>
+<td>0.5000</td>
+<td>0.2708</td>
+<td>0.2778</td>
+<td>0.0279</td>
+<td>0.8162</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L3 x L4</td>
+<td>Home margin beats our originated spread</td>
+<td>Home team scores 24 or more</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.4028</td>
+<td>0.1678</td>
+<td>0.2361</td>
+<td>0.2824</td>
+<td>0.0162</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L3 x L5</td>
+<td>Home margin beats our originated spread</td>
+<td>Away team scores 24 or more</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.5139</td>
+<td>0.2141</td>
+<td>0.0556</td>
+<td>-0.6435</td>
+<td>0.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L3 x L6</td>
+<td>Home margin beats our originated spread</td>
+<td>Final margin is 7 points or fewer</td>
+<td>72</td>
+<td>0.4167</td>
+<td>0.5000</td>
+<td>0.2083</td>
+<td>0.1806</td>
+<td>-0.1127</td>
+<td>0.3460</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L4 x L5</td>
+<td>Home team scores 24 or more</td>
+<td>Away team scores 24 or more</td>
+<td>72</td>
+<td>0.4028</td>
+<td>0.5139</td>
+<td>0.2070</td>
+<td>0.2222</td>
+<td>0.0622</td>
+<td>0.6039</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L4 x L6</td>
+<td>Home team scores 24 or more</td>
+<td>Final margin is 7 points or fewer</td>
+<td>72</td>
+<td>0.4028</td>
+<td>0.5000</td>
+<td>0.2014</td>
+<td>0.2222</td>
+<td>0.0850</td>
+<td>0.4780</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>L5 x L6</td>
+<td>Away team scores 24 or more</td>
+<td>Final margin is 7 points or fewer</td>
+<td>72</td>
+<td>0.5139</td>
+<td>0.5000</td>
+<td>0.2569</td>
+<td>0.3056</td>
+<td>0.1945</td>
+<td>0.1016</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">n = 72 holdout games throughout. The gap between the last two columns is the pricing error a naive independence assumption would produce.</p>
+
+<h3>What the numbers say</h3>
+<ul>
+<li><strong>Home team wins &times; home margin beats our spread: phi = 0.9449.</strong> They are almost the
+same bet. Our spread model barely moves off a constant, so &ldquo;covers our number&rdquo; and &ldquo;wins
+the game&rdquo; fire together. A two-leg parlay built from them is one leg sold twice, and the
+independence assumption would price it at 17.4% when it hits 41.7% of the time.</li>
+<li><strong>Home team wins &times; away team scores 24 or more: phi = &minus;0.6400.</strong> Strongly
+negative, as it must be: the away team scoring heavily is evidence against the home team winning. Priced
+independently this pair would be badly wrong in the punter's favour, which is precisely why no book prices
+it that way.</li>
+<li><strong>Over our total &times; away team scores 24 or more: phi = 0.6112.</strong> Likewise positive
+and large.</li>
+<li><strong>Home team scores 24+ &times; away team scores 24+: phi = 0.0622.</strong> Nearly independent
+&mdash; the one pair here where the independence assumption does little damage.</li>
+</ul>
+
+<h2 id="strategies">Correlation between strategies</h2>
+<p>The same measurement applied to the competitors themselves: when two strategies both bet on a game, do
+they win and lose together? This is the number that determines whether a parlay of two strategies is
+diversification or the same bet twice.</p>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>pair</th>
+<th>n common decisions</th>
+<th>rate a</th>
+<th>rate b</th>
+<th>rate if independent</th>
+<th>actual both win rate</th>
+<th>phi correlation</th>
+<th>source first week</th>
+<th>source last week</th>
+</tr></thead><tbody>
+<tr>
+<td>P-HOME x P-AWAY</td>
+<td>67</td>
+<td>0.4478</td>
+<td>0.5522</td>
+<td>0.2473</td>
+<td>0.0000</td>
+<td>-1.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-PD</td>
+<td>62</td>
+<td>0.4516</td>
+<td>0.6774</td>
+<td>0.3059</td>
+<td>0.2903</td>
+<td>-0.0671</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-PYTH</td>
+<td>64</td>
+<td>0.4688</td>
+<td>0.6719</td>
+<td>0.3149</td>
+<td>0.3125</td>
+<td>-0.0104</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-L3</td>
+<td>66</td>
+<td>0.4394</td>
+<td>0.6061</td>
+<td>0.2663</td>
+<td>0.2727</td>
+<td>0.0265</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-REST</td>
+<td>24</td>
+<td>0.5417</td>
+<td>0.7917</td>
+<td>0.4288</td>
+<td>0.4167</td>
+<td>-0.0601</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-CONTRA</td>
+<td>62</td>
+<td>0.4516</td>
+<td>0.3226</td>
+<td>0.1457</td>
+<td>0.1613</td>
+<td>0.0671</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-SPREAD-MODEL</td>
+<td>25</td>
+<td>0.4400</td>
+<td>0.4400</td>
+<td>0.1936</td>
+<td>0.4400</td>
+<td>1.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-FAV-DOG</td>
+<td>67</td>
+<td>0.4478</td>
+<td>0.4776</td>
+<td>0.2139</td>
+<td>0.3582</td>
+<td>0.5812</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-HOME x P-SOS</td>
+<td>64</td>
+<td>0.4375</td>
+<td>0.6094</td>
+<td>0.2666</td>
+<td>0.2500</td>
+<td>-0.0686</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-PD</td>
+<td>62</td>
+<td>0.5484</td>
+<td>0.6774</td>
+<td>0.3715</td>
+<td>0.3871</td>
+<td>0.0671</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-PYTH</td>
+<td>64</td>
+<td>0.5312</td>
+<td>0.6719</td>
+<td>0.3569</td>
+<td>0.3594</td>
+<td>0.0104</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-L3</td>
+<td>66</td>
+<td>0.5606</td>
+<td>0.6061</td>
+<td>0.3398</td>
+<td>0.3333</td>
+<td>-0.0265</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-REST</td>
+<td>24</td>
+<td>0.4583</td>
+<td>0.7917</td>
+<td>0.3628</td>
+<td>0.3750</td>
+<td>0.0601</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-CONTRA</td>
+<td>62</td>
+<td>0.5484</td>
+<td>0.3226</td>
+<td>0.1769</td>
+<td>0.1613</td>
+<td>-0.0671</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-SPREAD-MODEL</td>
+<td>25</td>
+<td>0.5600</td>
+<td>0.4400</td>
+<td>0.2464</td>
+<td>0.0000</td>
+<td>-1.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-FAV-DOG</td>
+<td>67</td>
+<td>0.5522</td>
+<td>0.4776</td>
+<td>0.2638</td>
+<td>0.1194</td>
+<td>-0.5812</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-AWAY x P-SOS</td>
+<td>64</td>
+<td>0.5625</td>
+<td>0.6094</td>
+<td>0.3428</td>
+<td>0.3594</td>
+<td>0.0686</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PD x P-PYTH</td>
+<td>66</td>
+<td>0.6818</td>
+<td>0.6667</td>
+<td>0.4545</td>
+<td>0.6667</td>
+<td>0.9661</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PD x P-L3</td>
+<td>65</td>
+<td>0.6923</td>
+<td>0.6154</td>
+<td>0.4260</td>
+<td>0.5692</td>
+<td>0.6377</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PD x P-REST</td>
+<td>21</td>
+<td>0.7143</td>
+<td>0.7619</td>
+<td>0.5442</td>
+<td>0.5238</td>
+<td>-0.1061</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PD x P-CONTRA</td>
+<td>66</td>
+<td>0.6818</td>
+<td>0.3182</td>
+<td>0.2169</td>
+<td>0.0000</td>
+<td>-1.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PD x P-SPREAD-MODEL</td>
+<td>24</td>
+<td>0.6667</td>
+<td>0.4167</td>
+<td>0.2778</td>
+<td>0.3750</td>
+<td>0.4183</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PD x P-FAV-DOG</td>
+<td>62</td>
+<td>0.6774</td>
+<td>0.4839</td>
+<td>0.3278</td>
+<td>0.4194</td>
+<td>0.3920</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PD x P-SOS</td>
+<td>66</td>
+<td>0.6818</td>
+<td>0.6364</td>
+<td>0.4339</td>
+<td>0.6212</td>
+<td>0.8361</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PYTH x P-L3</td>
+<td>67</td>
+<td>0.6866</td>
+<td>0.6269</td>
+<td>0.4304</td>
+<td>0.5672</td>
+<td>0.6097</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PYTH x P-REST</td>
+<td>23</td>
+<td>0.7391</td>
+<td>0.7826</td>
+<td>0.5784</td>
+<td>0.5652</td>
+<td>-0.0731</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PYTH x P-CONTRA</td>
+<td>66</td>
+<td>0.6667</td>
+<td>0.3182</td>
+<td>0.2121</td>
+<td>0.0000</td>
+<td>-0.9661</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PYTH x P-SPREAD-MODEL</td>
+<td>25</td>
+<td>0.6400</td>
+<td>0.4400</td>
+<td>0.2816</td>
+<td>0.4000</td>
+<td>0.4969</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PYTH x P-FAV-DOG</td>
+<td>64</td>
+<td>0.6719</td>
+<td>0.5000</td>
+<td>0.3359</td>
+<td>0.4375</td>
+<td>0.4326</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-PYTH x P-SOS</td>
+<td>66</td>
+<td>0.6667</td>
+<td>0.6364</td>
+<td>0.4242</td>
+<td>0.6061</td>
+<td>0.8018</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-L3 x P-REST</td>
+<td>24</td>
+<td>0.7083</td>
+<td>0.7917</td>
+<td>0.5608</td>
+<td>0.5417</td>
+<td>-0.1035</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-L3 x P-CONTRA</td>
+<td>65</td>
+<td>0.6154</td>
+<td>0.3077</td>
+<td>0.1893</td>
+<td>0.0462</td>
+<td>-0.6377</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-L3 x P-SPREAD-MODEL</td>
+<td>25</td>
+<td>0.5200</td>
+<td>0.4400</td>
+<td>0.2288</td>
+<td>0.3200</td>
+<td>0.3677</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-L3 x P-FAV-DOG</td>
+<td>66</td>
+<td>0.6061</td>
+<td>0.4697</td>
+<td>0.2847</td>
+<td>0.3939</td>
+<td>0.4481</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-L3 x P-SOS</td>
+<td>67</td>
+<td>0.6119</td>
+<td>0.6269</td>
+<td>0.3836</td>
+<td>0.5075</td>
+<td>0.5255</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-REST x P-CONTRA</td>
+<td>21</td>
+<td>0.7619</td>
+<td>0.2857</td>
+<td>0.2177</td>
+<td>0.2381</td>
+<td>0.1061</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-REST x P-SPREAD-MODEL</td>
+<td>8</td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td><span class="np">not published</span></td>
+<td>too few common decisions to estimate</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-REST x P-FAV-DOG</td>
+<td>24</td>
+<td>0.7917</td>
+<td>0.6250</td>
+<td>0.4948</td>
+<td>0.5000</td>
+<td>0.0265</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-REST x P-SOS</td>
+<td>22</td>
+<td>0.7727</td>
+<td>0.6818</td>
+<td>0.5269</td>
+<td>0.5000</td>
+<td>-0.1376</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-CONTRA x P-SPREAD-MODEL</td>
+<td>24</td>
+<td>0.3333</td>
+<td>0.4167</td>
+<td>0.1389</td>
+<td>0.0417</td>
+<td>-0.4183</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-CONTRA x P-FAV-DOG</td>
+<td>62</td>
+<td>0.3226</td>
+<td>0.4839</td>
+<td>0.1561</td>
+<td>0.0645</td>
+<td>-0.3920</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-CONTRA x P-SOS</td>
+<td>66</td>
+<td>0.3182</td>
+<td>0.6364</td>
+<td>0.2025</td>
+<td>0.0152</td>
+<td>-0.8361</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-SPREAD-MODEL x P-FAV-DOG</td>
+<td>25</td>
+<td>0.4400</td>
+<td>0.4400</td>
+<td>0.1936</td>
+<td>0.4400</td>
+<td>1.0000</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-SPREAD-MODEL x P-SOS</td>
+<td>24</td>
+<td>0.4167</td>
+<td>0.5417</td>
+<td>0.2257</td>
+<td>0.3333</td>
+<td>0.4382</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+<tr>
+<td>P-FAV-DOG x P-SOS</td>
+<td>64</td>
+<td>0.4688</td>
+<td>0.6094</td>
+<td>0.2856</td>
+<td>0.3750</td>
+<td>0.3670</td>
+<td><a href="https://www.nfl.com/scores/2026/week-5">nfl.com/scores/2026/week-5</a></td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">nfl.com/scores/2026/week-9</a></td>
+</tr>
+</tbody></table></div>
+<p class="caption">Pairs with fewer than ten common decisions are not published: with ten games a correlation estimate is indistinguishable from noise.</p>
+
+<h2 id="props">Player props: still blank, and why</h2>
+<p>The brief asks for player prop bet combinations and their correlations. Every cell that would need one
+is <span class="np">not published</span>, because measuring the correlation between two prop legs requires
+a history of prop lines, and no prop-line archive exists anywhere in this repository. nfl.com does not
+publish one, and the price feed question (<a href="../questions.html">Q-01</a>,
+<a href="../questions.html">Q-02</a>) is still open. It is logged as
+<a href="flagged.html">FL-2268-06</a> and it blocks gate G-C8.</p>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:43Z</div></div>
+</body></html>

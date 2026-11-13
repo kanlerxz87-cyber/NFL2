@@ -180,6 +180,73 @@ Pages: [Week 10 availability](https://kanlerxz87-cyber.github.io/NFL2/availabili
 
 ---
 
+
+## Addendum — session `2268bfb2`, 13 November 2026: the competition is finally scored
+
+Everything above was written before any strategy in this repository had been scored against a settled
+game. This session changed that, and the result is uncomfortable enough to lead with.
+
+**1. Our own lines do not beat knowing nothing.** Ten pre-registered candidates were scored on 596
+decisions across 72 holdout games (weeks 5–9), with coefficients fitted only on weeks 2–4 and every
+team feature computed from games strictly earlier than the one being predicted. Our originated spread
+misses by 11.03 points per game; predicting that the home team wins by nothing misses by 10.92. Our
+originated total misses by 11.21 against 11.18 for the point-in-time league mean. The correlation
+between our predicted home margin and the actual margin is r = 0.031 (p = 0.80) — indistinguishable
+from no relationship. This is the same wall session `63ac21e9` hit with thirteen seasons of data, and
+it is published rather than tuned away. ([FL-72](flagged-for-review.html))
+
+**2. The best number on the site is the least trustworthy.** The highest hit rate is 79.2%, from a
+rest-advantage signal, and it survives a Benjamini–Hochberg correction at a 10% false-discovery rate
+(exact binomial p = 0.0066). It is also 24 decisions, six weeks, one season, and an effect larger than
+any rest effect has a right to be. Ten coin-flipping selectors produce a best-of-ten of 70.8% or better
+one time in twenty by luck alone. It is ranked by log loss, shown in full, and deliberately **not
+promoted**, because the build's own 40-decision floor exists to stop exactly this number.
+([FL-71](flagged-for-review.html))
+
+**3. A 68% hit rate is not an edge.** The strongest genuine signal — pick the team with the better
+season point differential — wins 45 of 66. That is what being the favourite means, not evidence of
+skill, and without a price nobody can say whether the market already charged for it. The one number
+that would settle it, the closing line, is the one number this repository does not have.
+
+**4. The same-game correlations the brief asked for are now measured, not modelled.** Fifteen pairs
+over six legs, n = 72. The extremes are the point: home-team-wins × home-beats-our-spread sits at
+φ = 0.945, meaning a two-leg ticket on them is one bet sold twice (the independence assumption would
+price it at 17.4% when it hits 41.7% of the time); home-wins × away-scores-24+ sits at φ = −0.64.
+Prop-leg correlations remain blank, because no prop-line archive exists. ([FL-69](flagged-for-review.html))
+
+**5. Six Week 10 game ids disagree between two published files.** Three of them, `W10-06`, `W10-07`
+and `W10-08`, name a completely different fixture in `data/injuries_2026_wk10.csv` than they do in
+`data/schedule_2026_wk10.csv`. A join on `game_id` silently attaches six clubs' injury rows to the
+wrong opponent. Nothing in this repository joins them today; the defect is published rather than
+patched, because the file belongs to another session's scope. ([FL-64](flagged-for-review.html))
+
+**6. The live hub has moved 41 rows past what the site shows.** Re-read at 2026-11-13T12:40Z it
+publishes 295 rows across 26 clubs; the Injuries page renders 254 across 24. Against session
+`a392a193`'s re-fetch fourteen hours earlier it shows 17 additions, 1 removal and 51 changes. That is
+not an error, it is what a daily report does — but no cumulative table on this site states when it was
+read, so a reader cannot tell a snapshot from a stale one. ([FL-65](flagged-for-review.html))
+
+**7. Depth is now answered with strings attached.** New England and Detroit's own published charts were
+joined to the league's filing, producing the cascade the brief describes: with Rhamondre Stevenson
+limited and TreVeyon Henderson ruled out, the next available back is the 3rd string and then the 4th.
+Two caveats travel with it — the clubs label their charts *unofficial*, and the league publishes no
+depth chart at all. Where a club's chart omits a player (Kerby Joseph) the cell stays blank.
+([FL-67](flagged-for-review.html), [FL-68](flagged-for-review.html))
+
+### What this addendum changes about the bottom line
+
+Nothing above is retracted, and one thing is now stronger: the claim that this project publishes its
+own failures now covers its model's performance, not just its data gaps. Five reward tiers exist, ten
+validation gates are defined, four pass and six block. Every tier that would carry a stake is blocked
+by the same missing input — a licensed, timestamped price feed. Until that decision is made
+([Q-01](questions.html)), this site can tell you how accurate a line is and never whether it was worth
+betting.
+
+---
+
+
+---
+
 ## Bottom line
 
 The dataset is verified to a standard that lets you check it yourself. The modelling is deterministic

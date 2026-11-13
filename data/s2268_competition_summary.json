@@ -1,0 +1,18 @@
+{
+  "session": "2268bfb2",
+  "definitions_sha256": "dd8954ae1f893056ff8246c85c0c19f2ff3c9648900e3151b945655284f86bf6",
+  "corpus_games": 136,
+  "holdout_games": 72,
+  "train_games_spread": 46,
+  "train_games_total": 48,
+  "decisions_scored": 596,
+  "strategies": 10,
+  "best_hit_rate": 0.7917,
+  "mc_mean_best": 0.6101,
+  "mc_p95_best": 0.7083,
+  "survivors_fdr": 4,
+  "spread_model_mae": 11.03,
+  "spread_baseline_mae": 10.92,
+  "total_model_mae": 11.21,
+  "total_baseline_mae": 11.18
+}

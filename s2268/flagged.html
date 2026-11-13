@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for review — NFL2 session 2268bfb2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head><body class="kind-decision">
+<div class="top">
+  <a class="brand" href="index.html"><span class="mark">NFL2</span> session 2268bfb2</a>
+  <div class="asof">Official pages read <strong>2026-11-13T12:40Z</strong> · <a href="../index.html">back to the canonical dashboard</a></div>
+</div>
+<div class="shell">
+  <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a class="on" href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
+  <main>
+    <div class="pagehead"><span class="badge decision">decision</span><h1>Flagged for review</h1><p class="lead">Nine items: eight open, one self-reported defect already closed. None blocks the merge.</p></div>
+    <nav class="toc"><span>On this page</span><a href="#flags">Flagged items</a><a href="#not-published">What is not published</a></nav>
+    <div class="body">
+<blockquote>Irregularities are published, not silently fixed. Nine items below, one already closed (a
+defect this session found in its own harness, which is recorded because a pre-registration hash is only
+worth having if a change to the model leaves a seam).</blockquote>
+
+<h2 id="flags">Flagged items</h2>
+<div class="tablewrap">
+<table class="data"><thead><tr>
+<th>id</th>
+<th>type</th>
+<th>severity</th>
+<th>finding</th>
+<th>evidence</th>
+<th>source</th>
+<th>decision impact</th>
+<th>status</th>
+</tr></thead><tbody>
+<tr>
+<td>FL-2268-01</td>
+<td>data integrity</td>
+<td>high</td>
+<td>Three Week 10 game ids (W10-06, W10-07, W10-08) name different fixtures in data/injuries_2026_wk10.csv than they do in data/schedule_2026_wk10.csv.</td>
+<td>Ids compared club-by-club against the schedule; the injury register follows the hub&#x27;s block order, everything else follows the schedule&#x27;s fixture order.</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+<td>Blocking for any join: fix the ids in the injury register or stop joining on game_id. Not fixed here because data/injuries_2026_wk10.csv belongs to another session&#x27;s scope.</td>
+<td>open</td>
+</tr>
+<tr>
+<td>FL-2268-02</td>
+<td>freshness</td>
+<td>high</td>
+<td>The Injuries page renders 254 rows taken from a Wednesday/Thursday read; the official hub published 295 rows at 2026-11-13T12:40Z. 42 rows added, 1 removed, 42 field changes.</td>
+<td>Full row-by-row delta published on the refresh page.</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+<td>Same root cause as FL-35: no cumulative table on this site states when it was read. The refresh cadence decision is Q-40 / S-43.</td>
+<td>open</td>
+</tr>
+<tr>
+<td>FL-2268-03</td>
+<td>coverage</td>
+<td>medium</td>
+<td>SEA and CIN publish full injury blocks on the live hub but have no rows in data/injuries_2026_wk10.csv. FL-01 and FL-24 describe this as corrected; the data file was not updated.</td>
+<td>Club-by-club coverage counted from the live hub and compared with the published register.</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+<td>The flag text is right and the file is stale. Either refresh the file or restate the flag.</td>
+<td>open</td>
+</tr>
+<tr>
+<td>FL-2268-04</td>
+<td>source quality</td>
+<td>medium</td>
+<td>Club depth charts are published by the clubs as UNOFFICIAL: Patriots.com states the chart reflects its writers&#x27; opinions; the Lions publish theirs as compiled by Football Communications. The league publishes no depth chart at all.</td>
+<td>Both club pages read in full at 2026-11-13T12:40Z.</td>
+<td><a href="https://www.patriots.com/team/depth-chart">club depth chart</a></td>
+<td>Every string asserted in this tree cites the club page it came from and carries the caveat. A league-published chart would remove the caveat; none exists.</td>
+<td>open</td>
+</tr>
+<tr>
+<td>FL-2268-05</td>
+<td>identifier mismatch</td>
+<td>medium</td>
+<td>Ben Brown is listed at C on the league injury hub and at LG (1st string) and C (2nd string) on the Patriots&#x27; published chart. Kevin Byard is &#x27;Kevin Byard&#x27; on the hub and &#x27;Kevin Byard III&#x27; on the club chart.</td>
+<td>Both documents read at 2026-11-13T12:40Z and transcribed verbatim.</td>
+<td><a href="https://www.patriots.com/team/depth-chart">club depth chart</a></td>
+<td>Both readings published side by side; not resolved by choosing one. Which lineman replaces Brown changes with the answer.</td>
+<td>open</td>
+</tr>
+<tr>
+<td>FL-2268-06</td>
+<td>missing data</td>
+<td>high</td>
+<td>No player-prop line archive exists in this repository, so no prop-leg correlation can be measured and gate G-C8 stays blocked for prop combinations.</td>
+<td>nfl.com publishes no prop-line archive; the price-feed questions Q-01 and Q-02 are open.</td>
+<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
+<td>Every prop cell in this tree is blank. Blocks the same-game-parlay tier and any prop-combination strategy.</td>
+<td>open</td>
+</tr>
+<tr>
+<td>FL-2268-07</td>
+<td>method defect, self-reported</td>
+<td>low</td>
+<td>The first cut of the competition harness shrank fitted predictions toward zero instead of toward the do-nothing baseline, making the totals model look 7.6 points worse than it is. A second cut used y*365.25 + m*30.6 + d for rest days, which is not monotone across month boundaries.</td>
+<td>Both found by reading the output against common sense, not by a test. Both fixed; the shrinkage rule is now inside the pre-registration hash so it cannot drift again.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+<td>Closed, and recorded rather than quietly overwritten, because the value of a pre-registration hash is that a change to the model leaves a seam.</td>
+<td>closed</td>
+</tr>
+<tr>
+<td>FL-2268-08</td>
+<td>statistical honesty</td>
+<td>medium</td>
+<td>P-REST wins 19 of 24 decisions (79.2%) and survives the false-discovery correction, on the smallest sample in the competition and six weeks of one season.</td>
+<td>Exact binomial p = 0.0066; required n for 80% power at this effect = 21; the build&#x27;s own floor is 40.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+<td>Published, ranked by log loss, and not promoted: G-C4 fails on sample size. It should be re-tested on week 10 onwards rather than acted on.</td>
+<td>open</td>
+</tr>
+<tr>
+<td>FL-2268-09</td>
+<td>result</td>
+<td>high</td>
+<td>Our own originated spread and total both fail to beat do-nothing baselines on the weeks 5-9 holdout (spread MAE 11.03 vs 10.92; total 11.21 vs 11.18). The correlation between our predicted home margin and the actual margin is 0.031 (p = 0.80).</td>
+<td>Scored on 72 holdout games by tools/s2268_competition.py, reproducible from the frozen corpus.</td>
+<td><a href="https://www.nfl.com/scores/2026/week-9">official source</a></td>
+<td>Published rather than tuned. The same wall session 63ac21e9 hit with thirteen seasons of data.</td>
+<td>open</td>
+</tr>
+</tbody></table></div>
+<p class="caption">Nothing here blocks the merge. Every item is either a decision for you to make or a fact about the data that a reader is entitled to know.</p>
+
+<h2 id="not-published">What is not published, and why</h2>
+<ul>
+<li><strong>Return on investment, CLV, units, drawdown.</strong> No price feed exists. Q-01.</li>
+<li><strong>Player-prop correlations and prop-combination prices.</strong> No prop-line archive. Q-02.</li>
+<li><strong>Kerby Joseph's string and replacement.</strong> Ruled out on the league hub, absent from the
+club's published depth chart. FL-2268-04.</li>
+<li><strong>Depth chains for the other 24 clubs.</strong> Only NE and DET have filed game-status
+designations for a game that has not been played.</li>
+<li><strong>The string order of any club the NFL itself publishes.</strong> The league publishes no depth
+chart.</li>
+</ul>
+</div>
+  </main>
+</div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>arena/2268bfb2-nfl2</code> from <code>14d0afcc5dda</code> · rendered 2026-11-13T13:43Z</div></div>
+</body></html>
