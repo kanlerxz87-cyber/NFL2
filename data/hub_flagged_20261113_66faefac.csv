@@ -1,0 +1,18 @@
+game|club|player|slug|pos|side|injury|practice|status|kind|source
+W10-01|WAS|Lucas Patrick|lucas-patrick|C|offence|Concussion|D|OUT|designation|https://www.nfl.com/injuries/
+W10-01|WAS|Colson Yankoff|colson-yankoff|TE|offence|Knee|D|OUT|designation|https://www.nfl.com/injuries/
+W10-01|NYG|Malik Harrison|malik-harrison|LB|defence|Groin|L|Q|designation|https://www.nfl.com/injuries/
+W10-02|NE|Ben Brown|ben-brown-2|C|offence|Knee|D|OUT|designation|https://www.nfl.com/injuries/
+W10-02|NE|Carlton Davis III|carlton-davis|CB|defence|Knee|D|OUT|designation|https://www.nfl.com/injuries/
+W10-02|NE|TreVeyon Henderson|treveyon-henderson|RB|offence|Illness|D|OUT|designation|https://www.nfl.com/injuries/
+W10-02|DET|Kerby Joseph|kerby-joseph|S|defence|Knee|F|OUT|designation|https://www.nfl.com/injuries/
+W10-02|DET|Cade Mays|cade-mays|C|offence|Ankle|D|OUT|designation|https://www.nfl.com/injuries/
+W10-02|DET|D.J. Reed|d-j-reed|CB|defence|Hip|D|OUT|designation|https://www.nfl.com/injuries/
+W10-02|DET|Sione Vaki|sione-vaki|RB|offence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/
+W10-03|KC|Jaylon Moore|jaylon-moore-2|T|offence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/
+W10-03|KC|Peter Woods|peter-woods|DT|defence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/
+W10-04|GB|Javon Bullard|javon-bullard|S|defence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/
+W10-04|GB|Zaire Franklin|zaire-franklin|LB|defence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/
+W10-04|GB|Josh Jacobs|josh-jacobs-x3315|RB|offence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/
+W10-04|GB|Sean Rhyan|sean-rhyan|C|offence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/
+W10-04|GB|Josh Whyle|josh-whyle|TE|offence|not published|D|not published|dnp-charted-club|https://www.nfl.com/injuries/

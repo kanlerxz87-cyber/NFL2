@@ -67,6 +67,14 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/computed_vig.csv` | 5 | one price pair × implied probability, overround and the no-vig line | S-CALC |
 | `data/computed_parlays.csv` | 10 | one parlay construction × joint probability under independence and under a modelled coupling | S-CALC |
 
+| `data/club_availability_20261113_66faefac.csv` | 28 | club × the 13 November hub read: rows published, D/L/F split, designations, the load the locked rule consumes, and the same club's counts at the 04:45Z and 22:35Z reads with the delta | S-HUB-1113 |
+| `data/hub_flagged_20261113_66faefac.csv` | 17 | one named player: the nine game designations plus the non-participants at the four clubs whose chart this build transcribes, with the hub's practice code | S-HUB-1113 |
+| `data/hub_club_counts_20261113_66faefac.csv` | 28 | one club block as the page displayed it, before any derivation - the hand-transcription input the tool re-totals against | S-HUB-1113 |
+| `data/availability_deficiency_66faefac.csv` | 18 | one unavailable player × the column he holds in the club's own printed order, the next man up, and how many bodies are left in that group | S-HUB-1113, S-DEPTH-KC, S-DEPTH-GB, S-DEPTH-NE, S-DEPTH-DET |
+| `data/prereg_wk10_66faefac.csv` | 14 | one Week 10 fixture × the locked decision: load by side, differential, call or no-call, our line, stake zero, with the decision timestamp | S-HUB-1113, S-CALC |
+| `data/prereg_sensitivity_66faefac.csv` | 6 | one threshold × how many fixtures the same rule would call; only the 4 row was registered, the rest are context | S-CALC |
+| `data/reverification_66faefac.csv` | 24 | one check performed against a live official page on 13 November, with its outcome, including 4 `NOT CHECKED` and 3 `MISMATCH` rows | S-HUB-1113, S-STAND-1113B, S-SCHED10-1113, S-SCHED11-1113B, S-SCORES-1113B |
+
 ### Grains introduced by the origination lab
 
 | Column pattern | Meaning | Rule |

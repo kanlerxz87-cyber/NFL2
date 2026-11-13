@@ -139,7 +139,7 @@ recomputation shown beside the published value.
 |---|---|---|---|
 | Odds, spreads, totals, prop prices | No official NFL source publishes them | Licensed, timestamped odds feed | P-06 |
 | Player-prop correlations | No per-game player box scores in this dataset | Fetch gamebook pages (≈122 reads for the season) | P-01 |
-| Depth position for 28 clubs | Only 4 charts transcribed and verified | Transcribe 28 club charts | P-02 |
+| Depth position for 28 clubs | Only 4 charts transcribed and verified; the 13 Nov read joins them to 18 unavailable names | Transcribe 28 club charts (S-48 costs the 4 first) | P-02 |
 | Rush/receive leaderboards | Column order unprovable | Per-player pages with labelled headers | P-01 |
 | Multi-season baseline | Single season only | Add 2023–2025 game logs | P-05 |
 | Snap counts | No official NFL.com snap table found | Licensed feed | P-12 |
@@ -147,6 +147,36 @@ recomputation shown beside the published value.
 Twelve proposals are set out on the Suggestions page with effort, impact, validation method and the
 risk of each. None is implemented. The governance rule is that a proposal is a decision for review,
 never a finding to be shipped.
+
+---
+
+## Added 2026-11-13 12:45Z — availability, and the first locked call (session `66faefac`)
+
+Two things the project did not have before today.
+
+**A third read of the same official page, published beside the first two instead of over them.** The
+Week 10 injury hub now stands at 296 rows across the whole 28-club slate — 26 clubs filing names, two
+publishing `No Injuries Reported` — against 279 at 22:35Z and 254 at 04:45Z, with 90 non-participants,
+115 limited reports, 91 full reports and 9 game designations. No club's list shrank in either interval.
+Availability is then joined to the club's own depth chart: 18 unavailable names, 8 of them sitting in a
+printed 1st-string column, 3 groups left with no charted body behind the absent player, and one row
+that contradicts itself (Detroit's Kerby Joseph: full practice, `OUT` designation) published as a
+conflict rather than resolved. Twenty-four line-by-line checks against live official pages are in
+`data/reverification_66faefac.csv` (12 confirmed, 5 newly published, 3 still standing as mismatches, 4 explicitly not
+re-checkable today) — and they include a correction against us: the previous session's
+"Minnesota DNP 6→3" claim does not reproduce (MIN holds 9 rows, unchanged), so it is withdrawn here.
+
+**A prediction pinned before the games it predicts.** Rule ST-15 — take the healthier club when the
+availability load differs by four or more — was written at 12:45Z, four hours before the earliest
+kickoff, and hashed: `sha256 1186474bab75dd41…`, 14 fixtures, 2 locked calls, 12 recorded no-calls,
+every stake zero because gate G-07 is not passed and no licensed price exists. The threshold's whole
+sensitivity curve (thresholds 1–6) is published with it, and so is the arithmetic that bounds what the
+result can ever mean: 1,382 games to detect a 1.0-point error difference, 400 settled bets before any
+leaderboard claim. Two calls is a mechanism working, not evidence.
+
+Pages: [Week 10 availability](https://kanlerxz87-cyber.github.io/NFL2/availability-1113.html) ·
+[Pre-registration lock](https://kanlerxz87-cyber.github.io/NFL2/preregistration.html) ·
+[Flagged for review](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html) (FL-36 to FL-59).
 
 ---
 

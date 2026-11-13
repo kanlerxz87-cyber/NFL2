@@ -13,3 +13,4 @@ unranked|ST-11 Deficiency-driven alternate lines|single|T0 - prospective|0 of 14
 unranked|ST-12 Do-nothing control|none|control|14 of 14|none|0|0|0.00|0.00|0.00|0.00% of games|none|baseline - defines the zero line
 unranked|ST-13 Public-news echo control|single|control|0 of 14|G-07|0|0|not published|not published|not published|not published|none|baseline - falsifier for every other entry
 unranked|ST-14 Late-window origination|single|T0 - prospective|0 of 14|G-01, G-03, G-07|0|0|not published|not published|not published|not published|none|not eligible for staking
+unranked|ST-15 Availability-differential lean, hash-locked|single|T0 - pre-registered|0 of 14 (G-11 evidence now exists: the spec is hash-locked)|G-01, G-07, G-08, G-12|0|0|not published|not published|not published|2 of 13 un-played fixtures called (15%)|none|locked before the first Sunday kickoff; no-calls are in the ledger, so the selectivity figure is measured rather than tuned
