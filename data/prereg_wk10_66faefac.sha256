@@ -1,0 +1,3 @@
+prereg_wk10_66faefac.csv sha256 1186474bab75dd412fc9583bd82c85432174c869815a09b335b06622e6b455e3
+# locked 2026-11-13T12:45Z by session 66faefac, rule ST-15 v1, threshold 4, 2 of 13 un-played games called
+# regenerate with: python3 tools/compute_availability_66faefac.py

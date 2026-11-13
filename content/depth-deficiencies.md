@@ -29,7 +29,7 @@ Every position group on every club depth chart, with the starter's official prac
 | Groups whose 1st string **did not practise** | **{{metric s745_dnp}}** ({{metric s745_off_dnp}} offense, {{metric s745_def_dnp}} defense) |
 | Groups whose 1st string was **limited** | **{{metric s745_limited}}** |
 | Groups needing a **3rd or 4th string** body | **{{metric s745_third}} / {{metric s745_fourth}}** |
-| Club with no readable chart | **HOU** — publishes the chart as an image, flagged as FL-56 |
+| Club with no readable chart | **HOU** — publishes the chart as an image, flagged as FL-60 |
 
 ## Per-club roll-up
 
@@ -67,15 +67,15 @@ Three sessions reached the same problem from different directions, and all three
 
 This page is the wide one: 31 clubs, one row per position group, built from the same class of
 official club page the other two use. Where they overlap they should agree, and where they do
-not, that is a finding rather than a mistake — [FL-56](flagged-for-review.html) records the one
+not, that is a finding rather than a mistake — [FL-60](flagged-for-review.html) records the one
 club all of them are missing.
 
 ## What this page still cannot tell you
 
 1. **How good the replacement is.** A chart gives an order, not a talent gradient. Turning "2nd string left tackle" into a point value needs snap counts and play-by-play, which this repository is not entitled to store ([Q-02](questions.html)).
-2. **Whether the chart is current.** **26 of the 31 charts print no date at all** ([FL-58](flagged-for-review.html)). Five do: GB, LV, SF and TEN all 10 Nov, and CHI 31 Oct — thirteen days old when this session read it. For the other 26 clubs the register cannot tell you whether the chart is from Tuesday or from October, so it does not pretend to.
-3. **Anything about Houston ([FL-56](flagged-for-review.html)).** The page exists and is linked; the chart on it is an image. A third-party site publishes a full Texans chart, and it is deliberately not used here — importing it would put a value on this site that no official page confirms.
+2. **Whether the chart is current.** **26 of the 31 charts print no date at all** ([FL-62](flagged-for-review.html)). Five do: GB, LV, SF and TEN all 10 Nov, and CHI 31 Oct — thirteen days old when this session read it. For the other 26 clubs the register cannot tell you whether the chart is from Tuesday or from October, so it does not pretend to.
+3. **Anything about Houston ([FL-60](flagged-for-review.html)).** The page exists and is linked; the chart on it is an image. A third-party site publishes a full Texans chart, and it is deliberately not used here — importing it would put a value on this site that no official page confirms.
 4. **Where a club prints no first string at all, the register says nothing.** Two groups — NYJ DL and PHI DT — have a blank top cell on the club's own chart. Their "depth reached" and "next man up" columns are blank rather than promoted from the second line, because a second-string body is only a replacement for a starter if the club printed a starter.
 5. **Whether a 2nd stringer is also the starter somewhere else.** Several clubs list the same man first in one group and second in another (Rock Ya-Sin, Jack Cochrane, Anthony Bradford, Kitan Oladapo, Alontae Taylor, Cam Hart, Tacario Davis, Carson Vinson, Ryan Neuzil, Tanoa Togiai, Walter Rouse, Kyle Williams, Barion Brown, Jeremiah Wright, Tyjae Spears is listed jointly). Those are printed as the club prints them and are not de-duplicated, because collapsing them would be an inference about role.
-5. **Which man actually takes the field.** A chart is an ordering, not a lineup, and two clubs print things no second official page explains: the Eagles' chart names Tanner McKee as its first quarterback and does not print Jalen Hurts anywhere, and it names Jonathan Greenard as a co-first-string at both edge positions ([FL-59](flagged-for-review.html)). Both are reproduced exactly as printed.
+5. **Which man actually takes the field.** A chart is an ordering, not a lineup, and two clubs print things no second official page explains: the Eagles' chart names Tanner McKee as its first quarterback and does not print Jalen Hurts anywhere, and it names Jonathan Greenard as a co-first-string at both edge positions ([FL-63](flagged-for-review.html)). Both are reproduced exactly as printed.
 7. **Special teams.** Not charted here — the brief asks about offense and defense.

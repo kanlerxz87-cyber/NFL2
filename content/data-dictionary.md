@@ -67,6 +67,14 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/computed_vig.csv` | 5 | one price pair × implied probability, overround and the no-vig line | S-CALC |
 | `data/computed_parlays.csv` | 10 | one parlay construction × joint probability under independence and under a modelled coupling | S-CALC |
 
+| `data/club_availability_20261113_66faefac.csv` | 28 | club × the 13 November hub read: rows published, D/L/F split, designations, the load the locked rule consumes, and the same club's counts at the 04:45Z and 22:35Z reads with the delta | S-HUB-1113 |
+| `data/hub_flagged_20261113_66faefac.csv` | 17 | one named player: the nine game designations plus the non-participants at the four clubs whose chart this build transcribes, with the hub's practice code | S-HUB-1113 |
+| `data/hub_club_counts_20261113_66faefac.csv` | 28 | one club block as the page displayed it, before any derivation - the hand-transcription input the tool re-totals against | S-HUB-1113 |
+| `data/availability_deficiency_66faefac.csv` | 18 | one unavailable player × the column he holds in the club's own printed order, the next man up, and how many bodies are left in that group | S-HUB-1113, S-DEPTH-KC, S-DEPTH-GB, S-DEPTH-NE, S-DEPTH-DET |
+| `data/prereg_wk10_66faefac.csv` | 14 | one Week 10 fixture × the locked decision: load by side, differential, call or no-call, our line, stake zero, with the decision timestamp | S-HUB-1113, S-CALC |
+| `data/prereg_sensitivity_66faefac.csv` | 6 | one threshold × how many fixtures the same rule would call; only the 4 row was registered, the rest are context | S-CALC |
+| `data/reverification_66faefac.csv` | 24 | one check performed against a live official page on 13 November, with its outcome, including 4 `NOT CHECKED` and 3 `MISMATCH` rows | S-HUB-1113, S-STAND-1113B, S-SCHED10-1113, S-SCHED11-1113B, S-SCORES-1113B |
+
 ### Session 745f788e — all-club depth register and decision console
 
 | File | Rows | Grain | Source of record |
@@ -75,9 +83,9 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/s745_depth_deficiencies.csv` | 705 | club × unit × position group: the starter the club prints, his official practice and game status, who is next, and how deep the club has to reach | S-DEPTH-745, S-INJ-1113 |
 | `data/s745_depth_summary.csv` | 32 | club × availability roll-up, with the club's own chart page on every row | S-DEPTH-745 |
 | `data/s745_injury_refresh.csv` | 298 | one player × club, re-read from the official injury hub at 2026-11-13T12:45Z, plus 2 explicit "No Injuries Reported" markers | S-INJ-1113 |
-| `data/s745_suggestion_scores.csv` | 58 | one suggestion from `suggestions.csv`, scored on that register's own impact/effort/risk fields and assigned to a candidate path | S-REGISTER-745 |
+| `data/s745_suggestion_scores.csv` | 64 | one suggestion from `suggestions.csv`, scored on that register's own impact/effort/risk fields and assigned to a candidate path | S-REGISTER-745 |
 | `data/s745_decision_paths.csv` | 4 | one candidate path: the suggestion ids in it, what it unblocks, what it does not fix, and its first milestone | S-REGISTER-745 |
-| `data/s745_information_gaps.csv` | 51 | one question from `questions.csv`, restated as have / lack / how-to-close | S-REGISTER-745 |
+| `data/s745_information_gaps.csv` | 54 | one question from `questions.csv`, restated as have / lack / how-to-close | S-REGISTER-745 |
 
 Rules these seven files obey, all of them re-checked by `scripts/verify_s745.py`:
 

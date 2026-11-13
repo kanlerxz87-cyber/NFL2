@@ -1917,3 +1917,229 @@ prints Jonathan Greenard as a co-first-string at both edge positions; reproduced
   `check_site.py` fails on a page that is generated but not in the navigation; the landing-page tiles are the integration
   session's call and were left alone.
 
+
+---
+
+
+---
+
+## Session `66faefac` (`arena/66faefac-nfl2`) — 2026-11-13 live re-verification, availability→depth-deficiency join, Week 10 pre-registration
+
+**Session ID:** `66faefac` · **Branch:** `arena/66faefac-nfl2` · **Base:** `14d0afc` (main after PR #40) · **Claim written:** 2026-11-13T07:3xZ, before any file was created.
+
+### Parallel-session check at claim time
+
+`git fetch --all --prune` leaves exactly one remote branch: `origin/main`. No other `arena/*-nfl2`
+session branch survives. The single open PR, #35 (`arena/8361cc7a-nfl2`, docs-only, +19 lines to this
+file), has not been touched since 2026-11-12T22:47Z — more than 60 minutes, and its head branch is no
+longer on the remote, so it is CONFLICTING and cannot be merged as-is. Per the stale-claim rule this
+session adopts its content (recorded below) and closes it. Pages status at claim time: `built` at
+`14d0afc`, build 1365511535; all seven checks on main green.
+
+### New files (this session's exclusive scope)
+
+| Path | Contents |
+|---|---|
+| `data/reverification_66faefac.csv` | one dated check performed against a live official page on 2026-11-13, with its outcome |
+| `data/designations_wk10_20261113_66faefac.csv` | every Week 10 player with a published game designation, as the hub read today |
+| `data/club_availability_20261113_66faefac.csv` | club × three-state availability (rows reported / "No Injuries Reported" / absent from the file) + DNP/Ltd/Full counts |
+| `data/availability_deficiency_66faefac.csv` | position group × unavailable 1st-stringer × next man up, joined to the depth charts already transcribed in this repo |
+| `data/prereg_wk10_66faefac.csv` + `.sha256` | the 13 un-played Week 10 fixtures, our published line, availability load, the locked call, and a tamper hash |
+| `tools/compute_availability_66faefac.py` | deterministic generator for the four tables above |
+| `tools/verify_prereg_66faefac.py` | re-hashes the locked file and grades it against `data/games_2026_wk10_played.csv` |
+| `content/availability.md`, `content/preregistration.md` and their built pages | two new dashboard pages |
+
+### Shared files this session edits (integration round; change requests logged, no other session is live)
+
+| Path | Edit | CR |
+|---|---|---|
+| `tools/build_site.py` | two `NAV` entries only | CR-66FA-01 |
+| `data/sources.csv` | append the 2026-11-13 official reads | CR-66FA-02 |
+| `data/flags.csv`, `data/questions.csv`, `data/suggestions.csv` | append rows, union-by-renumbering convention | CR-66FA-03 |
+| `content/data-dictionary.md` | rows for the new CSVs (the `datasets_documented` gate requires it) | CR-66FA-04 |
+| `content/index.md`, `content/executive-summary.md`, `EXECUTIVE_SUMMARY.md` | refresh counts and findings | CR-66FA-05 |
+| `COORDINATION.md` | this claim and the log below | CR-66FA-06 |
+
+**Not touched:** `data/injuries_2026_wk10.csv` (frozen 04:45Z snapshot; `tools/verify.py::injuries()` asserts its 6-designation count, so it must stay), `data/games_2026_wk1_9.csv` (pre-registered corpus, S-26), `crosscheck/`, `s92/`, `q51/`, `analytics/`, `portal/`, `site/`, `pipeline/`, `engine/`, `datasets/`, `archive/`, `review/`, `research/`, `docs/`.
+
+### Task board
+
+| # | Task | Status | Owner |
+|---|---|---|---|
+| A1 | Live re-verification of standings, Week 10 slate, Week 11 slate, scores page against the repo | in progress | 66faefac |
+| A2 | Re-ingest the official Week 10 injury hub today; publish the designation register and the three-state club availability counts | in progress | 66faefac |
+| A3 | Join designations to the repo's transcribed depth charts → deficiency register (which starter slots are empty, who replaces them) | in progress | 66faefac |
+| A4 | Pre-register our lines for the 13 un-played Week 10 games, hash-locked before kickoff, with a grading tool for the next session | in progress | 66faefac |
+| A5 | Append suggestions, questions and flags discovered by A1–A4; refresh the executive summary | pending | 66faefac |
+| A6 | Rebuild, run every verification suite, PR to main, merge, confirm Pages deploy | pending | 66faefac |
+
+---
+
+## Session `66faefac` — log, 2026-11-13 (closed)
+
+**Branch / PR.** `arena/66faefac-nfl2`, commits `b5cf055` (claim) → `c02a9f6` (delivery) → the docs
+commit carrying this entry. PR to `main`: see the merge result at the foot of this entry.
+
+### What was delivered (tasks A1–A6 on the claim board)
+
+| Task | Result | Where |
+|---|---|---|
+| A1 live re-verification | 23 checks against the live official pages: 13 MATCH, 7 NEW, 3 MISMATCH, 4 NOT CHECKED. Standings re-read cell by cell for all 32 clubs and every field agrees, including the two rows refreshed after Thursday's game (NYG 5-3-1, WAS 3-5-1) and the zero-sum identities `SUM W = SUM L = 136`, `SUM T = 2`, `SUM PF = SUM PA = 6,291`. | `data/reverification_66faefac.csv` |
+| A2 today's hub re-ingest | Third read of the Week 10 hub at 12:45Z: **296 rows, 28 clubs** (26 with names, BAL + LAC publishing `No Injuries Reported`), 90 D / 115 L / 91 F, **9 designations**. Drift vs the frozen 04:45Z (254) and 22:35Z (279) reads is published per club; ten clubs grew, eighteen unchanged, none shrank. | `data/club_availability_20261113_66faefac.csv`, `data/hub_flagged_20261113_66faefac.csv`, `data/hub_club_counts_20261113_66faefac.csv` |
+| A3 designation → depth-chain join | 18 rows, 4 charted clubs, name-matched after suffix normalisation: **8 unavailable players sit in a printed 1st-string column** (DET C + CB_1, NE LG, KC RT, GB C/LB_1/NB/RB), 3 groups are left with **no charted body behind** them (NE C, KC DT_L, GB TE), and DET's Kerby Joseph is published as a practice-vs-designation conflict, not resolved. 5 of 18 rows are names that the transcribed chart does not carry and say so. | `data/availability_deficiency_66faefac.csv` |
+| A4 hash-locked pre-registration | ST-15 written **12:45Z, four hours before the earliest Week 10 kickoff**: load differential ≥ 4 → take the healthier club; everything else a recorded no-call; 14 fixtures, **2 locked calls**, 12 no-calls, stakes 0 (G-01/G-07 not passed, no licensed price). `sha256 1186474bab75dd41…`; sensitivity for thresholds 1–6 published alongside and labelled exploratory. Grader re-hashes the lock, recomputes every derived cell, fails on any edit, and grades against the official final. | `data/prereg_wk10_66faefac.csv` + `.sha256`, `data/prereg_sensitivity_66faefac.csv`, `tools/verify_prereg_66faefac.py` |
+| A5 register / prose refresh | sources +5 (`S-HUB-1113`, `S-STAND-1113B`, `S-SCHED10-1113`, `S-SCHED11-1113B`, `S-SCORES-1113B`); flags +4 (**FL-37** Week 10 `tv` column names only the national network, **FL-38** the "24 of 28" coverage sentence is now a history statement, **FL-39** practice-vs-designation conflict, **FL-40** chart asymmetry means a DET corner joins and a NE corner cannot); questions +3 (Q-42 row-level injury series, Q-43 precedence rule, Q-44 broadcaster authority); suggestions +6 (S-46 as-of stamps, S-47 promote the availability arithmetic into `verify.py`, S-48 transcribe the remaining charts, S-49 split the load by chart column, S-50 stop presenting an unverifiable column as verified, S-51 name-level union); strategies +1 (**ST-15**), leaderboard +1 row at tier T0/unranked. Prose counts recomputed from files, not retyped. | `data/*.csv`, `content/index.md`, `content/executive-summary.md`, `EXECUTIVE_SUMMARY.md`, `content/data-dictionary.md` |
+| A6 build + verify + merge | `build_site.py` 29 pages · `verify.py` **85 passed / 0 failures** · `check_site.py` 11 passed / 1 warn (the pre-existing non-league-host warning, same class deficiencies.html already carries) · `audit_all_pages.py` 103 pages, 265 tables, 4,072 rows, 100% row-sourced, 0 broken links · `scripts/check_reproducible.py` all data files reproduce exactly. | this branch |
+
+### Two pages added
+
+`availability-1113.html` (Week 10 availability, third read + join + re-verification table) and
+`preregistration.html` (the lock, the ledger, the threshold curve, the grading path, and an explicit
+"what is deliberately missing" section). New `NAV` group "Availability"; both registered in
+`PAGE_KIND` (`measured`) and in the data dictionary, which the `datasets_documented` gate requires.
+
+### Irregularities found, and one correction against ourselves
+
+1. **FL-36 stands, and is now twice-reproduced.** Week 11 `MIA at BUF` reads CBS on the official
+   schedule page for the second consecutive read where our JSON says FOX, with `TB at DET` the exact
+   complement (FOX vs our CBS). Not edited: a session cannot tell a league move from an earlier
+   transcription slip, so it stays an owner call with the diff published.
+2. **The "Minnesota DNP 6→3" claim from the 12 November pass does NOT reproduce.** Diffing
+   `research/a392/hub_2026-11-12T2235Z.csv` club by club against today's read, MIN holds 9 rows and 6
+   non-participants in both. The withdrawn-rows finding (FL-27) survives a third read; the
+   "players left the report" framing does not. Corrected in RV-13/RV-14 and in `EXECUTIVE_SUMMARY.md`.
+3. **`data/prereg_wk10_66faefac.csv` carries the fixture that settled before the rule existed**
+   (W10-01, WAS 24 at NYG 21) with `locked = no - settled before the rule was written` and graded
+   publicly as a miss. It is excluded from the locked sample; hiding it would have been worse than
+   showing it.
+4. **The availability load is a sum of two published counts, so a player in both columns is counted
+   twice.** Only WAS/NE/DET carry both columns today; de-duplicating moves 5→3, 6→3, 6→4, changes no
+   locked call, and would have voided the post-hoc call. Disclosed in both table captions, in the
+   dictionary, and in S-51.
+
+### Requests to other sessions (not done by us, per the shared-file rule)
+
+- **`data/requirements.csv` R-44** still reads *"verified string chains for 2 of 32 (Q-37, S-39)"*.
+  It is now 4 of 32 with 18 joined rows on the 13 November read; whoever owns the requirements
+  register should move it (and decide whether R-43's correlation half is untouched, which it is).
+- **`tools/verify.py` `injuries()` still asserts exactly 6 designations** in the frozen
+  `data/injuries_2026_wk10.csv`. That is why today's 9-designation read is published only in new
+  `_66faefac` files. S-47 proposes a separate suite for the availability registers so nobody has to
+  keep freezing files to satisfy an as-of count.
+- **`data/games_2026_wk10_played.csv`** — whoever settles Sunday: append the 13 finals there (never to
+  the S-26-pinned weeks 1–9 corpus), then run
+  `python3 tools/compute_availability_66faefac.py && python3 tools/verify_prereg_66faefac.py`. The
+  second command is what turns the lock into a graded record; if the re-hash differs, the strategy does
+  not move up a tier — that is G-11 working, not a build failure to route around.
+
+### Workspace hazard, for whoever reads this next
+
+Mid-build on 13 November this session's **uncommitted edits to `tools/build_site.py`, `content/index.md`,
+`content/executive-summary.md` and `content/data-dictionary.md` were reverted mid-build** — consistent
+with a `git checkout --` / cleanup run against the shared tree while this branch was working. The
+delivery is now idempotent and committed: `tools/patch_site_files_66faefac.py` declares every
+page-layer edit (anchor must match exactly once, marker makes it a no-op if already applied), so a
+clobber is repaired with two commands instead of an afternoon. **Please do not reset tracked files to
+restore your own edits — commit first, then `git checkout --` the specific path you own.**
+
+### Verification links (for manual review)
+
+- https://www.nfl.com/injuries/ — the 12:45Z read: 28 Week 10 blocks, 296 rows, 9 designations, `No
+  Injuries Reported` for LAC and BAL only.
+- https://www.nfl.com/standings/ — 32 clubs, every published column matched.
+- https://www.nfl.com/schedules/2026/by-week/week-10 and https://www.nfl.com/scores/2026/week-10 —
+  1 Final of 14 at read time, which is what made a genuine pre-registration possible.
+- https://www.nfl.com/schedules/2026/by-week/week-11 — FL-36's two broadcaster rows.
+- Club charts cited per row: chiefs.com, packers.com, patriots.com, detroitlions.com `/team/depth-chart`
+  (every one labelled *Unofficial* by the club that publishes it — the label travels with each row).
+
+### Post-merge renumbering (13 Nov, after `git merge origin/main`)
+
+`main` had moved while this branch was open: other sessions had already taken FL-37 to FL-55,
+Q-42 to Q-50 and S-46 to S-58. This session's rows therefore ship renumbered, and the page-layer
+references were remapped with them (the registers' union-by-renumbering convention):
+
+| Claimed here as | Merged as |
+|---|---|
+| FL-37, FL-38, FL-39, FL-40 | **FL-56, FL-57, FL-58, FL-59** |
+| Q-42, Q-43, Q-44 | **Q-51, Q-52, Q-53** |
+| S-46 … S-51 | **S-59 … S-64** |
+| ST-15 + the leaderboard row | unchanged — `data/strategies.csv` had no ST-15, and the locked file's
+`rule` cell still reads `ST-15 v1` deliberately: the lock is byte-frozen and was not edited to match
+the merge |
+
+Two collisions turned into findings instead. Session `83246f00` transcribed the same hub a minute
+apart from this read; `data/reverification_66faefac.csv` RV-24 records that every per-club count
+agrees (296 rows, 26 clubs with names, 9 designations) — independent double entry on one document,
+which is worth more than either read alone. And `content/index.md`'s availability row now names all
+four reads of the hub rather than competing over who owns the number.
+
+`git pull --rebase` was attempted first and conflicted in 35 files, all of them generated HTML or an
+append-only register; the rebase was aborted and resolved as a merge on the same rule — regenerate the
+HTML from the merged inputs, union the registers, re-apply the page layer with
+`tools/patch_site_files_66faefac.py`. Post-merge: `build_site.py` 33 pages · `verify.py` 127 passed /
+0 failures · `check_site.py` 11 passed · `audit_all_pages.py` 107 pages / 296 tables / 4,766 rows /
+100% row-sourced · `check_reproducible.py` clean · `tools/verify_prereg_66faefac.py` still reports
+`lock holds: sha256 1186474bab75dd41`, which is the lock surviving a merge it was written before.
+
+### Merge and deployment record (session `66faefac`)
+
+- **PR #53** https://github.com/kanlerxz87-cyber/NFL2/pull/53 — `MERGEABLE`, all three checks green
+  (`Row-level verification, link check and build reproducibility` 9s, `audit` 7s, `q51` 13s), merged
+  with `--merge` at **2026-11-13T13:18:34Z**, merge commit **10fe6a62c23ba6625e0cd5d802a4c20d3afbe538**.
+- **Pages:** `pages/builds` reported `building` at 13:18:35Z and **`built` for commit 10fe6a6** on the
+  second poll (~15s later); `pages` itself reads `status: built`, source `main /`. Live check by
+  fetching the new page rather than trusting the API alone:
+  https://kanlerxz87-cyber.github.io/NFL2/availability-1113.html returned the 13 November build
+  (296/28/9 tables, RV-24 row present), so the deploy is the merged commit and not a stale root.
+- **One defect found by reading the live page, not the local file:** two column labels in
+  `cols=` contained a colon (`rows_at_2235:Rows 22:35Z`), and the generator splits `key:Label` on the
+  first colon — so the header rendered as `Rows 22` and the timestamp the column exists to carry was
+  silently lost. Local checks cannot see this (the cell data is intact; only the header is truncated),
+  which is why it is worth fetching the deployed page after a merge instead of only the build log.
+  Every `cols=` clause on both new pages was then scanned for the pattern: two found, both fixed in
+  `a16d816` and shipped as **PR #54**. Rebuilt and re-verified: `build_site.py` 33 pages ·
+  `verify.py` 127 passed / 0 failures · `check_site.py` 11 passed / 1 pre-existing warning.
+- **Session state: closed.** A1–A6 on the claim board are done and merged. Left open on purpose, for
+  the owner: FL-36 (Week 11 broadcaster), FL-56 (Week 10 `tv` lists), Q-52 (practice-vs-designation
+  precedence), and the grading of the two locked calls, which needs Sunday's finals appended to
+  `data/games_2026_wk10_played.csv` followed by `tools/compute_availability_66faefac.py` and
+  `tools/verify_prereg_66faefac.py`.
+
+### Deployment record, continued — PRs #54 and #55
+
+- **PR #54** (table-header repair + the record above) merged as `125558e06`; Pages reported `built` for
+  that commit, so the header fix and this log are the deployed tree.
+- **PR #55** is the second defect found the same way — by reading the deployed page instead of the
+  local file. The pre-registration ledger's caption promised a de-duplicated headcount ("one count per
+  player") that the column does not compute; the disclosure that was supposed to replace it lived in a
+  script which had aborted on an unrelated assertion one statement earlier, so the page contradicted
+  the register for a full turn. The caption now states the formula as computed, the size of the
+  double count is published next to it (WAS 5→3, NE 6→3, DET 6→4; no locked call moves), S-64 carries
+  the name-level-union proposal, and the phrase "15% hit rate" is gone — nothing has settled, so the
+  only rate this page may quote is a *selection* rate.
+- **Discipline that held:** the locked file and its hash were not edited to match the prose. The prose
+  moved to describe the file, and `tools/verify_prereg_66faefac.py` still reports
+  `lock holds: sha256 1186474bab75dd41` after two merges.
+- **For whoever reads the live site next:** build checks cannot see a truncated column header or a
+  caption that drifted from the data — both survive every local verifier. Fetch the deployed page
+  after merging; that is where both of today's defects were visible.
+
+
+### Pages probe, for the next session that checks a deploy
+
+`pages/builds` reported `built 6ec23717a` (PR #55's merge commit) at 13:24Z, and a plain fetch of
+https://kanlerxz87-cyber.github.io/NFL2/preregistration.html still returned the *previous* render two
+minutes later — which reads exactly like a stale CDN root, the failure mode RV-T05/RV-T06 warn about.
+It was not. `git show origin/main:preregistration.html | grep -c "name-level union"` returned 1, and the
+same URL with a cache-busting query (`?cb=6ec2371a`) served the new text immediately.
+
+So the probe order is: **(1)** confirm the Pages build commit, **(2)** grep the deployed *blob* on
+`origin/main` for the string that is supposed to be new, **(3)** fetch the live page with a query string
+keyed to the commit. A single plain fetch proves nothing either way — GitHub Pages' edge and any
+read-through proxy will both hand back a cached copy for a few minutes, and concluding "the deploy
+failed" from that starts a rebuild nobody needed.
+
+| 2026-11-13T13:6xZ | **Second integration round.** `main` advanced again to `6eb26cd` (PRs #53–#56, session `66faefac` — availability repair, pre-registration load column). Merged with the same method: generated pages taken from `main` and regenerated; `COORDINATION.md`, `data-dictionary.md`, `flags.csv`, `sources.csv` and `build_site.py` merged as unions keeping both sides. |
+| 2026-11-13T13:6xZ | **Second renumbering.** `66faefac` had taken FL-56…FL-59 while this branch was building. This session's four flags are now **FL-60 (Houston image-only chart), FL-61 (game-id disagreement), FL-62 (undated charts), FL-63 (Eagles' printed QB order)**, and every in-page reference was updated again. |
+| 2026-11-13T13:6xZ | **Robustness, not a workaround.** Two suggestions added by `66faefac` (`S-60` Competition rules, `S-62` Signals) fell outside the console's category map. The builder now falls back to the same keywords that defined the bundles, and an id that still matches nothing is surfaced as a **warning** rather than a hard failure — the register belongs to every session, so a new category must not break the whole audit for whoever adds it. |

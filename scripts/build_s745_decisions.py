@@ -112,6 +112,20 @@ def path_for(category):
     for (code, _n, _g, cats, _u, _d, _m) in PATHS:
         if category in cats:
             return code
+    # Another session can add a suggestion in a category this console has never seen, and the
+    # register is theirs to grow. Rather than hard-fail the whole audit on a category name,
+    # fall back to the same keywords that defined the bundles in the first place. An id this
+    # still does not match is left unassigned on purpose and surfaced as a warning, not
+    # silently forced into a path it does not belong to.
+    low = (category or "").lower()
+    for keys, code in ((("data", "delivery", "trust", "audit", "compliance", "integrity",
+                         "semantic", "quality", "engineering", "model"), "A"),
+                       (("price", "origination", "line", "benchmark"), "B"),
+                       (("availability", "coverage", "feature", "signal", "depth", "chart"), "C"),
+                       (("competition", "govern", "method", "verif", "report", "program",
+                         "scope", "overfit", "information", "site", "rule"), "D")):
+        if any(k in low for k in keys):
+            return code
     return ""
 
 

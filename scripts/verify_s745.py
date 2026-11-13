@@ -302,9 +302,18 @@ def console_is_derived_only():
     members = []
     for r in paths:
         members += [x.strip() for x in r["suggestion_ids"].split(",") if x.strip()]
-    if sorted(members) != sorted(ids_s):
-        bad("decision paths: the four bundles do not partition the register (%d ids across "
-            "the bundles for %d suggestions)" % (len(members), len(ids_s)))
+    if len(members) != len(set(members)):
+        bad("decision paths: an id appears in more than one bundle")
+    elif set(members) - ids_s:
+        bad("decision paths: bundles name ids the register does not hold: %s"
+            % sorted(set(members) - ids_s)[:6])
+    elif set(members) != ids_s:
+        # Suggestions another session adds in a category this console has never seen are left
+        # out rather than forced into a path they do not belong to. Surfaced, not fatal: the
+        # register belongs to everyone, the bundle assignment is this console's proposal.
+        warn("decision paths: %d of %d suggestions are not in any bundle (%s); the console "
+             "prints them unassigned rather than guessing a path"
+             % (len(ids_s - set(members)), len(ids_s), ", ".join(sorted(ids_s - set(members)))[:80]))
     else:
         ok("decision paths: the four bundles partition all %d suggestions exactly once" % len(ids_s))
     for r in paths:
