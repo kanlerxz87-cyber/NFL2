@@ -1,7 +1,7 @@
 {
   "blank_cells_rendered_as_not_published": 986,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "b767aae9d0b63425e0f48f30d87a76a30c5eaf5cad0dd9176505c55196e1d4c7",
+  "inputs_sha256": "69d41f1d9b35a3f4b07906615ce7c350c2f8baad0993d50b976260541221c2f9",
   "metrics": {
     "correlation": 12,
     "data_files": 43,
@@ -11,7 +11,7 @@
     "dtr_rows": 13,
     "empty_club_count": 4,
     "empty_clubs": "BAL, CIN, LAC, SEA",
-    "flags": 36,
+    "flags": 40,
     "full": 73,
     "games": 14,
     "games_log": 136,
@@ -47,8 +47,8 @@
     "league_t": 2,
     "league_w": 136,
     "limited": 89,
-    "official_sources": 24,
-    "p0": 14,
+    "official_sources": 25,
+    "p0": 17,
     "pages": 28,
     "pr_charted_clubs_playing": 10,
     "pr_charts": 10,
@@ -68,16 +68,16 @@
     "pr_uncharted_rows": 54,
     "pr_unresolved": 211,
     "qb_depth_rows": 5,
-    "questions": 40,
+    "questions": 43,
     "requirements": 45,
     "ruled_out_rows": 9,
     "signals": 18,
     "signals_blocked": 5,
-    "sources": 50,
+    "sources": 51,
     "standings_teams": 32,
     "status_blank_rows": 248,
     "strategies": 14,
-    "suggestions": 45
+    "suggestions": 48
   },
   "official_host_allowlist": [
     "nfl.com",
