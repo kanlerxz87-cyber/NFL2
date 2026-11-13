@@ -97,8 +97,9 @@ Two items in the register came out of the re-read and are waiting on you rather 
 | Competition | [Strategy registry](strategies.html) | 14 entries including two negative controls |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
-| Data | [Week 10 injury report](injuries.html) | all 254 official rows, per-row source links |
+| Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
+| Data | [Personnel Relief](personnel-relief.html) | **new 13 Nov** — the verified join: {{metric pr_resolved}} of {{metric pr_rows}} listed players resolved to a 1st/2nd/3rd/4th string on their own club's published chart, with the next man the club names, and {{metric pr_first_dnp}} 1st-string non-participants across {{metric pr_charts}} clubs |
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |
