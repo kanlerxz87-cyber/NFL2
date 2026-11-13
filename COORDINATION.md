@@ -1715,3 +1715,40 @@ Probe a URL that exists in exactly one tree, and cache-bust it.
 | Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
 | Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
 >>>>>>> origin/main
+
+### Session `c3ec1487` — PR, merge and Pages record
+
+- **PR #41:** https://github.com/kanlerxz87-cyber/NFL2/pull/41 — MERGED 2026-11-13T12:45:46Z as `d52ed61`.
+  Checks `audit`, `q51`, `Row-level verification, link check and build reproducibility`: all **pass** pre-merge.
+- **PR #43:** https://github.com/kanlerxz87-cyber/NFL2/pull/43 — MERGED 2026-11-13T12:56:29Z as `7c9a2be`.
+  Carried the list-rendering fix and, after the merge rounds below, the independent-transcription cross-check.
+- **Pages deploy:** build `status: "built"` on `7c9a2be` (2026-11-13T12:56:31Z). Live-confirmed by fetching a
+  page that exists in exactly one tree — [availability-watch.html](https://kanlerxz87-cyber.github.io/NFL2/availability-watch.html)
+  returns the new page with its 296-row tables, and `flagged-for-review.html` renders FL-37 and FL-38 as rows.
+  (The FL-26 rule: a 200 on a page present in every tree proves only that *something* is deployed.)
+- **Merge conflicts — four rounds, none discarded work.** `main` advanced four times while PR #43 was open:
+  PR #42 (`83246f00`, personnel relief), PR #44 + #45 (`0a113a24`, Week 11), PR #46, PR #47 (`6539b6a0`).
+  Every round was resolved by `git merge origin/main` and regenerating the generated artefacts
+  (`data/build_manifest.json`, `data-dictionary.html`); the one prose conflict, in `COORDINATION.md`, kept
+  **both** sessions' records verbatim. No file owned by another session was reverted at any point.
+- **The convergence produced a new verification, not just a conflict.** `83246f00` transcribed the same
+  official hub read independently, into `data/injuries_wk10_83246f00.csv`. Key-by-key comparison against
+  `data/availability_watch_c3ec1487.csv`: **296 of 296 players agree on club, practice code and game status,
+  with zero players on one side only.** Published as a `reverification_c3ec1487.csv` row and a section on the
+  Availability Watch page. Two sessions transcribing the same rendered table without coordination and
+  agreeing completely is the strongest check available on a hand transcription.
+- **Handoff — one live defect found in the merged tree, not fixed here (another session's register).**
+  `data/questions.csv` carries **duplicate ids Q-46 and Q-47** (two different questions each), introduced when
+  two sessions numbered rows against different snapshots of the register. Rendered, the page shows two rows
+  with the same ID and no link can address either unambiguously; `tools/verify.py` does not currently check
+  register-id uniqueness, which is why CI is green. `6539b6a0` has already logged the same thing as FL-54.
+  Recommended fix belongs to the register owner: renumber the later pair to Q-48/Q-49 and add an id-uniqueness
+  assertion to `register_counts_match_files()`. Logged here rather than edited, per the ownership rule.
+
+### Session `c3ec1487` — close-out
+
+All six tasks are done; nothing is left in progress on this branch. The open items are **decisions for the
+owner**, not collection gaps: Q-42 (which injury register is canonical), Q-43 (hub read cadence), Q-44 (what
+replaces depth rank), Q-45 (snap-count entitlement), and the standing Q-01 (price feed). The order I would
+take them in, with the reasoning on each row of `data/suggestions.csv`: **Q-42 first** — it removes a
+two-answer page and costs one build change — then Q-43, then the two purchasing decisions together (S-51).
