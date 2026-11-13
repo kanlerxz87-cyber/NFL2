@@ -1315,3 +1315,68 @@ go Final (15–16 November) and re-run `python3 tools/compute_settled_wk10.py &&
 Open decisions, in the order I would take them: **S-43** (capture timestamps — cheap, and it is the fix
 for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
 number on the leaderboard), **FL-36** (two broadcaster cells).
+
+# Session `745f788e` (`arena/745f788e-nfl2`) — all-32 club depth/deficiency register, refreshed Week 10 injury snapshot, and the Decision Console (suggestion review + information-gap register)
+
+**Session ID:** `745f788e` · **Branch:** `arena/745f788e-nfl2` · **Started:** 2026-11-13 (sandbox local date)
+**Branch base:** `14d0afcc5dda1c185e78e453407f70d72e49c5f9` (merge of PR #40 — the last merge onto `main` at claim time)
+
+## Why this session exists
+
+Reading the brief against the tree as it stands, four of its asks are already covered by the root site
+(`data/questions.csv` 40 rows, `data/suggestions.csv` 45 rows, the line-origination/strategy/gate pages,
+the executive summary, the published GitHub Pages site). One is covered only to **4 of 32 clubs**:
+
+> *"The system should be tracking injuries and know any deficiencies in defenses such as 2nd, 3rd or 4th
+> string backups having to replace starters due to lineups. Also same can be said for offenses."*
+
+`data/depth_charts.json` charts **KC, GB, NE, DET** and leaves the other 28 clubs explicitly blank
+(FL-10). `data/computed_depth_reach.csv` therefore covers 18 position groups. This session closes that
+gap on the same rule the repo already uses — one row, one official link, blanks for what cannot be
+confirmed — and adds the decision-facing pages the brief asks for by name.
+
+## Exclusive scope — files this session creates (no other session's file is overwritten)
+
+| Path | Contents |
+|---|---|
+| `data/s745_depth_charts.csv` | Every depth-chart slot published by each club's own official site: club, unit (offense/defense/special teams), position group, depth 1–4, player, player URL. One row per slot, each row carrying the club page it was transcribed from. |
+| `data/s745_depth_deficiencies.csv` | The register the brief asks for: for every club position group, the projected starter, whether that starter appears on the official NFL injury report, the game status, who the next bodies are (2nd/3rd/4th string), whether the replacement is *also* on the report (cascade), and how deep the club has to reach. Blanks where a club publishes no chart. |
+| `data/s745_depth_summary.csv` | Per-club roll-up: slots charted, groups where the 1st string is Out, groups reaching the 3rd/4th string, vacant groups, coverage %. |
+| `data/s745_injury_refresh.csv` | The 2026-11-13 re-read of `nfl.com/injuries` (Week 10), diffed against `data/injuries_2026_wk10.csv`: which rows are new, which game statuses appeared after the 04:40Z capture. |
+| `scripts/build_s745_depth.py` | Deterministic join: club depth chart × official injury report → deficiency register + summary. Re-runnable. |
+| `scripts/verify_s745.py` | Row-source, blank-policy, no-duplicate-slot and cross-file reconciliation auditor for this session's files. |
+| `content/depth-deficiencies.md`, `depth-deficiencies.html` | New page: *Depth & deficiency register — all 32 clubs*. |
+| `content/suggestion-review.md`, `suggestion-review.html` | New page: *Suggestion review console* — every suggestion scored, triaged (adopt / defer / decline) and bundled into candidate paths so the owner can pick a path before anything is implemented. |
+| `content/information-gaps.md`, `information-gaps.html` | New page: *What we know, what we don't, and how to find out* — the question / information-have / information-missing / discovery-suggestion register in one table. |
+
+## Shared files this session edits (change requests logged; see below)
+
+| Path | Edit | Request ID |
+|---|---|---|
+| `tools/build_site.py` | three `NAV` entries | CR-745-01 |
+| `content/index.md` | link the three new pages from the landing page | CR-745-02 |
+| `content/data-dictionary.md` | dictionary rows for the five new CSVs | CR-745-03 |
+| `data/sources.csv` | one row per club depth chart used (official club sites, tier B) | CR-745-04 |
+| `data/flags.csv` | appended rows for anything found this session | CR-745-05 |
+| `data/questions.csv`, `data/suggestions.csv` | appended rows, union-by-renumbering per the `fd94fccd` convention | CR-745-06 |
+| `tools/verify.py` | new checks for the five new files | CR-745-07 |
+| `COORDINATION.md` | this section, the log and the completion record | CR-745-08 |
+
+**Note on shared files.** At claim time `git branch -r` shows only `origin/main`; every other
+`arena/*-nfl2` branch has been merged and deleted. The single open PR (#35, session `8361cc7a`,
+docs-only) has had no commit since 2026-11-12T22:47Z — more than 60 minutes, so it is takeable under
+the stale-claim rule; this session leaves it open and records it rather than merging another
+session's branch. `745f788e` is the only live session and therefore also acts as the integration
+session for this round.
+
+## Files this session will NOT touch
+
+`data/games_2026_wk1_9.csv` (frozen pre-registered corpus, per `S-26`) · every other session's tree —
+`crosscheck/`, `s53/`, `s92/`, `q51/`, `analytics/`, `portal/`, `site/`, `pipeline/`, `datasets/`,
+`archive/`, `docs/`, `review/`, `research/` — is left byte-identical.
+
+## Log — session `745f788e`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13T12:3xZ | Claim written and pushed **before** any file was created. Branch base `14d0afcc`. |
