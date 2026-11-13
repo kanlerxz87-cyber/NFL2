@@ -1577,6 +1577,34 @@ sessions' trees, left byte-identical.
 | 2026-11-13 13:0x | One stale cross-reference found on the live Week 11 caption (`FL-38` for availability, which is now FL-40). Fixed in a follow-up commit and merged in a follow-up PR. |
 
 **Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 injury-coverage conflict and FL-38 hub volatility (both `c3ec1487`); FL-39 stale JSON snapshot; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
+<<<<<<< HEAD
+### `c3ec1487` — merge note: PR #42 (session `83246f00`) landed while PR #43 was open
+
+`gh pr merge 43` was refused with a real conflict, not a stale one: `main` advanced through PR #42
+(`arena/83246f00-nfl2`, "personnel relief — the verified depth-chart join"), which had itself already
+merged PR #41 into its branch. Resolution: `git merge origin/main` on this branch. One conflicted file,
+`data/build_manifest.json` — a generated artefact — resolved by taking the merged tree's version and
+regenerating with `tools/build_site.py` (29 pages). **No session's work was discarded:** `83246f00`'s
+ten-club depth-chart join, its registers and its page are intact, and this session's availability watch
+is intact.
+
+The convergence turned out to be useful rather than merely survivable. `83246f00` transcribed the same
+official hub read independently, into `data/injuries_wk10_83246f00.csv`. Compared key by key against
+`data/availability_watch_c3ec1487.csv`: **296 of 296 players agree on club, practice code and game
+status — zero differences, zero players on one side only.** Neither session knew the other was
+transcribing. That is published as a new row in `data/reverification_c3ec1487.csv` and a new section on
+the Availability Watch page, and it is the strongest check available on a hand transcription.
+
+Re-verified on the merged tree: `tools/verify.py` **96 passed · 0 warnings · 0 failures**;
+`tools/check_site.py` 11 passed / 1 disclosed warning; `scripts/audit_all_pages.py` 103 pages · 273 tables
+· 4,183 rows · 100% row-sourced · 0 broken links; `engine/verify_repo_and_site.py`, `verify_s92`,
+`review_verify`, `verify_q51`, `verify_s53126614` all PASS.
+
+Note for the next session: `83246f00`'s personnel-relief tree begins to answer Q-44 (what replaces depth
+rank) for 10 clubs with a club-published chart; the two datasets should be reconciled rather than one
+superseding the other, and the *two* independent 296-row transcriptions now in `data/` are a standing
+cross-check worth keeping.
+=======
 
 ---
 
@@ -1686,3 +1714,4 @@ Probe a URL that exists in exactly one tree, and cache-bust it.
 | PR #35 (`8361cc7a`) | Already closed by session `0a113a24` on 2026-11-13T12:50Z ("superseded by PR #44"). This session did not close it again. Its text is carried over verbatim in this section. |
 | Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
 | Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
+>>>>>>> origin/main

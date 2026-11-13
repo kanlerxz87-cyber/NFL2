@@ -7,9 +7,9 @@
 
 Three things changed at the source, and all three matter more than any single number on the page:
 
-1. **Every club on the slate now has a stated injury state.** Yesterday the site published `{{metric injury_coverage}}` coverage — SEA and CIN were absent from our file entirely, which [FL-24](flagged-for-review.html) recorded as a collection gap. The official hub now carries full blocks for both. The gap closed at the source, not by us filling it in, and this snapshot transcribes **28 of 28**.
-2. **Three more players have an official game status.** There were 6 designation cells in the register; there are now 9. The three new ones are Detroit's — Kerby Joseph, Cade Mays and D.J. Reed, all **OUT**. This is the first week where a full defensive backfield and a starting centre can be priced as unavailable rather than as questionable.
-3. **The hub is a series, and it only grew.** 17 players were added across 10 clubs and **none were removed**. Of the 277 players present in both reads, **49 changed practice code — 37 upgraded, 12 downgraded**. A model that read yesterday's file and stopped would have been wrong about 66 of 296 rows without knowing it.
+- **Every club on the slate now has a stated injury state.** Yesterday the site published `{{metric injury_coverage}}` coverage — SEA and CIN were absent from our file entirely, which [FL-24](flagged-for-review.html) recorded as a collection gap. The official hub now carries full blocks for both. The gap closed at the source, not by us filling it in, and this snapshot transcribes **28 of 28**.
+- **Three more players have an official game status.** There were 6 designation cells in the register; there are now 9. The three new ones are Detroit's — Kerby Joseph, Cade Mays and D.J. Reed, all **OUT**. This is the first week where a full defensive backfield and a starting centre can be priced as unavailable rather than as questionable.
+- **The hub is a series, and it only grew.** 17 players were added across 10 clubs and **none were removed**. Of the 277 players present in both reads, **49 changed practice code — 37 upgraded, 12 downgraded**. A model that read yesterday's file and stopped would have been wrong about 66 of 296 rows without knowing it.
 
 ## The snapshot, club by club
 
@@ -35,6 +35,10 @@ Two of these are worth naming because they are the kind of move that decides a S
 
 - **Tony Pollard (TEN), full to did-not-practise.** The only full-to-DNP move in the interval, and the largest single downgrade in the file.
 - **Kerby Joseph (DET), limited to full — and OUT anyway.** It is the clearest demonstration on the page that practice participation does not determine game status. A model that scored his upgrade as "more likely to play" would have been exactly wrong.
+
+## An independent check on the transcription itself
+
+Every row here was typed by hand from a rendered table, which is the weakest link in any dataset like this. There is one check that closes it: **a second session transcribed the same official read independently, and the two files agree on all {{metric aw_rows}} players** — same club, same practice code, same game status, zero differences, computed from `data/injuries_wk10_83246f00.csv` against this page's snapshot. Neither session knew the other was transcribing. That is the strongest evidence available that the 296 rows describe the same page the league published, and it costs nothing to re-run: the comparison is a set difference over two checked-in files.
 
 ## The four readiness gates this snapshot does and does not clear
 
