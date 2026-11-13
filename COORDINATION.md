@@ -1948,3 +1948,27 @@ HTML from the merged inputs, union the registers, re-apply the page layer with
 0 failures · `check_site.py` 11 passed · `audit_all_pages.py` 107 pages / 296 tables / 4,766 rows /
 100% row-sourced · `check_reproducible.py` clean · `tools/verify_prereg_66faefac.py` still reports
 `lock holds: sha256 1186474bab75dd41`, which is the lock surviving a merge it was written before.
+
+### Merge and deployment record (session `66faefac`)
+
+- **PR #53** https://github.com/kanlerxz87-cyber/NFL2/pull/53 — `MERGEABLE`, all three checks green
+  (`Row-level verification, link check and build reproducibility` 9s, `audit` 7s, `q51` 13s), merged
+  with `--merge` at **2026-11-13T13:18:34Z**, merge commit **10fe6a62c23ba6625e0cd5d802a4c20d3afbe538**.
+- **Pages:** `pages/builds` reported `building` at 13:18:35Z and **`built` for commit 10fe6a6** on the
+  second poll (~15s later); `pages` itself reads `status: built`, source `main /`. Live check by
+  fetching the new page rather than trusting the API alone:
+  https://kanlerxz87-cyber.github.io/NFL2/availability-1113.html returned the 13 November build
+  (296/28/9 tables, RV-24 row present), so the deploy is the merged commit and not a stale root.
+- **One defect found by reading the live page, not the local file:** two column labels in
+  `cols=` contained a colon (`rows_at_2235:Rows 22:35Z`), and the generator splits `key:Label` on the
+  first colon — so the header rendered as `Rows 22` and the timestamp the column exists to carry was
+  silently lost. Local checks cannot see this (the cell data is intact; only the header is truncated),
+  which is why it is worth fetching the deployed page after a merge instead of only the build log.
+  Every `cols=` clause on both new pages was then scanned for the pattern: two found, both fixed in
+  `a16d816` and shipped as **PR #54**. Rebuilt and re-verified: `build_site.py` 33 pages ·
+  `verify.py` 127 passed / 0 failures · `check_site.py` 11 passed / 1 pre-existing warning.
+- **Session state: closed.** A1–A6 on the claim board are done and merged. Left open on purpose, for
+  the owner: FL-36 (Week 11 broadcaster), FL-56 (Week 10 `tv` lists), Q-52 (practice-vs-designation
+  precedence), and the grading of the two locked calls, which needs Sunday's finals appended to
+  `data/games_2026_wk10_played.csv` followed by `tools/compute_availability_66faefac.py` and
+  `tools/verify_prereg_66faefac.py`.
