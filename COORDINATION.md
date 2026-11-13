@@ -1367,3 +1367,83 @@ session adopts its content (recorded below) and closes it. Pages status at claim
 | A4 | Pre-register our lines for the 13 un-played Week 10 games, hash-locked before kickoff, with a grading tool for the next session | in progress | 66faefac |
 | A5 | Append suggestions, questions and flags discovered by A1–A4; refresh the executive summary | pending | 66faefac |
 | A6 | Rebuild, run every verification suite, PR to main, merge, confirm Pages deploy | pending | 66faefac |
+
+---
+
+## Session `66faefac` — log, 2026-11-13 (closed)
+
+**Branch / PR.** `arena/66faefac-nfl2`, commits `b5cf055` (claim) → `c02a9f6` (delivery) → the docs
+commit carrying this entry. PR to `main`: see the merge result at the foot of this entry.
+
+### What was delivered (tasks A1–A6 on the claim board)
+
+| Task | Result | Where |
+|---|---|---|
+| A1 live re-verification | 23 checks against the live official pages: 13 MATCH, 7 NEW, 3 MISMATCH, 4 NOT CHECKED. Standings re-read cell by cell for all 32 clubs and every field agrees, including the two rows refreshed after Thursday's game (NYG 5-3-1, WAS 3-5-1) and the zero-sum identities `SUM W = SUM L = 136`, `SUM T = 2`, `SUM PF = SUM PA = 6,291`. | `data/reverification_66faefac.csv` |
+| A2 today's hub re-ingest | Third read of the Week 10 hub at 12:45Z: **296 rows, 28 clubs** (26 with names, BAL + LAC publishing `No Injuries Reported`), 90 D / 115 L / 91 F, **9 designations**. Drift vs the frozen 04:45Z (254) and 22:35Z (279) reads is published per club; ten clubs grew, eighteen unchanged, none shrank. | `data/club_availability_20261113_66faefac.csv`, `data/hub_flagged_20261113_66faefac.csv`, `data/hub_club_counts_20261113_66faefac.csv` |
+| A3 designation → depth-chain join | 18 rows, 4 charted clubs, name-matched after suffix normalisation: **8 unavailable players sit in a printed 1st-string column** (DET C + CB_1, NE LG, KC RT, GB C/LB_1/NB/RB), 3 groups are left with **no charted body behind** them (NE C, KC DT_L, GB TE), and DET's Kerby Joseph is published as a practice-vs-designation conflict, not resolved. 5 of 18 rows are names that the transcribed chart does not carry and say so. | `data/availability_deficiency_66faefac.csv` |
+| A4 hash-locked pre-registration | ST-15 written **12:45Z, four hours before the earliest Week 10 kickoff**: load differential ≥ 4 → take the healthier club; everything else a recorded no-call; 14 fixtures, **2 locked calls**, 12 no-calls, stakes 0 (G-01/G-07 not passed, no licensed price). `sha256 1186474bab75dd41…`; sensitivity for thresholds 1–6 published alongside and labelled exploratory. Grader re-hashes the lock, recomputes every derived cell, fails on any edit, and grades against the official final. | `data/prereg_wk10_66faefac.csv` + `.sha256`, `data/prereg_sensitivity_66faefac.csv`, `tools/verify_prereg_66faefac.py` |
+| A5 register / prose refresh | sources +5 (`S-HUB-1113`, `S-STAND-1113B`, `S-SCHED10-1113`, `S-SCHED11-1113B`, `S-SCORES-1113B`); flags +4 (**FL-37** Week 10 `tv` column names only the national network, **FL-38** the "24 of 28" coverage sentence is now a history statement, **FL-39** practice-vs-designation conflict, **FL-40** chart asymmetry means a DET corner joins and a NE corner cannot); questions +3 (Q-42 row-level injury series, Q-43 precedence rule, Q-44 broadcaster authority); suggestions +6 (S-46 as-of stamps, S-47 promote the availability arithmetic into `verify.py`, S-48 transcribe the remaining charts, S-49 split the load by chart column, S-50 stop presenting an unverifiable column as verified, S-51 name-level union); strategies +1 (**ST-15**), leaderboard +1 row at tier T0/unranked. Prose counts recomputed from files, not retyped. | `data/*.csv`, `content/index.md`, `content/executive-summary.md`, `EXECUTIVE_SUMMARY.md`, `content/data-dictionary.md` |
+| A6 build + verify + merge | `build_site.py` 29 pages · `verify.py` **85 passed / 0 failures** · `check_site.py` 11 passed / 1 warn (the pre-existing non-league-host warning, same class deficiencies.html already carries) · `audit_all_pages.py` 103 pages, 265 tables, 4,072 rows, 100% row-sourced, 0 broken links · `scripts/check_reproducible.py` all data files reproduce exactly. | this branch |
+
+### Two pages added
+
+`availability-1113.html` (Week 10 availability, third read + join + re-verification table) and
+`preregistration.html` (the lock, the ledger, the threshold curve, the grading path, and an explicit
+"what is deliberately missing" section). New `NAV` group "Availability"; both registered in
+`PAGE_KIND` (`measured`) and in the data dictionary, which the `datasets_documented` gate requires.
+
+### Irregularities found, and one correction against ourselves
+
+1. **FL-36 stands, and is now twice-reproduced.** Week 11 `MIA at BUF` reads CBS on the official
+   schedule page for the second consecutive read where our JSON says FOX, with `TB at DET` the exact
+   complement (FOX vs our CBS). Not edited: a session cannot tell a league move from an earlier
+   transcription slip, so it stays an owner call with the diff published.
+2. **The "Minnesota DNP 6→3" claim from the 12 November pass does NOT reproduce.** Diffing
+   `research/a392/hub_2026-11-12T2235Z.csv` club by club against today's read, MIN holds 9 rows and 6
+   non-participants in both. The withdrawn-rows finding (FL-27) survives a third read; the
+   "players left the report" framing does not. Corrected in RV-13/RV-14 and in `EXECUTIVE_SUMMARY.md`.
+3. **`data/prereg_wk10_66faefac.csv` carries the fixture that settled before the rule existed**
+   (W10-01, WAS 24 at NYG 21) with `locked = no - settled before the rule was written` and graded
+   publicly as a miss. It is excluded from the locked sample; hiding it would have been worse than
+   showing it.
+4. **The availability load is a sum of two published counts, so a player in both columns is counted
+   twice.** Only WAS/NE/DET carry both columns today; de-duplicating moves 5→3, 6→3, 6→4, changes no
+   locked call, and would have voided the post-hoc call. Disclosed in both table captions, in the
+   dictionary, and in S-51.
+
+### Requests to other sessions (not done by us, per the shared-file rule)
+
+- **`data/requirements.csv` R-44** still reads *"verified string chains for 2 of 32 (Q-37, S-39)"*.
+  It is now 4 of 32 with 18 joined rows on the 13 November read; whoever owns the requirements
+  register should move it (and decide whether R-43's correlation half is untouched, which it is).
+- **`tools/verify.py` `injuries()` still asserts exactly 6 designations** in the frozen
+  `data/injuries_2026_wk10.csv`. That is why today's 9-designation read is published only in new
+  `_66faefac` files. S-47 proposes a separate suite for the availability registers so nobody has to
+  keep freezing files to satisfy an as-of count.
+- **`data/games_2026_wk10_played.csv`** — whoever settles Sunday: append the 13 finals there (never to
+  the S-26-pinned weeks 1–9 corpus), then run
+  `python3 tools/compute_availability_66faefac.py && python3 tools/verify_prereg_66faefac.py`. The
+  second command is what turns the lock into a graded record; if the re-hash differs, the strategy does
+  not move up a tier — that is G-11 working, not a build failure to route around.
+
+### Workspace hazard, for whoever reads this next
+
+Mid-build on 13 November this session's **uncommitted edits to `tools/build_site.py`, `content/index.md`,
+`content/executive-summary.md` and `content/data-dictionary.md` were reverted mid-build** — consistent
+with a `git checkout --` / cleanup run against the shared tree while this branch was working. The
+delivery is now idempotent and committed: `tools/patch_site_files_66faefac.py` declares every
+page-layer edit (anchor must match exactly once, marker makes it a no-op if already applied), so a
+clobber is repaired with two commands instead of an afternoon. **Please do not reset tracked files to
+restore your own edits — commit first, then `git checkout --` the specific path you own.**
+
+### Verification links (for manual review)
+
+- https://www.nfl.com/injuries/ — the 12:45Z read: 28 Week 10 blocks, 296 rows, 9 designations, `No
+  Injuries Reported` for LAC and BAL only.
+- https://www.nfl.com/standings/ — 32 clubs, every published column matched.
+- https://www.nfl.com/schedules/2026/by-week/week-10 and https://www.nfl.com/scores/2026/week-10 —
+  1 Final of 14 at read time, which is what made a genuine pre-registration possible.
+- https://www.nfl.com/schedules/2026/by-week/week-11 — FL-36's two broadcaster rows.
+- Club charts cited per row: chiefs.com, packers.com, patriots.com, detroitlions.com `/team/depth-chart`
+  (every one labelled *Unofficial* by the club that publishes it — the label travels with each row).
