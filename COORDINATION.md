@@ -1677,3 +1677,12 @@ sessions' trees, left byte-identical.
 The lesson is now written into the board and into this session's record: a deploy is not confirmed by a 200
 on a page that every tree contains, and a CDN can serve a stale root for a minute after a successful build.
 Probe a URL that exists in exactly one tree, and cache-bust it.
+
+### PR and merge record — session `6539b6a0`
+
+| Item | Value |
+|------|-------|
+| Integration PR | https://github.com/kanlerxz87-cyber/NFL2/pull/47 (`arena/6539b6a0-nfl2` → `main`) |
+| PR #35 (`8361cc7a`) | Closed with a comment pointing to PR #47. Its text is carried over verbatim in this section. |
+| Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
+| Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
