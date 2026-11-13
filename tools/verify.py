@@ -4,7 +4,7 @@
 Fails loudly rather than warning: the site's claim to be "verified" rests on these
 checks running clean, so a soft warning here would be a weaselled guarantee.
 """
-import csv, os, re, sys
+import csv, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -93,6 +93,147 @@ def standings():
         bad("standings: net points sum to %d, must be 0" % snet)
     else:
         ok("standings: net points sum to zero")
+
+
+def standings_capture_metadata():
+    """Every standings row must name its source-read time, not just a live URL that can drift."""
+    data, header, _ = rows("standings_2026.csv")
+    if not {"source", "captured_utc"}.issubset(set(header)):
+        bad("standings: missing source or captured_utc column")
+        return
+    all_sources, _, _ = rows("sources.csv")
+    official = [s for s in all_sources
+                if s["url"] == "https://www.nfl.com/standings/" and s["tier"] == "A"]
+    if not official:
+        bad("standings: no official NFL standings source in sources.csv")
+        return
+    latest = max(official, key=lambda s: s["accessed_utc"])
+    ids = {r["source"].strip() for r in data}
+    stamps = {r["captured_utc"].strip() for r in data}
+    if ids != {latest["id"]}:
+        bad("standings: row source ids %s do not point to latest official read %s"
+            % (sorted(ids), latest["id"]))
+    elif stamps != {latest["accessed_utc"]}:
+        bad("standings: capture times %s do not match latest source read %s"
+            % (sorted(stamps), latest["accessed_utc"]))
+    elif not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$", latest["accessed_utc"]):
+        bad("standings: source-read time is not minute-precision UTC: %r" % latest["accessed_utc"])
+    else:
+        ok("standings: all %d rows stamped %s and linked to the latest official NFL read"
+           % (len(data), latest["accessed_utc"]))
+
+
+def standings_official_recheck():
+    """Compare every published standings field to the saved official-page transcription."""
+    fields = ("w", "l", "t", "pct", "pf", "pa", "net", "streak")
+    current, current_header, _ = rows("standings_2026.csv")
+    snapshot, snapshot_header, _ = rows("standings_recheck_20261113.csv")
+    required = {"abbr", "source", "captured_utc", *fields}
+    if not required.issubset(set(current_header)) or not required.issubset(set(snapshot_header)):
+        bad("standings recheck: current table or official snapshot is missing required columns")
+        return
+    problems = []
+    local_by = {r["abbr"].strip(): r for r in current}
+    official_by = {r["abbr"].strip(): r for r in snapshot}
+    if len(local_by) != len(current) or len(official_by) != len(snapshot):
+        problems.append("duplicate club abbreviation")
+    if len(current) != 32 or len(snapshot) != 32:
+        problems.append("row counts current=%d official=%d (expected 32 each)" % (len(current), len(snapshot)))
+    if set(local_by) != set(official_by):
+        problems.append("club sets differ: current-only=%s official-only=%s" %
+                        (sorted(set(local_by) - set(official_by)), sorted(set(official_by) - set(local_by))))
+    for abbr in sorted(set(local_by) & set(official_by)):
+        local, official = local_by[abbr], official_by[abbr]
+        for field in fields:
+            if local[field].strip() != official[field].strip():
+                problems.append("%s.%s current=%r official=%r" %
+                                (abbr, field, local[field], official[field]))
+    source_rows, _, _ = rows("sources.csv")
+    official_sources = [r for r in source_rows
+                        if r["url"] == "https://www.nfl.com/standings/" and r["tier"] == "A"]
+    latest = max(official_sources, key=lambda r: r["accessed_utc"]) if official_sources else None
+    if latest is None:
+        problems.append("no official NFL standings source record")
+    else:
+        for abbr, row in official_by.items():
+            if row["source"].strip() != latest["id"]:
+                problems.append("%s snapshot source=%s, latest=%s" % (abbr, row["source"], latest["id"]))
+            if row["captured_utc"].strip() != latest["accessed_utc"]:
+                problems.append("%s snapshot time=%s, latest=%s" %
+                                (abbr, row["captured_utc"], latest["accessed_utc"]))
+        if sum(1 for r in source_rows if r["id"].strip() == latest["id"].strip()) != 1:
+            problems.append("latest source id is not unique")
+    if problems:
+        bad("standings official recheck failed: %s" % problems[:8])
+    else:
+        ok("official standings recheck: 32/32 clubs × 8 published fields (256 values) match at %s" %
+           latest["accessed_utc"])
+
+
+def source_read_times_visible():
+    """The generated banner and manifest must distinguish every tracked source snapshot."""
+    manifest_path = os.path.join(DATA, "build_manifest.json")
+    index_path = os.path.join(ROOT, "index.html")
+    if not os.path.exists(manifest_path) or not os.path.exists(index_path):
+        bad("source-read visibility: build manifest or generated index is missing")
+        return
+    with open(manifest_path, encoding="utf-8") as fh:
+        manifest = json.load(fh)
+    times = manifest.get("source_read_times_utc", {})
+    required = {
+        "week10_injury_file_capture",
+        "week10_injury_full_hub_reread",
+        "week10_injury_settled_game_subset_recheck",
+        "week10_injury_latest_full_hub_snapshot",
+        "standings",
+    }
+    missing = required - set(times)
+    if missing:
+        bad("source-read visibility: manifest omits %s" % sorted(missing))
+        return
+    with open(index_path, encoding="utf-8") as fh:
+        page = fh.read()
+    absent = []
+    for key in sorted(required):
+        value = times[key]
+        rendered = value if value.endswith(" UTC") else value.replace("T", " ").replace("Z", " UTC")
+        if rendered not in page:
+            absent.append("%s=%s" % (key, rendered))
+    if absent:
+        bad("source-read visibility: banner omits %s" % absent)
+    else:
+        ok("source-read visibility: injury capture, both full-hub reads, subset recheck and standings time are distinct in banner and manifest")
+
+
+def gamebook_rights_gate():
+    """Game Book evidence must stay blocked behind the documented written-permission question."""
+    urls = (
+        "https://static.www.nfl.com/image/upload/v1789038923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf",
+        "https://static.www.nfl.com/image/upload/v1791805921/gamecenter/aa94b906-4feb-11f1-abca-2c54536568a9.pdf",
+    )
+    questions, _, _ = rows("questions.csv")
+    suggestions, _, _ = rows("suggestions.csv")
+    flags, _, _ = rows("flags.csv")
+    q = [r for r in questions if r["id"] == "Q-50"]
+    s = [r for r in suggestions if r["id"] == "S-58"]
+    f = [r for r in flags if r["id"] == "FL-55"]
+    problems = []
+    if len(q) != 1 or q[0]["status"] != "blocked-on-owner":
+        problems.append("Q-50 is missing or no longer blocked on owner review")
+    if len(s) != 1 or "Q-50" not in s[0]["depends_on"] or "blocked" not in s[0]["decision"]:
+        problems.append("S-58 is missing or not blocked on Q-50")
+    if len(f) != 1 or f[0]["status"] != "open":
+        problems.append("FL-55 rights flag is missing or closed")
+    text = " ".join((q[0].get("what_we_have", "") if q else "",
+                     s[0].get("evidence", "") if s else "",
+                     f[0].get("source", "") if f else ""))
+    for url in urls:
+        if url not in text:
+            problems.append("official gamebook URL missing from Q-50/S-58/FL-55: " + url)
+    if problems:
+        bad("gamebook rights gate: %s" % problems)
+    else:
+        ok("gamebook rights gate: both official books cited; collection remains blocked on Q-50 with FL-55 open")
 
 
 def injuries():
@@ -964,11 +1105,251 @@ def s745_registers_reproduce():
     FAIL.extend(v.FAIL)
     # the hook's own counters are merged above; drop the duplicate print of them
     v.PASS.clear(); v.WARN.clear(); v.FAIL.clear()
+def forward_sample_holds():
+    """The Week 11 forward sample is the first thing on this site that is published BEFORE the
+    games it describes. That claim is only worth anything if three things hold every time the
+    site is verified:
+
+      1. every artefact the pre-registration names still hashes to the value it published,
+      2. the generator still re-derives the fourteen already-published Week 10 lines exactly, so
+         the Week 11 numbers come from the same model and not from a look-alike,
+      3. the grade contains one row per pre-registered line and settles nothing that has no
+         official final score.
+
+    A pre-registration that is checked only once, by hand, on the day it is written, is a
+    promise. These are checks.
+    """
+    import json
+    import hashlib
+
+    def sha256(path):
+        h = hashlib.sha256()
+        with open(path, "rb") as fh:
+            for chunk in iter(lambda: fh.read(65536), b""):
+                h.update(chunk)
+        return h.hexdigest()
+
+    pre_path = os.path.join(DATA, "prereg_week11_0a113a24.json")
+    if not os.path.exists(pre_path):
+        warn("week 11 pre-registration record absent; the forward sample is not verified")
+        return
+    pre = json.load(open(pre_path, encoding="utf-8"))
+
+    # ---- 1. the hashes ------------------------------------------------------------------------
+    targets = [
+        ("lines_sha256", os.path.join(DATA, "originated_lines_wk11_0a113a24.csv")),
+        ("backtest_corpus_sha256", os.path.join(DATA, "games_2026_wk1_9.csv")),
+        ("settled_games_sha256", os.path.join(DATA, "games_2026_wk10_played.csv")),
+        ("generator_sha256", os.path.join(ROOT, "tools", "originate_week11.py")),
+    ]
+    broken = []
+    for key, path in targets:
+        expected = pre.get(key, "")
+        actual = sha256(path) if os.path.exists(path) else ""
+        if not expected or expected != actual:
+            broken.append("%s (%s)" % (os.path.basename(path), key))
+    if broken:
+        bad("week 11 forward sample: the pre-registration no longer matches %s - a line or the "
+            "model changed after it was published" % ", ".join(broken))
+    else:
+        ok("week 11 forward sample: the pre-registration is intact (%d artefacts hashed)" % len(targets))
+
+    # ---- the flat mirror of the record must agree with the record -----------------------------
+    flat_path = os.path.join(DATA, "prereg_week11_0a113a24.csv")
+    if os.path.exists(flat_path):
+        flat = {r["field"]: r["value"] for r in rows("prereg_week11_0a113a24.csv")[0]}
+        pairs = [("lines SHA-256", pre.get("lines_sha256")),
+                 ("backtest corpus SHA-256", pre.get("backtest_corpus_sha256")),
+                 ("settled games SHA-256", pre.get("settled_games_sha256")),
+                 ("generator SHA-256", pre.get("generator_sha256")),
+                 ("decision timestamp (UTC)", pre.get("decision_timestamp_utc"))]
+        disagree = [f for f, v in pairs if flat.get(f) != v]
+        if disagree:
+            bad("week 11 forward sample: the published table and the pre-registration record "
+                "disagree on %s" % ", ".join(disagree))
+        else:
+            ok("week 11 forward sample: the published pre-registration table and the record agree "
+               "on all %d hashed fields" % len(pairs))
+    else:
+        warn("week 11 pre-registration table absent")
+
+    # ---- 2. the reproduction guard, re-run here -----------------------------------------------
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "tools"))
+        import originate_week11 as ow
+        corpus = ow.load_games()[0]
+        published = {r["game"]: r for r in ow.read(ow.WK10_LINES)}
+        rederived = ow.reproduce_week10_lines(corpus, ow.LAMS[0])
+        mism = []
+        for gid, (sp, tot) in rederived.items():
+            p = published.get(gid)
+            if not p:
+                continue
+            if float(p["our_spread_home_favoured"]) != sp or float(p["our_total"]) != tot:
+                mism.append(gid)
+        if mism:
+            bad("week 11 forward sample: the generator no longer re-derives the published Week 10 "
+                "lines %s - the Week 11 numbers are not from the published model" % ", ".join(mism))
+        else:
+            ok("week 11 forward sample: the generator re-derives all %d published Week 10 lines "
+               "exactly, so the Week 11 numbers come from the published model" % len(rederived))
+    except Exception as exc:  # pragma: no cover - a failure here must not hide the others
+        bad("week 11 forward sample: the reproduction guard could not be run (%s)" % exc)
+
+    # ---- 3. the grade must not settle a game the league has not finished ------------------------
+    lines = rows("originated_lines_wk11_0a113a24.csv")[0]
+    grade = rows("forward_grade_0a113a24.csv")[0]
+    if len(grade) != len(lines):
+        bad("week 11 forward sample: the grade has %d rows for %d pre-registered lines"
+            % (len(grade), len(lines)))
+    else:
+        ok("week 11 forward sample: the grade has exactly one row per pre-registered line (%d)"
+           % len(grade))
+    settled = [r for r in grade if r["status"] == "settled and graded"]
+    bad_settled = [r["game_id"] for r in settled
+                   if not r["source"].startswith("https://www.nfl.com/games/")]
+    if bad_settled:
+        bad("week 11 forward sample: %d settled rows do not cite an official game page"
+            % len(bad_settled))
+    else:
+        ok("week 11 forward sample: %d of %d pre-registered lines are settled, each citing its "
+           "official game page" % (len(settled), len(grade)))
+
+    # ---- the slate must be internally consistent ----------------------------------------------
+    sched = rows("schedule_week11_2026.csv")[0]
+    clubs = set()
+    for r in sched:
+        clubs.add(r["away"])
+        clubs.add(r["home"])
+    byes = sorted({"ATL", "CLE", "GB", "LAR", "NE", "SEA"} - clubs)
+    if len(sched) != 13 or len(clubs) != 26 or len(byes) != 6:
+        bad("week 11 slate: %d fixtures, %d clubs, %d byes - expected 13, 26, 6"
+            % (len(sched), len(clubs), len(byes)))
+    else:
+        ok("week 11 slate: 13 fixtures, 26 clubs, %d byes (%s)" % (len(byes), ", ".join(byes)))
+    neutral = [r for r in sched if r["neutral"] == "yes"]
+    if len(neutral) != 1 or "Mexico" not in neutral[0]["site"]:
+        bad("week 11 slate: %d fixtures are marked neutral" % len(neutral))
+    else:
+        ok("week 11 slate: exactly one neutral-site fixture, and the official schedule page names "
+           "its city (%s)" % neutral[0]["game_id"])
+
+    # ---- the dated re-verification register must cite a flag for every disagreement -------------
+    fn = os.path.join(DATA, "reverification_0a113a24.csv")
+    if os.path.exists(fn):
+        data, _, _ = rows("reverification_0a113a24.csv")
+        vocab = {"match", "MISMATCH", "CORRECTED", "NOT CHECKED", "MISSING"}
+        off = [r for r in data if r["result"].strip() not in vocab]
+        if off:
+            bad("re-verification 2026-11-13 (session 0a113a24): result %r is outside the vocabulary"
+                % off[0]["result"])
+        else:
+            flag_ids = {r["id"] for r in rows("flags.csv")[0]}
+            unflagged = [r["check"][:48] for r in data if r["result"].strip() == "MISMATCH"
+                         and not (set(re.findall(r"FL-\d+", r["note"]))
+                                  | set(re.findall(r"FL-\d+", r["check"]))) & flag_ids]
+            if unflagged:
+                bad("re-verification 2026-11-13 (session 0a113a24): rows that disagree with the "
+                    "official page cite no register flag: %s" % unflagged)
+            else:
+                n_m = sum(1 for r in data if r["result"].strip() == "MISMATCH")
+                n_n = sum(1 for r in data if r["result"].strip() == "NOT CHECKED")
+                ok("re-verification 2026-11-13 (session 0a113a24): %d checks, %d published as "
+                   "flags, %d explicitly not checked" % (len(data), n_m, n_n))
+        nosrc = [r for r in data if not r["source"].startswith("https://")]
+        if nosrc:
+            bad("re-verification 2026-11-13 (session 0a113a24): %d rows without an https source"
+                % len(nosrc))
+        else:
+            ok("re-verification 2026-11-13 (session 0a113a24): every row cites an official page")
+
+def availability_watch_holds():
+    """The dated availability register answers a smaller question than the injury register and it has
+    to answer it exactly. Four things are checked, all from the files:
+
+      * every snapshot row belongs to a club that is playing in the game it names,
+      * every row cites an official nfl.com page and carries the capture timestamp,
+      * the by-club table's tallies equal the snapshot's own counts, club by club (so a hand-typed
+        total cannot drift away from the rows it describes),
+      * the movement table's numbers equal the actual set difference between the two dated reads.
+
+    The last one is the check that matters. The whole point of keeping two dated reads is the delta
+    between them, and a delta is exactly the kind of number that is easy to assert and hard to notice
+    when it is wrong.
+    """
+    import csv as _csv
+    snap_name = "availability_watch_c3ec1487.csv"
+    path = os.path.join(DATA, snap_name)
+    if not os.path.exists(path):
+        bad("availability watch snapshot is missing (%s)" % snap_name); return
+    snap = rows(snap_name)[0]
+    byclub = rows("availability_watch_by_club_c3ec1487.csv")[0]
+    movement = {r["change"]: r for r in rows("availability_watch_movement_c3ec1487.csv")[0]}
+    prior = rows("injuries_wk10_2026_hubrefresh.csv")[0]
+    sched, _, _ = rows("schedule_2026_wk10.csv")
+
+    game_clubs = {}
+    for g in sched:
+        game_clubs.setdefault(g["game_id"], set()).update((g["away"], g["home"]))
+
+    problems = []
+    for r in snap:
+        if r["game_id"] not in game_clubs:
+            problems.append("%s: unknown game" % r["player"])
+        elif r["club"] not in game_clubs[r["game_id"]]:
+            problems.append("%s %s: club not in %s" % (r["game_id"], r["club"], r["game_id"]))
+        if not r["source"].startswith("https://www.nfl.com/"):
+            problems.append("%s: non-official source" % r["player"])
+        if not r["captured_utc"].strip():
+            problems.append("%s: no capture timestamp" % r["player"])
+        if r["practice"] not in ("D", "L", "F"):
+            problems.append("%s: practice code %r" % (r["player"], r["practice"]))
+        if r["game_status"] not in ("", "OUT", "Q", "D"):
+            problems.append("%s: game status %r" % (r["player"], r["game_status"]))
+
+    # every club on the slate has exactly one by-club row
+    slate = sorted({c for cs in game_clubs.values() for c in cs})
+    state_clubs = sorted(r["club"] for r in byclub)
+    if state_clubs != slate:
+        problems.append("by-club table covers %d clubs, the slate has %d" % (len(state_clubs), len(slate)))
+    for r in byclub:
+        mine = [x for x in snap if x["club"] == r["club"]]
+        if int(r["rows_published"]) != len(mine):
+            problems.append("%s: by-club rows %s, snapshot has %d" % (r["club"], r["rows_published"], len(mine)))
+        if int(r["did_not_practice"]) != sum(1 for x in mine if x["practice"] == "D"):
+            problems.append("%s: DNP tally does not match the snapshot rows" % r["club"])
+        if int(r["designations"]) != sum(1 for x in mine if x["game_status"].strip()):
+            problems.append("%s: designation tally does not match the snapshot rows" % r["club"])
+
+    # the movement table must equal the set difference between the two dated reads
+    old = {"%s|%s" % (r["team"], r["player"]): r for r in prior}
+    new = {"%s|%s" % (r["club"], r["player"]): r for r in snap}
+    added, removed = len(set(new) - set(old)), len(set(old) - set(new))
+    changed = sum(1 for k in set(new) & set(old) if new[k]["practice"] != old[k]["practice"])
+    for label, actual in (("players newly listed", added),
+                          ("players no longer listed", removed),
+                          ("practice codes changed", changed)):
+        row = movement.get(label)
+        if not row:
+            problems.append("movement table has no '%s' row" % label)
+        elif int(row["count"]) != actual:
+            problems.append("movement table says %s=%s, files say %d" % (label, row["count"], actual))
+
+    if problems:
+        bad("availability watch: %s" % problems[:6])
+    else:
+        ok("availability watch: %d player rows across %d clubs reproduce from the snapshot, "
+           "every row sourced and dated, and the movement table equals the set difference "
+           "between the two reads (%d added, %d removed, %d practice changes)"
+           % (len(snap), len(byclub), added, removed, changed))
+
+
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results();
+    check_widths(); no_disguised_guesses(); standings(); standings_capture_metadata(); standings_official_recheck(); source_read_times_visible(); injuries(); depth(); sources(); registers(); gamebook_rights_gate(); no_invented_results();
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
-    settled_week10_reproduces(); reverification_5f16dcc6_holds(); s745_registers_reproduce()
+    settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()
+    personnel_relief_reproduces(); reverification_83246f00_holds(); s745_registers_reproduce()
     
     print("=" * 72)
     for m in PASS:
@@ -980,6 +1361,124 @@ def main():
     print("=" * 72)
     print("verify: %d passed · %d warnings · %d failures" % (len(PASS), len(WARN), len(FAIL)))
     return 1 if FAIL else 0
+
+
+
+
+def personnel_relief_reproduces():
+    """The personnel-relief join must be reproducible from its two inputs, and must never state a
+    string it cannot trace to the club's own published chart."""
+    import hashlib
+    import subprocess
+    names = ["injuries_wk10_83246f00.csv", "personnel_relief_wk10_83246f00.csv",
+             "personnel_relief_club_83246f00.csv", "depth_charts_wk10_83246f00.json"]
+    for fn in names:
+        if not os.path.exists(os.path.join(DATA, fn)):
+            warn("%s absent; run tools/compute_personnel_relief_83246f00.py" % fn)
+            return
+
+    script = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                          "tools", "compute_personnel_relief_83246f00.py")
+    before = {}
+    for fn in names[:3]:
+        with open(os.path.join(DATA, fn), "rb") as fh:
+            before[fn] = hashlib.sha256(fh.read()).hexdigest()
+    try:
+        subprocess.run([sys.executable, script], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as exc:
+        bad("personnel relief: the committed script would not run: %s" % exc)
+        return
+    after = {}
+    for fn in names[:3]:
+        with open(os.path.join(DATA, fn), "rb") as fh:
+            after[fn] = hashlib.sha256(fh.read()).hexdigest()
+    drifted = [fn for fn in names[:3] if before[fn] != after[fn]]
+    if drifted:
+        bad("personnel relief: %s did not reproduce from the committed script" % drifted)
+        return
+    ok("personnel relief: both computed tables reproduce byte-for-byte from the committed script")
+
+    relief, _, _ = rows("personnel_relief_wk10_83246f00.csv")
+    club, _, _ = rows("personnel_relief_club_83246f00.csv")
+    hub, _, _ = rows("injuries_wk10_83246f00.csv")
+
+    no_chart = [r for r in relief
+                if r["string"].strip() not in ("", "not published")
+                and not r["chart_url"].startswith("https://")]
+    no_hub = [r for r in relief if not r["injury_url"].startswith("https://")]
+    if no_chart:
+        bad("personnel relief: %d rows state a depth string with no club-chart URL (first: %s)"
+            % (len(no_chart), no_chart[0]["player"]))
+    elif no_hub:
+        bad("personnel relief: %d rows carry no official injury-page URL" % len(no_hub))
+    else:
+        ok("personnel relief: every stated string carries its club-chart URL, all %d rows carry "
+           "the official injury-page URL" % len(relief))
+
+    hub_keys = {(r["team"], r["player"]) for r in hub}
+    invented = [r["player"] for r in relief if (r["club"], r["player"]) not in hub_keys]
+    if invented:
+        bad("personnel relief: %d players appear in the join but not on the hub read: %s"
+            % (len(invented), invented[:4]))
+    elif len(relief) != len(hub):
+        bad("personnel relief: join holds %d rows against %d on the hub" % (len(relief), len(hub)))
+    else:
+        ok("personnel relief: the join is exactly the %d hub filings, no player added or dropped"
+           % len(hub))
+
+    first_dnp = [r for r in relief if r["string"] == "1st string" and r["practice"] == "D"]
+    full = set()
+    for r in relief:
+        if r["string"] != "1st string":
+            continue
+        if r["practice"] in ("D", "L") and "not on the official report" not in r["unit_cascade"]:
+            full.add((r["club"], r["depth_unit"]))
+    bad_cascade = [r for r in relief if r["string"] == "1st string" and r["practice"] in ("D", "L")
+                   and r["unit_cascade"] == "not published"]
+    if bad_cascade:
+        bad("personnel relief: %d 1st-string non-participants carry no unit cascade"
+            % len(bad_cascade))
+    else:
+        ok("personnel relief: %d 1st-string non-participants, %d units with no clean rung (%s)"
+           % (len(first_dnp), len(full), ", ".join("%s %s" % x for x in sorted(full)) or "none"))
+
+    claimed = [r for r in club if r["chart_state"].startswith("every listed player")
+               and r["chart_url"] == "not published"]
+    if claimed:
+        bad("personnel relief: %d club rows claim a complete join but cite no chart" % len(claimed))
+    else:
+        ok("personnel relief: no club summary claims a complete join without its chart URL")
+
+
+def reverification_83246f00_holds():
+    """This session's dated register follows the same contract as the earlier one."""
+    fn = os.path.join(DATA, "reverification_83246f00.csv")
+    if not os.path.exists(fn):
+        warn("dated re-verification register absent for 83246f00")
+        return
+    data, _, _ = rows("reverification_83246f00.csv")
+    vocab = {"MATCH", "CORRECTED", "NEW", "MISMATCH", "NOT CHECKED"}
+    off = [r for r in data if r["result"].strip().upper() not in vocab]
+    if off:
+        bad("re-verification 83246f00: result %r outside the vocabulary" % off[0]["result"])
+        return
+    flag_ids = {r["id"] for r in rows("flags.csv")[0]}
+    unflagged = []
+    for r in data:
+        if r["result"].strip().upper() in ("MISMATCH", "CORRECTED"):
+            cited = set(re.findall(r"FL-\d+", r["note"])) | set(re.findall(r"FL-\d+", r["check"]))
+            if not cited & flag_ids:
+                unflagged.append(r["check"][:48])
+    if unflagged:
+        bad("re-verification 83246f00: rows that disagree with the official page cite no flag: %s"
+            % unflagged)
+    else:
+        ok("re-verification 83246f00: %d checks, %d new findings, all https-sourced"
+           % (len(data), sum(1 for r in data if r["result"] == "NEW")))
+    nosrc = [r for r in data if not r["source"].startswith("https://")]
+    if nosrc:
+        bad("re-verification 83246f00: %d rows without an https source" % len(nosrc))
 
 
 if __name__ == "__main__":

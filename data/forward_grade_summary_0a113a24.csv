@@ -1,0 +1,11 @@
+metric|value|method|read|source
+pre-registration status|intact|SHA-256 of the lines file, the frozen corpus, the settled-games file and the generator script, recomputed at grading time|the grade below is only meaningful if every hash still matches the one published before the games|S-PREREG-0A11
+hash check - originated_lines_wk11_0a113a24.csv|yes|expected 1c2c8ebe7119336d / recomputed 1c2c8ebe7119336d|unchanged since the pre-registration|S-PREREG-0A11
+hash check - games_2026_wk1_9.csv|yes|expected f0dffce05e79b526 / recomputed f0dffce05e79b526|unchanged since the pre-registration|S-PREREG-0A11
+hash check - games_2026_wk10_played.csv|yes|expected 624f2f76e5c0b036 / recomputed 624f2f76e5c0b036|unchanged since the pre-registration|S-PREREG-0A11
+hash check - originate_week11.py|yes|expected 9d53d9bba5589a4f / recomputed 9d53d9bba5589a4f|unchanged since the pre-registration|S-PREREG-0A11
+pre-registered lines|13|one row per Week 11 fixture on the official schedule|the whole Week 11 slate, published before any of it was played|S-WK11-0A11
+lines settled and graded|0 of 13|a line is graded only when the official final score exists on the league's own game page|the Week 11 games run 19-23 November 2026; the first grade cannot exist before then|S-WK11-0A11
+games needed to detect a 1.0-pt spread-MAE difference|1382|n = (z_a + z_b)^2 * SD^2 / delta^2 with SD = 13.2715, 80% power, two-sided 5%; the SD is the standard deviation of the home margin over the 136 frozen games|one season is 136 games, so this is roughly 10 seasons. 0 settled Week 11 games is 0.00% of it|S-CALC-0A11
+games needed to detect a 1.0-pt total-MAE difference|1607|n = (z_a + z_b)^2 * SD^2 / delta^2 with SD = 14.3081, 80% power, two-sided 5%|roughly 12 seasons of football|S-CALC-0A11
+verdict|no forward evidence yet|the pre-registration exists so the first observation is a forecast; the sample-size arithmetic above says how many observations it takes to call a difference|the honest reading is that a measurement apparatus now exists and has been proven on fourteen published Week 10 lines; whether the lines themselves are any good is a question this season and the next one will answer, not this page|S-CALC-0A11

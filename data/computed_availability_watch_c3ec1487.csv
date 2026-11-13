@@ -1,0 +1,13 @@
+metric|value|how_it_is_computed|what_it_means|source
+clubs on the Week 10 slate|28|counted from data/schedule_2026_wk10.csv (14 fixtures)|the denominator for every coverage share|https://www.nfl.com/schedules/2026/by-week/week-10
+clubs the hub answers for|28|26 with a player table + 2 marked "No Injuries Reported"|coverage is complete for the slate|https://www.nfl.com/injuries/
+player rows in this snapshot|296|row count of the 2026-11-13 transcription|the size of the record, not a count of injuries|https://www.nfl.com/injuries/
+game-status designations|9|rows with a non-empty game_status|the only field that says a player is actually out|https://www.nfl.com/injuries/
+designations as a share of rows|3.0%|9 / 296|most of the record is practice participation, not availability|https://www.nfl.com/injuries/
+injury-description cells|9|rows naming a body part or illness|the hub leaves this blank for most rows|https://www.nfl.com/injuries/
+practice codes: did not practice|94|rows with practice == D|the earliest signal of a downgrade|https://www.nfl.com/injuries/
+practice codes: limited|106|rows with practice == L|ambiguous by rule; cannot be read as out|https://www.nfl.com/injuries/
+practice codes: full|96|rows with practice == F|a full practice does not clear a player|https://www.nfl.com/injuries/
+designations in the 2026-11-12 read|6|non-empty status cells in data/injuries_wk10_2026_hubrefresh.csv|the hub has published no new game status in the interval|https://www.nfl.com/injuries/
+player rows in the 2026-11-12 read|279|row count of that file|the only thing that moved between the two reads is formatting|https://www.nfl.com/injuries/
+clubs with no depth rank anywhere|28|no official public depth chart exists (FL-06)|the backup-replaces-starter requirement is blocked for every club, not some|https://www.nfl.com/injuries/

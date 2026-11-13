@@ -40,11 +40,8 @@ CLUB_HOSTS = {
 OFFICIAL_HOSTS = OFFICIAL_HOSTS | CLUB_HOSTS
 PLAYER_URL = "https://www.nfl.com/players/{}/"
 BLANKS = {"", "not published", "n/a", "N/A"}
+# This is the capture time of the original Week 10 injury-file snapshot only, not a global data time.
 DATA_FETCHED = "2026-11-12 04:45 UTC"
-# The hub and the standings were read a second time the same evening, and the difference is itself a
-# finding (FL-27). The header therefore names both moments rather than letting one date stand for a
-# register that is demonstrably a rolling document.
-DATA_REFRESHED = "2026-11-12 22:35 UTC"
 
 NAV = [
     ("Overview", [("index", "Dashboard"), ("executive-summary", "Executive Summary"),
@@ -58,12 +55,17 @@ NAV = [
                      ("skill-vs-luck", "Removing Luck"),
                      ("model-lab", "Fair-Line Lab (computed)"),
                      ("measured-correlations", "Measured Correlations"),
-                     ("week10-settled", "Settled Week 10 (graded)")]),
+                     ("week10-settled", "Settled Week 10 (graded)"),
+                     ("week11-originated", "Week 11 Lines (pre-registered)")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
               ("depth-deficiencies", "Depth Register (all 32 clubs)"),
-              ("league-data", "Standings & Schedule"), ("deficiencies", "Depth Deficiencies by Side"),
+              ("league-data", "Standings & Schedule"),
+              ("availability-watch", "Availability Watch (dated)"),
+              ("personnel-relief", "Personnel Relief"),
+              ("deficiencies", "Depth Deficiencies by Side"),
+              ("depth-cascades", "Depth Cascades (re-verified)"),
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
                    ("sources", "Source Registry")]),
@@ -96,6 +98,18 @@ def read_rows(name):
 
 SOURCES = {r["id"]: r for r in read_rows("sources.csv")}
 SCHEDULE = {r["game_id"]: r for r in read_rows("schedule_2026_wk10.csv")}
+
+
+def source_read_utc(source_id):
+    """Return the registered official-source read time; never substitute build time for source time."""
+    row = SOURCES.get(source_id)
+    if not row:
+        raise BuildError("unknown source id for read time: %s" % source_id)
+    return row["accessed_utc"]
+
+
+def display_utc(value):
+    return value.replace("T", " ").replace("Z", " UTC")
 
 
 def blank_cell():
@@ -428,6 +442,9 @@ def build_metrics():
         # instead of a reader having to open the deficiencies page to find it
         "hub2_rows": _safe_len("injuries_wk10_2026_hubrefresh.csv"),
         "hub2_clubs": _safe_clubs("injuries_wk10_2026_hubrefresh.csv", "team"),
+        "hub2_captured_utc": SOURCES["S-INJ-2235"]["accessed_utc"],
+        "hub_latest_captured_utc": SOURCES["S-INJ-1246"]["accessed_utc"],
+        "injury_primary_capture": DATA_FETCHED,
         "injury_rows": len(inj),
         "injury_teams": len(agg),
         "injury_clubs_playing": len(playing),
@@ -472,9 +489,83 @@ def build_metrics():
         "empty_clubs": ", ".join(empty),
         "empty_club_count": len(empty),
     }
+    m.update(personnel_relief_metrics())
     m.update(s745_metrics())
     m.update(gamelog_metrics(st))
+    m.update(availability_metrics())
     return m, inj, agg
+
+
+def personnel_relief_metrics():
+    """Counts for the personnel-relief page, derived from its own files.
+
+    Every one of these is counted here rather than typed into the prose, for the
+    same reason the league identities above are: a rolling injury register changes
+    between builds, and a hand-written total is stale the moment it does.
+    """
+    relief = _safe_rows("personnel_relief_wk10_83246f00.csv")
+    club = _safe_rows("personnel_relief_club_83246f00.csv")
+    hub = _safe_rows("injuries_wk10_83246f00.csv")
+    chart_path = os.path.join(DATA, "depth_charts_wk10_83246f00.json")
+    charts = {}
+    if os.path.exists(chart_path):
+        with open(chart_path, encoding="utf-8") as fh:
+            charts = json.load(fh)["charts"]
+    resolved = [r for r in relief if r.get("string", "").strip() not in BLANKS]
+    firsts = [r for r in resolved if r["string"] == "1st string"]
+    first_dnp = [r for r in firsts if r["practice"] == "D"]
+    first_out = [r for r in firsts if r["game_status"] == "Out"]
+    # A unit whose whole published order sits on the report: nobody the club names
+    # behind the starter is clean either. Counted from the cascade text, which lists
+    # each rung and its status, so this cannot drift from the table.
+    full_unit = set()
+    for r in firsts:
+        if r["practice"] in ("D", "L") and r.get("unit_cascade") and \
+                "not on the official report" not in r["unit_cascade"]:
+            full_unit.add((r["club"], r["depth_unit"]))
+    return {
+        "pr_rows": len(relief),
+        "pr_clubs": len(set(r["club"] for r in relief)),
+        "pr_hub_rows": len(hub),
+        "pr_hub_clubs": len(set(r["team"] for r in hub)),
+        "pr_charts": len(charts),
+        "pr_resolved": len(resolved),
+        "pr_unresolved": len(relief) - len(resolved),
+        "pr_first_listed": len(firsts),
+        "pr_first_dnp": len(first_dnp),
+        "pr_first_out": len(first_out),
+        "pr_full_unit_units": len(full_unit),
+        "pr_full_unit_list": ", ".join("%s %s" % (c, u) for c, u in sorted(full_unit)) or "none",
+        "pr_offence_first_dnp": len([r for r in first_dnp if r["side"] == "offence"]),
+        "pr_defence_first_dnp": len([r for r in first_dnp if r["side"] == "defence"]),
+        "pr_club_rows": len(club),
+        "pr_charted_clubs_playing": len(set(r["club"] for r in club
+                                            if r["chart_url"].startswith("https://"))),
+        "pr_uncharted_rows": len([r for r in club if r["chart_url"] == "not published"]),
+    }
+
+
+# The dated availability snapshot is its own register (session c3ec1487). Its counts are read from
+# the file on every build for the same reason the standings totals are: a sentence that quotes a
+# count must never be a number somebody remembered.
+AW_SNAP = "availability_watch_c3ec1487.csv"
+
+
+def availability_metrics():
+    path = os.path.join(DATA, AW_SNAP)
+    if not os.path.exists(path):
+        return {"aw_rows": "not published", "aw_clubs": "not published",
+                "aw_designations": "not published", "aw_designation_share": "not published"}
+    snap = read_rows(AW_SNAP)
+    desig = sum(1 for r in snap if r["game_status"].strip())
+    return {
+        "aw_rows": len(snap),
+        "aw_clubs": len({r["club"] for r in snap}),
+        "aw_designations": desig,
+        "aw_club_states": len(read_rows("availability_watch_by_club_c3ec1487.csv")),
+        "aw_designation_share": "%.1f%%" % (100.0 * desig / len(snap)) if snap else "not published",
+        "aw_practice_changes": len(read_rows("availability_watch_practice_deltas_c3ec1487.csv")),
+    }
 
 
 # Team codes are not stable across league pages; the schedule/game pages code the Rams LA while
@@ -779,8 +870,11 @@ PAGE_KIND = {
     "league-data": ("measured", "Measured data"), "data-dictionary": ("measured", "Schema"),
     "methodology": ("program", "Policy"), "sources": ("program", "Register"),
     "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
-    "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
+    "deficiencies": ("measured", "Measured data"), "depth-cascades": ("measured", "Measured data"), "price-archive": ("program", "Register"),
     "week10-settled": ("measured", "Computed result"),
+    "week11-originated": ("measured", "Computed result"),
+    "personnel-relief": ("measured", "Measured data"),
+    "availability-watch": ("measured", "Dated snapshot"),
     "depth-deficiencies": ("measured", "Measured data"),
     "information-gaps": ("decision", "Decision needed"),
     "suggestion-review": ("decision", "Awaiting owner review"),
@@ -822,7 +916,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
 <body class="kind-%(kind)s">
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">NFL</span> <span>Decision dashboard</span></a>
-  <div class="asof">Data fetched <strong>%(fetched)s</strong> · injury hub and standings re-read <strong>%(refreshed)s</strong> · official league sources only · <a href="methodology.html">how this is verified</a></div>
+  <div class="asof">Source reads (UTC) · <a href="%(injury_url)s">Week 10 primary injury snapshot</a> <strong>%(fetched)s</strong> · 12 Nov full-hub re-read <strong>%(injury_refresh)s</strong> · 13 Nov settled-game-only recheck <strong>%(injury_subset)s</strong> · latest full-hub snapshot <strong>%(injury_latest)s</strong> · <a href="%(standings_url)s">NFL standings</a> <strong>%(standings_read)s</strong> · <a href="sources.html">source log</a> · <a href="methodology.html">verification rules</a></div>
 </header>
 <div class="shell">
   <aside class="side">
@@ -845,7 +939,12 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
   </main>
 </div>
 </body></html>
-""" % dict(title=esc(title), lead=lead_meta, lead_html=lead_html, css=CSS_HREF, fetched=DATA_FETCHED, refreshed=DATA_REFRESHED, nav=navhtml,
+""" % dict(title=esc(title), lead=lead_meta, lead_html=lead_html, css=CSS_HREF, fetched=DATA_FETCHED,
+           injury_refresh=display_utc(source_read_utc("S-INJ-2235")),
+           injury_subset=display_utc(source_read_utc("S-INJ-1113")),
+           injury_latest=display_utc(source_read_utc("S-INJ-1246")),
+           standings_read=display_utc(read_rows("standings_2026.csv")[0]["captured_utc"]),
+           injury_url=SOURCES["S-INJ"]["url"], standings_url=SOURCES["S-STAND-653B"]["url"], nav=navhtml,
            kind=kind, kind_label=esc(kind_label), toc=toc_html, body=body, prev=prevn, next=nextlink,
            flags=metric("flags"), sources=metric("sources"))
 
@@ -901,7 +1000,16 @@ def main():
                 digest.update(f.encode()); digest.update(open(fp, "rb").read())
     manifest = {
         "inputs_sha256": digest.hexdigest(),
+        # Backward-compatible alias for the original Week 10 injury-file capture only; do not read this
+        # as the fetch time of every file. The source-specific map below is the authoritative freshness record.
         "data_fetched_utc": DATA_FETCHED,
+        "source_read_times_utc": {
+            "week10_injury_file_capture": DATA_FETCHED,
+            "week10_injury_full_hub_reread": source_read_utc("S-INJ-2235"),
+            "week10_injury_settled_game_subset_recheck": source_read_utc("S-INJ-1113"),
+            "week10_injury_latest_full_hub_snapshot": source_read_utc("S-INJ-1246"),
+            "standings": read_rows("standings_2026.csv")[0]["captured_utc"],
+        },
         "pages": written,
         "metrics": METRICS,
         "blank_cells_rendered_as_not_published": BLANK_TALLY["count"],
@@ -922,7 +1030,7 @@ def main():
 
 KPIS = [
     ("injury_rows", "Injury rows ingested", "injuries",
-     lambda m: "%d players across %d of the %d clubs playing Week 10 at 04:45Z; the 22:35Z re-read of the same page holds %d rows across %d clubs" % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["hub2_rows"], m["hub2_clubs"])),
+     lambda m: "%d rows, %d/%d clubs (%s); %d/%d (%s); latest %d/%d (%s). Separate dated reads." % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["injury_primary_capture"], m["hub2_rows"], m["hub2_clubs"], m["hub2_captured_utc"], m["pr_hub_rows"], m["pr_hub_clubs"], m["hub_latest_captured_utc"])),
     ("designations", "Designations published", "injuries",
      lambda m: "%d of %d rows carry a game status; the rest are not published" % (m["designations"], m["injury_rows"])),
     ("depth_rows", "Depth & roster events", "depth-impact",
@@ -930,7 +1038,7 @@ KPIS = [
     ("standings_teams", "Standings reconciled", "league-data",
      lambda m: "%d clubs; points and winning %s recomputed clean" % (m["standings_teams"], "pct")),
     ("suggestions", "Suggestions to decide", "suggestions",
-     lambda m: "%d options scored; none implemented without your pick" % m["suggestions"]),
+     lambda m: "%d options scored; adopted work is labeled and owner-only choices remain open" % m["suggestions"]),
     ("questions", "Open questions", "questions",
      lambda m: "%d questions, %d marked P0 blocking" % (m["questions"], m.get("p0", "?"))),
     ("flags", "Flags for review", "flagged-for-review",

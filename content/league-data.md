@@ -3,15 +3,17 @@
 
 Standings rows are not simply copied — they were recomputed. Winning percentage in the NFL counts a tie as half a win, so a 5–3–1 club is listed at 0.611, not 0.556, and that formula reconciles for all 32 clubs. Net points reconciles to points for minus points against everywhere. Two league-wide checks then close the transcription: ΣPF equals ΣPA to the unit ({{metric league_pf}} each) and Σnet points equals 0, which can only hold if every points value was read off the right row.
 
-The official standings page renders sixteen value columns and the fetched markup carries no header row. Seven columns have unambiguous meaning from their format and arithmetic and are published; the remaining split-record columns are **omitted rather than guessed** ([FL-07](flagged-for-review.html)).
+The official standings page renders multiple value columns without a full column-header row in the fetched table. Eight fields have unambiguous meaning from the NFL legend and arithmetic—W, L, T, PCT, PF, PA, NET PTS and STREAK—and are published; the remaining split-record columns are **omitted rather than guessed** ([FL-07](flagged-for-review.html)). `captured_utc` is our source-read time, not an NFL-published timestamp.
 
-{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak;;source=S-STAND;;caption=Division-view standings as published on nfl.com. The table was re-read on 13 November 2026 after the Week 10 Thursday game: NYG and WAS each moved by exactly one game and the league identities still close. See FL-35.}}
+On **13 November 2026 at 12:53 UTC**, all 32 club rows were re-read from the official division standings page and transcribed independently to `data/standings_recheck_20261113.csv`. The machine check compares every club and each of the eight published fields—W/L/T/PCT/PF/PA/NET PTS/STREAK—and reports **32/32 clubs, 256/256 values exact**. No standings value changed; this is a new source-read timestamp, not an NFL publication time. Each displayed row links to the official NFL read in the source registry.
+
+{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak,captured_utc:Read UTC;;source_col=source;;caption=Official division-view standings, captured at 2026-11-13T12:53Z. All 32 clubs and eight published fields matched the saved official re-read; capture time is not the NFL's publication time. Earlier staleness and correction are documented in FL-35.}}
 
 ## Completed results, weeks 1–9
 
 This is the only historical corpus in the project, and it came from a **parallel session** (`arena-009ec582`) that transcribed the league's week-by-week schedule pages. It was not taken on trust: it was re-audited here, row by row, and then used as an independent check on the standings table above. Two pages fetched separately, transcribed separately, agreeing on all {{metric games_log_reconciled}} clubs' wins, losses, ties, points for and points against, is the strongest verification available without a second data vendor.
 
-The reconciliation is computed on every build (`tools/verify.py` → 37 checks) and published from the measurement, not from a note:
+The reconciliation is computed on every build by `tools/verify.py`, including the saved official-read comparison, and published from the measurement, not from a note:
 
 - {{metric games_log}} rows, {{metric games_log_weeks}} weeks, **{{metric games_log_links}} of {{metric games_log}} rows carry an official nfl.com game URL** — the import refused to write a row without one.
 - Recounting the log gives {{metric games_log}} games — {{metric games_log_away_wins}} away wins, {{metric games_log_home_wins}} home wins and {{metric games_log_ties}} tie — with ΣPF = ΣPA = {{metric games_log_pf}}. At club level that is {{metric games_log_club_w}} W / {{metric games_log_club_l}} L / {{metric games_log_club_t}} T, which is exactly what the standings table showed for weeks 1–9 (one tie counts for two clubs, which is why the club totals sum to twice the game count).
@@ -39,6 +41,7 @@ Two of these games are structural exceptions a model must not treat as ordinary,
 | Σ wins = Σ losses across 32 clubs | pass — {{metric league_w}} and {{metric league_l}}, with {{metric league_t}} ties counted on both sides |
 | Σ points for = Σ points against | pass — {{metric league_pf}} and {{metric league_pf}} |
 | Σ net points = 0 | pass |
+| [Official standings read (2026-11-13T12:53Z)](https://www.nfl.com/standings/) vs saved 32-club snapshot | pass — 256/256 W/L/T/PCT/PF/PA/NET PTS/STREAK values exact |
 | Winning pct = (W + ½T) ÷ (W + L + T) | pass for all 32 rows |
 | Net = PF − PA | pass for all 32 rows |
 | Games played consistent with week 10 of the schedule | pass — 8 or 9 games per club depending on bye placement, {{metric league_club_games}} club-games in total |

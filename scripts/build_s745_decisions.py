@@ -60,7 +60,7 @@ PATHS = [
     ("C", "Build the availability and depth signal",
      "Turn 'a starter is out' into a measurable replacement cost, using the "
      "club-published depth charts, the official injury report and real playing time.",
-     ("Availability", "Feature design", "Signal design", "Modeling"),
+     ("Availability", "Feature design", "Signal design", "Modeling", "Coverage"),
      "Unblocks: the injury and depth features behind half the signal catalogue, "
      "and it is the part of the brief that is currently least covered (4 of 32 "
      "club charts before this session).",

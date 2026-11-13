@@ -319,17 +319,26 @@ def console_is_derived_only():
         bad("information gaps: does not match the question register (%d vs %d)" % (len(gaps), len(q)))
     else:
         ok("information gaps: restates all %d questions and invents none" % len(q))
-    for r in gaps:
+    # Compared row by row, not id by id: the question register itself carries two ids used
+    # twice for different questions (published as FL-54), so a dict keyed on id would compare
+    # each restated row against the wrong original and report a re-wording that never happened.
+    rew = []
+    for r, src in zip(gaps, q):
         for col in ("information_we_have", "information_we_lack", "discovery_action"):
-            src = {x["id"]: x for x in q}[r["id"]]
             key = {"information_we_have": "what_we_have", "information_we_lack": "what_we_lack",
                    "discovery_action": "how_to_close"}[col]
             if r[col] != src[key]:
-                bad("information gaps: %s.%s was re-worded" % (r["id"], col))
+                rew.append("%s.%s" % (r["id"], col))
                 break
+    if rew:
+        bad("information gaps: cells re-worded instead of copied: %s" % rew[:4])
     else:
         ok("information gaps: every have/lack/action cell is the register's own text, "
            "copied verbatim")
+    dupes = sorted({r["id"] for r in q if sum(1 for x in q if x["id"] == r["id"]) > 1})
+    if dupes:
+        warn("the question register uses %s for two different questions (published as FL-54); "
+             "the restatement is compared by row, so both rows are carried" % ", ".join(dupes))
 
 
 # --------------------------------------------------------------------------- #
