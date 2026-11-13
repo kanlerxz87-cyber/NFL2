@@ -1972,3 +1972,23 @@ HTML from the merged inputs, union the registers, re-apply the page layer with
   precedence), and the grading of the two locked calls, which needs Sunday's finals appended to
   `data/games_2026_wk10_played.csv` followed by `tools/compute_availability_66faefac.py` and
   `tools/verify_prereg_66faefac.py`.
+
+### Deployment record, continued — PRs #54 and #55
+
+- **PR #54** (table-header repair + the record above) merged as `125558e06`; Pages reported `built` for
+  that commit, so the header fix and this log are the deployed tree.
+- **PR #55** is the second defect found the same way — by reading the deployed page instead of the
+  local file. The pre-registration ledger's caption promised a de-duplicated headcount ("one count per
+  player") that the column does not compute; the disclosure that was supposed to replace it lived in a
+  script which had aborted on an unrelated assertion one statement earlier, so the page contradicted
+  the register for a full turn. The caption now states the formula as computed, the size of the
+  double count is published next to it (WAS 5→3, NE 6→3, DET 6→4; no locked call moves), S-64 carries
+  the name-level-union proposal, and the phrase "15% hit rate" is gone — nothing has settled, so the
+  only rate this page may quote is a *selection* rate.
+- **Discipline that held:** the locked file and its hash were not edited to match the prose. The prose
+  moved to describe the file, and `tools/verify_prereg_66faefac.py` still reports
+  `lock holds: sha256 1186474bab75dd41` after two merges.
+- **For whoever reads the live site next:** build checks cannot see a truncated column header or a
+  caption that drifted from the data — both survive every local verifier. Fetch the deployed page
+  after merging; that is where both of today's defects were visible.
+
