@@ -1,0 +1,38 @@
+{
+ "backtest_corpus": "data/games_2026_wk1_9.csv",
+ "backtest_corpus_sha256": "f0dffce05e79b5267318c444eb50ca151390480fbd6c10965290228995fb6f33",
+ "decision_timestamp_utc": "2026-11-13T12:39Z",
+ "games_fitted": 137,
+ "games_fitted_detail": "136 games from weeks 1-9 plus 1 settled Week 10 game(s); the remaining thirteen Week 10 games had not been played at the decision timestamp and are therefore unknown to this model",
+ "generator": "tools/originate_week11.py",
+ "generator_sha256": "62f7970b673cb603f8dd981cd84dd595e38ea1a7e6b4e9328be16a0d44842a5d",
+ "lambda_selection": [
+  {
+   "games": 88,
+   "lambda": 5.0,
+   "walk_forward_spread_mae": 9.278
+  },
+  {
+   "games": 88,
+   "lambda": 20.0,
+   "walk_forward_spread_mae": 9.824
+  },
+  {
+   "games": 88,
+   "lambda": 60.0,
+   "walk_forward_spread_mae": 10.205
+  }
+ ],
+ "lines_file": "data/originated_lines_wk11_0a113a24.csv",
+ "lines_sha256": "1c2c8ebe7119336dcdec5327f12ef35ce45324f01c5b9d471ceb6f8613bc1ba6",
+ "model": "ridge simultaneous ratings on margin and pace, unpenalised intercepts; ridge penalty selected by walk-forward spread MAE over weeks 4-9 of the frozen corpus",
+ "reproduction_guard": "the same code path re-derives all 14 published Week 10 lines from the frozen corpus and matched every spread and total cell",
+ "ridge_lambda": 5.0,
+ "season": 2026,
+ "settled_games_file": "data/games_2026_wk10_played.csv",
+ "settled_games_sha256": "624f2f76e5c0b036a31930a622a2c4fb9927edeaf626a316d6c62acb24d4c7dc",
+ "sign_convention": "a spread column holds the predicted HOME margin; positive means the home club is favoured",
+ "status": "unvalidated - paper only - not betting advice - no strategy has cleared the validation gates and no line here is eligible for staking",
+ "week": 11,
+ "what_this_is": "Pre-registration of the Week 11 lines before the games they describe. The hashes below are recomputed by tools/grade_forward.py before it grades anything; a line edited after this moment fails that check."
+}
