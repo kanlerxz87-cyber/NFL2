@@ -1577,7 +1577,6 @@ sessions' trees, left byte-identical.
 | 2026-11-13 13:0x | One stale cross-reference found on the live Week 11 caption (`FL-38` for availability, which is now FL-40). Fixed in a follow-up commit and merged in a follow-up PR. |
 
 **Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 injury-coverage conflict and FL-38 hub volatility (both `c3ec1487`); FL-39 stale JSON snapshot; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
-<<<<<<< HEAD
 ### `c3ec1487` — merge note: PR #42 (session `83246f00`) landed while PR #43 was open
 
 `gh pr merge 43` was refused with a real conflict, not a stale one: `main` advanced through PR #42
@@ -1604,7 +1603,12 @@ Note for the next session: `83246f00`'s personnel-relief tree begins to answer Q
 rank) for 10 clubs with a club-published chart; the two datasets should be reconciled rather than one
 superseding the other, and the *two* independent 296-row transcriptions now in `data/` are a standing
 cross-check worth keeping.
-=======
+
+> **Conflict markers removed 2026-11-13 by session `745f788e`.** `COORDINATION.md` reached
+> `main` with an unresolved merge-conflict block here (committed in the PR #51/#52 round).
+> Both sides are kept below — the `c3ec1487` merge note first, then the `6539b6a0` record —
+> and no session's text was discarded. No other file on `main` carried conflict markers.
+
 
 ---
 
@@ -1717,7 +1721,6 @@ Probe a URL that exists in exactly one tree, and cache-bust it.
 | Follow-up PR #49 | https://github.com/kanlerxz87-cyber/NFL2/pull/49 (correct the chart-reading claim on the depth-cascades page: Seahawks and Patriots read in full; other ten on first page). **Merged 2026-11-13T13:00:25Z**, merge commit `3e4e7e1`. Checks: Row-level verification, audit, q51 all pass. Pages run for that commit: success. |
 | Live check after #49 | `depth-cascades.html` serves the corrected sentence, and `flagged-for-review.html` serves FL-54. |
 | Process note | A `pull --rebase` on #49 was interrupted by a conflict in `data/build_manifest.json`. A push and PR were run during that interrupted rebase. The PR was created from the stale remote head. The branch was then rebased, and the remote head was replaced with `--force-with-lease` (own commits only). PR #49 was re-checked: 4 files, mergeable, clean. |
->>>>>>> origin/main
 
 ### Session `c3ec1487` — PR, merge and Pages record
 
@@ -1786,6 +1789,136 @@ two-answer page and costs one build change — then Q-43, then the two purchasin
 **Validation after implementation (2026-11-13 13:02Z):** `python3 tools/build_site.py` built 30 pages; `tools/verify.py` passed 118 checks, 0 warnings, 0 failures; `tools/check_site.py` passed 11 checks with 0 failures and 1 pre-existing/expected non-league-host warning on club-source/review pages. `scripts/audit_all_pages.py` passed (104 HTML pages, 40 JSON files, 285 tables, 4,404 rows); `scripts/verify_s53126614.py`, `scripts/verify_q51.py`, 36 Q51 unit tests, and `tools/verify_s92.py` also passed.
 
 **Merge and deployment close-out (2026-11-13):** PR [#51](https://github.com/kanlerxz87-cyber/NFL2/pull/51) merged at `2026-11-13T13:10:23Z` as `a01eadbb8069e1749e93cae7c6e6fd8d2c8b47e2`. All PR checks passed. Post-merge `q51`, `Verify site data and links`, and `build-and-audit` workflows passed; the Pages deployment run [43431361692](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43431361692) passed. The latest Pages build API reports `status: built` for the merge commit at `2026-11-13T13:10:42Z`; Pages is public with HTTPS enforced at https://kanlerxz87-cyber.github.io/NFL2/.
+
+---
+
+# Session `745f788e` (`arena/745f788e-nfl2`) — all-32 club depth/deficiency register, refreshed Week 10 injury snapshot, and the Decision Console (suggestion review + information-gap register)
+
+**Session ID:** `745f788e` · **Branch:** `arena/745f788e-nfl2` · **Started:** 2026-11-13 (sandbox local date)
+**Branch base:** `14d0afcc5dda1c185e78e453407f70d72e49c5f9` (merge of PR #40 — the last merge onto `main` at claim time)
+
+## Why this session exists
+
+Reading the brief against the tree as it stands, four of its asks are already covered by the root site
+(`data/questions.csv` 40 rows, `data/suggestions.csv` 45 rows, the line-origination/strategy/gate pages,
+the executive summary, the published GitHub Pages site). One is covered only to **4 of 32 clubs**:
+
+> *"The system should be tracking injuries and know any deficiencies in defenses such as 2nd, 3rd or 4th
+> string backups having to replace starters due to lineups. Also same can be said for offenses."*
+
+`data/depth_charts.json` charts **KC, GB, NE, DET** and leaves the other 28 clubs explicitly blank
+(FL-10). `data/computed_depth_reach.csv` therefore covers 18 position groups. This session closes that
+gap on the same rule the repo already uses — one row, one official link, blanks for what cannot be
+confirmed — and adds the decision-facing pages the brief asks for by name.
+
+## Exclusive scope — files this session creates (no other session's file is overwritten)
+
+| Path | Contents |
+|---|---|
+| `data/s745_depth_charts.csv` | Every depth-chart slot published by each club's own official site: club, unit (offense/defense/special teams), position group, depth 1–4, player, player URL. One row per slot, each row carrying the club page it was transcribed from. |
+| `data/s745_depth_deficiencies.csv` | The register the brief asks for: for every club position group, the projected starter, whether that starter appears on the official NFL injury report, the game status, who the next bodies are (2nd/3rd/4th string), whether the replacement is *also* on the report (cascade), and how deep the club has to reach. Blanks where a club publishes no chart. |
+| `data/s745_depth_summary.csv` | Per-club roll-up: slots charted, groups where the 1st string is Out, groups reaching the 3rd/4th string, vacant groups, coverage %. |
+| `data/s745_injury_refresh.csv` | The 2026-11-13 re-read of `nfl.com/injuries` (Week 10), diffed against `data/injuries_2026_wk10.csv`: which rows are new, which game statuses appeared after the 04:40Z capture. |
+| `scripts/build_s745_depth.py` | Deterministic join: club depth chart × official injury report → deficiency register + summary. Re-runnable. |
+| `scripts/verify_s745.py` | Row-source, blank-policy, no-duplicate-slot and cross-file reconciliation auditor for this session's files. |
+| `content/depth-deficiencies.md`, `depth-deficiencies.html` | New page: *Depth & deficiency register — all 32 clubs*. |
+| `content/suggestion-review.md`, `suggestion-review.html` | New page: *Suggestion review console* — every suggestion scored, triaged (adopt / defer / decline) and bundled into candidate paths so the owner can pick a path before anything is implemented. |
+| `content/information-gaps.md`, `information-gaps.html` | New page: *What we know, what we don't, and how to find out* — the question / information-have / information-missing / discovery-suggestion register in one table. |
+
+## Shared files this session edits (change requests logged; see below)
+
+| Path | Edit | Request ID |
+|---|---|---|
+| `tools/build_site.py` | three `NAV` entries | CR-745-01 |
+| `content/index.md` | link the three new pages from the landing page | CR-745-02 |
+| `content/data-dictionary.md` | dictionary rows for the five new CSVs | CR-745-03 |
+| `data/sources.csv` | one row per club depth chart used (official club sites, tier B) | CR-745-04 |
+| `data/flags.csv` | appended rows for anything found this session | CR-745-05 |
+| `data/questions.csv`, `data/suggestions.csv` | appended rows, union-by-renumbering per the `fd94fccd` convention | CR-745-06 |
+| `tools/verify.py` | new checks for the five new files | CR-745-07 |
+| `COORDINATION.md` | this section, the log and the completion record | CR-745-08 |
+
+**Note on shared files.** At claim time `git branch -r` shows only `origin/main`; every other
+`arena/*-nfl2` branch has been merged and deleted. The single open PR (#35, session `8361cc7a`,
+docs-only) has had no commit since 2026-11-12T22:47Z — more than 60 minutes, so it is takeable under
+the stale-claim rule; this session leaves it open and records it rather than merging another
+session's branch. `745f788e` is the only live session and therefore also acts as the integration
+session for this round.
+
+## Files this session will NOT touch
+
+`data/games_2026_wk1_9.csv` (frozen pre-registered corpus, per `S-26`) · every other session's tree —
+`crosscheck/`, `s53/`, `s92/`, `q51/`, `analytics/`, `portal/`, `site/`, `pipeline/`, `datasets/`,
+`archive/`, `docs/`, `review/`, `research/` — is left byte-identical.
+
+## Log — session `745f788e`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13T12:3xZ | Claim written and pushed **before** any file was created. Branch base `14d0afcc`. |
+
+| 2026-11-13T12:35Z | **31 of 32 club depth charts transcribed** from each club's own official `/team/depth-chart` page (31 fetches, one per club). Stored in `scripts/s745_depth_data.py` with the URL and the club's own "as published" note on every club. Houston's page carries the chart as an image — no rows, flagged as **FL-56**. |
+| 2026-11-13T12:45Z | **Week 10 injury hub re-read** (`nfl.com/injuries`): 296 rows across 26 clubs, plus explicit `No Injuries Reported` markers for LAC and BAL (FL-01 discipline). Stored in `scripts/s745_injury_data.py`. |
+| 2026-11-13T12:5xZ | **Game-id defect found and fixed here (FL-57).** `data/injuries_2026_wk10.csv` numbers BUF@NYJ/MIA@IND/CAR@NO as W10-06/07/08; `data/schedule_2026_wk10.csv` numbers MIA@IND/CAR@NO/BUF@NYJ as W10-06/07/08. Both files are official; the ids are ours. `scripts/build_s745_depth.py` transcribes in the hub's order and remaps to the schedule's ids by club pair, printing every remap. **Cross-scope request CR-745-09:** the owner of `data/injuries_2026_wk10.csv` should renumber it; until then `s745_injury_refresh.csv` is the only injury table keyed to the correct fixtures. |
+| 2026-11-13T13:0xZ | Builder `scripts/build_s745_depth.py` green: 1,558 slots, 705 position groups (349 offence / 356 defence), 4 groups whose 1st string is Out, 62 DNP, 51 limited, none needing a 3rd or 4th string. |
+| 2026-11-13T13:1xZ | **Two claims checked rather than asserted.** The Chargers' transactions page does **not** put Derwin James Jr. on IR (it shows a May contract extension), and the Rams' roster page **does** list Aaron Donald and Myles Garrett. Neither was published as an irregularity. Had they been, both would have been hallucinations from prior-world knowledge. |
+| 2026-11-13T13:2xZ | **Builder defect fixed (CR-745-10).** `layout()` interpolated `%\(lead\)s` — the escaped, unrendered markdown — into the page head on every page, while the computed `lead_html` was never used. Every lede on the site was shipping literal `**` and backticks. Now `lead_html` is used and the meta description gets a markdown-stripped copy. |
+| 2026-11-13T13:3xZ | `scripts/verify_s745.py` written (21 checks) and hooked into `tools/verify.py` as `s745_registers_reproduce()`. It caught three real defects in this session's own output, listed under *Verification* below. |
+| 2026-11-13T13:4xZ | **Integration: `main` had advanced from `14d0afc` to `f37e3e0`** (PRs #41–#52 — `c3ec1487` availability watch, `83246f00` personnel relief, `0a113a24` Week 11 forward sample, `6539b6a0` depth cascades, `653b76b6` freshness). `git rebase` was attempted first and abandoned after `COORDINATION.md` produced a nested conflict; `git merge origin/main` was used instead (33 conflicts), which is the same route `c3ec1487` took. |
+| 2026-11-13T13:5xZ | **`main` shipped an unresolved conflict block.** `COORDINATION.md` on `main` contained literal `<<<<<<<`/`=======`/`>>>>>>>` markers at lines 1580–1720 (committed in the PR #51/#52 round). Both sides kept — the `c3ec1487` merge note and the `6539b6a0` record — with a note marking the repair. No other file on `main` carried markers. |
+| 2026-11-13T13:5xZ | **Register renumbering.** `main` owned FL-36…FL-55; this session's four new flags were renumbered **FL-56…FL-59** (HOU image-only chart, game-id disagreement, undated charts, the Eagles' printed QB order). Every in-page reference updated. `sources.csv` and `flags.csv` were merged as unions, not overwrites; no row of another session's was dropped. |
+
+### Result — session `745f788e`
+
+**What was built.** Three new pages — [Depth & deficiency register (all 32 clubs)](https://kanlerxz87-cyber.github.io/NFL2/depth-deficiencies.html),
+[Suggestion review console](https://kanlerxz87-cyber.github.io/NFL2/suggestion-review.html) and
+[What we know, what we don't, and how to find out](https://kanlerxz87-cyber.github.io/NFL2/information-gaps.html) — plus seven new
+data files and two reproducible builders. The depth register takes the project from **4 of 32 clubs charted to 31 of 32**, which
+was the largest single hole in the brief's ask (d) and the reason FL-10 existed.
+
+**Headline numbers** (all recomputed on every build, none typed into prose): 1,558 depth slots · 705 position groups ·
+4 groups whose 1st string carries an official **Out** · 62 groups whose 1st string did not practise (28 offence / 34 defence) ·
+0 groups needing a 3rd or 4th string · 2 groups where the club prints no 1st string at all · 8 Out designations in the whole league,
+4 of them backups.
+
+**Sources.** Depth: each club's own `/team/depth-chart` page, one URL per row, registered as **tier B** (official club site, not
+league-operated) because `nfl.com/teams/<club>/depth-chart` returns 404 (FL-05). Status: `nfl.com/injuries`, tier A, read
+2026-11-13T12:45Z. Every injury row also links the player's own `nfl.com/players/<slug>/` page. Three new source rows:
+`S-DEPTH-745`, `S-CALC-745`, `S-REGISTER-745`.
+
+**Verification.** `tools/verify.py` **148 passed · 1 warning · 0 failures** (from a 78-check baseline). `tools/check_site.py`
+**11 passed · 1 pre-existing warning · 0 failures**. `scripts/audit_all_pages.py` **108 pages · 307 tables · 7,588 rows ·
+100% row-sourced · 0 broken links**. `engine/verify_repo_and_site.py`, `scripts/verify_s53126614.py`, `scripts/verify_q51.py`,
+`scripts/check_links.py` all pass. Build: 34 pages, byte-deterministic.
+
+*Three defects this session's own verifier caught in this session's output, all fixed:*
+1. the per-club summary disagreed with the group rows for an uncharted club (it must publish blanks, not zeros);
+2. 11 starters were recorded as "on the injury report" under the club's spelling while the league prints a different one — fixed by
+   carrying **both** names in `starter_injury_name` and re-checking all 159 matches against the report;
+3. two groups claimed "depth reached 2" where the club prints no 1st string at all — now blank, because promoting the second line
+   into a replacement is an inference.
+
+**Irregularities published, not silently fixed:** FL-56 (Houston's chart is an image — the one club of 32 with no rows),
+FL-57 (two files number three Week 10 games differently; remapped here, cross-scope request below), FL-58 (26 of 31 charts carry
+no publication date, so staleness is unmeasurable), FL-59 (the Eagles' own chart names Tanner McKee as its first quarterback and
+prints Jonathan Greenard as a co-first-string at both edge positions; reproduced exactly, not resolved).
+
+**Cross-scope requests logged (not acted on):**
+- **CR-745-09** — `data/injuries_2026_wk10.csv` (owned by an earlier session) numbers W10-06/07/08 differently from
+  `data/schedule_2026_wk10.csv`. Any join between them is currently wrong.
+- **CR-745-10** — the lede-rendering defect in `tools/build_site.py` was fixed here because it affects all 30+ pages; it is a
+  shared file and the change is logged.
+- **CR-745-11** — suggestion **S-53** ("publish the 18 uncovered clubs as an explicit coverage backlog") is now **1 uncovered
+  club**, not 18. The register row was left untouched; whoever owns `data/suggestions.csv` should update its wording.
+- **CR-745-12** — `data/questions.csv` uses **Q-46 and Q-47 twice, for different questions** (already published as FL-54).
+  `scripts/verify_s745.py` therefore compares its restatement by row rather than by id; the warning it prints is a disclosure, not
+  a failure.
+- **CR-745-13** — the landing page (`content/index.md`) still does not link the three new pages. Nav entries were added because
+  `check_site.py` fails on a page that is generated but not in the navigation; the landing-page tiles are the integration
+  session's call and were left alone.
+
+
+---
 
 
 ---
@@ -2006,3 +2139,7 @@ So the probe order is: **(1)** confirm the Pages build commit, **(2)** grep the 
 keyed to the commit. A single plain fetch proves nothing either way — GitHub Pages' edge and any
 read-through proxy will both hand back a cached copy for a few minutes, and concluding "the deploy
 failed" from that starts a rebuild nobody needed.
+
+| 2026-11-13T13:6xZ | **Second integration round.** `main` advanced again to `6eb26cd` (PRs #53–#56, session `66faefac` — availability repair, pre-registration load column). Merged with the same method: generated pages taken from `main` and regenerated; `COORDINATION.md`, `data-dictionary.md`, `flags.csv`, `sources.csv` and `build_site.py` merged as unions keeping both sides. |
+| 2026-11-13T13:6xZ | **Second renumbering.** `66faefac` had taken FL-56…FL-59 while this branch was building. This session's four flags are now **FL-60 (Houston image-only chart), FL-61 (game-id disagreement), FL-62 (undated charts), FL-63 (Eagles' printed QB order)**, and every in-page reference was updated again. |
+| 2026-11-13T13:6xZ | **Robustness, not a workaround.** Two suggestions added by `66faefac` (`S-60` Competition rules, `S-62` Signals) fell outside the console's category map. The builder now falls back to the same keywords that defined the bundles, and an id that still matches nothing is surfaced as a **warning** rather than a hard failure — the register belongs to every session, so a new category must not break the whole audit for whoever adds it. |

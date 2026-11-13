@@ -1087,6 +1087,24 @@ def reverification_5f16dcc6_holds():
         bad("re-verification 2026-11-13: %d rows without an https source" % len(nosrc))
 
 
+
+def s745_registers_reproduce():
+    """Session 745f788e publishes an all-club depth register and a decision console. Its own
+    verifier lives beside the builder (scripts/verify_s745.py) so the session that owns the
+    files owns the audit, and this hook is what makes it run in CI with everything else.
+    A missing script is a warning, not a pass: the register would ship unaudited."""
+    path = os.path.join(ROOT, "scripts", "verify_s745.py")
+    if not os.path.exists(path):
+        warn("scripts/verify_s745.py missing; the depth register is unaudited")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    import verify_s745 as v
+    v.main()
+    PASS.extend(v.PASS)
+    WARN.extend(v.WARN)
+    FAIL.extend(v.FAIL)
+    # the hook's own counters are merged above; drop the duplicate print of them
+    v.PASS.clear(); v.WARN.clear(); v.FAIL.clear()
 def forward_sample_holds():
     """The Week 11 forward sample is the first thing on this site that is published BEFORE the
     games it describes. That claim is only worth anything if three things hold every time the
@@ -1331,7 +1349,7 @@ def main():
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
     settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()
-    personnel_relief_reproduces(); reverification_83246f00_holds()
+    personnel_relief_reproduces(); reverification_83246f00_holds(); s745_registers_reproduce()
     
     print("=" * 72)
     for m in PASS:

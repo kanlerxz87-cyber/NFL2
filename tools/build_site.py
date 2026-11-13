@@ -15,6 +15,29 @@ DATA = os.path.join(ROOT, "data")
 CONTENT = os.path.join(ROOT, "content")
 
 OFFICIAL_HOSTS = {"nfl.com", "www.nfl.com", "operations.nfl.com", "static.www.nfl.com"}
+# The league publishes no central depth chart - nfl.com/teams/<club>/depth-chart returns 404,
+# verified and published as FL-05. The only official chart for a club is the one its own site
+# publishes, so the 32 club domains are treated as official league hosts for source marking.
+# They are still recorded as tier B in data/sources.csv: official, but not league-operated.
+CLUB_HOSTS = {
+    "azcardinals.com", "www.azcardinals.com", "atlantafalcons.com", "www.atlantafalcons.com",
+    "baltimoreravens.com", "www.baltimoreravens.com", "buffalobills.com", "www.buffalobills.com",
+    "panthers.com", "www.panthers.com", "chicagobears.com", "www.chicagobears.com",
+    "bengals.com", "www.bengals.com", "clevelandbrowns.com", "www.clevelandbrowns.com",
+    "dallascowboys.com", "www.dallascowboys.com", "denverbroncos.com", "www.denverbroncos.com",
+    "detroitlions.com", "www.detroitlions.com", "packers.com", "www.packers.com",
+    "houstontexans.com", "www.houstontexans.com", "colts.com", "www.colts.com",
+    "jaguars.com", "www.jaguars.com", "chiefs.com", "www.chiefs.com",
+    "raiders.com", "www.raiders.com", "chargers.com", "www.chargers.com",
+    "therams.com", "www.therams.com", "miamidolphins.com", "www.miamidolphins.com",
+    "vikings.com", "www.vikings.com", "patriots.com", "www.patriots.com",
+    "neworleanssaints.com", "www.neworleanssaints.com", "giants.com", "www.giants.com",
+    "newyorkjets.com", "www.newyorkjets.com", "philadelphiaeagles.com", "www.philadelphiaeagles.com",
+    "steelers.com", "www.steelers.com", "49ers.com", "www.49ers.com",
+    "seahawks.com", "www.seahawks.com", "buccaneers.com", "www.buccaneers.com",
+    "tennesseetitans.com", "www.tennesseetitans.com", "commanders.com", "www.commanders.com",
+}
+OFFICIAL_HOSTS = OFFICIAL_HOSTS | CLUB_HOSTS
 PLAYER_URL = "https://www.nfl.com/players/{}/"
 BLANKS = {"", "not published", "n/a", "N/A"}
 # This is the capture time of the original Week 10 injury-file snapshot only, not a global data time.
@@ -23,7 +46,9 @@ DATA_FETCHED = "2026-11-12 04:45 UTC"
 NAV = [
     ("Overview", [("index", "Dashboard"), ("executive-summary", "Executive Summary"),
                   ("requirements", "Requirements"), ("roadmap", "Build Plan & Roadmap")]),
-    ("Decisions", [("questions", "Open Questions"), ("suggestions", "Suggestion Register"),
+    ("Decisions", [("questions", "Open Questions"), ("information-gaps", "Information Gaps"),
+                   ("suggestions", "Suggestion Register"),
+                   ("suggestion-review", "Suggestion Review Console"),
                    ("flagged-for-review", "Flagged for Review")]),
     ("Origination", [("line-origination", "Originate Our Own Lines"), ("signals", "Signal Catalogue"),
                      ("correlation", "Correlation"), ("bet-types", "Bet Types"),
@@ -35,6 +60,7 @@ NAV = [
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
+              ("depth-deficiencies", "Depth Register (all 32 clubs)"),
               ("league-data", "Standings & Schedule"),
               ("availability-watch", "Availability Watch (dated)"),
               ("personnel-relief", "Personnel Relief"),
@@ -342,6 +368,64 @@ def _safe_clubs(name, col):
     return len({r.get(col, "").strip() for r in _safe_rows(name) if r.get(col, "").strip()})
 
 
+def s745_metrics():
+    """Session 745f788e: the all-club depth register and the decision console.
+
+    Every figure the two new pages quote in prose is recomputed here from the generated
+    CSVs, so a refresh cannot leave a sentence behind the way two hand-written standings
+    totals went stale on 13 November (FL-35). The files are produced by
+    scripts/build_s745_depth.py and scripts/build_s745_decisions.py.
+    """
+    def _rows(name):
+        p = os.path.join(DATA, name)
+        if not os.path.exists(p):
+            return []
+        with open(p, encoding="utf-8") as fh:
+            return list(csv.DictReader(fh, delimiter="|"))
+
+    def _n(name, col, pred):
+        return sum(1 for r in _rows(name) if pred((r.get(col) or "").strip()))
+
+    charts = _rows("s745_depth_charts.csv")
+    defi = _rows("s745_depth_deficiencies.csv")
+    summ = _rows("s745_depth_summary.csv")
+    scores = _rows("s745_suggestion_scores.csv")
+    gaps = _rows("s745_information_gaps.csv")
+    paths = {r["path"]: r for r in _rows("s745_decision_paths.csv")}
+    m = {
+        "s745_slots": len(charts),
+        "s745_clubs_charted": sum(1 for r in summ if r["chart_published"] == "yes"),
+        "s745_groups": len(defi),
+        "s745_off_groups": sum(1 for r in defi if r["unit"] == "offense"),
+        "s745_def_groups": sum(1 for r in defi if r["unit"] == "defense"),
+        "s745_first_out": _n("s745_depth_deficiencies.csv", "deficiency_flag",
+                             lambda v: v == "1st-string OUT"),
+        "s745_dnp": _n("s745_depth_deficiencies.csv", "starter_availability_tier",
+                       lambda v: v == "did not practice"),
+        "s745_limited": _n("s745_depth_deficiencies.csv", "starter_availability_tier",
+                           lambda v: v == "limited"),
+        "s745_off_dnp": sum(1 for r in defi if r["unit"] == "offense"
+                            and r["starter_availability_tier"] == "did not practice"),
+        "s745_def_dnp": sum(1 for r in defi if r["unit"] == "defense"
+                            and r["starter_availability_tier"] == "did not practice"),
+        "s745_third": _n("s745_depth_deficiencies.csv", "depth_reached", lambda v: v == "3"),
+        "s745_fourth": _n("s745_depth_deficiencies.csv", "depth_reached", lambda v: v == "4"),
+        "s745_inj_rows": sum(1 for r in _rows("s745_injury_refresh.csv") if r["player"].strip()),
+        "s745_matched": sum(1 for r in defi if r["starter_on_injury_report"] == "yes"),
+        "s745_quickwins": sum(1 for r in scores if r["quick_win"] == "yes"),
+        "s745_have_empty": sum(1 for r in gaps if r["have_is_empty"] == "yes"),
+        "s745_official_route": sum(1 for r in gaps if r["official_route_exists"] == "yes"),
+        "s745_open": sum(1 for r in gaps if r["status"].strip() == "open"),
+        "s745_p0": sum(1 for r in gaps if r["priority"].strip() == "P0"),
+    }
+    for code in ("A", "B", "C", "D"):
+        p = paths.get(code, {})
+        m["s745_path%s_n" % code] = p.get("suggestions", "")
+        m["s745_path%s_quick" % code] = p.get("quick_wins", "")
+        m["s745_path%s_effort" % code] = p.get("total_effort_points", "")
+    return m
+
+
 def build_metrics():
     inj = read_rows("injuries_2026_wk10.csv")
     depth = read_rows("depth_changes_2026_wk10.csv")
@@ -410,6 +494,7 @@ def build_metrics():
         "empty_club_count": len(empty),
     }
     m.update(personnel_relief_metrics())
+    m.update(s745_metrics())
     # The 13 November read and the first locked decision, counted from the registers so
     # the landing page never has to remember a number. verify.py does not yet police the
     # hub arithmetic here - that is S-60, the proposal to promote it into the verifier.
@@ -703,7 +788,11 @@ def render_csv_table(body):
         out.append("</tr>")
     out.append("</tbody></table></div>")
     if opts.get("caption"):
-        out.append('<p class="caption">%s</p>' % inline(opts["caption"]))
+        # Captions are rendered inside a directive, which is handled before the body pass that
+        # expands {{metric ...}} on ordinary lines. Without this a caption quoting a metric
+        # ships the raw template text to the live page - check_site only strips <code> blocks
+        # when looking for leftovers, so it would not have been caught there.
+        out.append('<p class="caption">%s</p>' % inline(expand_metric_refs(opts["caption"])))
     return "".join(out)
 
 
@@ -813,6 +902,9 @@ PAGE_KIND = {
     "week11-originated": ("measured", "Computed result"),
     "personnel-relief": ("measured", "Measured data"),
     "availability-watch": ("measured", "Dated snapshot"),
+    "depth-deficiencies": ("measured", "Measured data"),
+    "information-gaps": ("decision", "Decision needed"),
+    "suggestion-review": ("decision", "Awaiting owner review"),
 }
 
 CSS_HREF = "assets/style.css"
@@ -832,6 +924,12 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
     nxtt = dict((s, t) for _, it in NAV for s, t in it)[nxt] if nxt else ""
     nextlink = '<a class="pager right" href="%s.html">%s &rarr;</a>' % (nxt, esc(nxtt)) if nxt else ""
     lead_html = '<p class="lead">%s</p>' % inline(lead) if lead else ""
+    # The meta description gets the same text with the markdown stripped rather than the raw
+    # string: before this, %(lead)s was interpolated into the pagehead as escaped markdown, so
+    # every page's lede shipped literal ** and backticks to the reader, and a link in a lede
+    # was reported by check_site as an unrendered link because it genuinely was one.
+    lead_meta = esc(re.sub(r"\[([^\]]+)\]\((?:https?://[^)\s]+)\)", r"\1",
+                           re.sub(r"[*`]", "", lead))) if lead else ""
     toc_html = '<nav class="toc"><span>On this page</span>%s</nav>' % "".join(
         '<a href="#%s">%s</a>' % (a, esc(t)) for a, t in toc) if toc else ""
     return """<!doctype html>
@@ -856,7 +954,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
     <div class="pagehead">
       <span class="badge %(kind)s">%(kind_label)s</span>
       <h1>%(title)s</h1>
-      %(lead)s
+      %(lead_html)s
     </div>
     %(toc)s
     <div class="body">%(body)s</div>
@@ -868,7 +966,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
   </main>
 </div>
 </body></html>
-""" % dict(title=esc(title), lead=esc(lead) if lead else "", css=CSS_HREF, fetched=DATA_FETCHED,
+""" % dict(title=esc(title), lead=lead_meta, lead_html=lead_html, css=CSS_HREF, fetched=DATA_FETCHED,
            injury_refresh=display_utc(source_read_utc("S-INJ-2235")),
            injury_subset=display_utc(source_read_utc("S-INJ-1113")),
            injury_latest=display_utc(source_read_utc("S-INJ-1246")),

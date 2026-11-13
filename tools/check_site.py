@@ -10,6 +10,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OFFICIAL_HOSTS = {"nfl.com", "www.nfl.com", "operations.nfl.com", "static.www.nfl.com",
                   "github.com", "arxiv.org", "pith.science", "nber.org", "morganstanley.com",
                   "kanlerxz87-cyber.github.io"}
+# Club domains are official club sites. The league publishes no central depth chart
+# (FL-05), so a club's own site is the only official source for one; build_site.py
+# carries the same list and data/sources.csv records them as tier B, not tier A.
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import build_site as _bs  # noqa: E402
+OFFICIAL_HOSTS = OFFICIAL_HOSTS | _bs.CLUB_HOSTS
 NAV_PAGES = None
 FAIL, WARN, PASS = [], [], []
 
