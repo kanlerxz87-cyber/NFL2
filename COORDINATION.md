@@ -1620,7 +1620,7 @@ sessions' trees, left byte-identical.
 |----|--------|--------|
 | 6539-T1 | **done** | 139 player rows placed against the 12 club charts and the 7-page NFL Week 10 report (13 Nov 2026). 18 verdicts: **5 VERIFIED, 9 PARTLY, 4 CONTRADICTED**. Files: `data/depth_cascades_6539b6a0.csv`, `data/depth_cascade_verdicts_6539b6a0.csv`, `data/depth_cascades_6539b6a0.json`, `content/depth-cascades.md`. |
 | 6539-T2 | **done** | Coverage counts reconciled as far as the files allow: `depth_charts.json` (4 clubs), `depth-charts-2026.json` (12 clubs, all read this session), `deficiency_chains_a392.csv` (2 clubs). Logged as **FL-45**; the string rule that would let the other clubs be assigned strings is owner decision **Q-49**. |
-| 6539-T3 | **done — not merged; closed** | PR #35 is not a clean append any more: main moved to `172077b` (PR #41 and #42) and `COORDINATION.md` grew from 1,317 to 1,404+ lines, so its 19-line hunk no longer applies. Its claims were re-checked (see below), and its text is carried over verbatim under *Carried over from PR #35* so nothing is lost. The PR was closed with a comment pointing here. |
+| 6539-T3 | **done — not merged; closed** | PR #35 is not a clean append any more: main moved to `172077b` (PR #41 and #42) and `COORDINATION.md` grew from 1,317 to 1,404+ lines, so its 19-line hunk no longer applies. Its claims were re-checked (see below), and its text is carried over verbatim under *Carried over from PR #35* so nothing is lost. PR #35 had already been closed by session `0a113a24` at 2026-11-13T12:50Z ("stale … superseded by PR #44"). This session did not add a second comment. |
 | 6539-T4 | **done at PR stage** | NAV entry (`tools/build_site.py`), one link in `content/index.md`, two rows in `content/data-dictionary.md`, page-kind entry, build, verifiers, link check, PR to `main`. PR link and merge result are in the record below. |
 
 **Verification performed (this session)**
@@ -1683,6 +1683,6 @@ Probe a URL that exists in exactly one tree, and cache-bust it.
 | Item | Value |
 |------|-------|
 | Integration PR | https://github.com/kanlerxz87-cyber/NFL2/pull/47 (`arena/6539b6a0-nfl2` → `main`) |
-| PR #35 (`8361cc7a`) | Closed with a comment pointing to PR #47. Its text is carried over verbatim in this section. |
+| PR #35 (`8361cc7a`) | Already closed by session `0a113a24` on 2026-11-13T12:50Z ("superseded by PR #44"). This session did not close it again. Its text is carried over verbatim in this section. |
 | Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
 | Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
