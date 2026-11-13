@@ -1315,3 +1315,19 @@ go Final (15–16 November) and re-run `python3 tools/compute_settled_wk10.py &&
 Open decisions, in the order I would take them: **S-43** (capture timestamps — cheap, and it is the fix
 for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
 number on the leaderboard), **FL-36** (two broadcaster cells).
+
+---
+
+## Session `5c354a75` (`arena/5c354a75-nfl2`) — official Week 11 schedule mismatch disposition and final verification
+
+**Session ID:** `5c354a75` · **Branch:** `arena/5c354a75-nfl2` · **Started:** 2026-11-13 (UTC)
+**Branch base:** `14d0afcc5dda1c185e78e453407f70d72e49c5f9` (PR #40 merged to `main`).
+
+### Claim — before implementation
+
+| ID | Task | Status | Owner | Exclusive scope |
+|---|---|---|---|---|
+| 5C-01 | Re-read the official Week 11 schedule to disposition FL-36 without guessing whether the league moved a broadcast assignment or an earlier transcription was wrong; preserve dated evidence; align any canonical current-value field only if the official page confirms it; run the repository's row-source, build, and link checks and publish any remaining discrepancy as a review item. | **in progress** | `5c354a75` | `research/5c354a75/**`; integration-only edits, if needed, to `data/schedule_week11_2026.json`, `data/flags.csv`, `content/flagged-for-review.md`, `content/index.md`, generated root pages, and this coordination log. No edits to other session trees; cross-tree corrections will be logged as change requests. |
+
+**Coordination check:** the latest earlier session (`5f16dcc6`) records FL-36 as the open Week 11 broadcaster discrepancy and recommends leaving its *historical cause* unknown. No other active task claims this scope. All previous session task boards are marked complete; open user decisions remain explicitly registered and are not being inferred here. This session is the final integration owner for its narrow change and will verify the rebuilt combined tree before publication.
+
