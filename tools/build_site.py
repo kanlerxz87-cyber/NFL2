@@ -33,7 +33,8 @@ NAV = [
                      ("skill-vs-luck", "Removing Luck"),
                      ("model-lab", "Fair-Line Lab (computed)"),
                      ("measured-correlations", "Measured Correlations"),
-                     ("week10-settled", "Settled Week 10 (graded)")]),
+                     ("week10-settled", "Settled Week 10 (graded)"),
+                     ("week11-originated", "Week 11 Lines (pre-registered)")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
@@ -769,6 +770,7 @@ PAGE_KIND = {
     "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
     "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
     "week10-settled": ("measured", "Computed result"),
+    "week11-originated": ("measured", "Computed result"),
     "personnel-relief": ("measured", "Measured data"),
     "availability-watch": ("measured", "Dated snapshot"),
 }

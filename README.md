@@ -36,6 +36,14 @@ flags so that the owner can choose a path before anything is implemented.
 | `q51/`, `engine/q51/`, `collectors/q51/`, `tests/q51/`, `research/q51/` | independent Q51 evidence dashboard, tested paper-only engine, robots-aware collector, mutation tests and source-evidence audit; namespaced to preserve upstream work |
 | `.github/workflows/q51.yml` | CI: Q51 unit/mutation tests, deterministic research/site rebuild and strict row-source/link/safety verification |
 
+## Week 11 forward sample — pre-registered (session `0a113a24`, 13 Nov 2026)
+
+- [week11-originated.html](week11-originated.html): thirteen Week 11 lines published and SHA-256 pre-registered before kickoff (decision timestamp `2026-11-13T12:39Z`), with the empty forward grade beside them.
+- `tools/originate_week11.py` re-derives all 14 published Week 10 lines before it writes anything; `tools/grade_forward.py` refuses to grade if any pre-registered artefact has changed (tested: a one-cell edit reports `BROKEN` and exits 1).
+- Inputs: `data/schedule_week11_2026.csv`, `data/originated_lines_wk11_0a113a24.csv`, `data/prereg_week11_0a113a24.json` (+ `.csv` mirror), `data/games_week11_played.csv` (append-only, empty until games are final).
+- Re-verification: `tools/reverify_0a113a24.py` → `data/reverification_0a113a24.csv` (102 rows: 95 match, 2 mismatch explained under FL-36, 5 not checked) and `data/week11_broadcaster_change_0a113a24.csv`.
+- Checks: `tools/verify.py` `forward_sample_holds()` re-runs the hash, reproduction and slate checks on every run.
+
 ## Rules this project does not bend
 
 1. Every table row that asserts a fact links an **official league page** (`nfl.com`, `operations.nfl.com`), or the build fails.

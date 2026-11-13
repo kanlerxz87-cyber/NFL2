@@ -126,6 +126,22 @@ Two consequences for the programme:
 
 The settlement pipeline works end to end. That is genuinely new and genuinely useful — it is the mechanism the leaderboard needs. It is not evidence that the model works, and nothing yet published could be.
 
+## What the 13 November forward sample changed
+
+The settlement above produced one graded game. A settlement cannot be a *forecast* — the line and the result were both published after the fact, so the only thing it proves is that the arithmetic runs. This session therefore built the thing that makes a forecast possible: **thirteen Week 11 lines, published and hashed before any of those games was played.**
+
+| What changed | The measured result | Where |
+| --- | --- | --- |
+| **The competition has a forward sample.** Thirteen lines for 19–23 November, each with the model inputs beside it, published with a decision timestamp of 2026-11-13T12:39Z and a SHA-256 over the lines file, the frozen corpus, the settled-games file and the generator itself. | 13 lines, 4 artefacts hashed | [Week 11 lines](week11-originated.html) |
+| **The model is proved to be the same model.** `tools/originate_week11.py` re-implements the published ratings model, so it re-derives all **fourteen** already-published Week 10 lines from the frozen corpus and compares every spread and total cell before it writes anything. It matched 14 of 14. `tools/verify.py` re-runs that guard on every verification. | 14/14 lines re-derived exactly | [verification](methodology.html) |
+| **The pre-registration is a mechanism, not a promise.** Editing one spread in the pre-registered file from 5.5 to 1.5 makes the grader report `BROKEN`, withhold the grade and exit non-zero. Restoring it returns `intact`. | tamper test passed | [Week 11 lines](week11-originated.html) |
+| **Two suggestions became reality.** S-44 (auto-grade every line against the settled result) and S-45 (publish the required-sample number beside every performance figure) are now implemented and verified on every run. | 95 verifier checks pass | [suggestions](suggestions.html) |
+| **One flag was closed with two dated official sources.** The two Week 11 broadcaster cells that disagreed with the official page are explained: the league's own announcement of 9 November matches the repository's transcription cell for cell, so the league moved the two broadcasts between 9 and 13 November. | FL-36 resolved | [FL-36](flagged-for-review.html) |
+
+What the forward sample says about the lines themselves is on the [Week 11 page](week11-originated.html), and the finding is worth one line here: **our spreads sit on average 3.5 points closer to a pick'em than the community archive's do** — our fitted home-field coefficient is 0.18 points, the archive's widest lines are 14 and 16.5 points. Our totals are the weak half, exactly as the lab already measured.
+
+The measurement apparatus now exists and is proven. Whether the lines are any good is a question the next eleven days answer, and thirteen observations cannot answer it.
+
 ## What the 13 November personnel pass changed (session `83246f00`)
 
 The brief's depth question — *which 2nd, 3rd or 4th-string player is replacing a starter, on offence and on defence* — now has an answer for a third of the league instead of an eighth. Ten clubs' own published depth charts were transcribed from the clubs' own pages and joined to the same day's official injury hub. The join is on the [Personnel Relief](personnel-relief.html) page, and it is the first page on this site that answers that question with a string in the cell rather than a justification for leaving it blank.
