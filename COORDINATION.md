@@ -1578,6 +1578,7 @@ sessions' trees, left byte-identical.
 
 **Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 injury-coverage conflict and FL-38 hub volatility (both `c3ec1487`); FL-39 stale JSON snapshot; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### `c3ec1487` — merge note: PR #42 (session `83246f00`) landed while PR #43 was open
 
 `gh pr merge 43` was refused with a real conflict, not a stale one: `main` advanced through PR #42
@@ -1755,3 +1756,28 @@ owner**, not collection gaps: Q-42 (which injury register is canonical), Q-43 (h
 replaces depth rank), Q-45 (snap-count entitlement), and the standing Q-01 (price feed). The order I would
 take them in, with the reasoning on each row of `data/suggestions.csv`: **Q-42 first** — it removes a
 two-answer page and costs one build change — then Q-43, then the two purchasing decisions together (S-51).
+=======
+
+---
+
+## Session `653b76b6` (`arena/653b76b6-nfl2`) — freshness provenance + decision-first summary (claim)
+
+**Status:** in progress · **Base:** `14d0afcc` · **Role:** final integration on the assigned active branch.
+
+**Task:** independently re-read the official standings after the Week 10 settlement, make the capture time visible and machine-checked, and bring the landing page, executive summary, and suggestion order up to date with the settled result. Keep historical datasets and unverified values untouched; preserve explicit blanks/flags. The official page will be compared row by row before any data cell is changed.
+
+**Exclusive file scope:** `data/standings_2026.csv`, `data/sources.csv`, `content/league-data.md`, `content/data-dictionary.md`, `content/index.md`, `content/executive-summary.md`, `content/suggestions.md`, `tools/build_site.py`, `tools/verify.py`, generated root pages (`index.html`, `404.html`, `league-data.html`, `data-dictionary.html`, `executive-summary.html`, `suggestions.html`, `data/build_manifest.json`), and this additive log. No sibling tree, frozen Week 1–9 corpus, injury capture, schedules, or other session-owned report will be edited.
+
+| ID | Task | Status | Source / verification |
+|---|---|---|---|
+| 653b-T01 | Re-read all published standings fields from the official NFL page and compare all 32 clubs | in progress | `https://www.nfl.com/standings/` · captured `2026-11-13T12:39Z` |
+| 653b-T02 | Stamp standings with source-read time and make the page header distinguish the 2026-11-12 injury snapshot, full hub re-read, and latest standings read | unclaimed | — |
+| 653b-T03 | Refresh the landing-page decision cues and executive summary to state what is known, missing, and not validated after the first Week 10 settlement | unclaimed | — |
+| 653b-T04 | Update the suggestions page's recommended sequence for S-43–S-45, preserve owner-only choices, rebuild and run verification | unclaimed | — |
+
+**Initial verification notes:** `tools/build_site.py`, `tools/verify.py`, `tools/check_site.py`, `scripts/audit_all_pages.py`, `scripts/verify_s53126614.py`, `engine/verify_repo_and_site.py`, `scripts/verify_q51.py` + 36 Q51 tests, and `tools/verify_s92.py` pass on the unmodified `14d0afcc` tree. The whole-repository link audit modified another session's generated `datasets/e143a7ca/verification_manifest.json`; that incidental output was restored before this claim. No implementation file has been changed yet.
+
+**Handoff rule:** keep every unchecked field blank; if the official page and the committed row differ, do not silently overwrite it—add a source-linked flag and stop the affected claim.
+
+**Rebase conflict resolution (2026-11-13):** the upstream `0a113a24` claim and its later integration record, plus this session's `653b76b6` claim, are retained intact. The conflict was caused by concurrent append-only edits at the end of this shared board; no other session content was dropped.
+>>>>>>> 98bc9f3 (coordination: claim fresh standings and summary audit)
