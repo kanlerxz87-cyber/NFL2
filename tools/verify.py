@@ -95,6 +95,34 @@ def standings():
         ok("standings: net points sum to zero")
 
 
+def standings_capture_metadata():
+    """Every standings row must name its source-read time, not just a live URL that can drift."""
+    data, header, _ = rows("standings_2026.csv")
+    if not {"source", "captured_utc"}.issubset(set(header)):
+        bad("standings: missing source or captured_utc column")
+        return
+    all_sources, _, _ = rows("sources.csv")
+    official = [s for s in all_sources
+                if s["url"] == "https://www.nfl.com/standings/" and s["tier"] == "A"]
+    if not official:
+        bad("standings: no official NFL standings source in sources.csv")
+        return
+    latest = max(official, key=lambda s: s["accessed_utc"])
+    ids = {r["source"].strip() for r in data}
+    stamps = {r["captured_utc"].strip() for r in data}
+    if ids != {latest["id"]}:
+        bad("standings: row source ids %s do not point to latest official read %s"
+            % (sorted(ids), latest["id"]))
+    elif stamps != {latest["accessed_utc"]}:
+        bad("standings: capture times %s do not match latest source read %s"
+            % (sorted(stamps), latest["accessed_utc"]))
+    elif not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$", latest["accessed_utc"]):
+        bad("standings: source-read time is not minute-precision UTC: %r" % latest["accessed_utc"])
+    else:
+        ok("standings: all %d rows stamped %s and linked to the latest official NFL read"
+           % (len(data), latest["accessed_utc"]))
+
+
 def injuries():
     data, _, _ = rows("injuries_2026_wk10.csv")
     sched, _, _ = rows("schedule_2026_wk10.csv")
@@ -1186,7 +1214,7 @@ def availability_watch_holds():
 
 
 def main():
-    check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results();
+    check_widths(); no_disguised_guesses(); standings(); standings_capture_metadata(); injuries(); depth(); sources(); registers(); no_invented_results();
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
     settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()

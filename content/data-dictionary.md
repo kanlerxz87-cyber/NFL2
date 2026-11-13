@@ -9,10 +9,10 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | --- | --- | --- | --- |
 | `data/injuries_2026_wk10.csv` | 254 | one player × game × filing | S-INJ |
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
-| `data/standings_2026.csv` | 32 | club × season-to-date | S-STAND |
+| `data/standings_2026.csv` | 32 | club × season-to-date, with read timestamp per row | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
 | `data/sources.csv` | {{metric sources}} | source | — |
-| `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | 40 / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
+| `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | design rows | S-DESIGN |
 | `data/computed_fair_lines.csv` | 14 | one Week 10 fixture; stages 1–2 of the origination pipeline | S-CALC |
@@ -76,6 +76,17 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `did_not_practise`, `limited`, `designated_out` by `side` | counts off the official filing, offence and defence kept separate | a zero here means the club filed nobody, which the hub also renders as "No Injuries Reported"; it is never read as healthy (FL-01) |
 | `string`, `next_man_up` | the club's own column order on its published chart | asserted only where the club's chart and the league's filing both speak; otherwise `not published` |
 
+
+## Column meanings — standings
+
+| Column | Type | Definition and rule |
+| --- | --- | --- |
+| `w`, `l`, `t` | count | Wins, losses and ties as published by the NFL; checked against the official [standings page](https://www.nfl.com/standings/). |
+| `pct` | decimal | Winning percentage as published; independently recomputed as `(W + 0.5 × T) / (W + L + T)` and checked against the same [NFL standings page](https://www.nfl.com/standings/). |
+| `pf`, `pa`, `net` | points | Points for, points against and net points; `net = pf - pa`, checked against the [NFL standings page](https://www.nfl.com/standings/). |
+| `streak` | text | Current streak string as published on the [NFL standings page](https://www.nfl.com/standings/). |
+| `source` | registry id | Source-register key for the official page read; current rows use `S-STAND-653B`, linked to [NFL.com standings](https://www.nfl.com/standings/). |
+| `captured_utc` | ISO-8601 UTC minute | Our read time for that official source, not an NFL publication time. All 32 rows currently record `2026-11-13T12:39Z`; the build check requires this to match the latest registered NFL standings read. |
 
 ## Column meanings — injury snapshot
 

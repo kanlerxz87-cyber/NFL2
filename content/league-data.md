@@ -3,9 +3,11 @@
 
 Standings rows are not simply copied — they were recomputed. Winning percentage in the NFL counts a tie as half a win, so a 5–3–1 club is listed at 0.611, not 0.556, and that formula reconciles for all 32 clubs. Net points reconciles to points for minus points against everywhere. Two league-wide checks then close the transcription: ΣPF equals ΣPA to the unit ({{metric league_pf}} each) and Σnet points equals 0, which can only hold if every points value was read off the right row.
 
-The official standings page renders sixteen value columns and the fetched markup carries no header row. Seven columns have unambiguous meaning from their format and arithmetic and are published; the remaining split-record columns are **omitted rather than guessed** ([FL-07](flagged-for-review.html)).
+The official standings page renders multiple value columns without a full column-header row in the fetched table. Eight fields have unambiguous meaning from the NFL legend and arithmetic—W, L, T, PCT, PF, PA, NET PTS and STREAK—and are published; the remaining split-record columns are **omitted rather than guessed** ([FL-07](flagged-for-review.html)). `captured_utc` is our source-read time, not an NFL-published timestamp.
 
-{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak;;source=S-STAND;;caption=Division-view standings as published on nfl.com. The table was re-read on 13 November 2026 after the Week 10 Thursday game: NYG and WAS each moved by exactly one game and the league identities still close. See FL-35.}}
+On **13 November 2026 at 12:39 UTC**, all 32 club rows were re-read from the official division standings page. W/L/T/PCT/PF/PA/NET/STREAK matched the committed values for **32/32 clubs**. No standings value changed in this check; the timestamp makes clear when this live-source comparison was made. Each row links to the specific official read in the source registry.
+
+{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak,captured_utc:Read UTC;;source_col=source;;caption=Division-view standings from nfl.com. Captured at 2026-11-13T12:39Z; all 32 rows and eight published NFL fields matched on the re-read. This is a read time, not the league's own publication timestamp. Earlier staleness and correction are documented in FL-35.}}
 
 ## Completed results, weeks 1–9
 
@@ -23,7 +25,9 @@ The reconciliation is computed on every build (`tools/verify.py` → 37 checks) 
 
 ## Week 10 slate
 
-{{csv data/schedule_2026_wk10.csv;;cols=game_id:ID,date:Date,kickoff_et:Kickoff ET,away:Away,home:Home,venue:Venue,tv:Broadcast,game_url:Game page:urls;;source=S-WK10REP;;show_source=0;;caption=Game page links are the league's own URLs for each fixture, as published in the official week-10 report.}}
+{{csv data/schedule_2026_wk10.csv;;cols=game_id:ID,date:Date,kickoff_et:Kickoff ET,away:Away,home:Home,venue:Venue,tv:Broadcast,game_url:Game page:urls;;source=S-WK10REP;;show_source=0;;caption=Game page links are the league's own URLs for each fixture, as published in the official Week 10 report.}}
+
+The schedule table is the original 14-game slate. One game, WAS at NYG, is now settled and graded separately; the other 13 fixtures remain scheduled as of the official Week 10 scores read at 2026-11-13T06:48Z. See the [official scores page](https://www.nfl.com/scores/2026/week-10) and the [settled-line comparison](week10-settled.html). The results file is append-only so the weeks 1–9 backtest input is not rewritten.
 
 ## What the schedule itself contributes as a feature
 
