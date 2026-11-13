@@ -1,0 +1,16 @@
+field|value|meaning
+decision timestamp (UTC)|2026-11-13T12:39Z|the moment these lines were published; everything the model used was known by then
+lines file|data/originated_lines_wk11_0a113a24.csv|the thirteen lines this page publishes
+lines SHA-256|1c2c8ebe7119336dcdec5327f12ef35ce45324f01c5b9d471ceb6f8613bc1ba6|the fingerprint of the lines file; recomputed before every grade
+backtest corpus|data/games_2026_wk1_9.csv|the 136-game weeks 1-9 file every published grade was built on
+backtest corpus SHA-256|f0dffce05e79b5267318c444eb50ca151390480fbd6c10965290228995fb6f33|the fingerprint of that corpus; it must not change for a published grade to remain valid
+settled games file|data/games_2026_wk10_played.csv|the append-only file the Week 10 results live in; also hashed
+settled games SHA-256|624f2f76e5c0b036a31930a622a2c4fb9927edeaf626a316d6c62acb24d4c7dc|the fingerprint of the settled-games file at the moment of the pre-registration
+generator|tools/originate_week11.py|the script that produced these lines
+generator SHA-256|9d53d9bba5589a4f80af1a77b0e5eb97993230f874d02f7dd2e6bfa28d987c23|the fingerprint of the script, so the method cannot be changed after publication either
+model|ridge simultaneous ratings on margin and pace, unpenalised intercepts; ridge penalty selected by walk-forward spread MAE over weeks 4-9 of the frozen corpus|what the line is and how it is fitted
+ridge penalty (lambda)|5.0|chosen by walk-forward spread MAE; the three candidates scored 5.0: 9.278, 20.0: 9.824, 60.0: 10.205
+games fitted|137|136 games from weeks 1-9 plus 1 settled Week 10 game(s); the remaining thirteen Week 10 games had not been played at the decision timestamp and are therefore unknown to this model
+reproduction guard|the same code path re-derives all 14 published Week 10 lines from the frozen corpus and matched every spread and total cell|the check that proves this implementation is the same model that produced the published Week 10 lines
+sign convention|a spread column holds the predicted HOME margin; positive means the home club is favoured|how to read a spread column on this site
+status|unvalidated - paper only - not betting advice - no strategy has cleared the validation gates and no line here is eligible for staking|what these numbers are and are not

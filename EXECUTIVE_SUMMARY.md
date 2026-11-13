@@ -1,6 +1,8 @@
 # Executive summary — NFL 2026 verified analytics
 
-**Built:** 2026-11-12 · **Data through:** Week 9 results, Week 10 injury reports
+**Built:** 2026-11-12 · **Updated:** 2026-11-13 (session `0a113a24`) · **Data through:** Week 9 results, Week 10 injury reports
+
+> **Current summary:** the site's [executive summary](executive-summary.html) is the maintained version. As of 13 Nov 2026 it adds a pre-registered Week 11 forward sample: 13 lines hashed before kickoff, a grader that refuses edited lines, and a 102-row re-verification register (95 match, 2 explained mismatches under FL-36, 5 not checked). The Week 11 games have not been played; no performance claim is made.
 **Live site:** https://kanlerxz87-cyber.github.io/NFL2/
 **Code and data:** https://github.com/kanlerxz87-cyber/NFL2
 

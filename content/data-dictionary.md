@@ -33,6 +33,14 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/settled_wk10_5f16dcc6.csv` | 4 | settled game × predictor: the published line, the official result, and the absolute error of each | S-CALC-5F16 |
 | `data/computed_settled_5f16dcc6.csv` | 17 | one derived metric, its value, the method that produced it, and the read | S-CALC-5F16 |
 | `data/reverification_5f16dcc6.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
+| `data/schedule_week11_2026.csv` | 13 | one Week 11 fixture: date, kickoff, broadcaster, neutral-site flag and the official game URL | S-WK11-0A11 |
+| `data/originated_lines_wk11_0a113a24.csv` | 13 | one pre-registered Week 11 line: our spread and total, the model inputs beside them, and the non-official archive line it is compared against | S-CALC-0A11 |
+| `data/prereg_week11_0a113a24.csv` | 15 | one field of the pre-registration record: the decision timestamp, the SHA-256 of every artefact it covers, and what each one means | S-PREREG-0A11 |
+| `data/forward_grade_0a113a24.csv` | 13 | one pre-registered line against the official final score, with the do-nothing baseline error beside it | S-CALC-0A11 |
+| `data/forward_grade_summary_0a113a24.csv` | 10 | one derived metric of the forward grade: the hash checks, the settled count and the sample-size arithmetic | S-CALC-0A11 |
+| `data/games_week11_played.csv` | 0 | Week 11 game whose result is official. Append-only, like the Week 10 results file; empty until the games are played | S-SCORES-0A11 |
+| `data/week11_broadcaster_change_0a113a24.csv` | 2 | one fixture whose broadcaster moved between the league's dated announcement and the live schedule page | S-WK11-0A11 |
+| `data/reverification_0a113a24.csv` | 102 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-0A11, S-WK11-0A11, S-WK10, S-SCORES-0A11, S-INJ |
 | `data/availability_watch_c3ec1487.csv` | 296 | one player × club × game, transcribed from the official injury hub on 2026-11-13T12:45Z | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/availability_watch_by_club_c3ec1487.csv` | 28 | one club on the Week 10 slate: practice-code tallies, designations, and the two cells no official source can fill | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/availability_watch_movement_c3ec1487.csv` | 5 | what changed between the 2026-11-12 and 2026-11-13 reads of the hub | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |

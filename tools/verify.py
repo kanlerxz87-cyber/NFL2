@@ -946,6 +946,164 @@ def reverification_5f16dcc6_holds():
         bad("re-verification 2026-11-13: %d rows without an https source" % len(nosrc))
 
 
+def forward_sample_holds():
+    """The Week 11 forward sample is the first thing on this site that is published BEFORE the
+    games it describes. That claim is only worth anything if three things hold every time the
+    site is verified:
+
+      1. every artefact the pre-registration names still hashes to the value it published,
+      2. the generator still re-derives the fourteen already-published Week 10 lines exactly, so
+         the Week 11 numbers come from the same model and not from a look-alike,
+      3. the grade contains one row per pre-registered line and settles nothing that has no
+         official final score.
+
+    A pre-registration that is checked only once, by hand, on the day it is written, is a
+    promise. These are checks.
+    """
+    import json
+    import hashlib
+
+    def sha256(path):
+        h = hashlib.sha256()
+        with open(path, "rb") as fh:
+            for chunk in iter(lambda: fh.read(65536), b""):
+                h.update(chunk)
+        return h.hexdigest()
+
+    pre_path = os.path.join(DATA, "prereg_week11_0a113a24.json")
+    if not os.path.exists(pre_path):
+        warn("week 11 pre-registration record absent; the forward sample is not verified")
+        return
+    pre = json.load(open(pre_path, encoding="utf-8"))
+
+    # ---- 1. the hashes ------------------------------------------------------------------------
+    targets = [
+        ("lines_sha256", os.path.join(DATA, "originated_lines_wk11_0a113a24.csv")),
+        ("backtest_corpus_sha256", os.path.join(DATA, "games_2026_wk1_9.csv")),
+        ("settled_games_sha256", os.path.join(DATA, "games_2026_wk10_played.csv")),
+        ("generator_sha256", os.path.join(ROOT, "tools", "originate_week11.py")),
+    ]
+    broken = []
+    for key, path in targets:
+        expected = pre.get(key, "")
+        actual = sha256(path) if os.path.exists(path) else ""
+        if not expected or expected != actual:
+            broken.append("%s (%s)" % (os.path.basename(path), key))
+    if broken:
+        bad("week 11 forward sample: the pre-registration no longer matches %s - a line or the "
+            "model changed after it was published" % ", ".join(broken))
+    else:
+        ok("week 11 forward sample: the pre-registration is intact (%d artefacts hashed)" % len(targets))
+
+    # ---- the flat mirror of the record must agree with the record -----------------------------
+    flat_path = os.path.join(DATA, "prereg_week11_0a113a24.csv")
+    if os.path.exists(flat_path):
+        flat = {r["field"]: r["value"] for r in rows("prereg_week11_0a113a24.csv")[0]}
+        pairs = [("lines SHA-256", pre.get("lines_sha256")),
+                 ("backtest corpus SHA-256", pre.get("backtest_corpus_sha256")),
+                 ("settled games SHA-256", pre.get("settled_games_sha256")),
+                 ("generator SHA-256", pre.get("generator_sha256")),
+                 ("decision timestamp (UTC)", pre.get("decision_timestamp_utc"))]
+        disagree = [f for f, v in pairs if flat.get(f) != v]
+        if disagree:
+            bad("week 11 forward sample: the published table and the pre-registration record "
+                "disagree on %s" % ", ".join(disagree))
+        else:
+            ok("week 11 forward sample: the published pre-registration table and the record agree "
+               "on all %d hashed fields" % len(pairs))
+    else:
+        warn("week 11 pre-registration table absent")
+
+    # ---- 2. the reproduction guard, re-run here -----------------------------------------------
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "tools"))
+        import originate_week11 as ow
+        corpus = ow.load_games()[0]
+        published = {r["game"]: r for r in ow.read(ow.WK10_LINES)}
+        rederived = ow.reproduce_week10_lines(corpus, ow.LAMS[0])
+        mism = []
+        for gid, (sp, tot) in rederived.items():
+            p = published.get(gid)
+            if not p:
+                continue
+            if float(p["our_spread_home_favoured"]) != sp or float(p["our_total"]) != tot:
+                mism.append(gid)
+        if mism:
+            bad("week 11 forward sample: the generator no longer re-derives the published Week 10 "
+                "lines %s - the Week 11 numbers are not from the published model" % ", ".join(mism))
+        else:
+            ok("week 11 forward sample: the generator re-derives all %d published Week 10 lines "
+               "exactly, so the Week 11 numbers come from the published model" % len(rederived))
+    except Exception as exc:  # pragma: no cover - a failure here must not hide the others
+        bad("week 11 forward sample: the reproduction guard could not be run (%s)" % exc)
+
+    # ---- 3. the grade must not settle a game the league has not finished ------------------------
+    lines = rows("originated_lines_wk11_0a113a24.csv")[0]
+    grade = rows("forward_grade_0a113a24.csv")[0]
+    if len(grade) != len(lines):
+        bad("week 11 forward sample: the grade has %d rows for %d pre-registered lines"
+            % (len(grade), len(lines)))
+    else:
+        ok("week 11 forward sample: the grade has exactly one row per pre-registered line (%d)"
+           % len(grade))
+    settled = [r for r in grade if r["status"] == "settled and graded"]
+    bad_settled = [r["game_id"] for r in settled
+                   if not r["source"].startswith("https://www.nfl.com/games/")]
+    if bad_settled:
+        bad("week 11 forward sample: %d settled rows do not cite an official game page"
+            % len(bad_settled))
+    else:
+        ok("week 11 forward sample: %d of %d pre-registered lines are settled, each citing its "
+           "official game page" % (len(settled), len(grade)))
+
+    # ---- the slate must be internally consistent ----------------------------------------------
+    sched = rows("schedule_week11_2026.csv")[0]
+    clubs = set()
+    for r in sched:
+        clubs.add(r["away"])
+        clubs.add(r["home"])
+    byes = sorted({"ATL", "CLE", "GB", "LAR", "NE", "SEA"} - clubs)
+    if len(sched) != 13 or len(clubs) != 26 or len(byes) != 6:
+        bad("week 11 slate: %d fixtures, %d clubs, %d byes - expected 13, 26, 6"
+            % (len(sched), len(clubs), len(byes)))
+    else:
+        ok("week 11 slate: 13 fixtures, 26 clubs, %d byes (%s)" % (len(byes), ", ".join(byes)))
+    neutral = [r for r in sched if r["neutral"] == "yes"]
+    if len(neutral) != 1 or "Mexico" not in neutral[0]["site"]:
+        bad("week 11 slate: %d fixtures are marked neutral" % len(neutral))
+    else:
+        ok("week 11 slate: exactly one neutral-site fixture, and the official schedule page names "
+           "its city (%s)" % neutral[0]["game_id"])
+
+    # ---- the dated re-verification register must cite a flag for every disagreement -------------
+    fn = os.path.join(DATA, "reverification_0a113a24.csv")
+    if os.path.exists(fn):
+        data, _, _ = rows("reverification_0a113a24.csv")
+        vocab = {"match", "MISMATCH", "CORRECTED", "NOT CHECKED", "MISSING"}
+        off = [r for r in data if r["result"].strip() not in vocab]
+        if off:
+            bad("re-verification 2026-11-13 (session 0a113a24): result %r is outside the vocabulary"
+                % off[0]["result"])
+        else:
+            flag_ids = {r["id"] for r in rows("flags.csv")[0]}
+            unflagged = [r["check"][:48] for r in data if r["result"].strip() == "MISMATCH"
+                         and not (set(re.findall(r"FL-\d+", r["note"]))
+                                  | set(re.findall(r"FL-\d+", r["check"]))) & flag_ids]
+            if unflagged:
+                bad("re-verification 2026-11-13 (session 0a113a24): rows that disagree with the "
+                    "official page cite no register flag: %s" % unflagged)
+            else:
+                n_m = sum(1 for r in data if r["result"].strip() == "MISMATCH")
+                n_n = sum(1 for r in data if r["result"].strip() == "NOT CHECKED")
+                ok("re-verification 2026-11-13 (session 0a113a24): %d checks, %d published as "
+                   "flags, %d explicitly not checked" % (len(data), n_m, n_n))
+        nosrc = [r for r in data if not r["source"].startswith("https://")]
+        if nosrc:
+            bad("re-verification 2026-11-13 (session 0a113a24): %d rows without an https source"
+                % len(nosrc))
+        else:
+            ok("re-verification 2026-11-13 (session 0a113a24): every row cites an official page")
+
 def availability_watch_holds():
     """The dated availability register answers a smaller question than the injury register and it has
     to answer it exactly. Four things are checked, all from the files:
@@ -1031,7 +1189,7 @@ def main():
     check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results();
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
-    settled_week10_reproduces(); reverification_5f16dcc6_holds(); availability_watch_holds()
+    settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()
     personnel_relief_reproduces(); reverification_83246f00_holds()
     
     print("=" * 72)

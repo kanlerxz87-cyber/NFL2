@@ -74,6 +74,18 @@ Nothing was appended to the weeks 1–9 backtest corpus. Suggestion [S-26](sugge
 
 Two items in the register came out of the re-read and are waiting on you rather than on code: the refresh cadence for cumulative tables ([Q-40](questions.html), [S-43](suggestions.html)) and a broadcaster disagreement on two Week 11 games ([FL-36](flagged-for-review.html)).
 
+## What changed on 13 November 2026, later
+
+A settlement is not a forecast. The one graded Week 10 game was published after the fact, so it proves the arithmetic runs and nothing else. The thing a competition needs is a line published **before** the games it describes, and there was none — so this session built one.
+
+1. **Thirteen Week 11 lines, pre-registered.** For the games of 19–23 November: our spread and our total for each fixture, with the model inputs beside them, published with a decision timestamp of `2026-11-13T12:39Z` and a SHA-256 over four artefacts — the lines file, the frozen weeks 1–9 corpus, the append-only settled-games file and the generator script. The full record is on the [Week 11 lines](week11-originated.html) page, and `tools/grade_forward.py` recomputes those hashes before it grades anything.
+2. **The model was proved to be the same model, not a look-alike.** The Week 11 generator re-implements the published ratings model, so before it writes anything it re-derives all fourteen already-published Week 10 lines from the frozen corpus and compares every cell. It matched 14 of 14, and `tools/verify.py` now re-runs that guard on every verification.
+3. **The pre-registration was tested, not asserted.** Editing one spread from 5.5 to 1.5 makes the grader report `BROKEN`, withhold the grade and exit non-zero. Restoring it returns `intact`.
+4. **Two flags and two questions came out of a 102-row re-verification.** All 32 standings rows, all 14 Week 10 fixtures and all 13 Week 11 fixtures were re-read against the live official pages on 13 November: 95 matches, 2 mismatches, 5 rows that say NOT CHECKED. The two mismatches are the Week 11 broadcasters — and they are now **explained**, not just flagged: the league's own announcement of 9 November matches this repository's transcription cell for cell, so the league moved the two broadcasts between 9 and 13 November ([FL-36](flagged-for-review.html)). Two new questions ask which official page is the record when the league changes a schedule after announcing it ([Q-46](questions.html)) and when participation for the next week will exist ([Q-47](questions.html)).
+5. **Two suggestions were implemented.** S-44 (auto-grade every originated line against the settled result) and S-45 (publish the required-sample number beside every performance figure) are now code, and the standings table carries the capture timestamp S-43 asked for.
+
+The honest finding on the lines themselves: **our spreads sit about 3.5 points closer to a pick'em than the community archive's** — the model's fitted home-field coefficient is 0.18 points, where the archive's widest lines are 14 and 16.5. The totals remain the weak half. And the sample-size arithmetic is unchanged and unforgiving: thirteen observations against a required ~1,400.
+
 ### Later the same day — the injury hub moved, so the site now dates it
 
 A second read of the official injury hub at **2026-11-13T12:45Z** found the source had changed materially
