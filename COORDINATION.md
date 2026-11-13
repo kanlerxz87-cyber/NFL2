@@ -1992,3 +1992,17 @@ HTML from the merged inputs, union the registers, re-apply the page layer with
   caption that drifted from the data — both survive every local verifier. Fetch the deployed page
   after merging; that is where both of today's defects were visible.
 
+
+### Pages probe, for the next session that checks a deploy
+
+`pages/builds` reported `built 6ec23717a` (PR #55's merge commit) at 13:24Z, and a plain fetch of
+https://kanlerxz87-cyber.github.io/NFL2/preregistration.html still returned the *previous* render two
+minutes later — which reads exactly like a stale CDN root, the failure mode RV-T05/RV-T06 warn about.
+It was not. `git show origin/main:preregistration.html | grep -c "name-level union"` returned 1, and the
+same URL with a cache-busting query (`?cb=6ec2371a`) served the new text immediately.
+
+So the probe order is: **(1)** confirm the Pages build commit, **(2)** grep the deployed *blob* on
+`origin/main` for the string that is supposed to be new, **(3)** fetch the live page with a query string
+keyed to the commit. A single plain fetch proves nothing either way — GitHub Pages' edge and any
+read-through proxy will both hand back a cached copy for a few minutes, and concluding "the deploy
+failed" from that starts a rebuild nobody needed.
