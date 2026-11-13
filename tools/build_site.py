@@ -358,6 +358,9 @@ def build_metrics():
         # instead of a reader having to open the deficiencies page to find it
         "hub2_rows": _safe_len("injuries_wk10_2026_hubrefresh.csv"),
         "hub2_clubs": _safe_clubs("injuries_wk10_2026_hubrefresh.csv", "team"),
+        "hub2_captured_utc": SOURCES["S-INJ-2235"]["accessed_utc"],
+        "hub_latest_captured_utc": SOURCES["S-INJ-1246"]["accessed_utc"],
+        "injury_primary_capture": DATA_FETCHED,
         "injury_rows": len(inj),
         "injury_teams": len(agg),
         "injury_clubs_playing": len(playing),
@@ -815,7 +818,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
 <body class="kind-%(kind)s">
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">NFL</span> <span>Decision dashboard</span></a>
-  <div class="asof">Source reads (UTC) · <a href="%(injury_url)s">Week 10 injury file</a> <strong>%(fetched)s</strong> · full injury hub <strong>%(injury_refresh)s</strong> · WAS/NYG-only injury recheck <strong>%(injury_subset)s</strong> · <a href="%(standings_url)s">standings</a> <strong>%(standings_read)s</strong> · <a href="sources.html">source log</a> · <a href="methodology.html">verification rules</a></div>
+  <div class="asof">Source reads (UTC) · <a href="%(injury_url)s">Week 10 primary injury snapshot</a> <strong>%(fetched)s</strong> · 12 Nov full-hub re-read <strong>%(injury_refresh)s</strong> · 13 Nov settled-game-only recheck <strong>%(injury_subset)s</strong> · latest full-hub snapshot <strong>%(injury_latest)s</strong> · <a href="%(standings_url)s">NFL standings</a> <strong>%(standings_read)s</strong> · <a href="sources.html">source log</a> · <a href="methodology.html">verification rules</a></div>
 </header>
 <div class="shell">
   <aside class="side">
@@ -841,6 +844,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
 """ % dict(title=esc(title), lead=esc(lead) if lead else "", css=CSS_HREF, fetched=DATA_FETCHED,
            injury_refresh=display_utc(source_read_utc("S-INJ-2235")),
            injury_subset=display_utc(source_read_utc("S-INJ-1113")),
+           injury_latest=display_utc(source_read_utc("S-INJ-1246")),
            standings_read=display_utc(read_rows("standings_2026.csv")[0]["captured_utc"]),
            injury_url=SOURCES["S-INJ"]["url"], standings_url=SOURCES["S-STAND-653B"]["url"], nav=navhtml,
            kind=kind, kind_label=esc(kind_label), toc=toc_html, body=body, prev=prevn, next=nextlink,
@@ -905,6 +909,7 @@ def main():
             "week10_injury_file_capture": DATA_FETCHED,
             "week10_injury_full_hub_reread": source_read_utc("S-INJ-2235"),
             "week10_injury_settled_game_subset_recheck": source_read_utc("S-INJ-1113"),
+            "week10_injury_latest_full_hub_snapshot": source_read_utc("S-INJ-1246"),
             "standings": read_rows("standings_2026.csv")[0]["captured_utc"],
         },
         "pages": written,
@@ -927,7 +932,7 @@ def main():
 
 KPIS = [
     ("injury_rows", "Injury rows ingested", "injuries",
-     lambda m: "%d players across %d of %d Week 10 clubs in the primary snapshot; the full-hub re-read holds %d rows across %d clubs" % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["hub2_rows"], m["hub2_clubs"])),
+     lambda m: "%d rows, %d/%d clubs (%s); %d/%d (%s); latest %d/%d (%s). Separate dated reads." % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["injury_primary_capture"], m["hub2_rows"], m["hub2_clubs"], m["hub2_captured_utc"], m["pr_hub_rows"], m["pr_hub_clubs"], m["hub_latest_captured_utc"])),
     ("designations", "Designations published", "injuries",
      lambda m: "%d of %d rows carry a game status; the rest are not published" % (m["designations"], m["injury_rows"])),
     ("depth_rows", "Depth & roster events", "depth-impact",
@@ -935,7 +940,7 @@ KPIS = [
     ("standings_teams", "Standings reconciled", "league-data",
      lambda m: "%d clubs; points and winning %s recomputed clean" % (m["standings_teams"], "pct")),
     ("suggestions", "Suggestions to decide", "suggestions",
-     lambda m: "%d options scored; none implemented without your pick" % m["suggestions"]),
+     lambda m: "%d options scored; adopted work is labeled and owner-only choices remain open" % m["suggestions"]),
     ("questions", "Open questions", "questions",
      lambda m: "%d questions, %d marked P0 blocking" % (m["questions"], m.get("p0", "?"))),
     ("flags", "Flags for review", "flagged-for-review",

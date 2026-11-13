@@ -10,6 +10,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/injuries_2026_wk10.csv` | 254 | one player × game × filing | S-INJ |
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
 | `data/standings_2026.csv` | 32 | club × season-to-date, with read timestamp per row | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
+| `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
 | `data/sources.csv` | {{metric sources}} | source | — |
 | `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
@@ -86,7 +87,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `pf`, `pa`, `net` | points | Points for, points against and net points; `net = pf - pa`, checked against the [NFL standings page](https://www.nfl.com/standings/). |
 | `streak` | text | Current streak string as published on the [NFL standings page](https://www.nfl.com/standings/). |
 | `source` | registry id | Source-register key for the official page read; current rows use `S-STAND-653B`, linked to [NFL.com standings](https://www.nfl.com/standings/). |
-| `captured_utc` | ISO-8601 UTC minute | Our read time for that official source, not an NFL publication time. All 32 rows currently record `2026-11-13T12:39Z`; the build check requires this to match the latest registered NFL standings read. |
+| `captured_utc` | ISO-8601 UTC minute | Our read time for that official source, not an NFL publication time. All 32 rows currently record `2026-11-13T12:53Z`; the build checks this against the latest registered source and against all 256 values in the saved official re-read. |
 
 ## Column meanings — injury snapshot
 

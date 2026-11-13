@@ -1,7 +1,7 @@
 {
   "blank_cells_rendered_as_not_published": 1182,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "a8ccf2b6cb0d66be671f1b64695f23b821e2c918a465230a4ff8978d30f92cae",
+  "inputs_sha256": "a89ba3c6ab7c080761ebf16521dfae69cc925b213f9ee42da522a9404b473343",
   "metrics": {
     "aw_club_states": 28,
     "aw_clubs": 26,
@@ -10,14 +10,14 @@
     "aw_practice_changes": 49,
     "aw_rows": 296,
     "correlation": 12,
-    "data_files": 60,
+    "data_files": 61,
     "depth_rows": 227,
     "designations": 6,
     "dnp": 92,
     "dtr_rows": 13,
     "empty_club_count": 4,
     "empty_clubs": "BAL, CIN, LAC, SEA",
-    "flags": 54,
+    "flags": 55,
     "full": 73,
     "games": 14,
     "games_log": 136,
@@ -38,13 +38,16 @@
     "games_log_ties": 1,
     "games_log_weeks": 9,
     "gates": 14,
+    "hub2_captured_utc": "2026-11-12T22:35Z",
     "hub2_clubs": 26,
     "hub2_rows": 279,
+    "hub_latest_captured_utc": "2026-11-13T12:46Z",
     "injury_blank_rows": 248,
     "injury_clubs_missing": 4,
     "injury_clubs_playing": 28,
     "injury_coverage": "24 of 28",
     "injury_detail_cells": 6,
+    "injury_primary_capture": "2026-11-12 04:45 UTC",
     "injury_rows": 254,
     "injury_teams": 24,
     "league_club_games": 274,
@@ -53,7 +56,7 @@
     "league_t": 2,
     "league_w": 136,
     "limited": 89,
-    "official_sources": 29,
+    "official_sources": 32,
     "p0": 20,
     "pages": 31,
     "pr_charted_clubs_playing": 10,
@@ -74,16 +77,16 @@
     "pr_uncharted_rows": 54,
     "pr_unresolved": 211,
     "qb_depth_rows": 5,
-    "questions": 50,
+    "questions": 51,
     "requirements": 45,
     "ruled_out_rows": 9,
     "signals": 18,
     "signals_blocked": 5,
-    "sources": 60,
+    "sources": 63,
     "standings_teams": 32,
     "status_blank_rows": 248,
     "strategies": 14,
-    "suggestions": 57
+    "suggestions": 58
   },
   "official_host_allowlist": [
     "nfl.com",
@@ -123,5 +126,12 @@
     "price-archive.html",
     "sources.html",
     "404.html"
-  ]
+  ],
+  "source_read_times_utc": {
+    "standings": "2026-11-13T12:53Z",
+    "week10_injury_file_capture": "2026-11-12 04:45 UTC",
+    "week10_injury_full_hub_reread": "2026-11-12T22:35Z",
+    "week10_injury_latest_full_hub_snapshot": "2026-11-13T12:46Z",
+    "week10_injury_settled_game_subset_recheck": "2026-11-13T06:52Z"
+  }
 }
