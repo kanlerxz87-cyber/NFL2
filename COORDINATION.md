@@ -1315,3 +1315,37 @@ go Final (15–16 November) and re-run `python3 tools/compute_settled_wk10.py &&
 Open decisions, in the order I would take them: **S-43** (capture timestamps — cheap, and it is the fix
 for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
 number on the leaderboard), **FL-36** (two broadcaster cells).
+
+### Session `5f16dcc6` — PR & live GitHub Pages deployment record
+
+| Item | Value |
+|---|---|
+| Pull request | **#40** — https://github.com/kanlerxz87-cyber/NFL2/pull/40 |
+| Branch | `arena/5f16dcc6-nfl2` → `main` |
+| Merged | **2026-11-13T07:14:03Z**, merge commit `14d0afcc5dda1c185e78e453407f70d72e49c5f9`, `--merge` (no squash, no force) |
+| Checks on the PR head | `Row-level verification, link check and build reproducibility` ✅ · `audit` ✅ · `q51` ✅ |
+| Checks on the merge commit (main) | `GitHub Pages` ✅ · `Q51 evidence and engine verification` ✅ · `build-and-audit` ✅ · `Verify site data and links` ✅ |
+| Pages API | `build_type legacy`, source `main`; build for `14d0afcc` → **built** at 2026-11-13T07:14:19Z |
+| `pages-build-deployment` | ✅ success on the merge commit |
+| New pages live | `/week10-settled.html` (27 root pages in total) |
+
+**Deployment note.** Unlike PR #37 (`a392a193`), where `actions/deploy-pages` failed once and was
+closed as transient in FL-34, both mechanisms succeeded here on the same commit: the Actions
+`GitHub Pages` workflow passed every step and the legacy `pages-build-deployment` reported built.
+Consistent with FL-34's rule — check the Pages API build record for the same commit before believing
+either signal — but there was nothing to disbelieve this time.
+
+**Still open from earlier sessions:** PR **#35** (`arena/8361cc7a-nfl2`, docs-only, no commit since
+2026-11-12T22:47Z) remains unmerged. It is another session's branch and was not touched here.
+
+### Honest scope statement for this session
+
+Verified against live official pages: the Week 10 standings refresh (32 rows), which Week 10 games are
+Final, the settled game's score and venue, the Week 11 fixtures / kickoffs / broadcasters / bye list,
+and the 20 injury rows attached to the settled game.
+
+**Not** re-verified: the remaining ~259 rows of the Week 10 injury hub, the depth-chart and
+deficiency registers, the price archive, and every sibling tree other than confirming that its links
+resolve. Two prior sessions read the whole hub (04:45Z and 22:35Z on 12 November) and FL-27 records it
+as a rolling document. This session's register says so explicitly with a `NOT CHECKED` row rather
+than leaving the reader to assume a full sweep.
