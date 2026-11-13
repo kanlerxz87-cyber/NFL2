@@ -1315,3 +1315,55 @@ go Final (15–16 November) and re-run `python3 tools/compute_settled_wk10.py &&
 Open decisions, in the order I would take them: **S-43** (capture timestamps — cheap, and it is the fix
 for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
 number on the leaderboard), **FL-36** (two broadcaster cells).
+
+---
+
+## Session `66faefac` (`arena/66faefac-nfl2`) — 2026-11-13 live re-verification, availability→depth-deficiency join, Week 10 pre-registration
+
+**Session ID:** `66faefac` · **Branch:** `arena/66faefac-nfl2` · **Base:** `14d0afc` (main after PR #40) · **Claim written:** 2026-11-13T07:3xZ, before any file was created.
+
+### Parallel-session check at claim time
+
+`git fetch --all --prune` leaves exactly one remote branch: `origin/main`. No other `arena/*-nfl2`
+session branch survives. The single open PR, #35 (`arena/8361cc7a-nfl2`, docs-only, +19 lines to this
+file), has not been touched since 2026-11-12T22:47Z — more than 60 minutes, and its head branch is no
+longer on the remote, so it is CONFLICTING and cannot be merged as-is. Per the stale-claim rule this
+session adopts its content (recorded below) and closes it. Pages status at claim time: `built` at
+`14d0afc`, build 1365511535; all seven checks on main green.
+
+### New files (this session's exclusive scope)
+
+| Path | Contents |
+|---|---|
+| `data/reverification_66faefac.csv` | one dated check performed against a live official page on 2026-11-13, with its outcome |
+| `data/designations_wk10_20261113_66faefac.csv` | every Week 10 player with a published game designation, as the hub read today |
+| `data/club_availability_20261113_66faefac.csv` | club × three-state availability (rows reported / "No Injuries Reported" / absent from the file) + DNP/Ltd/Full counts |
+| `data/availability_deficiency_66faefac.csv` | position group × unavailable 1st-stringer × next man up, joined to the depth charts already transcribed in this repo |
+| `data/prereg_wk10_66faefac.csv` + `.sha256` | the 13 un-played Week 10 fixtures, our published line, availability load, the locked call, and a tamper hash |
+| `tools/compute_availability_66faefac.py` | deterministic generator for the four tables above |
+| `tools/verify_prereg_66faefac.py` | re-hashes the locked file and grades it against `data/games_2026_wk10_played.csv` |
+| `content/availability.md`, `content/preregistration.md` and their built pages | two new dashboard pages |
+
+### Shared files this session edits (integration round; change requests logged, no other session is live)
+
+| Path | Edit | CR |
+|---|---|---|
+| `tools/build_site.py` | two `NAV` entries only | CR-66FA-01 |
+| `data/sources.csv` | append the 2026-11-13 official reads | CR-66FA-02 |
+| `data/flags.csv`, `data/questions.csv`, `data/suggestions.csv` | append rows, union-by-renumbering convention | CR-66FA-03 |
+| `content/data-dictionary.md` | rows for the new CSVs (the `datasets_documented` gate requires it) | CR-66FA-04 |
+| `content/index.md`, `content/executive-summary.md`, `EXECUTIVE_SUMMARY.md` | refresh counts and findings | CR-66FA-05 |
+| `COORDINATION.md` | this claim and the log below | CR-66FA-06 |
+
+**Not touched:** `data/injuries_2026_wk10.csv` (frozen 04:45Z snapshot; `tools/verify.py::injuries()` asserts its 6-designation count, so it must stay), `data/games_2026_wk1_9.csv` (pre-registered corpus, S-26), `crosscheck/`, `s92/`, `q51/`, `analytics/`, `portal/`, `site/`, `pipeline/`, `engine/`, `datasets/`, `archive/`, `review/`, `research/`, `docs/`.
+
+### Task board
+
+| # | Task | Status | Owner |
+|---|---|---|---|
+| A1 | Live re-verification of standings, Week 10 slate, Week 11 slate, scores page against the repo | in progress | 66faefac |
+| A2 | Re-ingest the official Week 10 injury hub today; publish the designation register and the three-state club availability counts | in progress | 66faefac |
+| A3 | Join designations to the repo's transcribed depth charts → deficiency register (which starter slots are empty, who replaces them) | in progress | 66faefac |
+| A4 | Pre-register our lines for the 13 un-played Week 10 games, hash-locked before kickoff, with a grading tool for the next session | in progress | 66faefac |
+| A5 | Append suggestions, questions and flags discovered by A1–A4; refresh the executive summary | pending | 66faefac |
+| A6 | Rebuild, run every verification suite, PR to main, merge, confirm Pages deploy | pending | 66faefac |
