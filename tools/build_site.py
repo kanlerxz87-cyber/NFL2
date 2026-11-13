@@ -39,6 +39,7 @@ NAV = [
     ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
               ("league-data", "Standings & Schedule"),
               ("availability-watch", "Availability Watch (dated)"),
+              ("personnel-relief", "Personnel Relief"),
               ("deficiencies", "Depth Deficiencies by Side"),
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
@@ -390,9 +391,59 @@ def build_metrics():
         "empty_clubs": ", ".join(empty),
         "empty_club_count": len(empty),
     }
+    m.update(personnel_relief_metrics())
     m.update(gamelog_metrics(st))
     m.update(availability_metrics())
     return m, inj, agg
+
+
+def personnel_relief_metrics():
+    """Counts for the personnel-relief page, derived from its own files.
+
+    Every one of these is counted here rather than typed into the prose, for the
+    same reason the league identities above are: a rolling injury register changes
+    between builds, and a hand-written total is stale the moment it does.
+    """
+    relief = _safe_rows("personnel_relief_wk10_83246f00.csv")
+    club = _safe_rows("personnel_relief_club_83246f00.csv")
+    hub = _safe_rows("injuries_wk10_83246f00.csv")
+    chart_path = os.path.join(DATA, "depth_charts_wk10_83246f00.json")
+    charts = {}
+    if os.path.exists(chart_path):
+        with open(chart_path, encoding="utf-8") as fh:
+            charts = json.load(fh)["charts"]
+    resolved = [r for r in relief if r.get("string", "").strip() not in BLANKS]
+    firsts = [r for r in resolved if r["string"] == "1st string"]
+    first_dnp = [r for r in firsts if r["practice"] == "D"]
+    first_out = [r for r in firsts if r["game_status"] == "Out"]
+    # A unit whose whole published order sits on the report: nobody the club names
+    # behind the starter is clean either. Counted from the cascade text, which lists
+    # each rung and its status, so this cannot drift from the table.
+    full_unit = set()
+    for r in firsts:
+        if r["practice"] in ("D", "L") and r.get("unit_cascade") and \
+                "not on the official report" not in r["unit_cascade"]:
+            full_unit.add((r["club"], r["depth_unit"]))
+    return {
+        "pr_rows": len(relief),
+        "pr_clubs": len(set(r["club"] for r in relief)),
+        "pr_hub_rows": len(hub),
+        "pr_hub_clubs": len(set(r["team"] for r in hub)),
+        "pr_charts": len(charts),
+        "pr_resolved": len(resolved),
+        "pr_unresolved": len(relief) - len(resolved),
+        "pr_first_listed": len(firsts),
+        "pr_first_dnp": len(first_dnp),
+        "pr_first_out": len(first_out),
+        "pr_full_unit_units": len(full_unit),
+        "pr_full_unit_list": ", ".join("%s %s" % (c, u) for c, u in sorted(full_unit)) or "none",
+        "pr_offence_first_dnp": len([r for r in first_dnp if r["side"] == "offence"]),
+        "pr_defence_first_dnp": len([r for r in first_dnp if r["side"] == "defence"]),
+        "pr_club_rows": len(club),
+        "pr_charted_clubs_playing": len(set(r["club"] for r in club
+                                            if r["chart_url"].startswith("https://"))),
+        "pr_uncharted_rows": len([r for r in club if r["chart_url"] == "not published"]),
+    }
 
 
 # The dated availability snapshot is its own register (session c3ec1487). Its counts are read from
@@ -718,6 +769,7 @@ PAGE_KIND = {
     "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
     "deficiencies": ("measured", "Measured data"), "price-archive": ("program", "Register"),
     "week10-settled": ("measured", "Computed result"),
+    "personnel-relief": ("measured", "Measured data"),
     "availability-watch": ("measured", "Dated snapshot"),
 }
 
