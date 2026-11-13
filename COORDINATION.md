@@ -1180,3 +1180,62 @@ PR #38 was written as the experiment ("if the Pages run on the merge commit for 
 
 Session `a392a193` closes here: PRs **#37** and **#38** merged, 26 pages live, `verify 65 · check_site 11+1 disclosed warning · 0 failures` on the merged tree, and every open item on the board is a decision with its evidence attached rather than a missing dataset.
 
+
+---
+
+## Session `5f16dcc6` (`arena/5f16dcc6-nfl2`) — Week 10 settles: first out-of-sample grade of our own originated line
+
+**Session ID:** `5f16dcc6` · **Branch:** `arena/5f16dcc6-nfl2` · **Started:** 2026-11-13 (local date in sandbox)
+**Branch base:** `9c15252` (merge of PR #39 — the last merge onto `main` at claim time)
+
+### Why this session exists
+
+`main` was frozen at 2026-11-12 22:35Z. Between then and this session, **one Week 10 game
+became official**: the Thursday-night fixture **WAS 24 – NYG 21 (Final, 2026-11-12, MetLife
+Stadium)**. The published standings table is therefore one game stale, and — more usefully —
+the site's **own originated Week 10 line for that game can now be scored** for the first time.
+Nothing on `main` has ever been settled out of sample: every model number is either in-sample
+(weeks 1–9) or a pre-game output. This session supplies the first settled observation.
+
+### Exclusive scope — files this session creates (no other session's file is overwritten)
+
+| Path | Contents |
+|---|---|
+| `data/games_2026_wk10_played.csv` | Week 10 games whose result is official, one row per game, each with its `nfl.com/games/...` URL. Append-only as the week completes; **starts at 1 row**. |
+| `data/settled_wk10_5f16dcc6.csv` | Per settled game: our originated line, the points-only fair-line baseline, the archived community price, the official result, and the absolute error of each. |
+| `data/reverification_5f16dcc6.csv` | The 2026-11-13 dated re-verification register (standings, schedule, injuries) against live official pages. |
+| `data/computed_settled_5f16dcc6.csv` | Closed-form arithmetic derived from the settled row (no new data). |
+| `tools/compute_settled_wk10.py` | The deterministic script that produces the two computed tables; re-runnable. |
+| `content/week10-settled.md`, `week10-settled.html` | New page: *Settled Week 10 — first out-of-sample grade*. |
+
+### Shared files this session edits (change request logged; no other session is active — see note)
+
+| Path | Edit | Request ID |
+|---|---|---|
+| `data/standings_2026.csv` | 2 cells-row refresh (NYG, WAS) to the current official standings | CR-5F16-01 |
+| `tools/verify.py` | `gamelog()` reconciles standings against **corpus ∪ week-10-played**; new checks for the two new files; bye arithmetic stays on the frozen weeks 1–9 corpus | CR-5F16-02 |
+| `tools/build_site.py` | one `NAV` entry for the new page | CR-5F16-03 |
+| `content/data-dictionary.md` | dictionary rows for the new CSVs | CR-5F16-04 |
+| `data/flags.csv`, `data/questions.csv`, `data/suggestions.csv` | appended rows, union-by-renumbering per the convention `fd94fccd` established | CR-5F16-05 |
+| `content/index.md` | link the new page from the landing page | CR-5F16-06 |
+
+**Note on shared files.** At claim time the only remote branch is `origin/main`; every other
+`arena/*-nfl2` branch has been merged and deleted, and the single open PR (#35, `8361cc7a`,
+docs-only) has had no commit since 2026-11-12T22:47Z — more than 60 minutes, and therefore
+takeable under the stale-claim rule. `5f16dcc6` is the only live session, so it also acts as
+the integration session for this round.
+
+### Files this session will NOT touch
+
+`data/games_2026_wk1_9.csv` — **deliberately frozen.** `S-26` in `data/suggestions.csv`
+designates it the pre-registered backtest corpus and requires its SHA-256 to be recorded so a
+later edit invalidates every grade. Appending week 10 to it would break pre-registration, so
+week 10 results live in their own append-only file instead. `crosscheck/`, `s92/`,
+`engine/q51/`, `analytics/`, `portal/`, `site/`, `pipeline/`, `datasets/`, `archive/`,
+`research/` are other sessions' trees and are left byte-identical.
+
+### Log — session `5f16dcc6`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13T06:50Z | Claim written and pushed *before* any file was created (protocol §Parallel sessions). Branch base `9c15252`. |
