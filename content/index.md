@@ -74,6 +74,28 @@ Nothing was appended to the weeks 1–9 backtest corpus. Suggestion [S-26](sugge
 
 Two items in the register came out of the re-read and are waiting on you rather than on code: the refresh cadence for cumulative tables ([Q-40](questions.html), [S-43](suggestions.html)) and a broadcaster disagreement on two Week 11 games ([FL-36](flagged-for-review.html)).
 
+### Later the same day — the injury hub moved, so the site now dates it
+
+A second read of the official injury hub at **2026-11-13T12:45Z** found the source had changed materially
+in 14 hours, and the new [Availability Watch](availability-watch.html) page publishes all of it:
+
+- **Coverage is now 28 of 28 clubs on the Week 10 slate.** The league published full SEA and CIN blocks, which closes the
+  collection gap [FL-24](flagged-for-review.html) recorded. This Dashboard tile still reads
+  `{{metric injury_coverage}}` from the 12 November capture, and that disagreement is [FL-37](flagged-for-review.html) —
+  published, not silently reconciled.
+- **Player rows went 254 → 279 → {{metric aw_rows}}, and the hub has only ever added.** 17 players were
+  added and none removed; **{{metric aw_practice_changes}} of 277 shared players changed practice code**
+  (37 toward full participation, 12 away from it). The availability signal is that delta, not the level
+  ([S-47](suggestions.html), [FL-38](flagged-for-review.html)).
+- **Game-status designations went 6 → {{metric aw_designations}}.** The three new ones are all Detroit,
+  all OUT: Kerby Joseph, Cade Mays, D.J. Reed.
+- **No second Week 10 game has settled**, so the [settled page](week10-settled.html) cannot gain a row
+  until 15–16 November. That is a property of the calendar, not a gap in the pipeline.
+
+Four new decisions came out of it — which register is canonical ([Q-42](questions.html)), how often the
+hub must be read ([Q-43](questions.html)), what replaces depth rank ([Q-44](questions.html)), and whether
+to buy snap counts ([Q-45](questions.html)).
+
 ## Repository map
 
 {{site_map}}
@@ -98,6 +120,7 @@ Two items in the register came out of the re-read and are waiting on you rather 
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
 | Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
+| Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
 | Data | [Personnel Relief](personnel-relief.html) | **new 13 Nov** — the verified join: {{metric pr_resolved}} of {{metric pr_rows}} listed players resolved to a 1st/2nd/3rd/4th string on their own club's published chart, with the next man the club names, and {{metric pr_first_dnp}} 1st-string non-participants across {{metric pr_charts}} clubs |
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |

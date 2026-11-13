@@ -33,6 +33,14 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/settled_wk10_5f16dcc6.csv` | 4 | settled game × predictor: the published line, the official result, and the absolute error of each | S-CALC-5F16 |
 | `data/computed_settled_5f16dcc6.csv` | 17 | one derived metric, its value, the method that produced it, and the read | S-CALC-5F16 |
 | `data/reverification_5f16dcc6.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
+| `data/availability_watch_c3ec1487.csv` | 296 | one player × club × game, transcribed from the official injury hub on 2026-11-13T12:45Z | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_by_club_c3ec1487.csv` | 28 | one club on the Week 10 slate: practice-code tallies, designations, and the two cells no official source can fill | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_movement_c3ec1487.csv` | 5 | what changed between the 2026-11-12 and 2026-11-13 reads of the hub | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_practice_deltas_c3ec1487.csv` | 49 | one player whose practice code changed between the two dated reads, and the direction | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_watch_gates_c3ec1487.csv` | 4 | one availability readiness gate, its measured value, and why it passes or fails | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/computed_availability_watch_c3ec1487.csv` | 12 | one derived availability metric, how it is computed, and what it means | S-CALC |
+| `data/reverification_c3ec1487.csv` | 12 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
+
 | `data/price_archive_a392.csv` | 5 | one price-bearing asset in the repository, what it proves and what it does not | S-NFLDATA-ARCHIVE, S-NFLDATA-SCHEMA |
 | `data/code_collision_a392.csv` | 2 | one cross-source join, how many games it silently dropped with and without the alias table | S-NFLDATA-ARCHIVE |
 | `data/deficiency_by_club_a392.csv` | 78 | club × side of the ball, counts off the official filing | S-INJ-2235 |
@@ -70,6 +78,20 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `injury` | text | populated for {{metric injury_detail_cells}} of {{metric injury_rows}} rows because that is what the hub published; never backfilled from prose |
 | `practice` | enum | `F` = Full Participation in Practice, `L` = Limited Participation in Practice, `D` = Did Not Participate In Practice |
 | `status` | enum | `OUT` = Out, `Q` = Questionable, `D` = Doubtful; empty means no designation had been filed |
+
+### `availability_watch_c3ec1487.csv`
+
+| Column | Type | Meaning |
+| --- | --- | --- |
+| `game_id` | key | joins to `schedule_2026_wk10.csv.game_id` |
+| `club` | abbr | league club abbreviation exactly as the hub prints it |
+| `player` | text | display name as published, suffixes included |
+| `position` | code | the hub's own position string; not normalised, because normalising is interpretation |
+| `injury` | text | the hub's injury cell, verbatim; empty for the majority of rows, and never filled from a news article |
+| `practice` | enum | `F` = Full, `L` = Limited, `D` = Did Not Participate In Practice |
+| `game_status` | enum | `OUT`, `Q`, `D`, or empty. Empty is the normal state midweek — 287 of {{metric aw_rows}} rows here |
+| `captured_utc` | timestamp | the moment the page was read. A row without one is not a dated observation |
+| `source` | url | the official page the row was transcribed from |
 
 ## Controlled vocabularies
 

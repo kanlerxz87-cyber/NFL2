@@ -946,11 +946,92 @@ def reverification_5f16dcc6_holds():
         bad("re-verification 2026-11-13: %d rows without an https source" % len(nosrc))
 
 
+def availability_watch_holds():
+    """The dated availability register answers a smaller question than the injury register and it has
+    to answer it exactly. Four things are checked, all from the files:
+
+      * every snapshot row belongs to a club that is playing in the game it names,
+      * every row cites an official nfl.com page and carries the capture timestamp,
+      * the by-club table's tallies equal the snapshot's own counts, club by club (so a hand-typed
+        total cannot drift away from the rows it describes),
+      * the movement table's numbers equal the actual set difference between the two dated reads.
+
+    The last one is the check that matters. The whole point of keeping two dated reads is the delta
+    between them, and a delta is exactly the kind of number that is easy to assert and hard to notice
+    when it is wrong.
+    """
+    import csv as _csv
+    snap_name = "availability_watch_c3ec1487.csv"
+    path = os.path.join(DATA, snap_name)
+    if not os.path.exists(path):
+        bad("availability watch snapshot is missing (%s)" % snap_name); return
+    snap = rows(snap_name)[0]
+    byclub = rows("availability_watch_by_club_c3ec1487.csv")[0]
+    movement = {r["change"]: r for r in rows("availability_watch_movement_c3ec1487.csv")[0]}
+    prior = rows("injuries_wk10_2026_hubrefresh.csv")[0]
+    sched, _, _ = rows("schedule_2026_wk10.csv")
+
+    game_clubs = {}
+    for g in sched:
+        game_clubs.setdefault(g["game_id"], set()).update((g["away"], g["home"]))
+
+    problems = []
+    for r in snap:
+        if r["game_id"] not in game_clubs:
+            problems.append("%s: unknown game" % r["player"])
+        elif r["club"] not in game_clubs[r["game_id"]]:
+            problems.append("%s %s: club not in %s" % (r["game_id"], r["club"], r["game_id"]))
+        if not r["source"].startswith("https://www.nfl.com/"):
+            problems.append("%s: non-official source" % r["player"])
+        if not r["captured_utc"].strip():
+            problems.append("%s: no capture timestamp" % r["player"])
+        if r["practice"] not in ("D", "L", "F"):
+            problems.append("%s: practice code %r" % (r["player"], r["practice"]))
+        if r["game_status"] not in ("", "OUT", "Q", "D"):
+            problems.append("%s: game status %r" % (r["player"], r["game_status"]))
+
+    # every club on the slate has exactly one by-club row
+    slate = sorted({c for cs in game_clubs.values() for c in cs})
+    state_clubs = sorted(r["club"] for r in byclub)
+    if state_clubs != slate:
+        problems.append("by-club table covers %d clubs, the slate has %d" % (len(state_clubs), len(slate)))
+    for r in byclub:
+        mine = [x for x in snap if x["club"] == r["club"]]
+        if int(r["rows_published"]) != len(mine):
+            problems.append("%s: by-club rows %s, snapshot has %d" % (r["club"], r["rows_published"], len(mine)))
+        if int(r["did_not_practice"]) != sum(1 for x in mine if x["practice"] == "D"):
+            problems.append("%s: DNP tally does not match the snapshot rows" % r["club"])
+        if int(r["designations"]) != sum(1 for x in mine if x["game_status"].strip()):
+            problems.append("%s: designation tally does not match the snapshot rows" % r["club"])
+
+    # the movement table must equal the set difference between the two dated reads
+    old = {"%s|%s" % (r["team"], r["player"]): r for r in prior}
+    new = {"%s|%s" % (r["club"], r["player"]): r for r in snap}
+    added, removed = len(set(new) - set(old)), len(set(old) - set(new))
+    changed = sum(1 for k in set(new) & set(old) if new[k]["practice"] != old[k]["practice"])
+    for label, actual in (("players newly listed", added),
+                          ("players no longer listed", removed),
+                          ("practice codes changed", changed)):
+        row = movement.get(label)
+        if not row:
+            problems.append("movement table has no '%s' row" % label)
+        elif int(row["count"]) != actual:
+            problems.append("movement table says %s=%s, files say %d" % (label, row["count"], actual))
+
+    if problems:
+        bad("availability watch: %s" % problems[:6])
+    else:
+        ok("availability watch: %d player rows across %d clubs reproduce from the snapshot, "
+           "every row sourced and dated, and the movement table equals the set difference "
+           "between the two reads (%d added, %d removed, %d practice changes)"
+           % (len(snap), len(byclub), added, removed, changed))
+
+
 def main():
     check_widths(); no_disguised_guesses(); standings(); injuries(); depth(); sources(); registers(); no_invented_results();
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
-    settled_week10_reproduces(); reverification_5f16dcc6_holds()
+    settled_week10_reproduces(); reverification_5f16dcc6_holds(); availability_watch_holds()
     personnel_relief_reproduces(); reverification_83246f00_holds()
     
     print("=" * 72)

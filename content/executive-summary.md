@@ -5,6 +5,37 @@
 
 The collection layer now exists and is genuinely verified: 254 rows of the official Week 10 practice report across 24 of the 28 clubs playing that week, 227 official roster and depth events, 32 reconciled standings rows and a 14-game schedule, every row carrying a link to the official page it came from and nothing inferred to fill a gap. The analysis layer is specified in full — line-origination architecture, 18 signal families, 14 validation gates, a correlation framework with twelve pair classes, a sample-size protocol for removing luck, and a 14-entry strategy registry — but it produces no numbers yet, because two inputs do not exist in this project: licensed market prices and player-level participation data. The honest summary is that the pipeline and the rules are real, the data spine is real, and every performance claim you might want from this system is currently un-earnable rather than absent.
 
+## Update — 13 November 2026, 12:45Z (session `c3ec1487`)
+
+Read this section as a diff against the rest of the page, not a replacement: the numbers below are the
+ones that moved, and everything the page says about the *design* still stands.
+
+| What changed | Yesterday | Today (sourced) | What it means for a decision |
+| --- | --- | --- | --- |
+| Injury coverage of the Week 10 slate | {{metric injury_coverage}} clubs (SEA and CIN absent from our file — [FL-24](flagged-for-review.html)) | **28 of 28** clubs: the league now publishes full SEA and CIN blocks, and answers "No Injuries Reported" for LAC and BAL | the collection gap closed at the source; [FL-37](flagged-for-review.html) is now the only problem, because the older register still says 24 |
+| Player rows in the record | 254 (12 Nov 04:45Z) → 279 (12 Nov 22:35Z) | **{{metric aw_rows}}** (13 Nov 12:45Z) | the hub only ever grew: 17 players added, none removed |
+| Game-status designations | 6 | **{{metric aw_designations}}** — three Detroit players (Kerby Joseph, Cade Mays, D.J. Reed) are now OUT | a starting safety and a starting centre can be priced as unavailable instead of questionable |
+| Practice codes that moved between reads | not measured | **{{metric aw_practice_changes}}** of 277 shared players changed code in 14 hours — 37 toward full, 12 away | the availability signal is the delta, not the level ([S-47](suggestions.html), [FL-38](flagged-for-review.html)) |
+| Settled Week 10 games | 1 (WAS 24, NYG 21) | 1 — **unchanged** | no second grade is possible today; the [settled page](week10-settled.html) cannot gain a row until 15–16 November |
+| Standings | 1 game stale, corrected | **32 of 32 rows match live nfl.com**, identities close at 6,291 PF = 6,291 PA over 274 club-games | the correction held; the missing capture timestamp is still the open defect ([Q-40](questions.html)) |
+| Week 11 broadcasters | two cells disagree with nfl.com ([FL-36](flagged-for-review.html)) | **still disagree**, on a second read a day later: MIA at BUF is CBS, TB at DET is FOX | a second independent read makes a transcription swap the likely explanation, but it stays flagged, not edited |
+
+**The decision this update creates.** Four registers now ask the owner for the same kind of choice, and
+three of them are about the availability data specifically: which injury register is canonical
+([Q-42](questions.html) / [S-46](suggestions.html)), how often the hub must be read for a delta to mean
+anything ([Q-43](questions.html) / [S-47](suggestions.html)), and what replaces depth rank now that the
+league publishes none ([Q-44](questions.html) / [S-48](suggestions.html)). Each is cheap and reversible
+except the third. The one I would take first is **Q-42**: the site currently publishes two sourced
+coverage answers, and a reader cannot tell which is current.
+
+**The finding worth keeping.** Across every session so far, the failures that actually mattered were
+never arithmetic — they were **stale state that looked current**: a standings table one game old, a
+coverage figure that said 24 of 28 after the source had published 28, a leaderboard that reads as empty
+because no strategy was pre-registered. The fixed cost of preventing that class is small: put the read
+time on every cumulative table ([S-43](suggestions.html)) and make every derived count come from the file
+([S-31](suggestions.html), already adopted). Both are done on the [Availability Watch](availability-watch.html)
+page, which prints its read time and derives every count.
+
 ## What is verified and how we know
 
 | Dataset | Volume | Official source | Reconciliation performed |
