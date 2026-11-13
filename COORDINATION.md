@@ -1577,6 +1577,7 @@ sessions' trees, left byte-identical.
 | 2026-11-13 13:0x | One stale cross-reference found on the live Week 11 caption (`FL-38` for availability, which is now FL-40). Fixed in a follow-up commit and merged in a follow-up PR. |
 
 **Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 injury-coverage conflict and FL-38 hub volatility (both `c3ec1487`); FL-39 stale JSON snapshot; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
+<<<<<<< HEAD
 ### `c3ec1487` — merge note: PR #42 (session `83246f00`) landed while PR #43 was open
 
 `gh pr merge 43` was refused with a real conflict, not a stale one: `main` advanced through PR #42
@@ -1603,3 +1604,114 @@ Note for the next session: `83246f00`'s personnel-relief tree begins to answer Q
 rank) for 10 clubs with a club-published chart; the two datasets should be reconciled rather than one
 superseding the other, and the *two* independent 296-row transcriptions now in `data/` are a standing
 cross-check worth keeping.
+=======
+
+---
+
+## Session `6539b6a0` (`arena/6539b6a0-nfl2`) — Depth-cascade re-verification against official club charts, flag reconciliation, stale-PR close-out, integration
+
+**Session ID:** `6539b6a0` · **Branch:** `arena/6539b6a0-nfl2` · **Started:** 2026-11-13 (sandbox local date)
+**Branch base:** `14d0afc` (merge of PR #40 — `main` at claim time)
+
+### Claim status at start
+
+- Remote branches at claim time: `origin/main` only. Open PRs: **#35** (`arena/8361cc7a-nfl2`, docs-only, `COORDINATION.md` +19 lines, last commit 2026-11-12T22:47Z — more than 60 minutes with no commits, so takeable under the stale-claim rule).
+- No other session holds an unexpired claim. This session is therefore also the integration session for this round.
+
+### Task board
+
+| ID | Task | Status | Owner | Files touched (exclusive unless noted) |
+|---|---|---|---|---|
+| 6539-T1 | Re-verify the **18 depth cascades** in `data/depth-charts-2026.json` against the **12 club depth-chart pages** named in that file (fetched live today), row by row; record observed string per player | in progress | 6539b6a0 | `data/depth_cascades_6539b6a0.csv` (new), `content/depth-cascades.md` (new), `data/depth_cascades_6539b6a0.json` (new) |
+| 6539-T2 | Reconcile the three depth-coverage counts that disagree in the repo (`depth_charts.json` says 4 clubs, `depth-charts-2026.json` lists 12, `deficiency_chains_a392.csv` covers 2) and log them as flags | in progress | 6539b6a0 | `data/flags.csv` (append, shared — sole active session), `data/questions.csv` (append only if needed) |
+| 6539-T3 | Close out stale PR #35 (docs-only COORDINATION.md record from `8361cc7a`) — merge if the diff is a clean append, after re-verifying its claims | in progress | 6539b6a0 | `COORDINATION.md` only |
+| 6539-T4 | Integration: NAV entry + page wiring (`tools/build_site.py`, `content/index.md` link), build, all verifiers, link check, PR to `main`, merge, confirm GitHub Pages deploy | unclaimed → in progress at integration | 6539b6a0 | `tools/build_site.py` (NAV line only), `content/index.md` (one link), `content/data-dictionary.md` (rows for new CSVs) |
+
+### Not in this session's scope (explicitly not done here)
+
+- No new originated lines, strategies, parallels or prop-combo engine. The leaderboard stays empty: no forward-settled sample exists yet (the first settled game is `5f16dcc6`'s Week 10 WAS–NYG).
+- No re-verification of the other 30 clubs' charts (Q-37 / S-39 still open).
+- No edits to `s53/`, `s92/`, `analytics/`, `portal/`, `q51/`, `crosscheck/`, `review/`, `docs/`, `archive/`, `site/`, `pipeline/`, `engine/`, `datasets/`, `research/`.
+
+### Log — session `6539b6a0`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13 | Claim written and pushed before any new file was created. Live check: `https://www.azcardinals.com/team/depth-chart` returns the club chart as a readable table (WR/LT/… rows; column order = string). |
+
+
+### Completion record — session `6539b6a0`
+
+**Task status**
+
+| ID | Status | Result |
+|----|--------|--------|
+| 6539-T1 | **done** | 139 player rows placed against the 12 club charts and the 7-page NFL Week 10 report (13 Nov 2026). 18 verdicts: **5 VERIFIED, 9 PARTLY, 4 CONTRADICTED**. Files: `data/depth_cascades_6539b6a0.csv`, `data/depth_cascade_verdicts_6539b6a0.csv`, `data/depth_cascades_6539b6a0.json`, `content/depth-cascades.md`. |
+| 6539-T2 | **done** | Coverage counts reconciled as far as the files allow: `depth_charts.json` (4 clubs), `depth-charts-2026.json` (12 clubs, all read this session), `deficiency_chains_a392.csv` (2 clubs). Logged as **FL-45**; the string rule that would let the other clubs be assigned strings is owner decision **Q-49**. |
+| 6539-T3 | **done — not merged; closed** | PR #35 is not a clean append any more: main moved to `172077b` (PR #41 and #42) and `COORDINATION.md` grew from 1,317 to 1,404+ lines, so its 19-line hunk no longer applies. Its claims were re-checked (see below), and its text is carried over verbatim under *Carried over from PR #35* so nothing is lost. PR #35 had already been closed by session `0a113a24` at 2026-11-13T12:50Z ("stale … superseded by PR #44"). This session did not add a second comment. |
+| 6539-T4 | **done at PR stage** | NAV entry (`tools/build_site.py`), one link in `content/index.md`, two rows in `content/data-dictionary.md`, page-kind entry, build, verifiers, link check, PR to `main`. PR link and merge result are in the record below. |
+
+**Verification performed (this session)**
+
+- `tools/build_site.py`: 30 pages built after the rebase onto `172077b`.
+- `tools/verify.py`: **98 passed · 0 warnings · 0 failures**.
+- `tools/check_site.py`: **11 passed · 1 warning**. The warning is the existing non-league-host notice; it now also lists club team sites on `depth-cascades.html` (`49ers.com`, `azcardinals.com`, `baltimoreravens.com`, `commanders.com`, `dallascowboys.com`, `detroitlions.com`). Those are official club sites, not NFL.com, and this is disclosed rather than hidden.
+- Every row of the 139-row detail table cites a club chart URL and the NFL report URL. Verdict counts in the 18-row table are computed from the detail rows, not typed in.
+- Each cited news article was fetched and read before it was used in a flag: Week 8 Sunday notable injuries (Brissett benched), Nov. 5 roundup (Jackson and Huntley IR; Reed to active roster), Willis IR, Darnold ruled out, Nacua likely IR, the NFL trade tracker (Brissett to Baltimore, Nov. 6).
+- Charts: chunk 0 of all 12 club pages was read; Seahawks (2 chunks) and Patriots (3 chunks) were read in full. The chunk counts of the other ten charts were not re-checked this session, so those charts are described as read at chunk 0 only.
+- Report: all 7 chunks of `nfl.com/injuries/league/2026/REG10` were read in this session (chunks 1–6 re-read after the first draft of this record, which wrongly said they had been read earlier). The Week 10 slate on the report is 14 games and 28 clubs; the league has 32 clubs, and the 28 is the Week 10 count, not the league count. The 32-club league count was not separately re-checked.
+
+**Irregularities published (all on *Flagged for Review*, none fixed silently)**
+
+| ID | Finding | Severity |
+|----|---------|----------|
+| FL-45 | Club depth-chart coverage counts disagree (4 / 12 / 2 clubs); KC has no transcribed chart in any file | high |
+| FL-46 | Four cascades contradicted (DC-01, DC-02, DC-09, DC-16); nine partly confirmed; five verified on the stated rule. Re-checked against the report this session: DC-09 (Branch and Joseph shown Full Participation; Reed and Mays Out) and DC-16 (Baker and Wilson shown Full Participation) | high |
+| FL-47 | DC-01 (Ravens) omits Jacoby Brissett, who is QB1 on the Ravens chart after the Nov. 6 trade from Arizona; the cascade calls Austin Reed a practice-squad player, but NFL.com says he is on the active roster | medium |
+| FL-48 | Nine practice/game statuses in the cascades disagree with the Week 10 report; two more are understated (Reed, Mays) | high |
+| FL-49 | Column 1 is not always the starter on one-slot-per-row charts (Arizona, New England, Rams, San Francisco) | high |
+| FL-50 | The "unofficial" label varies by club page and is not uniform across the 12 charts | medium |
+| FL-51 | Darnold and Lock injury types are on an NFL.com article, not in the report's Injuries column | medium |
+| FL-52 | Four IR placements rest on NFL.com news only; the transactions hub was not read | medium |
+| FL-53 | Packers and Ravens charts list the same player twice in one depth group | low |
+| FL-54 | Question IDs Q-46 and Q-47 are each used for two different questions on `main` (pre-existing, not created here; not renumbered because other pages link to them) | medium |
+
+**Renumbering note.** My first draft used FL-37..FL-45, Q-42 and S-46, which were taken on `main` by PR #41 (`c3ec1487`). I renumbered all my rows to FL-45..FL-53, Q-49 and S-57 before merging, and I checked each ID against `main`. Sources already on `main` (`S-DEPTH-BAL`, `-MIA`, `-NE`, `-DET`, `-GB`, `-WAS`, `-NYG`) were not duplicated. New source rows: `S-INJ-REG10`, `S-DEPTH-ARI`, `S-DEPTH-SF`, `S-DEPTH-DAL`.
+
+**Handoff — owner decisions this session leaves open**
+
+- **Q-49**: which rule turns a club chart into a 1st/2nd/3rd/4th string (column order, slot-row order, or the club's own name list). Until chosen, no cascade tier can be priced.
+- **S-57**: publish a verdict for every cascade instead of a tier label, and re-check each Tuesday. The page already follows the verdict rule; S-57 is the owner's decision to make it the default.
+- **Still unverified**: the other 20 of 32 clubs have no re-verified chart in this session (Q-37 / S-39 still open).
+
+**Carried over from PR #35 (`8361cc7a`), verbatim.** The RV-T06 record below was written by session `8361cc7a` on 2026-11-12. Its probe results are historical; this session re-checked the PR #34 checks (merged; `q51`, `Row-level verification, link check and build reproducibility`, `audit` all SUCCESS) and `line-origination.html` (live). `defense.html` returns the site's 404 page today, which matches the record; the HTTP status code itself was not observed through the fetch tool.
+
+
+### RV-T06 result — PR, merge and **verified** live confirmation
+
+- **Pull request:** [#34](https://github.com/kanlerxz87-cyber/NFL2/pull/34) — checks `build-and-audit`,
+  `Verify site data and links`, `Q51 evidence and engine verification` all **pass**.
+- **Merge:** `MERGED`; post-merge `build-and-audit`, `Verify site data and links`, `Q51`, `GitHub Pages` and
+  `pages build and deployment` all **success**; Pages API `status: built`.
+- **Live verification, done the way it should have been done the first time** — by probing pages that exist in
+  exactly one tree, with a cache-busting query because the CDN served a stale `/` for a minute:
+
+| Probe | Before the fix | After the fix |
+|---|---|---|
+| `GET /line-origination.html` (root-only) | **404** | **200** — "Originate Our Own Lines", 14-game table, mean total 48.64 |
+| `GET /index.html?v=2` | docs/ title `NFL Intelligence Dashboard` | **`NFL2 — Decision Dashboard · NFL2`** with the real metrics: 254 injury rows across 24 of 28 clubs, 34 suggestions, 33 questions, 26 flags, 18 signals (5 blocked) |
+| `GET /defense.html?v=2` (docs-only) | **200** with the archive page | **404** — correctly absent from the canonical tree |
+
+The lesson is now written into the board and into this session's record: a deploy is not confirmed by a 200
+on a page that every tree contains, and a CDN can serve a stale root for a minute after a successful build.
+Probe a URL that exists in exactly one tree, and cache-bust it.
+
+### PR and merge record — session `6539b6a0`
+
+| Item | Value |
+|------|-------|
+| Integration PR | https://github.com/kanlerxz87-cyber/NFL2/pull/47 (`arena/6539b6a0-nfl2` → `main`) |
+| PR #35 (`8361cc7a`) | Already closed by session `0a113a24` on 2026-11-13T12:50Z ("superseded by PR #44"). This session did not close it again. Its text is carried over verbatim in this section. |
+| Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
+| Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
+>>>>>>> origin/main

@@ -108,6 +108,10 @@ Four new decisions came out of it — which register is canonical ([Q-42](questi
 hub must be read ([Q-43](questions.html)), what replaces depth rank ([Q-44](questions.html)), and whether
 to buy snap counts ([Q-45](questions.html)).
 
+## Depth cascades re-verified on 13 November 2026
+
+The eighteen depth cascades on this site were checked player by player against the twelve clubs' own depth charts and the league's Week 10 injury report. Five are verified, nine are only partly confirmed and four are contradicted by the official pages. Nine statuses on the earlier labels are wrong, and two more are understated. The full line-by-line table, with each club chart and report link, is on [Depth Cascades (re-verified)](depth-cascades.html). Every irregularity is on [Flagged for Review](flagged-for-review.html) as FL-45 to FL-53.
+
 ## Repository map
 
 {{site_map}}

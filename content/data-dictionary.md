@@ -58,6 +58,9 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/personnel_relief_wk10_83246f00.csv` | {{metric pr_rows}} | one listed player × his string on his club's chart × the next man the club names × his unit's published order matched rung by rung against the report | S-INJ-1246, S-DEPTH-* |
 | `data/personnel_relief_club_83246f00.csv` | {{metric pr_club_rows}} | club × side of the ball: how many listed players resolved to a string, how many 1st-string players did not practise, and the join state | S-INJ-1246, S-DEPTH-* |
 | `data/reverification_83246f00.csv` | 13 | one check performed against a live official page on 2026-11-13 by session 83246f00, with its outcome | S-STAND-1113, S-SCORES-1113, S-INJ-1246, S-DEPTH-* |
+
+| `data/depth_cascades_6539b6a0.csv` | 139 | one named player per depth cascade, placed against his club's own chart and the official Week 10 report | S-DEPTH-BAL, S-DEPTH-MIA, S-DEPTH-ARI, S-DEPTH-NE, S-DEPTH-DET, S-DEPTH-SF, S-DEPTH-DAL, S-DEPTH-SEA, S-DEPTH-LAR, S-DEPTH-GB, S-DEPTH-WAS, S-DEPTH-NYG, S-INJ-REG10 |
+| `data/depth_cascade_verdicts_6539b6a0.csv` | 18 | one depth cascade, with a verdict computed from its player rows | as above |
 | `data/computed_luck.csv` | 8 | bet count × probability of being ahead at four win rates — arithmetic, not data | S-CALC |
 | `data/computed_sample_sizes.csv` | 5 | one win-probability case × the sample size each gate assumes | S-CALC |
 | `data/computed_vig.csv` | 5 | one price pair × implied probability, overround and the no-vig line | S-CALC |
