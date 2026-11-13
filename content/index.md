@@ -81,10 +81,32 @@ A settlement is not a forecast. The one graded Week 10 game was published after 
 1. **Thirteen Week 11 lines, pre-registered.** For the games of 19–23 November: our spread and our total for each fixture, with the model inputs beside them, published with a decision timestamp of `2026-11-13T12:39Z` and a SHA-256 over four artefacts — the lines file, the frozen weeks 1–9 corpus, the append-only settled-games file and the generator script. The full record is on the [Week 11 lines](week11-originated.html) page, and `tools/grade_forward.py` recomputes those hashes before it grades anything.
 2. **The model was proved to be the same model, not a look-alike.** The Week 11 generator re-implements the published ratings model, so before it writes anything it re-derives all fourteen already-published Week 10 lines from the frozen corpus and compares every cell. It matched 14 of 14, and `tools/verify.py` now re-runs that guard on every verification.
 3. **The pre-registration was tested, not asserted.** Editing one spread from 5.5 to 1.5 makes the grader report `BROKEN`, withhold the grade and exit non-zero. Restoring it returns `intact`.
-4. **Two flags and two questions came out of a 102-row re-verification.** All 32 standings rows, all 14 Week 10 fixtures and all 13 Week 11 fixtures were re-read against the live official pages on 13 November: 95 matches, 2 mismatches, 5 rows that say NOT CHECKED. The two mismatches are the Week 11 broadcasters — and they are now **explained**, not just flagged: the league's own announcement of 9 November matches this repository's transcription cell for cell, so the league moved the two broadcasts between 9 and 13 November ([FL-36](flagged-for-review.html)). Two new questions ask which official page is the record when the league changes a schedule after announcing it ([Q-42](questions.html)) and when participation for the next week will exist ([Q-43](questions.html)).
+4. **Two flags and two questions came out of a 102-row re-verification.** All 32 standings rows, all 14 Week 10 fixtures and all 13 Week 11 fixtures were re-read against the live official pages on 13 November: 95 matches, 2 mismatches, 5 rows that say NOT CHECKED. The two mismatches are the Week 11 broadcasters — and they are now **explained**, not just flagged: the league's own announcement of 9 November matches this repository's transcription cell for cell, so the league moved the two broadcasts between 9 and 13 November ([FL-36](flagged-for-review.html)). Two new questions ask which official page is the record when the league changes a schedule after announcing it ([Q-46](questions.html)) and when participation for the next week will exist ([Q-47](questions.html)).
 5. **Two suggestions were implemented.** S-44 (auto-grade every originated line against the settled result) and S-45 (publish the required-sample number beside every performance figure) are now code, and the standings table carries the capture timestamp S-43 asked for.
 
 The honest finding on the lines themselves: **our spreads sit about 3.5 points closer to a pick'em than the community archive's** — the model's fitted home-field coefficient is 0.18 points, where the archive's widest lines are 14 and 16.5. The totals remain the weak half. And the sample-size arithmetic is unchanged and unforgiving: thirteen observations against a required ~1,400.
+
+### Later the same day — the injury hub moved, so the site now dates it
+
+A second read of the official injury hub at **2026-11-13T12:45Z** found the source had changed materially
+in 14 hours, and the new [Availability Watch](availability-watch.html) page publishes all of it:
+
+- **Coverage is now 28 of 28 clubs on the Week 10 slate.** The league published full SEA and CIN blocks, which closes the
+  collection gap [FL-24](flagged-for-review.html) recorded. This Dashboard tile still reads
+  `{{metric injury_coverage}}` from the 12 November capture, and that disagreement is [FL-37](flagged-for-review.html) —
+  published, not silently reconciled.
+- **Player rows went 254 → 279 → {{metric aw_rows}}, and the hub has only ever added.** 17 players were
+  added and none removed; **{{metric aw_practice_changes}} of 277 shared players changed practice code**
+  (37 toward full participation, 12 away from it). The availability signal is that delta, not the level
+  ([S-47](suggestions.html), [FL-38](flagged-for-review.html)).
+- **Game-status designations went 6 → {{metric aw_designations}}.** The three new ones are all Detroit,
+  all OUT: Kerby Joseph, Cade Mays, D.J. Reed.
+- **No second Week 10 game has settled**, so the [settled page](week10-settled.html) cannot gain a row
+  until 15–16 November. That is a property of the calendar, not a gap in the pipeline.
+
+Four new decisions came out of it — which register is canonical ([Q-42](questions.html)), how often the
+hub must be read ([Q-43](questions.html)), what replaces depth rank ([Q-44](questions.html)), and whether
+to buy snap counts ([Q-45](questions.html)).
 
 ## Repository map
 
@@ -110,6 +132,7 @@ The honest finding on the lines themselves: **our spreads sit about 3.5 points c
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
 | Data | [Week 10 injury report](injuries.html) | all 254 official rows, per-row source links |
+| Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |

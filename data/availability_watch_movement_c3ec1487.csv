@@ -1,0 +1,6 @@
+change|count|how_it_is_computed|detail|what_it_means|source
+players newly listed|17|in the 2026-11-13 read, absent from the 2026-11-12 read|ATL, AZ, BUF, CIN, CLE, DAL, KC, MIA, NO, NYJ|a club can add a name at any practice; a model that froze the earlier list is stale|https://www.nfl.com/injuries/
+players no longer listed|0|in the 2026-11-12 read, absent from the 2026-11-13 read|none|zero removals means the hub only ever grew in this interval - worth knowing before treating a missing name as a recovery|https://www.nfl.com/injuries/
+practice codes changed|49|same club and player, different practice code|37 upgraded, 12 downgraded|the injury signal the brief asks for is this delta, not the level (S-12)|https://www.nfl.com/injuries/
+game-status designations added|3|designations now minus designations in the 2026-11-12 read|DET|the first game statuses appear roughly 48 hours before kickoff|https://www.nfl.com/injuries/
+players with a named injury|0|newly listed players whose injury cell names a body part or illness|none|the hub publishes a diagnosis for only a minority of rows|https://www.nfl.com/injuries/

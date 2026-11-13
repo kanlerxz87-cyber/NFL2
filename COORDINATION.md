@@ -1398,9 +1398,96 @@ the lesson, which is already in `main` from the `2063673b` entry.
 | 2026-11-13 | Claim written and pushed *before* any file was created (protocol §Parallel sessions). Branch base `14d0afc`. |
 | 2026-11-13 | Week 11 lines originated and pre-registered (`tools/originate_week11.py`, commit `dc25b84`). Reproduction guard: **14 of 14** published Week 10 lines re-derived and matched. Lambda 5.0 selected by walk-forward spread MAE. Pre-registration lines SHA-256 `1c2c8ebe…ba6`; the grader reports `intact`, and a one-cell tamper test reports `BROKEN` and exits 1 (restored afterward). |
 | 2026-11-13 | Forward grader (`tools/grade_forward.py`) run: 13 rows pending, no Week 11 game is Final; `data/games_week11_played.csv` remains header-only, as intended. |
-| 2026-11-13 | **FL-36 resolved, not corrected.** The league's dated Week 11 Schedule Change article (9 Nov 2026, `nfl.com/news/week-11-schedule-change`) lists MIA@BUF on FOX and TB@DET on CBS, matching the old `data/schedule-week11-2026.json` cell for cell. The live schedule read on 13 Nov lists them swapped (MIA@BUF CBS, TB@DET FOX). The league moved the broadcasts; the repository did not mistranscribe them. The JSON is left unedited because it feeds the Q51 tree (FL-37). Evidence: `data/week11_broadcaster_change_0a113a24.csv`. |
+| 2026-11-13 | **FL-36 resolved, not corrected.** The league's dated Week 11 Schedule Change article (9 Nov 2026, `nfl.com/news/week-11-schedule-change`) lists MIA@BUF on FOX and TB@DET on CBS, matching the old `data/schedule-week11-2026.json` cell for cell. The live schedule read on 13 Nov lists them swapped (MIA@BUF CBS, TB@DET FOX). The league moved the broadcasts; the repository did not mistranscribe them. The JSON is left unedited because it feeds the Q51 tree (FL-39). Evidence: `data/week11_broadcaster_change_0a113a24.csv`. |
 | 2026-11-13 | Re-verification register `data/reverification_0a113a24.csv` (`tools/reverify_0a113a24.py`): **102 rows = 95 match + 2 MISMATCH (FL-36) + 5 NOT CHECKED**. Standings: 32/32 match the live `nfl.com/standings/`, now stamped `captured_utc=2026-11-13T12:39Z`. Week 10 fixtures, Week 11 fixtures and venues read live. |
-| 2026-11-13 | Registers: flags 38 (FL-36 resolved; FL-37 stale JSON snapshot; FL-38 absent Week 11 participation), questions 42 (Q-42 official-record rule; Q-43 participation timing), suggestions 47 (S-44/S-45 adopted; S-46 game-centre venue transcription; S-47 publish dated announcements beside live schedules). S-46/S-47 effort normalised to `L` to satisfy the register vocabulary. |
+| 2026-11-13 | Registers after merge with main: flags 40 (FL-36 resolved; FL-39 stale JSON snapshot; FL-40 absent Week 11 participation), questions 46 (Q-46 official-record rule; Q-47 participation timing), suggestions 53 (S-44/S-45 adopted; S-52 game-centre venue transcription; S-53 publish dated announcements beside live schedules). S-52/S-53 effort normalised to `L` to satisfy the register vocabulary. |
 | 2026-11-13 | Site: new `week11-originated.html` (Computed result, measured tier), navigation entry, data-dictionary rows for all Week 11 artefacts, `executive-summary`/`index`/`README`/`EXECUTIVE_SUMMARY.md` updated. `tools/verify.py` gains `forward_sample_holds()` (hashes, flat-table/record agreement, reproduction guard re-run, grade row count, slate consistency, re-verification flags): **95 passed, 0 warnings, 0 failures**. `tools/check_site.py`: **11 passed, 1 disclosed warning (non-league links on data pages, unchanged), 0 failures**. `tools/build_site.py`: 28 pages. |
 | 2026-11-13 | Sources used this session (all official, read 2026-11-13 ~12:30–12:40Z): `nfl.com/schedules/2026/by-week/week-11`, `nfl.com/news/week-11-schedule-change`, `nfl.com/standings/`, `nfl.com/scores/2026/week-10`, `nfl.com/schedules/2026/by-week/week-10`, `nfl.com/injuries/` (Week 10 still; not used as Week 11 availability evidence), and game pages for WAS@NYG (the only Final Week 10 game), SEA@LV, SF@DAL and NE@DET (Week 10 previews). |
-| 2026-11-13 | Irregularities for review (none block merge; all on Flagged for Review): FL-37 (stale JSON feeds Q51 tree), FL-38 (no Week 11 participation published at decision time, so availability is blank), FL-29/FL-30 (archive price vintage undocumented), 5 NOT CHECKED rows in the 102-row register. |
+| 2026-11-13 | Irregularities for review (none block merge; all on Flagged for Review): FL-39 (stale JSON feeds Q51 tree), FL-40 (no Week 11 participation published at decision time, so availability is blank), FL-29/FL-30 (archive price vintage undocumented), 5 NOT CHECKED rows in the 102-row register. |
+
+## Session `c3ec1487` (`arena/c3ec1487-nfl2`) — dated availability watch, live re-verification, and a decision-ready suggestion set
+
+**Session ID:** `c3ec1487` · **Branch:** `arena/c3ec1487-nfl2` · **Claimed:** 2026-11-13T12:40Z
+**Branch base:** `14d0afc` (merge of PR #40 — `main` HEAD at claim time; `git branch -r` shows only `origin/main`)
+
+**Board read before claiming.** Every earlier session's claim in this file is marked `done` except
+`5f16dcc6`'s, which merged as PR #40 and recorded its close-out. One PR is open (#35, session
+`8361cc7a`, docs-only, no commit since 2026-11-12T22:47Z — more than 60 minutes, so takeable under
+the stale-claim rule; this session only needs the root build, so it does not take it over).
+`c3ec1487` is therefore the only live session and also acts as this round's integration session.
+
+### Why this session exists
+
+`5f16dcc6` closed with the settlement pipeline running and 13 Week 10 games still to be played
+(15–16 November). No Week 10 game other than WAS–NYG has gone Final, so **no new grade is
+possible today**; re-running the settlement script would produce the same one row. The live
+movement since the last build is somewhere else, and it is the input the brief cares most about:
+
+1. **The official injury hub has published Week 10 game-status designations for more clubs than
+   the register captured.** `FL-02` recorded 6 designation cells across 254 rows at capture time.
+   The hub now carries `Out` / `Questionable` designations for the Thursday game **and** for at
+   least the Munich game. That is the "who is actually out" input, and it changed.
+2. **The standings now agree with the repository exactly** (verified row by row this session), so
+   `FL-35`'s two corrected rows are stable and the capture-time gap is the only live defect.
+3. **`FL-36` re-confirmed on a second read a day later** — official Week 11 still has MIA@BUF on
+   CBS and TB@DET on FOX while the repository has them swapped. A second independent read that
+   agrees with the first moves this from "cannot tell" to "almost certainly a transcription swap",
+   but the flag stays open and the cells stay as published.
+
+### Task board — exclusive scope
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| C3-T1 | Row-level re-verification of the 32-club standings, the Week 11 schedule, and the Week 10 injury register against live `nfl.com`; every check recorded with its URL and UTC read time | in progress | `c3ec1487` | `data/reverification_c3ec1487.csv` |
+| C3-T2 | **Availability watch**: per-club, per-game coverage of the official Week 10 injury hub — players listed, injury rows, and game-status designations — captured as a dated snapshot with one row per club and its official URL | in progress | `c3ec1487` | `data/availability_watch_c3ec1487.csv`, `tools/build_availability_watch.py` |
+| C3-T3 | New site page *Availability Watch* publishing C3-T2 with the coverage arithmetic and the decision it unblocks | in progress | `c3ec1487` | `content/availability-watch.md`, `content/index.md` (one row) |
+| C3-T4 | Decision-ready suggestion set: new, non-duplicative suggestions derived from this session's verified findings, appended union-style to the existing register | in progress | `c3ec1487` | `data/suggestions.csv`, `data/flags.csv`, `data/questions.csv` |
+| C3-T5 | Executive summary refresh (dated "what changed" section) and root build | in progress | `c3ec1487` | `content/executive-summary.md` |
+| C3-T6 | Integration: build, all verifier suites, PR → `main`, merge, Pages deploy probe on a tree-unique URL | unclaimed | — | `COORDINATION.md` |
+
+**Files this session does not touch:** `data/games_2026_wk1_9.csv` (pre-registered corpus, frozen by
+`S-26`), other sessions' trees (`crosscheck/`, `s92/`, `s53/`, `q51/`, `analytics/`, `portal/`,
+`site/`, `pipeline/`, `engine/`, `datasets/`, `research/`, `docs/`, `archive/`, `review/`), and
+`data/schedule_week11_2026.json` (FL-36's evidence, left as published).
+
+
+### Session `c3ec1487` — completion record
+
+| ID | Task | Status | Notes |
+|---|---|---|---|
+| C3-T1 | Row-level re-verification (standings, Week 10 slate, injury hub, Week 11, depth chart) | **done** | 12 checks in `data/reverification_c3ec1487.csv`; 8 MATCH, 3 CORRECTED, 1 SUPERSEDED, 1 MISMATCH (FL-36 re-confirmed on a second read a day apart) |
+| C3-T2 | Availability watch dataset | **done** | `data/availability_watch_c3ec1487.csv` (296 player rows, 28 clubs), plus by-club, movement, practice-delta and gate tables; all regenerated by `tools/build_availability_watch.py` |
+| C3-T3 | *Availability Watch* page + landing-page link | **done** | `content/availability-watch.md` → `availability-watch.html`; one row in `content/index.md`'s page map and one dated sub-section in its 13 November block |
+| C3-T4 | Decision-ready register additions | **done** | FL-37, FL-38 · Q-42, Q-43, Q-44, Q-45 · S-46…S-51 (no duplicate of an existing row; each cites a number measured in this session) |
+| C3-T5 | Executive summary refresh | **done** | dated "Update — 13 November 2026, 12:45Z" section, a diff table, and the three decisions it creates |
+
+**Verification performed on this branch (all green):**
+
+| Suite | Result |
+|---|---|
+| `tools/build_site.py` | 28 pages, 991 blank cells rendered as `not published` |
+| `tools/verify.py` | **86 passed · 0 warnings · 0 failures** (new: `availability_watch_holds()` — every snapshot row belongs to a club playing that game, cites `nfl.com`, carries a capture timestamp, and the movement table equals the set difference between the two dated reads: 17 added / 0 removed / 49 practice changes) |
+| `tools/check_site.py` | 11 passed · 1 warning (the disclosed club-domain allowlist) |
+| `scripts/audit_all_pages.py` | 102 pages · 265 tables · 4,046 rows · 100% row-sourced · 0 broken links |
+| `scripts/verify_q51.py` / `scripts/verify_s53126614.py` / `engine/verify_repo_and_site.py` / `tools/verify_s92.py` / `tools/review_verify.py` | all PASS (0 broken links in 4,500; 2,109; 1,930 internal links respectively) |
+| `scripts/check_reproducible.py` | all artefacts reproduce |
+| `python3 -m unittest discover -s tests/q51` | 36 tests OK |
+
+**Sources (all fetched 2026-11-13, 12:37–12:55Z):** https://www.nfl.com/standings/ ·
+https://www.nfl.com/scores/2026/week-10 · https://www.nfl.com/injuries/ (all 7 chunks) ·
+https://www.nfl.com/schedules/2026/by-week/week-10 · https://www.nfl.com/schedules/2026/by-week/week-11 ·
+https://www.nfl.com/teams/new-england-patriots/depth-chart/ (404, FL-06 re-confirmed).
+
+**Irregularities published, not fixed:** FL-37 (two sourced coverage answers on the same site — 24 of 28
+on the 12 November capture vs 28 of 28 in the dated snapshot; the older file belongs to another session
+and was not edited), FL-38 (the hub is volatile enough that a level reading is not news — 49 practice-code
+changes and 17 additions in 14 hours). FL-36 re-confirmed by a second read and left as published.
+
+**Defects found in this session's own work and fixed before commit:** the practice-change direction was
+inverted on the first run (a D→L move was labelled a downgrade); a hand-typed register count in S-49 was
+caught by `register_counts_match_files()`; an index sentence claimed "28 clubs" for the older register and
+was caught by `injury_coverage_is_measured_not_named()`.
+
+**Not done, deliberately:** no Week 10 settlement row was added, because no second Week 10 game has gone
+Final (`nfl.com/scores/2026/week-10` shows exactly one). The settlement pipeline stays re-runnable and
+will grade the remaining 13 games as they finish on 15–16 November.
