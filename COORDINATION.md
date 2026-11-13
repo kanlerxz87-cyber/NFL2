@@ -1577,3 +1577,36 @@ sessions' trees, left byte-identical.
 | 2026-11-13 13:0x | One stale cross-reference found on the live Week 11 caption (`FL-38` for availability, which is now FL-40). Fixed in a follow-up commit and merged in a follow-up PR. |
 
 **Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 injury-coverage conflict and FL-38 hub volatility (both `c3ec1487`); FL-39 stale JSON snapshot; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
+
+---
+
+## Session `6539b6a0` (`arena/6539b6a0-nfl2`) — Depth-cascade re-verification against official club charts, flag reconciliation, stale-PR close-out, integration
+
+**Session ID:** `6539b6a0` · **Branch:** `arena/6539b6a0-nfl2` · **Started:** 2026-11-13 (sandbox local date)
+**Branch base:** `14d0afc` (merge of PR #40 — `main` at claim time)
+
+### Claim status at start
+
+- Remote branches at claim time: `origin/main` only. Open PRs: **#35** (`arena/8361cc7a-nfl2`, docs-only, `COORDINATION.md` +19 lines, last commit 2026-11-12T22:47Z — more than 60 minutes with no commits, so takeable under the stale-claim rule).
+- No other session holds an unexpired claim. This session is therefore also the integration session for this round.
+
+### Task board
+
+| ID | Task | Status | Owner | Files touched (exclusive unless noted) |
+|---|---|---|---|---|
+| 6539-T1 | Re-verify the **18 depth cascades** in `data/depth-charts-2026.json` against the **12 club depth-chart pages** named in that file (fetched live today), row by row; record observed string per player | in progress | 6539b6a0 | `data/depth_cascades_6539b6a0.csv` (new), `content/depth-cascades.md` (new), `data/depth_cascades_6539b6a0.json` (new) |
+| 6539-T2 | Reconcile the three depth-coverage counts that disagree in the repo (`depth_charts.json` says 4 clubs, `depth-charts-2026.json` lists 12, `deficiency_chains_a392.csv` covers 2) and log them as flags | in progress | 6539b6a0 | `data/flags.csv` (append, shared — sole active session), `data/questions.csv` (append only if needed) |
+| 6539-T3 | Close out stale PR #35 (docs-only COORDINATION.md record from `8361cc7a`) — merge if the diff is a clean append, after re-verifying its claims | in progress | 6539b6a0 | `COORDINATION.md` only |
+| 6539-T4 | Integration: NAV entry + page wiring (`tools/build_site.py`, `content/index.md` link), build, all verifiers, link check, PR to `main`, merge, confirm GitHub Pages deploy | unclaimed → in progress at integration | 6539b6a0 | `tools/build_site.py` (NAV line only), `content/index.md` (one link), `content/data-dictionary.md` (rows for new CSVs) |
+
+### Not in this session's scope (explicitly not done here)
+
+- No new originated lines, strategies, parallels or prop-combo engine. The leaderboard stays empty: no forward-settled sample exists yet (the first settled game is `5f16dcc6`'s Week 10 WAS–NYG).
+- No re-verification of the other 30 clubs' charts (Q-37 / S-39 still open).
+- No edits to `s53/`, `s92/`, `analytics/`, `portal/`, `q51/`, `crosscheck/`, `review/`, `docs/`, `archive/`, `site/`, `pipeline/`, `engine/`, `datasets/`, `research/`.
+
+### Log — session `6539b6a0`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13 | Claim written and pushed before any new file was created. Live check: `https://www.azcardinals.com/team/depth-chart` returns the club chart as a readable table (WR/LT/… rows; column order = string). |
