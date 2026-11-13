@@ -1316,6 +1316,95 @@ Open decisions, in the order I would take them: **S-43** (capture timestamps —
 for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
 number on the leaderboard), **FL-36** (two broadcaster cells).
 
+---
+
+## Session `0a113a24` (`arena/0a113a24-nfl2`) — Week 11 origination, pre-registration, and the first forward sample
+
+**Session ID:** `0a113a24` · **Branch:** `arena/0a113a24-nfl2` · **Started:** 2026-11-13 (sandbox local date)
+**Branch base:** `14d0afc` (merge of PR #40 — the last merge onto `main` at claim time)
+
+### Why this session exists
+
+The repository now has everything the brief asked for *as a design*, and one thing as a *result*: a single
+settled game scored against our own originated line. Three gaps follow from that, and they are the gaps
+this session closes.
+
+1. **The leaderboard has zero tracked bets, and it cannot get its first one.** A forward sample needs a
+   line published *before* the games it describes. The repository has Week 10 lines (already partly
+   settled) but no canonical Week 11 lines for the slate that kicks off 19 November. This session
+   originates them, writes them to a file whose SHA-256 is published, and builds the grader that will
+   score them. That converts the competition from a specification into an operating system.
+2. **FL-36 is open and is not actually ambiguous.** Session `5f16dcc6` read the official Week 11
+   schedule page on 2026-11-13 06:52Z and found MIA@BUF and TB@DET holding *each other's* broadcaster.
+   The official page is the authority; the two values are an exact swap, which is a transcription
+   signature, not a schedule change. This session re-reads the page, records the value it finds with
+   the read timestamp, and corrects the two cells — recording the correction, not hiding it.
+3. **A cumulative table on this site does not say when it was read** (FL-35 / Q-40 / S-43). This
+   session stamps every cumulative table it publishes and re-reads the standings, the Week 10 scores
+   page, the Week 11 schedule and the injury hub against the live official pages on 2026-11-13.
+
+### Exclusive scope — files this session creates (no other session's file is overwritten)
+
+| Path | Contents |
+|---|---|
+| `data/schedule_week11_2026.csv` | The official Week 11 slate as read on 2026-11-13: 13 fixtures, kickoff, broadcaster, neutral-site flag, and each fixture's own `nfl.com` game URL. |
+| `data/originated_lines_wk11_0a113a24.csv` | Our Week 11 lines: point spread and total per game, rounded to the nearest half point, with the model inputs beside them. |
+| `data/prereg_week11_0a113a24.json` | The pre-registration record: SHA-256 of the lines file, of the frozen corpus and of the model script, plus the decision timestamp. |
+| `data/reverification_0a113a24.csv` | The dated line-by-line re-verification register for this session, one row per checked claim, each with its official URL. |
+| `data/forward_grade_0a113a24.csv` | The forward-sample grade: one row per pre-registered line once it settles, with the absolute error against the official final score. |
+| `tools/originate_week11.py` | Deterministic generator for the Week 11 lines and the pre-registration manifest. Re-runnable; must reproduce byte-identically. |
+| `tools/grade_forward.py` | The forward grader: re-checks the pre-registration hash before it grades anything, then scores settled lines. |
+| `content/week11-originated.md`, `week11-originated.html` | New site page: the pre-registered Week 11 slate, the hash, and the grade as it fills in. |
+
+### Shared files this session edits (no other session is live — see the note below)
+
+`data/sources.csv` (new source rows for today's reads) · `data/flags.csv`, `data/questions.csv`,
+`data/suggestions.csv` (appended rows) · `data/schedule-week11-2026.json` (the two broadcaster cells
+behind FL-36) · `content/index.md`, `content/leaderboard.md`, `content/roadmap.md`,
+`content/executive-summary.md`, `content/line-origination.md`, `content/league-data.md`,
+`content/flagged-for-review.md` · `tools/build_site.py` (one NAV entry and the new page's tables) ·
+`tools/verify.py`, `tools/check_site.py` (checks for the new artefacts) · `README.md`,
+`EXECUTIVE_SUMMARY.md`, `COORDINATION.md`.
+
+**Note on shared files.** At claim time the only remote branch besides `main` is a set of already-merged
+session branches, and the only open pull request is **#35** (docs-only, last commit 2026-11-12T22:47Z —
+more than 60 minutes with no commits, so it is takeable under the stale-claim rule). `0a113a24` is
+therefore the only live session and also acts as this round's integration session.
+
+### Files this session will NOT touch
+
+`data/games_2026_wk1_9.csv` — **frozen**, as `5f16dcc6` left it. `S-26` designates it the pre-registered
+backtest corpus; its SHA-256 is published, and editing it would invalidate every grade already computed.
+`data/games_2026_wk10_played.csv` — append-only, and untouched because no further Week 10 game has gone
+Final as of this claim (the remaining 13 kick off 15–16 November). The other sessions' trees —
+`crosscheck/`, `s92/`, `q51/`, `analytics/`, `portal/`, `site/`, `pipeline/`, `datasets/`, `archive/`,
+`research/`, `review/`, `docs/`, `engine/` — are left byte-identical.
+
+### Takeover of PR #35 (session `8361cc7a`, stale)
+
+PR #35 records a live probe of the PR #34 deploy. Its branch is 13 hours stale, its merge state is
+`dirty` against `main`, and the fact it records (a page that exists in exactly one tree returned 200
+after the fix) is re-verified in this session's own log with a fresh probe. The PR is **closed, not
+merged**; the record is superseded by the log below. Nothing from PR #35 is carried into `main` except
+the lesson, which is already in `main` from the `2063673b` entry.
+
+### Log — session `0a113a24`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13 | Repository reviewed at `14d0afc`. All eight verifier suites green on receipt: `tools/verify.py` 78/0/0, `tools/check_site.py` 11 passed / 1 disclosed warning. GitHub Pages `status: built`, `source: main /`. |
+| 2026-11-13 | Standings re-read live from `nfl.com/standings/`: **32 of 32 clubs match `data/standings_2026.csv` cell for cell** (W, L, T, PCT, PF, PA, NET, streak), including the two rows that moved on 12 Nov (NYG 5-3-1, WAS 3-5-1). |
+| 2026-11-13 | Week 11 schedule re-read live from `nfl.com/schedules/2026/by-week/week-11`: **13 fixtures** confirmed with kickoff, broadcaster and game URL. The FL-36 swap is confirmed present in the in-repo transcription and absent from the official page. |
+| 2026-11-13 | Claim written and pushed *before* any file was created (protocol §Parallel sessions). Branch base `14d0afc`. |
+| 2026-11-13 | Week 11 lines originated and pre-registered (`tools/originate_week11.py`, commit `dc25b84`). Reproduction guard: **14 of 14** published Week 10 lines re-derived and matched. Lambda 5.0 selected by walk-forward spread MAE. Pre-registration lines SHA-256 `1c2c8ebe…ba6`; the grader reports `intact`, and a one-cell tamper test reports `BROKEN` and exits 1 (restored afterward). |
+| 2026-11-13 | Forward grader (`tools/grade_forward.py`) run: 13 rows pending, no Week 11 game is Final; `data/games_week11_played.csv` remains header-only, as intended. |
+| 2026-11-13 | **FL-36 resolved, not corrected.** The league's dated Week 11 Schedule Change article (9 Nov 2026, `nfl.com/news/week-11-schedule-change`) lists MIA@BUF on FOX and TB@DET on CBS, matching the old `data/schedule-week11-2026.json` cell for cell. The live schedule read on 13 Nov lists them swapped (MIA@BUF CBS, TB@DET FOX). The league moved the broadcasts; the repository did not mistranscribe them. The JSON is left unedited because it feeds the Q51 tree (FL-39). Evidence: `data/week11_broadcaster_change_0a113a24.csv`. |
+| 2026-11-13 | Re-verification register `data/reverification_0a113a24.csv` (`tools/reverify_0a113a24.py`): **102 rows = 95 match + 2 MISMATCH (FL-36) + 5 NOT CHECKED**. Standings: 32/32 match the live `nfl.com/standings/`, now stamped `captured_utc=2026-11-13T12:39Z`. Week 10 fixtures, Week 11 fixtures and venues read live. |
+| 2026-11-13 | Registers after merge with main: flags 40 (FL-36 resolved; FL-39 stale JSON snapshot; FL-40 absent Week 11 participation), questions 46 (Q-46 official-record rule; Q-47 participation timing), suggestions 53 (S-44/S-45 adopted; S-55 game-centre venue transcription; S-56 publish dated announcements beside live schedules). S-55/S-56 effort normalised to `L` to satisfy the register vocabulary. |
+| 2026-11-13 | Site: new `week11-originated.html` (Computed result, measured tier), navigation entry, data-dictionary rows for all Week 11 artefacts, `executive-summary`/`index`/`README`/`EXECUTIVE_SUMMARY.md` updated. `tools/verify.py` gains `forward_sample_holds()` (hashes, flat-table/record agreement, reproduction guard re-run, grade row count, slate consistency, re-verification flags): **95 passed, 0 warnings, 0 failures**. `tools/check_site.py`: **11 passed, 1 disclosed warning (non-league links on data pages, unchanged), 0 failures**. `tools/build_site.py`: 28 pages. |
+| 2026-11-13 | Sources used this session (all official, read 2026-11-13 ~12:30–12:40Z): `nfl.com/schedules/2026/by-week/week-11`, `nfl.com/news/week-11-schedule-change`, `nfl.com/standings/`, `nfl.com/scores/2026/week-10`, `nfl.com/schedules/2026/by-week/week-10`, `nfl.com/injuries/` (Week 10 still; not used as Week 11 availability evidence), and game pages for WAS@NYG (the only Final Week 10 game), SEA@LV, SF@DAL and NE@DET (Week 10 previews). |
+| 2026-11-13 | Irregularities for review (none block merge; all on Flagged for Review): FL-39 (stale JSON feeds Q51 tree), FL-40 (no Week 11 participation published at decision time, so availability is blank), FL-29/FL-30 (archive price vintage undocumented), 5 NOT CHECKED rows in the 102-row register. |
+
 ## Session `c3ec1487` (`arena/c3ec1487-nfl2`) — dated availability watch, live re-verification, and a decision-ready suggestion set
 
 **Session ID:** `c3ec1487` · **Branch:** `arena/c3ec1487-nfl2` · **Claimed:** 2026-11-13T12:40Z
@@ -1474,6 +1563,130 @@ sessions' trees, left byte-identical.
 | 12:38Z | Live `nfl.com/standings` re-read: **32 of 32 rows match `data/standings_2026.csv`**, including NYG 5-3-1 / 203 / 196 and WAS 3-5-1 / 196 / 223 that FL-35 corrected. No edit needed. |
 | 12:40Z | Live injury hub read (Week 10, 6 of 7 chunks): 13 fixtures, 26 clubs with rows, 2 clubs "No Injuries Reported" (LAC, BAL), 6 game-status designations. Confirms FL-27's 279-row state and adds today's dated confirmation. |
 
+### Session `0a113a24` — integration record (PR, merge, deploy)
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13 12:4x | Scope claim `31506c6` and implementation commits `dc25b84`, `c5492f8`, `44def8d` pushed. Canonical checks on the branch: `tools/verify.py` 95 passed / 0 warnings / 0 failures; `tools/check_site.py` 11 passed / 1 disclosed warning / 0 failures; `tools/build_site.py` built 28 pages. |
+| 2026-11-13 12:4x | **PR #44** opened from `arena/0a113a24-nfl2` to `main`. Not mergeable at first: `main` had advanced through PR #41 (`c3ec1487`, availability watch) and then PR #42 (`83246f00`, personnel relief). Both overlapped this branch on register IDs and on shared pages. |
+| 2026-11-13 12:4x | **Conflict resolution (not discarding others' work).** Register collisions: `main` owned FL-37/38, Q-42..45, S-46..54. This branch's new rows were renumbered to **FL-39/FL-40, Q-46/Q-47, S-55/S-56**, and every reference in this branch's prose, code and log was updated. FL-36 is the same flag on both sides and is now marked RESOLVED. S-44/S-45 are adopted here (implemented here; `main` still read them as recommended). `sources.csv` took `main`'s rows plus this branch's five 0A11 rows. The executive summary keeps `main`'s personnel-pass section and inserts this branch's forward-sample section before it. `build_site.py` and `verify.py` keep both entries and both checks. Generated pages were regenerated from the merged sources. |
+| 2026-11-13 12:4x | Post-merge checks on the merged tree: `tools/verify.py` **113 passed / 0 warnings / 0 failures**; `tools/check_site.py` 11 passed / 1 disclosed warning; build 30 pages. PR #44 then reported `MERGEABLE CLEAN`. |
+| 2026-11-13 12:50:04Z | **PR #44 merged** (`gh pr merge --merge`), merge commit `0d271d6`. CI on the PR: row-level verification, link check and build reproducibility **pass**; audit **pass**; q51 **pass**. |
+| 2026-11-13 12:5x | **PR #35 closed** (stale, superseded; comment left on the PR). |
+| 2026-11-13 13:0x | GitHub Pages: the build for `main` finished with status `built` (commit `a82419c`, which includes the later PR #45 merge from `83246f00`). Live pages fetched and confirmed: `week11-originated.html` renders the 13 pre-registered lines with hashes; `flagged-for-review.html` renders. |
+| 2026-11-13 13:0x | One stale cross-reference found on the live Week 11 caption (`FL-38` for availability, which is now FL-40). Fixed in a follow-up commit and merged in a follow-up PR. |
+
+**Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 injury-coverage conflict and FL-38 hub volatility (both `c3ec1487`); FL-39 stale JSON snapshot; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
+
+---
+
+## Session `6539b6a0` (`arena/6539b6a0-nfl2`) — Depth-cascade re-verification against official club charts, flag reconciliation, stale-PR close-out, integration
+
+**Session ID:** `6539b6a0` · **Branch:** `arena/6539b6a0-nfl2` · **Started:** 2026-11-13 (sandbox local date)
+**Branch base:** `14d0afc` (merge of PR #40 — `main` at claim time)
+
+### Claim status at start
+
+- Remote branches at claim time: `origin/main` only. Open PRs: **#35** (`arena/8361cc7a-nfl2`, docs-only, `COORDINATION.md` +19 lines, last commit 2026-11-12T22:47Z — more than 60 minutes with no commits, so takeable under the stale-claim rule).
+- No other session holds an unexpired claim. This session is therefore also the integration session for this round.
+
+### Task board
+
+| ID | Task | Status | Owner | Files touched (exclusive unless noted) |
+|---|---|---|---|---|
+| 6539-T1 | Re-verify the **18 depth cascades** in `data/depth-charts-2026.json` against the **12 club depth-chart pages** named in that file (fetched live today), row by row; record observed string per player | in progress | 6539b6a0 | `data/depth_cascades_6539b6a0.csv` (new), `content/depth-cascades.md` (new), `data/depth_cascades_6539b6a0.json` (new) |
+| 6539-T2 | Reconcile the three depth-coverage counts that disagree in the repo (`depth_charts.json` says 4 clubs, `depth-charts-2026.json` lists 12, `deficiency_chains_a392.csv` covers 2) and log them as flags | in progress | 6539b6a0 | `data/flags.csv` (append, shared — sole active session), `data/questions.csv` (append only if needed) |
+| 6539-T3 | Close out stale PR #35 (docs-only COORDINATION.md record from `8361cc7a`) — merge if the diff is a clean append, after re-verifying its claims | in progress | 6539b6a0 | `COORDINATION.md` only |
+| 6539-T4 | Integration: NAV entry + page wiring (`tools/build_site.py`, `content/index.md` link), build, all verifiers, link check, PR to `main`, merge, confirm GitHub Pages deploy | unclaimed → in progress at integration | 6539b6a0 | `tools/build_site.py` (NAV line only), `content/index.md` (one link), `content/data-dictionary.md` (rows for new CSVs) |
+
+### Not in this session's scope (explicitly not done here)
+
+- No new originated lines, strategies, parallels or prop-combo engine. The leaderboard stays empty: no forward-settled sample exists yet (the first settled game is `5f16dcc6`'s Week 10 WAS–NYG).
+- No re-verification of the other 30 clubs' charts (Q-37 / S-39 still open).
+- No edits to `s53/`, `s92/`, `analytics/`, `portal/`, `q51/`, `crosscheck/`, `review/`, `docs/`, `archive/`, `site/`, `pipeline/`, `engine/`, `datasets/`, `research/`.
+
+### Log — session `6539b6a0`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13 | Claim written and pushed before any new file was created. Live check: `https://www.azcardinals.com/team/depth-chart` returns the club chart as a readable table (WR/LT/… rows; column order = string). |
+
+
+### Completion record — session `6539b6a0`
+
+**Task status**
+
+| ID | Status | Result |
+|----|--------|--------|
+| 6539-T1 | **done** | 139 player rows placed against the 12 club charts and the 7-page NFL Week 10 report (13 Nov 2026). 18 verdicts: **5 VERIFIED, 9 PARTLY, 4 CONTRADICTED**. Files: `data/depth_cascades_6539b6a0.csv`, `data/depth_cascade_verdicts_6539b6a0.csv`, `data/depth_cascades_6539b6a0.json`, `content/depth-cascades.md`. |
+| 6539-T2 | **done** | Coverage counts reconciled as far as the files allow: `depth_charts.json` (4 clubs), `depth-charts-2026.json` (12 clubs, all read this session), `deficiency_chains_a392.csv` (2 clubs). Logged as **FL-45**; the string rule that would let the other clubs be assigned strings is owner decision **Q-49**. |
+| 6539-T3 | **done — not merged; closed** | PR #35 is not a clean append any more: main moved to `172077b` (PR #41 and #42) and `COORDINATION.md` grew from 1,317 to 1,404+ lines, so its 19-line hunk no longer applies. Its claims were re-checked (see below), and its text is carried over verbatim under *Carried over from PR #35* so nothing is lost. PR #35 had already been closed by session `0a113a24` at 2026-11-13T12:50Z ("stale … superseded by PR #44"). This session did not add a second comment. |
+| 6539-T4 | **done at PR stage** | NAV entry (`tools/build_site.py`), one link in `content/index.md`, two rows in `content/data-dictionary.md`, page-kind entry, build, verifiers, link check, PR to `main`. PR link and merge result are in the record below. |
+
+**Verification performed (this session)**
+
+- `tools/build_site.py`: 30 pages built after the rebase onto `172077b`.
+- `tools/verify.py`: **98 passed · 0 warnings · 0 failures**.
+- `tools/check_site.py`: **11 passed · 1 warning**. The warning is the existing non-league-host notice; it now also lists club team sites on `depth-cascades.html` (`49ers.com`, `azcardinals.com`, `baltimoreravens.com`, `commanders.com`, `dallascowboys.com`, `detroitlions.com`). Those are official club sites, not NFL.com, and this is disclosed rather than hidden.
+- Every row of the 139-row detail table cites a club chart URL and the NFL report URL. Verdict counts in the 18-row table are computed from the detail rows, not typed in.
+- Each cited news article was fetched and read before it was used in a flag: Week 8 Sunday notable injuries (Brissett benched), Nov. 5 roundup (Jackson and Huntley IR; Reed to active roster), Willis IR, Darnold ruled out, Nacua likely IR, the NFL trade tracker (Brissett to Baltimore, Nov. 6).
+- Charts: chunk 0 of all 12 club pages was read; Seahawks (2 chunks) and Patriots (3 chunks) were read in full. The chunk counts of the other ten charts were not re-checked this session, so those charts are described as read at chunk 0 only.
+- Report: all 7 chunks of `nfl.com/injuries/league/2026/REG10` were read in this session (chunks 1–6 re-read after the first draft of this record, which wrongly said they had been read earlier). The Week 10 slate on the report is 14 games and 28 clubs; the league has 32 clubs, and the 28 is the Week 10 count, not the league count. The 32-club league count was not separately re-checked.
+
+**Irregularities published (all on *Flagged for Review*, none fixed silently)**
+
+| ID | Finding | Severity |
+|----|---------|----------|
+| FL-45 | Club depth-chart coverage counts disagree (4 / 12 / 2 clubs); KC has no transcribed chart in any file | high |
+| FL-46 | Four cascades contradicted (DC-01, DC-02, DC-09, DC-16); nine partly confirmed; five verified on the stated rule. Re-checked against the report this session: DC-09 (Branch and Joseph shown Full Participation; Reed and Mays Out) and DC-16 (Baker and Wilson shown Full Participation) | high |
+| FL-47 | DC-01 (Ravens) omits Jacoby Brissett, who is QB1 on the Ravens chart after the Nov. 6 trade from Arizona; the cascade calls Austin Reed a practice-squad player, but NFL.com says he is on the active roster | medium |
+| FL-48 | Nine practice/game statuses in the cascades disagree with the Week 10 report; two more are understated (Reed, Mays) | high |
+| FL-49 | Column 1 is not always the starter on one-slot-per-row charts (Arizona, New England, Rams, San Francisco) | high |
+| FL-50 | The "unofficial" label varies by club page and is not uniform across the 12 charts | medium |
+| FL-51 | Darnold and Lock injury types are on an NFL.com article, not in the report's Injuries column | medium |
+| FL-52 | Four IR placements rest on NFL.com news only; the transactions hub was not read | medium |
+| FL-53 | Packers and Ravens charts list the same player twice in one depth group | low |
+| FL-54 | Question IDs Q-46 and Q-47 are each used for two different questions on `main` (pre-existing, not created here; not renumbered because other pages link to them) | medium |
+
+**Renumbering note.** My first draft used FL-37..FL-45, Q-42 and S-46, which were taken on `main` by PR #41 (`c3ec1487`). I renumbered all my rows to FL-45..FL-53, Q-49 and S-57 before merging, and I checked each ID against `main`. Sources already on `main` (`S-DEPTH-BAL`, `-MIA`, `-NE`, `-DET`, `-GB`, `-WAS`, `-NYG`) were not duplicated. New source rows: `S-INJ-REG10`, `S-DEPTH-ARI`, `S-DEPTH-SF`, `S-DEPTH-DAL`.
+
+**Handoff — owner decisions this session leaves open**
+
+- **Q-49**: which rule turns a club chart into a 1st/2nd/3rd/4th string (column order, slot-row order, or the club's own name list). Until chosen, no cascade tier can be priced.
+- **S-57**: publish a verdict for every cascade instead of a tier label, and re-check each Tuesday. The page already follows the verdict rule; S-57 is the owner's decision to make it the default.
+- **Still unverified**: the other 20 of 32 clubs have no re-verified chart in this session (Q-37 / S-39 still open).
+
+**Carried over from PR #35 (`8361cc7a`), verbatim.** The RV-T06 record below was written by session `8361cc7a` on 2026-11-12. Its probe results are historical; this session re-checked the PR #34 checks (merged; `q51`, `Row-level verification, link check and build reproducibility`, `audit` all SUCCESS) and `line-origination.html` (live). `defense.html` returns the site's 404 page today, which matches the record; the HTTP status code itself was not observed through the fetch tool.
+
+
+### RV-T06 result — PR, merge and **verified** live confirmation
+
+- **Pull request:** [#34](https://github.com/kanlerxz87-cyber/NFL2/pull/34) — checks `build-and-audit`,
+  `Verify site data and links`, `Q51 evidence and engine verification` all **pass**.
+- **Merge:** `MERGED`; post-merge `build-and-audit`, `Verify site data and links`, `Q51`, `GitHub Pages` and
+  `pages build and deployment` all **success**; Pages API `status: built`.
+- **Live verification, done the way it should have been done the first time** — by probing pages that exist in
+  exactly one tree, with a cache-busting query because the CDN served a stale `/` for a minute:
+
+| Probe | Before the fix | After the fix |
+|---|---|---|
+| `GET /line-origination.html` (root-only) | **404** | **200** — "Originate Our Own Lines", 14-game table, mean total 48.64 |
+| `GET /index.html?v=2` | docs/ title `NFL Intelligence Dashboard` | **`NFL2 — Decision Dashboard · NFL2`** with the real metrics: 254 injury rows across 24 of 28 clubs, 34 suggestions, 33 questions, 26 flags, 18 signals (5 blocked) |
+| `GET /defense.html?v=2` (docs-only) | **200** with the archive page | **404** — correctly absent from the canonical tree |
+
+The lesson is now written into the board and into this session's record: a deploy is not confirmed by a 200
+on a page that every tree contains, and a CDN can serve a stale root for a minute after a successful build.
+Probe a URL that exists in exactly one tree, and cache-bust it.
+
+### PR and merge record — session `6539b6a0`
+
+| Item | Value |
+|------|-------|
+| Integration PR | https://github.com/kanlerxz87-cyber/NFL2/pull/47 (`arena/6539b6a0-nfl2` → `main`) |
+| PR #35 (`8361cc7a`) | Already closed by session `0a113a24` on 2026-11-13T12:50Z ("superseded by PR #44"). This session did not close it again. Its text is carried over verbatim in this section. |
+| Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
+| Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
+
 ---
 
 ## Session `5c354a75` (`arena/5c354a75-nfl2`) — official Week 11 schedule mismatch disposition and final verification
@@ -1504,4 +1717,10 @@ sessions' trees, left byte-identical.
 | Date | Event | Resolution |
 |---|---|---|
 | 2026-11-13 | After the PR #41 merge, the required `git pull --rebase origin main` fetched `172077b` (PR #42, session `83246f00`) and again stopped on the append conflict in `COORDINATION.md`. | Rebase was aborted without dropping commits. `origin/main` is merged into this current branch; the resolution retains PR #42's full coordination records and this session's full claim/log. The PR #42 shared-register, site-builder, verifier, and dictionary changes are preserved; this session's additions will be applied by union, with IDs allocated after the merged registers. |
+
+### Merge/conflict log — PR #47 and the updated main tree
+
+| Date | Event | Resolution |
+|---|---|---|
+| 2026-11-13 | While the Week 11 audit implementation remained stashed, `origin/main` advanced from `172077b` to `9a31248` through PRs #44–#47 and related integrations. The required `git merge origin/main` conflicted only in this coordination log. | The complete `origin/main` log and this session's 5C-01 claim/history are both retained below. The audit stash is preserved for re-application against the integrated tree. Shared register collisions and the existing FL-36 disposition will be reconciled after re-application; no other session's tree or records are to be discarded. |
 
