@@ -1315,3 +1315,84 @@ go Final (15–16 November) and re-run `python3 tools/compute_settled_wk10.py &&
 Open decisions, in the order I would take them: **S-43** (capture timestamps — cheap, and it is the fix
 for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
 number on the leaderboard), **FL-36** (two broadcaster cells).
+
+---
+
+## Session `0a113a24` (`arena/0a113a24-nfl2`) — Week 11 origination, pre-registration, and the first forward sample
+
+**Session ID:** `0a113a24` · **Branch:** `arena/0a113a24-nfl2` · **Started:** 2026-11-13 (sandbox local date)
+**Branch base:** `14d0afc` (merge of PR #40 — the last merge onto `main` at claim time)
+
+### Why this session exists
+
+The repository now has everything the brief asked for *as a design*, and one thing as a *result*: a single
+settled game scored against our own originated line. Three gaps follow from that, and they are the gaps
+this session closes.
+
+1. **The leaderboard has zero tracked bets, and it cannot get its first one.** A forward sample needs a
+   line published *before* the games it describes. The repository has Week 10 lines (already partly
+   settled) but no canonical Week 11 lines for the slate that kicks off 19 November. This session
+   originates them, writes them to a file whose SHA-256 is published, and builds the grader that will
+   score them. That converts the competition from a specification into an operating system.
+2. **FL-36 is open and is not actually ambiguous.** Session `5f16dcc6` read the official Week 11
+   schedule page on 2026-11-13 06:52Z and found MIA@BUF and TB@DET holding *each other's* broadcaster.
+   The official page is the authority; the two values are an exact swap, which is a transcription
+   signature, not a schedule change. This session re-reads the page, records the value it finds with
+   the read timestamp, and corrects the two cells — recording the correction, not hiding it.
+3. **A cumulative table on this site does not say when it was read** (FL-35 / Q-40 / S-43). This
+   session stamps every cumulative table it publishes and re-reads the standings, the Week 10 scores
+   page, the Week 11 schedule and the injury hub against the live official pages on 2026-11-13.
+
+### Exclusive scope — files this session creates (no other session's file is overwritten)
+
+| Path | Contents |
+|---|---|
+| `data/schedule_week11_2026.csv` | The official Week 11 slate as read on 2026-11-13: 13 fixtures, kickoff, broadcaster, neutral-site flag, and each fixture's own `nfl.com` game URL. |
+| `data/originated_lines_wk11_0a113a24.csv` | Our Week 11 lines: point spread and total per game, rounded to the nearest half point, with the model inputs beside them. |
+| `data/prereg_week11_0a113a24.json` | The pre-registration record: SHA-256 of the lines file, of the frozen corpus and of the model script, plus the decision timestamp. |
+| `data/reverification_0a113a24.csv` | The dated line-by-line re-verification register for this session, one row per checked claim, each with its official URL. |
+| `data/forward_grade_0a113a24.csv` | The forward-sample grade: one row per pre-registered line once it settles, with the absolute error against the official final score. |
+| `tools/originate_week11.py` | Deterministic generator for the Week 11 lines and the pre-registration manifest. Re-runnable; must reproduce byte-identically. |
+| `tools/grade_forward.py` | The forward grader: re-checks the pre-registration hash before it grades anything, then scores settled lines. |
+| `content/week11-originated.md`, `week11-originated.html` | New site page: the pre-registered Week 11 slate, the hash, and the grade as it fills in. |
+
+### Shared files this session edits (no other session is live — see the note below)
+
+`data/sources.csv` (new source rows for today's reads) · `data/flags.csv`, `data/questions.csv`,
+`data/suggestions.csv` (appended rows) · `data/schedule-week11-2026.json` (the two broadcaster cells
+behind FL-36) · `content/index.md`, `content/leaderboard.md`, `content/roadmap.md`,
+`content/executive-summary.md`, `content/line-origination.md`, `content/league-data.md`,
+`content/flagged-for-review.md` · `tools/build_site.py` (one NAV entry and the new page's tables) ·
+`tools/verify.py`, `tools/check_site.py` (checks for the new artefacts) · `README.md`,
+`EXECUTIVE_SUMMARY.md`, `COORDINATION.md`.
+
+**Note on shared files.** At claim time the only remote branch besides `main` is a set of already-merged
+session branches, and the only open pull request is **#35** (docs-only, last commit 2026-11-12T22:47Z —
+more than 60 minutes with no commits, so it is takeable under the stale-claim rule). `0a113a24` is
+therefore the only live session and also acts as this round's integration session.
+
+### Files this session will NOT touch
+
+`data/games_2026_wk1_9.csv` — **frozen**, as `5f16dcc6` left it. `S-26` designates it the pre-registered
+backtest corpus; its SHA-256 is published, and editing it would invalidate every grade already computed.
+`data/games_2026_wk10_played.csv` — append-only, and untouched because no further Week 10 game has gone
+Final as of this claim (the remaining 13 kick off 15–16 November). The other sessions' trees —
+`crosscheck/`, `s92/`, `q51/`, `analytics/`, `portal/`, `site/`, `pipeline/`, `datasets/`, `archive/`,
+`research/`, `review/`, `docs/`, `engine/` — are left byte-identical.
+
+### Takeover of PR #35 (session `8361cc7a`, stale)
+
+PR #35 records a live probe of the PR #34 deploy. Its branch is 13 hours stale, its merge state is
+`dirty` against `main`, and the fact it records (a page that exists in exactly one tree returned 200
+after the fix) is re-verified in this session's own log with a fresh probe. The PR is **closed, not
+merged**; the record is superseded by the log below. Nothing from PR #35 is carried into `main` except
+the lesson, which is already in `main` from the `2063673b` entry.
+
+### Log — session `0a113a24`
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13 | Repository reviewed at `14d0afc`. All eight verifier suites green on receipt: `tools/verify.py` 78/0/0, `tools/check_site.py` 11 passed / 1 disclosed warning. GitHub Pages `status: built`, `source: main /`. |
+| 2026-11-13 | Standings re-read live from `nfl.com/standings/`: **32 of 32 clubs match `data/standings_2026.csv` cell for cell** (W, L, T, PCT, PF, PA, NET, streak), including the two rows that moved on 12 Nov (NYG 5-3-1, WAS 3-5-1). |
+| 2026-11-13 | Week 11 schedule re-read live from `nfl.com/schedules/2026/by-week/week-11`: **13 fixtures** confirmed with kickoff, broadcaster and game URL. The FL-36 swap is confirmed present in the in-repo transcription and absent from the official page. |
+| 2026-11-13 | Claim written and pushed *before* any file was created (protocol §Parallel sessions). Branch base `14d0afc`. |
