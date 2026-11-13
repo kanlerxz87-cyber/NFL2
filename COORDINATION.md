@@ -1630,14 +1630,15 @@ sessions' trees, left byte-identical.
 - `tools/check_site.py`: **11 passed · 1 warning**. The warning is the existing non-league-host notice; it now also lists club team sites on `depth-cascades.html` (`49ers.com`, `azcardinals.com`, `baltimoreravens.com`, `commanders.com`, `dallascowboys.com`, `detroitlions.com`). Those are official club sites, not NFL.com, and this is disclosed rather than hidden.
 - Every row of the 139-row detail table cites a club chart URL and the NFL report URL. Verdict counts in the 18-row table are computed from the detail rows, not typed in.
 - Each cited news article was fetched and read before it was used in a flag: Week 8 Sunday notable injuries (Brissett benched), Nov. 5 roundup (Jackson and Huntley IR; Reed to active roster), Willis IR, Darnold ruled out, Nacua likely IR, the NFL trade tracker (Brissett to Baltimore, Nov. 6).
-- Charts read in full: all 12 club pages (Seahawks 2 of 2 chunks, Patriots 3 of 3, the other 10 single-chunk). Report: all 7 chunks of `nfl.com/injuries/league/2026/REG10`.
+- Charts: chunk 0 of all 12 club pages was read; Seahawks (2 chunks) and Patriots (3 chunks) were read in full. The chunk counts of the other ten charts were not re-checked this session, so those charts are described as read at chunk 0 only.
+- Report: all 7 chunks of `nfl.com/injuries/league/2026/REG10` were read in this session (chunks 1–6 re-read after the first draft of this record, which wrongly said they had been read earlier). The Week 10 slate on the report is 14 games and 28 clubs; the league has 32 clubs, and the 28 is the Week 10 count, not the league count. The 32-club league count was not separately re-checked.
 
 **Irregularities published (all on *Flagged for Review*, none fixed silently)**
 
 | ID | Finding | Severity |
 |----|---------|----------|
 | FL-45 | Club depth-chart coverage counts disagree (4 / 12 / 2 clubs); KC has no transcribed chart in any file | high |
-| FL-46 | Four cascades contradicted (DC-01, DC-02, DC-09, DC-16); eight to nine partly confirmed; the "Verified" labels in `depth-charts-2026.json` were not tied to a dated read | high |
+| FL-46 | Four cascades contradicted (DC-01, DC-02, DC-09, DC-16); nine partly confirmed; five verified on the stated rule. Re-checked against the report this session: DC-09 (Branch and Joseph shown Full Participation; Reed and Mays Out) and DC-16 (Baker and Wilson shown Full Participation) | high |
 | FL-47 | DC-01 (Ravens) omits Jacoby Brissett, who is QB1 on the Ravens chart after the Nov. 6 trade from Arizona; the cascade calls Austin Reed a practice-squad player, but NFL.com says he is on the active roster | medium |
 | FL-48 | Nine practice/game statuses in the cascades disagree with the Week 10 report; two more are understated (Reed, Mays) | high |
 | FL-49 | Column 1 is not always the starter on one-slot-per-row charts (Arizona, New England, Rams, San Francisco) | high |
