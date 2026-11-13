@@ -1760,7 +1760,7 @@ two-answer page and costs one build change — then Q-43, then the two purchasin
 
 ## Session `653b76b6` (`arena/653b76b6-nfl2`) — freshness provenance + decision-first summary (claim)
 
-**Status:** in progress · **Base:** `14d0afcc` · **Role:** final integration on the assigned active branch.
+**Status:** complete · **Base:** `14d0afcc` · **Role:** final integration on the assigned active branch. PR #51 merged; GitHub Pages build confirmed on the merge commit.
 
 **Task:** independently re-read the official standings after the Week 10 settlement, make the capture time visible and machine-checked, refresh the landing page/executive summary/suggestion order, and publish a newly verified official-data discovery for actual game-day lineups. Keep historical datasets and unverified values untouched; preserve explicit blanks/flags. No ordinal string rank or participation count will be inferred from a starting lineup.
 
@@ -1784,3 +1784,5 @@ two-answer page and costs one build change — then Q-43, then the two purchasin
 **Rebase conflict resolution (2026-11-13):** upstream session records and source/register rows were preserved. Identifier collisions were resolved without replacing upstream decisions: the upstream depth-rule question/suggestion remain Q-49/S-57 and its chart-coverage flag remains FL-45; this session's Game Book rights review is Q-50/S-58/FL-55. The standings source retains the independent 12:53Z read and all 256 matched values. The Week 10 schedule subsection remains the upstream version. No sibling-owned dataset was discarded.
 
 **Validation after implementation (2026-11-13 13:02Z):** `python3 tools/build_site.py` built 30 pages; `tools/verify.py` passed 118 checks, 0 warnings, 0 failures; `tools/check_site.py` passed 11 checks with 0 failures and 1 pre-existing/expected non-league-host warning on club-source/review pages. `scripts/audit_all_pages.py` passed (104 HTML pages, 40 JSON files, 285 tables, 4,404 rows); `scripts/verify_s53126614.py`, `scripts/verify_q51.py`, 36 Q51 unit tests, and `tools/verify_s92.py` also passed.
+
+**Merge and deployment close-out (2026-11-13):** PR [#51](https://github.com/kanlerxz87-cyber/NFL2/pull/51) merged at `2026-11-13T13:10:23Z` as `a01eadbb8069e1749e93cae7c6e6fd8d2c8b47e2`. All PR checks passed. Post-merge `q51`, `Verify site data and links`, and `build-and-audit` workflows passed; the Pages deployment run [43431361692](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43431361692) passed. The latest Pages build API reports `status: built` for the merge commit at `2026-11-13T13:10:42Z`; Pages is public with HTTPS enforced at https://kanlerxz87-cyber.github.io/NFL2/.
