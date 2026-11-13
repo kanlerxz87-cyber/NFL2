@@ -1239,3 +1239,79 @@ week 10 results live in their own append-only file instead. `crosscheck/`, `s92/
 | UTC | Entry |
 |-----|-------|
 | 2026-11-13T06:50Z | Claim written and pushed *before* any file was created (protocol §Parallel sessions). Branch base `9c15252`. |
+| 2026-11-13T06:50Z | Live read of `nfl.com/standings`: 30 of 32 rows unchanged, NYG and WAS each one game stale. |
+| 2026-11-13T06:50Z | `nfl.com/games/commanders-at-giants-2026-reg-10` confirms **WAS 24 – NYG 21 Final** (quarters 0/10/7/7, 0/7/7/7), MetLife. `nfl.com/scores/2026/week-10` confirms it is the only Final game. |
+| 2026-11-13T06:52Z | `nfl.com/schedules/2026/by-week/week-11` re-read: 13 fixtures, byes ATL/CLE/GB/LAR/NE/SEA all match, kickoffs and the two flexed games all match — **but MIA@BUF and TB@DET have swapped broadcasters** (repo FOX/CBS, official CBS/FOX). Published as FL-36, not edited. |
+| 2026-11-13T06:52Z | Injury hub re-read for the settled game only: all 20 W10-01 rows (WAS 9, NYG 11) match `data/injuries_2026_wk10.csv` player by player. The rest of the hub was **not** re-read; recorded as an explicit `NOT CHECKED` row rather than left implied. |
+| 2026-11-13T06:55Z | `tools/compute_settled_wk10.py` written and run; `data/settled_wk10_5f16dcc6.csv` and `data/computed_settled_5f16dcc6.csv` generated. |
+| 2026-11-13T07:11Z | Built, verified, all suites green. Two defects found and fixed (see below). |
+
+### Results — what the first settled game shows
+
+Official result: **WAS 24 – NYG 21**, home margin −3, total 45.
+
+| Predictor | Predicted spread (home) | Spread AE | Predicted total | Total AE |
+|---|---|---|---|---|
+| our origination (a392 lab) | +2.5 | **5.50** | 45.5 | **0.50** |
+| points-only fair line | +5.0 | 8.00 | 48.0 | 3.00 |
+| archived community price | +2.5 | 5.50 | 40.5 | 4.50 |
+| do-nothing season mean | 0.00 | 3.00 | 45.93 | 0.93 |
+
+The finding the page leads with: **our spread lost to knowing nothing by 2.5 pts, and our 0.5-pt total
+"win" is a property of the game, not the model.** The game's total landed 0.93 pts from the weeks 1-9
+league mean; only **8 of 136** verified games (5.9%) are that average or closer, and a naive total
+predictor lands within 0.5 pts in **3.7%** of games. Required sample for a 1.0-pt MAE difference at
+80% power, computed from the corpus: **1,607 games (totals), 1,382 (spreads)** — one settled game is
+0.07% of that.
+
+### Two defects found and fixed in this session's own work
+
+1. **`tools/build_site.py` – shallow copy bug.** `gamelog_metrics()` took `dict(rec)` before folding
+   in the settled games, but `rec`'s values are mutated in place, so the bye count read **14** where
+   the frozen corpus has **16** — and the page's own arithmetic (8 empty slots × 2 = 16) contradicted
+   the sentence beside it. Fixed with a per-club deep copy.
+2. **Stale prose totals.** `content/league-data.md` hardcoded `ΣPF 6246` and `ΣW = ΣL = 135, ΣT = 2`.
+   The refresh made the first wrong, and the second was ambiguous between game-level (68/67/1) and
+   club-level (135/135/2). Both are now computed metrics (`league_pf`, `games_log_club_w/l/t`,
+   `games_log_away_wins`, `games_log_home_wins`, `games_log_ties`) — the same fix this repo already
+   applies to register counts, so a refresh can never rot them again.
+
+### Verification performed on this branch
+
+| Suite | Result |
+|---|---|
+| `tools/verify.py` | **78 passed · 0 warnings · 0 failures** (was 65; 13 new, including `settled_week10_reproduces()` which recomputes every settled cell, and `reverification_5f16dcc6_holds()`) |
+| `tools/check_site.py` | **11 passed · 1 warning · 0 failures** (the disclosed club-domain allowlist warning) |
+| `scripts/audit_all_pages.py` | 101 pages · 257 tables · 3,907 rows · 100% row-sourced · 0 broken links |
+| `scripts/verify_q51.py` | 155/155 rows sourced, 0 errors |
+| `scripts/verify_s53126614.py` | 150 repo pages · 4,384 internal links · 0 broken |
+| `scripts/check_reproducible.py` | all data files reproduce exactly |
+| `engine/verify_repo_and_site.py` | 2,000 internal links · 0 broken |
+| `scripts/reverify_a392.py` | refreshed hub register, 0 mismatches |
+
+`data/reverification_a392.csv` and `datasets/e143a7ca/verification_manifest.json` were rewritten as a
+side effect of running other sessions' verifiers and were restored with `git checkout --` before the
+commit, per the `cef2b11f` handoff note. No file belonging to another session entered this branch.
+
+### Sources used (all fetched 2026-11-13, 06:48–06:55Z)
+
+https://www.nfl.com/standings/ · https://www.nfl.com/scores/2026/week-10 ·
+https://www.nfl.com/games/commanders-at-giants-2026-reg-10 · https://www.nfl.com/injuries/ ·
+https://www.nfl.com/schedules/2026/by-week/week-11
+
+### Irregularities published (not silently fixed)
+
+- **FL-35** — the standings were one game stale and nothing on the site records when a cumulative
+  table was read. Two rows corrected here; the cadence decision is Q-40 / S-43.
+- **FL-36** — Week 11 broadcasters for MIA@BUF and TB@DET disagree with the official page (exact
+  swap). Left as-published and flagged; a session cannot tell "the league moved them" from "the
+  earlier transcription swapped them".
+
+### Handoff
+
+The settlement pipeline now runs end to end and re-scores itself on every build as rows are appended to
+`data/games_2026_wk10_played.csv`. The next session should append the 13 remaining Week 10 games as they
+go Final (15–16 November) and re-run `python3 tools/compute_settled_wk10.py && python3 tools/build_site.py`.
+Open decisions, in the order I would take them: **S-43** (capture timestamps — cheap, and it is the fix
+for FL-35), **Q-41** (keep the corpus frozen), **S-44 + S-45** (auto-grade and put the required-sample
+number on the leaderboard), **FL-36** (two broadcaster cells).
