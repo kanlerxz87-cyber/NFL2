@@ -1646,13 +1646,14 @@ sessions' trees, left byte-identical.
 | FL-51 | Darnold and Lock injury types are on an NFL.com article, not in the report's Injuries column | medium |
 | FL-52 | Four IR placements rest on NFL.com news only; the transactions hub was not read | medium |
 | FL-53 | Packers and Ravens charts list the same player twice in one depth group | low |
+| FL-54 | Question IDs Q-46 and Q-47 are each used for two different questions on `main` (pre-existing, not created here; not renumbered because other pages link to them) | medium |
 
-**Renumbering note.** My first draft used FL-37..FL-45, Q-42 and S-46, which were taken on `main` by PR #41 (`c3ec1487`). I renumbered all my rows to FL-45..FL-53, Q-49 and S-55 before merging, and I checked each ID against `main`. Sources already on `main` (`S-DEPTH-BAL`, `-MIA`, `-NE`, `-DET`, `-GB`, `-WAS`, `-NYG`) were not duplicated. New source rows: `S-INJ-REG10`, `S-DEPTH-ARI`, `S-DEPTH-SF`, `S-DEPTH-DAL`.
+**Renumbering note.** My first draft used FL-37..FL-45, Q-42 and S-46, which were taken on `main` by PR #41 (`c3ec1487`). I renumbered all my rows to FL-45..FL-53, Q-49 and S-57 before merging, and I checked each ID against `main`. Sources already on `main` (`S-DEPTH-BAL`, `-MIA`, `-NE`, `-DET`, `-GB`, `-WAS`, `-NYG`) were not duplicated. New source rows: `S-INJ-REG10`, `S-DEPTH-ARI`, `S-DEPTH-SF`, `S-DEPTH-DAL`.
 
 **Handoff — owner decisions this session leaves open**
 
 - **Q-49**: which rule turns a club chart into a 1st/2nd/3rd/4th string (column order, slot-row order, or the club's own name list). Until chosen, no cascade tier can be priced.
-- **S-55**: publish a verdict for every cascade instead of a tier label, and re-check each Tuesday. The page already follows the verdict rule; S-55 is the owner's decision to make it the default.
+- **S-57**: publish a verdict for every cascade instead of a tier label, and re-check each Tuesday. The page already follows the verdict rule; S-57 is the owner's decision to make it the default.
 - **Still unverified**: the other 20 of 32 clubs have no re-verified chart in this session (Q-37 / S-39 still open).
 
 **Carried over from PR #35 (`8361cc7a`), verbatim.** The RV-T06 record below was written by session `8361cc7a` on 2026-11-12. Its probe results are historical; this session re-checked the PR #34 checks (merged; `q51`, `Row-level verification, link check and build reproducibility`, `audit` all SUCCESS) and `line-origination.html` (live). `defense.html` returns the site's 404 page today, which matches the record; the HTTP status code itself was not observed through the fetch tool.
