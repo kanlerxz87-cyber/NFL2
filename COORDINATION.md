@@ -1713,7 +1713,10 @@ Probe a URL that exists in exactly one tree, and cache-bust it.
 | Integration PR | https://github.com/kanlerxz87-cyber/NFL2/pull/47 (`arena/6539b6a0-nfl2` → `main`) |
 | PR #35 (`8361cc7a`) | Already closed by session `0a113a24` on 2026-11-13T12:50Z ("superseded by PR #44"). This session did not close it again. Its text is carried over verbatim in this section. |
 | Force push on own branch | After rebasing onto `main` `a121968`, the branch was force-pushed with `--force-with-lease` at `a9b75f7` → `94f9094`. Only this session's own commits were replaced; same content. |
-| Merge result | Recorded in the PR #47 comment after merge, and on the GitHub Pages check below. |
+| Merge result (PR #47) | **Merged 2026-11-13T12:54:05Z**, merge commit `9a31248`. Pages run for that commit: success. |
+| Follow-up PR #49 | https://github.com/kanlerxz87-cyber/NFL2/pull/49 (correct the chart-reading claim on the depth-cascades page: Seahawks and Patriots read in full; other ten on first page). **Merged 2026-11-13T13:00:25Z**, merge commit `3e4e7e1`. Checks: Row-level verification, audit, q51 all pass. Pages run for that commit: success. |
+| Live check after #49 | `depth-cascades.html` serves the corrected sentence, and `flagged-for-review.html` serves FL-54. |
+| Process note | A `pull --rebase` on #49 was interrupted by a conflict in `data/build_manifest.json`. A push and PR were run during that interrupted rebase. The PR was created from the stale remote head. The branch was then rebased, and the remote head was replaced with `--force-with-lease` (own commits only). PR #49 was re-checked: 4 files, mergeable, clean. |
 >>>>>>> origin/main
 
 ### Session `c3ec1487` — PR, merge and Pages record
