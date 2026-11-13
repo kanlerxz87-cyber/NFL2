@@ -1562,3 +1562,18 @@ sessions' trees, left byte-identical.
 | 12:37Z | **Egress finding.** Raw `curl https://www.nfl.com` fails with `SSL_ERROR_SYSCALL` in this sandbox, but the agent's page-fetch tool reaches `nfl.com` and club sites fine. Recorded because Q-24 asks exactly this and the earlier answer ("the sandbox cannot reach nfl.com") is true of curl and false of the tool. |
 | 12:38Z | Live `nfl.com/standings` re-read: **32 of 32 rows match `data/standings_2026.csv`**, including NYG 5-3-1 / 203 / 196 and WAS 3-5-1 / 196 / 223 that FL-35 corrected. No edit needed. |
 | 12:40Z | Live injury hub read (Week 10, 6 of 7 chunks): 13 fixtures, 26 clubs with rows, 2 clubs "No Injuries Reported" (LAC, BAL), 6 game-status designations. Confirms FL-27's 279-row state and adds today's dated confirmation. |
+
+### Session `0a113a24` — integration record (PR, merge, deploy)
+
+| UTC | Entry |
+|-----|-------|
+| 2026-11-13 12:4x | Scope claim `31506c6` and implementation commits `dc25b84`, `c5492f8`, `44def8d` pushed. Canonical checks on the branch: `tools/verify.py` 95 passed / 0 warnings / 0 failures; `tools/check_site.py` 11 passed / 1 disclosed warning / 0 failures; `tools/build_site.py` built 28 pages. |
+| 2026-11-13 12:4x | **PR #44** opened from `arena/0a113a24-nfl2` to `main`. Not mergeable at first: `main` had advanced through PR #41 (`c3ec1487`, availability watch) and then PR #42 (`83246f00`, personnel relief). Both overlapped this branch on register IDs and on shared pages. |
+| 2026-11-13 12:4x | **Conflict resolution (not discarding others' work).** Register collisions: `main` owned FL-37/38, Q-42..45, S-46..54. This branch's new rows were renumbered to **FL-39/FL-40, Q-46/Q-47, S-55/S-56**, and every reference in this branch's prose, code and log was updated. FL-36 is the same flag on both sides and is now marked RESOLVED. S-44/S-45 are adopted here (implemented here; `main` still read them as recommended). `sources.csv` took `main`'s rows plus this branch's five 0A11 rows. The executive summary keeps `main`'s personnel-pass section and inserts this branch's forward-sample section before it. `build_site.py` and `verify.py` keep both entries and both checks. Generated pages were regenerated from the merged sources. |
+| 2026-11-13 12:4x | Post-merge checks on the merged tree: `tools/verify.py` **113 passed / 0 warnings / 0 failures**; `tools/check_site.py` 11 passed / 1 disclosed warning; build 30 pages. PR #44 then reported `MERGEABLE CLEAN`. |
+| 2026-11-13 12:50:04Z | **PR #44 merged** (`gh pr merge --merge`), merge commit `0d271d6`. CI on the PR: row-level verification, link check and build reproducibility **pass**; audit **pass**; q51 **pass**. |
+| 2026-11-13 12:5x | **PR #35 closed** (stale, superseded; comment left on the PR). |
+| 2026-11-13 13:0x | GitHub Pages: the build for `main` finished with status `built` (commit `a82419c`, which includes the later PR #45 merge from `83246f00`). Live pages fetched and confirmed: `week11-originated.html` renders the 13 pre-registered lines with hashes; `flagged-for-review.html` renders. |
+| 2026-11-13 13:0x | One stale cross-reference found on the live Week 11 caption (`FL-38` for availability, which is now FL-40). Fixed in a follow-up commit and merged in a follow-up PR. |
+
+**Result:** the Week 11 forward sample is live on the Pages site and is on `main`. PR links: #44 (merged), #35 (closed unmerged), follow-up fix PR listed below. Irregularities and unverified items are on the Flagged for Review page (FL-36 resolved; FL-37 stale JSON snapshot, FL-38 injury-coverage conflict belonging to `c3ec1487`; FL-39 stale JSON; FL-40 no Week 11 participation; 5 NOT CHECKED rows in the register). None blocked the merge.
