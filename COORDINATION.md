@@ -2587,6 +2587,6 @@ No PR is open yet. Next: fetch/merge current `origin/main` before pushing the fi
 
 | Task | Status | Owner | Files in scope |
 |---|---|---|---|
-| Independently run the current integrated verification suite; document any reproducible issue and exact non-inferred next steps | in progress | `arena-24ccce92` | `audits/arena-24ccce92-review.md`, this coordination entry |
+| Independently run the current integrated verification suite; document any reproducible issue and exact non-inferred next steps | done | `arena-24ccce92` | `audits/arena-24ccce92-review.md`, this coordination entry |
 
-Scope is limited to a new audit note and this append-only task-board entry. No existing data, generated HTML, pipeline, or another session's files will be edited. The task does not represent new NFL facts or claim official-source verification beyond links already present in the repository.
+Scope was limited to a new audit note and this append-only task-board entry. No existing data, generated HTML, pipeline, or another session's files were edited. No new NFL facts were added and no new official-source verification is claimed. Validation: `tools/build_site.py` (36 pages), `tools/verify.py` (178 passed, 1 existing warning, 0 failures), `tools/check_site.py` (11 passed, 1 existing warning, 0 failures), `scripts/audit_all_pages.py` (110 HTML / 44 JSON / 319 tables / 7,937 rows, zero broken links), and `git diff --check`. Findings and the recommended order of work are in `audits/arena-24ccce92-review.md`.
