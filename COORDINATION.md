@@ -2321,4 +2321,38 @@ ship as FL-64…FL-72 rather than the FL-37…FL-45 they were drafted as. One fu
 second rebase: appending rows to `data/suggestions.csv` and `data/questions.csv` made session
 `745f788e`'s derived tables stale, so `scripts/build_s745_decisions.py` was re-run and the two row
 counts in the data dictionary were updated (64→72, 54→61). No fact in those tables changed; they are
+
+
+## Session `92d3ac43` (`arena/92d3ac43-nfl2`) — final integration, decision-readiness table, PR & Pages deploy
+
+**Session ID:** `92d3ac43` · **Branch:** `arena/92d3ac43-nfl2` · **Branch base:** `1eaf7f74` (HEAD of `main`, PR #60 merged, all prior session branches merged and deleted, no open PRs) · **Started:** 2026-11-13 (sandbox local date)
+
+**Why this session exists.** Every prior session's work is merged, the root site builds (36 pages) and all eight verifier suites are green, and GitHub Pages reports `status: built`. What remains for this session is the owner-facing decision layer the brief names explicitly plus the final integration the board reserves for the integration session:
+
+1. A true **decision-readiness table** — one row per requirement, each with the gate that blocks it and the number that would clear it (the requirements register today has status and note but no gate/clear-number columns).
+2. A final line-by-line verification pass against the live official pages that are reachable (standings/schedule), with outcomes published.
+3. The final integration step: a PR from this branch to `main` carrying the summary, sources and flagged items, merged without waiting, with GitHub Pages confirmed deployed.
+
+**Exclusive file scope** (nothing else is touched):
+- `data/requirements.csv` — add `blocks` (gate id) and `clears_with` (number that would clear it) columns, mapped from `data/gates.csv`; process/design requirements are marked `n/a` rather than assigned a speculative gate
+- `content/requirements.md` — render the two new columns in the requirements table
+- `content/index.md` — one row linking the decision-readiness view from the landing page
+- Regenerated root `*.html` and `data/build_manifest.json` (build products, never hand-edited)
+- `COORDINATION.md` — this section, the log, and the PR/merge/Pages record
+
+**Files this session will NOT touch:** every other session's tree (`q51/`, `portal/`, `analytics/`, `s53/`, `s92/`, `review/`, `site/`, `pipeline/`, `datasets/`, `archive/`, `docs/`, `crosscheck/`, `research/`, `engine/`, `collectors/`, `scripts/`), the frozen weeks 1–9 corpus, injury captures, and any register other than `data/requirements.csv`.
+
+**Integration authority.** No other `arena/*` session is live and no PR is open, so this session also acts as the integration session for shared files (root `data/*.csv`, `content/*.md`, `tools/build_site.py`, generated root HTML).
+
+**Task board**
+
+| ID | Task | Status | Owner | File scope |
+|----|------|--------|-------|------------|
+| I1 | Claim the integration session and push the claim before editing | in progress | `92d3ac43` | `COORDINATION.md` |
+| I2 | Add gate/clear-number decision-readiness columns to the requirements register and render them | unclaimed → in progress | `92d3ac43` | `data/requirements.csv`, `content/requirements.md` |
+| I3 | Re-verify reachable official pages (standings/schedule) and publish the outcome | unclaimed → in progress | `92d3ac43` | `COORDINATION.md` log + flagged page as needed |
+| I4 | Rebuild, run all verifier suites, confirm green | unclaimed → in progress | `92d3ac43` | generated root HTML |
+| I5 | Open PR `arena/92d3ac43-nfl2` → `main` with summary, sources and flags; merge `--merge` without waiting; confirm Pages deploy; record PR link + merge result here | unclaimed → in progress | `92d3ac43` | `COORDINATION.md` |
+
+**Handoff:** none required — this is the final integration session for this round.
 arithmetic on the registers.
