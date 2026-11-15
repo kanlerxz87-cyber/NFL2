@@ -21,6 +21,8 @@ The **10-chart personnel-relief join** uses the dated 2026-11-13 Week 10 injury 
 
 ## Read this first
 
+> **Automated source-freshness monitor:** [Official Source Fingerprints](availability-fingerprints.html) (metadata only; not replayable).
+
 This site has two kinds of pages and they never mix on one page without a divider:
 
 - **Measured** (green badge) — tables generated from `data/*.csv`, every row carrying a link to the official league page it was transcribed from.
