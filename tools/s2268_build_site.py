@@ -214,10 +214,12 @@ ROI and no units. Anywhere a price would be needed, the cell is blank and says s
 <li>Against the published register there are <strong>{ref['delta_vs_published']}</strong> differences
 (rows added, removed or changed); against session <code>a392a193</code>&rsquo;s later re-fetch there are
 <strong>{ref['delta_vs_hubrefresh']}</strong>, which is the same league page moving in about fourteen hours.</li>
-<li>Three Week 10 game ids (<code>W10-06</code>, <code>W10-07</code>, <code>W10-08</code>) name different
+<li>Three Week 10 game ids (<code>W10-06</code>, <code>W10-07</code>, <code>W10-08</code>) named different
 fixtures in <code>data/injuries_2026_wk10.csv</code> than they do in
-<code>data/schedule_2026_wk10.csv</code>. Any join between the two files attaches a club&rsquo;s injuries to
-the wrong opponent.</li>
+<code>data/schedule_2026_wk10.csv</code>, so any join between the two files attached a club&rsquo;s
+injuries to the wrong opponent. <strong>Resolved 15 November 2026 (S-65):</strong> the register was
+renumbered to the schedule convention, the collisions table below now reads <em>match</em> for all
+eleven populated fixtures, and <code>tools/verify.py</code> fails any club/fixture mismatch.</li>
 </ul>
 
 <h2 id="what-we-found">What the competition found</h2>
@@ -288,19 +290,25 @@ yours (<a href="../suggestions.html">S-43</a>, <a href="../questions.html">Q-40<
                     "&ldquo;No Injuries Reported&rdquo; for both, which is a declaration, not a gap. "
                     "Every other club's rows are published in full below.")}
 
-<h2 id="gameids">Three Week 10 game ids name the wrong fixture</h2>
+<h2 id="gameids">Three Week 10 game ids named the wrong fixture — resolved 15 November 2026</h2>
 <p><code>data/schedule_2026_wk10.csv</code> and <code>data/injuries_2026_wk10.csv</code> both number the
-Week 10 games <code>W10-01</code> to <code>W10-14</code>, and for three of the fourteen they number them
-differently: the injury file follows the order the hub prints its blocks in, the schedule file follows the
-order the schedule page prints its fixtures in, and those two orders disagree for the three 1:00&nbsp;pm
-Sunday games. Every id in <code>data/computed_fair_lines.csv</code> and
-<code>data/deficiency_by_club_a392.csv</code> follows the schedule convention, so the injury register is
-the odd one out &mdash; and a join on <code>game_id</code> silently attaches six clubs' injury rows to the
-wrong opponent.</p>
+Week 10 games <code>W10-01</code> to <code>W10-14</code>, and until 15 November 2026 three of the
+fourteen were numbered differently: the injury file followed the order the hub printed its blocks in,
+the schedule file follows the order the schedule page prints its fixtures in, and those two orders
+disagreed for the three 1:00&nbsp;pm Sunday games, so a join on <code>game_id</code> silently attached
+six clubs' injury rows to the wrong opponent. <strong>S-65 renumbered the injury register to the
+schedule convention on 2026-11-15</strong> (session <code>d7d8c886</code>, verified against the
+official game-centre pages for
+<a href="https://www.nfl.com/games/dolphins-at-colts-2026-reg-10">MIA&nbsp;at&nbsp;IND</a>,
+<a href="https://www.nfl.com/games/panthers-at-saints-2026-reg-10">CAR&nbsp;at&nbsp;NO</a> and
+<a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10">BUF&nbsp;at&nbsp;NYJ</a>). The table
+below is the post-fix state: every populated fixture matches; the three remaining non-match verdicts
+are collection gaps (SEA, CIN rows absent; BAL/LAC declare none), not rotations.
+<code>tools/verify.py</code> now fails any register row whose club does not play the fixture its
+game id names.</p>
 {table(coll, caption="Verdict is computed by comparing the team set under each id in the two files. "
-                     "&ldquo;Rotation&rdquo; means the id points at a real Week 10 fixture that the other "
-                     "file numbers differently; &ldquo;incomplete&rdquo; means a club's rows were never "
-                     "ingested at all.")}
+                     "&ldquo;incomplete&rdquo; means a club's rows were never ingested at all; no "
+                     "rotation verdict remains after the 2026-11-15 renumber (S-65).")}
 
 <h2 id="delta">Every difference, row by row</h2>
 <p>{len(delta)} rows. &ldquo;Field changed&rdquo; excludes pure vocabulary differences: the published
@@ -321,7 +329,7 @@ designation.</p>
                 "repository already publishes.",
                 body, badge="measured",
                 toc=[("scale", "Scale of the change"), ("coverage", "Club coverage"),
-                     ("gameids", "Game-id collision"), ("delta", "Row-by-row delta"),
+                     ("gameids", "Game-id reconciliation"), ("delta", "Row-by-row delta"),
                      ("register", "Full register")])
 
 
@@ -717,14 +725,17 @@ gate board on which nothing can ever pass is not a gate board, it is a wish list
 def build_flagged():
     rows = [
         ("FL-2268-01", "data integrity", "high",
-         "Three Week 10 game ids (W10-06, W10-07, W10-08) name different fixtures in "
+         "Three Week 10 game ids (W10-06, W10-07, W10-08) named different fixtures in "
          "data/injuries_2026_wk10.csv than they do in data/schedule_2026_wk10.csv.",
-         "Ids compared club-by-club against the schedule; the injury register follows the hub's block "
-         "order, everything else follows the schedule's fixture order.",
-         "https://www.nfl.com/injuries/",
-         "Blocking for any join: fix the ids in the injury register or stop joining on game_id. Not "
-         "fixed here because data/injuries_2026_wk10.csv belongs to another session's scope.",
-         "open"),
+         "Ids compared club-by-club against the schedule; the injury register followed the hub's block "
+         "order, everything else followed the schedule's fixture order. Resolved 2026-11-15: register "
+         "renumbered to the schedule convention; tools/s2268_refresh.py re-run reports "
+         "game_id_rotations = 0.",
+         "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
+         "Resolved 2026-11-15 (S-65, session d7d8c886): the injury register was renumbered to the "
+         "schedule convention and tools/verify.py now fails any club/fixture mismatch. The main "
+         "register's FL-61 and FL-64 carry the same resolution.",
+         "resolved"),
         ("FL-2268-02", "freshness", "high",
          f"The Injuries page renders 254 rows taken from a Wednesday/Thursday read; the official hub "
          f"published 295 rows at {FETCH_UTC}. 42 rows added, 1 removed, 42 field changes.",

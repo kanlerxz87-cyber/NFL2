@@ -219,6 +219,11 @@ and `W10-08`, name a completely different fixture in `data/injuries_2026_wk10.cs
 `data/schedule_2026_wk10.csv`. A join on `game_id` silently attaches six clubs' injury rows to the
 wrong opponent. Nothing in this repository joins them today; the defect is published rather than
 patched, because the file belongs to another session's scope. ([FL-64](flagged-for-review.html))
+**Resolved 15 November 2026 (S-65, session `d7d8c886`):** the injury register was renumbered to the
+schedule convention — all 254 player rows byte-identical apart from the game key — verified against
+the three official game-centre pages; `tools/verify.py` now fails any row whose club does not play
+the fixture its game id names (mutation-tested), and a re-run of `tools/s2268_refresh.py` reports
+`game_id_rotations = 0`. FL-61 and FL-64 are marked resolved.
 
 **6. The live hub has moved 41 rows past what the site shows.** Re-read at 2026-11-13T12:40Z it
 publishes 295 rows across 26 clubs; the Injuries page renders 254 across 24. Against session

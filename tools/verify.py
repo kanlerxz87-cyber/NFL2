@@ -240,6 +240,11 @@ def injuries():
     data, _, _ = rows("injuries_2026_wk10.csv")
     sched, _, _ = rows("schedule_2026_wk10.csv")
     games = {g["game_id"] for g in sched}
+    # FL-61 / FL-64 (resolved by S-65): the game key must name the fixture the club
+    # actually plays, not merely an id that exists. A label that exists but points at
+    # another fixture joins silently and attaches a club's injuries to the wrong
+    # opponent, which is exactly the defect this assertion now fails on.
+    pair = {g["game_id"]: {g["away"], g["home"]} for g in sched}
     teams = {r["abbr"] for r in rows("standings_2026.csv")[0]}
     seen = set()
     for r in data:
@@ -249,6 +254,9 @@ def injuries():
             bad("injury %s: bad status code %r" % (r["player"], r["status"]))
         if r["game"] not in games:
             bad("injury %s: unknown game %s" % (r["player"], r["game"]))
+        elif r["team"] not in pair[r["game"]]:
+            bad("injury %s: club %s does not play in %s (the schedule says %s) — game-id rotation"
+                % (r["player"], r["team"], r["game"], "/".join(sorted(pair[r["game"]]))))
         if r["team"] not in teams:
             bad("injury %s: unknown club %s" % (r["player"], r["team"]))
         if not re.match(r"^[a-z0-9\-]+$", r["slug"]):
@@ -268,7 +276,7 @@ def injuries():
                                  "a-j-haulcy", "t-j-hockenson", "t-j-hopper", "t-j-sanders", "p-j-locke",
                                  "ar-maj-reed-adams", "darnell-mooney", "treveyon-henderson"):
                 warn("slug/name mismatch worth a look: %s vs %s" % (r["player"], r["slug"]))
-    ok("injuries: %d rows, codes valid, all game and club keys resolve, no duplicates" % len(data))
+    ok("injuries: %d rows, codes valid, every club plays the fixture its game id names, no duplicates" % len(data))
     n = sum(1 for r in data if r["status"].strip())
     if n != 6:
         bad("injuries: %d published designations, expected 6 for this snapshot" % n)

@@ -2,7 +2,8 @@
 """
 NFL2 — Strict Line-by-Line Site & Table-Row Verification Gate.
 
-Asserts across ALL HTML files (root *.html and docs/*.html) and ALL data/*.json files:
+Asserts across ALL HTML files (root, analytics/, docs/, review/, portal/, site/, s2268/)
+and ALL data/*.json files:
   1. Every JSON file parses cleanly.
   2. Every local href / src link resolves to a real file in the repository (zero broken links).
   3. Every <table> has matching header vs body cell counts (accounting for colspan).
@@ -135,7 +136,7 @@ def main() -> None:
         if "injuries/league/2026/REG9" in raw and jf.name != "repo-audit-2026.json":
             errors.append(f"{jf.relative_to(ROOT)}: contains wrong Week 10 URL REG9 (should be REG10)")
 
-    row_sourced_dirs = {"analytics", "docs", "review", "portal"}
+    row_sourced_dirs = {"analytics", "docs", "review", "portal", "s2268"}
     html_files = sorted(
         list(ROOT.glob("*.html"))
         + list((ROOT / "analytics").glob("*.html"))
@@ -143,6 +144,10 @@ def main() -> None:
         + list((ROOT / "review").glob("*.html"))
         + list((ROOT / "portal").glob("*.html"))
         + list((ROOT / "site").glob("*.html"))
+        # S-70 / CR-2268-10: the s2268 tree carries its own verifier, but the
+        # repository-wide auditor must see it too, or a new tree is silently
+        # exempt from the row-source and link assertions below.
+        + list((ROOT / "s2268").glob("*.html"))
     )
     total_tables = 0
     total_rows = 0

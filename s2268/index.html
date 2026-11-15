@@ -14,7 +14,7 @@
     <div class="pagehead"><span class="badge program">session 2268bfb2</span><h1>Session overview</h1><p class="lead">A dated re-read of the official league pages, and the first pre-registered walk-forward competition in this repository.</p></div>
     <nav class="toc"><span>On this page</span><a href="#read-this-first">Read this first</a><a href="#what-moved">What moved</a><a href="#what-we-found">What the competition found</a><a href="#pages">Pages in this tree</a></nav>
     <div class="body">
-<div class="cards"><div class="card"><h3>Rows on the live injury hub</h3><div class="big"><a href="refresh.html">295</a></div><div class="sub">26 clubs publish rows; LAC and BAL print &ldquo;No Injuries Reported&rdquo;</div></div><div class="card"><h3>Rows the Injuries page shows</h3><div class="big"><a href="refresh.html">254</a></div><div class="sub">41 rows behind the live page</div></div><div class="card"><h3>Week 10 game ids that disagree</h3><div class="big"><a href="refresh.html">6</a></div><div class="sub">3 of them name a completely different fixture in two published files</div></div><div class="card"><h3>Strategies scored out of sample</h3><div class="big"><a href="competition.html">10</a></div><div class="sub">596 decisions on 72 holdout games</div></div><div class="card"><h3>Candidates surviving the luck gate</h3><div class="big"><a href="luck.html">4</a></div><div class="sub">Benjamini&ndash;Hochberg at a 10% false-discovery rate</div></div><div class="card"><h3>Gates still blocking any stake</h3><div class="big"><a href="gates.html">4</a></div><div class="sub">G-C7 through G-C10 &mdash; no price feed, no forward track record</div></div></div>
+<div class="cards"><div class="card"><h3>Rows on the live injury hub</h3><div class="big"><a href="refresh.html">295</a></div><div class="sub">26 clubs publish rows; LAC and BAL print &ldquo;No Injuries Reported&rdquo;</div></div><div class="card"><h3>Rows the Injuries page shows</h3><div class="big"><a href="refresh.html">254</a></div><div class="sub">41 rows behind the live page</div></div><div class="card"><h3>Week 10 game ids that disagree</h3><div class="big"><a href="refresh.html">3</a></div><div class="sub">0 of them name a completely different fixture in two published files</div></div><div class="card"><h3>Strategies scored out of sample</h3><div class="big"><a href="competition.html">10</a></div><div class="sub">596 decisions on 72 holdout games</div></div><div class="card"><h3>Candidates surviving the luck gate</h3><div class="big"><a href="luck.html">4</a></div><div class="sub">Benjamini&ndash;Hochberg at a 10% false-discovery rate</div></div><div class="card"><h3>Gates still blocking any stake</h3><div class="big"><a href="gates.html">4</a></div><div class="sub">G-C7 through G-C10 &mdash; no price feed, no forward track record</div></div></div>
 <blockquote><strong>What this session is.</strong> Every parallel session before this one had built and merged
 a large, verified dashboard at the repository root. What none of them had done was <em>score</em> anything:
 the leaderboard read &ldquo;T0 &mdash; prospective, 0 of 14 gates&rdquo; with every performance cell blank, and the
@@ -38,10 +38,12 @@ ROI and no units. Anywhere a price would be needed, the cell is blank and says s
 <li>Against the published register there are <strong>85</strong> differences
 (rows added, removed or changed); against session <code>a392a193</code>&rsquo;s later re-fetch there are
 <strong>69</strong>, which is the same league page moving in about fourteen hours.</li>
-<li>Three Week 10 game ids (<code>W10-06</code>, <code>W10-07</code>, <code>W10-08</code>) name different
+<li>Three Week 10 game ids (<code>W10-06</code>, <code>W10-07</code>, <code>W10-08</code>) named different
 fixtures in <code>data/injuries_2026_wk10.csv</code> than they do in
-<code>data/schedule_2026_wk10.csv</code>. Any join between the two files attaches a club&rsquo;s injuries to
-the wrong opponent.</li>
+<code>data/schedule_2026_wk10.csv</code>, so any join between the two files attached a club&rsquo;s
+injuries to the wrong opponent. <strong>Resolved 15 November 2026 (S-65):</strong> the register was
+renumbered to the schedule convention, the collisions table below now reads <em>match</em> for all
+eleven populated fixtures, and <code>tools/verify.py</code> fails any club/fixture mismatch.</li>
 </ul>
 
 <h2 id="what-we-found">What the competition found</h2>
