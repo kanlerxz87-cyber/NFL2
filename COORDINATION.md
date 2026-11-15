@@ -2964,3 +2964,22 @@ The brief's other items remain as they are on `data/requirements.csv`: game-book
 - **Changes after the merge:** none to the site. This record is the only follow-up.
 - **Open items left for the owner (not blocking):** FL-88 to FL-91 (no retained raw capture; the hub read is transcribed by hand), CR-D8-01 (`tools/s2268_verify.py` scope allowlist: 16 scope-only errors, exit 1, not a build or data failure), and CR-D8-02 (R-19 "Track injuries" marked `done`, consider `in progress`).
 
+
+### Final deployment record — session `f34622dd`, 2026-11-15
+
+| Item | Result |
+|---|---|
+| PR #78 (main work) | merged as `0d44d5d`; post-merge `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification` and `GitHub Pages` all **success** |
+| PR #80 (merge/deploy record) | merged as `7d8705b`; same four workflows **success** |
+| PR #82 (KPI read dates + stale prose) | merged as `a68db1e`; same four workflows **success** |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main:/` |
+| Live, cache-busted | `index.html?v=a68db1e` and `brief-coverage.html` both fetched after deploy; the corrected KPI text, the new landing section and the 84-row matrix all render with a source link on every row |
+
+**Two presentation defects this session found in its own output after publishing, and corrected:**
+
+1. The landing KPI tiles read *"254 injury rows"* and *"6 designations published"* with no date, so the 12 November file read as the current state of the hub. Both now name their read date and the newest read beside them.
+2. The new landing section said *"today"*, which was true when written and false the next day. It now says *"this session"*, and the first cut of the derived club count printed 15 because it counted the ALL row; it prints 14/14 from the club rows only.
+
+**No other session's work was discarded.** Three separate rounds of `main` advancing (PRs #71, #74, #76, #77, #79, #81) were merged explicitly, never rebased over, and every conflict outside generated build output was resolved by keeping both sides.
+
+**Still open for the owner, published on the site rather than fixed here:** `FL-84` (the published injury table is behind the newest read — `CR-F346-01` asks its owner to repoint it), `FL-85` (ten brief clauses with no owner), `FL-86` (all 14 gates are one-sided; no demotion rule), and the pre-existing `FL-54` and non-league-link warnings, which this session neither caused nor touched.
