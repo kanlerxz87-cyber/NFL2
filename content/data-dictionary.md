@@ -74,6 +74,8 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/injury_live_chunk_d8372691.csv` | 44 | one player row transcribed from the official page for WAS, NYG, NE and DET as rendered on 2026-11-15 at about 12:50Z (no raw bytes; see FL-87) | S-INJ-D8 |
 | `data/injury_spotcheck_d8372691.csv` | 44 | the live transcription compared field by field with the 15 Nov file and the 13 Nov file | S-INJ-D8 |
 | `data/reverification_e733834d.csv` | 44 | one official row compared with the 13 November read that this repository publishes: MATCH or MISMATCH, with the flag that records each mismatch | S-INJ-E733, S-INJ-1246 |
+| `data/injuries_wk10_5de1805b_20261115.csv` | 347 | one player-filing on the official Week 10 hub across all 28 listed clubs and 14 games, transcribed from the live page at 2026-11-15T12:55Z by session 5de1805b — the third dated read of the series | S-INJ-5D18, [NFL injury hub](https://www.nfl.com/injuries/) |
+| `data/reverification_5de1805b.csv` | 391 | one row of the 13 November snapshot compared with the live page (194 drifted, 102 identical), one first filing, and one row of the morning read reproduced cell for cell 42 minutes later | S-INJ-5D18, S-INJ-E733, S-INJ-1246 |
 
 | `data/depth_cascades_6539b6a0.csv` | 139 | one named player per depth cascade, placed against his club's own chart and the official Week 10 report | S-DEPTH-BAL, S-DEPTH-MIA, S-DEPTH-ARI, S-DEPTH-NE, S-DEPTH-DET, S-DEPTH-SF, S-DEPTH-DAL, S-DEPTH-SEA, S-DEPTH-LAR, S-DEPTH-GB, S-DEPTH-WAS, S-DEPTH-NYG, S-INJ-REG10 |
 | `data/depth_cascade_verdicts_6539b6a0.csv` | 18 | one depth cascade, with a verdict computed from its player rows | as above |
