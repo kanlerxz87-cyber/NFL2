@@ -2582,3 +2582,26 @@ Official pages fetched for manual review on 2026-11-15: [NFL injury hub](https:/
 ### Publication status
 
 No PR is open yet. Next: fetch/merge current `origin/main` before pushing the final changes; open a PR from this fixed branch with the audit report, source links and existing flags; merge with `gh pr merge <number> --merge`; then verify CI and Pages deployment and fill in the exact PR/merge/deploy IDs here. Any merge conflict must retain this complete upstream log and all other session work.
+
+## Session `f34622dd` (`arena/f34622dd-nfl2`) — brief-coverage matrix, dated freshness notice, live injury-hub count delta
+
+**Session ID:** `f34622dd` · **Branch:** `arena/f34622dd-nfl2` (fixed by Arena; no `session-*/` branch or worktree created)
+**Claimed (UTC):** 2026-11-15T12:52Z · **Base commit:** `d3c9c92922e408f022d6834837fc4031357d8836` (merge of PR #70)
+**Pre-existing state at claim:** PR #71 (`arena/1ef36c55-nfl2`, availability fingerprint monitor) is open and covers `availability_monitor/**`, `data/availability_fingerprints.csv`, `content/availability-fingerprints.md`, `.github/workflows/availability-fingerprint.yml`. This session does **not** touch those paths. Full suite green at claim: `tools/verify.py` 178/1 warn/0 fail, `tools/check_site.py` 11/1 warn/0 fail, `scripts/audit_all_pages.py` 110 pages/319 tables/7,937 rows/0 broken, `scripts/verify_q51.py`, `scripts/verify_s53126614.py`, `scripts/check_reproducible.py`, `tools/s2268_verify.py` 1,004 checks/0 errors.
+
+### Exclusive file scope (disjoint from every other session)
+
+| Path | Change |
+|---|---|
+| `data/brief_traceability.csv` | **new** — one row per clause of the owner brief, with the register row that owns it, its coverage class and its verified source |
+| `content/brief-coverage.md` → `brief-coverage.html` | **new** page — the coverage matrix and the unanswered-clause list |
+| `data/hub_club_counts_f34622dd.csv` | **new** — dated official injury-hub row counts per club, read this session, with the delta against the published table |
+| `data/page_freshness_f34622dd.csv` | **new** — per-page read date, age in days and staleness verdict, derived from the data files each page publishes |
+| `tools/build_coverage_f34622dd.py`, `tools/verify_coverage_f34622dd.py` | **new** — builder and fail-closed verifier for the above |
+| `content/index.md`, `content/flags.csv`-free register appends | one new landing section (freshness + coverage links) |
+| `data/flags.csv`, `data/sources.csv` | **append only** — new flag + source rows for findings this session establishes |
+| `COORDINATION.md` | this section |
+
+Requested from other owners instead of editing (see CR list at the end of this section): repointing `content/injuries.md` / `injuries_2026_wk10.csv` (owned by the upstream injury-table session) to the 13 Nov dated capture.
+
+**Status:** in progress.
