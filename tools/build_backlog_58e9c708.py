@@ -633,27 +633,27 @@ FINDINGS = [
      "The Week 10 injury table a reader sees first still renders the 12 November 2026 read: 254 rows, with Kerby Joseph, Cade Mays and D.J. Reed carrying a blank game status. The official hub re-read on 15 November publishes all three as Out, and the repository's own 13 November and 15 November dated files already agree with the official page.",
      "https://www.nfl.com/injuries/ :: https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/injuries_2026_wk10.csv",
      "The brief's Lions item (VR-08, VR-12) reads as open on the canonical page and as closed in the dated files. Nothing on the site says which table is authoritative.",
-     "BL-48, BL-49"),
+     "BL-48, BL-49", "FL-94"),
     ("BF-02", "missing value the official page publishes", "medium",
      "data/schedule_week11_2026.csv carries site as not published for every Week 11 fixture, while the official Week 11 schedule page names the stadium for each one.",
      "https://www.nfl.com/schedules/2026/by-week/week-11 :: https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/schedule_week11_2026.csv",
      "The fixture-context feature set the brief asks for cannot be built for the live week from the repository copy, although the official source publishes the field.",
-     "BL-14, BL-23"),
+     "BL-14, BL-23", ""),
     ("BF-03", "unblocked by an official page", "high",
      "Flag FL-52 records that the NFL transactions hub was not read, and leaves four injured-reserve placements sourced to news articles, with Puka Nacua marked only as likely. The hub exists at nfl.com/transactions/ with a dated Reserve List tab. It names Malik Willis, Miami, Reserve/Injured on 11/10 and Puka Nacua, Rams, Reserve/Injured on 11/12.",
      "https://www.nfl.com/transactions/league/reserve-list/2026/11 :: https://www.nfl.com/transactions/",
      "The reserve-list item (VR-25, VQ-06) and the stale-depth item (VR-17, VR-26, VQ-07) were treated as blocked. Both have an official, dated, structured source that no session had read.",
-     "BL-46, BL-64, BL-13"),
+     "BL-46, BL-64, BL-13", "FL-95"),
     ("BF-04", "conflict between two official pages", "medium",
      "The official reserve list names TreVeyon Henderson, New England, as Reserve/Injured on 11/14. The official injury hub, read the same day, lists TreVeyon Henderson, New England, with Illness, did not participate in practice, and Out.",
      "https://www.nfl.com/transactions/league/reserve-list/2026/11 :: https://www.nfl.com/injuries/",
      "A player on the reserve list does not appear on the weekly injury report. Both pages are official and dated the same week, so any availability model that reads one and not the other will mis-state this club.",
-     "BL-64, BL-44"),
+     "BL-64, BL-44", "FL-96"),
     ("BF-05", "date granularity", "medium",
      "The Packers depth chart is dated by the club itself as 'Unofficial, Nov. 10, 2026', but the depth register stores a single read date, 2026-11-13, for every club it transcribed.",
      "https://www.packers.com/team/depth-chart :: https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/s745_depth_summary.csv",
      "The brief asks for a date and source per depth-chart row. Storing our read date instead of the club's publication date makes every chart look fresher than it is.",
-     "BL-43, BL-46"),
+     "BL-43, BL-46", ""),
 ]
 
 
@@ -743,7 +743,7 @@ def main():
     find_path = os.path.join(DATA, "backlog_findings_58e9c708.csv")
     with open(find_path, "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh, delimiter="|", lineterminator="\n")
-        w.writerow(["id", "type", "severity", "finding", "evidence", "decision_impact", "directives"])
+        w.writerow(["id", "type", "severity", "finding", "evidence", "decision_impact", "directives", "flag"])
         w.writerows(FINDINGS)
 
     print("wrote %s (%d rows), %s (%d rows), %s (%d rows), %s"

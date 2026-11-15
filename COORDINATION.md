@@ -3408,3 +3408,21 @@ merge.
 | `tools/verify_s92.py` | 13/13 |
 | `node scripts/render_test.js` | 13 pages, 0 failures |
 | `git diff --check` | clean |
+
+### Follow-up fix after PR #87 merged — flag ids must live in the register, not in prose
+
+The live page rendered "raised on the Flagged for Review page as FL-96, FL-95 and FL-96". Cause: the
+flag renumbering was applied twice by regex over the same text, and the second pass re-matched an id
+the first pass had just written, so two findings collapsed onto one id. `data/flags.csv` itself was
+never wrong — only the hand-written sentence was.
+
+Fixed by removing the duplication rather than correcting the sentence: `data/backlog_findings_58e9c708.csv`
+gains a `flag` column (BF-01 → FL-94, BF-03 → FL-95, BF-04 → FL-96, BF-02 and BF-05 blank), the page
+renders that column, and the prose now says only that the Flag column carries the id. The verifier
+reads the column instead of regexing prose, refuses a malformed or shared id, and now also fails if
+any `FL-nn` appearing anywhere on the built page is not a row in `data/flags.csv`.
+
+`tools/verify_backlog_58e9c708.py` is **11 passed · 0 warnings · 0 failures** after the change.
+Full suite re-run clean: `verify.py` 199/0/0, `check_site.py` 11/1/0, audit 8,505 rows 100% row-sourced
+0 broken links, reproducible, readiness 4/4, verify_site 13/13, engine 0 broken links, review_verify
+clean, s92 13/13, Q51 tests 36 passed, render test 0 failures, `git diff --check` clean.
