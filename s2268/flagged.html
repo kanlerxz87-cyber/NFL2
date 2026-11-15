@@ -34,11 +34,11 @@ worth having if a change to the model leaves a seam).</blockquote>
 <td>FL-2268-01</td>
 <td>data integrity</td>
 <td>high</td>
-<td>Three Week 10 game ids (W10-06, W10-07, W10-08) name different fixtures in data/injuries_2026_wk10.csv than they do in data/schedule_2026_wk10.csv.</td>
-<td>Ids compared club-by-club against the schedule; the injury register follows the hub&#x27;s block order, everything else follows the schedule&#x27;s fixture order.</td>
-<td><a href="https://www.nfl.com/injuries/">nfl.com/injuries</a></td>
-<td>Blocking for any join: fix the ids in the injury register or stop joining on game_id. Not fixed here because data/injuries_2026_wk10.csv belongs to another session&#x27;s scope.</td>
-<td>open</td>
+<td>Three Week 10 game ids (W10-06, W10-07, W10-08) named different fixtures in data/injuries_2026_wk10.csv than they do in data/schedule_2026_wk10.csv.</td>
+<td>Ids compared club-by-club against the schedule; the injury register followed the hub&#x27;s block order, everything else followed the schedule&#x27;s fixture order. Resolved 2026-11-15: register renumbered to the schedule convention; tools/s2268_refresh.py re-run reports game_id_rotations = 0.</td>
+<td><a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10">game page</a></td>
+<td>Resolved 2026-11-15 (S-65, session d7d8c886): the injury register was renumbered to the schedule convention and tools/verify.py now fails any club/fixture mismatch. The main register&#x27;s FL-61 and FL-64 carry the same resolution.</td>
+<td>resolved</td>
 </tr>
 <tr>
 <td>FL-2268-02</td>

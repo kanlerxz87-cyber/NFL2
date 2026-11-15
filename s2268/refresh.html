@@ -12,7 +12,7 @@
   <aside class="side"><div class="navgroup"><span>Overview</span><a href="index.html">Session overview</a></div><div class="navgroup"><span>Verification</span><a class="on" href="refresh.html">Live refresh: 13 Nov 2026</a><a href="depth.html">Depth &amp; deficiencies</a></div><div class="navgroup"><span>Competition</span><a href="competition.html">Leaderboard &amp; rewards</a><a href="forecast.html">Forecast track</a><a href="correlations.html">Measured correlations</a><a href="parlays.html">Parlays &amp; prop combos</a><a href="luck.html">Removing luck</a><a href="gates.html">Validation gates</a></div><div class="navgroup"><span>Governance</span><a href="flagged.html">Flagged for review</a><a href="sources.html">Source registry</a></div><div class="sidefoot"><a href="flagged.html">flagged items</a> · <a href="sources.html">sources</a></div></aside>
   <main>
     <div class="pagehead"><span class="badge measured">measured</span><h1>Live refresh: 13 November 2026</h1><p class="lead">What the official league pages say today, and every difference against what this repository already publishes.</p></div>
-    <nav class="toc"><span>On this page</span><a href="#scale">Scale of the change</a><a href="#coverage">Club coverage</a><a href="#gameids">Game-id collision</a><a href="#delta">Row-by-row delta</a><a href="#register">Full register</a></nav>
+    <nav class="toc"><span>On this page</span><a href="#scale">Scale of the change</a><a href="#coverage">Club coverage</a><a href="#gameids">Game-id reconciliation</a><a href="#delta">Row-by-row delta</a><a href="#register">Full register</a></nav>
     <div class="body">
 <blockquote>The official injury hub was read at <strong>2026-11-13T12:40Z</strong> and every row of it was
 transcribed field for field into <code>data/s2268_injuries_wk10_20261113.csv</code>. This page publishes
@@ -294,15 +294,22 @@ yours (<a href="../suggestions.html">S-43</a>, <a href="../questions.html">Q-40<
 </tbody></table></div>
 <p class="caption">The two clubs with zero rows are not absent by accident: the hub prints &ldquo;No Injuries Reported&rdquo; for both, which is a declaration, not a gap. Every other club's rows are published in full below.</p>
 
-<h2 id="gameids">Three Week 10 game ids name the wrong fixture</h2>
+<h2 id="gameids">Three Week 10 game ids named the wrong fixture — resolved 15 November 2026</h2>
 <p><code>data/schedule_2026_wk10.csv</code> and <code>data/injuries_2026_wk10.csv</code> both number the
-Week 10 games <code>W10-01</code> to <code>W10-14</code>, and for three of the fourteen they number them
-differently: the injury file follows the order the hub prints its blocks in, the schedule file follows the
-order the schedule page prints its fixtures in, and those two orders disagree for the three 1:00&nbsp;pm
-Sunday games. Every id in <code>data/computed_fair_lines.csv</code> and
-<code>data/deficiency_by_club_a392.csv</code> follows the schedule convention, so the injury register is
-the odd one out &mdash; and a join on <code>game_id</code> silently attaches six clubs' injury rows to the
-wrong opponent.</p>
+Week 10 games <code>W10-01</code> to <code>W10-14</code>, and until 15 November 2026 three of the
+fourteen were numbered differently: the injury file followed the order the hub printed its blocks in,
+the schedule file follows the order the schedule page prints its fixtures in, and those two orders
+disagreed for the three 1:00&nbsp;pm Sunday games, so a join on <code>game_id</code> silently attached
+six clubs' injury rows to the wrong opponent. <strong>S-65 renumbered the injury register to the
+schedule convention on 2026-11-15</strong> (session <code>d7d8c886</code>, verified against the
+official game-centre pages for
+<a href="https://www.nfl.com/games/dolphins-at-colts-2026-reg-10">MIA&nbsp;at&nbsp;IND</a>,
+<a href="https://www.nfl.com/games/panthers-at-saints-2026-reg-10">CAR&nbsp;at&nbsp;NO</a> and
+<a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10">BUF&nbsp;at&nbsp;NYJ</a>). The table
+below is the post-fix state: every populated fixture matches; the three remaining non-match verdicts
+are collection gaps (SEA, CIN rows absent; BAL/LAC declare none), not rotations.
+<code>tools/verify.py</code> now fails any register row whose club does not play the fixture its
+game id names.</p>
 <div class="tablewrap">
 <table class="data"><thead><tr>
 <th>game id</th>
@@ -355,25 +362,25 @@ wrong opponent.</p>
 <tr>
 <td>W10-06</td>
 <td>IND MIA</td>
-<td>BUF NYJ</td>
-<td>ROTATION - id names a different fixture</td>
-<td>this id points at BUF @ NYJ, which the schedule file calls W10-08. A join between the two files attaches a club&#x27;s injuries to the wrong opponent for three of the fourteen Week 10 games.</td>
+<td>IND MIA</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
 <td><a href="https://www.nfl.com/games/dolphins-at-colts-2026-reg-10">game page</a></td>
 </tr>
 <tr>
 <td>W10-07</td>
 <td>CAR NO</td>
-<td>IND MIA</td>
-<td>ROTATION - id names a different fixture</td>
-<td>this id points at IND @ MIA, which the schedule file calls W10-06. A join between the two files attaches a club&#x27;s injuries to the wrong opponent for three of the fourteen Week 10 games.</td>
+<td>CAR NO</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
 <td><a href="https://www.nfl.com/games/panthers-at-saints-2026-reg-10">game page</a></td>
 </tr>
 <tr>
 <td>W10-08</td>
 <td>BUF NYJ</td>
-<td>CAR NO</td>
-<td>ROTATION - id names a different fixture</td>
-<td>this id points at CAR @ NO, which the schedule file calls W10-07. A join between the two files attaches a club&#x27;s injuries to the wrong opponent for three of the fourteen Week 10 games.</td>
+<td>BUF NYJ</td>
+<td>match</td>
+<td><span class="np">not published</span></td>
 <td><a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10">game page</a></td>
 </tr>
 <tr>
@@ -425,7 +432,7 @@ wrong opponent.</p>
 <td><a href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10">game page</a></td>
 </tr>
 </tbody></table></div>
-<p class="caption">Verdict is computed by comparing the team set under each id in the two files. &ldquo;Rotation&rdquo; means the id points at a real Week 10 fixture that the other file numbers differently; &ldquo;incomplete&rdquo; means a club's rows were never ingested at all.</p>
+<p class="caption">Verdict is computed by comparing the team set under each id in the two files. &ldquo;incomplete&rdquo; means a club's rows were never ingested at all; no rotation verdict remains after the 2026-11-15 renumber (S-65).</p>
 
 <h2 id="delta">Every difference, row by row</h2>
 <p>154 rows. &ldquo;Field changed&rdquo; excludes pure vocabulary differences: the published

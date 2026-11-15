@@ -16,7 +16,7 @@ rank|id|title|category|path|impact|effort|risk_class|impact_pts|effort_pts|risk_
 15|S-48|Publish the replacement chain as an explicit three-state register, so 'no depth chart' cannot read as 'no change'|Data model|A|H|L|Low|3|1|1|1.5|yes|yes|Q-44, S-39|recommended|S-REGISTER-745
 16|S-49|Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it|Information design|D|H|L|Low|3|1|1|1.5|yes|yes|S-20, S-31|adopted (v1)|S-REGISTER-745
 17|S-60|Adopt the hash-locked pre-registration as the only route onto the leaderboard|Competition rules|D|H|L|Low|3|1|1|1.5|yes|yes|G-11, Q-26, S-04|pending owner review|S-REGISTER-745
-18|S-65|Renumber the Week 10 injury register to the schedule's game-id convention|Data plumbing|A|H|L|Low|3|1|1|1.5|yes|yes|Q-54|proposed|S-REGISTER-745
+18|S-65|Renumber the Week 10 injury register to the schedule's game-id convention|Data plumbing|A|H|L|Low|3|1|1|1.5|yes|yes|Q-54|adopted (v1) 2026-11-15 - renumbered by session d7d8c886: all 254 rows rekeyed to data/schedule_2026_wk10.csv, row content byte-identical apart from the game column; tools/verify.py::injuries() now fails a club/fixture mismatch; tools/s2268_refresh.py re-run reports game_id_rotations = 0|S-REGISTER-745
 19|S-68|Promote nothing on fewer than 40 decisions, and print the floor on the leaderboard|Anti-overfitting|D|H|L|Low|3|1|1|1.5|yes|yes|Q-57|proposed|S-REGISTER-745
 20|S-71|Re-test the rest signal on weeks 10 onwards before acting on it|Anti-overfitting|D|H|L|Low|3|1|1|1.5|yes|yes|Q-57, S-68|proposed|S-REGISTER-745
 21|S-72|Put the measured same-game correlation matrix on the bet-types page|Origination|B|H|L|Low|3|1|1|1.5|yes|yes|Q-01, FL-65|proposed|S-REGISTER-745

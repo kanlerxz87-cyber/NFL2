@@ -10,6 +10,6 @@
   "rows_in_hubrefresh_csv": 279,
   "delta_vs_published": 85,
   "delta_vs_hubrefresh": 69,
-  "game_id_disagreements": 6,
-  "game_id_rotations": 3
+  "game_id_disagreements": 3,
+  "game_id_rotations": 0
 }
