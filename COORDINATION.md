@@ -2590,3 +2590,57 @@ No PR is open yet. Next: fetch/merge current `origin/main` before pushing the fi
 | Independently run the current integrated verification suite; document any reproducible issue and exact non-inferred next steps | done | `arena-24ccce92` | `audits/arena-24ccce92-review.md`, this coordination entry |
 
 Scope was limited to a new audit note and this append-only task-board entry. No existing data, generated HTML, pipeline, or another session's files were edited. No new NFL facts were added and no new official-source verification is claimed. Validation: `tools/build_site.py` (36 pages), `tools/verify.py` (178 passed, 1 existing warning, 0 failures), `tools/check_site.py` (11 passed, 1 existing warning, 0 failures), `scripts/audit_all_pages.py` (110 HTML / 44 JSON / 319 tables / 7,937 rows, zero broken links), and `git diff --check`. Findings and the recommended order of work are in `audits/arena-24ccce92-review.md`.
+
+---
+
+## Session `1e97e798` (`arena/1e97e798-nfl2`) — claim: official snap-count and inactive-list source evaluation (Route b / Q-45, Q-07)
+
+**Session ID:** `1e97e798` · **Branch:** `arena/1e97e798-nfl2` (the only branch this session uses) · **Claimed:** 2026-11-15T12:52Z · **Base:** `d3c9c92` (`main`, PR #70)
+
+### Parallel-session check at claim time
+
+- Open PR **#71** (`arena/1ef36c55-nfl2`, "Add scheduled metadata-only NFL injury fingerprint monitor") owns the scheduled `nfl.com/injuries` capture, `availability_monitor/**`, `.github/workflows/availability-fingerprint.yml`, and `data/availability_fingerprints.csv`. **This session does not touch any of those.** It notes that PR #71 currently discards raw response bodies (hashes not replayable), which conflicts with the requirement to keep retained snapshots. That is logged as a change request below, not acted on.
+- Nothing else on the board holds the snap-count or inactive-list question (Q-45, Q-07, Q-05).
+
+### Scope — exclusive files this session will create or edit
+
+| Path | Action |
+|---|---|
+| `data/snapcount_source_eval_1e97e798.csv` | new: one row per candidate official source, with URL, fetch time, what it publishes, verdict |
+| `data/questions.csv`, `data/flags.csv`, `data/sources.csv` | append-only: answers/new rows for Q-45, Q-07, the new sources and any new flags |
+| `COORDINATION.md` | this section only |
+
+**Not touched:** `tools/build_site.py`, `.github/workflows/**`, `availability_monitor/**`, generated root HTML (except via a normal rebuild), `data/availability_*`, `data/depth_*`.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 1e97-T01 | Claim and push this section before any other edit | done | `1e97e798` | `COORDINATION.md` |
+| 1e97-T02 | Search for an official NFL snap-count source; fetch and record each candidate (URL, read UTC, what it publishes, season/week coverage, terms) | in progress | `1e97e798` | `data/snapcount_source_eval_1e97e798.csv` |
+| 1e97-T03 | Check whether official inactive lists are published per game (game centre / game book), with links | unclaimed → in progress | `1e97e798` | same CSV |
+| 1e97-T04 | Record the route verdict (route a per-club depth charts / route b snap counts / neither) in `questions.csv` (Q-45, Q-07) and `flags.csv`; no feature built | unclaimed → in progress | `1e97e798` | `data/questions.csv`, `data/flags.csv`, `data/sources.csv` |
+| 1e97-T05 | Rebuild, run `tools/verify.py`, `tools/check_site.py`, `tools/verify_readiness_ac2dd497.py`, link check; commit; PR to `main`; merge; confirm Pages | unclaimed → in progress | `1e97e798` | generated root HTML, this section |
+
+
+### `1e97e798` completion record (2026-11-15, read 12:54Z)
+
+**Status:** T02–T04 done; T05 (PR, merge, Pages) recorded below after the merge. Scope held: `data/snapcount_source_eval_1e97e798.csv` (new), `data/sources.csv` (+4 rows), `data/questions.csv` (+Q-61–Q-63), `data/s745_information_gaps.csv` (+3 rows restating Q-61–Q-63, required by `scripts/verify_s745.py`), `data/flags.csv` (+FL-77–FL-80), `content/questions.md` (one new section), `content/data-dictionary.md` (one new row; s745 count 61→64). No change to PR #71's files, `tools/build_site.py`, workflows, or `availability_monitor/**`.
+
+| Task | Result | Source / evidence |
+|---|---|---|
+| 1e97-T02 official snap-count source | **Two official NFL Game Books checked; each has a per-player snap table** (offense, defense, special teams; snaps and percent). NE at SEA (chunks 0 and 6 of 7) and NYG at WAS (chunk 9 of 10). Only the existence of the table is recorded; no figures stored. Not a full-season check. | [NE at SEA book](https://static.www.nfl.com/image/upload/v1789038923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf) · [NYG at WAS book](https://static.www.nfl.com/image/upload/v1791805921/gamecenter/aa94b906-4feb-11f1-abca-2c54536568a9.pdf) · [Next Gen Stats page](https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats) (no snap file linked) |
+| 1e97-T03 official inactive lists | **Week 8 2026 official per-game inactives article found and read (page 1 of 2).** Week 10 2026 not located: the Week 8-pattern URL returned 404 (a failed guess, not absence). The 2025 Week 10 article is excluded as the wrong season. | [Week 8 2026](https://www.nfl.com/news/nfl-week-8-inactives-players-ruled-out-sunday-2026-season) · [2025 Week 10 (excluded)](https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-for-sunday-s-12-games) |
+| 1e97-T04 route verdict | **Neither route verified for all 32 clubs. No depth-order or replacement feature built.** Route (a): club charts, not NFL-published, 31 of 32 read earlier, not re-read here. Route (b): official snap tables exist in 2 of 2 books checked, but per-game coverage is unverified and retention is blocked by Q-50. Q-45 and Q-07 stay open with the next actions recorded as Q-61 to Q-63. | `data/snapcount_source_eval_1e97e798.csv` E-10 |
+
+**Verification performed (combined tree):** `python3 tools/build_site.py` (36 pages, reproducible); `python3 tools/verify.py` → 179 passed, 1 pre-existing warning (Q-46/Q-47 duplicate IDs, FL-54), 0 failures; `python3 tools/check_site.py` → 11 passed, 0 failures; `python3 tools/verify_readiness_ac2dd497.py` → pass; `python3 scripts/audit_all_pages.py` → 110 HTML / 44 JSON / 320 tables / 7,964 rows, 100% row-sourced, 0 broken links; `python3 scripts/check_links.py` → 128 references, none broken. Every new row carries its own URL; third-party rows are marked non-official in the rendered table.
+
+**Irregularities flagged (on `flagged-for-review.html`, non-blocking):** FL-77 (Week 10 2026 inactives not located); FL-78 (2025 Week 10 inactives article shares the 2026 title pattern); FL-79 (90-minute inactive deadline appears only in secondary sources, so it is unverified); FL-80 (Kerby Joseph's practice status differs between the 13 Nov read recorded in FL-58 and the 15 Nov hub read, so single reads go stale).
+
+**Rights disclosure for the owner (Q-50):** to verify that the snap tables exist, this session read the two Game Book PDFs in the browser tool. The notice reserves "other use" to written permission. No figures were copied into the repository and no rows were derived from the books. Whether that reading is acceptable is an owner decision under Q-50 and FL-55, and is noted here so it is visible rather than silent.
+
+**Change request to session `1ef36c55` (PR #71), logged, not edited:** the monitor discards raw response bodies and keeps only hashes. Those hashes cannot be replayed, so they cannot show what was known at a given time, which the "replay as known" requirement needs. The owner should decide between retaining raw bodies (after Q-50) and keeping metadata-only captures. Route (b) would need the same decision for gamebook PDFs.
+
+**Not done in this session (explicitly open, not claimed by anyone here):** full-season gamebook coverage for route (b); the Week 10 2026 inactive list for every game (Q-61); a re-read of all 32 club depth charts (route a; Houston remains an image); the official source for the 90-minute deadline (Q-63); public Next Gen Stats participation data (Q-62); the broader requirement list (R-08, R-09, R-16, R-20, R-21, R-43, R-44) remains as recorded in `data/requirements.csv`.
+
+**Handoff:** the next session that picks up Q-61 should start from `data/snapcount_source_eval_1e97e798.csv` E-04 (URL not found) and FL-77, not from the 2025 article.
