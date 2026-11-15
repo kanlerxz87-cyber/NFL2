@@ -22,6 +22,7 @@ Run:  python3 tools/build_backlog_58e9c708.py
 from __future__ import annotations
 
 import csv
+import difflib
 import os
 import re
 import sys
@@ -52,9 +53,48 @@ READ = "re-read 2026-11-15"
 NOTREAD = "not re-read today"
 NONE = "no official source exists"
 
-HEADER = ["id", "brief_code", "directive", "theme", "kind", "status",
+HEADER = ["id", "brief_code", "directive", "coverage_matrix_id", "theme", "kind", "status",
           "blocks", "clears_with", "dependency", "verified_2026_11_15",
           "evidence_in_repo", "note"]
+
+COVERAGE_MATRIX = "brief_traceability.csv"
+# A parallel session merged a coverage matrix over the same brief while this register was being
+# built. Rather than publish two competing registers with no way between them, each row records
+# the clause id in that matrix that its text is nearest to. This is a string-similarity link made
+# by a script, not an official fact, and the page says so.
+MATCH_CUTOFF = 0.72
+
+
+def coverage_map():
+    """Map a normalised clause to its id in the other session's coverage matrix.
+
+    Returns {} if that file is not present, so this register still builds without it.
+    """
+    path = os.path.join(DATA, COVERAGE_MATRIX)
+    if not os.path.exists(path):
+        return {}, []
+    with open(path, encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh, delimiter="|"))
+    def norm(text):
+        return " ".join(re.sub(r"[^a-z0-9 ]", " ", text.lower()).split())
+    return ({norm(r["clause"]): r["id"].strip() for r in rows},
+            [(r["id"].strip(), norm(r["clause"])) for r in rows])
+
+
+def nearest_clause(directive, index):
+    """Id of the coverage-matrix clause nearest to this directive, or '' if nothing is close."""
+    if not index:
+        return ""
+    def norm(text):
+        return " ".join(re.sub(r"[^a-z0-9 ]", " ", text.lower()).split())
+    target = norm(directive)
+    best = difflib.get_close_matches(target, [c for _, c in index], n=1, cutoff=MATCH_CUTOFF)
+    if not best:
+        return ""
+    for cid, clause in index:
+        if clause == best[0]:
+            return cid
+    return ""
 
 # (brief_code, directive, theme, kind, status, blocks, clears_with, dependency,
 #  verified, evidence_in_repo, note)
@@ -645,6 +685,7 @@ def main():
         print("FAIL backlog: malformed or unknown gate references: %s" % bad, file=sys.stderr)
         return 1
 
+    _, index = coverage_map()
     rows = []
     for i, (code, directive, theme, kind, status, blocks, clears, dep, verified, repo, note) in enumerate(ITEMS, start=1):
         for value in (directive, theme, kind, status, blocks, clears, dep, verified, repo, note, code):
@@ -659,6 +700,7 @@ def main():
             "id": "BL-%02d" % i,
             "brief_code": code,
             "directive": directive,
+            "coverage_matrix_id": nearest_clause(directive, index),
             "theme": theme,
             "kind": kind,
             "status": status,

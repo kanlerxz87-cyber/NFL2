@@ -1,0 +1,30 @@
+club|rows_13nov|rows_15nov|rows_added_15nov|rows_removed_15nov|designated_13nov|designated_15nov|out_15nov|questionable_15nov|doubtful_15nov|practice_changed_shared|state_15nov_vs_13nov|source
+ATL|9|11|2|0|0|5|1|3|1|4|rows on both reads|S-INJ-8DEE
+AZ|15|15|0|0|0|9|3|6|0|4|rows on both reads|S-INJ-8DEE
+BAL|0|10|10|0|0|2|1|1|0|0|no rows on 13 Nov (LAC and BAL were 'No Injuries Reported' on 12 Nov, FL-01); rows on 15 Nov|S-INJ-8DEE
+BUF|12|14|2|0|0|5|0|4|1|5|rows on both reads|S-INJ-8DEE
+CAR|12|12|0|0|0|7|1|4|2|5|rows on both reads|S-INJ-8DEE
+CIN|8|9|1|0|0|4|1|0|3|2|rows on both reads|S-INJ-8DEE
+CLE|12|12|0|0|0|3|2|1|0|8|rows on both reads|S-INJ-8DEE
+DAL|18|19|1|0|0|11|5|5|1|4|rows on both reads|S-INJ-8DEE
+DET|9|9|0|0|3|5|3|2|0|2|rows on both reads|S-INJ-8DEE
+GB|16|17|1|0|0|12|4|7|1|4|rows on both reads|S-INJ-8DEE
+HOU|13|16|3|0|0|11|5|6|0|7|rows on both reads|S-INJ-8DEE
+IND|13|14|1|0|0|7|6|1|0|1|rows on both reads|S-INJ-8DEE
+JAX|11|11|0|0|0|4|3|1|0|5|rows on both reads|S-INJ-8DEE
+KC|12|13|1|0|0|6|3|3|0|0|rows on both reads|S-INJ-8DEE
+LAC|0|19|19|0|0|10|3|6|1|0|no rows on 13 Nov (LAC and BAL were 'No Injuries Reported' on 12 Nov, FL-01); rows on 15 Nov|S-INJ-8DEE
+LAR|10|14|4|0|0|7|2|5|0|4|rows on both reads|S-INJ-8DEE
+LV|4|5|1|0|0|2|0|2|0|2|rows on both reads|S-INJ-8DEE
+MIA|11|11|0|0|0|4|2|1|1|4|rows on both reads|S-INJ-8DEE
+MIN|9|13|4|0|0|8|5|3|0|4|rows on both reads|S-INJ-8DEE
+NE|15|15|0|0|3|12|3|9|0|4|rows on both reads|S-INJ-8DEE
+NO|12|12|0|0|0|6|4|2|0|5|rows on both reads|S-INJ-8DEE
+NYG|11|11|0|0|1|1|0|1|0|0|rows on both reads|S-INJ-8DEE
+NYJ|8|9|1|0|0|9|1|8|0|6|rows on both reads|S-INJ-8DEE
+PIT|8|8|0|0|0|1|0|1|0|3|rows on both reads|S-INJ-8DEE
+SEA|15|15|0|0|0|4|4|0|0|8|rows on both reads|S-INJ-8DEE
+SF|12|12|0|0|0|8|1|7|0|7|rows on both reads|S-INJ-8DEE
+TEN|12|12|0|0|0|6|5|1|0|4|rows on both reads|S-INJ-8DEE
+WAS|9|9|0|0|2|2|2|0|0|0|rows on both reads|S-INJ-8DEE
+TOTAL|296|347|51|0|9|171|70|90|11|102|all 28 clubs on the Week 10 slate|S-INJ-8DEE

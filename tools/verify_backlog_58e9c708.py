@@ -196,6 +196,34 @@ def check_findings(findings):
         ok("findings: %d published, every FL- reference resolves to a real row in data/flags.csv" % len(findings))
 
 
+def check_coverage_links(rows):
+    """The cross-reference column is a navigation aid computed by a script. It must point only at
+    clause ids that really exist in the other session's matrix, and the page must say so."""
+    path = os.path.join(DATA, "brief_traceability.csv")
+    if not os.path.exists(path):
+        warn("brief_traceability.csv absent; the cross-reference column is published blank")
+        return
+    with open(path, encoding="utf-8", newline="") as fh:
+        known = {r["id"].strip() for r in csv.DictReader(fh, delimiter="|")}
+    cited = {r["coverage_matrix_id"].strip() for r in rows if r["coverage_matrix_id"].strip()}
+    unknown = sorted(cited - known)
+    if unknown:
+        bad("cross-reference column cites clause ids not in brief_traceability.csv: %s" % unknown[:5])
+    else:
+        unmapped = sum(1 for r in rows if not r["coverage_matrix_id"].strip())
+        ok("cross-reference: %d of %d rows link to a real clause in the coverage matrix; %d are "
+           "published unmapped rather than linked to something wrong"
+           % (len(cited), len(rows), unmapped))
+    if os.path.exists(PAGE):
+        text = open(PAGE, encoding="utf-8").read()
+        for needle in ("Two registers, one brief", "brief-coverage.html",
+                       "not an official fact"):
+            if needle not in text:
+                bad("backlog.html lost the two-register disclosure %r" % needle)
+        else:
+            ok("page states that the coverage-matrix link is a scripted navigation aid, not a fact")
+
+
 def check_page(rows):
     if not os.path.exists(PAGE):
         bad("backlog.html is missing; run tools/build_site.py")
@@ -271,6 +299,7 @@ def main():
     check_summary(rows, summary)
     check_reads(reads, rows)
     check_findings(findings)
+    check_coverage_links(rows)
     check_page(rows)
     check_replay()
 

@@ -18,3 +18,10 @@ The brief asked for a clear separation between information we already have and i
 | Q-23 | Is the 2026 roster churn real, or does our join silently mis-assign players to clubs? | trust in every team-level number produced from these rows |
 | Q-33 | Should the two measured correlations be used in parlay pricing, given both intervals include zero? | the parlay and prop-combo side of the objective, and two validation gates — this is the newest P0 and it appeared only once the correlations could actually be measured |
 | Q-50 | May NFL Game Books be fetched, retained, parsed, and used for this project? | bulk lineup/inactive collection and any reuse of gamebook-derived player data; written permission or applicable terms are missing |
+
+
+## Route check for Q-45 and Q-07: official snap counts and inactive lists (session 1e97e798)
+
+Two routes were offered for the depth-order problem: (a) per-club official depth charts, verified club by club, and (b) snap counts, if an official snap-count source exists. Neither route may be used until it is verified for all 32 clubs. This table records what was checked, when, and what it does and does not show. The snap figures themselves are not copied into this site: the Game Book notice reserves the right to use them (Q-50, FL-55). Only the existence of the table is recorded.
+
+{{csv data/snapcount_source_eval_1e97e798.csv;;cols=id:ID,candidate:Candidate source,publisher_class:Class,what_it_publishes:What it publishes,scope_checked:What was checked,read_utc:Read (UTC),verdict:Verdict,reason_and_limits:Why;;source_col=source_url;;caption=Every row links its own source. Third-party rows are marked non-official and are not evidence. "NOT LOCATED" means a search or guessed URL failed, not that the item does not exist.}}

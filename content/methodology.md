@@ -74,8 +74,8 @@ gap by hand, once, and recorded the result here so the claim is auditable rather
 1. The Week 10 snapshot's coverage was overstated on the landing page, in the executive summary and in the
    source registry; the file holds **24 of the 28** clubs playing, and the page's own availability table already
    showed 24. Coverage is now a measured metric, not a sentence.
-2. The four clubs with no injury rows were described as SEA, CIN, LAC and BAL. Only **LAC and BAL** read
-   "No Injuries Reported"; SEA and CIN publish full blocks and are simply missing from our file.
+2. The four clubs with no injury rows were described as SEA, CIN, LAC and BAL. On the 12 November read, only **LAC and BAL** read
+   "No Injuries Reported"; SEA and CIN published full blocks and were simply missing from our file. (On 15 November both clubs have rows; see [FL-81](flagged-for-review.html).)
 3. Three register rows quoted stale sizes of other registers: 25 suggestions (29 exist), 28 questions
    (29 exist), 15 flags (22 exist, including the two added here).
 4. The landing page described the repository as containing one tracked file created in one session. It

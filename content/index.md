@@ -19,6 +19,16 @@ Every requirement on the register appears once below, with its status, the gate 
 
 The **10-chart personnel-relief join** uses the dated 2026-11-13 Week 10 injury snapshot: 85 of its 296 filed rows resolve to one of the 10 club chart pages in that join ([Personnel Relief](personnel-relief.html), [dated injury table](availability-1113.html), [official NFL injury hub](https://www.nfl.com/injuries/)). This 85/296 figure is a repository join result, not an NFL-published statistic. Separately, the S745 register transcribes **31 of 32 club-published, explicitly unofficial depth charts** as read on 2026-11-13 ([Depth Register with row-level chart links](depth-deficiencies.html)); Houston's [official club page](https://www.houstontexans.com/team/depth-chart) presents its chart as an image, which remains untranscribed ([FL-60](flagged-for-review.html)). The 31/32 figure counts chart pages transcribed; it does **not** establish 31/32 point-in-time starter-replacement joins. The 10-club and 31/32-club counts describe different files, dates and operations; see also [FL-44](flagged-for-review.html).
 
+## What today changed: a full official re-read, and what is still uncovered
+
+Two things are new this session and both are on one page: [Brief Coverage & Freshness](brief-coverage.html).
+
+The **injury hub was read in full today**, and the Week 10 table this site renders rests on a read from 12 November. It shows {{metric d_pub_rows}} rows over {{metric d_pub_clubs}} clubs with {{metric d_pub_desig}} game-status designations; the league published {{metric d_rows_15}} rows over {{metric d_clubs_15}} clubs with {{metric d_desig_15}} designations when the page was read at 2026-11-15T12:56Z. The read was reconciled club by club against this repository's own 13 November capture before a single row was stored: **14 clubs match exactly, 14 gain rows, and not one club loses a row or a player.** That reconciliation is the proof the transcription is complete rather than partial, and it is published row by row ([FL-84](flagged-for-review.html)).
+
+The **brief itself is now traced clause by clause**: {{metric cov_rows}} clauses across {{metric cov_categories}} categories, of which {{metric cov_covered}} are covered, {{metric cov_partial}} partial, {{metric cov_blocked}} blocked and **{{metric cov_uncovered}} are owned by nothing at all** ([FL-85](flagged-for-review.html)). The uncovered set is the part worth reading, because it is the only part that work already in flight cannot close: no ablation framework exists to test the injury and personnel features the way the brief asks, and all fourteen validation gates are one-sided, so a strategy that is promoted can never be demoted on evidence ([FL-86](flagged-for-review.html)).
+
+A third panel answers a question a static site normally cannot: **how old is the evidence behind each published table.** {{metric fresh_behind}} of {{metric fresh_pages}} pages rest on an official read older than the newest read of that same page held in the repository.
+
 ## Read this first
 
 This site has two kinds of pages and they never mix on one page without a divider:
@@ -132,6 +142,7 @@ The time labels now identify different source snapshots rather than one global �
 | Full injury-hub re-read | 2026-11-12 22:35 | 279 rows across 26 clubs with filed rows |
 | Settled-game injury recheck | 2026-11-13 06:52 | Only the 20 WAS–NYG rows; **not** a full hub re-read |
 | Latest full injury-hub snapshot in this tree | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
+| Latest injury-hub read (15 Nov, row-level, hand-transcribed, FL-82) | 2026-11-15 12:51 | 347 filings covering all of the 28 clubs on the slate; Chargers and Ravens now have rows (FL-81); 51 new players and no removals against the 13 Nov file. See [Injury Hub delta](hub-delta.html) |
 | NFL division standings | **2026-11-13 12:53** | 32 clubs × W/L/T/PCT/PF/PA/NET PTS/STREAK: **256/256 values matched** the independent saved re-read; no standings value changed |
 
 The standings timestamp appears in the site-wide source-read banner and on each standings row. `tools/verify.py` checks it against the latest registered NFL standings source and compares every value against [`data/standings_recheck_20261113.csv`](data/standings_recheck_20261113.csv) on each run. The injury times above are intentionally separate; they describe different data snapshots and coverage, not a shared live refresh.

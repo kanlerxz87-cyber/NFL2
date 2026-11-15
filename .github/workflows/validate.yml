@@ -16,8 +16,12 @@ jobs:
         run: python tools/verify_readiness_ac2dd497.py
       - name: Verify the brief-backlog register (gates, official dependencies, replay)
         run: python tools/verify_backlog_58e9c708.py
+      - name: Verify the brief coverage matrix, the dated injury read and the freshness panel
+        run: python tools/verify_coverage_f34622dd.py
       - name: Audit the data (official sources, reconciliations, no fabricated results)
         run: python tools/verify.py
+      - name: Fail if the Week 10 injury lineage drifts from its input files (session d8372691)
+        run: python3 scripts/injury_lineage_d8372691.py --check
       - name: Audit the site (links, empty cells, template markers, official source coverage)
         run: python tools/check_site.py
       - name: Fail if the published HTML does not match the data it was built from
