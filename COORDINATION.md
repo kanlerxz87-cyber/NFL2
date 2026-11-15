@@ -2548,7 +2548,7 @@ The readiness table was already integrated into the canonical landing page and r
 
 ## Session `ac2dd497` (`arena/ac2dd497-nfl2`) — final requirements/register integration
 
-**Branch:** `arena/ac2dd497-nfl2` · **base named in the session note:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f` · **claim / integration commits pushed:** `7d05268`, `36a8d3b`, `bf22344`, `0ac0266`, `ffe8334`.
+**Branch:** `arena/ac2dd497-nfl2` · **base named in the session note:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f` · **claim / integration commits:** `7d05268`, `36a8d3b`, `bf22344`, `0ac0266`, `ffe8334`, `1240586`; PR #70 merge commit `d3c9c92` is now merged from main into this branch.
 
 ### Scope after mainline integration
 
@@ -2560,7 +2560,7 @@ PRs #64, #66, #68 and #69 already made `data/requirements.csv` the single requir
 | Publish the register and explicitly label requirements/gates/status as project design rather than official NFL facts | done | `ac2dd497` | `content/index.md`, `content/requirements.md`, `content/data-dictionary.md`, generated root pages/manifest |
 | Add landing-row coverage, gate-reference, source-class and coverage-distinction regression check and CI hook | done | `ac2dd497` | `tools/verify_readiness_ac2dd497.py`, `.github/workflows/validate.yml` |
 | Rebuild and run data/site/link/model suites | done | `ac2dd497` | generated root HTML and `data/build_manifest.json` only via `tools/build_site.py` |
-| Open/merge this branch's PR; confirm Pages deployment and record result | in progress | `ac2dd497` | `COORDINATION.md` |
+| Open/merge PR #70, confirm Pages deployment, and reconcile R-27 to the deployment result | done | `ac2dd497` | `data/requirements.csv`, generated root pages/manifest, `COORDINATION.md` |
 
 ### Audit decisions and source review
 
@@ -2579,6 +2579,16 @@ Official pages fetched for manual review on 2026-11-15: [NFL injury hub](https:/
 - `scripts/check_reproducible.py`: all 10 site data JSON files reproduce. `tools/review_verify.py`: 423 rows sourced, 0 broken links. `engine/verify_repo_and_site.py`: 326/326 portal rows sourced, 0 broken links. `git diff --check`: pass.
 - `tools/s2268_verify.py`: all six nested build/data/site/audit/model suites pass. Its separate historical scope allowlist returns 5 scope-only errors for this authorized final-integration work (`.github/workflows/validate.yml`, `content/requirements.md`, `data/requirements.csv`, this audit report and `tools/verify_readiness_ac2dd497.py`). Its allowlist was not changed because it belongs to the already-merged S2268 verification scope; no build, data, link or reproducibility failure was reported.
 
-### Publication status
+### PR #70, Pages deployment and live confirmation
 
-No PR is open yet. Next: fetch/merge current `origin/main` before pushing the final changes; open a PR from this fixed branch with the audit report, source links and existing flags; merge with `gh pr merge <number> --merge`; then verify CI and Pages deployment and fill in the exact PR/merge/deploy IDs here. Any merge conflict must retain this complete upstream log and all other session work.
+| Item | Result |
+|---|---|
+| PR | [#70 — Audit requirement gates and clarify dashboard source class](https://github.com/kanlerxz87-cyber/NFL2/pull/70) |
+| Merge | `--merge`, 2026-11-15T12:42:43Z; merge commit `d3c9c92922e408f022d6834837fc4031357d8836` |
+| Pre-merge checks | `build-and-audit`, `Verify site data and links`, and `Q51 evidence and engine verification` all passed |
+| Post-merge checks | `build-and-audit` [43715232180](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715232180), `Verify site data and links` [43715232423](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715232423), Q51 [43715232246](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715232246), all succeeded for the merge commit |
+| Pages workflows | GitHub Pages [43715232182](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715232182) and legacy pages-build-deployment [43715232821](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715232821) succeeded |
+| Pages API | `status: built`, source `main:/`, public site https://kanlerxz87-cyber.github.io/NFL2/ |
+| Live check | Fetched the public homepage after deployment. The rendered table shows all 46 requirement rows, each source-labelled; the project-vs-official disclosure and the separate 10-chart / 31-of-32 explanation are visible. |
+
+R-27 (GitHub Pages live site) is updated to `done` with the PR, workflow, API and live-page evidence above. The branch remains the session's fixed branch; any close-out edit is pushed only to `arena/ac2dd497-nfl2` and uses a PR back to `main`.
