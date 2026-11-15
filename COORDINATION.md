@@ -2515,3 +2515,10 @@ Created `audits/final-verification-2026-11-15.md`. The source-of-truth requireme
 **Not verified on the live site:** the full Flagged for Review page (12 chunks) was served; only its first chunk was read, so FL-73 and FL-74 are confirmed in the built file, not by reading the live page end to end.
 
 **Still open after this session (flagged, not blocking):** FL-73, FL-74 (the 13 Nov read needs replacing by a dated capture), FL-75 (closed), FL-76 (status vocabulary decision), and the blocked brief items listed in "What this session did not do".
+## Session `arena/c0239106-nfl2` — integration: requirement readiness table
+
+| Task | Status | Owner | Files in scope |
+|---|---|---|---|
+| Add a decision-readiness view to the canonical landing page, one row per registered requirement; show the registered status, linked blocker gate(s), exact gate pass criterion where one exists, and explicitly disclose when no numeric gate has been defined | in progress | `arena/c0239106-nfl2` | `tools/build_site.py`, `content/index.md`, generated `index.html`, `COORDINATION.md` |
+
+This is the final integration task for this branch. The readiness table will be derived from the requirement and gate registers, preserve their exact status and pass-criterion text, and label internal design criteria as proposals rather than NFL facts. It will not invent thresholds for requirements with no matching gate. No other session claim is present on this branch.
