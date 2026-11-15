@@ -49,7 +49,7 @@ A stale table and a current table look identical on a static site. This panel ma
 
 {{csv data/page_freshness_f34622dd.csv;;cols=page:Page,publishes:What it publishes,own_read_utc:Evidence read (UTC),newest_read_utc:Newest read held (UTC),lag_days:Lag (days),rows_published:Rows published,rows_in_newest_read:Rows in newest read,rows_withheld:Rows withheld,verdict:Verdict;;source_col=source_url;;caption=Measured from data/sources.csv (the registered read time of each official page) and the row counts of the files themselves. "Rows withheld" is blank where the newest read is of a different page, so no subtraction would be meaningful. A blank is not a zero.}}
 
-Five pages are behind a newer official read. The most consequential by far is the Week 10 injury page, whose evidence is three and a half days old and which is withholding **{{metric fresh_withheld_max}} of the {{metric d_rows_15}} rows** the league publishes today. The rest are behind by under a day, and their content - standings, scores, the depth register - is not something that changes a designation.
+{{metric fresh_behind}} of the {{metric fresh_pages}} published pages rest on an official read older than the newest read of that same page held in the repository. The most consequential by far is the Week 10 injury page: its evidence is from 12 November and it is withholding **{{metric fresh_withheld_max}} of the {{metric d_rows_15}} rows** the league publishes today. The remaining gaps are under a day each, and their content - standings, scores, the depth register - is not something that files a game-status designation.
 
 ## The clauses that nothing in this repository covers
 

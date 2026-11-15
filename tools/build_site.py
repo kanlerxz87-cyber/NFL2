@@ -722,6 +722,15 @@ def brief_coverage_metrics():
     m["d_out_13"] = sum(1 for r in old13 if r["status"].strip() == "Out")
     m["d_out_15"] = sum(1 for r in new if r["status"].strip() == "Out")
     m["d_out_added"] = m["d_out_15"] - m["d_out_13"]
+    # The table the injuries page actually renders is injuries_2026_wk10.csv, not the 13 Nov
+    # capture. Its counts are published nowhere else, so they are computed here rather than
+    # quoted from the older file - that confusion is exactly what FL-77 records.
+    pub = rows("injuries_2026_wk10.csv")
+    m["d_pub_rows"] = len(pub)
+    m["d_pub_clubs"] = len({r["team"] for r in pub if r["team"].strip()})
+    m["d_pub_desig"] = sum(1 for r in pub if r["status"].strip())
+    m["d_pub_rows_withheld"] = len(new) - len(pub)
+    m["d_pub_clubs_withheld"] = m["d_clubs_15"] - m["d_pub_clubs"]
     m["d_dnp_15"] = sum(1 for r in new if r["practice"].strip() == "D")
     m["d_removed_total"] = sum(int(r["rows_removed"]) for r in d)
 
