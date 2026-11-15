@@ -2322,3 +2322,30 @@ second rebase: appending rows to `data/suggestions.csv` and `data/questions.csv`
 `745f788e`'s derived tables stale, so `scripts/build_s745_decisions.py` was re-run and the two row
 counts in the data dictionary were updated (64→72, 54→61). No fact in those tables changed; they are
 arithmetic on the registers.
+
+## Session `e733834d` (`arena/e733834d-nfl2`) — decision-readiness table, live re-read of the Week 10 injury page, and a dated re-verification register
+
+**Session ID:** `e733834d` · **Branch:** `arena/e733834d-nfl2` (fixed for this session; no other branch is used) · **Base:** `1eaf7f7` (`main`, PR #60) · **Claimed:** 2026-11-15T12:13Z
+
+### Scope and status of this claim (written before any file was created)
+
+Every other session on this board is marked done, and no task is claimed by another session, so there is no overlap to coordinate. This session's own task board:
+
+| Task | Status | Files it creates or edits |
+|---|---|---|
+| E7-01 Claim and log | in progress | `COORDINATION.md` (this section only) |
+| E7-02 Official re-read of the Week 10 injury page, four clubs, row by row | unclaimed → in progress | `data/injuries_wk10_e733834d_20261115.csv` (new), `data/reverification_e733834d.csv` (new) |
+| E7-03 Decision-readiness table: one row per requirement, with blocking gate and clearing number | unclaimed → in progress | `data/decision_readiness.csv` (new), `content/index.md` (one new section) |
+| E7-04 Register rows for new flags and new sources | unclaimed → in progress | `data/flags.csv` (append), `data/sources.csv` (append), `data/requirements.csv` (status of R-27, R-37, R-38 only) |
+| E7-05 Checks that fail the build on drift | unclaimed → in progress | `tools/verify.py` (two new functions, called from `main()`) |
+| E7-06 Stale numbers in the README | unclaimed → in progress | `README.md` (one table cell) |
+| E7-07 Rebuild, verify, PR, merge, Pages record | unclaimed → in progress | generated root `*.html` only (via `tools/build_site.py`), this section |
+
+### Items in the brief this session will NOT finish (stated now so they are not mistaken for done)
+
+Most of the brief's ~75 requests are multi-week data builds: a daily archive of the injury hub, club depth charts for all 32 clubs, NFL Game Book ingestion (blocked on Q-50), a price feed (blocked on Q-01), snap counts (Q-45), a stadium-roof/NWS overlay, a prospective CLV escrow, and the 32-team sweep. None of these can be completed with a verified source in one session, and the rule "never infer or fill in values" forbids completing them by estimate. They stay on the decision-readiness table with their blocking gate and the number that would clear them.
+
+### Sources this session will read (official, live, fetched by the agent)
+
+https://www.nfl.com/injuries/ (Week 10 hub, first chunk fetched 2026-11-15, covering WAS, NYG, NE, DET) · https://www.nfl.com/scores/2026/week-10 · https://www.nfl.com/standings/ · operations.nfl.com as already registered in `data/sources.csv`.
+
