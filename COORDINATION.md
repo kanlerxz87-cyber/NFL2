@@ -2338,3 +2338,7 @@ No GitHub pull requests are open. The older `in progress` entries in this log pr
 
 The readiness table will cite the project brief for requirement text and show an official NFL/club source only where that source directly supports a factual input. A project-design requirement has no honest NFL source; that cell will remain unverified rather than borrowing an unrelated official URL. Existing gate thresholds are copied from `data/gates.csv`; no threshold will be invented to make a row look complete.
 
+
+### Scope extension — final integration change request (before implementation)
+
+Cross-reading the current requirement rows against the later all-club depth register exposed a scope-label conflict: R-20/R-21/R-44 and FL-44 describe the earlier 10-club/85-row personnel join, while the later S745 chart transcription covers 31/32 clubs but is not equivalent to 31/32 fully verified, point-in-time starter replacements. To publish that distinction on the review queue and document the new derived table, this final integration scope also includes **append-only** `data/flags.csv` (new FL-73), `content/data-dictionary.md`, and their generated outputs `flagged-for-review.html` and `data-dictionary.html`. No existing flag or source row will be rewritten.
