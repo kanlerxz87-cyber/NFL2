@@ -2681,9 +2681,10 @@ The brief lists roughly one hundred items. This session did not build most of th
 
 ### PR & merge record
 
-* PR: _recorded below after creation_
-* Merge: _recorded below after merge_
-* Pages: _recorded below after deployment_
+* PR: https://github.com/kanlerxz87-cyber/NFL2/pull/74 (`arena/8dee7df7-nfl2` → `main`), opened 2026-11-15 after the first push, rebased and merged twice as `main` advanced (PR #72, #73, #75 merged in the meantime; two register conflicts resolved by keeping both sides, and this session's FL-77 to FL-79 renumbered to FL-81 to FL-83 to avoid colliding with session 1e97e798).
+* Merge: merged with a merge commit, `9c8e51c`, at 2026-11-15T12:59:53Z (`gh pr merge 74 --merge`, no `--auto`). Required checks on head `233b275`: `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification` — all pass. The review rule was not waived: the merge followed a passing check run, not an approval.
+* Pages: `pages-build-deployment` on `9c8e51c` completed with status success; the Pages build for that commit reads `built`. Live check: https://kanlerxz87-cyber.github.io/NFL2/hub-delta.html returns the new page (FL-81 to FL-83 links present). The sandbox cannot reach `github.io` directly, so the live check was done through the fetch tool.
+* Open items carried forward (non-blocking, on the Flagged for Review page): FL-82 (hand transcription, awaits PR #71's machine capture), FL-83 (surprise-change collection gap), the 13 Nov "28 of 28" count in `content/availability-watch.md` (the 13 Nov file has 26 clubs; not yet corrected), and the remaining present-tense "No Injuries Reported" claims elsewhere in the tree (FL-81 scope).
 ---
 
 ## Session `1e97e798` (`arena/1e97e798-nfl2`) — claim: official snap-count and inactive-list source evaluation (Route b / Q-45, Q-07)
