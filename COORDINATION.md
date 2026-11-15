@@ -3034,3 +3034,16 @@ All suites re-run on the rebased tree: `tools/verify.py` 190/0/0 · `tools/check
 | Live site | https://kanlerxz87-cyber.github.io/NFL2/ |
 
 **Handoff state:** F1–F6 all done; nothing left in progress on this branch. The canonical question register has unique IDs; the injury series now holds four dated reads (12 Nov ×2, 13 Nov, 15 Nov ×2 independent). Remaining owner decisions unchanged: Q-42 canonical injury display, Q-64 schedule-source rule, Q-65 participation timing, Q-50/Q-51 raw retention, FL-85's uncovered brief lines, FL-86's one-sided gates.
+## Session `f05c00f2` (`arena/f05c00f2-nfl2`) — strategy falsification coverage audit
+
+**Branch:** `arena/f05c00f2-nfl2` · **Base:** `d3c9c92922e408f022d6834837fc4031357d8836` · **Session ID:** `f05c00f2`
+
+**Claim (recorded before creating task files):** The root register includes a requirement for a two-sided “what would change our mind” field on every strategy entry, but `data/strategies.csv` has no such field. This task will produce a non-authoritative, standalone companion audit with one two-sided falsification record for every current strategy ID. It will explicitly separate project-design proposals from official NFL facts and mark all empirical hypotheses unvalidated. It will not copy in backtest performance, create new NFL measurements, or claim any strategy is eligible for staking.
+
+| ID | Task | Status | Owner | Exclusive file scope | Shared-file handling |
+|---|---|---|---|---|---|
+| F05-01 | Build and verify a two-sided strategy-falsification companion covering every current strategy entry; publish an accessible standalone review page and report any needed integration as a change request | in progress | `f05c00f2` | `audits/f05c00f2/**`; this appended session section only in `COORDINATION.md` | No edits to `data/strategies.csv`, `content/strategies.md`, root page navigation, `tools/verify.py`, generated root pages, or any file claimed in open PR #71. |
+
+**Parallel-session note:** PR #71 (`arena/1ef36c55-nfl2`) is open and changes the availability monitor, root builder/verifier, site navigation, generated root pages, and `COORDINATION.md`. The present task is disjoint except for the append-only coordination ledger; preserve both session records if a merge conflict occurs. Root strategy data and site navigation remain integration-owned shared outputs.
+
+**Conflict log:** The required `git pull --rebase origin main` found that `main` had advanced to `8b490b6` (PR #72, session `arena-24ccce92`), which also appended to `COORDINATION.md`. Rebase conflicted only in this shared ledger. Both the existing session `arena-24ccce92` record and this claim were retained verbatim; no other file was changed during conflict resolution.
