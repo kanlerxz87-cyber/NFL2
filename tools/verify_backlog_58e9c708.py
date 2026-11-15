@@ -188,12 +188,29 @@ def check_findings(findings):
     if os.path.exists(path):
         with open(path, encoding="utf-8", newline="") as fh:
             flag_ids = {r["id"] for r in csv.DictReader(fh, delimiter="|")}
+    promoted = []
     for r in findings:
-        for ref in re.findall(r"FL-\d{2}", r["finding"]):
-            if ref not in flag_ids:
-                bad("%s cites %s, which is not a row in data/flags.csv" % (r["id"], ref))
+        ref = (r.get("flag") or "").strip()
+        if not ref:
+            continue
+        if not re.fullmatch(r"FL-\d{2}", ref):
+            bad("%s has a malformed flag reference %r" % (r["id"], ref))
+        elif ref not in flag_ids:
+            bad("%s cites %s, which is not a row in data/flags.csv" % (r["id"], ref))
+        else:
+            promoted.append(ref)
+    if len(promoted) != len(set(promoted)):
+        bad("two findings claim the same flag id: %s" % promoted)
     if not FAIL:
-        ok("findings: %d published, every FL- reference resolves to a real row in data/flags.csv" % len(findings))
+        ok("findings: %d published, %d promoted to data/flags.csv (%s), every id resolves and "
+           "none is shared" % (len(findings), len(promoted), ", ".join(sorted(promoted)) or "none"))
+    if os.path.exists(PAGE):
+        text = open(PAGE, encoding="utf-8").read()
+        stray = [r for r in re.findall(r"FL-\d{2}", text) if r not in flag_ids and r != "FL-52"]
+        if stray:
+            bad("backlog.html names %s, which is not a row in data/flags.csv" % sorted(set(stray)))
+        else:
+            ok("page flag ids: every FL- id on the page resolves to a real register row")
 
 
 def check_coverage_links(rows):
