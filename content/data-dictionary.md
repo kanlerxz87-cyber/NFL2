@@ -9,6 +9,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | --- | --- | --- | --- |
 | `data/injuries_2026_wk10.csv` | 254 | one player × game × filing | S-INJ |
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
+| `data/snapcount_source_eval_1e97e798.csv` | 11 | one candidate official or third-party source, or derived route verdict, per row; the official-source test is applied per row | NFL.com gamebook and inactives pages (`S-GAMEBOOK-NESEA-653B`, `S-GAMEBOOK-NYGWAS-653B`, `S-NFL-INACT-W8-1E97`, `S-NFL-NGS-OPS-1E97`); third-party rows marked rejected or unverified |
 | `data/standings_2026.csv` | 32 | club × season-to-date, with read timestamp per row | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
@@ -87,7 +88,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/s745_injury_refresh.csv` | 298 | one player × club, re-read from the official injury hub at 2026-11-13T12:45Z, plus 2 explicit "No Injuries Reported" markers | S-INJ-1113 |
 | `data/s745_suggestion_scores.csv` | 72 | one suggestion from `suggestions.csv`, scored on that register's own impact/effort/risk fields and assigned to a candidate path | S-REGISTER-745 |
 | `data/s745_decision_paths.csv` | 4 | one candidate path: the suggestion ids in it, what it unblocks, what it does not fix, and its first milestone | S-REGISTER-745 |
-| `data/s745_information_gaps.csv` | 61 | one question from `questions.csv`, restated as have / lack / how-to-close | S-REGISTER-745 |
+| `data/s745_information_gaps.csv` | 64 | one question from `questions.csv`, restated as have / lack / how-to-close | S-REGISTER-745 |
 
 Rules these seven files obey, all of them re-checked by `scripts/verify_s745.py`:
 
