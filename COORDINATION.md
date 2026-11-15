@@ -2546,24 +2546,22 @@ The readiness table was already integrated into the canonical landing page and r
 
 **Change request CR-C023-01:** `tools/s2268_verify.py`'s historical scope allowlist does not include `data/requirements.csv`, so its local scope audit reports an error after the authorized final-integration update of R-37/R-38. No edit was made to that other session's verifier per the shared-file rule. The standard site/data/link checks and GitHub CI are green; request is for the verifier owner/future integration to recognize this shared requirements-register file when the final integration updates requirement status.
 
-## Session `ac2dd497` (`arena/ac2dd497-nfl2`) — full-brief requirement reconciliation (final integration)
+## Session `ac2dd497` (`arena/ac2dd497-nfl2`) — final requirements/register integration
 
-**Branch:** `arena/ac2dd497-nfl2` · **base named in the session note:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f` · **claim commits already pushed:** `7d05268`, `36a8d3b`, `bf22344` (the local merge commits below those claims have not yet been pushed).
+**Branch:** `arena/ac2dd497-nfl2` · **base named in the session note:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f` · **claim commits:** `7d05268`, `36a8d3b`, `bf22344`; latest scope-and-mainline integration pushed as `0ac0266`.
 
-### Handoff and repeated conflict resolution
+### Current scope after mainline integration
 
-The initial decision-readiness-table task was superseded by merged PRs #64 and #66: `data/requirements.csv` is already the shared source of truth and the landing page already renders it. This session will not create another table or crosswalk. A later review of the current brief and the merged register showed a different gap: the table contains 46 broad rows, while the user's current brief includes many separate data, methodology, governance, and product requirements that are not individually represented. The task is therefore narrowed to a line-by-line coverage reconciliation of that brief, appending only missing atomic requirements and keeping the existing landing-page renderer.
-
-While preparing the scope update, `git pull --rebase origin main` conflicted in `COORDINATION.md` because `main` advanced through PRs #61–#69. Both rebases were aborted without rewriting the already-pushed claim commits. `origin/main` was merged, retaining the complete current upstream coordination log and this section; no upstream data, audit, deployment record, or session work was discarded. The first merge commits are preserved locally; before each push, this branch will be reconciled with the then-current `main`. There is no open pull request at this point.
-
-### Revised final-integration task board
+PRs #64, #66, #68, and #69 have changed the original handoff: `data/requirements.csv` is the single register, its `blocks` / `clears_with` columns render on the landing page and requirements page, and it now has 46 rows. Main also contains an official 15 Nov injury re-read (including FL-73 onward) and a reconciliation of the landing-page suggestion. Do not create the superseded `data/decision_readiness_ac2dd497.csv` or duplicate existing flags/sources. Preserve upstream rows and add a new flag only for a distinct, officially verified finding; if FL-73 already covers the requirement, report that rather than duplicating it.
 
 | Task | Status | Owner | Files |
 |---|---|---|---|
-| Reconcile every distinct request in the current brief against the existing requirement rows; do not create duplicate wording for already-covered items | in progress | `ac2dd497` | `reports/requirements-coverage-2026-11-15.md`, `data/requirements.csv` |
-| Append missing atomic requirements, assign only existing gates or mark gate/number unestablished; make counts dynamic | in progress | `ac2dd497` | `data/requirements.csv`, `content/requirements.md`, `content/index.md` |
-| Add the requested live-to-paper demotion gate using existing sample, calibration, CLV, and drawdown/capacity thresholds; label it as design, not a measured result | in progress | `ac2dd497` | `data/gates.csv`, generated `validation-gates.html` |
-| Add a coverage regression check and run combined build/audit suites | in progress | `ac2dd497` | `tools/verify_requirements_ac2dd497.py`, `.github/workflows/validate.yml`, generated root HTML and `data/build_manifest.json` |
-| Final PR, merge, and Pages confirmation | pending | `ac2dd497` | `COORDINATION.md` |
+| Audit every `blocks` / `clears_with` mapping against `data/gates.csv`; distinguish the 10-club R-20/R-21/R-44 personnel join from the separate 31/32-club S745 chart transcription | in progress | `ac2dd497` | `data/requirements.csv`, `data/flags.csv` only if a distinct new flag is justified |
+| Publish the requirement register on the canonical landing page and state plainly that requirements, gate definitions, thresholds and status are project design/register material, not facts verified by official NFL sources | in progress | `ac2dd497` | `content/index.md`, `content/requirements.md`, `content/data-dictionary.md`, generated root HTML and `data/build_manifest.json` |
+| Add a regression check that validates landing-table row coverage and the source/status disclosure; wire it into CI | in progress | `ac2dd497` | `tools/verify_readiness_ac2dd497.py`, `.github/workflows/validate.yml` |
+| Rebuild and run the complete data/site/link/model verification suite; resolve regressions without rewriting other sessions' datasets | pending | `ac2dd497` | generated root HTML / manifest only via `tools/build_site.py` |
+| Open and merge PR from this branch, then confirm Pages deployment and record sources, checks and flags | pending | `ac2dd497` | `COORDINATION.md` |
 
-This is final integration of shared requirement/gate registers after prior scoped branches were merged; no other session has an open claim or PR. Requirement text comes from the user's brief (S-BRIEF), not from the NFL. Numeric performance thresholds must come from `data/gates.csv` or be left explicitly **not established**; this work will not manufacture an official NFL source for a project-policy statement.
+The original isolated FL-73 append request is reconciled with mainline: `data/flags.csv` already contains FL-73 and later rows from the official 15 Nov re-read. No duplicate identifier or source row will be added. The 10-club join (85 of 296 filings, as in R-20/R-21/R-44) is not a 31/32-club count of point-in-time starter replacements: the latter is separate club-chart transcription and must not be described as equivalent or treated as proof of a verified starter swap. Any factual statement stays linked to its underlying capture/source; unknown values remain blank and flagged.
+
+**Conflict and push note:** `main` advanced through PR #69 while this branch was open. Rebase attempts were aborted when `COORDINATION.md` conflicted; the latest `origin/main` was merged instead, retaining the complete upstream log. The merge is recorded in `0ac0266`, pushed to this branch. Before the next push, fetch/merge current `origin/main`; do not rewrite the branch or discard any upstream work. At this handoff there is no open PR.
