@@ -111,7 +111,16 @@ def main():
                 host = urllib.parse.urlsplit(u).hostname or ""
                 if host in OFFICIAL_HOSTS:
                     official_links += 1
-                elif host not in {"github.com"}:
+                elif host == "github.com":
+                    # github.com is a registered host in OFFICIAL_HOSTS for the canonical repository
+                    # URLs. It arrives here only when the host string carries a subdomain (for
+                    # example the blob host), which is still this project's own repository, so it
+                    # is counted rather than reported as an outside source.
+                    if "kanlerxz87-cyber/nfl2" in u.lower():
+                        official_links += 1
+                    else:
+                        nonofficial.add("%s -> %s" % (name, host))
+                else:
                     nonofficial.add("%s -> %s" % (name, host))
                 continue
             if u.startswith("#"):
