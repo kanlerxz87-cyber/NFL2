@@ -2524,3 +2524,5 @@ Created `audits/final-verification-2026-11-15.md`. The source-of-truth requireme
 This is the final integration task for this branch. The readiness table will be derived from the requirement and gate registers, preserve their exact status and pass-criterion text, and label internal design criteria as proposals rather than NFL facts. It will not invent thresholds for requirements with no matching gate. No other session claim is present on this branch.
 
 **Scope clarification:** the integration includes the S-49 source register row and its derived score row, so the files `data/suggestions.csv` and `data/s745_suggestion_scores.csv` are also in scope. This is necessary to mark the readiness-table suggestion as implemented rather than leaving contradictory review state.
+
+**Verification scope addition:** `tools/verify.py` is in scope to add a regression check that the landing page contains exactly one decision-readiness row for each current requirement, with no duplicates or missing IDs.
