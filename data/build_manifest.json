@@ -1,7 +1,7 @@
 {
   "blank_cells_rendered_as_not_published": 4159,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "5e0f93c6dc2a535bd453d8628a9e0cb1fa358e74d75a73c216d91a56a7fb5c32",
+  "inputs_sha256": "d126f155b13d44cb8895798823beac1c9cfec68b6cc83c1c2eff32776eb6367c",
   "metrics": {
     "avail_clubs": 26,
     "avail_designations": 8,
@@ -30,6 +30,7 @@
     "d_desig_added": 162,
     "d_dnp_15": 94,
     "d_doubt_15": 11,
+    "d_gained": 14,
     "d_out_13": 0,
     "d_out_15": 70,
     "d_out_added": 70,
@@ -43,6 +44,7 @@
     "d_rows_13": 296,
     "d_rows_15": 347,
     "d_rows_added": 51,
+    "d_unchanged": 14,
     "data_files": 109,
     "deficiency_first_string": 8,
     "deficiency_rows": 18,
