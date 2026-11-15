@@ -2999,3 +2999,19 @@ The brief's other items remain as they are on `data/requirements.csv`: game-book
 | F6 | Rebuild root site, run every verifier suite, PR → `main`, merge without waiting, confirm GitHub Pages deploy, record PR link/merge/deploy in this board and the requirements register (R-27/R-37/R-38) | pending | `5de1805b` | `data/requirements.csv` (R-27/R-37/R-38 note refresh), `COORDINATION.md`, generated root HTML |
 
 Shared registers `data/flags.csv` and `data/questions.csv` are appended/edited in place per the board's established union-style convention; no other session has them in an open claim.
+
+### Session `5de1805b` — log, verification and handoff
+
+| UTC | Entry |
+|---|---|
+| 12:55Z | Claim F1–F6 committed and pushed before any edit. Live read of `nfl.com/injuries/` (8 fetch chunks) completed; 28 club tables parsed mechanically against the official Week 10 schedule pairs; 347 filings, all practice/status codes inside the repo vocabulary. |
+| 13:0xZ | Deltas computed: 296 snapshot rows compared (194 drifted, 102 identical, 0 dropped), 51 first filings (29 = the whole W10-14 game), and the 44 rows of the 12:13Z e733834d read reproduced cell for cell 42 minutes later. FL-77/FL-78/FL-79 appended; FL-54 resolved by renumbering the second Q-46/Q-47 to Q-61/Q-62 with s745's derived registers renumbered in lockstep (ID cells only). |
+| 13:1xZ | `data/reverification_5de1805b.csv` (391 rows) and `data/injuries_wk10_5de1805b_20261115.csv` (347 rows) written; R-19 note records the third read; data dictionary rows added; verifier contract added to `tools/verify.py`. |
+
+**Verification performed on the committed tree (all re-runnable):** `tools/build_site.py` (36 pages) · `tools/verify.py` 182 passed / 0 warnings / 0 failures · `tools/check_site.py` 11 passed / 1 pre-existing warning (non-league registry links) · `tools/verify_readiness_ac2dd497.py` (46 IDs render, gate refs valid) · `scripts/verify_s745.py` 21/0/0 · `scripts/audit_all_pages.py` 110 HTML / 44 JSON / 319 tables / 7,940 rows, 100% row-sourced, 0 broken links · `scripts/verify_site.py` 13/13 · `scripts/verify_q51.py` 0 errors · `scripts/verify_s53126614.py` 170 pages, 0 broken · Q51 unit tests 36 OK · `scripts/check_reproducible.py` all reproduce · `tools/review_verify.py` OK · `engine/verify_repo_and_site.py` 326/326 portal rows sourced, 0 broken · `git diff --check` clean.
+
+**Irregularities retained for review:** `tools/s2268_verify.py`'s nested suites all pass; its historical scope allowlist reports 7 scope-only errors for this session's authorized register edits (same class as CR-C023-01; request logged for the verifier owner — `content/week11-originated.md`, `data/requirements.csv`, `data/verification-report.json`, `datasets/e143a7ca/verification_manifest.json`, `tools/verify.py`, and the two new data files). No build, data, link or reproducibility defect was reported. PR #71 (`arena/1ef36c55-nfl2`) is another live session's open work: untouched by this session, which regenerated root HTML only via the shared builder; whichever PR lands second rebases and rebuilds.
+
+**Sources for this session's facts:** [NFL injury hub](https://www.nfl.com/injuries/) (read 2026-11-15, fetch completed by 12:55Z, all 8 content chunks) · repo-internal registers and the official Week 10 schedule transcription for game-pair validation. No NFL fact was asserted without the live official page behind it.
+
+**Handoff state:** F1–F5 done; F6 (PR → merge → Pages confirm → record) in progress on this branch. Nothing else left in progress on this branch. Open decisions are unchanged: Q-42 canonical injury display, Q-61 schedule-source rule, Q-62 participation timing, Q-50/Q-51 raw-retention (see `content/questions.md`).
