@@ -228,9 +228,9 @@ matrix.</p>
 game-status designations across 296 rows; the same page read today carries %d — %d Out, %d Doubtful,
 %d Questionable. It also leaves 287 of 296 injury-description cells blank. Any count built on that table
 is counting a page that no longer exists.</li>
-<li><strong>One of the fourteen fixtures has no injury coverage at all.</strong> Neither %s appears
-anywhere in the published table, while the page lists %d rows for them today. A seventh of the slate is
-invisible to any count built on that table.</li>
+<li><strong>One of the fourteen fixtures has no injury coverage at all.</strong> Neither %s
+appears anywhere in the published table, while the page lists %d rows for them today. A seventh of the
+slate is invisible to any count built on that table.</li>
 <li><strong>Two days is enough to change two thirds of the table.</strong> Of the 296 rows both reads
 share, 102 are identical and 194 differ; 55 differ on practice status alone. A single weekly snapshot
 cannot see the Wednesday-to-Friday movement the brief asks us to measure.</li>
@@ -268,7 +268,7 @@ prediction and claims no betting edge.</p></div>""" % (
         summary["repo_20261113_designations"],
         summary["designations_out"] + summary["designations_doubtful"] + summary["designations_questionable"],
         summary["designations_out"], summary["designations_doubtful"], summary["designations_questionable"],
-        " and ".join(sorted(no_repo)) if no_repo else "No club",
+        " nor ".join(sorted(no_repo)) if len(no_repo) == 2 else (", ".join(sorted(no_repo)) if no_repo else "No club"),
         sum(int(c["rows_listed_20261115"]) for c in clubs if c["rows_listed_20261113"] == "0"),
         n_on, n_cov, 100.0 * n_on / n_cov, n_out_on, n_out,
         ", ".join(zero) if zero else "No club",

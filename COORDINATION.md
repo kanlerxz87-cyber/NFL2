@@ -3312,7 +3312,33 @@ is a new file, so no other session's workflow was edited. Everything else this s
 
 ### PR & merge record
 
-_Recorded after merge._
+| Item | Result |
+|---|---|
+| PR | [#88](https://github.com/kanlerxz87-cyber/NFL2/pull/88) — Dated official re-verification of the Week 10 injury hub, deficiency matrix and dashboard |
+| Merge | `--merge`, merge commit recorded below; branch `arena/dcf3b0cc-nfl2` → `main` |
+| Pre-merge checks on the branch | `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification` and `dcf3b0cc dated re-verification` all passed |
+| Post-merge checks on `main` | `GitHub Pages`, `dcf3b0cc dated re-verification`, `Q51 evidence and engine verification`, `build-and-audit`, `Verify site data and links` and `pages build and deployment` all succeeded |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` returned `status: built`, source `main:/` |
+| Live site | https://kanlerxz87-cyber.github.io/NFL2/ · the new tree at https://kanlerxz87-cyber.github.io/NFL2/dcf3b0cc/ (all 12 pages fetched live, HTTP 200) |
+
+**Merge conflict log.** While this branch was open, `main` advanced through PRs #81–#87. The branch was
+rebased onto `origin/main` twice and then merged with `origin/main` once. Every conflict was in the
+append-only `COORDINATION.md` or in derived artefacts (`index.html`, `404.html`,
+`data/verification-report.json`, `datasets/e143a7ca/verification_manifest.json`). All were resolved by
+keeping both sides and then regenerating the derived artefacts with their owning tools
+(`tools/build_site.py`, `tools/review_verify.py`, `tools/review_build_site.py`,
+`engine/verify_repo_and_site.py`) rather than by hand-editing another session's output. No other session's
+file, commit or record was dropped.
+
+**Inherited defect repaired on the way through.** `data/verification-report.json` carried literal
+`<<<<<<</>>>>>>>` markers committed by an earlier merge, which made it invalid JSON and failed
+`scripts/audit_all_pages.py`. It was regenerated with `tools/review_verify.py` (71 pages, 0 broken links)
+and is now valid. The same marker problem was found and repaired in
+`datasets/e143a7ca/verification_manifest.json` via `engine/verify_repo_and_site.py` (3,241 internal links,
+0 broken).
+
+**Follow-up.** A second small PR corrects one grammar error in the generated executive summary
+("Neither BAL and LAC" → "Neither BAL nor LAC") and records this table.
 
 ### Second merge with `origin/main` (PRs #82 to #85) and the final flag renumbering
 
