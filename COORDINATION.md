@@ -3021,3 +3021,16 @@ Shared registers `data/flags.csv` and `data/questions.csv` are appended/edited i
 
 All suites re-run on the rebased tree: `tools/verify.py` 190/0/0 · `tools/check_site.py` 11/1/0 · `tools/verify_readiness_ac2dd497.py` PASS · `scripts/verify_s745.py` 21/0/0 · `scripts/audit_all_pages.py` 112 HTML / 329 tables / 8,219 rows, 100% row-sourced, 0 broken links · `scripts/verify_site.py` 13/13 · `scripts/verify_q51.py` 0 errors · `scripts/verify_s53126614.py` 172 pages, 0 broken · Q51 unit tests OK · `scripts/check_reproducible.py` all reproduce · `tools/review_verify.py` OK · `engine/verify_repo_and_site.py` PASS · `git diff --check` clean.
 | 13:3xZ | **Second rebase onto `main` (PRs #81, #82 merged).** PR #81 took FL-87/FL-88, so this session's two flags moved again to the next free IDs **FL-92/FL-93** (register citations FL-81/FL-83 unchanged; R-19 note repointed). Conflicts: COORDINATION.md (union), data/flags.csv (resolved to main's 91 rows + FL-92/93), generated HTML (taken from main, rebuilt once on top). Full suite re-run green: verify 195/0/0, check_site 11/1/0, s745 21/0/0, audit 113 HTML / 8,381 rows / 0 broken links, readiness PASS, q51 0 errors, s53 PASSED, reproducible exact, engine PASS, diff-check clean. |
+
+### Session `5de1805b` — PR & merge record (F6 done)
+
+| Item | Result |
+|---|---|
+| PR | [#85](https://github.com/kanlerxz87-cyber/NFL2/pull/85) — third dated full-hub injury read, row-level drift register, cross-session confirmation (FL-92), FL-54 question-ID repair (Q-64/Q-65) |
+| Merge | `--merge` without waiting; merge commit `bf837f829da9f8541e63b11847f05cb14d935f80` |
+| Pre-merge checks | build-and-audit, Verify site data and links, Q51 — all pass |
+| Post-merge checks | build-and-audit 43718154462, Verify site data and links 43718154463, GitHub Pages 43718154448, Q51 43718154437 — all success on main |
+| Pages | pages-build-deployment 43718154144 succeeded; pages API `status: built` for `bf837f82` at 2026-11-15T13:16:42Z; live re-fetch confirms FL-92/FL-93 render on the Flagged for Review page |
+| Live site | https://kanlerxz87-cyber.github.io/NFL2/ |
+
+**Handoff state:** F1–F6 all done; nothing left in progress on this branch. The canonical question register has unique IDs; the injury series now holds four dated reads (12 Nov ×2, 13 Nov, 15 Nov ×2 independent). Remaining owner decisions unchanged: Q-42 canonical injury display, Q-64 schedule-source rule, Q-65 participation timing, Q-50/Q-51 raw retention, FL-85's uncovered brief lines, FL-86's one-sided gates.
