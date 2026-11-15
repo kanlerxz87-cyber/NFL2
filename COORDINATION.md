@@ -2420,9 +2420,9 @@ The new crosswalk/script originally claimed in `7d05268`/`36a8d3b` will **not** 
 | Task | Status | Owner | Files |
 |---|---|---|---|
 | One-row-per-requirement gate/clearance crosswalk | superseded by merged PR #64 | `92d3ac43` | `data/requirements.csv`, `content/requirements.md` |
-| Audit correlation gate mappings and distinguish the 10-club personnel join from the later 31/32 chart transcription | in progress | `ac2dd497` | `data/requirements.csv`, append-only `data/flags.csv` (FL-73) |
-| Publish the existing full requirement register on the landing page and disclose project-vs-official source status | in progress | `ac2dd497` | `content/index.md`, `content/requirements.md`, `content/data-dictionary.md`, generated root HTML and `data/build_manifest.json` |
-| Add an automated coverage check for the landing table and run the full audit suite | in progress | `ac2dd497` | `tools/verify_readiness_ac2dd497.py`, `.github/workflows/validate.yml` |
+| Audit correlation gate mappings; distinguish the 10-club personnel join from 31/32 chart transcription; disclose 15 Nov freshness gap | in progress | `ac2dd497` | `data/requirements.csv`, append-only `data/flags.csv` (FL-73–FL-75) |
+| Publish the existing full requirement register on the landing page; add dated official-evidence links and explicit unverified status where no official source applies | in progress | `ac2dd497` | `data/requirements.csv`, `content/index.md`, `content/requirements.md`, `content/data-dictionary.md`, generated root HTML and `data/build_manifest.json` |
+| Add an automated coverage/source check for the landing table and run the full audit suite | in progress | `ac2dd497` | `tools/verify_readiness_ac2dd497.py`, `.github/workflows/validate.yml` |
 | Final PR, merge, and Pages confirmation | pending | `ac2dd497` | `COORDINATION.md` |
 
 Only official NFL or club links that directly support a factual requirement will be shown as official evidence. A project instruction or an internally defined gate is not an NFL fact; its evidence cell will remain blank and visibly state that no official source applies. A market-price requirement will not be cited to NFL as the league does not publish operator prices. Existing thresholds are not broadened or invented.
