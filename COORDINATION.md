@@ -2601,7 +2601,7 @@ Scope was limited to a new audit note and this append-only task-board entry. No 
 
 | Path | Contents |
 |---|---|
-| `data/hub_read_8dee7df7.csv` | 347 player rows, 28 clubs, the Week 10 hub as read on 15 Nov 2026 12:51Z (hand transcription, FL-78) |
+| `data/hub_read_8dee7df7.csv` | 347 player rows, 28 clubs, the Week 10 hub as read on 15 Nov 2026 12:51Z (hand transcription, FL-82) |
 | `data/hub_delta_8dee7df7.csv` | per-club delta against the 13 Nov file (generated) |
 | `data/hub_new_rows_8dee7df7.csv` | 51 players on the 15 Nov read and not on the 13 Nov read (generated) |
 | `tools/hub_delta_8dee7df7.py` | the comparison, with invariant checks that exit 1 on failure |
@@ -2612,7 +2612,7 @@ Scope was limited to a new audit note and this append-only task-board entry. No 
 | File | Change | Why |
 |---|---|---|
 | `tools/build_site.py` | one nav entry (`hub-delta`) and one page-kind entry | a new page needs a nav slot; no existing slot fits |
-| `data/flags.csv` | appended FL-77, FL-78, FL-79 | the new findings, published rather than fixed |
+| `data/flags.csv` | appended FL-81, FL-82, FL-83 | the new findings, published rather than fixed |
 | `data/sources.csv` | appended S-INJ-8DEE | the registered source for the 15 Nov read |
 | `content/data-dictionary.md` | three rows for the new files | `tools/verify.py` requires every data file to be listed |
 | `content/executive-summary.md` | dated update section above the 13 Nov section | the page stated LAC and BAL as "No Injuries Reported"; that was true on 12 Nov and is now superseded |
@@ -2630,14 +2630,14 @@ Not touched: `tools/verify.py`, `tools/check_site.py`, `.github/workflows/*`, an
 | 12:4x–12:50Z | Fetched all eight chunks of https://www.nfl.com/injuries/ (official page, titled Week 10). Re-fetched the Monday block (chunks 5–6) for a second read. |
 | 12:51Z | Wrote `data/hub_read_8dee7df7.csv` (347 rows). Fixed one delimiter error in the first write (no-injury rows had an extra pipe; 176 rows) before any comparison was run. |
 | 12:5xZ | `tools/hub_delta_8dee7df7.py`: 296 of 296 shared players matched by club and name; 51 added; 0 removed; designations 9 → 171; practice codes changed for 102 shared players. The first run's invariant wrongly expected 32 clubs; the Week 10 slate is 14 games = 28 clubs; the constant was corrected and the script re-run. |
-| 12:5xZ | Registered S-INJ-8DEE; FL-77, FL-78, FL-79 appended; delta page built; data dictionary and dated notes added. Build, verify and check all pass; build is byte-deterministic on a second run. |
+| 12:5xZ | Registered S-INJ-8DEE; FL-81, FL-82, FL-83 appended; delta page built; data dictionary and dated notes added. Build, verify and check all pass; build is byte-deterministic on a second run. |
 | 12:5xZ | Local equivalents of every CI step run on this branch: `tools/review_build_site.py` + `tools/review_verify.py` (OK, no broken links); `s92/build.py` + `tools/verify_s92.py` (13/0/0); `python3 -m unittest discover -s tests/q51` (OK); `engine.q51.build_research` + `build_site` + `scripts/verify_q51.py` (rc 0); `tools/verify_readiness_ac2dd497.py` (PASS). |
 
 ### What the 15 November read shows (all from the official page, see the delta page for the rows)
 
-* Chargers (19 rows, 10 designations) and Ravens (10 rows, 2 designations) now have rows. On 12 Nov the hub said "No Injuries Reported" for both (FL-01). [FL-77]
-* 171 game-status designations across the 28 clubs on the slate (70 Out, 90 Questionable, 11 Doubtful), against 9 on the 13 Nov file. The 13 Nov count is a collection gap. [FL-79]
-* No player was removed from the record between the two reads. [FL-79]
+* Chargers (19 rows, 10 designations) and Ravens (10 rows, 2 designations) now have rows. On 12 Nov the hub said "No Injuries Reported" for both (FL-01). [FL-81]
+* 171 game-status designations across the 28 clubs on the slate (70 Out, 90 Questionable, 11 Doubtful), against 9 on the 13 Nov file. The 13 Nov count is a collection gap. [FL-83]
+* No player was removed from the record between the two reads. [FL-83]
 
 ### Sources
 
@@ -2649,14 +2649,15 @@ Not touched: `tools/verify.py`, `tools/check_site.py`, `.github/workflows/*`, an
 
 * Row count and club count of the 15 Nov read; the 13 Nov comparison by club and by player; the delta invariants in `tools/hub_delta_8dee7df7.py` (exit 0).
 * Second read of the Monday block (Chargers, Ravens): 19 and 10 rows, every name, position, injury, practice and game-status cell matched the transcription.
-* Per-club counts agree with the counts of the same transcription. **That is a self-check, not an independent re-read** (FL-78).
+* Cross-check on one row: Kerby Joseph (DET) reads practice D and game status Out on the 15 Nov 12:51Z capture here; the separate 12:54Z read logged by session 1e97e798 (FL-80) shows the same. This corroborates one row only.
+* Per-club counts agree with the counts of the same transcription. **That is a self-check, not an independent re-read** (FL-82).
 * `tools/verify.py` 181 passed / 1 warning (FL-54, duplicate Q-46/Q-47, pre-existing) / 0 failures. `tools/check_site.py` 11 passed / 1 warning (non-league links on the registry pages, pre-existing) / 0 failures.
 
 ### Irregularities for review (published on the Flagged for Review page)
 
-* **FL-77** (high): the Chargers and Ravens were "No Injuries Reported" on 12 Nov and have rows on 15 Nov; pages that described them in the present tense now carry dated notes.
-* **FL-78** (high): the 15 Nov rows are a hand transcription; no raw capture or hash exists yet. The planned machine capture is open PR #71, another session's work.
-* **FL-79** (high): 139 designation changes, 139 new injury descriptions and 102 practice-code changes between two reads of one page two days apart; the 13 Nov designation count of 9 is a collection gap, not a level.
+* **FL-81** (high): the Chargers and Ravens were "No Injuries Reported" on 12 Nov and have rows on 15 Nov; pages that described them in the present tense now carry dated notes.
+* **FL-82** (high): the 15 Nov rows are a hand transcription; no raw capture or hash exists yet. The planned machine capture is open PR #71, another session's work.
+* **FL-83** (high): 139 designation changes, 139 new injury descriptions and 102 practice-code changes between two reads of one page two days apart; the 13 Nov designation count of 9 is a collection gap, not a level.
 * Pre-existing and unchanged: FL-54 (duplicate question IDs), non-league links on `sources.html` and `flagged-for-review.html` (the check warns, not fails).
 
 ### Brief status — what this session did and did not do
@@ -2683,3 +2684,56 @@ The brief lists roughly one hundred items. This session did not build most of th
 * PR: _recorded below after creation_
 * Merge: _recorded below after merge_
 * Pages: _recorded below after deployment_
+---
+
+## Session `1e97e798` (`arena/1e97e798-nfl2`) — claim: official snap-count and inactive-list source evaluation (Route b / Q-45, Q-07)
+
+**Session ID:** `1e97e798` · **Branch:** `arena/1e97e798-nfl2` (the only branch this session uses) · **Claimed:** 2026-11-15T12:52Z · **Base:** `d3c9c92` (`main`, PR #70)
+
+### Parallel-session check at claim time
+
+- Open PR **#71** (`arena/1ef36c55-nfl2`, "Add scheduled metadata-only NFL injury fingerprint monitor") owns the scheduled `nfl.com/injuries` capture, `availability_monitor/**`, `.github/workflows/availability-fingerprint.yml`, and `data/availability_fingerprints.csv`. **This session does not touch any of those.** It notes that PR #71 currently discards raw response bodies (hashes not replayable), which conflicts with the requirement to keep retained snapshots. That is logged as a change request below, not acted on.
+- Nothing else on the board holds the snap-count or inactive-list question (Q-45, Q-07, Q-05).
+
+### Scope — exclusive files this session will create or edit
+
+| Path | Action |
+|---|---|
+| `data/snapcount_source_eval_1e97e798.csv` | new: one row per candidate official source, with URL, fetch time, what it publishes, verdict |
+| `data/questions.csv`, `data/flags.csv`, `data/sources.csv` | append-only: answers/new rows for Q-45, Q-07, the new sources and any new flags |
+| `COORDINATION.md` | this section only |
+
+**Not touched:** `tools/build_site.py`, `.github/workflows/**`, `availability_monitor/**`, generated root HTML (except via a normal rebuild), `data/availability_*`, `data/depth_*`.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 1e97-T01 | Claim and push this section before any other edit | done | `1e97e798` | `COORDINATION.md` |
+| 1e97-T02 | Search for an official NFL snap-count source; fetch and record each candidate (URL, read UTC, what it publishes, season/week coverage, terms) | in progress | `1e97e798` | `data/snapcount_source_eval_1e97e798.csv` |
+| 1e97-T03 | Check whether official inactive lists are published per game (game centre / game book), with links | unclaimed → in progress | `1e97e798` | same CSV |
+| 1e97-T04 | Record the route verdict (route a per-club depth charts / route b snap counts / neither) in `questions.csv` (Q-45, Q-07) and `flags.csv`; no feature built | unclaimed → in progress | `1e97e798` | `data/questions.csv`, `data/flags.csv`, `data/sources.csv` |
+| 1e97-T05 | Rebuild, run `tools/verify.py`, `tools/check_site.py`, `tools/verify_readiness_ac2dd497.py`, link check; commit; PR to `main`; merge; confirm Pages | unclaimed → in progress | `1e97e798` | generated root HTML, this section |
+
+
+### `1e97e798` completion record (2026-11-15, read 12:54Z)
+
+**Status:** T02–T04 done; T05 (PR, merge, Pages) recorded below after the merge. Scope held: `data/snapcount_source_eval_1e97e798.csv` (new), `data/sources.csv` (+4 rows), `data/questions.csv` (+Q-61–Q-63), `data/s745_information_gaps.csv` (+3 rows restating Q-61–Q-63, required by `scripts/verify_s745.py`), `data/flags.csv` (+FL-77–FL-80), `content/questions.md` (one new section), `content/data-dictionary.md` (one new row; s745 count 61→64). No change to PR #71's files, `tools/build_site.py`, workflows, or `availability_monitor/**`.
+
+| Task | Result | Source / evidence |
+|---|---|---|
+| 1e97-T02 official snap-count source | **Two official NFL Game Books checked; each has a per-player snap table** (offense, defense, special teams; snaps and percent). NE at SEA (chunks 0 and 6 of 7) and NYG at WAS (chunk 9 of 10). Only the existence of the table is recorded; no figures stored. Not a full-season check. | [NE at SEA book](https://static.www.nfl.com/image/upload/v1789038923/gamecenter/a8fb0d78-4feb-11f1-abca-2c54536568a9.pdf) · [NYG at WAS book](https://static.www.nfl.com/image/upload/v1791805921/gamecenter/aa94b906-4feb-11f1-abca-2c54536568a9.pdf) · [Next Gen Stats page](https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats) (no snap file linked) |
+| 1e97-T03 official inactive lists | **Week 8 2026 official per-game inactives article found and read (page 1 of 2).** Week 10 2026 not located: the Week 8-pattern URL returned 404 (a failed guess, not absence). The 2025 Week 10 article is excluded as the wrong season. | [Week 8 2026](https://www.nfl.com/news/nfl-week-8-inactives-players-ruled-out-sunday-2026-season) · [2025 Week 10 (excluded)](https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-for-sunday-s-12-games) |
+| 1e97-T04 route verdict | **Neither route verified for all 32 clubs. No depth-order or replacement feature built.** Route (a): club charts, not NFL-published, 31 of 32 read earlier, not re-read here. Route (b): official snap tables exist in 2 of 2 books checked, but per-game coverage is unverified and retention is blocked by Q-50. Q-45 and Q-07 stay open with the next actions recorded as Q-61 to Q-63. | `data/snapcount_source_eval_1e97e798.csv` E-10 |
+
+**Verification performed (combined tree):** `python3 tools/build_site.py` (36 pages, reproducible); `python3 tools/verify.py` → 179 passed, 1 pre-existing warning (Q-46/Q-47 duplicate IDs, FL-54), 0 failures; `python3 tools/check_site.py` → 11 passed, 0 failures; `python3 tools/verify_readiness_ac2dd497.py` → pass; `python3 scripts/audit_all_pages.py` → 110 HTML / 44 JSON / 320 tables / 7,964 rows, 100% row-sourced, 0 broken links; `python3 scripts/check_links.py` → 128 references, none broken. Every new row carries its own URL; third-party rows are marked non-official in the rendered table.
+
+**Irregularities flagged (on `flagged-for-review.html`, non-blocking):** FL-77 (Week 10 2026 inactives not located); FL-78 (2025 Week 10 inactives article shares the 2026 title pattern); FL-79 (90-minute inactive deadline appears only in secondary sources, so it is unverified); FL-80 (Kerby Joseph's practice status differs between the 13 Nov read recorded in FL-58 and the 15 Nov hub read, so single reads go stale).
+
+**Rights disclosure for the owner (Q-50):** to verify that the snap tables exist, this session read the two Game Book PDFs in the browser tool. The notice reserves "other use" to written permission. No figures were copied into the repository and no rows were derived from the books. Whether that reading is acceptable is an owner decision under Q-50 and FL-55, and is noted here so it is visible rather than silent.
+
+**Change request to session `1ef36c55` (PR #71), logged, not edited:** the monitor discards raw response bodies and keeps only hashes. Those hashes cannot be replayed, so they cannot show what was known at a given time, which the "replay as known" requirement needs. The owner should decide between retaining raw bodies (after Q-50) and keeping metadata-only captures. Route (b) would need the same decision for gamebook PDFs.
+
+**Not done in this session (explicitly open, not claimed by anyone here):** full-season gamebook coverage for route (b); the Week 10 2026 inactive list for every game (Q-61); a re-read of all 32 club depth charts (route a; Houston remains an image); the official source for the 90-minute deadline (Q-63); public Next Gen Stats participation data (Q-62); the broader requirement list (R-08, R-09, R-16, R-20, R-21, R-43, R-44) remains as recorded in `data/requirements.csv`.
+
+**Handoff:** the next session that picks up Q-61 should start from `data/snapcount_source_eval_1e97e798.csv` E-04 (URL not found) and FL-77, not from the 2025 article.

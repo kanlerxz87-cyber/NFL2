@@ -1,7 +1,7 @@
 # Week 10 Injury Report — Official Practice Snapshot
 > All 254 rows the league published for Week 10 of the 2026 season, transcribed from nfl.com on 12 November 2026, with the practice-status code and the game status exactly as filed.
 
-**Dated note, 15 November 2026:** this page is the 12 November read. On 15 November the official page lists rows for the Chargers and the Ravens, which this page shows as having none. See the [Injury Hub delta](hub-delta.html) and [FL-77](flagged-for-review.html).
+**Dated note, 15 November 2026:** this page is the 12 November read. On 15 November the official page lists rows for the Chargers and the Ravens, which this page shows as having none. See the [Injury Hub delta](hub-delta.html) and [FL-81](flagged-for-review.html).
 
 This is the **practice** report, not an availability answer. Each club files participation for players with a reportable condition; the game status column (Out / Doubtful / Questionable) is only populated once the club has filed designations. At fetch time six rows in 254 carried one, which is why the column is mostly `not published` below — those are not zeros and they are not omissions by us. The same goes for the injury column: the hub populates it only where a designation has been filed, so 248 of 254 cells are blank in the source and stay blank here.
 

@@ -4,7 +4,7 @@
 Inputs (read-only):
   data/injuries_wk10_83246f00.csv   the 13 Nov 2026 12:46Z read (296 rows, 26 clubs)
   data/hub_read_8dee7df7.csv        the 15 Nov 2026 12:51Z read (347 rows, 28 clubs), transcribed
-                                    row by row from https://www.nfl.com/injuries/ (see FL-78)
+                                    row by row from https://www.nfl.com/injuries/ (see FL-82)
 
 Outputs (regenerated on every run):
   data/hub_delta_8dee7df7.csv       one row per club: row counts, designation counts, practice changes

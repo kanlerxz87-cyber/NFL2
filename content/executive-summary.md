@@ -13,12 +13,12 @@ Read this as a diff against the 13 November sections below. It changes one stand
 
 | What changed | Earlier statement | Now (sourced) | What it means for a decision |
 | --- | --- | --- | --- |
-| Chargers and Ravens on the Week 10 hub | Both clubs answer "No Injuries Reported" ([FL-01](flagged-for-review.html)); the executive summary's finding 2 below says so | On 15 Nov the official page lists **19 Chargers rows** and **10 Ravens rows** ([FL-77](flagged-for-review.html)) | "No Injuries Reported" was true on its read date and is now superseded. Do not carry LAC or BAL as healthy from the 13 Nov file |
-| Designations on the slate | 9 in the 13 Nov file | **171** on the 15 Nov read: 70 Out, 90 Questionable, 11 Doubtful ([FL-79](flagged-for-review.html)) | the 9 was a collection gap, not a level. Only the change between dated reads counts as a signal |
+| Chargers and Ravens on the Week 10 hub | Both clubs answer "No Injuries Reported" ([FL-01](flagged-for-review.html)); the executive summary's finding 2 below says so | On 15 Nov the official page lists **19 Chargers rows** and **10 Ravens rows** ([FL-81](flagged-for-review.html)) | "No Injuries Reported" was true on its read date and is now superseded. Do not carry LAC or BAL as healthy from the 13 Nov file |
+| Designations on the slate | 9 in the 13 Nov file | **171** on the 15 Nov read: 70 Out, 90 Questionable, 11 Doubtful ([FL-83](flagged-for-review.html)) | the 9 was a collection gap, not a level. Only the change between dated reads counts as a signal |
 | Players on the record | 296 on 13 Nov | **347** on 15 Nov, covering all of the 28 clubs on the slate; 51 added, none removed ([Injury Hub delta](hub-delta.html)) | the hub still only grows |
 | Practice codes on shared players | not measured | **102** of 296 shared players changed code between the two reads | the delta is the surprise signal; the level alone tells us little |
 
-**Limit on this read.** The 15 November rows were copied by hand from the rendered official page. The Chargers and Ravens block was read a second time on the same day and matched name for name, but no raw capture with a stored hash exists yet ([FL-78](flagged-for-review.html)). The machine capture is open pull request #71, which belongs to another session.
+**Limit on this read.** The 15 November rows were copied by hand from the rendered official page. The Chargers and Ravens block was read a second time on the same day and matched name for name, but no raw capture with a stored hash exists yet ([FL-82](flagged-for-review.html)). The machine capture is open pull request #71, which belongs to another session.
 
 ## Latest verification and open decisions — 13 November 2026, 12:53Z
 
