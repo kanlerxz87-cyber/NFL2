@@ -3426,3 +3426,43 @@ any `FL-nn` appearing anywhere on the built page is not a row in `data/flags.csv
 Full suite re-run clean: `verify.py` 199/0/0, `check_site.py` 11/1/0, audit 8,505 rows 100% row-sourced
 0 broken links, reproducible, readiness 4/4, verify_site 13/13, engine 0 broken links, review_verify
 clean, s92 13/13, Q51 tests 36 passed, render test 0 failures, `git diff --check` clean.
+
+## Session `58e9c708` — PR and live-deployment record
+
+| Item | Result |
+|---|---|
+| PR | [#87](https://github.com/kanlerxz87-cyber/NFL2/pull/87) — Register the 71 brief line-items the requirement register never tracked |
+| Merge | `--merge`, merged `2026-11-15`; merge commit `d7e8d33337b60d56a89c01fd9af8986842398282` |
+| Pre-merge CI | `audit` [43718625698](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43718625698), `Row-level verification, link check and build reproducibility` [43718625702](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43718625702), `q51` [43718625791](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43718625791) — all passed |
+| Post-merge CI | `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `pages build and deployment` all succeeded for `d7e8d333` |
+| Pages | GitHub Pages workflow [43718892187](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43718892187) succeeded; `pages build and deployment` succeeded; `gh api …/pages` returned `status: built`, source `main:/` |
+| Live URL | https://kanlerxz87-cyber.github.io/NFL2/backlog.html |
+| Defect found live, fixed by PR | [#90](https://github.com/kanlerxz87-cyber/NFL2/pull/90) — two findings collapsed onto one flag id in a hand-written sentence ("FL-96, FL-95 and FL-96") after the renumbering regex ran twice over the same text. `data/flags.csv` was never wrong. |
+| PR #90 merge | `--merge`, merged; merge commit `88c145a61078b716a1f8bf546c5603b1de63d0b2`; `pages build and deployment` succeeded for `88c145a6`; `gh api …/pages` returned `status: built` |
+| Live re-check | `backlog.html` fetched from the live host after the second deploy: the findings table renders the `Flag` column (BF-01 → FL-94, BF-03 → FL-95, BF-04 → FL-96) and the prose no longer restates any id. |
+
+### What this session leaves the project with
+
+1. **The brief's line-item backlog is now a tracked file.** 71 directives, none of which existed in
+   any register before, each with a gate, a clearing number and the official page that would have to
+   be read. 40 are not started, 24 partial, 2 done, 2 rejected by the brief itself, 1 blocked at the
+   source, 1 in progress, 1 specified.
+2. **Two items the project treated as blocked are not blocked.** The official transactions hub and
+   its dated Reserve List (FL-95) answer the reserve-list item and the stale-depth item with
+   league-published, structured, dated rows. Nothing in the repository had read either page.
+3. **A published table is three days stale in the place a reader sees first** (FL-94), and the
+   repository holds three different answers to one question about three Lions with no statement of
+   which is authoritative.
+4. **A real conflict between two official pages in the same week** (FL-96): TreVeyon Henderson is on
+   the reserve list on 11/14 and on the injury report the same day.
+5. **Two registers over one brief now cross-reference** rather than compete (64 of 71 rows linked),
+   with consolidation logged as CR-58E9-05.
+
+### Open change requests raised by this session
+
+* **CR-58E9-01** — integration decision on folding this register into `data/requirements.csv`.
+* **CR-58E9-02** — `tools/s2268_verify.py` scope allowlist does not cover this session's files (scope-only errors; no build, data, link or reproducibility failure).
+* **CR-58E9-03** — `content/index.md`: point at the 71 untracked brief lines from the landing page.
+* **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
+* **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
+* **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
