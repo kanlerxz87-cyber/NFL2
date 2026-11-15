@@ -2590,3 +2590,35 @@ No PR is open yet. Next: fetch/merge current `origin/main` before pushing the fi
 | Independently run the current integrated verification suite; document any reproducible issue and exact non-inferred next steps | done | `arena-24ccce92` | `audits/arena-24ccce92-review.md`, this coordination entry |
 
 Scope was limited to a new audit note and this append-only task-board entry. No existing data, generated HTML, pipeline, or another session's files were edited. No new NFL facts were added and no new official-source verification is claimed. Validation: `tools/build_site.py` (36 pages), `tools/verify.py` (178 passed, 1 existing warning, 0 failures), `tools/check_site.py` (11 passed, 1 existing warning, 0 failures), `scripts/audit_all_pages.py` (110 HTML / 44 JSON / 319 tables / 7,937 rows, zero broken links), and `git diff --check`. Findings and the recommended order of work are in `audits/arena-24ccce92-review.md`.
+
+---
+
+## Session `1e97e798` (`arena/1e97e798-nfl2`) — claim: official snap-count and inactive-list source evaluation (Route b / Q-45, Q-07)
+
+**Session ID:** `1e97e798` · **Branch:** `arena/1e97e798-nfl2` (the only branch this session uses) · **Claimed:** 2026-11-15T12:52Z · **Base:** `d3c9c92` (`main`, PR #70)
+
+### Parallel-session check at claim time
+
+- Open PR **#71** (`arena/1ef36c55-nfl2`, "Add scheduled metadata-only NFL injury fingerprint monitor") owns the scheduled `nfl.com/injuries` capture, `availability_monitor/**`, `.github/workflows/availability-fingerprint.yml`, and `data/availability_fingerprints.csv`. **This session does not touch any of those.** It notes that PR #71 currently discards raw response bodies (hashes not replayable), which conflicts with the requirement to keep retained snapshots. That is logged as a change request below, not acted on.
+- Nothing else on the board holds the snap-count or inactive-list question (Q-45, Q-07, Q-05).
+
+### Scope — exclusive files this session will create or edit
+
+| Path | Action |
+|---|---|
+| `data/snapcount_source_eval_1e97e798.csv` | new: one row per candidate official source, with URL, fetch time, what it publishes, verdict |
+| `data/questions.csv`, `data/flags.csv`, `data/sources.csv` | append-only: answers/new rows for Q-45, Q-07, the new sources and any new flags |
+| `COORDINATION.md` | this section only |
+
+**Not touched:** `tools/build_site.py`, `.github/workflows/**`, `availability_monitor/**`, generated root HTML (except via a normal rebuild), `data/availability_*`, `data/depth_*`.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 1e97-T01 | Claim and push this section before any other edit | done | `1e97e798` | `COORDINATION.md` |
+| 1e97-T02 | Search for an official NFL snap-count source; fetch and record each candidate (URL, read UTC, what it publishes, season/week coverage, terms) | in progress | `1e97e798` | `data/snapcount_source_eval_1e97e798.csv` |
+| 1e97-T03 | Check whether official inactive lists are published per game (game centre / game book), with links | unclaimed → in progress | `1e97e798` | same CSV |
+| 1e97-T04 | Record the route verdict (route a per-club depth charts / route b snap counts / neither) in `questions.csv` (Q-45, Q-07) and `flags.csv`; no feature built | unclaimed → in progress | `1e97e798` | `data/questions.csv`, `data/flags.csv`, `data/sources.csv` |
+| 1e97-T05 | Rebuild, run `tools/verify.py`, `tools/check_site.py`, `tools/verify_readiness_ac2dd497.py`, link check; commit; PR to `main`; merge; confirm Pages | unclaimed → in progress | `1e97e798` | generated root HTML, this section |
+
