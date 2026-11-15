@@ -2582,3 +2582,29 @@ Official pages fetched for manual review on 2026-11-15: [NFL injury hub](https:/
 ### Publication status
 
 No PR is open yet. Next: fetch/merge current `origin/main` before pushing the final changes; open a PR from this fixed branch with the audit report, source links and existing flags; merge with `gh pr merge <number> --merge`; then verify CI and Pages deployment and fill in the exact PR/merge/deploy IDs here. Any merge conflict must retain this complete upstream log and all other session work.
+
+## Session `1ef36c55` — conflict handoff and availability fingerprint monitor (claim)
+
+**Branch:** `arena/1ef36c55-nfl2` (Arena-fixed current branch) · **Base now:** `d3c9c92` (PR #70) · **Claimed:** 2026-11-15 UTC. C1 implementation is pushed; PR #71 is open, required checks passed, and review/merge is pending.
+
+### Superseded work and conflict record
+
+This session first attempted to claim the requirements readiness matrix and a Nov 15 injury freshness note. Before any implementation or push, `git pull --rebase origin main` fetched PR #64 and exposed that session `92d3ac43` had already integrated the same matrix. Subsequent pulls fetched PRs #65–#67, which recorded the official-page freshness audit and re-read four teams. Those upstream commits were preserved in full; the duplicate task was closed before code changes. Subsequent `main` advances through PRs #69 and #70 required append-only `COORDINATION.md` conflict reconciliation. Each conflict was resolved by preserving the complete upstream board and this handoff. No upstream data or page was discarded.
+
+### New task claim — C1
+
+| ID | Task | Status | Owner | Exclusive scope |
+|---|---|---|---|---|
+| C1 | Add an automated, robots-aware **metadata-only** official injury-page fingerprint ledger: retrieval timestamp, raw-response SHA-256, schema fingerprint, aggregate table/row counts, change/conflict flags; schedule Wed–Sun capture; alert on fetch/schema failures. Keep player-level rows and raw response bodies out of the public repository. | implemented; PR #71 open, CI passed, review pending | `1ef36c55` | `availability_monitor/**`, `.github/workflows/availability-fingerprint.yml`, `data/availability_fingerprints.csv`, `content/availability-fingerprints.md`, `content/index.md` (link only), `content/data-dictionary.md`, `tools/build_site.py`, `tools/verify.py`, generated root pages, this board |
+
+**Scope constraint:** this is a hash/aggregate monitor, not a replayable raw snapshot store. Raw row-level retention remains blocked until a private storage destination and source-use terms are approved (Q-50/Q-51); no raw content will be uploaded as a public workflow artifact. The scheduled workflow must fail and raise a GitHub issue on retrieval/schema failure, and the public ledger must identify raw retention as `no`. We will not claim point-in-time replay or mark G-03 passed based on hashes alone. Existing board entries document the Nov 15 freshness read and its missing exact timestamp/hash; this task does not rewrite that read as a capture.
+
+### C1 implementation handoff (2026-11-15)
+
+**Implementation commits:** `d974922` (capture module, tests, ledger header, scheduled workflow) and `1a431e4` (site integration, generated pages, verifier). Rebased onto `origin/main` at `d3c9c92`, preserving PRs #69 and #70 and all upstream coordination entries. Worktree is clean; no live capture was run, so the public ledger remains header-only.
+
+**Schedule and behavior:** GitHub Actions captures Wed–Sat at 23:17 UTC and Sunday at 12:17 UTC. Unit tests gate publication. Capture, test, or publication failure is surfaced through workflow alerts; only metadata is committed. Raw response bytes are hashed in memory and discarded. No bodies, byte counts, or player rows are published. Fingerprints represent schema shape, not cell values; missing expected tables are treated as drift. Hashes do not provide replayability or satisfy G-03.
+
+**Validation after rebase:** `tools/verify.py` 183 passed / 1 existing warning / 0 failures; `tools/check_site.py` 11 passed / 1 existing warning / 0 failures; C1 tests 15 passed; Q51 tests 36 passed; S53 verification passed; S92 verification 13 passed; link check 128 references with no broken links; full audit 111 HTML / 44 JSON / 320 tables / 7,953 rows, 100% row-sourced and no broken links or column mismatches; render test 13 pages / 0 failures; `tools/s2268_verify.py` 1,004 checks / 0 errors; workflow YAML parsed with both expected UTC schedules; reproducibility check, Python compilation, and `git diff --check` passed. The generated site rebuild is clean. Existing warnings are the duplicate Q-46/Q-47 register IDs and non-league links on registry/research pages.
+
+**PR / remaining publication step:** [PR #71](https://github.com/kanlerxz87-cyber/NFL2/pull/71) is open against `main` from this branch and is mergeable. For head `2a01d4e`, required checks passed at 2026-11-15T12:48Z: `audit` [43715668536](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715668536), `Verify site data and links` [43715668542](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715668542), and `q51` [43715668781](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43715668781). The PR has not been merged, so no Pages deployment of this monitor has occurred. After review/merge, record the merge and deployment outcome. Do not run a live capture until an authorized workflow dispatch or schedule; no live-source result is claimed here.

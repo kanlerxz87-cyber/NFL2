@@ -47,6 +47,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/availability_watch_movement_c3ec1487.csv` | 5 | what changed between the 2026-11-12 and 2026-11-13 reads of the hub | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/availability_watch_practice_deltas_c3ec1487.csv` | 49 | one player whose practice code changed between the two dated reads, and the direction | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/availability_watch_gates_c3ec1487.csv` | 4 | one availability readiness gate, its measured value, and why it passes or fails | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
+| `data/availability_fingerprints.csv` | {{metric fingerprint_runs}} | one metadata-only fetch attempt: exact raw-response digest, table-header schema digest, aggregate injury counts, change/conflict flags; no raw body or player rows | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/computed_availability_watch_c3ec1487.csv` | 12 | one derived availability metric, how it is computed, and what it means | S-CALC |
 | `data/reverification_c3ec1487.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
 
@@ -222,3 +223,25 @@ without the hash in `data/s2268_preregistration.json` being deliberately re-cut.
 | `data/s2268_leaderboard.csv` | 10 | strategy × tier, stake multiplier, reward earned and the gates blocking it | S-2268-03 |
 | `data/s2268_rewards.csv` | 5 | reward tier × stake multiplier, requirement and blocking gate | S-2268-PRE |
 | `data/s2268_rest_audit.csv` | 24 | one rest-signal decision, with both clubs' days of rest and the official game page | S-2268-03 |
+
+### `data/availability_fingerprints.csv` — session C1 metadata-only injury-hub monitor
+
+| Column | Type | Meaning |
+| --- | --- | --- |
+| `capture_id` | key | stable UTC-time and digest-prefix identifier for one attempted read |
+| `retrieved_at_utc` | timestamp | collector's retrieval time, not the NFL's publication time |
+| `source_url` / `source` | URL | pinned official NFL injury-hub URL; `source` is the row-level citation rendered on the page |
+| `final_url` | URL | sanitized final official URL path after redirects; query strings and fragments are removed |
+| `response_sha256` | digest | SHA-256 of the original HTTP response bytes, computed in memory before the body is discarded |
+| `injury_table_count` | integer | number of parsed tables whose headers match the required injury-report schema |
+| `injury_row_count` | aggregate integer | count of non-empty parsed rows under matching injury-table headers; no row contents are retained |
+| `schema_sha256` | digest | SHA-256 of sorted recognized header names and unrecognized-table width structure; header strings and cell values are not published or hashed individually |
+| `schema_status` | enum | `matched`, `drift`, or `unavailable`; an absent expected table is drift, not zero injuries |
+| `previous_response_sha256` | digest | preceding successful response digest for this source, blank when none exists |
+| `change_from_previous` | enum | `first_capture`, `unchanged`, `body_changed`, `schema_changed`, or `fetch_failed` |
+| `conflict_flags` | codes | semicolon-delimited structural, fetch, timestamp, or redirect conflict flags; no source-page text |
+| `raw_retained` | boolean-like | always `no` in this public ledger; there is no point-in-time replay from hashes alone |
+| `capture_status` | enum | `ok`, `schema_drift`, or `failed`; body changes with a valid schema are informational |
+| `error` | code | fixed safe error category; arbitrary exception text and response content are not persisted |
+
+A SHA-256 identifies response bytes but cannot reconstruct them. This metadata ledger does not satisfy G-03 or authorize any model input; private retention remains blocked pending Q-50/Q-51 review.

@@ -1,0 +1,151 @@
+name: Official NFL injury-page metadata fingerprint
+
+on:
+  schedule:
+    # Wed-Sat late evening UTC; Sunday midday UTC. These are public-only
+    # metadata captures, not saved injury-report snapshots.
+    - cron: '17 23 * * 3-6'
+    - cron: '17 12 * * 0'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+  issues: write
+
+concurrency:
+  group: availability-fingerprint-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the scheduled branch
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        id: python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Test privacy and ledger invariants
+        id: tests
+        run: python3 -m unittest discover -s availability_monitor/tests -v
+
+      - name: Fetch robots-aware metadata only
+        id: capture
+        continue-on-error: true
+        run: python3 -m availability_monitor.capture --ledger data/availability_fingerprints.csv
+
+      - name: Rebuild the audited root dashboard
+        id: rebuild
+        if: always()
+        run: python3 tools/build_site.py
+
+      - name: Verify the data and privacy contract
+        id: verify
+        if: always()
+        run: python3 tools/verify.py
+
+      - name: Check generated site links and pages
+        id: site
+        if: always()
+        run: python3 tools/check_site.py
+
+      - name: Publish only the metadata ledger and its generated views
+        id: publish
+        if: always() && steps.tests.outcome == 'success' && steps.capture.outcome != 'skipped' && steps.rebuild.outcome == 'success' && steps.verify.outcome == 'success' && steps.site.outcome == 'success'
+        run: |
+          set -euo pipefail
+          echo 'published=false' >> "$GITHUB_OUTPUT"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- data/availability_fingerprints.csv data/build_manifest.json availability-fingerprints.html data-dictionary.html
+          if git diff --cached --quiet; then
+            echo 'No metadata or generated-view changes to publish.'
+            exit 0
+          fi
+          git commit -m 'data(availability): append injury-hub fingerprint'
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+          echo 'published=true' >> "$GITHUB_OUTPUT"
+
+      - name: Request Pages publication for a default-branch ledger update
+        id: deploy
+        if: always() && steps.publish.outcome == 'success' && steps.publish.outputs.published == 'true' && github.ref_name == github.event.repository.default_branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "$GITHUB_REF_NAME"
+
+      - name: Open or update the monitor alert issue
+        if: always() && (failure() || steps.tests.outcome == 'failure' || steps.capture.outcome == 'failure' || steps.rebuild.outcome == 'failure' || steps.verify.outcome == 'failure' || steps.site.outcome == 'failure' || steps.publish.outcome == 'failure' || steps.deploy.outcome == 'failure')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+          CAPTURE_OUTCOME: ${{ steps.capture.outcome }}
+          REBUILD_OUTCOME: ${{ steps.rebuild.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          SITE_OUTCOME: ${{ steps.site.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+        run: |
+          set -euo pipefail
+          title='[availability-fingerprint] Scheduled monitor failure'
+          run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          body=$(cat <<EOF
+          The official NFL injury-page metadata monitor or its publication checks failed.
+
+          - Unit tests: ${TEST_OUTCOME:-not run}
+          - Capture step: ${CAPTURE_OUTCOME:-not run}
+          - Rebuild step: ${REBUILD_OUTCOME:-not run}
+          - Data verification: ${VERIFY_OUTCOME:-not run}
+          - Site verification: ${SITE_OUTCOME:-not run}
+          - Ledger publication: ${PUBLISH_OUTCOME:-not run}
+          - Pages dispatch: ${DEPLOY_OUTCOME:-not run}
+          - Workflow run: ${run_url}
+          - Source: https://www.nfl.com/injuries/
+
+          Review the workflow log and the metadata-only ledger at `data/availability_fingerprints.csv`. A failed read is an access/source alert, not evidence of zero injuries. Raw response bodies and player-level rows are not retained or uploaded. Hashes do not provide point-in-time replay.
+          EOF
+          )
+          issue=$(gh issue list --state open --limit 100 --json number,title \
+            --jq '.[] | select(.title == "[availability-fingerprint] Scheduled monitor failure") | .number' | head -n 1)
+          if [[ -n "$issue" ]]; then
+            gh issue comment "$issue" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Fail the workflow after recording and alerting
+        if: always()
+        env:
+          CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+          PYTHON_OUTCOME: ${{ steps.python.outcome }}
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+          CAPTURE_OUTCOME: ${{ steps.capture.outcome }}
+          REBUILD_OUTCOME: ${{ steps.rebuild.outcome }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          SITE_OUTCOME: ${{ steps.site.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+          PUBLISHED: ${{ steps.publish.outputs.published }}
+          REF_NAME: ${{ github.ref_name }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          for outcome in "$CHECKOUT_OUTCOME" "$PYTHON_OUTCOME" "$TEST_OUTCOME" "$CAPTURE_OUTCOME" \
+                         "$REBUILD_OUTCOME" "$VERIFY_OUTCOME" "$SITE_OUTCOME" "$PUBLISH_OUTCOME"; do
+            if [[ "$outcome" != 'success' ]]; then
+              echo "::error::A fingerprint monitor or publication step did not succeed (outcome: $outcome)."
+              exit 1
+            fi
+          done
+          if [[ "$PUBLISHED" == 'true' && "$REF_NAME" == "$DEFAULT_BRANCH" && "$DEPLOY_OUTCOME" != 'success' ]]; then
+            echo "::error::The metadata update was pushed but GitHub Pages dispatch did not succeed."
+            exit 1
+          fi

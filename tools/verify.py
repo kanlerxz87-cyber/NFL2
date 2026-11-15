@@ -5,9 +5,12 @@ Fails loudly rather than warning: the site's claim to be "verified" rests on the
 checks running clean, so a soft warning here would be a weaselled guarantee.
 """
 import csv, json, os, re, sys
+from datetime import datetime, timezone
+from urllib.parse import urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
+sys.path.insert(0, ROOT)
 OFFICIAL_HOSTS = {"nfl.com", "www.nfl.com", "operations.nfl.com", "static.www.nfl.com"}
 PRACTICE = {"F", "L", "D"}
 STATUS = {"", "OUT", "Q", "D"}
@@ -1408,6 +1411,190 @@ def reverification_e733834d_holds():
        "cites a flag" % (len(rows), len(rows) - mismatches, mismatches))
 
 
+def availability_fingerprint_ledger_holds():
+    """The public C1 ledger contains hashes and aggregates only, with a scheduled failure alert."""
+    try:
+        from availability_monitor.capture import LEDGER_FIELDS, SOURCE_URL, SHA256_RE
+    except Exception as exc:
+        bad("availability fingerprint monitor could not be loaded: %s" % exc)
+        return
+
+    path = os.path.join(DATA, "availability_fingerprints.csv")
+    if not os.path.exists(path):
+        bad("availability fingerprint ledger is missing")
+        return
+    data, header, _ = rows("availability_fingerprints.csv")
+    if tuple(header) != LEDGER_FIELDS:
+        bad("availability fingerprint ledger header differs from its pinned metadata-only schema")
+        return
+
+    allowed_changes = {"first_capture", "unchanged", "body_changed", "schema_changed", "fetch_failed"}
+    allowed_capture_status = {"ok", "schema_drift", "failed"}
+    allowed_schema_status = {"matched", "drift", "unavailable"}
+    allowed_flags = {
+        "FETCH_FAILED", "NO_INJURY_TABLES", "UNEXPECTED_INJURY_HEADERS", "ROW_WIDTH_MISMATCH",
+        "FINAL_URL_CHANGED", "FINAL_URL_INVALID", "SCHEMA_CHANGED_FROM_PREVIOUS", "SAME_TIMESTAMP_DIFFERENT_HASH",
+    }
+    allowed_errors = {
+        "", "robots_disallowed", "robots_access_denied", "response_size_limit",
+        "official_host_validation_failed", "fetch_timeout", "fetch_error",
+    }
+    issues = []
+    seen_ids = set()
+    successful_by_hash = {}
+    for index, row in enumerate(data, start=2):
+        prefix = "availability fingerprint row %d" % index
+        if row["capture_id"] in seen_ids:
+            issues.append(prefix + ": duplicate capture_id")
+        seen_ids.add(row["capture_id"])
+        if not re.fullmatch(r"\d{8}T\d{6}Z-[0-9a-f]{12}", row["capture_id"]):
+            issues.append(prefix + ": capture_id is not a timestamp plus digest prefix")
+        if row["source_url"] != SOURCE_URL or row["source"] != SOURCE_URL:
+            issues.append(prefix + ": source must be the pinned official NFL injury hub")
+        try:
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", row["retrieved_at_utc"]):
+                raise ValueError("timestamp format is not UTC seconds")
+            captured = datetime.fromisoformat(row["retrieved_at_utc"].replace("Z", "+00:00"))
+            if captured.tzinfo is None or captured.utcoffset() != timezone.utc.utcoffset(captured):
+                raise ValueError("timestamp is not UTC")
+        except Exception:
+            issues.append(prefix + ": retrieval timestamp is not valid timezone-aware UTC")
+        final_url = row["final_url"]
+        if final_url:
+            parsed = urlparse(final_url)
+            if parsed.scheme != "https" or parsed.hostname != "www.nfl.com" or parsed.query or parsed.fragment:
+                issues.append(prefix + ": final URL is outside the sanitized HTTPS NFL URL form")
+        elif row["capture_status"] != "failed" and "FINAL_URL_INVALID" not in row["conflict_flags"].split(";"):
+            issues.append(prefix + ": successful response is missing its sanitized final URL")
+        if "FINAL_URL_INVALID" in row["conflict_flags"].split(";") and final_url:
+            issues.append(prefix + ": invalid final URL must not be published")
+        if row["raw_retained"] != "no":
+            issues.append(prefix + ": raw_retained must be no")
+        if row["change_from_previous"] not in allowed_changes:
+            issues.append(prefix + ": invalid change_from_previous value")
+        if row["capture_status"] not in allowed_capture_status:
+            issues.append(prefix + ": invalid capture_status value")
+        if row["schema_status"] not in allowed_schema_status:
+            issues.append(prefix + ": invalid schema_status value")
+        if row["error"] not in allowed_errors:
+            issues.append(prefix + ": error field must use a fixed safe code")
+        flags = row["conflict_flags"].split(";") if row["conflict_flags"] else []
+        if len(flags) != len(set(flags)) or flags != sorted(flags) or set(flags) - allowed_flags:
+            issues.append(prefix + ": conflict flags must be unique, sorted, and from the safe vocabulary")
+
+        if row["response_sha256"] and not SHA256_RE.fullmatch(row["response_sha256"]):
+            issues.append(prefix + ": raw response SHA-256 is malformed")
+        if row["capture_status"] == "failed":
+            if row["schema_status"] != "unavailable" or row["change_from_previous"] != "fetch_failed":
+                issues.append(prefix + ": failed capture has inconsistent schema/change status")
+            if row["schema_sha256"] or row["injury_table_count"] or row["injury_row_count"]:
+                issues.append(prefix + ": failed capture must not fabricate a schema fingerprint or aggregate counts")
+            if "FETCH_FAILED" not in flags or not row["error"]:
+                issues.append(prefix + ": fetch failure is missing a safe error code or FETCH_FAILED flag")
+        else:
+            if row["schema_status"] == "unavailable":
+                issues.append(prefix + ": retrieved capture cannot have unavailable schema")
+            if not SHA256_RE.fullmatch(row["response_sha256"]):
+                issues.append(prefix + ": raw response SHA-256 is malformed")
+            if not SHA256_RE.fullmatch(row["schema_sha256"]):
+                issues.append(prefix + ": schema SHA-256 is malformed")
+            for field in ("injury_table_count", "injury_row_count"):
+                if not row[field].isdigit():
+                    issues.append(prefix + ": %s is not a nonnegative aggregate count" % field)
+            if row["schema_status"] == "matched" and row["injury_table_count"].isdigit() \
+                    and int(row["injury_table_count"]) < 1:
+                issues.append(prefix + ": matched schema has no matching injury table")
+            if row["error"]:
+                issues.append(prefix + ": successful HTTP capture must not contain a fetch error")
+            if row["capture_status"] == "ok" and (row["schema_status"] != "matched" or flags):
+                issues.append(prefix + ": capture marked ok despite schema drift or conflict flags")
+            if row["schema_status"] == "drift" and row["capture_status"] != "schema_drift":
+                issues.append(prefix + ": schema drift is not reflected in capture_status")
+            successful_by_hash.setdefault(row["response_sha256"], row["schema_sha256"])
+
+        prior_hash = row["previous_response_sha256"]
+        if prior_hash and not SHA256_RE.fullmatch(prior_hash):
+            issues.append(prefix + ": previous response digest is malformed")
+        change = row["change_from_previous"]
+        if change == "first_capture" and prior_hash:
+            issues.append(prefix + ": first capture unexpectedly names a previous response")
+        if change in {"unchanged", "body_changed", "schema_changed"} and not prior_hash:
+            issues.append(prefix + ": comparison result has no previous response digest")
+        if change == "unchanged" and row["response_sha256"] != prior_hash:
+            issues.append(prefix + ": unchanged response does not match the previous digest")
+        if change == "unchanged":
+            prior_schema = successful_by_hash.get(prior_hash)
+            if prior_schema and row["schema_sha256"] != prior_schema:
+                issues.append(prefix + ": unchanged response has a different schema fingerprint")
+        if change == "body_changed" and row["response_sha256"] == prior_hash:
+            issues.append(prefix + ": body_changed has the same digest as the previous read")
+        if change == "schema_changed":
+            if "SCHEMA_CHANGED_FROM_PREVIOUS" not in flags:
+                issues.append(prefix + ": schema change lacks its conflict flag")
+            prior_schema = successful_by_hash.get(prior_hash)
+            if prior_schema and row["schema_sha256"] == prior_schema:
+                issues.append(prefix + ": schema_changed digest equals the previous schema fingerprint")
+        if "SAME_TIMESTAMP_DIFFERENT_HASH" in flags and row["capture_status"] != "schema_drift":
+            issues.append(prefix + ": same-timestamp digest conflict is not marked as drift")
+
+    if issues:
+        bad("availability fingerprint ledger: %s" % issues[:8])
+    else:
+        ok("availability fingerprint ledger: %d metadata-only attempts; raw_retained=no, no row-level or raw-body fields"
+           % len(data))
+
+    dictionary = os.path.join(ROOT, "content", "data-dictionary.md")
+    dictionary_text = open(dictionary, encoding="utf-8").read() if os.path.exists(dictionary) else ""
+    if "| `data/availability_fingerprints.csv` | {{metric fingerprint_runs}} |" not in dictionary_text:
+        bad("availability fingerprint ledger: data dictionary must render its row count from fingerprint_runs")
+    documented = [field for field in LEDGER_FIELDS if "`%s`" % field not in dictionary_text]
+    if documented:
+        bad("availability fingerprint ledger: data dictionary omits columns %s" % documented)
+
+    manifest_path = os.path.join(DATA, "build_manifest.json")
+    try:
+        manifest = json.load(open(manifest_path, encoding="utf-8"))
+        metrics = manifest.get("metrics", {})
+        expected_latest = max(data, key=lambda r: r["retrieved_at_utc"], default={})
+        expected_metrics = {
+            "fingerprint_runs": len(data),
+            "fingerprint_latest_utc": expected_latest.get("retrieved_at_utc", "not published"),
+            "fingerprint_latest_status": expected_latest.get("capture_status", "not published"),
+        }
+        stale = {key: (metrics.get(key), value) for key, value in expected_metrics.items()
+                 if metrics.get(key) != value}
+        if stale:
+            bad("availability fingerprint ledger: generated manifest metrics are stale: %s" % stale)
+        else:
+            ok("availability fingerprint ledger: generated manifest matches the current append-only CSV")
+    except Exception as exc:
+        bad("availability fingerprint ledger: missing or unreadable generated build manifest (%s)" % exc)
+
+    workflow = os.path.join(ROOT, ".github", "workflows", "availability-fingerprint.yml")
+    workflow_text = open(workflow, encoding="utf-8").read() if os.path.exists(workflow) else ""
+    needed_workflow_parts = ("cron: '17 23 * * 3-6'", "cron: '17 12 * * 0'", "issues: write",
+                            "actions: write", "gh issue create", "gh workflow run pages.yml",
+                            "unittest discover -s availability_monitor/tests",
+                            "python3 -m availability_monitor.capture")
+    missing = [part for part in needed_workflow_parts if part not in workflow_text]
+    if missing:
+        bad("availability fingerprint workflow is missing schedule/failure-alert requirements: %s" % missing)
+    elif "actions/upload-artifact" in workflow_text or "--raw-dir" in workflow_text:
+        bad("availability fingerprint workflow must not retain/upload raw response bodies")
+    else:
+        ok("availability fingerprint workflow schedules Wed-Sun, publishes metadata only, and opens a failure issue")
+
+    page_path = os.path.join(ROOT, "content", "availability-fingerprints.md")
+    page_text = open(page_path, encoding="utf-8").read() if os.path.exists(page_path) else ""
+    required_claims = ("metadata-only", "not a replayable snapshot store", "does **not** pass point-in-time replay gate G-03",
+                      "raw retention", "Q-50/Q-51")
+    missing_claims = [claim for claim in required_claims if claim.casefold() not in page_text.casefold()]
+    if missing_claims:
+        bad("availability fingerprint page omits scope/limitation language: %s" % missing_claims)
+    else:
+        ok("availability fingerprint page states metadata-only scope, raw-retention block, and no replay/G-03 claim")
+
+
 def rows_of(name):
     return rows(name)[0]
 
@@ -1418,7 +1605,7 @@ def main():
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
     settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()
     personnel_relief_reproduces(); reverification_83246f00_holds(); s745_registers_reproduce()
-    decision_readiness_holds(); reverification_e733834d_holds()
+    decision_readiness_holds(); reverification_e733834d_holds(); availability_fingerprint_ledger_holds()
     
     print("=" * 72)
     for m in PASS:
