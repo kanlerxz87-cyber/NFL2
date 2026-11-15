@@ -2582,3 +2582,11 @@ Official pages fetched for manual review on 2026-11-15: [NFL injury hub](https:/
 ### Publication status
 
 No PR is open yet. Next: fetch/merge current `origin/main` before pushing the final changes; open a PR from this fixed branch with the audit report, source links and existing flags; merge with `gh pr merge <number> --merge`; then verify CI and Pages deployment and fill in the exact PR/merge/deploy IDs here. Any merge conflict must retain this complete upstream log and all other session work.
+
+## Session `arena-24ccce92` — audit of decision-support readiness and reproducibility
+
+| Task | Status | Owner | Files in scope |
+|---|---|---|---|
+| Independently run the current integrated verification suite; document any reproducible issue and exact non-inferred next steps | in progress | `arena-24ccce92` | `audits/arena-24ccce92-review.md`, this coordination entry |
+
+Scope is limited to a new audit note and this append-only task-board entry. No existing data, generated HTML, pipeline, or another session's files will be edited. The task does not represent new NFL facts or claim official-source verification beyond links already present in the repository.
