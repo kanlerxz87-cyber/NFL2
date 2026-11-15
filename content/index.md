@@ -132,6 +132,7 @@ The time labels now identify different source snapshots rather than one global �
 | Full injury-hub re-read | 2026-11-12 22:35 | 279 rows across 26 clubs with filed rows |
 | Settled-game injury recheck | 2026-11-13 06:52 | Only the 20 WAS–NYG rows; **not** a full hub re-read |
 | Latest full injury-hub snapshot in this tree | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
+| Latest injury-hub read (15 Nov, row-level, hand-transcribed, FL-82) | 2026-11-15 12:51 | 347 filings covering all of the 28 clubs on the slate; Chargers and Ravens now have rows (FL-81); 51 new players and no removals against the 13 Nov file. See [Injury Hub delta](hub-delta.html) |
 | NFL division standings | **2026-11-13 12:53** | 32 clubs × W/L/T/PCT/PF/PA/NET PTS/STREAK: **256/256 values matched** the independent saved re-read; no standings value changed |
 
 The standings timestamp appears in the site-wide source-read banner and on each standings row. `tools/verify.py` checks it against the latest registered NFL standings source and compares every value against [`data/standings_recheck_20261113.csv`](data/standings_recheck_20261113.csv) on each run. The injury times above are intentionally separate; they describe different data snapshots and coverage, not a shared live refresh.

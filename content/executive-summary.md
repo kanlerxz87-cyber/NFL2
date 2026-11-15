@@ -7,6 +7,19 @@ The collection layer is real but time-sliced: the original Week 10 injury file h
 
 The analysis layer now includes a 136-game walk-forward ratings study, eight measured correlation rows, and a pre-registered 13-line Week 11 sample—but **no strategy has passed its validation gates**. Only one Week 10 game is settled and the Week 11 sample remains ungraded; a one-point MAE difference requires roughly 1,382–1,607 observations, depending on the metric, at the stated power target. Licensed market data and player-level participation/snap data are still missing or not entitled, so market-relative EV/CLV and player-prop pricing are not established. Two official gamebooks show actual starters and explicit game-day status for two games, but do not establish 2nd/3rd/4th-string rank or snap counts. Their NFL use notice requires written permission for other use, so bulk reuse is blocked by Q-50. The honest conclusion is measured research and a running process—not evidence of a profitable betting edge.
 
+## Update — 15 November 2026, 12:51Z (session `8dee7df7`)
+
+Read this as a diff against the 13 November sections below. It changes one standing statement and adds one dated read.
+
+| What changed | Earlier statement | Now (sourced) | What it means for a decision |
+| --- | --- | --- | --- |
+| Chargers and Ravens on the Week 10 hub | Both clubs answer "No Injuries Reported" ([FL-01](flagged-for-review.html)); the executive summary's finding 2 below says so | On 15 Nov the official page lists **19 Chargers rows** and **10 Ravens rows** ([FL-81](flagged-for-review.html)) | "No Injuries Reported" was true on its read date and is now superseded. Do not carry LAC or BAL as healthy from the 13 Nov file |
+| Designations on the slate | 9 in the 13 Nov file | **171** on the 15 Nov read: 70 Out, 90 Questionable, 11 Doubtful ([FL-83](flagged-for-review.html)) | the 9 was a collection gap, not a level. Only the change between dated reads counts as a signal |
+| Players on the record | 296 on 13 Nov | **347** on 15 Nov, covering all of the 28 clubs on the slate; 51 added, none removed ([Injury Hub delta](hub-delta.html)) | the hub still only grows |
+| Practice codes on shared players | not measured | **102** of 296 shared players changed code between the two reads | the delta is the surprise signal; the level alone tells us little |
+
+**Limit on this read.** The 15 November rows were copied by hand from the rendered official page. The Chargers and Ravens block was read a second time on the same day and matched name for name, but no raw capture with a stored hash exists yet ([FL-82](flagged-for-review.html)). The machine capture is open pull request #71, which belongs to another session.
+
 ## Latest verification and open decisions — 13 November 2026, 12:53Z
 
 | Area | Verified state | What it does **not** establish |
