@@ -2335,3 +2335,23 @@ arithmetic on the registers.
 |---|---|
 | 2026-11-15T12:12Z | Claimed D1 after running the repository audits. `tools/s2268_verify.py` rewrote all 11 HTML files solely because the footer embeds the current UTC time; restored those generated artifacts before editing. |
 | 2026-11-15T12:19Z | Replaced the wall-clock footer with the fixed official snapshot read time (`FETCH_UTC`), removing an unused datetime import. Two consecutive builds produced identical SHA-256 manifests for all 11 pages. `python tools/s2268_verify.py`: 1,016 checks, 0 errors, including the whole repository's builders/auditors. This is a build reproducibility fix; no source facts changed. |
+
+## Session `arena-779c5e6e` — final integration verification and dated decision-readiness handoff
+
+**Task status:** done · **Owner:** `arena-779c5e6e` · **Branch:** `arena/779c5e6e-nfl2`
+**Branch constraint:** Arena fixes this session to the active branch; no `session-*/` branch or worktree was created.
+**Exclusive file scope:** `audits/final-verification-2026-11-15.md`, this appended coordination section.
+**Task:** run the existing full-repository build, data, row-source, link, and model tests; record results and remaining blockers without changing another session's datasets or claiming unverified facts.
+**Claimed:** 2026-11-15 UTC. Claim committed and pushed before touching the report file.
+
+### Completion and verification — 2026-11-15 UTC
+
+Created `audits/final-verification-2026-11-15.md`. The source-of-truth requirement and proposal registers already cover the requested product areas; this work was a final integration audit, not a rewrite of other sessions' data. No existing data, generated pages, or models were modified.
+
+**Local verification:** `tools/build_site.py` (36 pages); `tools/verify.py` (174 passed, 1 warning); `tools/check_site.py` (11 passed, 1 warning); `scripts/audit_all_pages.py` (110 pages / 317 tables / 7,839 rows / zero broken links); `scripts/verify_site.py` (13/13); `scripts/verify_q51.py`; `scripts/verify_s53126614.py`; `tools/s2268_verify.py` (1,015 checks, zero errors); Q51 unit tests (36); `tools/review_verify.py`; `engine/verify_repo_and_site.py`; `git diff --check`. Exact scopes and caveats are in the audit report.
+
+**Official-source check performed in this session:** opened https://www.nfl.com/injuries/?week=11 on 2026-11-15. The returned official page labels the content Week 10 and shows Sunday, November 15 fixtures, despite the query parameter; the repository's latest full Week 10 injury snapshot is dated 2026-11-13. I did not retain a raw capture/hash or compare every row, so freshness is explicitly flagged as unverified in the report and no values were transcribed. Other cited official review sources: https://www.nfl.com/schedules/2026/by-week/week-10, https://www.nfl.com/scores/2026/week-9, https://www.nfl.com/games/, https://operations.nfl.com/.
+
+**Warnings / irregularities retained:** duplicate Q-46/Q-47 (FL-54); non-league research links on the registry page; Week 10 injury snapshot freshness not confirmed as of Nov 15; open price/prop-data and gamebook-rights gates; depth coverage remains partial; and the originated spread/total fail their scored do-nothing holdout. Existing flags and blank values were not overwritten.
+
+**PR / deployment record:** pending creation and merge of this final audit PR; Pages deployment confirmation follows the merge. The public root site was already configured and reported `built` for `main` before this change.
