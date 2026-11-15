@@ -2604,3 +2604,53 @@ Scope was limited to a new audit note and this append-only task-board entry. No 
 | D8-T6 | Integration: build, all verifier suites, link check, PR to `main`, merge `--merge`, confirm Pages, record here | unclaimed | generated root HTML, this section |
 
 **Not attempted here, and why:** a byte-level raw capture of nfl.com. The sandbox cannot reach `www.nfl.com` (`curl` and Python both fail with TLS EOF); `fetch_page` returns rendered text only, so no hash of official response bytes can be produced in this session. This gap is published as FL-80. Game books, snap counts, price feeds, the Texans depth image and the other items on the requirements register are unchanged by this session.
+
+### Completion record — `arena/d8372691-nfl2` (2026-11-15, UTC)
+
+| Task | Status | What was delivered |
+|---|---|---|
+| D8-T1 lineage | done | `scripts/injury_lineage_d8372691.py` writes `data/injury_lineage_d8372691.csv` (7 reads: rows, clubs, no-injury blocks, playing clubs with no rows, reference read, only-here / only-in-reference / value-difference counts, SHA-256 of the repository copy, claim check), `data/injury_club_delta_d8372691.csv` (32 clubs) and `data/injury_delta_players_d8372691.csv` (68 player rows: 17 added, 51 value-changed, 12 Nov 22:35Z → 13 Nov 12:46Z). |
+| D8-T2 spot-check | done | `data/injury_live_chunk_d8372691.csv` (44 rows, WAS / NYG / NE / DET, transcribed from the official page text this session) compared field by field: **15 Nov file 44/44 match; 13 Nov file 31/44 match** (13 differences: NE 10, DET 3). The Kansas City block was cut off in the page text and is not used. |
+| D8-T3 page | done | `content/injury-lineage.md` (Data group, nav entry `injury-lineage`); headline of `content/injuries.md` corrected from "All 254 rows the league published" to the first-ingest wording, with a link to the lineage page. |
+| D8-T4 register rows | done | `data/flags.csv`: FL-77 (headline wrong; **closed**), FL-78, FL-79, FL-80, FL-81 (**open**). `data/sources.csv`: S-INJ-D8 (live read, approximate time, partial). `content/data-dictionary.md`: five new CSV rows with counts that `tools/verify.py` checks. |
+| D8-T5 drift check | done | `.github/workflows/validate.yml`: one step runs `python3 scripts/injury_lineage_d8372691.py --check` after the verifier; it fails on any output that differs from its inputs. |
+
+### Verification performed (local, on the branch before the PR)
+
+- `python3 scripts/injury_lineage_d8372691.py --check`: 4 outputs match inputs; spot-check 44/44 (15 Nov) and 31/44 (13 Nov).
+- `python3 tools/build_site.py` (37 pages, deterministic); `python3 tools/verify.py`: 183 passed, 0 failed (one existing warning, FL-54); `python3 tools/check_site.py`: 11 passed, 0 failed (one existing warning on registry links).
+- `scripts/audit_all_pages.py`: 111 HTML pages / 44 JSON / 323 tables / 8,098 rows, 100% row-sourced, 0 broken links, 0 column mismatches. `scripts/verify_site.py` 13/13; `scripts/check_reproducible.py` all data files reproduce; `tools/verify_readiness_ac2dd497.py` pass; `tools/review_verify.py` pass; `engine/verify_repo_and_site.py` pass; `scripts/verify_q51.py` no errors; `scripts/verify_s53126614.py` pass; `python3 -m unittest discover -s tests/q51` 36 OK.
+- `tools/s2268_verify.py`: 12 scope-only errors (see CR-D8-01). No build, data, row-source, link or reproducibility error is reported by it.
+- Regenerated verifier outputs changed only to reflect this work: `data/build_manifest.json` (page, flag and source counts), `data/verification-report.json` and `datasets/e143a7ca/verification_manifest.json` (page and link counts).
+
+### Sources for manual review (every value above traces to one of these)
+
+- Official, read this session: [nfl.com/injuries](https://www.nfl.com/injuries/) — the Week 10 page as rendered text on 2026-11-15 at about 12:50 UTC (registered as S-INJ-D8). The text returned covers WAS, NYG, NE and DET in full; KC is cut off.
+- Official, registered by earlier sessions and compared here (not re-read this session): S-INJ (12 Nov 04:40Z), S-INJ-2235 (12 Nov 22:35Z), S-INJ-1246 (13 Nov 12:46Z), S-INJ-E733 (15 Nov 12:13Z) in `data/sources.csv`. Read times for the s745 file (12:45Z) and the 13 Nov file (12:46Z) are the `captured_utc` / `fetched_utc` values written in each file.
+- Schedule for the 28 playing clubs: `data/schedule_2026_wk10.csv` (registered as S-SCHED10-1113; not re-read this session).
+
+### Irregularities (published on Flagged for Review, not silently fixed)
+
+- **FL-77 (closed):** the "254 rows the league published" headline was wrong. The 254 file is a subset of the 279-row 12 Nov 22:35Z read and has no CIN or SEA rows; it also differs on 15 shared values.
+- **FL-78 (open):** 17 players added and 51 values changed between the 12 Nov and 13 Nov reads; neither side is a retained capture, so the league's changes cannot be separated from transcription differences.
+- **FL-79 (open):** two 12 Nov transcriptions of the same 279-row read agree on every player but disagree on 12 values.
+- **FL-80 (open):** no Week 10 injury file is a retained raw response with a hash. The sandbox cannot reach www.nfl.com (curl and Python both fail with TLS EOF), and the fetch tool returns rendered text only. This is the main unmet requirement for immutable, replayable snapshots.
+- **FL-81 (open):** the s745 file has 298 data rows but 296 players (two "No Injuries Reported" blocks are stored as rows); the s2268 file has one row fewer than the 13 Nov file (KC, Xavier Worthy).
+
+### Change requests (logged, not edited — other owners' scope or shared register)
+
+- **CR-D8-01 — `tools/s2268_verify.py`:** its historical scope allowlist does not include this session's files or the `content/injuries.md`, `data/sources.csv` and `.github/workflows/validate.yml` edits. The owner should either add them or retire that verifier. No build or data check fails because of it.
+- **CR-D8-02 — `data/requirements.csv`, R-19 "Track injuries" (status `done`):** this session's evidence (FL-80) shows no Week 10 injury read is a retained capture, and FL-78/FL-79 show the reads disagree. The integration owner should consider `in progress` until a retained capture exists. R-27 and R-38 are untouched.
+- **CR-D8-03 — scheduled capture:** the daily retained capture requested in the brief is the job of open PR #71 (`arena/1ef36c55-nfl2`, metadata only, which records hashes but not row data). This session did not build or edit it.
+
+### Branch note
+
+The brief asked for `session-<id>/<task>` branches. Arena fixes this session to `arena/d8372691-nfl2`, so all work is on that one branch and no other branch was created or pushed to.
+
+### Not attempted here
+
+The brief's other items remain as they are on `data/requirements.csv`: game-book starters and inactives, snap counts, the 32-club depth-order sweep, the Texans depth image, the price archive and CLV, the shadow baseline, the two-stage leaderboard and the demotion gate. None of them has a verified input that this session could read: the sandbox has no route to nfl.com except the fetch tool, and the other sources need access this session does not have.
+
+### PR & merge record
+
+_Recorded after the merge in a follow-up commit._
