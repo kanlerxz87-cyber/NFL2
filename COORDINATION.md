@@ -2370,6 +2370,16 @@ arithmetic on the registers.
 | 2026-11-15T12:12Z | Claimed D1 after running the repository audits. `tools/s2268_verify.py` rewrote all 11 HTML files solely because the footer embeds the current UTC time; restored those generated artifacts before editing. |
 | 2026-11-15T12:19Z | Replaced the wall-clock footer with the fixed official snapshot read time (`FETCH_UTC`), removing an unused datetime import. Two consecutive builds produced identical SHA-256 manifests for all 11 pages. `python tools/s2268_verify.py`: 1,016 checks, 0 errors, including the whole repository's builders/auditors. This is a build reproducibility fix; no source facts changed. |
 
+### D1 close-out — PR, verification, merge and deployment
+
+| Item | Result |
+|---|---|
+| PR | [#61](https://github.com/kanlerxz87-cyber/NFL2/pull/61) — Make s2268 site builds reproducible |
+| Merge | Merged 2026-11-15T12:14:29Z as `9f5ab38ef194b8fb6e1a9e065b2c34c23433be7a` |
+| PR checks | `Row-level verification, link check and build reproducibility`, `audit`, and `q51` all passed |
+| Post-merge checks | `build-and-audit`, `Verify site data and links`, and `Q51 evidence and engine verification` passed for the merge commit |
+| GitHub Pages | Actions runs [43712825716](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43712825716) and [43712825014](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43712825014) succeeded; Pages API reported `built`, source `main:/`, public site https://kanlerxz87-cyber.github.io/NFL2/ |
+| Data/source impact | No NFL data changed. The renderer now uses its existing official-read timestamp (`2026-11-13T12:40Z`) rather than a run-time clock. |
 ## Session `arena-779c5e6e` — final integration verification and dated decision-readiness handoff
 
 **Task status:** done · **Owner:** `arena-779c5e6e` · **Branch:** `arena/779c5e6e-nfl2`
@@ -2389,3 +2399,8 @@ Created `audits/final-verification-2026-11-15.md`. The source-of-truth requireme
 **Warnings / irregularities retained:** duplicate Q-46/Q-47 (FL-54); non-league research links on the registry page; Week 10 injury snapshot freshness not confirmed as of Nov 15; open price/prop-data and gamebook-rights gates; depth coverage remains partial; and the originated spread/total fail their scored do-nothing holdout. Existing flags and blank values were not overwritten.
 
 **PR / deployment record:** pending creation and merge of this final audit PR; Pages deployment confirmation follows the merge. The public root site was already configured and reported `built` for `main` before this change.
+
+
+**Conflict note (2026-11-15):** PR #63 initially conflicted because another active integration appended its final verification handoff to this shared board while the deployment record was pending. Merged `origin/main` into this branch and retained both the D1 close-out and session `arena-779c5e6e` records plus its audit report; no incoming work was discarded.
+
+**Rebase conflict note (2026-11-15):** Before pushing the conflict-resolution merge, `git pull --rebase origin arena/8e4d5dfe-nfl2` attempted to replay the parallel integration's now-merged `c06ccdd` coordination claim and conflicted in `COORDINATION.md`. Aborted the rebase without dropping any changes; the current branch already contains both `origin/main` and its previous remote head via the explicit merge commit `8c4fc45`. No upstream work was rewritten.
