@@ -2351,16 +2351,16 @@ https://www.nfl.com/injuries/ (Week 10 hub, first chunk fetched 2026-11-15, cove
 
 ### Completion record — session `e733834d`
 
-| UTC | Entry |
+| Order (clock times were not logged; the sequence is exact, the minutes are not) | Entry |
 |---|---|
-| 2026-11-15T12:13Z | Claim E7-01..E7-07 pushed to `arena/e733834d-nfl2` before any file was created. |
-| 12:10–12:13Z | Official `https://www.nfl.com/injuries/` read by the agent (first chunk, Week 10 hub). WAS (9 rows), NYG (11), NE (15) and DET (9) transcribed field for field into `data/injuries_wk10_e733834d_20261115.csv`. The fetch minute was not logged; `fetched_utc` is therefore an upper bound. |
-| 12:14Z | `tools/reverify_e733834d.py` compares the 44 official rows with the 13 November read (`data/injuries_wk10_83246f00.csv`). Result: **31 MATCH, 13 MISMATCH**. Every MISMATCH cites a flag. Written to `data/reverification_e733834d.csv` (RV-E01..RV-E44). |
-| 12:16Z | `tools/build_decision_readiness.py` writes `data/decision_readiness.csv`: one row per requirement (46), with status, the blocking gate and its status, the gate's own pass criterion as the clearing number, and open questions. All gate and question IDs are checked against their registers. |
-| 12:18Z | Decision-readiness table added to the landing page (`content/index.md`, a generated CSV directive). |
-| 12:20Z | `tools/verify.py` gains `decision_readiness_holds()` and `reverification_e733834d_holds()`, both run from `main()`. |
-| 12:22Z | Flags **FL-73** (NE, 10 rows), **FL-74** (DET, 3 rows), **FL-75** (README verifier count), **FL-76** (sidebar counted every flag as open). Sources row **S-INJ-E733** added. Requirement **R-46** added; R-02 corrected from 45 to 46 rows. |
-| 12:28Z | `tools/build_site.py` sidebar label changed from "N open flags" to "N flags published" (FL-76). |
+| Before any file was created | Claim E7-01..E7-07 pushed to `arena/e733834d-nfl2` before any file was created. |
+| Same session, before the claim commit | Official `https://www.nfl.com/injuries/` read by the agent (first chunk, Week 10 hub). WAS (9 rows), NYG (11), NE (15) and DET (9) transcribed field for field into `data/injuries_wk10_e733834d_20261115.csv`. The fetch minute was not logged; `fetched_utc` is therefore an upper bound (the claim time, 2026-11-15T12:13Z, is the latest possible read time). |
+| Next | `tools/reverify_e733834d.py` compares the 44 official rows with the 13 November read (`data/injuries_wk10_83246f00.csv`). Result: **31 MATCH, 13 MISMATCH**. Every MISMATCH cites a flag. Written to `data/reverification_e733834d.csv` (RV-E01..RV-E44). |
+| Next | `tools/build_decision_readiness.py` writes `data/decision_readiness.csv`: one row per requirement (46), with status, the blocking gate and its status, the gate's own pass criterion as the clearing number, and open questions. All gate and question IDs are checked against their registers. |
+| Next | Decision-readiness table added to the landing page (`content/index.md`, a generated CSV directive). |
+| Next | `tools/verify.py` gains `decision_readiness_holds()` and `reverification_e733834d_holds()`, both run from `main()`. |
+| Next | Flags **FL-73** (NE, 10 rows), **FL-74** (DET, 3 rows), **FL-75** (README verifier count), **FL-76** (sidebar counted every flag as open). Sources row **S-INJ-E733** added. Requirement **R-46** added; R-02 corrected from 45 to 46 rows. |
+| Last | `tools/build_site.py` sidebar label changed from "N open flags" to "N flags published" (FL-76). |
 
 ### Verification performed on the combined tree
 
