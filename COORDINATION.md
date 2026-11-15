@@ -2944,4 +2944,9 @@ The brief's other items remain as they are on `data/requirements.csv`: game-book
 
 ### PR & merge record
 
-_Recorded after the merge in a follow-up commit._
+- **PR #76** (`arena/d8372691-nfl2` into `main`): merged with a merge commit at **2026-11-15T13:08:11Z**, merge commit `e484096`. Checks on head `88dabd3`: row-level verification, audit, Q51 and validate all passed.
+- **Pages:** the "pages build and deployment" and "GitHub Pages" runs for `e484096` both succeeded. The live page `injury-lineage.html` was fetched and serves the eight-read table, the flags FL-87 to FL-91 and the club delta.
+- **Merge history (for the record):** `main` moved four times during the integration (PR #73, #74, #75, #77, #78, #79). Each time the branch was merged with `origin/main` and the generated outputs were regenerated, not hand-merged. The integration ran the verifiers after each merge. The last merge was done without a further race.
+- **Changes after the merge:** none to the site. This record is the only follow-up.
+- **Open items left for the owner (not blocking):** FL-88 to FL-91 (no retained raw capture; the hub read is transcribed by hand), CR-D8-01 (`tools/s2268_verify.py` scope allowlist: 16 scope-only errors, exit 1, not a build or data failure), and CR-D8-02 (R-19 "Track injuries" marked `done`, consider `in progress`).
+
