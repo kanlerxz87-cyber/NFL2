@@ -13,9 +13,9 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
 | `data/sources.csv` | {{metric sources}} | source | — |
-| `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows | S-BRIEF, S-DESIGN, S-REPO |
+| `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows; requirements and gate mappings are project design, not NFL facts | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
-| `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | design rows | S-DESIGN |
+| `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | internal design rows and validation rules; thresholds are project policy, not NFL standards | S-DESIGN |
 | `data/computed_fair_lines.csv` | 14 | one Week 10 fixture; stages 1–2 of the origination pipeline | S-CALC |
 | `data/computed_correlation.csv` | 2 | one pair class with a measured Pearson r | S-CALC |
 | `data/computed_depth_reach.csv` | 18 | one position group where the 1st string is unavailable, for charted clubs | S-CALC |

@@ -2545,3 +2545,40 @@ The readiness table was already integrated into the canonical landing page and r
 | Live site | https://kanlerxz87-cyber.github.io/NFL2/ |
 
 **Change request CR-C023-01:** `tools/s2268_verify.py`'s historical scope allowlist does not include `data/requirements.csv`, so its local scope audit reports an error after the authorized final-integration update of R-37/R-38. No edit was made to that other session's verifier per the shared-file rule. The standard site/data/link checks and GitHub CI are green; request is for the verifier owner/future integration to recognize this shared requirements-register file when the final integration updates requirement status.
+
+## Session `ac2dd497` (`arena/ac2dd497-nfl2`) — final requirements/register integration
+
+**Branch:** `arena/ac2dd497-nfl2` · **base named in the session note:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f` · **claim / integration commits pushed:** `7d05268`, `36a8d3b`, `bf22344`, `0ac0266`, `ffe8334`.
+
+### Scope after mainline integration
+
+PRs #64, #66, #68 and #69 already made `data/requirements.csv` the single requirements/readiness register, rendered its `blocks` and `clears_with` fields on the landing and requirements pages, added R-46, and brought in the 2026-11-15 official injury re-read including FL-73 onward. Do not create the superseded `data/decision_readiness_ac2dd497.csv` or duplicate existing flags/sources. Preserve upstream rows. FL-73 and FL-74 already record the 15 Nov re-read; FL-44 and FL-60 already record the separate depth-coverage limitations.
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| Audit every gate mapping; distinguish the 10-chart personnel-relief join from S745's 31/32 chart transcription | done | `ac2dd497` | `data/requirements.csv`, `audits/requirements-gate-audit-2026-11-15.md` |
+| Publish the register and explicitly label requirements/gates/status as project design rather than official NFL facts | done | `ac2dd497` | `content/index.md`, `content/requirements.md`, `content/data-dictionary.md`, generated root pages/manifest |
+| Add landing-row coverage, gate-reference, source-class and coverage-distinction regression check and CI hook | done | `ac2dd497` | `tools/verify_readiness_ac2dd497.py`, `.github/workflows/validate.yml` |
+| Rebuild and run data/site/link/model suites | done | `ac2dd497` | generated root HTML and `data/build_manifest.json` only via `tools/build_site.py` |
+| Open/merge this branch's PR; confirm Pages deployment and record result | in progress | `ac2dd497` | `COORDINATION.md` |
+
+### Audit decisions and source review
+
+The complete map review is in `audits/requirements-gate-audit-2026-11-15.md`. It found all gate references resolve to the 14 registered gates. R-15 now points to all hard promotion gates G-01–G-12 (scoped by strategy/tier); soft G-13/G-14 remain reward/staking gates. R-16 and R-43 no longer mis-map descriptive correlation estimation to G-06 calibration or G-12 CLV; the gate register defines no correlation-estimation threshold. Clearing conditions for R-13/R-14, R-17, R-19, R-20/R-21/R-44 and R-45 now state the existing gate criteria. No threshold or new gate was invented.
+
+The two depth counts are different operations and dated files. `data/personnel_relief_club_83246f00.csv` has 10 chart URLs and resolves 85 of the 296 rows in the 2026-11-13 Week 10 injury snapshot; eight of those ten clubs have filing rows to resolve, while BAL and LAC had no listed players. S745's separate `data/s745_depth_summary.csv` records chart pages transcribed for 31 of 32 clubs as of its 2026-11-13 read; Houston's official club page presents an image that was not transcribed. This does not establish 31/32 verified point-in-time starter replacements. The landing page and full requirements page now explain this distinction and link to the official NFL hub, the row-linked chart register and existing FL-44/FL-60.
+
+Official pages fetched for manual review on 2026-11-15: [NFL injury hub](https://www.nfl.com/injuries/) (still labelled Week 10; its 44 WAS/NYG/NE/DET rows match the saved 15 Nov transcription, whose comparison to the 13 Nov snapshot records 31 matches and 13 differences flagged in FL-73/FL-74); [Patriots depth chart](https://www.patriots.com/team/depth-chart) (club page labels it unofficial and attributes it to Patriots.com writers); [Houston depth chart](https://www.houstontexans.com/team/depth-chart) (club page labels it unofficial and publishes an image). The fresh fetch was not retained as a raw capture/hash, and all 31 club charts were not re-transcribed in this task. No `data/sources.csv` or `data/flags.csv` rows were edited or appended: FL-73/74 and FL-44/60 already cover these findings.
+
+### Verification — 2026-11-15
+
+- `python3 tools/build_site.py`: built 36 pages; `python3 tools/verify_readiness_ac2dd497.py`: all 46 register IDs render once in order with their source class; all gate references valid; separate 10/85/296 and 31/32 coverage reproduced.
+- `python3 tools/verify.py`: 178 passed, 1 existing warning (duplicate Q-46/Q-47, FL-54), 0 failures.
+- `python3 tools/check_site.py`: 11 passed, 1 existing warning for non-league research/registry links, 0 failures.
+- `python3 scripts/audit_all_pages.py`: 110 HTML / 44 JSON files / 319 tables / 7,937 rows, 100% row-sourced, 0 broken links. `scripts/verify_site.py`: 13/13; `scripts/verify_q51.py`: 10 pages / 155 rows / 0 errors; `scripts/verify_s53126614.py`: pass; Q51 unit tests: 36 passed.
+- `scripts/check_reproducible.py`: all 10 site data JSON files reproduce. `tools/review_verify.py`: 423 rows sourced, 0 broken links. `engine/verify_repo_and_site.py`: 326/326 portal rows sourced, 0 broken links. `git diff --check`: pass.
+- `tools/s2268_verify.py`: all six nested build/data/site/audit/model suites pass. Its separate historical scope allowlist returns 5 scope-only errors for this authorized final-integration work (`.github/workflows/validate.yml`, `content/requirements.md`, `data/requirements.csv`, this audit report and `tools/verify_readiness_ac2dd497.py`). Its allowlist was not changed because it belongs to the already-merged S2268 verification scope; no build, data, link or reproducibility failure was reported.
+
+### Publication status
+
+No PR is open yet. Next: fetch/merge current `origin/main` before pushing the final changes; open a PR from this fixed branch with the audit report, source links and existing flags; merge with `gh pr merge <number> --merge`; then verify CI and Pages deployment and fill in the exact PR/merge/deploy IDs here. Any merge conflict must retain this complete upstream log and all other session work.

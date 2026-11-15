@@ -9,9 +9,15 @@
 
 ## Decision readiness — one row per requirement
 
-Every requirement on the register appears once below, with its status, the gate that blocks it, and the number that would clear it. It is the same register as the [full requirements page](requirements.html), rendered from `data/requirements.csv`; a single source, so the two pages cannot disagree. A `—` means the requirement is an owner action or a project policy that no statistical gate governs. `verify.py` fails the build if a requirement lacks a gate or a clearing number.
+Every requirement on the register appears once below, with its status, the gate that blocks it, and the clearing condition. It is the same register as the [full requirements page](requirements.html), rendered from `data/requirements.csv`; one source, so the two pages cannot disagree. A `—` means no applicable technical gate or numeric threshold is defined in the project register. The landing-table verifier checks current-row coverage, gate references and source classification.
 
-{{csv data/requirements.csv;;cols=id:ID,requirement:Requirement,status:Status,blocks:Gate that blocks it,clears_with:Number that clears it;;source=S-BRIEF;;caption=Source for every row is the owner's brief, recorded as the register itself (S-BRIEF). Gate thresholds are pre-specified rules from data/gates.csv, not measured results. Rows marked in progress or pending are open actions, not findings.}}
+> **Source class:** Requirement wording, statuses, gate mappings and thresholds are project-design statements taken from the owner brief and in-repository design records. They are **not official NFL facts**, and are not verified by an NFL source. The `Source` column intentionally links to `S-BRIEF` (the owner instruction); official NFL facts are published separately with their own source links. A project gate being documented does not mean it has passed.
+
+{{csv data/requirements.csv;;cols=id:ID,requirement:Requirement,raised_in:Origin,status:Status,blocks:Gate that blocks it,clears_with:Number that clears it;;source=S-BRIEF;;caption=The Source link leads to the durable register; Origin records each row's stated project brief, session or audit provenance. S-BRIEF is an owner-instruction reference, not an NFL source. Requirement text, gate rules and statuses are project design, not official NFL facts or source verification.}}
+
+### Depth coverage counts are different measures
+
+The **10-chart personnel-relief join** uses the dated 2026-11-13 Week 10 injury snapshot: 85 of its 296 filed rows resolve to one of the 10 club chart pages in that join ([Personnel Relief](personnel-relief.html), [dated injury table](availability-1113.html), [official NFL injury hub](https://www.nfl.com/injuries/)). This 85/296 figure is a repository join result, not an NFL-published statistic. Separately, the S745 register transcribes **31 of 32 club-published, explicitly unofficial depth charts** as read on 2026-11-13 ([Depth Register with row-level chart links](depth-deficiencies.html)); Houston's [official club page](https://www.houstontexans.com/team/depth-chart) presents its chart as an image, which remains untranscribed ([FL-60](flagged-for-review.html)). The 31/32 figure counts chart pages transcribed; it does **not** establish 31/32 point-in-time starter-replacement joins. The 10-club and 31/32-club counts describe different files, dates and operations; see also [FL-44](flagged-for-review.html).
 
 ## Read this first
 
