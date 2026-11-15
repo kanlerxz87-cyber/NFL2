@@ -330,74 +330,47 @@ def render_site_map():
     return "".join(out)
 
 
-# Requirement-to-gate relationships are explicit integration mapping, not inferred from
-# string similarity. Every criterion rendered below is copied verbatim from data/gates.csv.
-# An empty tuple means the project has not defined a numeric gate for that requirement.
-READINESS_GATES = {
-    "R-01": ("G-02",), "R-02": (), "R-03": (), "R-04": (), "R-05": (),
-    "R-06": (), "R-07": (), "R-08": ("G-06", "G-07"),
-    "R-09": ("G-06",), "R-10": ("G-08", "G-09"),
-    "R-11": ("G-09", "G-14"), "R-12": ("G-07", "G-08"),
-    "R-13": ("G-08", "G-13"), "R-14": ("G-02", "G-08", "G-13"),
-    "R-15": tuple("G-%02d" % i for i in range(1, 15)),
-    "R-16": ("G-08", "G-13"), "R-17": ("G-08", "G-12"),
-    "R-18": ("G-08", "G-10"), "R-19": ("G-03",),
-    "R-20": ("G-02", "G-03"), "R-21": ("G-02", "G-03"),
-    "R-22": (), "R-23": ("G-04",), "R-24": ("G-04",),
-    "R-25": (), "R-26": ("G-01", "G-02", "G-03"),
-    "R-27": (), "R-28": (), "R-29": (), "R-30": (),
-    "R-31": (), "R-32": (), "R-33": ("G-01",), "R-34": ("G-01",),
-    "R-35": (), "R-36": (), "R-37": (), "R-38": (), "R-39": (),
-    "R-40": (), "R-41": ("G-03",), "R-42": ("G-06", "G-07"),
-    "R-43": ("G-08", "G-13"), "R-44": ("G-02", "G-03"),
-    "R-45": ("G-07",),
-}
-
-
 def render_readiness_table():
-    """Render every requirement beside its registered blocker and exact gate criterion."""
+    """Render every requirement beside its register-linked gate and clearing condition."""
     requirements = read_rows("requirements.csv")
     gates = {r["id"]: r for r in read_rows("gates.csv")}
-    req_ids = {r["id"] for r in requirements}
-    if req_ids != set(READINESS_GATES):
-        missing = sorted(req_ids - set(READINESS_GATES))
-        extra = sorted(set(READINESS_GATES) - req_ids)
-        raise BuildError("readiness mapping does not cover requirement register (missing=%s extra=%s)" % (missing, extra))
-    unknown = sorted({g for ids in READINESS_GATES.values() for g in ids} - set(gates))
-    if unknown:
-        raise BuildError("readiness mapping refers to unknown gates: %s" % ", ".join(unknown))
+    if not requirements or not {"blocks", "clears_with"}.issubset(requirements[0]):
+        raise BuildError("requirements.csv must publish the blocks and clears_with columns")
 
     rows = []
     for req in requirements:
-        ids = READINESS_GATES[req["id"]]
+        ids = re.findall(r"G-\d{2}", req["blocks"])
+        unknown = sorted(set(ids) - set(gates))
+        if unknown:
+            raise BuildError("%s refers to unknown readiness gates: %s" % (req["id"], ", ".join(unknown)))
         if ids:
-            gate_cells = []
-            criterion_cells = []
-            for gid in ids:
-                gate = gates[gid]
-                gate_cells.append('<a href="validation-gates.html">%s</a> — %s' % (gid, esc(gate["current_status"])))
-                criterion_cells.append('<div><strong>%s:</strong> %s</div>' % (gid, esc(gate["pass_criterion"])))
-            gate_html = "<br>".join(gate_cells)
-            criterion_html = "".join(criterion_cells)
+            gate_html = "<br>".join(
+                '<a href="validation-gates.html">%s</a> — %s' % (gid, esc(gates[gid]["current_status"]))
+                for gid in ids)
+            condition = esc(req["clears_with"])
+            condition += "".join(
+                '<div><strong>%s pass criterion:</strong> %s</div>' % (gid, esc(gates[gid]["pass_criterion"]))
+                for gid in ids)
         else:
             gate_html = '<span class="np">No requirement-specific gate defined</span>'
             if req["status"].strip().lower() == "done":
-                criterion_html = "No numeric threshold is recorded; the requirement register marks this item done."
+                condition = "No numeric threshold is recorded; the requirement register marks this item done."
             else:
-                criterion_html = ('No numeric clearing criterion is recorded in the gate register. '
-                                  'Do not infer one; a requirement-specific threshold must be defined before numeric readiness can be claimed.')
+                condition = ('No numeric clearing criterion is recorded in the requirement or gate registers. '
+                             'Do not infer one; a requirement-specific threshold must be defined before numeric readiness can be claimed.')
         rows.append(
             '<tr><td><a href="requirements.html">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>'
             % (esc(req["id"]), esc(req["requirement"]), esc(req["status"]), gate_html,
-               criterion_html, source_link("S-BRIEF") + " " + source_link("S-DESIGN")))
-    caption = ('One row per requirement in <a href="requirements.html">data/requirements.csv</a>. Status is copied from that register; '
-               'gate status and pass criteria are copied verbatim from <a href="validation-gates.html">data/gates.csv</a>. '
-               'The gate thresholds are internal design criteria, not NFL facts or measured results. Requirement rows cite the project '
-               'brief/register and gate design record; those are the appropriate sources for project requirements, not official NFL sources. '
-               'Where no criterion exists, the gap is shown instead of inventing a number.')
+               condition, source_link("S-BRIEF") + " " + source_link("S-DESIGN")))
+    caption = ('One row per requirement in <a href="requirements.html">data/requirements.csv</a>. Status, gate mapping and the '
+               'requirement-specific clear condition are copied from that register; gate status and pass criteria are copied verbatim '
+               'from <a href="validation-gates.html">data/gates.csv</a>. Gate thresholds are internal design criteria, not NFL facts '
+               'or measured results. Requirement rows cite the project brief/register and gate design record; these are appropriate '
+               'sources for project requirements, not official NFL sources. Where no criterion exists, the gap is shown instead of '
+               'inventing a number.')
     return ('<div class="tablewrap"><table class="data"><thead><tr>'
             '<th>Requirement</th><th>Requirement text</th><th>Registered status</th>'
-            '<th>Relevant blocking gate(s) and current gate state</th><th>Number / test that clears the gate</th>'
+            '<th>Relevant blocking gate(s) and current gate state</th><th>Number / condition that clears it</th>'
             '<th>Requirement / design source</th></tr></thead><tbody>%s</tbody></table></div>'
             '<p class="caption">%s</p>' % ("".join(rows), caption))
 
