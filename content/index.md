@@ -141,7 +141,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Category | Page | What you get |
 | --- | --- | --- |
 | Overview | [Executive summary](executive-summary.html) | the whole project in one read |
-| Overview | [Requirements](requirements.html) | {{metric requirements}} requirements, each traced to a page and a status |
+| Overview | [Requirements · decision readiness](requirements.html) | {{metric requirements}} requirements, each with the gate that blocks it and the number that clears it |
 | Overview | [Build plan](roadmap.html) | ordered work after your decisions |
 | Decisions | [Open questions](questions.html) | {{metric questions}} questions with what we have / what we lack / how to close |
 | Decisions | [Suggestion register](suggestions.html) | {{metric suggestions}} suggestions with impact, effort, risk, reversibility — pick a path |

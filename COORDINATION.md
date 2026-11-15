@@ -2321,24 +2321,108 @@ ship as FL-64…FL-72 rather than the FL-37…FL-45 they were drafted as. One fu
 second rebase: appending rows to `data/suggestions.csv` and `data/questions.csv` made session
 `745f788e`'s derived tables stale, so `scripts/build_s745_decisions.py` was re-run and the two row
 counts in the data dictionary were updated (64→72, 54→61). No fact in those tables changed; they are
+
+
+## Session `92d3ac43` (`arena/92d3ac43-nfl2`) — final integration, decision-readiness table, PR & Pages deploy
+
+**Session ID:** `92d3ac43` · **Branch:** `arena/92d3ac43-nfl2` · **Branch base:** `1eaf7f74` (HEAD of `main`, PR #60 merged, all prior session branches merged and deleted, no open PRs) · **Started:** 2026-11-13 (sandbox local date)
+
+**Why this session exists.** Every prior session's work is merged, the root site builds (36 pages) and all eight verifier suites are green, and GitHub Pages reports `status: built`. What remains for this session is the owner-facing decision layer the brief names explicitly plus the final integration the board reserves for the integration session:
+
+1. A true **decision-readiness table** — one row per requirement, each with the gate that blocks it and the number that would clear it (the requirements register today has status and note but no gate/clear-number columns).
+2. A final line-by-line verification pass against the live official pages that are reachable (standings/schedule), with outcomes published.
+3. The final integration step: a PR from this branch to `main` carrying the summary, sources and flagged items, merged without waiting, with GitHub Pages confirmed deployed.
+
+**Exclusive file scope** (nothing else is touched):
+- `data/requirements.csv` — add `blocks` (gate id) and `clears_with` (number that would clear it) columns, mapped from `data/gates.csv`; process/design requirements are marked `n/a` rather than assigned a speculative gate
+- `content/requirements.md` — render the two new columns in the requirements table
+- `content/index.md` — one row linking the decision-readiness view from the landing page
+- Regenerated root `*.html` and `data/build_manifest.json` (build products, never hand-edited)
+- `COORDINATION.md` — this section, the log, and the PR/merge/Pages record
+
+**Files this session will NOT touch:** every other session's tree (`q51/`, `portal/`, `analytics/`, `s53/`, `s92/`, `review/`, `site/`, `pipeline/`, `datasets/`, `archive/`, `docs/`, `crosscheck/`, `research/`, `engine/`, `collectors/`, `scripts/`), the frozen weeks 1–9 corpus, injury captures, and any register other than `data/requirements.csv`.
+
+**Integration authority.** No other `arena/*` session is live and no PR is open, so this session also acts as the integration session for shared files (root `data/*.csv`, `content/*.md`, `tools/build_site.py`, generated root HTML).
+
+**Task board**
+
+| ID | Task | Status | Owner | File scope |
+|----|------|--------|-------|------------|
+| I1 | Claim the integration session and push the claim before editing | in progress | `92d3ac43` | `COORDINATION.md` |
+| I2 | Add gate/clear-number decision-readiness columns to the requirements register and render them | unclaimed → in progress | `92d3ac43` | `data/requirements.csv`, `content/requirements.md` |
+| I3 | Re-verify reachable official pages (standings/schedule) and publish the outcome | unclaimed → in progress | `92d3ac43` | `COORDINATION.md` log + flagged page as needed |
+| I4 | Rebuild, run all verifier suites, confirm green | unclaimed → in progress | `92d3ac43` | generated root HTML |
+| I5 | Open PR `arena/92d3ac43-nfl2` → `main` with summary, sources and flags; merge `--merge` without waiting; confirm Pages deploy; record PR link + merge result here | unclaimed → in progress | `92d3ac43` | `COORDINATION.md` |
+
+**Handoff:** none required — this is the final integration session for this round.
 arithmetic on the registers.
 
-## Session `ac2dd497` (`arena/ac2dd497-nfl2`) — decision-readiness landing table (final integration claim)
+## Session `arena/8e4d5dfe-nfl2` — deterministic generated-page timestamps
 
-**Claimed:** 2026-11-15 UTC · **Branch:** `arena/ac2dd497-nfl2` · **Base:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f`
-
-No GitHub pull requests are open. The older `in progress` entries in this log predate the merged PR #60 and have no current PR/branch activity; this claim is limited to a new decision-readiness crosswalk and the final landing-page integration. It does not change any source snapshots, market prices, injuries, depth rows, model results, or pre-registered strategy locks.
-
-### Exclusive scope
+**Claim:** Make the `s2268/` static-site renderer reproducible as documented. Its footer currently inserts the wall-clock build time, so a routine verification changes 11 tracked HTML pages and contradicts the stated byte-determinism guarantee. This task is limited to `tools/s2268_build_site.py` and its generated `s2268/*.html` outputs. No live official data will be changed or newly asserted. No active claim for these paths was found; the prior owner recorded the tree complete and merged in PR #57.
 
 | Task | Status | Owner | Files |
 |---|---|---|---|
-| Build a one-row-per-requirement readiness crosswalk from the existing requirement and gate registers; show blockers and the existing clearance criteria; leave unestablished metrics blank and flag them | in progress | `ac2dd497` | `data/decision_readiness_ac2dd497.csv`, `tools/verify_readiness_ac2dd497.py` |
-| Integrate the crosswalk on the canonical landing page as final integration; preserve the existing requirement register and generated-site contract | in progress | `ac2dd497` | `content/index.md`, generated `index.html`, generated `data/build_manifest.json`, `COORDINATION.md` |
+| D1: remove wall-clock nondeterminism from the s2268 renderer and verify repeat builds are byte-identical | done | `arena/8e4d5dfe-nfl2` | `tools/s2268_build_site.py`, generated `s2268/*.html` |
 
-The readiness table will cite the project brief for requirement text and show an official NFL/club source only where that source directly supports a factual input. A project-design requirement has no honest NFL source; that cell will remain unverified rather than borrowing an unrelated official URL. Existing gate thresholds are copied from `data/gates.csv`; no threshold will be invented to make a row look complete.
+| UTC | Entry |
+|---|---|
+| 2026-11-15T12:12Z | Claimed D1 after running the repository audits. `tools/s2268_verify.py` rewrote all 11 HTML files solely because the footer embeds the current UTC time; restored those generated artifacts before editing. |
+| 2026-11-15T12:19Z | Replaced the wall-clock footer with the fixed official snapshot read time (`FETCH_UTC`), removing an unused datetime import. Two consecutive builds produced identical SHA-256 manifests for all 11 pages. `python tools/s2268_verify.py`: 1,016 checks, 0 errors, including the whole repository's builders/auditors. This is a build reproducibility fix; no source facts changed. |
+
+### D1 close-out — PR, verification, merge and deployment
+
+| Item | Result |
+|---|---|
+| PR | [#61](https://github.com/kanlerxz87-cyber/NFL2/pull/61) — Make s2268 site builds reproducible |
+| Merge | Merged 2026-11-15T12:14:29Z as `9f5ab38ef194b8fb6e1a9e065b2c34c23433be7a` |
+| PR checks | `Row-level verification, link check and build reproducibility`, `audit`, and `q51` all passed |
+| Post-merge checks | `build-and-audit`, `Verify site data and links`, and `Q51 evidence and engine verification` passed for the merge commit |
+| GitHub Pages | Actions runs [43712825716](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43712825716) and [43712825014](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43712825014) succeeded; Pages API reported `built`, source `main:/`, public site https://kanlerxz87-cyber.github.io/NFL2/ |
+| Data/source impact | No NFL data changed. The renderer now uses its existing official-read timestamp (`2026-11-13T12:40Z`) rather than a run-time clock. |
+## Session `arena-779c5e6e` — final integration verification and dated decision-readiness handoff
+
+**Task status:** done · **Owner:** `arena-779c5e6e` · **Branch:** `arena/779c5e6e-nfl2`
+**Branch constraint:** Arena fixes this session to the active branch; no `session-*/` branch or worktree was created.
+**Exclusive file scope:** `audits/final-verification-2026-11-15.md`, this appended coordination section.
+**Task:** run the existing full-repository build, data, row-source, link, and model tests; record results and remaining blockers without changing another session's datasets or claiming unverified facts.
+**Claimed:** 2026-11-15 UTC. Claim committed and pushed before touching the report file.
+
+### Completion and verification — 2026-11-15 UTC
+
+Created `audits/final-verification-2026-11-15.md`. The source-of-truth requirement and proposal registers already cover the requested product areas; this work was a final integration audit, not a rewrite of other sessions' data. No existing data, generated pages, or models were modified.
+
+**Local verification:** `tools/build_site.py` (36 pages); `tools/verify.py` (174 passed, 1 warning); `tools/check_site.py` (11 passed, 1 warning); `scripts/audit_all_pages.py` (110 pages / 317 tables / 7,839 rows / zero broken links); `scripts/verify_site.py` (13/13); `scripts/verify_q51.py`; `scripts/verify_s53126614.py`; `tools/s2268_verify.py` (1,015 checks, zero errors); Q51 unit tests (36); `tools/review_verify.py`; `engine/verify_repo_and_site.py`; `git diff --check`. Exact scopes and caveats are in the audit report.
+
+**Official-source check performed in this session:** opened https://www.nfl.com/injuries/?week=11 on 2026-11-15. The returned official page labels the content Week 10 and shows Sunday, November 15 fixtures, despite the query parameter; the repository's latest full Week 10 injury snapshot is dated 2026-11-13. I did not retain a raw capture/hash or compare every row, so freshness is explicitly flagged as unverified in the report and no values were transcribed. Other cited official review sources: https://www.nfl.com/schedules/2026/by-week/week-10, https://www.nfl.com/scores/2026/week-9, https://www.nfl.com/games/, https://operations.nfl.com/.
+
+**Warnings / irregularities retained:** duplicate Q-46/Q-47 (FL-54); non-league research links on the registry page; Week 10 injury snapshot freshness not confirmed as of Nov 15; open price/prop-data and gamebook-rights gates; depth coverage remains partial; and the originated spread/total fail their scored do-nothing holdout. Existing flags and blank values were not overwritten.
+
+**PR / deployment record:** pending creation and merge of this final audit PR; Pages deployment confirmation follows the merge. The public root site was already configured and reported `built` for `main` before this change.
 
 
-### Scope extension — final integration change request (before implementation)
+**Conflict note (2026-11-15):** PR #63 initially conflicted because another active integration appended its final verification handoff to this shared board while the deployment record was pending. Merged `origin/main` into this branch and retained both the D1 close-out and session `arena-779c5e6e` records plus its audit report; no incoming work was discarded.
 
-Cross-reading the current requirement rows against the later all-club depth register exposed a scope-label conflict: R-20/R-21/R-44 and FL-44 describe the earlier 10-club/85-row personnel join, while the later S745 chart transcription covers 31/32 clubs but is not equivalent to 31/32 fully verified, point-in-time starter replacements. To publish that distinction on the review queue and document the new derived table, this final integration scope also includes **append-only** `data/flags.csv` (new FL-73), `content/data-dictionary.md`, and their generated outputs `flagged-for-review.html` and `data-dictionary.html`. No existing flag or source row will be rewritten.
+**Rebase conflict note (2026-11-15):** Before pushing the conflict-resolution merge, `git pull --rebase origin arena/8e4d5dfe-nfl2` attempted to replay the parallel integration's now-merged `c06ccdd` coordination claim and conflicted in `COORDINATION.md`. Aborted the rebase without dropping any changes; the current branch already contains both `origin/main` and its previous remote head via the explicit merge commit `8c4fc45`. No upstream work was rewritten.
+
+## Session `ac2dd497` (`arena/ac2dd497-nfl2`) — landing-page decision-readiness integration
+
+**Branch:** `arena/ac2dd497-nfl2` · **base named in the session note:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f` · **claim commits pushed before implementation:** `7d05268` and `36a8d3b`.
+
+### Handoff and conflict resolution
+
+This session initially claimed a new readiness crosswalk. While preparing its scope-extension push, `git pull --rebase origin main` found that `main` had advanced through PRs #61–#64. PR #64 (session `92d3ac43`) had already added the requested `blocks` and `clears_with` fields to `data/requirements.csv` and rendered them on `requirements.html`; rebuilding a second crosswalk would duplicate that work. The rebase conflicted in this shared file (`COORDINATION.md`) because both integrations appended at its end. The rebase was aborted; `origin/main` was merged; this file was resolved by keeping the complete upstream coordination log and adding this handoff. No upstream records or local claim commits were discarded.
+
+The new crosswalk/script originally claimed in `7d05268`/`36a8d3b` will **not** be created. Its task is superseded by the merged PR #64. The remaining task is narrower and complementary: audit the merged gate mapping, expose its complete 45-row table on the landing page, and make the source/uncertainty boundary explicit. No source snapshot, odds value, model result, or strategy lock is changed.
+
+### Revised task board and exclusive final-integration scope
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| One-row-per-requirement gate/clearance crosswalk | superseded by merged PR #64 | `92d3ac43` | `data/requirements.csv`, `content/requirements.md` |
+| Audit correlation gate mappings and distinguish the 10-club personnel join from the later 31/32 chart transcription | in progress | `ac2dd497` | `data/requirements.csv`, append-only `data/flags.csv` (FL-73) |
+| Publish the existing full requirement register on the landing page and disclose project-vs-official source status | in progress | `ac2dd497` | `content/index.md`, `content/requirements.md`, `content/data-dictionary.md`, generated root HTML and `data/build_manifest.json` |
+| Add an automated coverage check for the landing table and run the full audit suite | in progress | `ac2dd497` | `tools/verify_readiness_ac2dd497.py`, `.github/workflows/validate.yml` |
+| Final PR, merge, and Pages confirmation | pending | `ac2dd497` | `COORDINATION.md` |
+
+Only official NFL or club links that directly support a factual requirement will be shown as official evidence. A project instruction or an internally defined gate is not an NFL fact; its evidence cell will remain blank and visibly state that no official source applies. A market-price requirement will not be cited to NFL as the league does not publish operator prices. Existing thresholds are not broadened or invented.

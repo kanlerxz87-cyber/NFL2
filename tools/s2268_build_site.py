@@ -19,7 +19,6 @@ import csv
 import html
 import json
 import os
-from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -155,7 +154,7 @@ def page(fn, title, kind, lead, body, badge=None, toc=None):
     <div class="body">{body}</div>
   </main>
 </div>
-<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>{BRANCH}</code> from <code>{BASE_COMMIT[:12]}</code> · rendered {datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%MZ')}</div></div>
+<div class="foot"><div class="foot-meta">Built from <code>data/</code> by <code>tools/s2268_build_site.py</code> · branch <code>{BRANCH}</code> from <code>{BASE_COMMIT[:12]}</code> · official source snapshot {FETCH_UTC} · deterministic render</div></div>
 </body></html>
 """
 
