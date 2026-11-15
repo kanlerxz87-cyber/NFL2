@@ -2737,3 +2737,16 @@ The brief lists roughly one hundred items. This session did not build most of th
 **Not done in this session (explicitly open, not claimed by anyone here):** full-season gamebook coverage for route (b); the Week 10 2026 inactive list for every game (Q-61); a re-read of all 32 club depth charts (route a; Houston remains an image); the official source for the 90-minute deadline (Q-63); public Next Gen Stats participation data (Q-62); the broader requirement list (R-08, R-09, R-16, R-20, R-21, R-43, R-44) remains as recorded in `data/requirements.csv`.
 
 **Handoff:** the next session that picks up Q-61 should start from `data/snapcount_source_eval_1e97e798.csv` E-04 (URL not found) and FL-77, not from the 2025 article.
+
+### `1e97e798` PR, merge and Pages record
+
+| Item | Result |
+|---|---|
+| PR | [#73](https://github.com/kanlerxz87-cyber/NFL2/pull/73), `arena/1e97e798-nfl2` → `main` |
+| Pre-merge checks | `audit` (build-and-audit), `Row-level verification, link check and build reproducibility`, `q51`: all pass; mergeStateStatus `CLEAN` |
+| Merge | `--merge`, `2026-11-15T12:57:08Z`, merge commit `4f2a8f969f15b19264f419ba8f30691f97f26170` |
+| Post-merge checks on `main` | build-and-audit, Verify site data and links, Q51, GitHub Pages workflow, pages-build-deployment: all `success` |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main:/` |
+| Live probe | `https://kanlerxz87-cyber.github.io/NFL2/data/build_manifest.json` returns `inputs_sha256` `511710e34f5d2e4c093ce1bbff336ef9393342f284fe8fd2cc7e71a33b1af8a1`, identical to the local rebuild, with `questions: 64`, `flags: 80`, `sources: 76`, so the live site serves this change |
+
+Nothing in this session is left in progress on the branch. The open items it names are Q-61 to Q-63, and they are for a future session to claim on this board.
