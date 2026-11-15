@@ -49,6 +49,7 @@ NAV = [
     ("Decisions", [("questions", "Open Questions"), ("information-gaps", "Information Gaps"),
                    ("suggestions", "Suggestion Register"),
                    ("suggestion-review", "Suggestion Review Console"),
+                   ("backlog", "Brief Backlog (71 lines)"),
                    ("flagged-for-review", "Flagged for Review")]),
     ("Origination", [("line-origination", "Originate Our Own Lines"), ("signals", "Signal Catalogue"),
                      ("correlation", "Correlation"), ("bet-types", "Bet Types"),
@@ -495,6 +496,12 @@ def build_metrics():
         "suggestions": len(read_rows("suggestions.csv")),
         "questions": len(read_rows("questions.csv")),
         "requirements": len(read_rows("requirements.csv")),
+        "backlog_directives": len(_safe_rows("brief_backlog_58e9c708.csv")),
+        "backlog_reads": _safe_len("backlog_reads_58e9c708.csv"),
+        "backlog_findings": _safe_len("backlog_findings_58e9c708.csv"),
+        "cov_matrix_rows": _safe_len("brief_traceability.csv"),
+        "backlog_unmapped": sum(1 for r in _safe_rows("brief_backlog_58e9c708.csv")
+                                if not (r.get("coverage_matrix_id") or "").strip()),
         "gates": len(read_rows("gates.csv")),
         "signals": len(read_rows("signals.csv")),
         "strategies": len(read_rows("strategies.csv")),
@@ -985,6 +992,7 @@ PAGE_KIND = {
     "depth-deficiencies": ("measured", "Measured data"),
     "information-gaps": ("decision", "Decision needed"),
     "suggestion-review": ("decision", "Awaiting owner review"),
+    "backlog": ("decision", "Awaiting owner review"),
     "brief-coverage": ("program", "Traceability"),
 }
 
