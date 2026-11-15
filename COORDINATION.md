@@ -3046,7 +3046,7 @@ All suites re-run on the rebased tree: `tools/verify.py` 190/0/0 · `tools/check
 
 **Parallel-session note:** PR #71 (`arena/1ef36c55-nfl2`) is open and changes the availability monitor, root builder/verifier, site navigation, generated root pages, and `COORDINATION.md`. The present task is disjoint except for the append-only coordination ledger; preserve both session records if a merge conflict occurs. Root strategy data and site navigation remain integration-owned shared outputs.
 
-**Conflict log:** The required `git pull --rebase origin main` found that `main` had advanced to `8b490b6` (PR #72, session `arena-24ccce92`), which also appended to `COORDINATION.md`. Rebase conflicted only in this shared ledger. Both the existing session `arena-24ccce92` record and this claim were retained verbatim; no other file was changed during conflict resolution.
+**Conflict log:** The first required `git pull --rebase origin main` found `main` at `8b490b6` (PR #72, session `arena-24ccce92`); the only conflict was the append-only `COORDINATION.md`, and both records were preserved. Before the final push, `origin/main` advanced again to `9c8e51c` (PRs #73/#74, sessions `1e97e798`/`8dee7df7`), and the coordination append conflicted a second time. Conflict markers alone were removed; both the full `8dee7df7` record and this session's claim/completion were retained. No task data or code from another session was edited. The current PR #76 (`d8372691`) remains in the injury-lineage scope; this task does not touch its files.
 
 ### Completion record — 2026-11-15
 
