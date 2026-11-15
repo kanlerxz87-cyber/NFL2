@@ -3034,3 +3034,38 @@ All suites re-run on the rebased tree: `tools/verify.py` 190/0/0 · `tools/check
 | Live site | https://kanlerxz87-cyber.github.io/NFL2/ |
 
 **Handoff state:** F1–F6 all done; nothing left in progress on this branch. The canonical question register has unique IDs; the injury series now holds four dated reads (12 Nov ×2, 13 Nov, 15 Nov ×2 independent). Remaining owner decisions unchanged: Q-42 canonical injury display, Q-64 schedule-source rule, Q-65 participation timing, Q-50/Q-51 raw retention, FL-85's uncovered brief lines, FL-86's one-sided gates.
+## Session `dcf3b0cc` (`arena/dcf3b0cc-nfl2`) — dated official re-verification + Offense-vs-Defense deficiency matrix
+
+**Branch:** `arena/dcf3b0cc-nfl2` · **base:** `d3c9c92` (merge of PR #70) · **started:** 2026-11-15T12:52Z
+
+### Scope (disjoint from every other live session; `1ef36c55` owns `availability_monitor/**`, `tools/build_site.py`, `tools/verify.py`, `content/index.md`, root nav + generated root HTML)
+
+| Path | Contents |
+|---|---|
+| `dcf3b0cc/**` | self-contained dated re-verification dashboard (own `index.html`, `assets/`, `data/`) |
+| `data/*_dcf3b0cc.csv` | dated official snapshots + row-level re-verification results + deficiency matrix |
+| `tools/verify_dcf3b0cc.py` | verifier for this scope only |
+
+**Not touched by this session while `1ef36c55` is live:** `tools/build_site.py`, `tools/verify.py`, `content/index.md`,
+`data/flags.csv`, `data/sources.csv`, `data/questions.csv`, `data/suggestions.csv`, all root `*.html`.
+Cross-session change request `CR-D1` is logged below instead of editing those files.
+
+| # | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| D1 | Fetch and hash official NFL injury hub (Week 10) + schedule + standings; snapshot dated 2026-11-15 | in progress | `dcf3b0cc` | `data/nfl_injury_hub_20261115_dcf3b0cc.csv` |
+| D2 | Row-by-row re-verification of every stored Week 10 injury row against the live official page; publish match/mismatch per row | in progress | `dcf3b0cc` | `data/reverify_20261115_dcf3b0cc.csv` |
+| D3 | Offense-vs-Defense matchup deficiency matrix from verified depth-slot + designation data, blanks where unverifiable | in progress | `dcf3b0cc` | `data/deficiency_matrix_dcf3b0cc.csv` |
+| D4 | `dcf3b0cc/` dashboard: landing + category subpages, every row linked to its official source | in progress | `dcf3b0cc` | `dcf3b0cc/**` |
+| D5 | Integration after `1ef36c55` lands: nav link, rebuild, all suites, PR → `main`, merge, Pages | unclaimed → in progress at integration | `dcf3b0cc` | `content/index.md` (one row), `COORDINATION.md` |
+
+### Change request CR-D1 (for the session that owns the shared files)
+
+`data/flags.csv`: append one flag row per newly discovered official-source mismatch, and
+`content/index.md`: add one navigation row pointing at `dcf3b0cc/index.html`. Neither was edited here because
+`1ef36c55` had those files open in PR #71 at claim time.
+
+### Log — session `dcf3b0cc`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-15T12:52Z | Branch at `d3c9c92` == `origin/main`. PR #71 (`1ef36c55`) open and mergeable; its file list recorded above and avoided. Claimed D1–D5. |
