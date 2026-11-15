@@ -2322,3 +2322,16 @@ second rebase: appending rows to `data/suggestions.csv` and `data/questions.csv`
 `745f788e`'s derived tables stale, so `scripts/build_s745_decisions.py` was re-run and the two row
 counts in the data dictionary were updated (64→72, 54→61). No fact in those tables changed; they are
 arithmetic on the registers.
+
+## Session `arena/8e4d5dfe-nfl2` — deterministic generated-page timestamps
+
+**Claim:** Make the `s2268/` static-site renderer reproducible as documented. Its footer currently inserts the wall-clock build time, so a routine verification changes 11 tracked HTML pages and contradicts the stated byte-determinism guarantee. This task is limited to `tools/s2268_build_site.py` and its generated `s2268/*.html` outputs. No live official data will be changed or newly asserted. No active claim for these paths was found; the prior owner recorded the tree complete and merged in PR #57.
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| D1: remove wall-clock nondeterminism from the s2268 renderer and verify repeat builds are byte-identical | done | `arena/8e4d5dfe-nfl2` | `tools/s2268_build_site.py`, generated `s2268/*.html` |
+
+| UTC | Entry |
+|---|---|
+| 2026-11-15T12:12Z | Claimed D1 after running the repository audits. `tools/s2268_verify.py` rewrote all 11 HTML files solely because the footer embeds the current UTC time; restored those generated artifacts before editing. |
+| 2026-11-15T12:19Z | Replaced the wall-clock footer with the fixed official snapshot read time (`FETCH_UTC`), removing an unused datetime import. Two consecutive builds produced identical SHA-256 manifests for all 11 pages. `python tools/s2268_verify.py`: 1,016 checks, 0 errors, including the whole repository's builders/auditors. This is a build reproducibility fix; no source facts changed. |
