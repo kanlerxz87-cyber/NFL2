@@ -12,6 +12,8 @@ jobs:
         with: { python-version: "3.11" }
       - name: Rebuild the site from data/ and content/
         run: python tools/build_site.py
+      - name: Verify landing-page requirements coverage and source class
+        run: python tools/verify_readiness_ac2dd497.py
       - name: Audit the data (official sources, reconciliations, no fabricated results)
         run: python tools/verify.py
       - name: Audit the site (links, empty cells, template markers, official source coverage)
