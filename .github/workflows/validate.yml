@@ -14,6 +14,8 @@ jobs:
         run: python tools/build_site.py
       - name: Verify landing-page requirements coverage and source class
         run: python tools/verify_readiness_ac2dd497.py
+      - name: Verify the brief-backlog register (gates, official dependencies, replay)
+        run: python tools/verify_backlog_58e9c708.py
       - name: Audit the data (official sources, reconciliations, no fabricated results)
         run: python tools/verify.py
       - name: Audit the site (links, empty cells, template markers, official source coverage)

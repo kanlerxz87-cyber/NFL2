@@ -2624,3 +2624,56 @@ are registered in a **separate** file rather than appended to `data/requirements
 landing-page decision-readiness table (verified by `tools/verify_readiness_ac2dd497.py` against the
 46-row register) keeps a stable row set while this session is open. A later integration session may
 choose to fold them into the shared register; until then the backlog page is the single source.
+
+### Work performed — session `58e9c708`
+
+| Task | Status | Files |
+|---|---|---|
+| Register the 71 brief line-items absent from the repository | done | `data/brief_backlog_58e9c708.csv`, `data/backlog_summary_58e9c708.csv`, `tools/build_backlog_58e9c708.py` |
+| Re-read official pages and publish what each showed | done | `data/backlog_reads_58e9c708.csv` (8 pages) |
+| Publish the irregularities those reads produced | done | `data/backlog_findings_58e9c708.csv`, `data/flags.csv` FL-77/78/79 (append-only) |
+| New dashboard page with a table per theme | done | `content/backlog.md`, `tools/build_site.py` (one NAV tuple, one PAGE_KIND entry, three metrics) |
+| Register integrity, gate, dependency, page-coverage and replay verifier | done | `tools/verify_backlog_58e9c708.py`, one CI step in `.github/workflows/validate.yml` |
+| Data-dictionary entries so the verifier's orphan check passes | done | `content/data-dictionary.md` (appended section only) |
+| Rebuild and run every verifier suite | done | generated root HTML only, via `tools/build_site.py` |
+| PR to `main`, merge, confirm Pages | recorded below | `COORDINATION.md` |
+
+### Official pages fetched on 2026-11-15 (eight, all tier A or club-published)
+
+| Page | What it showed |
+|---|---|
+| https://www.nfl.com/injuries/ | Still labelled Week 10. Detroit lists Kerby Joseph (knee), Cade Mays (ankle) and D.J. Reed (hip) as did not participate and **Out**. |
+| https://www.nfl.com/scores/2026/week-10 | Commanders 24, Giants 21 **Final**; the other 13 Week 10 fixtures show kickoff times only. |
+| https://www.nfl.com/schedules/2026/by-week/week-11 | Week 11 runs 19–22 November; the page names a stadium for every fixture (NRG, Highmark, Bank of America, Soldier Field, AT&T). |
+| https://www.nfl.com/transactions/ | Six dated tabs including a **Reserve List**. |
+| https://www.nfl.com/transactions/league/trades/2026/11 | Twelve dated trades: Jacoby Brissett AZ→BAL 11/06; Keenan Allen IND→SF and Josh Downs IND→KC 11/10. |
+| https://www.nfl.com/transactions/league/reserve-list/2026/11 | Dated Reserve/Injured rows: Malik Willis (MIA) 11/10, Puka Nacua (LAR) 11/12, TreVeyon Henderson (NE) 11/14. |
+| https://www.packers.com/team/depth-chart | "Unofficial, Nov. 10, 2026"; jersey numbers printed ahead of every name; empty printed slots; a fourth RB in a row with a blank position cell. |
+| https://www.houstontexans.com/team/depth-chart | "Unofficial Depth Chart" published as an **image**, no HTML table. |
+
+### Findings (published, not corrected)
+
+* **FL-77** — the Week 10 injury table a reader reaches first still renders the 12 November 254-row read, where the three Lions the brief names carry a blank game status; the official hub publishes all three as Out, and the repo's own 13 and 15 November dated files agree with the official page.
+* **FL-78** — FL-52 says "the NFL transactions hub was not read". It exists, is dated and structured, and confirms the Willis IR placement (11/10), moves Nacua from "likely" to official (11/12), and confirms the Brissett trade the brief cites (11/06). Two brief items carried as blocked are not blocked.
+* **FL-79** — the reserve list names TreVeyon Henderson (NE) Reserve/Injured on 11/14 while the injury hub read the same day lists him with Illness, did not participate, Out.
+* **BF-02** — `data/schedule_week11_2026.csv` carries `site` as not published for every fixture although the official Week 11 page names each stadium.
+* **BF-05** — the Packers chart is dated by the club as Nov. 10, 2026, but the depth register stores our 13 November read date for every club.
+
+### Verification performed on the combined tree (2026-11-15)
+
+* `tools/build_backlog_58e9c708.py` — 71 directives, 21 summary rows, 8 reads, 5 findings; refuses to build on a gate id outside `data/gates.csv`, on a pipe or newline inside a cell, or on a "re-read 2026-11-15" claim whose dependency was not in the eight fetched URLs.
+* `tools/verify_backlog_58e9c708.py` — **8 passed, 0 warnings, 0 failures**: register integrity, 13 themes and 7 statuses recomputed, read rows resolve, FL- references resolve, all 13 theme tables render with an https source link on every row, weather.gov named as a federal not league source, byte-identical replay.
+* `tools/verify.py` — **182 passed, 1 warning (pre-existing FL-54 duplicate Q-46/Q-47), 0 failures**.
+* `tools/check_site.py` — **11 passed, 1 warning, 0 failures**. The warning list gains `backlog.html -> www.weather.gov`; it sits beside three pre-existing non-league links on registry pages and is deliberate: the NWS is a federal official source and the page says so in words.
+* `scripts/audit_all_pages.py` — 111 HTML / 44 JSON / 337 tables / 8,061 rows, **100% row-sourced, 0 broken links, 0 column mismatches**.
+* `scripts/verify_site.py` 13/13 · `tools/review_verify.py` clean · `scripts/check_reproducible.py` all files reproduce · `engine/verify_repo_and_site.py` 2,937 internal links, 0 broken · `tools/verify_readiness_ac2dd497.py` all four checks pass · `tools/s2268_verify.py` nested build/data/site/audit suites all PASS · `scripts/verify_q51.py` 0 errors · `scripts/verify_s53126614.py` PASS · `tools/verify_s92.py` 13/13 · Q51 unit tests 36 passed · `node scripts/render_test.js` 13 pages 0 failures · `git diff --check` clean.
+
+### Change requests
+
+* **CR-58E9-02** — to the owner of `tools/s2268_verify.py`: its historical scope allowlist does not include `content/backlog.md`, `data/backlog_*_58e9c708.csv`, `data/brief_backlog_58e9c708.csv`, `tools/build_backlog_58e9c708.py` or `tools/verify_backlog_58e9c708.py`, so it reports 7 scope-only errors after this authorised addition. It already reported 2 such errors for `data/verification-report.json` and `datasets/e143a7ca/verification_manifest.json` before this session touched anything. No build, data, link or reproducibility failure was reported. No edit was made to that session's verifier.
+* **CR-58E9-03** — to the owner of `content/index.md`: the landing page links the backlog page only through the shared navigation. A sentence under *Read this first* pointing at the 71 untracked brief lines would make the gap visible to a reader who never opens the Decisions menu.
+* **CR-58E9-04** — to the owner of `data/requirements.csv`: the 71 rows live in a separate register so the landing-page readiness table keeps a stable row set while other sessions work. Folding them in, or recording that they are intentionally separate, is an integration decision for a later session.
+
+### Append-only shared-file edits made by this session
+
+`data/flags.csv` (+3 rows, FL-77/78/79, appended at end of file only), `content/data-dictionary.md` (one appended section), `.github/workflows/validate.yml` (one added step). No existing row, section or step in any of the three was modified, reordered or removed.
