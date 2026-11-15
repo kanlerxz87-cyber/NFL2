@@ -7,8 +7,13 @@
   "portalTableRowsVerified": 326,
   "portalRowsWithOfficialHttpsSource": 326,
   "portalStrictBlankCellsVerified": 293,
+<<<<<<< HEAD
   "wholeRepoHtmlPagesScanned": 81,
   "wholeRepoInternalLinksVerified": 3149,
+=======
+  "wholeRepoHtmlPagesScanned": 78,
+  "wholeRepoInternalLinksVerified": 2856,
+>>>>>>> c6ee363 (dcf3b0cc: dated official re-verification, deficiency matrix and dashboard)
   "wholeRepoBrokenLinks": 0,
   "errors": []
 }

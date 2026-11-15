@@ -284,6 +284,10 @@ def html_table(header, body):
 SITE_TREES = [
     (".", "canonical — `bc4b47cf` integration, extended by `a392a193`",
      "#8 #15 #16 #18 #20 #24", "current", "the register, the verified data layer, the origination lab and the review queue"),
+    ("dcf3b0cc", "`dcf3b0cc`", "*this PR*", "current",
+     "dated official re-verification: all 347 Week 10 injury-hub rows read 2026-11-15T12:55Z, row-by-row "
+     "comparison against the published 13 Nov read, offence-versus-defence deficiency matrix, join-coverage "
+     "counts and n=28 correlations - every row linked to nfl.com"),
     ("s2268", "`2268bfb2`", "*this PR*", "current",
      "the 13 Nov 2026 live refresh with a row-by-row delta, the NE/DET 1st-4th string depth "
      "cascade, and the first pre-registered walk-forward competition - ten strategies scored "

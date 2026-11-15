@@ -3069,3 +3069,89 @@ Cross-session change request `CR-D1` is logged below instead of editing those fi
 | UTC | Entry |
 |---|---|
 | 2026-11-15T12:52Z | Branch at `d3c9c92` == `origin/main`. PR #71 (`1ef36c55`) open and mergeable; its file list recorded above and avoided. Claimed D1–D5. |
+
+### Session `dcf3b0cc` — results, verification and publication record
+
+**All five tasks D1–D5 are done.** Nothing is left in progress on this branch.
+
+| # | Task | Status | Files |
+|---|---|---|---|
+| D1 | Fetch and transcribe the official Week 10 injury hub, all 14 fixtures, 28 clubs, 347 rows, read 2026-11-15T12:55Z | done | `dcf3b0cc/data/nfl_injury_hub_20261115_dcf3b0cc.csv`, `dcf3b0cc/data/nfl_fixtures_wk10_20261115_dcf3b0cc.csv` |
+| D2 | Row-by-row re-verification against the repository's published 13 Nov read | done | `dcf3b0cc/data/reverify_20261115_dcf3b0cc.csv`, `dcf3b0cc/data/club_availability_20261115_dcf3b0cc.csv` |
+| D3 | Offence-vs-defence deficiency matrix, depth reach, join coverage, n=28 correlations | done | `dcf3b0cc/data/deficiency_matrix_dcf3b0cc.csv`, `depth_reach_20261115_dcf3b0cc.csv`, `coverage_dcf3b0cc.csv`, `correlation_dcf3b0cc.csv` |
+| D4 | 12-page dashboard, executive summary, discovery register, flagged page | done | `dcf3b0cc/**` (12 pages), `tools/build_dcf3b0cc.py` |
+| D5 | Integration: tree registered, rebuild, all suites, PR → `main`, merge, Pages | in progress at push | `tools/build_site.py` (one `SITE_TREES` tuple), `.github/workflows/dcf3b0cc.yml` (new file) |
+
+### What the re-verification found
+
+| Finding | Number | Where |
+|---|---|---|
+| Official rows transcribed today | 347 across 28 clubs and 14 fixtures | `nfl_injury_hub_20261115_dcf3b0cc.csv` |
+| Designations on the page today | 171 (70 Out, 11 Doubtful, 90 Questionable) | `club_availability_20261115_dcf3b0cc.csv` |
+| Designations in the repository's 13 Nov read | 9 across 296 rows (287 of 296 injury cells also blank) | same file, `designations_20261113` |
+| Joined rows: identical / differing / only on the page today | 102 / 194 / 51 (0 only in the repository) | `reverify_20261115_dcf3b0cc.csv` |
+| Rows differing on practice status alone | 55 | same file, `fields_differing` |
+| Clubs with zero rows in the 13 Nov read | BAL, LAC (fixture W10-14, Monday) — 29 rows present today | `club_availability_20261115_dcf3b0cc.csv`, `rows_listed_20261113 = 0` |
+| Report rows that resolve to a transcribed depth slot | 284 of 347 (81.8%); 55 of the 70 Out rows; HOU 0 of 16 | `coverage_dcf3b0cc.csv` |
+| Club groups whose available rank is still 1 | 285 of 291 | `depth_reach_20261115_dcf3b0cc.csv` |
+| Correlations, n = 28 clubs | 7 pairs, none significant at 5%, largest \|r\| < 0.28 | `correlation_dcf3b0cc.csv` |
+
+Seven irregularities are published on `dcf3b0cc/flagged.html` as `FL-DCF-01` … `FL-DCF-07`: the
+designation gap; the two clubs with no coverage; the 194 changed rows; the two-day layer mismatch in the
+matrix join; the 81.8% coverage ceiling; Houston's zero; and the non-significant correlations. `FL-DCF-06`
+independently reproduces the existing `FL-60` from the join rather than from the chart read.
+
+### Game-id note
+
+The injury hub prints the three 1:00 p.m. games in a different order from the official schedule page.
+This session's `fixture_id` column follows the repository's schedule file (`data/schedule_2026_wk10.csv`),
+which is the convention every other Week 10 file uses. The disagreement itself is a third, independent
+sighting of the existing flag `FL-64`; it is described on the register page and in `Q-DCF-07`.
+
+### Verification — 2026-11-15
+
+- `python3 tools/verify_dcf3b0cc.py`: **18,941 checks, 0 failures**, 1,254 rendered table rows. It enforces
+  that every row in every generated table carries an official `https://` link, that no cell renders empty
+  (blanks must read `not published`), that every internal link resolves, that the summary counts match the
+  CSVs, and that re-running compute + build reproduces every byte.
+- `python3 tools/verify.py`: 178 passed, 1 existing warning (duplicate Q-46/Q-47, `FL-54`), 0 failures.
+- `python3 tools/check_site.py`: 11 passed, 1 existing warning (non-league links on registry pages), 0 failures.
+- `python3 scripts/audit_all_pages.py`: 110 HTML / 44 JSON / 319 tables / 7,939 rows, 100% row-sourced, 0 broken links.
+- `scripts/verify_site.py` 13/13 · `scripts/verify_q51.py` 0 errors · `scripts/verify_s53126614.py` pass ·
+  `scripts/check_reproducible.py` all files reproduce · `tools/review_verify.py` OK, 0 broken links ·
+  `engine/verify_repo_and_site.py` 2,856 internal links checked, **0 broken** · `git diff --check` pass.
+- `tools/s2268_verify.py`: all six nested suites PASS. Its historical scope allowlist returns 6 scope-only
+  notices for this session's new files and the `SITE_TREES` tuple in `tools/build_site.py`; no build, data,
+  link or reproducibility defect is reported.
+
+### Sources read on 2026-11-15
+
+- [NFL injury hub](https://www.nfl.com/injuries/) — 347 rows, read complete at 2026-11-15T12:55Z.
+- [NFL Week 10 schedule](https://www.nfl.com/schedules/2026/REG10/) — fixture identity, kickoff times, networks, club records.
+Read in-repo, not re-read today: `data/standings_2026.csv` (nfl.com standings, captured 2026-11-13T12:53Z),
+`data/schedule_2026_wk10.csv` (venues), `data/s745_depth_charts.csv` (31 club charts, transcribed 2026-11-13),
+`data/injuries_wk10_83246f00.csv` (the 13 Nov read being audited).
+
+### Change requests (logged rather than edited)
+
+- **CR-D1** (carried from the claim): promote `FL-DCF-01 … FL-DCF-07` into `data/flags.csv` so they appear
+  on the canonical [Flagged for Review](flagged-for-review.html) page, and add a navigation row on the
+  landing page. Neither file was edited: `1ef36c55` had `content/index.md` open in PR #71 at claim time and
+  the flags register is the most contended shared file in the repository. The flags are published meanwhile
+  on `dcf3b0cc/flagged.html`, which is reachable from the landing page's tree map.
+- **CR-D2**: add a dated "what changed on 2026-11-15" section to `content/executive-summary.md`. This
+  session's executive summary is published instead at `dcf3b0cc/executive-summary.html`.
+- **CR-D3**: `tools/s2268_verify.py`'s historical scope allowlist does not know this session's files. It
+  reports scope-only notices; no defect. Same pattern as `CR-C023-01`.
+
+### Shared files touched by this session, and why
+
+Only one existing file was modified: `tools/build_site.py`, where one `SITE_TREES` tuple was added so the
+new tree appears on the landing-page repository map. Without it `tools/check_site.py` fails and CI blocks
+the Pages deploy. It is additive; no existing tuple was changed or removed. `.github/workflows/dcf3b0cc.yml`
+is a new file, so no other session's workflow was edited. Everything else this session created lives under
+`dcf3b0cc/**` or in the two new `tools/*dcf3b0cc*.py` scripts.
+
+### PR & merge record
+
+_Recorded after merge._

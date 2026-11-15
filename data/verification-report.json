@@ -10,8 +10,13 @@
     "internal_links": 292,
     "external_links": 562,
     "broken_links": 0,
+<<<<<<< HEAD
     "combined_internal_links": 2970,
     "combined_pages": 71
+=======
+    "combined_internal_links": 2677,
+    "combined_pages": 68
+>>>>>>> c6ee363 (dcf3b0cc: dated official re-verification, deficiency matrix and dashboard)
   },
   "errors": [],
   "sources_used": [
