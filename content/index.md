@@ -9,9 +9,9 @@
 
 ## Decision readiness — one row per requirement
 
-Every requirement on the [requirements register](requirements.html) appears once below, with its status, the gate that blocks it, the gate's own pass criterion (the number that would clear it), and the open questions that must be answered first. Rows marked `n/a` are done and blocked by nothing. Nothing here is estimated: each cell is copied from `data/requirements.csv`, `data/gates.csv` or `data/questions.csv` by `tools/build_decision_readiness.py`, and `tools/verify.py` fails the build if a cell and its register disagree. Rows that say "no number in the repository" are not missing a value we have; the repository has not yet defined a threshold for them.
+Every requirement on the register appears once below, with its status, the gate that blocks it, and the number that would clear it. It is the same register as the [full requirements page](requirements.html), rendered from `data/requirements.csv`; a single source, so the two pages cannot disagree. A `—` means the requirement is an owner action or a project policy that no statistical gate governs. `verify.py` fails the build if a requirement lacks a gate or a clearing number.
 
-{{csv data/decision_readiness.csv;;cols=req_id:ID,requirement:Requirement,status:Status,blocking_gate:Blocked by gate,clearing_number:Number that would clear it,open_questions:Open questions;;source_col=source;;caption=Design-register rows (source S-DESIGN) cite the internal gate register, not an official league page. That is the exception recorded on R-33, and these rows are labelled as design, not as league facts. The gate thresholds are pre-specified rules, not measured results.}}
+{{csv data/requirements.csv;;cols=id:ID,requirement:Requirement,status:Status,blocks:Gate that blocks it,clears_with:Number that clears it;;source=S-BRIEF;;caption=Source for every row is the owner's brief, recorded as the register itself (S-BRIEF). Gate thresholds are pre-specified rules from data/gates.csv, not measured results. Rows marked in progress or pending are open actions, not findings.}}
 
 ## Read this first
 
@@ -147,7 +147,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Category | Page | What you get |
 | --- | --- | --- |
 | Overview | [Executive summary](executive-summary.html) | the whole project in one read |
-| Overview | [Requirements](requirements.html) | {{metric requirements}} requirements, each traced to a page and a status |
+| Overview | [Requirements · decision readiness](requirements.html) | {{metric requirements}} requirements, each with the gate that blocks it and the number that clears it |
 | Overview | [Build plan](roadmap.html) | ordered work after your decisions |
 | Decisions | [Open questions](questions.html) | {{metric questions}} questions with what we have / what we lack / how to close |
 | Decisions | [Suggestion register](suggestions.html) | {{metric suggestions}} suggestions with impact, effort, risk, reversibility — pick a path |

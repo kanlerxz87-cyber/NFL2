@@ -1355,26 +1355,25 @@ def _load_tool(modname):
 
 
 def decision_readiness_holds():
-    """The landing-page table is generated from the registers; a stale or unsourced row fails here."""
-    try:
-        mod = _load_tool("build_decision_readiness")
-        rows = mod.build()
-    except SystemExit as exc:
-        bad("decision readiness: mapping cites an ID the registers do not contain: %s" % exc)
+    """The landing page renders the shared requirements register; a row that loses its gate column,
+    or a landing page that stops rendering the register, fails here."""
+    reqs, hdr, _ = rows("requirements.csv")
+    need = ["blocks", "clears_with"]
+    if any(c not in hdr for c in need):
+        bad("decision readiness: data/requirements.csv lost a gate or clearing column: %s" % need)
         return
-    on_disk = open(os.path.join(DATA, "decision_readiness.csv"), encoding="utf-8").read() \
-        if os.path.exists(os.path.join(DATA, "decision_readiness.csv")) else ""
-    if on_disk != mod.render(rows):
-        bad("decision readiness: data/decision_readiness.csv is stale; run tools/build_decision_readiness.py")
+    empty = [r["id"] for r in reqs if r["status"].strip() != "done"
+             and (not r["blocks"].strip() or not r["clears_with"].strip())]
+    if empty:
+        bad("decision readiness: non-done requirements without a gate or clearing number: %s" % empty[:6])
         return
-    unsourced = [r["req_id"] for r in rows if not r["source"].strip()]
-    numberless = [r["req_id"] for r in rows if r["status"] != "done" and not r["clearing_number"].strip()]
-    if unsourced or numberless:
-        bad("decision readiness: rows without a source or without a clearing number: %s"
-            % (unsourced + numberless))
+    idx = os.path.join(ROOT, "content", "index.md")
+    text = open(idx, encoding="utf-8").read() if os.path.exists(idx) else ""
+    if "csv data/requirements.csv" not in text:
+        bad("decision readiness: the landing page no longer renders data/requirements.csv")
         return
-    ok("decision readiness: %d requirements, each with a blocking-gate cell and a clearing-number cell; "
-       "every gate and question ID resolves" % len(rows))
+    ok("decision readiness: landing page renders all %d requirements with their gate and clearing columns"
+       % len(reqs))
 
 
 def reverification_e733834d_holds():
