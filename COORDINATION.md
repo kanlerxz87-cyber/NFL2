@@ -2398,9 +2398,8 @@ Created `audits/final-verification-2026-11-15.md`. The source-of-truth requireme
 
 **Warnings / irregularities retained:** duplicate Q-46/Q-47 (FL-54); non-league research links on the registry page; Week 10 injury snapshot freshness not confirmed as of Nov 15; open price/prop-data and gamebook-rights gates; depth coverage remains partial; and the originated spread/total fail their scored do-nothing holdout. Existing flags and blank values were not overwritten.
 
-**PR / deployment record:** pending creation and merge of this final audit PR; Pages deployment confirmation follows the merge. The public root site was already configured and reported `built` for `main` before this change.
-
-
 **Conflict note (2026-11-15):** PR #63 initially conflicted because another active integration appended its final verification handoff to this shared board while the deployment record was pending. Merged `origin/main` into this branch and retained both the D1 close-out and session `arena-779c5e6e` records plus its audit report; no incoming work was discarded.
 
 **Rebase conflict note (2026-11-15):** Before pushing the conflict-resolution merge, `git pull --rebase origin arena/8e4d5dfe-nfl2` attempted to replay the parallel integration's now-merged `c06ccdd` coordination claim and conflicted in `COORDINATION.md`. Aborted the rebase without dropping any changes; the current branch already contains both `origin/main` and its previous remote head via the explicit merge commit `8c4fc45`. No upstream work was rewritten.
+
+**PR / deployment record:** PR [#62](https://github.com/kanlerxz87-cyber/NFL2/pull/62) merged to `main` with merge commit `18ff59a5428c783069297f16efbcade02d368920` at `2026-11-15T12:15:37Z`. Required PR checks `Row-level verification, link check and build reproducibility`, `audit`, and `q51` passed before merge. Post-merge checks `GitHub Pages`, `build-and-audit`, `Verify site data and links`, and `Q51 evidence and engine verification` all succeeded for that merge commit. Pages deployment run [43712925091](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43712925091) succeeded; the Pages API reports status `built` at https://kanlerxz87-cyber.github.io/NFL2/. No remaining PR action for this session.
