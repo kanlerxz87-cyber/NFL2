@@ -2590,3 +2590,9 @@ No PR is open yet. Next: fetch/merge current `origin/main` before pushing the fi
 | Independently run the current integrated verification suite; document any reproducible issue and exact non-inferred next steps | done | `arena-24ccce92` | `audits/arena-24ccce92-review.md`, this coordination entry |
 
 Scope was limited to a new audit note and this append-only task-board entry. No existing data, generated HTML, pipeline, or another session's files were edited. No new NFL facts were added and no new official-source verification is claimed. Validation: `tools/build_site.py` (36 pages), `tools/verify.py` (178 passed, 1 existing warning, 0 failures), `tools/check_site.py` (11 passed, 1 existing warning, 0 failures), `scripts/audit_all_pages.py` (110 HTML / 44 JSON / 319 tables / 7,937 rows, zero broken links), and `git diff --check`. Findings and the recommended order of work are in `audits/arena-24ccce92-review.md`.
+
+### PR / merge / publication record — session `arena-24ccce92`
+
+- PR [#72](https://github.com/kanlerxz87-cyber/NFL2/pull/72) merged with merge commit `8b490b6d04643d32ebe3238ba0c5700662b7ab19` at `2026-11-15T12:51:57Z`.
+- PR checks passed: row-level verification/build reproducibility, audit, and Q51.
+- Pages API was still `building` when queried immediately after merge. The prior deployment at base `d3c9c92` succeeded; do not treat that as proof that the new merge has deployed. Current site: https://kanlerxz87-cyber.github.io/NFL2/.
