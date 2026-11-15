@@ -2582,3 +2582,45 @@ Official pages fetched for manual review on 2026-11-15: [NFL injury hub](https:/
 ### Publication status
 
 No PR is open yet. Next: fetch/merge current `origin/main` before pushing the final changes; open a PR from this fixed branch with the audit report, source links and existing flags; merge with `gh pr merge <number> --merge`; then verify CI and Pages deployment and fill in the exact PR/merge/deploy IDs here. Any merge conflict must retain this complete upstream log and all other session work.
+
+## Session `58e9c708` (`arena/58e9c708-nfl2`) — brief backlog register (70 untracked brief items) + integration
+
+**Branch:** `arena/58e9c708-nfl2` · **base:** `d3c9c92` (PR #70 merge) · **started:** 2026-11-15.
+
+### Finding that motivated this claim
+
+The register in `data/requirements.csv` holds 46 requirements derived from the *summary* brief. The
+owner's full brief also contains a **line-item backlog of ~70 specific directives** (price-snapshot
+store, verified results feed, side-then-total-then-moneyline ordering, depth-of-replacement,
+"surprise not level", 32-team roster/IR sweep, Point-in-Time Snapshot Ledger, NWS stadium overlay,
+two-stage skill leaderboard, three explicit **Reject:** decisions, and ~28 items tagged with
+`VR-`/`VQ-` codes). `grep -rl "VR-24" .` and `grep -rl "price-snapshot" .` both return **no hits**
+outside `.git`: none of these items are tracked anywhere in the repository. R-01 therefore
+("collect, organize and analyze utilizing a full list of requirements") is not satisfiable from the
+current register. This session registers them.
+
+### Scope (disjoint)
+
+| Path | Contents |
+|---|---|
+| `data/brief_backlog_58e9c708.csv` | NEW — one row per brief line-item, with gate, clearing number, official dependency and verification state |
+| `tools/build_backlog_58e9c708.py` | NEW — deterministic builder for the page tables from that CSV |
+| `tools/verify_backlog_58e9c708.py` | NEW — register integrity, gate-reference, source-class, replay checks |
+| `content/backlog.md` | NEW — page content |
+| `tools/build_site.py` | one NAV tuple + one PAGES tuple + one PAGE_KIND entry (integration edit) |
+| generated root `*.html`, `data/build_manifest.json` | via `tools/build_site.py` only |
+| `COORDINATION.md` | this section (append-only) |
+
+**Not touched:** `data/requirements.csv`, `data/flags.csv`, `data/sources.csv`, `data/questions.csv`,
+`data/suggestions.csv`, `content/index.md`, `content/requirements.md`, `tools/verify.py`,
+`tools/check_site.py`, `.github/workflows/**`, and any other session's tree (`site/`, `portal/`,
+`q51/`, `s2268/`, `s53/`, `s92/`, `review/`, `docs/`, `pipeline/`, `engine/`, `datasets/`,
+`availability_monitor/`).
+
+### Cross-session change request
+
+**CR-58E9-01** — to the owner of `tools/build_site.py` / `data/requirements.csv`: the 70 backlog items
+are registered in a **separate** file rather than appended to `data/requirements.csv`, so that the
+landing-page decision-readiness table (verified by `tools/verify_readiness_ac2dd497.py` against the
+46-row register) keeps a stable row set while this session is open. A later integration session may
+choose to fold them into the shared register; until then the backlog page is the single source.
