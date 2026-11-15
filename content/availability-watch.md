@@ -3,6 +3,8 @@
 
 **Read at 2026-11-13T12:45Z** from [nfl.com/injuries](https://www.nfl.com/injuries/). 28 clubs on the Week 10 slate, **{{metric aw_rows}} player rows**, **{{metric aw_designations}} game-status designations**.
 
+**Superseded in part, 15 November 2026:** the Chargers and Ravens now have rows on the official page, so the "No Injuries Reported" statement below describes the 13 November read only ([FL-77](flagged-for-review.html)). The 15 November read is on the [Injury Hub delta](hub-delta.html) page.
+
 ## What this page found that the site did not have yesterday
 
 Three things changed at the source, and all three matter more than any single number on the page:
