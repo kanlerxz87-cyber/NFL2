@@ -3,11 +3,13 @@
 
 **Read at 2026-11-13T12:45Z** from [nfl.com/injuries](https://www.nfl.com/injuries/). 28 clubs on the Week 10 slate, **{{metric aw_rows}} player rows**, **{{metric aw_designations}} game-status designations**.
 
+**Superseded in part, 15 November 2026:** the Chargers and Ravens now have rows on the official page, so the "No Injuries Reported" statement below describes the 13 November read only ([FL-81](flagged-for-review.html)). The 15 November read is on the [Injury Hub delta](hub-delta.html) page.
+
 ## What this page found that the site did not have yesterday
 
 Three things changed at the source, and all three matter more than any single number on the page:
 
-- **Every club on the slate now has a stated injury state.** Yesterday the site published `{{metric injury_coverage}}` coverage — SEA and CIN were absent from our file entirely, which [FL-24](flagged-for-review.html) recorded as a collection gap. The official hub now carries full blocks for both. The gap closed at the source, not by us filling it in, and this snapshot transcribes **28 of 28**.
+- **Every club on the slate now has a stated injury state.** Yesterday the site published `{{metric injury_coverage}}` coverage — SEA and CIN were absent from our file entirely, which [FL-24](flagged-for-review.html) recorded as a collection gap. The official hub now carries full blocks for both. The gap closed at the source, not by us filling it in, and this 13 November snapshot transcribes **26 of the 28 clubs** on the slate. The two it lacks are LAC and BAL, which the official hub answered with “No Injuries Reported” on 12 November ([FL-01](flagged-for-review.html)). The 15 November read has rows for both ([FL-81](flagged-for-review.html)).
 - **Three more players have an official game status.** There were 6 designation cells in the register; there are now 9. The three new ones are Detroit's — Kerby Joseph, Cade Mays and D.J. Reed, all **OUT**. This is the first week where a full defensive backfield and a starting centre can be priced as unavailable rather than as questionable.
 - **The hub is a series, and it only grew.** 17 players were added across 10 clubs and **none were removed**. Of the 277 players present in both reads, **49 changed practice code — 37 upgraded, 12 downgraded**. A model that read yesterday's file and stopped would have been wrong about 66 of 296 rows without knowing it.
 

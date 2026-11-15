@@ -32,7 +32,7 @@ rank|id|title|category|path|impact|effort|risk_class|impact_pts|effort_pts|risk_
 31|S-52|Store the date the club printed on its depth chart, and refuse to publish a string older than the practice row beside it|Data plumbing|A|M|L|Low|2|1|1|1.0|no|Q-42, S-43|GB prints 'Unofficial, Nov. 10, 2026'; the other nine print nothing. FL-39 shows a chart carrying a player who was traded three days earlier.|open - owner decision|S-REGISTER-745
 32|S-53|Publish the 18 uncovered clubs as an explicit coverage backlog with the minutes each one costs|Coverage|C|M|L|Low|2|1|1|1.0|no|Q-37, S-39|Ten club charts read between 12:40Z and 12:52Z, giving 85 resolved players of 296 filings; 54 of 84 club-side rows report 'club chart not transcribed this session'.|open - owner decision|S-REGISTER-745
 33|S-55|Transcribe the venue of every fixture from the official game centre and publish it|data|A|M|L|Low|2|1|1|1.0|no|yes|none|recommended|S-REGISTER-745
-34|S-56|Publish the league's dated schedule announcement beside the live schedule page|verification|D|M|L|Low|2|1|1|1.0|no|yes|Q-46|recommended (blocked)|S-REGISTER-745
+34|S-56|Publish the league's dated schedule announcement beside the live schedule page|verification|D|M|L|Low|2|1|1|1.0|no|yes|Q-64|recommended (blocked)|S-REGISTER-745
 35|S-69|Rank the leaderboard by log loss, not by hit rate|Competition design|D|M|L|Low|2|1|1|1.0|no|yes|Q-58|proposed|S-REGISTER-745
 36|S-70|Add the s2268 tree to the repository-wide page auditor|Verification|D|M|L|Low|2|1|1|1.0|no|yes||proposed|S-REGISTER-745
 37|S-17|Store every model output as a probability plus its inputs, not just a pick|Auditability|A|H|M|Low|3|2|1|1.0|no|yes|Q-16, R-15|recommended|S-REGISTER-745

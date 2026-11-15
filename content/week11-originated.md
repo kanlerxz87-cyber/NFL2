@@ -54,7 +54,7 @@ This is the kind of episode the project wants on the page rather than in a commi
 ## What this page does not do
 
 - It does not stake anything, and it does not claim an edge. The model this line comes from has a spread mean absolute error of 9.28 points against 10.46 for a do-nothing baseline on 88 out-of-sample games, and a **paired** gap against the archived price that is *worse* by 0.295 points with a bootstrap interval that excludes zero. It is a better guess than nothing and a worse guess than the market.
-- It does not price availability. The league had not published Week 11 participation at the decision timestamp, so the column is blank rather than zero (FL-40, Q-47).
+- It does not price availability. The league had not published Week 11 participation at the decision timestamp, so the column is blank rather than zero (FL-40, Q-65).
 - It does not use a price feed. The league publishes no betting lines; the archive it is compared against is non-official with an undocumented vintage (FL-29, FL-30).
 - It does not touch the frozen corpus. Week 11 results go to `data/games_week11_played.csv`, which is append-only and separate, exactly as week 10 results are (Q-41, S-26).
 - It does not promote a strategy. The [leaderboard](leaderboard.html) is still unranked, and its ranking column stays hidden until a strategy clears [G-01 to G-11](validation-gates.html) and reaches 400 settled bets.

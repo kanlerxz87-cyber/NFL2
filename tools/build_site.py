@@ -59,15 +59,18 @@ NAV = [
                      ("week11-originated", "Week 11 Lines (pre-registered)")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates")]),
-    ("Data", [("injuries", "Week 10 Injury Report"), ("depth-impact", "Depth & Deficiencies"),
+    ("Data", [("injuries", "Week 10 Injury Report"), ("injury-lineage", "Injury Read Lineage"),
+              ("depth-impact", "Depth & Deficiencies"),
               ("depth-deficiencies", "Depth Register (all 32 clubs)"),
               ("league-data", "Standings & Schedule"),
               ("availability-watch", "Availability Watch (dated)"),
+              ("hub-delta", "Injury Hub: 15 vs 13 Nov (delta)"),
               ("personnel-relief", "Personnel Relief"),
               ("deficiencies", "Depth Deficiencies by Side"),
               ("depth-cascades", "Depth Cascades (re-verified)"),
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
+                   ("brief-coverage", "Brief Coverage & Freshness"),
                    ("sources", "Source Registry")]),
     # Availability read through a depth chart, and the first decision this site has
     # locked before the games it predicts happened.
@@ -682,7 +685,73 @@ def gamelog_metrics(st):
 TEAM_ALIAS = {"LA": "LAR"}
 
 
+def brief_coverage_metrics():
+    """Session f34622dd: brief coverage, page freshness and today's official injury re-read.
+
+    Every figure on the brief-coverage page is computed here from the CSVs, so a refresh of the
+    underlying read cannot leave a sentence behind. The counts that describe "today's read" are
+    taken from the stored files rather than typed in prose - the same rule S-31 applies to the
+    rest of the site.
+    """
+    def rows(name):
+        try:
+            return read_rows(name)
+        except Exception:
+            return []
+
+    m = {}
+    cov = rows("brief_traceability.csv")
+    m["cov_rows"] = len(cov)
+    for cls in ("covered", "partial", "blocked", "uncovered", "resolved"):
+        m["cov_" + cls] = sum(1 for r in cov if r["coverage_class"].strip() == cls)
+    m["cov_categories"] = len({r["category"] for r in cov})
+
+    new = rows("injuries_wk10_f34622dd_20261115.csv")
+    old13 = rows("injuries_wk10_83246f00.csv")
+    d = rows("hub_club_counts_f34622dd.csv")
+    m["d_rows_13"] = len(old13)
+    m["d_rows_15"] = len(new)
+    m["d_rows_added"] = len(new) - len(old13)
+    m["d_clubs_13"] = len({r["team"] for r in old13 if r["team"].strip()})
+    m["d_clubs_15"] = len({r["team"] for r in new if r["team"].strip()})
+    m["d_clubs_added"] = m["d_clubs_15"] - m["d_clubs_13"]
+    m["d_desig_13"] = sum(1 for r in old13 if r["status"].strip())
+    m["d_desig_15"] = sum(1 for r in new if r["status"].strip())
+    m["d_desig_added"] = m["d_desig_15"] - m["d_desig_13"]
+    m["d_out_15"] = sum(1 for r in new if r["status"].strip() == "Out")
+    m["d_q_15"] = sum(1 for r in new if r["status"].strip() == "Questionable")
+    m["d_doubt_15"] = sum(1 for r in new if r["status"].strip() == "Doubtful")
+    m["d_out_13"] = sum(1 for r in old13 if r["status"].strip() == "Out")
+    m["d_out_15"] = sum(1 for r in new if r["status"].strip() == "Out")
+    m["d_out_added"] = m["d_out_15"] - m["d_out_13"]
+    # The table the injuries page actually renders is injuries_2026_wk10.csv, not the 13 Nov
+    # capture. Its counts are published nowhere else, so they are computed here rather than
+    # quoted from the older file - that confusion is exactly what FL-77 records.
+    pub = rows("injuries_2026_wk10.csv")
+    m["d_pub_rows"] = len(pub)
+    m["d_pub_clubs"] = len({r["team"] for r in pub if r["team"].strip()})
+    m["d_pub_desig"] = sum(1 for r in pub if r["status"].strip())
+    m["d_pub_rows_withheld"] = len(new) - len(pub)
+    m["d_pub_clubs_withheld"] = m["d_clubs_15"] - m["d_pub_clubs"]
+    m["d_dnp_15"] = sum(1 for r in new if r["practice"].strip() == "D")
+    m["d_removed_total"] = sum(int(r["rows_removed"]) for r in d)
+    # Derived, not typed: the count of clubs whose row count is unchanged, and the count that
+    # gained rows. A hand-written "14 clubs" went stale the moment the read was reconciled.
+    club_rows = [r for r in d if r["rows_added"].strip() and r["club"] != "ALL 28 reporting clubs"]
+    m["d_unchanged"] = sum(1 for r in club_rows if int(r["rows_added"]) == 0)
+    m["d_gained"] = sum(1 for r in club_rows if int(r["rows_added"]) > 0)
+
+    fresh = rows("page_freshness_f34622dd.csv")
+    m["fresh_pages"] = len(fresh)
+    m["fresh_behind"] = sum(1 for r in fresh if r["verdict"].startswith("BEHIND"))
+    withheld = [int(r["rows_withheld"]) for r in fresh if r["rows_withheld"].strip()]
+    m["fresh_withheld_max"] = max(withheld) if withheld else 0
+    m["fresh_withheld_total"] = sum(withheld)
+    return m
+
+
 METRICS, INJURY_ROWS, AGG = build_metrics()
+METRICS.update(brief_coverage_metrics())
 BLANK_TALLY = {"count": 0}
 
 
@@ -896,7 +965,8 @@ PAGE_KIND = {
     "correlation": ("design", "Specification"), "bet-types": ("design", "Specification"),
     "skill-vs-luck": ("design", "Specification"), "strategies": ("design", "Specification"),
     "leaderboard": ("design", "Specification"), "validation-gates": ("design", "Specification"),
-    "injuries": ("measured", "Measured data"), "depth-impact": ("measured", "Measured data"),
+    "injuries": ("measured", "Measured data"), "injury-lineage": ("measured", "Measured data"),
+    "depth-impact": ("measured", "Measured data"),
     "league-data": ("measured", "Measured data"), "data-dictionary": ("measured", "Schema"),
     "methodology": ("program", "Policy"), "sources": ("program", "Register"),
     "model-lab": ("measured", "Computed result"), "measured-correlations": ("measured", "Computed result"),
@@ -907,9 +977,11 @@ PAGE_KIND = {
     "week11-originated": ("measured", "Computed result"),
     "personnel-relief": ("measured", "Measured data"),
     "availability-watch": ("measured", "Dated snapshot"),
+    "hub-delta": ("measured", "Dated delta"),
     "depth-deficiencies": ("measured", "Measured data"),
     "information-gaps": ("decision", "Decision needed"),
     "suggestion-review": ("decision", "Awaiting owner review"),
+    "brief-coverage": ("program", "Traceability"),
 }
 
 CSS_HREF = "assets/style.css"
@@ -1062,9 +1134,12 @@ def main():
 
 KPIS = [
     ("injury_rows", "Injury rows ingested", "injuries",
-     lambda m: "%d rows, %d/%d clubs (%s); %d/%d (%s); latest %d/%d (%s). Separate dated reads." % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["injury_primary_capture"], m["hub2_rows"], m["hub2_clubs"], m["hub2_captured_utc"], m["pr_hub_rows"], m["pr_hub_clubs"], m["hub_latest_captured_utc"])),
+     lambda m: "%d rows, %d/%d clubs (%s); %d/%d (%s); latest %d/%d (%s); newest read %d/%d (%s). Separate dated reads." % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["injury_primary_capture"], m["hub2_rows"], m["hub2_clubs"], m["hub2_captured_utc"], m["pr_hub_rows"], m["pr_hub_clubs"], m["hub_latest_captured_utc"], m["d_rows_15"], m["d_clubs_15"], "2026-11-15T12:56Z")),
+    # The designation tile is the one a reader is most likely to act on, and it was silently
+    # describing the 12 November file. It now states the read date and names the newest read,
+    # so the number cannot be mistaken for the current state of the hub (FL-84).
     ("designations", "Designations published", "injuries",
-     lambda m: "%d of %d rows carry a game status; the rest are not published" % (m["designations"], m["injury_rows"])),
+     lambda m: "%d of %d rows in the 12 November table carry a game status; %d of %d rows carry one in the 2026-11-15T12:56Z read. The rest are not published." % (m["designations"], m["injury_rows"], m["d_desig_15"], m["d_rows_15"])),
     ("depth_rows", "Depth & roster events", "depth-impact",
      lambda m: "%d entries: IR, returns, signings, QB chain changes" % m["depth_rows"]),
     ("standings_teams", "Standings reconciled", "league-data",
