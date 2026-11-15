@@ -3426,3 +3426,57 @@ any `FL-nn` appearing anywhere on the built page is not a row in `data/flags.csv
 Full suite re-run clean: `verify.py` 199/0/0, `check_site.py` 11/1/0, audit 8,505 rows 100% row-sourced
 0 broken links, reproducible, readiness 4/4, verify_site 13/13, engine 0 broken links, review_verify
 clean, s92 13/13, Q51 tests 36 passed, render test 0 failures, `git diff --check` clean.
+
+### D1/D2 close-out — PR #91 merged and live (session `d7d8c886`, 2026-11-15)
+
+| Item | Result |
+|---|---|
+| PR | [#91](https://github.com/kanlerxz87-cyber/NFL2/pull/91) — S-65 game-id renumber (FL-61/FL-64 resolved) + S-70 auditor coverage |
+| Merge | `gh pr merge 91 --merge` at `2026-11-15T13:42:52Z`; merge commit `89c0edd05dae4d4d9e9c18c2bb6a38acaa2b1b57` |
+| Pre-merge CI (head `7c08e64`) | `q51` success · `Row-level verification, link check and build reproducibility` success · `audit` success · `validate` success; `mergeable: MERGEABLE`, `mergeStateStatus: CLEAN` |
+| Post-merge CI (`89c0edd`) | build-and-audit [43720431671](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43720431671) success · Verify site data and links [43720431663](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43720431663) success · Q51 [43720431659](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43720431659) success · GitHub Pages [43720431773](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43720431773) success · pages-build-deployment [43720431237](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43720431237) success |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main:/`; live at https://kanlerxz87-cyber.github.io/NFL2/ |
+| Live checks (fetched 2026-11-15 after deploy) | [flagged-for-review.html](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html) shows **FL-61 = resolved** and **FL-64 = resolved** with the dated evidence, the three official game-centre URLs and the mutation-tested check note; [s2268/refresh.html](https://kanlerxz87-cyber.github.io/NFL2/s2268/refresh.html) shows the game-id section titled "resolved 15 November 2026", W10-06 = IND/MIA, W10-07 = CAR/NO, W10-08 = BUF/NYJ, verdict `match` for all eleven populated fixtures, and the club table mapping BUF→W10-08, IND/MIA→W10-06, CAR/NO→W10-07 |
+
+**Official sources used for the renumber** (each fetched and read on 2026-11-15, page titles confirmed):
+[dolphins-at-colts-2026-reg-10](https://www.nfl.com/games/dolphins-at-colts-2026-reg-10) ·
+[panthers-at-saints-2026-reg-10](https://www.nfl.com/games/panthers-at-saints-2026-reg-10) ·
+[bills-at-jets-2026-reg-10](https://www.nfl.com/games/bills-at-jets-2026-reg-10) ·
+[Week 10 schedule page](https://www.nfl.com/schedules/2026/by-week/week-10) ·
+[official injury hub](https://www.nfl.com/injuries/). Fixture identity per id was checked against the
+schedule file's `game_url` column, which carries these exact game-centre URLs.
+
+**Verification recorded for the final merged tree** (`89c0edd` parent `7c08e64`):
+`tools/verify.py` 199 passed / 0 warnings / 0 failures · `tools/check_site.py` 11/1/0 ·
+`tools/verify_readiness_ac2dd497.py` PASS · `tools/verify_backlog_58e9c708.py` 11/0/0 ·
+`tools/verify_coverage_f34622dd.py` 2423 checks / 0 failures · `scripts/injury_lineage_d8372691.py --check` exit 0 ·
+`scripts/audit_all_pages.py` 125 HTML / 44 JSON / 371 tables / 9,267 rows / 100% row-sourced / 0 broken ·
+`scripts/verify_q51.py` 0 errors · `scripts/verify_s53126614.py` PASS · `tools/verify_s92.py` 13/0/0 ·
+`engine/verify_repo_and_site.py` 0 broken · 36 q51 unit tests OK · `scripts/check_reproducible.py` OK ·
+`tools/review_build_site.py` diff gate CLEAN · `tools/s2268_verify.py` 1004 checks / 0 errors ·
+`tools/verify_dcf3b0cc.py` 18,941 checks / 0 failures · `git diff --check` clean.
+
+**Merge conflicts resolved without discarding work (three merge commits: PRs #72–#86, #87–#89, #90):**
+`COORDINATION.md` kept both/all sides (marker lines stripped; the historical log line that quotes
+marker syntax was preserved); `data/flags.csv` kept this session's FL-61/FL-64 resolutions alongside
+upstream FL-77..FL-96 (96 unique ids); generated HTML and `data/build_manifest.json` regenerated
+from the merged registers; upstream's hand-enriched Q-61..63 cells in `data/s745_information_gaps.csv`
+preserved (this session's generator run would have overwritten them — see observation below).
+
+**Observations for other owners (not fixed here):**
+1. `data/s745_information_gaps.csv` carries three hand-enriched rows (Q-61, Q-62, Q-63: a rich
+   `official_route_exists` cell and a per-question source URL) that
+   `scripts/build_s745_decisions.py` cannot reproduce — the generator regexes the route and always
+   writes `S-REGISTER-745` as the source. Any regeneration clobbers the enrichment. Either move the
+   enrichment into `data/questions.csv` or teach the generator; logged for the s745/register owner.
+2. `S-56.depends_on` still said `Q-46` after upstream's FL-54 renumber moved that question to `Q-64`;
+   repaired here (one cell) so the derived scores reproduce from the register.
+3. `git pull --rebase` on a branch whose tip is a merge commit tries to flatten the merge (it began
+   replaying upstream commits and stopped on a `COORDINATION.md` conflict). Aborted with
+   `git rebase --abort`; no work lost; remote already had the correct merge. Pattern for this repo:
+   `git fetch` + `git merge origin/main` + plain `git push`, never `pull --rebase`, once a merge
+   commit exists on the branch.
+
+**Task board status after this session:** D1 (S-65 + Q-54 + FL-61/FL-64 + CR-745-09 + drift check),
+D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field reads
+`adopted (v1) 2026-11-15`; Q-54 reads `answered 2026-11-15`. No other session's claim was taken over.
