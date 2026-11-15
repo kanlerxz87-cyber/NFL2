@@ -2368,3 +2368,5 @@ Created `audits/final-verification-2026-11-15.md`. The source-of-truth requireme
 
 
 **Conflict note (2026-11-15):** PR #63 initially conflicted because another active integration appended its final verification handoff to this shared board while the deployment record was pending. Merged `origin/main` into this branch and retained both the D1 close-out and session `arena-779c5e6e` records plus its audit report; no incoming work was discarded.
+
+**Rebase conflict note (2026-11-15):** Before pushing the conflict-resolution merge, `git pull --rebase origin arena/8e4d5dfe-nfl2` attempted to replay the parallel integration's now-merged `c06ccdd` coordination claim and conflicted in `COORDINATION.md`. Aborted the rebase without dropping any changes; the current branch already contains both `origin/main` and its previous remote head via the explicit merge commit `8c4fc45`. No upstream work was rewritten.
