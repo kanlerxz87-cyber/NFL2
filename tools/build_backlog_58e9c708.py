@@ -618,7 +618,7 @@ READS = [
      "BL-34, BL-42, BL-46", "none"),
     ("Official NFL reserve list, November 2026", RESERVE,
      "Dated Reserve/Injured rows. Malik Willis, Miami, on 11/10. Puka Nacua, Rams, on 11/12. TreVeyon Henderson, New England, on 11/14. The page carries further rows that were not read.",
-     "BL-13, BL-64", "FL-93"),
+     "BL-13, BL-64", "FL-95"),
     ("Green Bay Packers depth chart", GB,
      "Printed as 'Unofficial, Nov. 10, 2026'. Jersey numbers are printed ahead of every name. Several printed slots are empty, and a fourth running back appears in a row with a blank position cell.",
      "BL-11, BL-32, BL-33, BL-43, BL-51", "none"),

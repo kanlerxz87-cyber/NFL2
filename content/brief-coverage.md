@@ -1,7 +1,7 @@
 # Brief Coverage, Data Freshness and Today's Official Read
-> Every clause of the owner brief is traced to the register row that owns it, its coverage class is stated against the actual contents of this repository, and the two things that changed today - a full re-read of the official injury hub and a measured page-freshness panel - are published with their numbers.
+> Every clause of the owner brief is traced to the register row that owns it, its coverage class is stated against the actual contents of this repository, and the two things this session changed - a full re-read of the official injury hub and a measured page-freshness panel - are published with their numbers.
 
-This page answers three questions that none of the other pages answer together: **what in the brief is genuinely covered, what is only specified, and what is missing entirely**; **how old is the evidence behind each published table**; and **what did the official league page say when it was read in full today**, compared row by row with what this site publishes.
+This page answers three questions that none of the other pages answer together: **what in the brief is genuinely covered, what is only specified, and what is missing entirely**; **how old is the evidence behind each published table**; and **what the official league page said when it was read in full**, compared row by row with what this site publishes.
 
 Nothing on this page is an estimate. The coverage classes are computed from the contents of `data/` and the four registers, not from anyone's recollection of what was built. Where a figure could not be confirmed from an official source it is left blank and the blank is named.
 
@@ -17,9 +17,9 @@ Counted from the {{metric cov_rows}}-row matrix further down this page, across {
 | **uncovered** | No register row owns the clause and no artefact exists. These are the real gaps | {{metric cov_uncovered}} | [brief matrix](https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/brief_traceability.csv) |
 | **resolved** | The clause described a defect that this session's official read closes | {{metric cov_resolved}} | [nfl.com/injuries](https://www.nfl.com/injuries/) |
 
-## Today's official read of the Week 10 injury hub
+## The official Week 10 injury hub, read in full
 
-The league's injury hub was read in full today. The Week 10 table that this site publishes is three and a half days older than that read: it carries {{metric d_rows_13}} rows over {{metric d_clubs_13}} clubs, against {{metric d_rows_15}} rows over {{metric d_clubs_15}} clubs now, and it carries {{metric d_desig_13}} game-status designations against {{metric d_desig_15}} now.
+The league's injury hub was read in full in this session. The Week 10 table that this site publishes is three and a half days older than that read: it carries {{metric d_rows_13}} rows over {{metric d_clubs_13}} clubs, against {{metric d_rows_15}} rows over {{metric d_clubs_15}} clubs now, and it carries {{metric d_desig_13}} game-status designations against {{metric d_desig_15}} now.
 
 Before any number from that read was stored, it was reconciled club by club against this repository's own 2026-11-13 capture. The reconciliation is the proof that the transcription is complete rather than partial: **14 clubs match the earlier capture exactly, 26 clubs gain rows, and not one club loses a row or a player.** A transcription that had silently dropped part of the page would show negative deltas somewhere; there are none.
 
@@ -33,13 +33,13 @@ Before any number from that read was stored, it was reconciled club by club agai
 
 The two clubs that were entirely absent are the two Monday-night teams, and they are absent for a reason that is not a collection failure: the hub prints **"No Injuries Reported"** for both. That is a declaration, and it is not the same fact as a blank. See [FL-01](flagged-for-review.html) for why the distinction matters to every availability model on this site.
 
-{{csv data/hub_club_counts_f34622dd.csv;;cols=club:Club,game:Fixture,rows_13nov:Rows 13 Nov,rows_15nov:Rows 15 Nov,rows_added:Added,rows_removed:Removed,dnp_13nov:DNP 13 Nov,dnp_15nov:DNP 15 Nov,designations_13nov:Designations 13 Nov,designations_15nov:Designations 15 Nov,added_players:Players newly listed;;source_col=source;;caption=Per-club reconciliation of today's official read against this repository's 13 November capture. "Added" counts players the league lists today that the 13 November file did not carry; "Removed" is zero for every club, which is the check that the read was complete. The last row is the sum over all 28 reporting clubs.}}
+{{csv data/hub_club_counts_f34622dd.csv;;cols=club:Club,game:Fixture,rows_13nov:Rows 13 Nov,rows_15nov:Rows 15 Nov,rows_added:Added,rows_removed:Removed,dnp_13nov:DNP 13 Nov,dnp_15nov:DNP 15 Nov,designations_13nov:Designations 13 Nov,designations_15nov:Designations 15 Nov,added_players:Players newly listed;;source_col=source;;caption=Per-club reconciliation of the 2026-11-15 official read against this repository's 13 November capture. "Added" counts players the 15 November read lists that the 13 November file did not carry; "Removed" is zero for every club, which is the check that the read was complete. The last row is the sum over all 28 reporting clubs.}}
 
 ### What this read settles, and what it does not
 
-**Settled.** The three Detroit designations that were published blank are, on the live page, all **Out** with a stated injury and a Did Not Participate practice code: Kerby Joseph (knee), Cade Mays (ankle) and D.J. Reed (hip). The repository's 13 November capture already had them; the older 254-row file that the injury page still renders does not. That is a rendering choice, not a missing fact, and it is recorded as such.
+**Settled.** The three Detroit designations that were published blank are, on the 15 November read, all **Out** with a stated injury and a Did Not Participate practice code: Kerby Joseph (knee), Cade Mays (ankle) and D.J. Reed (hip). The repository's 13 November capture already had them; the older 254-row file that the injury page still renders does not. That is a rendering choice, not a missing fact, and it is recorded as such.
 
-**Settled.** Seattle and Cincinnati are not injury-free. Both publish full blocks - 15 and 9 rows in today's read - and the published table shows neither. The published table's own caption already warns that this is a collection gap rather than a claim of health, which is the right wording, but a reader looking at the table does not see those clubs at all.
+**Settled.** Seattle and Cincinnati are not injury-free. Both publish full blocks - 15 and 9 rows in the 15 November read - and the published table shows neither. The published table's own caption already warns that this is a collection gap rather than a claim of health, which is the right wording, but a reader looking at the table does not see those clubs at all.
 
 **Not settled.** Whether the Week 10 designation set is final. Finals are filed on the last practice day before each kickoff, and fixtures across this slate kick off at different times. A single read cannot establish that a later read would not change a designation, so this page does not claim finality.
 
@@ -49,7 +49,7 @@ A stale table and a current table look identical on a static site. This panel ma
 
 {{csv data/page_freshness_f34622dd.csv;;cols=page:Page,publishes:What it publishes,own_read_utc:Evidence read (UTC),newest_read_utc:Newest read held (UTC),lag_days:Lag (days),rows_published:Rows published,rows_in_newest_read:Rows in newest read,rows_withheld:Rows withheld,verdict:Verdict;;source_col=source_url;;caption=Measured from data/sources.csv (the registered read time of each official page) and the row counts of the files themselves. "Rows withheld" is blank where the newest read is of a different page, so no subtraction would be meaningful. A blank is not a zero.}}
 
-{{metric fresh_behind}} of the {{metric fresh_pages}} published pages rest on an official read older than the newest read of that same page held in the repository. The most consequential by far is the Week 10 injury page: its evidence is from 12 November and it is withholding **{{metric fresh_withheld_max}} of the {{metric d_rows_15}} rows** the league publishes today. The remaining gaps are under a day each, and their content - standings, scores, the depth register - is not something that files a game-status designation.
+{{metric fresh_behind}} of the {{metric fresh_pages}} published pages rest on an official read older than the newest read of that same page held in the repository. The most consequential is the Week 10 injury page: its evidence dates from 12 November and it withholds **{{metric fresh_withheld_max}} of the {{metric d_rows_15}} rows** in the 15 November read. The remaining gaps are under a day each, and their content - standings, scores, the depth register - is not something that files a game-status designation.
 
 ## The clauses that nothing in this repository covers
 
@@ -65,7 +65,7 @@ A **demotion gate** is the mirror image of the promotion gates that exist. Fourt
 
 ### One is a naming gap that hides a real decision
 
-The brief asks for a **moneyline** origination and for the order *side, then total, then moneyline*. The register's strategy tournament is scored entirely on the moneyline side, and the origination lab publishes a spread and a total. Both halves exist; neither is joined to the other, and no published file carries an originated moneyline price. This is recorded as a partial rather than a pass, because the brief's sequence is about the markets we originate and today we originate two of the three.
+The brief asks for a **moneyline** origination and for the order *side, then total, then moneyline*. The register's strategy tournament is scored entirely on the moneyline side, and the origination lab publishes a spread and a total. Both halves exist; neither is joined to the other, and no published file carries an originated moneyline price. This is recorded as a partial rather than a pass, because the brief's sequence is about the markets we originate and the site originates two of the three.
 
 ## The full matrix
 

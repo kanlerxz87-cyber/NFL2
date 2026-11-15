@@ -1418,7 +1418,7 @@ def main():
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
     settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()
     personnel_relief_reproduces(); reverification_83246f00_holds(); s745_registers_reproduce()
-    decision_readiness_holds(); reverification_e733834d_holds()
+    decision_readiness_holds(); reverification_e733834d_holds(); reverification_5de1805b_holds()
     
     print("=" * 72)
     for m in PASS:
@@ -1548,6 +1548,46 @@ def reverification_83246f00_holds():
     nosrc = [r for r in data if not r["source"].startswith("https://")]
     if nosrc:
         bad("re-verification 83246f00: %d rows without an https source" % len(nosrc))
+
+
+def reverification_5de1805b_holds():
+    """Third dated full-hub read: the register compares the 13 Nov snapshot and the
+    15 Nov morning read to the live page as read at 2026-11-15T12:55Z."""
+    fn = os.path.join(DATA, "reverification_5de1805b.csv")
+    if not os.path.exists(fn):
+        warn("dated re-verification register absent for 5de1805b")
+        return
+    data, _, _ = rows("reverification_5de1805b.csv")
+    vocab = {"MATCH", "CORRECTED", "NEW", "MISMATCH", "NOT CHECKED"}
+    off = [r for r in data if r["result"].strip().upper() not in vocab]
+    if off:
+        bad("re-verification 5de1805b: result %r outside the vocabulary" % off[0]["result"])
+        return
+    flag_ids = {r["id"] for r in rows("flags.csv")[0]}
+    unflagged = []
+    for r in data:
+        if r["result"].strip().upper() in ("MISMATCH", "CORRECTED"):
+            cited = set(re.findall(r"FL-\d+", r["note"])) | set(re.findall(r"FL-\d+", r["check"]))
+            if not cited & flag_ids:
+                unflagged.append(r["id"])
+    if unflagged:
+        bad("re-verification 5de1805b: rows that disagree with the official page cite no flag: %s" % unflagged[:4])
+    else:
+        ok("re-verification 5de1805b: %d checks, %d mismatch rows, each cites a live flag"
+           % (len(data), sum(1 for r in data if r["result"] == "MISMATCH")))
+    nosrc = [r["id"] for r in data if not r["source"].startswith("https://")]
+    if nosrc:
+        bad("re-verification 5de1805b: %d rows without an https source" % len(nosrc))
+    counts = {}
+    for r in data:
+        counts[r["result"]] = counts.get(r["result"], 0) + 1
+    if counts != {"MISMATCH": 194, "MATCH": 146, "NEW": 51}:
+        bad("re-verification 5de1805b: unexpected result mix %s (expected 296 snapshot rows + 51 NEW + 44 same-day rows)" % counts)
+    else:
+        ok("re-verification 5de1805b: 296 snapshot rows compared (194 drifted, 102 identical), 51 first filings, 44 rows of the morning read reproduced cell for cell")
+    ids = [r["id"] for r in data]
+    if len(ids) != len(set(ids)):
+        bad("re-verification 5de1805b: duplicate register IDs")
 
 
 if __name__ == "__main__":

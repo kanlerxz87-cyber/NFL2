@@ -742,6 +742,11 @@ def brief_coverage_metrics():
     m["d_pub_clubs_withheld"] = m["d_clubs_15"] - m["d_pub_clubs"]
     m["d_dnp_15"] = sum(1 for r in new if r["practice"].strip() == "D")
     m["d_removed_total"] = sum(int(r["rows_removed"]) for r in d)
+    # Derived, not typed: the count of clubs whose row count is unchanged, and the count that
+    # gained rows. A hand-written "14 clubs" went stale the moment the read was reconciled.
+    club_rows = [r for r in d if r["rows_added"].strip() and r["club"] != "ALL 28 reporting clubs"]
+    m["d_unchanged"] = sum(1 for r in club_rows if int(r["rows_added"]) == 0)
+    m["d_gained"] = sum(1 for r in club_rows if int(r["rows_added"]) > 0)
 
     fresh = rows("page_freshness_f34622dd.csv")
     m["fresh_pages"] = len(fresh)
@@ -1137,9 +1142,12 @@ def main():
 
 KPIS = [
     ("injury_rows", "Injury rows ingested", "injuries",
-     lambda m: "%d rows, %d/%d clubs (%s); %d/%d (%s); latest %d/%d (%s). Separate dated reads." % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["injury_primary_capture"], m["hub2_rows"], m["hub2_clubs"], m["hub2_captured_utc"], m["pr_hub_rows"], m["pr_hub_clubs"], m["hub_latest_captured_utc"])),
+     lambda m: "%d rows, %d/%d clubs (%s); %d/%d (%s); latest %d/%d (%s); newest read %d/%d (%s). Separate dated reads." % (m["injury_rows"], m["injury_teams"], m["injury_clubs_playing"], m["injury_primary_capture"], m["hub2_rows"], m["hub2_clubs"], m["hub2_captured_utc"], m["pr_hub_rows"], m["pr_hub_clubs"], m["hub_latest_captured_utc"], m["d_rows_15"], m["d_clubs_15"], "2026-11-15T12:56Z")),
+    # The designation tile is the one a reader is most likely to act on, and it was silently
+    # describing the 12 November file. It now states the read date and names the newest read,
+    # so the number cannot be mistaken for the current state of the hub (FL-84).
     ("designations", "Designations published", "injuries",
-     lambda m: "%d of %d rows carry a game status; the rest are not published" % (m["designations"], m["injury_rows"])),
+     lambda m: "%d of %d rows in the 12 November table carry a game status; %d of %d rows carry one in the 2026-11-15T12:56Z read. The rest are not published." % (m["designations"], m["injury_rows"], m["d_desig_15"], m["d_rows_15"])),
     ("depth_rows", "Depth & roster events", "depth-impact",
      lambda m: "%d entries: IR, returns, signings, QB chain changes" % m["depth_rows"]),
     ("standings_teams", "Standings reconciled", "league-data",
