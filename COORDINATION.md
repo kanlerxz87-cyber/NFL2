@@ -2322,3 +2322,19 @@ second rebase: appending rows to `data/suggestions.csv` and `data/questions.csv`
 `745f788e`'s derived tables stale, so `scripts/build_s745_decisions.py` was re-run and the two row
 counts in the data dictionary were updated (64→72, 54→61). No fact in those tables changed; they are
 arithmetic on the registers.
+
+## Session `ac2dd497` (`arena/ac2dd497-nfl2`) — decision-readiness landing table (final integration claim)
+
+**Claimed:** 2026-11-15 UTC · **Branch:** `arena/ac2dd497-nfl2` · **Base:** `1eaf7f74c44a94b9113f36fd4dbd0f24a1bdc58f`
+
+No GitHub pull requests are open. The older `in progress` entries in this log predate the merged PR #60 and have no current PR/branch activity; this claim is limited to a new decision-readiness crosswalk and the final landing-page integration. It does not change any source snapshots, market prices, injuries, depth rows, model results, or pre-registered strategy locks.
+
+### Exclusive scope
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| Build a one-row-per-requirement readiness crosswalk from the existing requirement and gate registers; show blockers and the existing clearance criteria; leave unestablished metrics blank and flag them | in progress | `ac2dd497` | `data/decision_readiness_ac2dd497.csv`, `tools/verify_readiness_ac2dd497.py` |
+| Integrate the crosswalk on the canonical landing page as final integration; preserve the existing requirement register and generated-site contract | in progress | `ac2dd497` | `content/index.md`, generated `index.html`, generated `data/build_manifest.json`, `COORDINATION.md` |
+
+The readiness table will cite the project brief for requirement text and show an official NFL/club source only where that source directly supports a factual input. A project-design requirement has no honest NFL source; that cell will remain unverified rather than borrowing an unrelated official URL. Existing gate thresholds are copied from `data/gates.csv`; no threshold will be invented to make a row look complete.
+
