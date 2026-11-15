@@ -1,45 +1,45 @@
-club|player|pos|live_practice|live_status|live_injury|L7_practice|L7_status|L7_matches_live|L4_practice|L4_status|L4_matches_live|source
-DET|Amon-Ra St. Brown|WR|L|Q|Rib|L|Q|yes|L||no|S-INJ-D8
-DET|Brian Branch|S|F|||F||yes|F||yes|S-INJ-D8
-DET|Cade Mays|C|D|OUT|Ankle|D|OUT|yes|D|OUT|yes|S-INJ-D8
-DET|D.J. Reed|CB|D|OUT|Hip|D|OUT|yes|D|OUT|yes|S-INJ-D8
-DET|DJ Wonnum|DE|F|||F||yes|F||yes|S-INJ-D8
-DET|Jacob Saylors|RB|F|||F||yes|F||yes|S-INJ-D8
-DET|Jared Goff|QB|F|||F||yes|F||yes|S-INJ-D8
-DET|Kerby Joseph|S|D|OUT|Knee|D|OUT|yes|F|OUT|no|S-INJ-D8
-DET|Sione Vaki|RB|L|Q|Ankle|L|Q|yes|D||no|S-INJ-D8
-NE|A.J. Brown|WR|L|Q|Ankle, Knee|L|Q|yes|L||no|S-INJ-D8
-NE|Ben Brown|C|D|OUT|Knee|D|OUT|yes|D|OUT|yes|S-INJ-D8
-NE|Brenden Schooler|S|L|Q|Hamstring|L|Q|yes|L||no|S-INJ-D8
-NE|Cameron Latu|TE|L|Q|Back|L|Q|yes|L||no|S-INJ-D8
-NE|Carlton Davis III|CB|D|OUT|Knee|D|OUT|yes|D|OUT|yes|S-INJ-D8
-NE|Charles Woods|CB|F|Q|Hamstring|F|Q|yes|L||no|S-INJ-D8
-NE|Drake Maye|QB|F|||F||yes|F||yes|S-INJ-D8
-NE|Greg Van Roten|G|F|Q|Hamstring|F|Q|yes|L||no|S-INJ-D8
-NE|Hunter Henry|TE|L|||L||yes|L||yes|S-INJ-D8
-NE|Kevin Byard|S|F|Q|Chest|F|Q|yes|L||no|S-INJ-D8
-NE|Morgan Moses|T|F|||F||yes|L||no|S-INJ-D8
-NE|Reggie Gilliam|FB|L|Q|Knee|L|Q|yes|L||no|S-INJ-D8
-NE|Rhamondre Stevenson|RB|L|Q|Knee|L|Q|yes|L||no|S-INJ-D8
-NE|TreVeyon Henderson|RB|D|OUT|Illness|D|OUT|yes|D|OUT|yes|S-INJ-D8
-NE|Walter Rouse|T|L|Q|Concussion|L|Q|yes|L||no|S-INJ-D8
-NYG|Abdul Carter|LB|F|||F||yes|F||yes|S-INJ-D8
-NYG|Andrew Thomas|T|F|||F||yes|F||yes|S-INJ-D8
-NYG|Cam Skattebo|RB|F|||F||yes|F||yes|S-INJ-D8
-NYG|Charlie Jones|WR|F|||F||yes|F||yes|S-INJ-D8
-NYG|Colton Hood|CB|F|||F||yes|F||yes|S-INJ-D8
-NYG|Darnell Mooney|WR|F|||F||yes|F||yes|S-INJ-D8
-NYG|J.J. McCarthy|QB|F|||F||yes|F||yes|S-INJ-D8
-NYG|Jermaine Eluemunor|T|F|||F||yes|F||yes|S-INJ-D8
-NYG|Malik Harrison|LB|L|Q|Groin|L|Q|yes|L|Q|yes|S-INJ-D8
-NYG|Malik Nabers|WR|F|||F||yes|F||yes|S-INJ-D8
-NYG|Theo Johnson|TE|F|||F||yes|F||yes|S-INJ-D8
-WAS|Amik Robertson|CB|L|||L||yes|L||yes|S-INJ-D8
-WAS|Chig Okonkwo|TE|F|||F||yes|F||yes|S-INJ-D8
-WAS|Colson Yankoff|TE|D|OUT|Knee|D|OUT|yes|D|OUT|yes|S-INJ-D8
-WAS|Jayden Daniels|QB|F|||F||yes|F||yes|S-INJ-D8
-WAS|John Bates|TE|F|||F||yes|F||yes|S-INJ-D8
-WAS|Lucas Patrick|C|D|OUT|Concussion|D|OUT|yes|D|OUT|yes|S-INJ-D8
-WAS|Matt Gulbin|C|F|||F||yes|F||yes|S-INJ-D8
-WAS|Shy Tuttle|DT|F|||F||yes|F||yes|S-INJ-D8
-WAS|Treylon Burks|WR|D|||D||yes|D||yes|S-INJ-D8
+club|player|pos|live_practice|live_status|live_injury|L7_practice|L7_status|L7_matches_live|L4_practice|L4_status|L4_matches_live|L8_matches_live|source
+DET|Amon-Ra St. Brown|WR|L|Q|Rib|L|Q|yes|L||no|yes|S-INJ-D8
+DET|Brian Branch|S|F|||F||yes|F||yes|yes|S-INJ-D8
+DET|Cade Mays|C|D|OUT|Ankle|D|OUT|yes|D|OUT|yes|yes|S-INJ-D8
+DET|D.J. Reed|CB|D|OUT|Hip|D|OUT|yes|D|OUT|yes|yes|S-INJ-D8
+DET|DJ Wonnum|DE|F|||F||yes|F||yes|yes|S-INJ-D8
+DET|Jacob Saylors|RB|F|||F||yes|F||yes|yes|S-INJ-D8
+DET|Jared Goff|QB|F|||F||yes|F||yes|yes|S-INJ-D8
+DET|Kerby Joseph|S|D|OUT|Knee|D|OUT|yes|F|OUT|no|yes|S-INJ-D8
+DET|Sione Vaki|RB|L|Q|Ankle|L|Q|yes|D||no|yes|S-INJ-D8
+NE|A.J. Brown|WR|L|Q|Ankle, Knee|L|Q|yes|L||no|yes|S-INJ-D8
+NE|Ben Brown|C|D|OUT|Knee|D|OUT|yes|D|OUT|yes|yes|S-INJ-D8
+NE|Brenden Schooler|S|L|Q|Hamstring|L|Q|yes|L||no|yes|S-INJ-D8
+NE|Cameron Latu|TE|L|Q|Back|L|Q|yes|L||no|yes|S-INJ-D8
+NE|Carlton Davis III|CB|D|OUT|Knee|D|OUT|yes|D|OUT|yes|yes|S-INJ-D8
+NE|Charles Woods|CB|F|Q|Hamstring|F|Q|yes|L||no|yes|S-INJ-D8
+NE|Drake Maye|QB|F|||F||yes|F||yes|yes|S-INJ-D8
+NE|Greg Van Roten|G|F|Q|Hamstring|F|Q|yes|L||no|yes|S-INJ-D8
+NE|Hunter Henry|TE|L|||L||yes|L||yes|yes|S-INJ-D8
+NE|Kevin Byard|S|F|Q|Chest|F|Q|yes|L||no|yes|S-INJ-D8
+NE|Morgan Moses|T|F|||F||yes|L||no|yes|S-INJ-D8
+NE|Reggie Gilliam|FB|L|Q|Knee|L|Q|yes|L||no|yes|S-INJ-D8
+NE|Rhamondre Stevenson|RB|L|Q|Knee|L|Q|yes|L||no|yes|S-INJ-D8
+NE|TreVeyon Henderson|RB|D|OUT|Illness|D|OUT|yes|D|OUT|yes|yes|S-INJ-D8
+NE|Walter Rouse|T|L|Q|Concussion|L|Q|yes|L||no|yes|S-INJ-D8
+NYG|Abdul Carter|LB|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Andrew Thomas|T|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Cam Skattebo|RB|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Charlie Jones|WR|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Colton Hood|CB|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Darnell Mooney|WR|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|J.J. McCarthy|QB|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Jermaine Eluemunor|T|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Malik Harrison|LB|L|Q|Groin|L|Q|yes|L|Q|yes|yes|S-INJ-D8
+NYG|Malik Nabers|WR|F|||F||yes|F||yes|yes|S-INJ-D8
+NYG|Theo Johnson|TE|F|||F||yes|F||yes|yes|S-INJ-D8
+WAS|Amik Robertson|CB|L|||L||yes|L||yes|yes|S-INJ-D8
+WAS|Chig Okonkwo|TE|F|||F||yes|F||yes|yes|S-INJ-D8
+WAS|Colson Yankoff|TE|D|OUT|Knee|D|OUT|yes|D|OUT|yes|yes|S-INJ-D8
+WAS|Jayden Daniels|QB|F|||F||yes|F||yes|yes|S-INJ-D8
+WAS|John Bates|TE|F|||F||yes|F||yes|yes|S-INJ-D8
+WAS|Lucas Patrick|C|D|OUT|Concussion|D|OUT|yes|D|OUT|yes|yes|S-INJ-D8
+WAS|Matt Gulbin|C|F|||F||yes|F||yes|yes|S-INJ-D8
+WAS|Shy Tuttle|DT|F|||F||yes|F||yes|yes|S-INJ-D8
+WAS|Treylon Burks|WR|D|||D||yes|D||yes|yes|S-INJ-D8

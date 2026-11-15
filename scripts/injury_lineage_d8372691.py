@@ -8,7 +8,7 @@ of two stored rows.
     python3 scripts/injury_lineage_d8372691.py           # write the outputs
     python3 scripts/injury_lineage_d8372691.py --check   # fail if outputs differ from inputs
 
-Honest limits (also published as FL-85):
+Honest limits (also published as FL-87):
   * Every input is a hand transcription of nfl.com/injuries/. No input is a retained raw
     response, so the SHA-256 values below hash the repository copy, not official bytes.
   * The live spot-check file was transcribed by the agent from the rendered page text returned
@@ -57,13 +57,17 @@ READS = [
     dict(id="L7", label="15 Nov live read, four clubs", file="data/injuries_wk10_e733834d_20261115.csv",
          read_utc="2026-11-15T12:13Z", source="S-INJ-E733", scope="partial",
          claim="44 rows, WAS / NYG / NE / DET (S-INJ-E733 register row)"),
+    dict(id="L8", label="15 Nov full hub read, 28 clubs (other session, 8dee7df7)",
+         file="data/hub_read_8dee7df7.csv", read_utc="2026-11-15T12:51Z", source="S-INJ-8DEE",
+         scope="full", claim="347 player rows, 28 clubs; LAC 19 rows and BAL 10 rows (the other session flags these as FL-81)"),
 ]
 SPOT_FILE = "data/injury_live_chunk_d8372691.csv"
 SCHEDULE = "data/schedule_2026_wk10.csv"
 TEAMS = "data/teams.json"
 
 # Each read is reconciled against one reference read: the earlier file it is meant to refresh.
-REFERENCE = {"L1": None, "L2": "L1", "L3": "L2", "L4": "L2", "L5": "L4", "L6": "L4", "L7": "L4"}
+REFERENCE = {"L1": None, "L2": "L1", "L3": "L2", "L4": "L2", "L5": "L4", "L6": "L4", "L7": "L4",
+             "L8": "L4"}
 SPOT_SOURCE = "S-INJ-D8"
 
 OUT_LINEAGE = "data/injury_lineage_d8372691.csv"
@@ -175,7 +179,7 @@ def build():
 
     # ---- 1. lineage ----------------------------------------------------------------
     lin_rows = []
-    for rid in ["L1", "L2", "L3", "L4", "L5", "L6", "L7"]:
+    for rid in ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8"]:
         v = L[rid]
         spec = v["spec"]
         n_players = len(v["players"])
@@ -199,6 +203,14 @@ def build():
             ok = n_players == 296 and len(clubs_with["L4"]) == 26
             claim_check = ("matches: %d player rows across %d clubs" % (n_players, len(clubs_with["L4"]))
                            if ok else "contradicted: %d rows across %d clubs" % (n_players, len(clubs_with["L4"])))
+        elif rid == "L8":
+            lac = sum(1 for p in v["players"] if p["club"] == "LAC")
+            bal = sum(1 for p in v["players"] if p["club"] == "BAL")
+            ok = n_players == 347 and len(clubs_with["L8"]) == 28 and lac == 19 and bal == 10
+            claim_check = ("matches: %d rows across %d clubs; LAC %d rows, BAL %d rows"
+                           % (n_players, len(clubs_with["L8"]), lac, bal) if ok
+                           else "contradicted: %d rows, %d clubs, LAC %d, BAL %d"
+                           % (n_players, len(clubs_with["L8"]), lac, bal))
         elif rid == "L7":
             ok = n_players == 44 and len(clubs_with["L7"]) == 4
             claim_check = ("matches: %d rows across 4 clubs" % n_players if ok
@@ -237,6 +249,10 @@ def build():
     for key in keys["L7"] & keys["L4"]:
         if fields(L["L7"]["by_key"][key]) != fields(L["L4"]["by_key"][key]):
             changes_47[key[0]] += 1
+    changes_48 = {c: 0 for c in clubs}
+    for key in keys["L8"] & keys["L4"]:
+        if fields(L["L8"]["by_key"][key]) != fields(L["L4"]["by_key"][key]):
+            changes_48[key[0]] += 1
     partial = {c for c in clubs if c in clubs_with["L7"]} | set(
         p["club"] for p in L["L7"]["players"])
     for c in clubs:
@@ -248,13 +264,16 @@ def build():
             fmt_count(counts["L6"][c]), fmt_count(counts["L7"][c]) if in_l7 else "",
             fmt_count(counts["L7"][c] - counts["L4"][c]) if in_l7 else "",
             fmt_count(changes_24[c]), fmt_count(changes_47[c]) if in_l7 else "",
+            fmt_count(counts["L8"][c]), fmt_count(counts["L8"][c] - counts["L4"][c]),
+            fmt_count(changes_48[c]),
             OFFICIAL,
         ]
         club_rows.append(row)
     club = write_csv(
         ["club", "week10_status", "rows_L1_254", "rows_L2_279", "rows_L4_296", "delta_L4_minus_L2",
          "rows_L5_s745", "rows_L6_s2268", "rows_L7_15nov", "delta_L7_minus_L4",
-         "value_changes_L2_to_L4", "value_changes_L4_to_L7", "source"], club_rows)
+         "value_changes_L2_to_L4", "value_changes_L4_to_L7", "rows_L8_15nov_full",
+         "delta_L8_minus_L4", "value_changes_L4_to_L8", "source"], club_rows)
 
     # ---- 3. player-level delta between the 12 Nov refresh and the 13 Nov read --------
     prow = []
@@ -289,19 +308,23 @@ def build():
         live[(p["club"], p["player"])] = p
     live_keys = set(live)
     l7_keys = keys["L7"]
+    l8 = L["L8"]["by_key"]
     if live_keys != {k for k in l7_keys} or len(live_raw) != 44:
         raise SystemExit("spot-check keys do not match the four-club file: live %d vs L7 %d"
                          % (len(live_keys), len(l7_keys)))
     spot_rows = []
-    m7 = m4 = 0
+    m7 = m4 = m8 = 0
     for key in sorted(live_keys, key=lambda k: (k[0], k[1])):
         lv = live[key]
         a = L["L7"]["by_key"][key]
         b = L["L4"]["by_key"].get(key)
         ok7 = fields(lv) == fields(a)
         ok4 = b is not None and fields(lv) == fields(b)
+        c8 = l8.get(key)
+        ok8 = c8 is not None and fields(lv) == fields(c8)
         m7 += ok7
         m4 += ok4
+        m8 += ok8
         spot_rows.append([
             key[0], key[1], lv["pos"],
             lv["practice"], lv["status"], lv["injury"],
@@ -309,14 +332,17 @@ def build():
             "yes" if ok7 else "no",
             (b["practice"] if b else ""), (b["status"] if b else ""),
             "yes" if ok4 else "no",
+            "yes" if ok8 else "no",
             SPOT_SOURCE,
         ])
     spot = write_csv(
         ["club", "player", "pos", "live_practice", "live_status", "live_injury", "L7_practice",
-         "L7_status", "L7_matches_live", "L4_practice", "L4_status", "L4_matches_live", "source"],
+         "L7_status", "L7_matches_live", "L4_practice", "L4_status", "L4_matches_live",
+         "L8_matches_live", "source"],
         spot_rows)
 
-    summary = {"L7_matches_live": m7, "L4_matches_live": m4, "live_rows": len(live_keys)}
+    summary = {"L7_matches_live": m7, "L4_matches_live": m4, "L8_matches_live": m8,
+               "live_rows": len(live_keys)}
     return {OUT_LINEAGE: lineage, OUT_CLUB: club, OUT_PLAYERS: players, OUT_SPOT: spot}, summary
 
 
@@ -331,17 +357,18 @@ def main(argv):
         if bad:
             print("DRIFT: outputs differ from inputs:", ", ".join(bad))
             return 1
-        print("injury lineage: %d outputs match their inputs; spot-check %d/%d (L7) and %d/%d (L4)"
+        print("injury lineage: %d outputs match their inputs; spot-check vs live: L7 %d/%d, L4 %d/%d, L8 %d/%d"
               % (len(outputs), summary["L7_matches_live"], summary["live_rows"],
-                 summary["L4_matches_live"], summary["live_rows"]))
+                 summary["L4_matches_live"], summary["live_rows"],
+                 summary["L8_matches_live"], summary["live_rows"]))
         return 0
     for rel, text in outputs.items():
         with open(path(rel), "w", encoding="utf-8", newline="") as fh:
             fh.write(text)
         print("wrote", rel, "(%d lines)" % (text.count("\n") - 1))
-    print("spot-check: L7 matches live %d/%d; L4 matches live %d/%d"
+    print("spot-check vs live: L7 %d/%d, L4 %d/%d, L8 %d/%d"
           % (summary["L7_matches_live"], summary["live_rows"], summary["L4_matches_live"],
-             summary["live_rows"]))
+             summary["live_rows"], summary["L8_matches_live"], summary["live_rows"]))
     return 0
 
 
