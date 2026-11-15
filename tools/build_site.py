@@ -49,6 +49,7 @@ NAV = [
     ("Decisions", [("questions", "Open Questions"), ("information-gaps", "Information Gaps"),
                    ("suggestions", "Suggestion Register"),
                    ("suggestion-review", "Suggestion Review Console"),
+                   ("backlog", "Brief Backlog (71 lines)"),
                    ("flagged-for-review", "Flagged for Review")]),
     ("Origination", [("line-origination", "Originate Our Own Lines"), ("signals", "Signal Catalogue"),
                      ("correlation", "Correlation"), ("bet-types", "Bet Types"),
@@ -284,6 +285,10 @@ def html_table(header, body):
 SITE_TREES = [
     (".", "canonical — `bc4b47cf` integration, extended by `a392a193`",
      "#8 #15 #16 #18 #20 #24", "current", "the register, the verified data layer, the origination lab and the review queue"),
+    ("dcf3b0cc", "`dcf3b0cc`", "*this PR*", "current",
+     "dated official re-verification: all 347 Week 10 injury-hub rows read 2026-11-15T12:55Z, row-by-row "
+     "comparison against the published 13 Nov read, offence-versus-defence deficiency matrix, join-coverage "
+     "counts and n=28 correlations - every row linked to nfl.com"),
     ("s2268", "`2268bfb2`", "*this PR*", "current",
      "the 13 Nov 2026 live refresh with a row-by-row delta, the NE/DET 1st-4th string depth "
      "cascade, and the first pre-registered walk-forward competition - ten strategies scored "
@@ -491,6 +496,12 @@ def build_metrics():
         "suggestions": len(read_rows("suggestions.csv")),
         "questions": len(read_rows("questions.csv")),
         "requirements": len(read_rows("requirements.csv")),
+        "backlog_directives": len(_safe_rows("brief_backlog_58e9c708.csv")),
+        "backlog_reads": _safe_len("backlog_reads_58e9c708.csv"),
+        "backlog_findings": _safe_len("backlog_findings_58e9c708.csv"),
+        "cov_matrix_rows": _safe_len("brief_traceability.csv"),
+        "backlog_unmapped": sum(1 for r in _safe_rows("brief_backlog_58e9c708.csv")
+                                if not (r.get("coverage_matrix_id") or "").strip()),
         "gates": len(read_rows("gates.csv")),
         "signals": len(read_rows("signals.csv")),
         "strategies": len(read_rows("strategies.csv")),
@@ -981,6 +992,7 @@ PAGE_KIND = {
     "depth-deficiencies": ("measured", "Measured data"),
     "information-gaps": ("decision", "Decision needed"),
     "suggestion-review": ("decision", "Awaiting owner review"),
+    "backlog": ("decision", "Awaiting owner review"),
     "brief-coverage": ("program", "Traceability"),
 }
 
