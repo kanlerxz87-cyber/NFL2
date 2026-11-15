@@ -2983,3 +2983,19 @@ The brief's other items remain as they are on `data/requirements.csv`: game-book
 **No other session's work was discarded.** Three separate rounds of `main` advancing (PRs #71, #74, #76, #77, #79, #81) were merged explicitly, never rebased over, and every conflict outside generated build output was resolved by keeping both sides.
 
 **Still open for the owner, published on the site rather than fixed here:** `FL-84` (the published injury table is behind the newest read — `CR-F346-01` asks its owner to repoint it), `FL-85` (ten brief clauses with no owner), `FL-86` (all 14 gates are one-sided; no demotion rule), and the pre-existing `FL-54` and non-league-link warnings, which this session neither caused nor touched.
+## Session `5de1805b` (`arena/5de1805b-nfl2`) — third dated full-hub injury re-read, duplicate-question repair, final integration
+
+**Session ID:** `5de1805b` · **Branch:** `arena/5de1805b-nfl2` (Arena-fixed session branch; this session works only here, so the `session-<id>/<task>` branch naming is adapted: the Arena session branch IS the task branch) · **Base:** `d3c9c92` (PR #70 merge) · **Started:** 2026-11-15T12:55Z
+
+**Claim committed and pushed before any other edit.** Open PR #71 (`arena/1ef36c55-nfl2`) is another live session's work: its scope (`availability_monitor/**`, `.github/workflows/availability-fingerprint.yml`, `content/availability-fingerprints.md`, `content/index.md`, `content/data-dictionary.md`, `data/availability_fingerprints.csv`, `tools/build_site.py`, `tools/verify.py`, regenerated root HTML) is not touched by this session's data work; both sessions regenerate root HTML only through `tools/build_site.py`, so the second PR to land rebases and rebuilds.
+
+| # | Task | Status | Owner | Files (this session's scope) |
+|---|---|---|---|---|
+| F1 | Third dated row-level read of the live `nfl.com/injuries/` Week 10 hub (all chunks, all clubs), full-page transcription after the 12 Nov primary read, the 13 Nov full-hub snapshot (83246f00) and the 15 Nov four-club re-read (e733834d) | in progress | `5de1805b` | `data/injuries_wk10_5de1805b_20261115.csv` (new) |
+| F2 | Row-by-row reverification of the 13 Nov snapshot against the live page, delta computed both ways (changed cells, new filings, dropped rows), plus drift check of the four e733834d clubs inside the same day | in progress | `5de1805b` | `data/reverification_5de1805b.csv` (new) |
+| F3 | New flags for every live-vs-published disagreement found by F2; nothing silently fixed | in progress | `5de1805b` | `data/flags.csv` (append + FL-54 resolution) |
+| F4 | Close FL-54: renumber the duplicated second Q-46/Q-47 rows in the canonical question register to the next free IDs, repoint the references that mean those rows, leave `s745_information_gaps.csv` as the historical record | pending | `5de1805b` | `data/questions.csv`, `data/suggestions.csv` (S-56 ref only), `content/index.md` (two anchor texts), `content/week11-originated.md` (one ref) |
+| F5 | Verifier contract for the new re-verification register (same rules as the 83246f00 register: vocabulary, flag citations, https sources) | pending | `5de1805b` | `tools/verify.py` (additive function + one call in `main()`; additive-only, rebase-resolvable with PR #71) |
+| F6 | Rebuild root site, run every verifier suite, PR → `main`, merge without waiting, confirm GitHub Pages deploy, record PR link/merge/deploy in this board and the requirements register (R-27/R-37/R-38) | pending | `5de1805b` | `data/requirements.csv` (R-27/R-37/R-38 note refresh), `COORDINATION.md`, generated root HTML |
+
+Shared registers `data/flags.csv` and `data/questions.csv` are appended/edited in place per the board's established union-style convention; no other session has them in an open claim.
