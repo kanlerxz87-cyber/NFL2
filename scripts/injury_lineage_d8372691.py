@@ -8,7 +8,7 @@ of two stored rows.
     python3 scripts/injury_lineage_d8372691.py           # write the outputs
     python3 scripts/injury_lineage_d8372691.py --check   # fail if outputs differ from inputs
 
-Honest limits (also published as FL-80):
+Honest limits (also published as FL-85):
   * Every input is a hand transcription of nfl.com/injuries/. No input is a retained raw
     response, so the SHA-256 values below hash the repository copy, not official bytes.
   * The live spot-check file was transcribed by the agent from the rendered page text returned

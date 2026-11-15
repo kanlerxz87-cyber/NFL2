@@ -9,6 +9,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | --- | --- | --- | --- |
 | `data/injuries_2026_wk10.csv` | 254 | one player × game × filing | S-INJ |
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
+| `data/snapcount_source_eval_1e97e798.csv` | 11 | one candidate official or third-party source, or derived route verdict, per row; the official-source test is applied per row | NFL.com gamebook and inactives pages (`S-GAMEBOOK-NESEA-653B`, `S-GAMEBOOK-NYGWAS-653B`, `S-NFL-INACT-W8-1E97`, `S-NFL-NGS-OPS-1E97`); third-party rows marked rejected or unverified |
 | `data/standings_2026.csv` | 32 | club × season-to-date, with read timestamp per row | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
@@ -63,7 +64,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/injury_lineage_d8372691.csv` | 7 | one row per Week 10 injury file: read time, scope, player and club counts, the reference read it was reconciled against, value differences, SHA-256 of the repository copy, and the claim check | S-INJ / S-INJ-2235 / S-INJ-1246 / S-INJ-REG10 / S-INJ-E733 (raw nfl.com/injuries URL where no registered row exists) |
 | `data/injury_club_delta_d8372691.csv` | 32 | one row per NFL club: player counts in each Week 10 read, the change between reads, and the number of values that changed | https://www.nfl.com/injuries/ |
 | `data/injury_delta_players_d8372691.csv` | 68 | one row per player added, or with a changed injury, practice or game-status value, between the 12 Nov 22:35Z and 13 Nov 12:46Z reads | S-INJ-2235 / S-INJ-1246 |
-| `data/injury_live_chunk_d8372691.csv` | 44 | one player row transcribed from the official page for WAS, NYG, NE and DET as rendered on 2026-11-15 at about 12:50Z (no raw bytes; see FL-80) | S-INJ-D8 |
+| `data/injury_live_chunk_d8372691.csv` | 44 | one player row transcribed from the official page for WAS, NYG, NE and DET as rendered on 2026-11-15 at about 12:50Z (no raw bytes; see FL-85) | S-INJ-D8 |
 | `data/injury_spotcheck_d8372691.csv` | 44 | the live transcription compared field by field with the 15 Nov file and the 13 Nov file | S-INJ-D8 |
 | `data/reverification_e733834d.csv` | 44 | one official row compared with the 13 November read that this repository publishes: MATCH or MISMATCH, with the flag that records each mismatch | S-INJ-E733, S-INJ-1246 |
 
@@ -92,7 +93,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/s745_injury_refresh.csv` | 298 | one player × club, re-read from the official injury hub at 2026-11-13T12:45Z, plus 2 explicit "No Injuries Reported" markers | S-INJ-1113 |
 | `data/s745_suggestion_scores.csv` | 72 | one suggestion from `suggestions.csv`, scored on that register's own impact/effort/risk fields and assigned to a candidate path | S-REGISTER-745 |
 | `data/s745_decision_paths.csv` | 4 | one candidate path: the suggestion ids in it, what it unblocks, what it does not fix, and its first milestone | S-REGISTER-745 |
-| `data/s745_information_gaps.csv` | 61 | one question from `questions.csv`, restated as have / lack / how-to-close | S-REGISTER-745 |
+| `data/s745_information_gaps.csv` | 64 | one question from `questions.csv`, restated as have / lack / how-to-close | S-REGISTER-745 |
 
 Rules these seven files obey, all of them re-checked by `scripts/verify_s745.py`:
 

@@ -1,12 +1,12 @@
 # Week 10 Injury Read Lineage — what each read holds, and what changed
-> Every Week 10 injury file in this repository, the official read it came from, what it reconciles against, and the change between reads. Counts and differences only; nothing is inferred. No file here is a retained raw capture, so none is verified byte-for-byte (see FL-80 on the Flagged for Review page).
+> Every Week 10 injury file in this repository, the official read it came from, what it reconciles against, and the change between reads. Counts and differences only; nothing is inferred. No file here is a retained raw capture, so none is verified byte-for-byte (see FL-85 on the Flagged for Review page).
 
 ## What this page establishes, and what it does not
 
-- **Established:** how many player rows each file holds, how many clubs it covers, how each file compares with the earlier file it refreshes, and whether the 254-row headline was correct ([FL-77](flagged-for-review.html): it was not).
+- **Established:** how many player rows each file holds, how many clubs it covers, how each file compares with the earlier file it refreshes, and whether the 254-row headline was correct ([FL-82](flagged-for-review.html): it was not).
 - **Established for four clubs:** a live read on 15 November of the 44 player rows for WAS, NYG, NE and DET matches the 15 November file on all 44 rows and the 13 November file on 31 of 44. The 13 differences are the NE and DET rows already flagged in [FL-73](flagged-for-review.html) and [FL-74](flagged-for-review.html).
-- **Not established:** which of the 17 added players and 51 changed values reflect the league's own changes and which reflect transcription. No retained capture exists to separate them ([FL-78](flagged-for-review.html)).
-- **Not established:** the 12 November transcripts disagree on 12 values for the same players ([FL-79](flagged-for-review.html)).
+- **Not established:** which of the 17 added players and 51 changed values reflect the league's own changes and which reflect transcription. No retained capture exists to separate them ([FL-83](flagged-for-review.html)).
+- **Not established:** the 12 November transcripts disagree on 12 values for the same players ([FL-84](flagged-for-review.html)).
 
 ## 1. Every Week 10 injury file, reconciled
 
@@ -26,7 +26,7 @@ Read this table as counts, never as levels. "Value changes" counts the players p
 
 Every row is a player whose value differs between the two reads. Blank cells are fields the read did not publish for that player.
 
-{{csv data/injury_delta_players_d8372691.csv;;cols=change:Change,club:Club,player:Player,pos:Pos,injury_12nov_2235:Injury 12 Nov,practice_12nov_2235:Practice 12 Nov:practice,status_12nov_2235:Status 12 Nov:status,injury_13nov_1246:Injury 13 Nov,practice_13nov_1246:Practice 13 Nov:practice,status_13nov_1246:Status 13 Nov:status;;source_col=source;;caption=The earlier value is from the 22:35Z 12 Nov refresh and the later from the 12:46Z 13 Nov read. These are differences between two transcriptions; they are not confirmed league changes ([FL-78](flagged-for-review.html)).}}
+{{csv data/injury_delta_players_d8372691.csv;;cols=change:Change,club:Club,player:Player,pos:Pos,injury_12nov_2235:Injury 12 Nov,practice_12nov_2235:Practice 12 Nov:practice,status_12nov_2235:Status 12 Nov:status,injury_13nov_1246:Injury 13 Nov,practice_13nov_1246:Practice 13 Nov:practice,status_13nov_1246:Status 13 Nov:status;;source_col=source;;caption=The earlier value is from the 22:35Z 12 Nov refresh and the later from the 12:46Z 13 Nov read. These are differences between two transcriptions; they are not confirmed league changes ([FL-83](flagged-for-review.html)).}}
 
 ## 4. Live spot-check: 44 rows, four clubs
 
@@ -38,4 +38,4 @@ The rows below are the player rows for WAS, NYG, NE and DET on the official Week
 
 Computed by `scripts/injury_lineage_d8372691.py`, which reads only repository files and writes the four CSVs behind this page. Run with `--check`, it fails if any output differs from its inputs, and CI runs that check on every push. The live transcription is `data/injury_live_chunk_d8372691.csv`. The Kansas City block was cut off in the page text and is not used. The official page remains the reference for every value: [nfl.com/injuries](https://www.nfl.com/injuries/).
 
-Open items that depend on this page: [FL-77](flagged-for-review.html) (headline corrected), [FL-78](flagged-for-review.html), [FL-79](flagged-for-review.html), [FL-80](flagged-for-review.html) (no retained capture), [FL-81](flagged-for-review.html) (row-count corrections).
+Open items that depend on this page: [FL-82](flagged-for-review.html) (headline corrected), [FL-83](flagged-for-review.html), [FL-84](flagged-for-review.html), [FL-85](flagged-for-review.html) (no retained capture), [FL-86](flagged-for-review.html) (row-count corrections).
