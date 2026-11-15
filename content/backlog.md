@@ -21,7 +21,7 @@ Eight official pages were fetched and read. What each one showed is recorded bel
 
 ## Findings published from those reads
 
-Five irregularities, published rather than edited. The three that change what is possible are also raised on the [Flagged for Review](flagged-for-review.html) page as FL-77, FL-78 and FL-79.
+Five irregularities, published rather than edited. The three that change what is possible are also raised on the [Flagged for Review](flagged-for-review.html) page as FL-92, FL-93 and FL-94.
 
 {{csv data/backlog_findings_58e9c708.csv;;cols=id:ID,type:Type,severity:Severity,finding:What we found,evidence:Sources:urls,decision_impact:Effect on decisions,directives:Directives;;source=S-REPO;;caption=Evidence links are the official pages, or the repository file, that each claim rests on. Nothing here was corrected in place.}}
 

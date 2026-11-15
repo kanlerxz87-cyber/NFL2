@@ -2631,7 +2631,7 @@ choose to fold them into the shared register; until then the backlog page is the
 |---|---|---|
 | Register the 71 brief line-items absent from the repository | done | `data/brief_backlog_58e9c708.csv`, `data/backlog_summary_58e9c708.csv`, `tools/build_backlog_58e9c708.py` |
 | Re-read official pages and publish what each showed | done | `data/backlog_reads_58e9c708.csv` (8 pages) |
-| Publish the irregularities those reads produced | done | `data/backlog_findings_58e9c708.csv`, `data/flags.csv` FL-77/78/79 (append-only) |
+| Publish the irregularities those reads produced | done | `data/backlog_findings_58e9c708.csv`, `data/flags.csv` FL-92/78/79 (append-only) |
 | New dashboard page with a table per theme | done | `content/backlog.md`, `tools/build_site.py` (one NAV tuple, one PAGE_KIND entry, three metrics) |
 | Register integrity, gate, dependency, page-coverage and replay verifier | done | `tools/verify_backlog_58e9c708.py`, one CI step in `.github/workflows/validate.yml` |
 | Data-dictionary entries so the verifier's orphan check passes | done | `content/data-dictionary.md` (appended section only) |
@@ -2653,9 +2653,9 @@ choose to fold them into the shared register; until then the backlog page is the
 
 ### Findings (published, not corrected)
 
-* **FL-77** — the Week 10 injury table a reader reaches first still renders the 12 November 254-row read, where the three Lions the brief names carry a blank game status; the official hub publishes all three as Out, and the repo's own 13 and 15 November dated files agree with the official page.
-* **FL-78** — FL-52 says "the NFL transactions hub was not read". It exists, is dated and structured, and confirms the Willis IR placement (11/10), moves Nacua from "likely" to official (11/12), and confirms the Brissett trade the brief cites (11/06). Two brief items carried as blocked are not blocked.
-* **FL-79** — the reserve list names TreVeyon Henderson (NE) Reserve/Injured on 11/14 while the injury hub read the same day lists him with Illness, did not participate, Out.
+* **FL-92** — the Week 10 injury table a reader reaches first still renders the 12 November 254-row read, where the three Lions the brief names carry a blank game status; the official hub publishes all three as Out, and the repo's own 13 and 15 November dated files agree with the official page.
+* **FL-93** — FL-52 says "the NFL transactions hub was not read". It exists, is dated and structured, and confirms the Willis IR placement (11/10), moves Nacua from "likely" to official (11/12), and confirms the Brissett trade the brief cites (11/06). Two brief items carried as blocked are not blocked.
+* **FL-94** — the reserve list names TreVeyon Henderson (NE) Reserve/Injured on 11/14 while the injury hub read the same day lists him with Illness, did not participate, Out.
 * **BF-02** — `data/schedule_week11_2026.csv` carries `site` as not published for every fixture although the official Week 11 page names each stadium.
 * **BF-05** — the Packers chart is dated by the club as Nov. 10, 2026, but the depth register stores our 13 November read date for every club.
 
@@ -2676,7 +2676,7 @@ choose to fold them into the shared register; until then the backlog page is the
 
 ### Append-only shared-file edits made by this session
 
-`data/flags.csv` (+3 rows, FL-77/78/79, appended at end of file only), `content/data-dictionary.md` (one appended section), `.github/workflows/validate.yml` (one added step). No existing row, section or step in any of the three was modified, reordered or removed.
+`data/flags.csv` (+3 rows, FL-92/78/79, appended at end of file only), `content/data-dictionary.md` (one appended section), `.github/workflows/validate.yml` (one added step). No existing row, section or step in any of the three was modified, reordered or removed.
 ## Session `f34622dd` (`arena/f34622dd-nfl2`) — brief-coverage matrix, dated freshness notice, live injury-hub count delta
 
 **Session ID:** `f34622dd` · **Branch:** `arena/f34622dd-nfl2` (fixed by Arena; no `session-*/` branch or worktree created)
@@ -2708,7 +2708,7 @@ Requested from other owners instead of editing (see CR list at the end of this s
 | F3 | Publish the age of the evidence behind every table, with the newest read of the same official page held in the repo | done | `data/page_freshness_f34622dd.csv` (new) | 19 pages; 6 rest on a read older than the newest read held. `rows_withheld` measured, blank where no subtraction is meaningful |
 | F4 | Fail-closed verifier for all of the above, wired into CI | done | `tools/verify_coverage_f34622dd.py` (new), `.github/workflows/validate.yml` | 2,423 checks, 0 failures. It caught three real defects during this session: an inverted freshness comparison, eight tables without a row source and a URL that had silently lost its `github.com` host |
 | F5 | Register the new source and document the new files | done | `data/sources.csv` (append `S-INJ-F346`), `content/data-dictionary.md` | `tools/verify.py` orphan check passes |
-| F6 | Publish three new flags | done | `data/flags.csv` (append `FL-77`, `FL-78`, `FL-79`) | Register now 79 rows |
+| F6 | Publish three new flags | done | `data/flags.csv` (append `FL-92`, `FL-93`, `FL-94`) | Register now 79 rows |
 
 ### Sources used (official)
 
@@ -2731,8 +2731,8 @@ Requested from other owners instead of editing (see CR list at the end of this s
 
 | ID | Target | Request |
 |---|---|---|
-| **CR-F346-01** | `content/injuries.md`, `data/injuries_2026_wk10.csv` (upstream injury-table scope) | Repoint the Week 10 table at `data/injuries_wk10_f34622dd_20261115.csv` (347 rows / 28 clubs) or at the 13 Nov capture (296 / 26), and re-state the page's own counts. Today it renders 254 rows over 24 clubs while the repository holds three newer, larger reads of the same page. `FL-77` tracks it. Not edited here because the file belongs to another session's scope. |
-| **CR-F346-02** | `data/requirements.csv` (final-integration scope) | Consider adding rows for the ten uncovered clauses in `FL-78` so each has an owner. This session did not add requirement rows, because the register is the final integrator's shared output. |
+| **CR-F346-01** | `content/injuries.md`, `data/injuries_2026_wk10.csv` (upstream injury-table scope) | Repoint the Week 10 table at `data/injuries_wk10_f34622dd_20261115.csv` (347 rows / 28 clubs) or at the 13 Nov capture (296 / 26), and re-state the page's own counts. Today it renders 254 rows over 24 clubs while the repository holds three newer, larger reads of the same page. `FL-92` tracks it. Not edited here because the file belongs to another session's scope. |
+| **CR-F346-02** | `data/requirements.csv` (final-integration scope) | Consider adding rows for the ten uncovered clauses in `FL-93` so each has an owner. This session did not add requirement rows, because the register is the final integrator's shared output. |
 
 ### What this session did not do
 
@@ -2837,7 +2837,7 @@ The brief lists roughly one hundred items. This session did not build most of th
 
 ### PR & merge record
 
-* PR: https://github.com/kanlerxz87-cyber/NFL2/pull/74 (`arena/8dee7df7-nfl2` → `main`), opened 2026-11-15 after the first push, rebased and merged twice as `main` advanced (PR #72, #73, #75 merged in the meantime; two register conflicts resolved by keeping both sides, and this session's FL-77 to FL-79 renumbered to FL-81 to FL-83 to avoid colliding with session 1e97e798).
+* PR: https://github.com/kanlerxz87-cyber/NFL2/pull/74 (`arena/8dee7df7-nfl2` → `main`), opened 2026-11-15 after the first push, rebased and merged twice as `main` advanced (PR #72, #73, #75 merged in the meantime; two register conflicts resolved by keeping both sides, and this session's FL-92 to FL-94 renumbered to FL-81 to FL-83 to avoid colliding with session 1e97e798).
 * Merge: merged with a merge commit, `9c8e51c`, at 2026-11-15T12:59:53Z (`gh pr merge 74 --merge`, no `--auto`). Required checks on head `233b275`: `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification` — all pass. The review rule was not waived: the merge followed a passing check run, not an approval.
 * Pages: `pages-build-deployment` on `9c8e51c` completed with status success; the Pages build for that commit reads `built`. Live check: https://kanlerxz87-cyber.github.io/NFL2/hub-delta.html returns the new page (FL-81 to FL-83 links present). The sandbox cannot reach `github.io` directly, so the live check was done through the fetch tool.
 * Second merge: PR #77 (`arena/8dee7df7-nfl2`, the 13 Nov coverage correction and this record) merged as `390b0fa` at 2026-11-15T13:02:13Z, after `build-and-audit`, `Verify site data and links` and `Q51 evidence and engine verification` passed on head `5c0c240`. Pages build for `390b0fa`: `built`.
@@ -2877,7 +2877,7 @@ The brief lists roughly one hundred items. This session did not build most of th
 
 ### `1e97e798` completion record (2026-11-15, read 12:54Z)
 
-**Status:** T02–T04 done; T05 (PR, merge, Pages) recorded below after the merge. Scope held: `data/snapcount_source_eval_1e97e798.csv` (new), `data/sources.csv` (+4 rows), `data/questions.csv` (+Q-61–Q-63), `data/s745_information_gaps.csv` (+3 rows restating Q-61–Q-63, required by `scripts/verify_s745.py`), `data/flags.csv` (+FL-77–FL-80), `content/questions.md` (one new section), `content/data-dictionary.md` (one new row; s745 count 61→64). No change to PR #71's files, `tools/build_site.py`, workflows, or `availability_monitor/**`.
+**Status:** T02–T04 done; T05 (PR, merge, Pages) recorded below after the merge. Scope held: `data/snapcount_source_eval_1e97e798.csv` (new), `data/sources.csv` (+4 rows), `data/questions.csv` (+Q-61–Q-63), `data/s745_information_gaps.csv` (+3 rows restating Q-61–Q-63, required by `scripts/verify_s745.py`), `data/flags.csv` (+FL-92–FL-80), `content/questions.md` (one new section), `content/data-dictionary.md` (one new row; s745 count 61→64). No change to PR #71's files, `tools/build_site.py`, workflows, or `availability_monitor/**`.
 
 | Task | Result | Source / evidence |
 |---|---|---|
@@ -2887,7 +2887,7 @@ The brief lists roughly one hundred items. This session did not build most of th
 
 **Verification performed (combined tree):** `python3 tools/build_site.py` (36 pages, reproducible); `python3 tools/verify.py` → 179 passed, 1 pre-existing warning (Q-46/Q-47 duplicate IDs, FL-54), 0 failures; `python3 tools/check_site.py` → 11 passed, 0 failures; `python3 tools/verify_readiness_ac2dd497.py` → pass; `python3 scripts/audit_all_pages.py` → 110 HTML / 44 JSON / 320 tables / 7,964 rows, 100% row-sourced, 0 broken links; `python3 scripts/check_links.py` → 128 references, none broken. Every new row carries its own URL; third-party rows are marked non-official in the rendered table.
 
-**Irregularities flagged (on `flagged-for-review.html`, non-blocking):** FL-77 (Week 10 2026 inactives not located); FL-78 (2025 Week 10 inactives article shares the 2026 title pattern); FL-79 (90-minute inactive deadline appears only in secondary sources, so it is unverified); FL-80 (Kerby Joseph's practice status differs between the 13 Nov read recorded in FL-58 and the 15 Nov hub read, so single reads go stale).
+**Irregularities flagged (on `flagged-for-review.html`, non-blocking):** FL-92 (Week 10 2026 inactives not located); FL-93 (2025 Week 10 inactives article shares the 2026 title pattern); FL-94 (90-minute inactive deadline appears only in secondary sources, so it is unverified); FL-80 (Kerby Joseph's practice status differs between the 13 Nov read recorded in FL-58 and the 15 Nov hub read, so single reads go stale).
 
 **Rights disclosure for the owner (Q-50):** to verify that the snap tables exist, this session read the two Game Book PDFs in the browser tool. The notice reserves "other use" to written permission. No figures were copied into the repository and no rows were derived from the books. Whether that reading is acceptable is an owner decision under Q-50 and FL-55, and is noted here so it is visible rather than silent.
 
@@ -2895,7 +2895,7 @@ The brief lists roughly one hundred items. This session did not build most of th
 
 **Not done in this session (explicitly open, not claimed by anyone here):** full-season gamebook coverage for route (b); the Week 10 2026 inactive list for every game (Q-61); a re-read of all 32 club depth charts (route a; Houston remains an image); the official source for the 90-minute deadline (Q-63); public Next Gen Stats participation data (Q-62); the broader requirement list (R-08, R-09, R-16, R-20, R-21, R-43, R-44) remains as recorded in `data/requirements.csv`.
 
-**Handoff:** the next session that picks up Q-61 should start from `data/snapcount_source_eval_1e97e798.csv` E-04 (URL not found) and FL-77, not from the 2025 article.
+**Handoff:** the next session that picks up Q-61 should start from `data/snapcount_source_eval_1e97e798.csv` E-04 (URL not found) and FL-92, not from the 2025 article.
 
 ### `1e97e798` PR, merge and Pages record
 
@@ -2916,7 +2916,7 @@ Nothing in this session is left in progress on the branch. The open items it nam
 
 - **Generated HTML and the two JSON build outputs** were regenerated from source with `tools/build_site.py` rather than hand-merged. No content decision was involved.
 - **`COORDINATION.md`** — both sides retained in full; no session's record was dropped.
-- **`data/flags.csv`** — the parallel session `8dee7df7` had already published flags FL-77…FL-83, which collide with the three numbers this session had assigned. This session's flags were **renumbered to FL-84, FL-85, FL-86** and theirs kept as written. Nothing was overwritten and no flag number is duplicated; the register now holds 86 rows.
+- **`data/flags.csv`** — the parallel session `8dee7df7` had already published flags FL-92…FL-83, which collide with the three numbers this session had assigned. This session's flags were **renumbered to FL-84, FL-85, FL-86** and theirs kept as written. Nothing was overwritten and no flag number is duplicated; the register now holds 86 rows.
 - **`data/sources.csv`** — the parallel session added five sources and this session one (`S-INJ-F346`). All six are kept; 78 rows, no duplicate ids.
 
 **Independent transcription cross-check (unplanned, and the most useful result of the session).** Session `8dee7df7` transcribed the same official page four minutes earlier (12:51Z against this session's 12:56Z) into `data/hub_read_8dee7df7.csv`. The two transcriptions were compared field by field:
@@ -2954,7 +2954,7 @@ No requirement, gate, threshold, flag or NFL fact is affected. `broken_links` an
 | Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main:/` |
 | Live page | https://kanlerxz87-cyber.github.io/NFL2/brief-coverage.html — fetched after deploy and read: all 84 matrix rows, the 29-row per-club delta and the 19-row freshness panel render, with a source link on every row |
 
-**Merge conflicts resolved across three rounds of `main` advancing** (PRs #71, #74, #77, #79 landed while this branch was open). Conflicts were confined to generated `*.html`, `data/build_manifest.json`, `data/verification-report.json` and append-only registers. In every round the generated files were rebuilt from source rather than hand-merged, both sides of `COORDINATION.md` were kept, and no session's flag or source row was dropped. The only judgement call was the flag renumbering recorded above (FL-77…83 taken by `8dee7df7`; this session's three became FL-84…86).
+**Merge conflicts resolved across three rounds of `main` advancing** (PRs #71, #74, #77, #79 landed while this branch was open). Conflicts were confined to generated `*.html`, `data/build_manifest.json`, `data/verification-report.json` and append-only registers. In every round the generated files were rebuilt from source rather than hand-merged, both sides of `COORDINATION.md` were kept, and no session's flag or source row was dropped. The only judgement call was the flag renumbering recorded above (FL-92…83 taken by `8dee7df7`; this session's three became FL-84…86).
 
 **Nothing was discarded from another session.** The branch was never force-pushed; every push was a fast-forward of its own history after an explicit merge commit.
 ## Session `arena/d8372691-nfl2` — Week 10 injury-read lineage, delta publication and live spot-check
@@ -3026,7 +3026,7 @@ The brief's other items remain as they are on `data/requirements.csv`: game-book
 
 - Generated pages and manifests were regenerated with `tools/build_site.py` and `tools/review_verify.py`, not merged by hand.
 - `COORDINATION.md`, `data/flags.csv` and `data/sources.csv` keep every upstream line. This session's rows are appended after them.
-- **Flag IDs.** PR #73 took FL-77..80. Session `8dee7df7` took FL-77..83. This session's flags are therefore FL-87..FL-91, not FL-77..81 or FL-82..86. The rename covers this session's files and this record only.
+- **Flag IDs.** PR #73 took FL-92..80. Session `8dee7df7` took FL-92..83. This session's flags are therefore FL-87..FL-91, not FL-92..81 or FL-82..86. The rename covers this session's files and this record only.
 - **Other session's read.** `8dee7df7` published `data/hub_read_8dee7df7.csv` (347 rows, 28 clubs, 15 Nov 12:51Z). That is the full 28-club read, and its club set equals the 28 playing clubs in `data/schedule_2026_wk10.csv`. It is registered here as lineage row **L8** (S-INJ-8DEE). It matches this session's independent live transcription on **44 of 44** rows for WAS, NYG, NE and DET. This corroborates the transcription; it does not verify it against a retained raw capture (FL-90 stands).
 - `content/injuries.md` keeps `8dee7df7`'s dated note and this session's corrected headline. The headline is FL-87.
 
@@ -3100,3 +3100,26 @@ row-sourced, 0 broken links · `scripts/verify_site.py` 13/13 · `tools/review_v
 `tools/verify_readiness_ac2dd497.py` all four pass · `scripts/verify_q51.py` 0 errors · Q51 unit
 tests 36 passed · `scripts/verify_s53126614.py` PASS · `tools/verify_s92.py` 13/13 ·
 `node scripts/render_test.js` 13 pages 0 failures · `git diff --check` clean.
+
+### Flag-id collision found after the merge (renumbering record)
+
+The `--union` merge of `data/flags.csv` produced four duplicate ids: FL-76 twice, and FL-77/78/79
+each claimed both by this session and by session `5de1805b`, which had independently appended its
+own flags under those numbers on `main`. `tools/verify.py` does not yet check flag-id uniqueness, so
+the collision was not caught by the suite.
+
+Fixed as follows: `data/flags.csv` restored from the merge commit; the duplicated identical FL-76 row
+dropped; this session's three rows identified **by their text**, not by id, and renumbered to
+**FL-92, FL-93, FL-94**; every reference in `data/backlog_reads_58e9c708.csv`,
+`data/backlog_findings_58e9c708.csv`, `content/backlog.md`, `tools/build_backlog_58e9c708.py` and this
+file updated to match. Session `5de1805b`'s FL-77, FL-78 and FL-79 are untouched and keep their
+numbers. The file is 94 rows, ids unique and numerically ordered.
+
+**CR-58E9-06** — to the owner of `tools/verify.py`: add a duplicate-id check to `data/flags.csv`.
+Sessions appending concurrently will keep colliding, and nothing in the suite currently fails on it.
+A cheap deterministic allocator (a script that returns the next free id) would remove the class of
+bug entirely.
+
+**CR-58E9-07** — to every session appending to `data/flags.csv`, `data/questions.csv` or
+`data/suggestions.csv`: read the current maximum id from `origin/main` immediately before appending,
+not from your branch base. This branch was four commits behind at append time.
