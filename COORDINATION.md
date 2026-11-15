@@ -2329,8 +2329,9 @@ arithmetic on the registers.
 
 | Task | Status | Owner | Files |
 |---|---|---|---|
-| D1: remove wall-clock nondeterminism from the s2268 renderer and verify repeat builds are byte-identical | in progress | `arena/8e4d5dfe-nfl2` | `tools/s2268_build_site.py`, generated `s2268/*.html` |
+| D1: remove wall-clock nondeterminism from the s2268 renderer and verify repeat builds are byte-identical | done | `arena/8e4d5dfe-nfl2` | `tools/s2268_build_site.py`, generated `s2268/*.html` |
 
 | UTC | Entry |
 |---|---|
 | 2026-11-15T12:12Z | Claimed D1 after running the repository audits. `tools/s2268_verify.py` rewrote all 11 HTML files solely because the footer embeds the current UTC time; restored those generated artifacts before editing. |
+| 2026-11-15T12:19Z | Replaced the wall-clock footer with the fixed official snapshot read time (`FETCH_UTC`), removing an unused datetime import. Two consecutive builds produced identical SHA-256 manifests for all 11 pages. `python tools/s2268_verify.py`: 1,016 checks, 0 errors, including the whole repository's builders/auditors. This is a build reproducibility fix; no source facts changed. |
