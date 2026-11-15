@@ -2585,11 +2585,11 @@ No PR is open yet. Next: fetch/merge current `origin/main` before pushing the fi
 
 ## Session `1ef36c55` — conflict handoff and availability fingerprint monitor (claim)
 
-**Branch:** `arena/1ef36c55-nfl2` (Arena-fixed current branch) · **Base now:** `52352f9` (PR #69) · **Claimed:** 2026-11-15 UTC. C1 implementation is committed locally; publication PR not yet opened.
+**Branch:** `arena/1ef36c55-nfl2` (Arena-fixed current branch) · **Base now:** `d3c9c92` (PR #70) · **Claimed:** 2026-11-15 UTC. C1 implementation is committed locally; push and publication PR pending.
 
 ### Superseded work and conflict record
 
-This session first attempted to claim the requirements readiness matrix and a Nov 15 injury freshness note. Before any implementation or push, `git pull --rebase origin main` fetched PR #64 and exposed that session `92d3ac43` had already integrated the same matrix. Subsequent pulls fetched PRs #65–#67, which recorded the official-page freshness audit and re-read four teams. Those upstream commits were preserved in full; the duplicate task was closed before code changes. Two append-only `COORDINATION.md` conflicts occurred because `main` advanced during the session. Each was resolved by preserving the upstream board and adding this handoff. No upstream data or page was discarded.
+This session first attempted to claim the requirements readiness matrix and a Nov 15 injury freshness note. Before any implementation or push, `git pull --rebase origin main` fetched PR #64 and exposed that session `92d3ac43` had already integrated the same matrix. Subsequent pulls fetched PRs #65–#67, which recorded the official-page freshness audit and re-read four teams. Those upstream commits were preserved in full; the duplicate task was closed before code changes. Subsequent `main` advances through PRs #69 and #70 required append-only `COORDINATION.md` conflict reconciliation. Each conflict was resolved by preserving the complete upstream board and this handoff. No upstream data or page was discarded.
 
 ### New task claim — C1
 
@@ -2601,10 +2601,10 @@ This session first attempted to claim the requirements readiness matrix and a No
 
 ### C1 implementation handoff (2026-11-15)
 
-**Implementation commits:** `7e06bf2` (capture module, tests, ledger header, scheduled workflow) and `737280e` (site integration, generated pages, verifier). Rebased onto `origin/main` at `52352f9`, preserving PR #69 and all upstream coordination entries. Worktree is clean; no live capture was run, so the public ledger remains header-only.
+**Implementation commits:** `d974922` (capture module, tests, ledger header, scheduled workflow) and `1a431e4` (site integration, generated pages, verifier). Rebased onto `origin/main` at `d3c9c92`, preserving PRs #69 and #70 and all upstream coordination entries. Worktree is clean; no live capture was run, so the public ledger remains header-only.
 
 **Schedule and behavior:** GitHub Actions captures Wed–Sat at 23:17 UTC and Sunday at 12:17 UTC. Unit tests gate publication. Capture, test, or publication failure is surfaced through workflow alerts; only metadata is committed. Raw response bytes are hashed in memory and discarded. No bodies, byte counts, or player rows are published. Fingerprints represent schema shape, not cell values; missing expected tables are treated as drift. Hashes do not provide replayability or satisfy G-03.
 
-**Validation after rebase:** `tools/verify.py` 183 passed / 1 existing warning / 0 failures; `tools/check_site.py` 11 passed / 1 existing warning / 0 failures; C1 tests 15 passed; Q51 tests 36 passed; S53 verification passed; S92 verification 13 passed; link check 128 references with no broken links; full audit 111 HTML / 44 JSON / 320 tables / 7,953 rows, 100% row-sourced and no broken links or column mismatches; render test 13 pages / 0 failures; `tools/s2268_verify.py` 1,004 checks / 0 errors; Python compilation and `git diff --check` passed. The generated site rebuild is clean and deterministic. Existing warnings are the duplicate Q-46/Q-47 register IDs and non-league links on registry/research pages.
+**Validation after rebase:** `tools/verify.py` 183 passed / 1 existing warning / 0 failures; `tools/check_site.py` 11 passed / 1 existing warning / 0 failures; C1 tests 15 passed; Q51 tests 36 passed; S53 verification passed; S92 verification 13 passed; link check 128 references with no broken links; full audit 111 HTML / 44 JSON / 320 tables / 7,953 rows, 100% row-sourced and no broken links or column mismatches; render test 13 pages / 0 failures; `tools/s2268_verify.py` 1,004 checks / 0 errors; workflow YAML parsed with both expected UTC schedules; reproducibility check, Python compilation, and `git diff --check` passed. The generated site rebuild is clean. Existing warnings are the duplicate Q-46/Q-47 register IDs and non-league links on registry/research pages.
 
 **Remaining publication step:** open a PR from this branch, wait for CI, then update this board with the merge and Pages deployment outcome. Do not run a live capture until an authorized workflow dispatch or schedule; no live-source result is claimed here.
