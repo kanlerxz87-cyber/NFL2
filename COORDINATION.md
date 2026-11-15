@@ -2496,3 +2496,22 @@ Created `audits/final-verification-2026-11-15.md`. The source-of-truth requireme
 **Rebase conflict note (2026-11-15):** Before pushing the conflict-resolution merge, `git pull --rebase origin arena/8e4d5dfe-nfl2` attempted to replay the parallel integration's now-merged `c06ccdd` coordination claim and conflicted in `COORDINATION.md`. Aborted the rebase without dropping any changes; the current branch already contains both `origin/main` and its previous remote head via the explicit merge commit `8c4fc45`. No upstream work was rewritten.
 
 **PR / deployment record:** PR [#62](https://github.com/kanlerxz87-cyber/NFL2/pull/62) merged to `main` with merge commit `18ff59a5428c783069297f16efbcade02d368920` at `2026-11-15T12:15:37Z`. Required PR checks `Row-level verification, link check and build reproducibility`, `audit`, and `q51` passed before merge. Post-merge checks `GitHub Pages`, `build-and-audit`, `Verify site data and links`, and `Q51 evidence and engine verification` all succeeded for that merge commit. Pages deployment run [43712925091](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43712925091) succeeded; the Pages API reports status `built` at https://kanlerxz87-cyber.github.io/NFL2/. No remaining PR action for this session.
+
+### PR & merge record — session `e733834d`
+
+| | |
+|---|---|
+| PR | https://github.com/kanlerxz87-cyber/NFL2/pull/66 |
+| Branch | `arena/e733834d-nfl2` → `main` |
+| Head at merge | `f79c576` + merge of `origin/main` at `2064d21` (commit `3f987c4`) |
+| Merge commit on `main` | `b4e6723474ad4fb1751476a0be438d52348897b4`, merged 2026-11-15T12:18:48Z (`gh pr merge 66 --merge`) |
+| CI before merge | `build-and-audit` pass · `Row-level verification, link check and build reproducibility` pass · `q51` pass · mergeable CLEAN |
+| CI after merge (for `b4e6723`) | `build-and-audit` success · `Verify site data and links` success · `Q51 evidence and engine verification` success |
+| Pages | legacy build, branch `main`, path `/`; `status: built` for commit `b4e6723` at 2026-11-15T12:19:05Z; `GitHub Pages` workflow success for the same commit |
+| Live check | https://kanlerxz87-cyber.github.io/NFL2/index.html serves the decision-readiness table (46 rows) and the "76 irregularities published" count; https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html is served |
+
+**Conflicts at publication, resolved without discarding work:** `main` advanced through PR #63 and PR #64 (session `92d3ac43`, which had added the same decision-readiness columns to the register) while PR #66 was open. The duplicate CSV built earlier in this session was removed in favour of `main`'s register; generated pages were regenerated; both sides of `COORDINATION.md` are kept. See "Merge reconciliation" above.
+
+**Not verified on the live site:** the full Flagged for Review page (12 chunks) was served; only its first chunk was read, so FL-73 and FL-74 are confirmed in the built file, not by reading the live page end to end.
+
+**Still open after this session (flagged, not blocking):** FL-73, FL-74 (the 13 Nov read needs replacing by a dated capture), FL-75 (closed), FL-76 (status vocabulary decision), and the blocked brief items listed in "What this session did not do".
