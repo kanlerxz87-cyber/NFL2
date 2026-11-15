@@ -27,7 +27,14 @@ class StrategyReviewBuilderTests(unittest.TestCase):
         rows = builder.validate(self.register, self.clone())
         self.assertEqual(len(rows), 15)
         rendered = builder.render(self.register, rows)
-        self.assertEqual(builder.check_internal_links(rendered), 26)
+        self.assertEqual(builder.check_internal_links(rendered), 30)
+
+    def test_historical_leaderboard_boundary_is_flagged(self):
+        rendered = builder.render(self.register, builder.validate(self.register, self.clone()))
+        self.assertIn("CR-F05-02", rendered)
+        self.assertIn('href="../../s2268/competition.html"', rendered)
+        self.assertIn('href="../../data/s2268_leaderboard.csv"', rendered)
+        self.assertIn("S-04", rendered)
 
     def test_missing_strategy_is_rejected(self):
         data = self.clone()

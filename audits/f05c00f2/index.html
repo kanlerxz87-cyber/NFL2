@@ -40,6 +40,11 @@ footer { margin:2rem 0 1rem; padding-top:1rem; border-top:1px solid var(--line);
     <p>For each strategy, freeze the target outcome, comparator, decision cutoff, sample window, uncertainty method and multiplicity family before collecting evaluation results. The “support” and “change our mind” text is a proposed preregistration aid, not a new numeric gate. Apply the existing registered gates without changing their thresholds. Keep forecast skill separate from staking/realized return; never promote a strategy because a lucky stake sequence did well.</p>
     <p>“Missing information” is a discovery checklist. It distinguishes current source links from a complete dataset. No blanks are imputed. The registered blocking-gate text is copied directly from <a href="../../data/strategies.csv">data/strategies.csv</a>; this companion does not reassign gates.</p>
   </section>
+  <section class="note">
+    <h2>Flagged boundary: historical scores on a page titled “Leaderboard &amp; rewards”</h2>
+    <p>The canonical <a href="../../leaderboard.html">root leaderboard</a> is explicitly a readiness board and states that backtests are kept separate. A second tree's <a href="../../s2268/competition.html">“Leaderboard &amp; rewards” page</a> is labelled T0 research/unstaked but displays retrospective holdout scores and ranks backed by <a href="../../data/s2268_leaderboard.csv">its research table</a>. That may be a policy conflict with S-04's literal ban on backtest numbers appearing on a leaderboard. The evidence is internal project design, not an NFL fact.</p>
+    <p><strong>Recommended resolution:</strong> keep all retrospective scores only on a clearly named research page, never on any page titled or serving as a leaderboard/reward board, and add a CI check that eligible leaderboard pages contain no backtest metric rows. The final integrator should decide the boundary; no other session's tree or the canonical leaderboard was edited here. See the <a href="../../suggestions.html">S-04 proposal</a> and change request CR-F05-02 in <code>COORDINATION.md</code>.</p>
+  </section>
   <h2>One record for every registered strategy</h2>
   <div class="table-wrap">
     <table>

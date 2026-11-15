@@ -20,9 +20,13 @@ The builder checks exact one-to-one coverage and order against `data/strategies.
 - No backtest values, forecast results, probability outputs, win rates, ROI, CLV, stakes, ranks, or rewards are included. Nothing here validates or authorizes staking.
 - The criteria are proposals, not new numeric gates. They do not replace the current registered gate definitions or the requirement to pre-register the comparator, sample window, scoring rule, uncertainty procedure, and multiplicity family before evaluation.
 
-## Open integration request
+## Open integration requests
 
-Suggestion S-21 already asks for a two-sided “what would change our mind” field, but the canonical `data/strategies.csv` schema and `strategies.html` do not yet render a per-entry falsifier. Change request **CR-F05-01** asks the final integrator to add the positive-evidence and falsifier fields to the canonical register and page, then enforce strategy-ID coverage in CI. This session does not edit shared root data, navigation, or generated root pages while another integration PR is active.
+Suggestion S-21 already asks for a two-sided “what would change our mind” field, but the canonical `data/strategies.csv` schema and `strategies.html` do not yet render a per-entry falsifier. Change request **CR-F05-01** asks the final integrator to add the positive-evidence and falsifier fields to the canonical register and page, then enforce strategy-ID coverage in CI.
+
+A separate project-design boundary is flagged as **CR-F05-02**: S-04 and `content/skill-vs-luck.md` say retrospective/backtest results belong on a clearly labelled research page and never on the leaderboard. The canonical root leaderboard is readiness-only, but the historical [S2268 “Leaderboard & rewards” page](../../s2268/competition.html) displays scored holdout ranks and scores while labelling them T0 research/unstaked; its source table is [`data/s2268_leaderboard.csv`](../../data/s2268_leaderboard.csv). This is an internal-policy consistency question, not an NFL-data finding. The final integrator should decide and document whether these retrospective holdout results fall under S-04; the safest resolution is to move them to a clearly named research page and add a CI check that prevents backtest metrics from appearing on leaderboard/reward pages. This task does not edit S2268 or other shared output files.
+
+This session does not edit shared root data, navigation, generated root pages, or files in another completed session's tree.
 
 ## Manual-review links
 
