@@ -2849,6 +2849,20 @@ Both files are verifier **outputs**, not authored data. Reverting them would pub
 
 No requirement, gate, threshold, flag or NFL fact is affected. `broken_links` and `errors` are zero in both files.
 
+### PR, merge and deployment record — session `f34622dd`
+
+| Item | Result |
+|---|---|
+| PR | [#78](https://github.com/kanlerxz87-cyber/NFL2/pull/78) — Brief coverage matrix, dated official injury re-read, and a page-freshness panel |
+| Merge | `gh pr merge 78 --merge`, merge commit **`0d44d5d`** |
+| Pre-merge checks | `Row-level verification, link check and build reproducibility` pass · `audit` pass · `q51` pass |
+| Post-merge checks for `0d44d5d` | `build-and-audit` success · `Verify site data and links` success · `Q51 evidence and engine verification` success · `GitHub Pages` success |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main:/` |
+| Live page | https://kanlerxz87-cyber.github.io/NFL2/brief-coverage.html — fetched after deploy and read: all 84 matrix rows, the 29-row per-club delta and the 19-row freshness panel render, with a source link on every row |
+
+**Merge conflicts resolved across three rounds of `main` advancing** (PRs #71, #74, #77, #79 landed while this branch was open). Conflicts were confined to generated `*.html`, `data/build_manifest.json`, `data/verification-report.json` and append-only registers. In every round the generated files were rebuilt from source rather than hand-merged, both sides of `COORDINATION.md` were kept, and no session's flag or source row was dropped. The only judgement call was the flag renumbering recorded above (FL-77…83 taken by `8dee7df7`; this session's three became FL-84…86).
+
+**Nothing was discarded from another session.** The branch was never force-pushed; every push was a fast-forward of its own history after an explicit merge commit.
 ## Session `arena/d8372691-nfl2` — Week 10 injury-read lineage, delta publication and live spot-check
 
 **Claim (written before any other file was edited).** Branch fixed by Arena to `arena/d8372691-nfl2` (no `session-*/` branch was created; Arena allows one branch per session). Base: `main` at `d3c9c92`. No other session holds an in-progress claim on these files. Open PR #71 (`arena/1ef36c55-nfl2`, scheduled metadata-only capture monitor) is **not** touched: this session does not build the scheduler.
