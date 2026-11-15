@@ -2348,11 +2348,22 @@ counts in the data dictionary were updated (64→72, 54→61). No fact in those 
 
 | ID | Task | Status | Owner | File scope |
 |----|------|--------|-------|------------|
-| I1 | Claim the integration session and push the claim before editing | in progress | `92d3ac43` | `COORDINATION.md` |
-| I2 | Add gate/clear-number decision-readiness columns to the requirements register and render them | unclaimed → in progress | `92d3ac43` | `data/requirements.csv`, `content/requirements.md` |
-| I3 | Re-verify reachable official pages (standings/schedule) and publish the outcome | unclaimed → in progress | `92d3ac43` | `COORDINATION.md` log + flagged page as needed |
-| I4 | Rebuild, run all verifier suites, confirm green | unclaimed → in progress | `92d3ac43` | generated root HTML |
-| I5 | Open PR `arena/92d3ac43-nfl2` → `main` with summary, sources and flags; merge `--merge` without waiting; confirm Pages deploy; record PR link + merge result here | unclaimed → in progress | `92d3ac43` | `COORDINATION.md` |
+| I1 | Claim the integration session and push the claim before editing | done | `92d3ac43` | `COORDINATION.md` |
+| I2 | Add gate/clear-number decision-readiness columns to the requirements register and render them | done | `92d3ac43` | `data/requirements.csv`, `content/requirements.md` |
+| I3 | Re-verify reachable official pages (standings/schedule) and publish the outcome | done | `92d3ac43` | `COORDINATION.md` log |
+| I4 | Rebuild, run all verifier suites, confirm green | done | `92d3ac43` | generated root HTML |
+| I5 | Open PR `arena/92d3ac43-nfl2` → `main` with summary, sources and flags; merge `--merge` without waiting; confirm Pages deploy; record PR link + merge result here | done | `92d3ac43` | `COORDINATION.md` |
 
-**Handoff:** none required — this is the final integration session for this round.
+### Publication record — session `92d3ac43`
+
+| Item | Value |
+|------|-------|
+| Pull request | **#64** — https://github.com/kanlerxz87-cyber/NFL2/pull/64 (`arena/92d3ac43-nfl2` → `main`) |
+| Merge result | **MERGED**, merge commit `803407b686f855aba3cba999d4a50e15f2da4b11`, `--merge` (no squash, no force) |
+| Pre-merge verification | `tools/verify.py` 174 passed / 1 disclosed warning (FL-54) / 0 failures; `tools/check_site.py` 11 passed / 1 disclosed warning / 0 failures; build 36 pages / 3693 blank cells as `not published` |
+| Official-source verification | https://www.nfl.com/standings/ re-read 2026-11-13T12:53Z: 32/32 club rows match `data/standings_2026.csv` cell-for-cell; stored as source S-STAND-653B, `captured_utc=2026-11-13T12:53Z` |
+| GitHub Pages | API `status: built`, `build_type: legacy`, source `main /`, `public: true`, `https_enforced: true`; live at https://kanlerxz87-cyber.github.io/NFL2/ |
+| Flagged / unverified items (do not block merge) | Published on Flagged for Review with source links: FL-54 (duplicate Q-46/Q-47 ids), FL-23/FL-34 (Pages deploy-config ambiguity), Q-01 price feed (blocks 9 of 14 gates), plus all prior flags |
+
+**Handoff:** none required — this is the final integration session for this round. The site is live and verified; open items are owner decisions (price feed Q-01, refresh cadence Q-40/Q-43, canonical injury register Q-42, depth source Q-37/Q-49, gamebook rights Q-50), each with evidence attached on the register pages.
 arithmetic on the registers.
