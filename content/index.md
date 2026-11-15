@@ -23,12 +23,6 @@ This site has two kinds of pages and they never mix on one page without a divide
 
 The root register remains design-only. Independent Q51 research outputs are labelled unvalidated and paper-only; no betting edge is claimed. Blank cells are rendered as `not published` rather than filled with an estimate — see [verification method](methodology.html).
 
-## Decision readiness — every registered requirement
-
-Use this table as the first stop before making a decision. The registered status is shown alongside the relevant gate state and its exact pass criterion; requirements with no numeric gate stay explicitly unquantified. Gate criteria are internal validation rules, not measured NFL values. Project requirements cite the brief/register because they are not NFL facts.
-
-{{readiness}}
-
 ## What this session found when it re-opened the repository
 
 This dashboard is the product of several concurrent workstreams that have each been merged to `main`.

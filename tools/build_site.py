@@ -330,51 +330,6 @@ def render_site_map():
     return "".join(out)
 
 
-def render_readiness_table():
-    """Render every requirement beside its register-linked gate and clearing condition."""
-    requirements = read_rows("requirements.csv")
-    gates = {r["id"]: r for r in read_rows("gates.csv")}
-    if not requirements or not {"blocks", "clears_with"}.issubset(requirements[0]):
-        raise BuildError("requirements.csv must publish the blocks and clears_with columns")
-
-    rows = []
-    for req in requirements:
-        ids = re.findall(r"G-\d{2}", req["blocks"])
-        unknown = sorted(set(ids) - set(gates))
-        if unknown:
-            raise BuildError("%s refers to unknown readiness gates: %s" % (req["id"], ", ".join(unknown)))
-        if ids:
-            gate_html = "<br>".join(
-                '<a href="validation-gates.html">%s</a> — %s' % (gid, esc(gates[gid]["current_status"]))
-                for gid in ids)
-            condition = esc(req["clears_with"])
-            condition += "".join(
-                '<div><strong>%s pass criterion:</strong> %s</div>' % (gid, esc(gates[gid]["pass_criterion"]))
-                for gid in ids)
-        else:
-            gate_html = '<span class="np">No requirement-specific gate defined</span>'
-            if req["status"].strip().lower() == "done":
-                condition = "No numeric threshold is recorded; the requirement register marks this item done."
-            else:
-                condition = ('No numeric clearing criterion is recorded in the requirement or gate registers. '
-                             'Do not infer one; a requirement-specific threshold must be defined before numeric readiness can be claimed.')
-        rows.append(
-            '<tr><td><a href="requirements.html">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>'
-            % (esc(req["id"]), esc(req["requirement"]), esc(req["status"]), gate_html,
-               condition, source_link("S-BRIEF") + " " + source_link("S-DESIGN")))
-    caption = ('One row per requirement in <a href="requirements.html">data/requirements.csv</a>. Status, gate mapping and the '
-               'requirement-specific clear condition are copied from that register; gate status and pass criteria are copied verbatim '
-               'from <a href="validation-gates.html">data/gates.csv</a>. Gate thresholds are internal design criteria, not NFL facts '
-               'or measured results. Requirement rows cite the project brief/register and gate design record; these are appropriate '
-               'sources for project requirements, not official NFL sources. Where no criterion exists, the gap is shown instead of '
-               'inventing a number.')
-    return ('<div class="tablewrap"><table class="data"><thead><tr>'
-            '<th>Requirement</th><th>Requirement text</th><th>Registered status</th>'
-            '<th>Relevant blocking gate(s) and current gate state</th><th>Number / condition that clears it</th>'
-            '<th>Requirement / design source</th></tr></thead><tbody>%s</tbody></table></div>'
-            '<p class="caption">%s</p>' % ("".join(rows), caption))
-
-
 # ---------------------------------------------------------------- metrics ----
 OFF_POS = {"QB", "RB", "FB", "WR", "TE", "T", "G", "C", "OT", "OL", "OG"}
 DEF_POS = {"DE", "DT", "LB", "CB", "S", "FS", "SS", "Edge", "DB", "DL", "OLB"}
@@ -904,8 +859,6 @@ def directive(body, ctx):
         return metric(m.group(1))
     if body == "site_map":
         return render_site_map()
-    if body == "readiness":
-        return render_readiness_table()
     if body == "team_availability":
         agg = AGG
         rows = []
