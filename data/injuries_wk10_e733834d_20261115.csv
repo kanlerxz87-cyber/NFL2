@@ -1,0 +1,45 @@
+game|team|player|pos|injury|practice|status|fetched_utc|source
+W10-01|WAS|John Bates|TE||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Treylon Burks|WR||D||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Jayden Daniels|QB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Matt Gulbin|C||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Chig Okonkwo|TE||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Lucas Patrick|C|Concussion|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Amik Robertson|CB||L||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Shy Tuttle|DT||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|WAS|Colson Yankoff|TE|Knee|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Abdul Carter|LB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Jermaine Eluemunor|T||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Malik Harrison|LB|Groin|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Colton Hood|CB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Theo Johnson|TE||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Charlie Jones|WR||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|J.J. McCarthy|QB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Darnell Mooney|WR||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Malik Nabers|WR||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Cam Skattebo|RB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-01|NYG|Andrew Thomas|T||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Ben Brown|C|Knee|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|A.J. Brown|WR|Ankle, Knee|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Kevin Byard|S|Chest|F|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Carlton Davis III|CB|Knee|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Reggie Gilliam|FB|Knee|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|TreVeyon Henderson|RB|Illness|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Hunter Henry|TE||L||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Cameron Latu|TE|Back|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Drake Maye|QB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Morgan Moses|T||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Walter Rouse|T|Concussion|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Brenden Schooler|S|Hamstring|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Rhamondre Stevenson|RB|Knee|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Greg Van Roten|G|Hamstring|F|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|NE|Charles Woods|CB|Hamstring|F|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|Brian Branch|S||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|Jared Goff|QB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|Kerby Joseph|S|Knee|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|Cade Mays|C|Ankle|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|D.J. Reed|CB|Hip|D|OUT|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|Jacob Saylors|RB||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|Amon-Ra St. Brown|WR|Rib|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|Sione Vaki|RB|Ankle|L|Q|2026-11-15T12:13Z|https://www.nfl.com/injuries/
+W10-02|DET|DJ Wonnum|DE||F||2026-11-15T12:13Z|https://www.nfl.com/injuries/

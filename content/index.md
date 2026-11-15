@@ -7,6 +7,12 @@
 
 > **New this session — the competition is finally scored.** [Open the session `2268bfb2` tree](s2268/index.html). It re-reads the official league pages on 13 November 2026 and publishes every row that moved (the injury hub is 41 rows ahead of what this site shows), transcribes the New England and Detroit depth charts into a 1st-to-4th string cascade for the one unplayed game with filed designations, and runs the first pre-registered walk-forward competition: ten candidates scored on 596 decisions across 72 holdout games, with exact tests, a false-discovery correction, a seeded Monte Carlo, a measured same-game correlation matrix, disjoint-parlay arithmetic, ten validation gates and five reward tiers. The headline is uncomfortable and published anyway: **our own originated spread and total both fail to beat knowing nothing on this holdout.** Three Week 10 game ids are also shown to name different fixtures in two published files — see [FL-64](flagged-for-review.html).
 
+## Decision readiness — one row per requirement
+
+Every requirement on the [requirements register](requirements.html) appears once below, with its status, the gate that blocks it, the gate's own pass criterion (the number that would clear it), and the open questions that must be answered first. Rows marked `n/a` are done and blocked by nothing. Nothing here is estimated: each cell is copied from `data/requirements.csv`, `data/gates.csv` or `data/questions.csv` by `tools/build_decision_readiness.py`, and `tools/verify.py` fails the build if a cell and its register disagree. Rows that say "no number in the repository" are not missing a value we have; the repository has not yet defined a threshold for them.
+
+{{csv data/decision_readiness.csv;;cols=req_id:ID,requirement:Requirement,status:Status,blocking_gate:Blocked by gate,clearing_number:Number that would clear it,open_questions:Open questions;;source_col=source;;caption=Design-register rows (source S-DESIGN) cite the internal gate register, not an official league page. That is the exception recorded on R-33, and these rows are labelled as design, not as league facts. The gate thresholds are pre-specified rules, not measured results.}}
+
 ## Read this first
 
 This site has two kinds of pages and they never mix on one page without a divider:

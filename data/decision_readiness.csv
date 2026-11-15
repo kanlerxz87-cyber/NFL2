@@ -1,0 +1,47 @@
+req_id|requirement|status|blocking_gate|clearing_number|open_questions|source
+R-01|Collect, organize and analyze NFL data using a full list of requirements|in progress|n/a|No single number: closes when R-08 to R-18 close|Q-01, Q-02|S-DESIGN
+R-02|Maintain the full requirement list inside the repo|done|n/a|n/a|n/a|S-DESIGN
+R-03|Make suggestions on how to improve the site to improve decision making|done|n/a|n/a|n/a|S-DESIGN
+R-04|Create a dedicated section so a human can review suggestions and pick a path before implementing|done|n/a|n/a|n/a|S-DESIGN
+R-05|Clear list of questions to be answered before any decision can reasonably be made|done|n/a|n/a|n/a|S-DESIGN
+R-06|State explicitly which information we already have and which we do not|done|n/a|n/a|n/a|S-DESIGN
+R-07|Suggestions must be made to discover missing information|done|n/a|n/a|n/a|S-DESIGN
+R-08|Originate our own NFL lines rather than only consuming market prices|specified|G-06 Fair-value calibration (blocked)|Max absolute calibration error <= 2.0 pts on a validation set|Q-01|S-DESIGN
+R-09|Research and develop strategies that generate useful signals|specified|G-01 Data entitlement (blocked)|100% of inputs listed in data/sources.csv with tier A or an approved B|Q-02|S-DESIGN
+R-10|Treat strategy development as a leaderboard competition|done|n/a|n/a|n/a|S-DESIGN
+R-11|Rewards for top-performing strategies|done|n/a|Reward budget not set; no number in the repository (Q-59)|Q-26, Q-59|S-DESIGN
+R-12|Cover single bets (straight wagers)|done|G-07 Vig and cost accounting (blocked)|100% of tickets carry an executed price and a benchmark price|Q-01|S-DESIGN
+R-13|Cover parlays|done|G-05 No-leakage on settlement (not started)|Ledger reconciles to settlement source for 100% of settled tickets|Q-12, Q-18|S-DESIGN
+R-14|Cover player-prop bet combos|done|G-05 No-leakage on settlement (not started)|Ledger reconciles to settlement source for 100% of settled tickets|Q-02, Q-12, Q-13|S-DESIGN
+R-15|Every strategy must pass validation gates before promotion|done|G-01 Data entitlement (blocked)|Pass all 14 gates; 0 strategies pass at present (data/gates.csv)|n/a|S-DESIGN
+R-16|Determine correlation values|specified|n/a|No rho threshold in the repository; needs joint bet-settlement data (Q-12)|Q-12, Q-33|S-DESIGN
+R-17|Remove luck from the equation|done|G-12 CLV significance (not started); G-08 Minimum sample (not started)|Lower bound of the 95% interval > 0|Q-14|S-DESIGN
+R-18|Build strategies that are selectively skill-based|done|n/a|No selectivity threshold in the repository (Q-15)|Q-15|S-DESIGN
+R-19|Track injuries|done|G-02 Join integrity (blocked)|0 unresolved ids across a full week|Q-22|S-DESIGN
+R-20|Know defensive deficiencies when 2nd/3rd/4th-string backups replace starters|partial|G-02 Join integrity (blocked)|Charts joined for 10 of 32 clubs now; the clearing number is 32 of 32 clubs with a chart admissible under Q-56|Q-05, Q-49, Q-56, Q-60|S-DESIGN
+R-21|Same for offenses (starters vs backups)|partial|G-02 Join integrity (blocked)|Same as R-20: 10 of 32 clubs now; clears at 32 of 32|Q-05, Q-60|S-DESIGN
+R-22|Executive summary of important details|done|n/a|n/a|n/a|S-DESIGN
+R-23|No manual input required from the owner|done|n/a|n/a|n/a|S-DESIGN
+R-24|Review the repo line by line with links for manual review|done|n/a|n/a|n/a|S-DESIGN
+R-25|Flag irregularities for review|done|n/a|n/a|n/a|S-DESIGN
+R-26|No hallucination; unconfirmable values left blank|done|n/a|n/a|n/a|S-DESIGN
+R-27|GitHub Pages live site|in progress|n/a|Pages build of the merge commit succeeds and the root page is served (CI and deploy record in COORDINATION.md)|Q-39|S-DESIGN
+R-28|Clean landing page|done|n/a|n/a|n/a|S-DESIGN
+R-29|Subpages organized by category|done|n/a|n/a|n/a|S-DESIGN
+R-30|UI clean, user friendly, simple, dashboard-like|done|n/a|n/a|n/a|S-DESIGN
+R-31|All entries and findings in simple readable tables|done|n/a|n/a|n/a|S-DESIGN
+R-32|Include analysis and findings|done|n/a|n/a|n/a|S-DESIGN
+R-33|Every table row has a source link to an official site|partial|n/a|Zero rows without a literal official link; design rows cannot meet this and are labelled as design (Q-28)|Q-28|S-DESIGN
+R-34|If a value cannot be confirmed from an official source, leave it blank and flag it|done|n/a|n/a|n/a|S-DESIGN
+R-35|COORDINATION.md shared task board with status, owner session, file scope|done|n/a|n/a|n/a|S-DESIGN
+R-36|Keep scopes non-overlapping; rebase before push; claim before edit|done|n/a|n/a|n/a|S-DESIGN
+R-37|PR to main with summary, sources and flagged items; merge without waiting|pending|n/a|PR merged with CI green (recorded in COORDINATION.md)|n/a|S-DESIGN
+R-38|Confirm GitHub Pages deploys successfully|pending|n/a|Pages deploy success for the merge commit (recorded in COORDINATION.md)|n/a|S-DESIGN
+R-39|Flagged/unverified items do not block merge but must be on a labeled page|done|n/a|n/a|n/a|S-DESIGN
+R-40|Never merge a broken site; fix build/link failures and retry|done|n/a|n/a|n/a|S-DESIGN
+R-41|Row-level re-verification of published data against the live official page, with the outcome published rather than kept in a commit message|done|n/a|n/a|n/a|S-DESIGN
+R-42|Originate our own lines from in-repo data and measure the result against a no-information baseline and an archived price|done|G-06 Fair-value calibration (blocked)|Max absolute calibration error <= 2.0 pts on a validation set|Q-30|S-DESIGN
+R-43|Correlation values for parlays and prop combos, measured rather than asserted, with intervals|partial|G-05 No-leakage on settlement (not started)|Prop-level pairs: no prop archive exists; a joint interval that excludes zero is required before use (Q-12, Q-33)|Q-12, Q-33|S-DESIGN
+R-44|Track defensive as well as offensive deficiencies, down to 2nd/3rd/4th string, per club|partial|G-02 Join integrity (blocked)|Charts joined for 10 of 32 clubs now; the clearing number is 32 of 32 clubs (Q-60)|Q-49, Q-60|S-DESIGN
+R-45|Inventory and disclose the market-price data the repository holds, including what each column cannot be used for|done|n/a|n/a|n/a|S-DESIGN
+R-46|Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it|in progress|n/a|n/a|n/a|S-DESIGN
