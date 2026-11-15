@@ -2590,3 +2590,17 @@ No PR is open yet. Next: fetch/merge current `origin/main` before pushing the fi
 | Independently run the current integrated verification suite; document any reproducible issue and exact non-inferred next steps | done | `arena-24ccce92` | `audits/arena-24ccce92-review.md`, this coordination entry |
 
 Scope was limited to a new audit note and this append-only task-board entry. No existing data, generated HTML, pipeline, or another session's files were edited. No new NFL facts were added and no new official-source verification is claimed. Validation: `tools/build_site.py` (36 pages), `tools/verify.py` (178 passed, 1 existing warning, 0 failures), `tools/check_site.py` (11 passed, 1 existing warning, 0 failures), `scripts/audit_all_pages.py` (110 HTML / 44 JSON / 319 tables / 7,937 rows, zero broken links), and `git diff --check`. Findings and the recommended order of work are in `audits/arena-24ccce92-review.md`.
+## Session `arena/d8372691-nfl2` — Week 10 injury-read lineage, delta publication and live spot-check
+
+**Claim (written before any other file was edited).** Branch fixed by Arena to `arena/d8372691-nfl2` (no `session-*/` branch was created; Arena allows one branch per session). Base: `main` at `d3c9c92`. No other session holds an in-progress claim on these files. Open PR #71 (`arena/1ef36c55-nfl2`, scheduled metadata-only capture monitor) is **not** touched: this session does not build the scheduler.
+
+| Task | Status | Owner | Files (exclusive scope) |
+|---|---|---|---|
+| D8-T1 | Lineage register of every Week 10 injury file in the repo: rows, clubs, sentinel rows, SHA-256 of the repo copy, claimed count, claim check | in progress | `scripts/injury_lineage_d8372691.py`, `data/injury_lineage_d8372691.csv`, `data/injury_club_delta_d8372691.csv`, `data/injury_delta_players_d8372691.csv` |
+| D8-T2 | Live spot-check: the 44 player rows of the four clubs visible on the nfl.com page read this session, against every repo file that carries those clubs | in progress | `data/injury_spotcheck_d8372691.csv` |
+| D8-T3 | Page `content/injury-lineage.md` (Data group) and the false "All 254 rows the league published" headline in `content/injuries.md` | in progress | `content/injury-lineage.md`, `content/injuries.md` (one blockquote line), `tools/build_site.py` (NAV line only) |
+| D8-T4 | Flags FL-77..FL-81 and source rows for the new derived files | in progress | `data/flags.csv` (append), `data/sources.csv` (append), `data/data-dictionary` rows via `content/data-dictionary.md` |
+| D8-T5 | CI drift check: `--check` mode fails the build if the lineage outputs drift from their inputs | in progress | `scripts/injury_lineage_d8372691.py`, `.github/workflows/validate.yml` (one step) |
+| D8-T6 | Integration: build, all verifier suites, link check, PR to `main`, merge `--merge`, confirm Pages, record here | unclaimed | generated root HTML, this section |
+
+**Not attempted here, and why:** a byte-level raw capture of nfl.com. The sandbox cannot reach `www.nfl.com` (`curl` and Python both fail with TLS EOF); `fetch_page` returns rendered text only, so no hash of official response bytes can be produced in this session. This gap is published as FL-80. Game books, snap counts, price feeds, the Texans depth image and the other items on the requirements register are unchanged by this session.
