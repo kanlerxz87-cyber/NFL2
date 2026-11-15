@@ -14,7 +14,7 @@ rank|id|title|category|path|impact|effort|risk_class|impact_pts|effort_pts|risk_
 13|S-38|Make the paired MAE test the admission gate for the leaderboard|Competition design|D|H|L|Low|3|1|1|1.5|yes|yes|Q-35, S-37|open - owner decision|S-REGISTER-745
 14|S-43|Stamp every cumulative table with the UTC moment it was read, and refresh on a fixed cadence|data|A|H|L|Low|3|1|1|1.5|yes|yes|Q-40|partly adopted (v1) — timestamp and 32×8 verifier done; cadence remains owner-only (Q-40)|S-REGISTER-745
 15|S-48|Publish the replacement chain as an explicit three-state register, so 'no depth chart' cannot read as 'no change'|Data model|A|H|L|Low|3|1|1|1.5|yes|yes|Q-44, S-39|recommended|S-REGISTER-745
-16|S-49|Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it|Information design|D|H|L|Low|3|1|1|1.5|yes|yes|S-20, S-31|recommended|S-REGISTER-745
+16|S-49|Put a decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it|Information design|D|H|L|Low|3|1|1|1.5|yes|yes|S-20, S-31|adopted (v1)|S-REGISTER-745
 17|S-60|Adopt the hash-locked pre-registration as the only route onto the leaderboard|Competition rules|D|H|L|Low|3|1|1|1.5|yes|yes|G-11, Q-26, S-04|pending owner review|S-REGISTER-745
 18|S-65|Renumber the Week 10 injury register to the schedule's game-id convention|Data plumbing|A|H|L|Low|3|1|1|1.5|yes|yes|Q-54|proposed|S-REGISTER-745
 19|S-68|Promote nothing on fewer than 40 decisions, and print the floor on the leaderboard|Anti-overfitting|D|H|L|Low|3|1|1|1.5|yes|yes|Q-57|proposed|S-REGISTER-745

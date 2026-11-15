@@ -1344,12 +1344,81 @@ def availability_watch_holds():
            % (len(snap), len(byclub), added, removed, changed))
 
 
+def _load_tool(modname):
+    """Import a sibling tool module by file name so the check runs the same code the build runs."""
+    import importlib.util
+    path = os.path.join(ROOT, "tools", modname + ".py")
+    spec = importlib.util.spec_from_file_location(modname, path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def decision_readiness_holds():
+    """The landing page renders the shared requirements register; a row that loses its gate column,
+    or a landing page that stops rendering the register, fails here."""
+    reqs, hdr, _ = rows("requirements.csv")
+    need = ["blocks", "clears_with"]
+    if any(c not in hdr for c in need):
+        bad("decision readiness: data/requirements.csv lost a gate or clearing column: %s" % need)
+        return
+    empty = [r["id"] for r in reqs if r["status"].strip() != "done"
+             and (not r["blocks"].strip() or not r["clears_with"].strip())]
+    if empty:
+        bad("decision readiness: non-done requirements without a gate or clearing number: %s" % empty[:6])
+        return
+    idx = os.path.join(ROOT, "content", "index.md")
+    text = open(idx, encoding="utf-8").read() if os.path.exists(idx) else ""
+    if "csv data/requirements.csv" not in text:
+        bad("decision readiness: the landing page no longer renders data/requirements.csv")
+        return
+    ok("decision readiness: landing page renders all %d requirements with their gate and clearing columns"
+       % len(reqs))
+
+
+def reverification_e733834d_holds():
+    """Row-by-row comparison of four clubs on the live official page against the 13 Nov read."""
+    try:
+        mod = _load_tool("reverify_e733834d")
+    except Exception as exc:  # pragma: no cover
+        bad("re-verification e733834d: tool failed to load: %s" % exc)
+        return
+    rows, mismatches, unmatched, off = mod.compare()
+    counts = {c: sum(1 for r in off if r["team"].strip() == c) for c in mod.CLUBS}
+    if counts != mod.OFFICIAL_COUNTS:
+        bad("re-verification e733834d: transcription has %s rows, page recorded %s" % (counts, mod.OFFICIAL_COUNTS))
+        return
+    if unmatched:
+        bad("re-verification e733834d: published rows absent from the official transcription: %s" % unmatched[:4])
+    on_disk = open(os.path.join(DATA, "reverification_e733834d.csv"), encoding="utf-8").read() \
+        if os.path.exists(os.path.join(DATA, "reverification_e733834d.csv")) else ""
+    if on_disk != mod.render(rows):
+        bad("re-verification e733834d: data/reverification_e733834d.csv is stale; run tools/reverify_e733834d.py")
+        return
+    flag_ids = {r["id"] for r in rows_of("flags.csv")}
+    uncited = [r["id"] for r in rows if r["result"] == "MISMATCH" and mod.FLAG_FOR_CLUB[r["check"].split()[0]] not in flag_ids]
+    if uncited:
+        bad("re-verification e733834d: mismatch rows cite a flag that is not in flags.csv: %s" % uncited[:4])
+        return
+    nosrc = [r["id"] for r in rows if not r["source"].startswith("https://")]
+    if nosrc:
+        bad("re-verification e733834d: rows without an https source: %s" % nosrc[:4])
+        return
+    ok("re-verification e733834d: %d official rows on WAS, NYG, NE, DET; %d match, %d mismatch, each mismatch "
+       "cites a flag" % (len(rows), len(rows) - mismatches, mismatches))
+
+
+def rows_of(name):
+    return rows(name)[0]
+
+
 def main():
     check_widths(); no_disguised_guesses(); standings(); standings_capture_metadata(); standings_official_recheck(); source_read_times_visible(); injuries(); depth(); sources(); registers(); gamebook_rights_gate(); no_invented_results();
     prose_counts_match_files(); register_counts_match_files(); injury_coverage_is_measured_not_named();
     dictionary_counts_match_files(); gamelog(); filter_clauses_do_something(); datasets_documented(); reverification_holds()
     settled_week10_reproduces(); reverification_5f16dcc6_holds(); forward_sample_holds(); availability_watch_holds()
     personnel_relief_reproduces(); reverification_83246f00_holds(); s745_registers_reproduce()
+    decision_readiness_holds(); reverification_e733834d_holds()
     
     print("=" * 72)
     for m in PASS:

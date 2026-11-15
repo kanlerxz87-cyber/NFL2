@@ -7,6 +7,12 @@
 
 > **New this session — the competition is finally scored.** [Open the session `2268bfb2` tree](s2268/index.html). It re-reads the official league pages on 13 November 2026 and publishes every row that moved (the injury hub is 41 rows ahead of what this site shows), transcribes the New England and Detroit depth charts into a 1st-to-4th string cascade for the one unplayed game with filed designations, and runs the first pre-registered walk-forward competition: ten candidates scored on 596 decisions across 72 holdout games, with exact tests, a false-discovery correction, a seeded Monte Carlo, a measured same-game correlation matrix, disjoint-parlay arithmetic, ten validation gates and five reward tiers. The headline is uncomfortable and published anyway: **our own originated spread and total both fail to beat knowing nothing on this holdout.** Three Week 10 game ids are also shown to name different fixtures in two published files — see [FL-64](flagged-for-review.html).
 
+## Decision readiness — one row per requirement
+
+Every requirement on the register appears once below, with its status, the gate that blocks it, and the number that would clear it. It is the same register as the [full requirements page](requirements.html), rendered from `data/requirements.csv`; a single source, so the two pages cannot disagree. A `—` means the requirement is an owner action or a project policy that no statistical gate governs. `verify.py` fails the build if a requirement lacks a gate or a clearing number.
+
+{{csv data/requirements.csv;;cols=id:ID,requirement:Requirement,status:Status,blocks:Gate that blocks it,clears_with:Number that clears it;;source=S-BRIEF;;caption=Source for every row is the owner's brief, recorded as the register itself (S-BRIEF). Gate thresholds are pre-specified rules from data/gates.csv, not measured results. Rows marked in progress or pending are open actions, not findings.}}
+
 ## Read this first
 
 This site has two kinds of pages and they never mix on one page without a divider:

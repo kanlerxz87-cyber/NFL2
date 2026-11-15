@@ -9,6 +9,7 @@ flags so that the owner can choose a path before anything is implemented.
 **Independent Q51 evidence dashboard:** [q51/index.html](q51/index.html) · [Flagged for Review](q51/flagged.html)
 **Executive summary (site):** [executive-summary.html](executive-summary.html) · [Q51 executive summary](q51/executive-summary.html) · **owner's brief from the earlier session:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
 **Coordination board:** [COORDINATION.md](COORDINATION.md)
+**Decision-readiness table (one row per requirement, blocking gate and clearing number):** [index.html#decision-readiness](index.html#decision-readiness-one-row-per-requirement) · **Week 10 re-read, four clubs, row by row:** [data/reverification_e733834d.csv](data/reverification_e733834d.csv) (FL-73, FL-74)
 
 > Q51 publishes current-snapshot research lines and descriptive correlations from the source-linked game log. They are **unvalidated, paper-only** outputs, not betting advice. No market/prop/settlement archive exists, the leaderboard is empty, and real-money execution is disabled.
 
@@ -21,7 +22,7 @@ flags so that the owner can choose a path before anything is implemented.
 | `data/*.csv` | the verified datasets and the registers (requirements, questions, suggestions, gates, signals, strategies, correlation, flags, sources) |
 | `data/games_2026_wk1_9.csv` | the 136 completed results of weeks 1–9, imported from a parallel session's fetch and re-audited here; each row cites its own official game page |
 | `tools/build_site.py` | markdown + CSV → static HTML; refuses to build a row without a source |
-| `tools/verify.py` | data audit (37 checks): reconciliations, vocabularies, blank policy, no fabricated results, game-log cross-check |
+| `tools/verify.py` | data audit (it prints its own pass / warning / failure count on the last line of every run; see [FL-75](flagged-for-review.html)): reconciliations, vocabularies, blank policy, no fabricated results, game-log cross-check |
 | `tools/review_build_site.py`, `tools/review_verify.py` | the *other* session's generator and auditor, kept running under renamed paths and checked by `.github/workflows/verify.yml` |
 | `tools/check_site.py` | site audit: links, empty cells, template markers, official-source coverage, stale-output and input-digest guards |
 | `tools/compute_tables.py` | the analytic tables (vig, parlay coupling, sample sizes) — closed-form, no market data |
