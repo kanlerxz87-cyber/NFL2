@@ -953,7 +953,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
 <div class="shell">
   <aside class="side">
     %(nav)s
-    <div class="sidefoot"><a href="flagged-for-review.html">%(flags)s open flags</a> · <a href="sources.html">%(sources)s sources</a></div>
+    <div class="sidefoot"><a href="flagged-for-review.html">%(flags)s flags published</a> · <a href="sources.html">%(sources)s sources</a></div>
   </aside>
   <main>
     <div class="pagehead">

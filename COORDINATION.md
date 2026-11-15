@@ -2349,3 +2349,57 @@ Most of the brief's ~75 requests are multi-week data builds: a daily archive of 
 
 https://www.nfl.com/injuries/ (Week 10 hub, first chunk fetched 2026-11-15, covering WAS, NYG, NE, DET) · https://www.nfl.com/scores/2026/week-10 · https://www.nfl.com/standings/ · operations.nfl.com as already registered in `data/sources.csv`.
 
+### Completion record — session `e733834d`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-15T12:13Z | Claim E7-01..E7-07 pushed to `arena/e733834d-nfl2` before any file was created. |
+| 12:10–12:13Z | Official `https://www.nfl.com/injuries/` read by the agent (first chunk, Week 10 hub). WAS (9 rows), NYG (11), NE (15) and DET (9) transcribed field for field into `data/injuries_wk10_e733834d_20261115.csv`. The fetch minute was not logged; `fetched_utc` is therefore an upper bound. |
+| 12:14Z | `tools/reverify_e733834d.py` compares the 44 official rows with the 13 November read (`data/injuries_wk10_83246f00.csv`). Result: **31 MATCH, 13 MISMATCH**. Every MISMATCH cites a flag. Written to `data/reverification_e733834d.csv` (RV-E01..RV-E44). |
+| 12:16Z | `tools/build_decision_readiness.py` writes `data/decision_readiness.csv`: one row per requirement (46), with status, the blocking gate and its status, the gate's own pass criterion as the clearing number, and open questions. All gate and question IDs are checked against their registers. |
+| 12:18Z | Decision-readiness table added to the landing page (`content/index.md`, a generated CSV directive). |
+| 12:20Z | `tools/verify.py` gains `decision_readiness_holds()` and `reverification_e733834d_holds()`, both run from `main()`. |
+| 12:22Z | Flags **FL-73** (NE, 10 rows), **FL-74** (DET, 3 rows), **FL-75** (README verifier count), **FL-76** (sidebar counted every flag as open). Sources row **S-INJ-E733** added. Requirement **R-46** added; R-02 corrected from 45 to 46 rows. |
+| 12:28Z | `tools/build_site.py` sidebar label changed from "N open flags" to "N flags published" (FL-76). |
+
+### Verification performed on the combined tree
+
+| Check | Result |
+|---|---|
+| `python3 tools/build_site.py` then `tools/check_site.py` | 11 passed · 1 warning (the pre-existing club-domain allowlist warning) · 0 failures |
+| `python3 tools/verify.py` | **179 passed · 1 warning · 0 failures** (was 174 at the start of this session) |
+| `python3 tools/review_build_site.py`, `git diff --exit-code`, `python3 tools/review_verify.py` (verify.yml) | OK: all rows, sources, blank cells and links verified |
+| `python3 -m unittest discover -s tests/q51`, `python3 scripts/verify_q51.py` (q51.yml) | OK, errors [] |
+| `python3 scripts/audit_all_pages.py` | VERIFY PASSED: 110 HTML pages, 44 JSON files, 319 tables, 7,936 rows — 100% row-sourced, 0 broken links, 0 column mismatches |
+| `node scripts/render_test.js` | 13 pages, 0 failures |
+| Rebuild stability | a full rebuild after commit reproduces the committed output byte for byte (`git status` clean) |
+
+### Sources (all official, read by the agent)
+
+- https://www.nfl.com/injuries/ — read 2026-11-15, before 12:13Z. Used for the 44 WAS, NYG, NE, DET rows (`data/injuries_wk10_e733834d_20261115.csv`, source id `S-INJ-E733`).
+- Comparison baseline: `data/injuries_wk10_83246f00.csv` (this repository's 13 November 12:46Z read; source `S-INJ-1246`).
+
+### Irregularities (published on Flagged for Review, not silently fixed)
+
+- **FL-73 (high):** 10 of 15 New England rows in the 13 November read differ from the live page (9 missing injury and game-status cells; 4 practice codes). The page's change time is not recorded anywhere, so the repository cannot say when each designation changed.
+- **FL-74 (high):** Kerby Joseph is recorded as F with OUT here and as DNP with Out on the live page; St. Brown and Vaki have blank designations here.
+- **FL-75 (low):** README stated a fixed verifier count that the script no longer matches.
+- **FL-76 (low):** the sidebar counted every flag as "open" although the status column is free text.
+
+Pre-existing items noticed and not changed by this session: `S-DESIGN` describes itself as "authored in this session" (a previous session's wording), which reads oddly on a page that is now generated every build; Q-46 and Q-47 are still used for two different questions (FL-54).
+
+### What this session did not do (and why)
+
+The brief's remaining items are not done here, and none of them are marked done. Each one is named on the decision-readiness table with its blocking gate. The main ones:
+
+- A daily archive of the injury hub from Wednesday to kickoff (needs a scheduled fetch and retained hashes; Q-48, Q-51).
+- Club depth charts for all 32 clubs (Q-60; 10 of 32 joined today).
+- NFL Game Book ingestion for starters and inactives (blocked on Q-50).
+- Snap counts and player-level entitlement (Q-02, Q-45).
+- A price feed for opening and closing lines, and therefore CLV, the vig-free decomposition and any origination claim (Q-01; gate G-07).
+- The 32-team roster sweep and the Texans depth image (needs an authorised structured source).
+- A pre-registered shadow baseline, the two-stage leaderboard, the demotion gate, the control baseline, the weekly "what changed" diff and the stadium roof/wind overlay. None has a verified input yet.
+
+### Handoff
+
+The next session should (1) re-read the official hub daily and append each read as a new dated file rather than editing `data/injuries_wk10_83246f00.csv`, (2) extend `tools/reverify_e733834d.py` to the remaining 28 clubs as the chunks are read, and (3) choose a fixed status vocabulary for `data/flags.csv` (FL-76). The Pages deploy record follows in the section below once the merge completes.
