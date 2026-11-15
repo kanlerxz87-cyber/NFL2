@@ -21,6 +21,10 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/computed_depth_reach.csv` | 18 | one position group where the 1st string is unavailable, for charted clubs | S-CALC |
 | `data/computed_vig.csv` / `computed_parlays.csv` / `computed_sample_sizes.csv` / `computed_luck.csv` | 5 / 10 / 5 / 8 | closed-form exhibits, no market data | S-CALC |
 | `data/build_manifest.json` | — | build output, counts, allowlist | generated |
+| `data/brief_traceability.csv` | 84 | one clause of the owner brief, traced to the register row that owns it, its coverage class, the in-repo evidence and one `https://` source | S-BRIEF (project design, not NFL facts) |
+| `data/injuries_wk10_f34622dd_20261115.csv` | 347 | one player × club from the full official Week 10 injury hub read of 2026-11-15T12:56Z; practice code and game status verbatim | S-INJ-F346 |
+| `data/hub_club_counts_f34622dd.csv` | 29 | one club plus one total row: rows and designations in the 13 Nov capture against the 15 Nov read, with the player names that are newly listed | S-INJ-1246, S-INJ-F346 |
+| `data/page_freshness_f34622dd.csv` | 19 | one published page: the read time of the official source it rests on, the newest read of that same page held in the repo, the lag, and the rows the newer read would add | S-INJ-F346 and the per-row `source_url` |
 | `data/injuries_wk10_2026_hubrefresh.csv` | 279 | one player × club, re-read from the hub at 22:35Z, side of the ball assigned from the league's own position code | S-INJ-2235 |
 | `data/injury_delta_a392.csv` | 40 | one row that appeared, disappeared or changed between the 04:45Z and 22:35Z official reads | S-INJ, S-INJ-2235 |
 | `data/reverification_a392.csv` | 9 | one check performed against the live official page, with its outcome | S-STAND-2235, S-INJ-2235 |

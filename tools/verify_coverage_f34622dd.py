@@ -76,6 +76,14 @@ def main():
            % (r["id"], r["coverage_class"], sorted(CLASSES)))
         src = r["source"].strip()
         ok(src.startswith("https://"), "%s: source is not an https URL: %r" % (r["id"], src))
+        # A host with no dot is the signature of a URL that lost its domain in an edit: it looks
+        # like a link, resolves nowhere, and sails past a check that only asks for "https://".
+        host = src.split("//", 1)[1].split("/", 1)[0]
+        ok("." in host, "%s: source host %r has no dot - the URL has lost its domain" % (r["id"], host))
+        ok(host not in ("", "github.com") or "/kanlerxz87-cyber/NFL2" in src,
+           "%s: github source does not point at this repository: %r" % (r["id"], src))
+        if host.endswith("github.io"):
+            ok("/NFL2" in src, "%s: github.io source is not this project's Pages site" % r["id"])
         ok(bool(r["evidence"].strip()), "%s: empty evidence cell" % r["id"])
         ok(bool(r["verification"].strip()), "%s: empty verification cell" % r["id"])
         ok("FL-..." not in r["evidence"], "%s: placeholder text left in evidence" % r["id"])
