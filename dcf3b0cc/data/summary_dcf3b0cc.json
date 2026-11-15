@@ -1,0 +1,39 @@
+{
+  "clubs_covered": 28,
+  "correlation_n": 28,
+  "correlation_pairs": 7,
+  "coverage_rows": 28,
+  "deficiency_matrix_rows": 168,
+  "depth_reach_rows": 291,
+  "designations_doubtful": 11,
+  "designations_out": 70,
+  "designations_questionable": 90,
+  "fixture_page": "https://www.nfl.com/schedules/2026/REG10/",
+  "fixtures_covered": 14,
+  "flags": 7,
+  "generated_by": "tools/compute_dcf3b0cc.py",
+  "injury_rows_transcribed": 347,
+  "official_page": "https://www.nfl.com/injuries/",
+  "official_read_utc": "2026-11-15T12:55Z",
+  "repo_20261113_designations": 9,
+  "repo_20261113_rows": 296,
+  "reverify": {
+    "match": 102,
+    "mismatch": 194,
+    "official_only": 51,
+    "repo_only": 0
+  },
+  "rows_with_no_game_status": 176,
+  "session": "dcf3b0cc",
+  "sha256": {
+    "club_availability_20261115_dcf3b0cc.csv": "36b545c34809081b57bce423af318df867be8b3197447c017118151607586348",
+    "correlation_dcf3b0cc.csv": "53e1f318b3d0c4623099cc93034d51b886340e1565766b857557472b25ef3824",
+    "coverage_dcf3b0cc.csv": "9b263e5f2438c74571c364df4b706e5ff09c02ddd5f6a88ba1bffae509d027fc",
+    "deficiency_matrix_dcf3b0cc.csv": "12ca58d3722967fd230b85f290c02a703825f5df7a277ff2788c0bd48f04e0f9",
+    "depth_reach_20261115_dcf3b0cc.csv": "9f52bced474320529ee333d63646f109e0c9e610e2bd82dc017137ec204c6964",
+    "flags_dcf3b0cc.csv": "b8550ebd6428cdb63053f0d83488b18290140b383ae979c35f29108392de3797",
+    "nfl_fixtures_wk10_20261115_dcf3b0cc.csv": "b30c8811510e2a9534cfffd54685a2d9b3d8ae52e556e84ef2e53c380ddf746e",
+    "nfl_injury_hub_20261115_dcf3b0cc.csv": "6ad0a1a2ae92ceae92d899419cfd1c76b7ee20b00bf99999c905d3214bb3022a",
+    "reverify_20261115_dcf3b0cc.csv": "e2ffba4e6d0f84248d265121d1533fcaa9d12ab28bbc19b96dfd2b182bf750b7"
+  }
+}

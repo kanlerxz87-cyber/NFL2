@@ -1,0 +1,42 @@
+name: dcf3b0cc dated re-verification
+
+# Self-contained scope check for the `dcf3b0cc` tree. Added as a new file so no other
+# session's workflow needs to be edited: it runs only when that tree, or its two
+# scripts, change. See COORDINATION.md, session `dcf3b0cc`.
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "dcf3b0cc/**"
+      - "tools/compute_dcf3b0cc.py"
+      - "tools/build_dcf3b0cc.py"
+      - "tools/verify_dcf3b0cc.py"
+      - ".github/workflows/dcf3b0cc.yml"
+  pull_request:
+    paths:
+      - "dcf3b0cc/**"
+      - "tools/compute_dcf3b0cc.py"
+      - "tools/build_dcf3b0cc.py"
+      - "tools/verify_dcf3b0cc.py"
+      - ".github/workflows/dcf3b0cc.yml"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Verify the dated re-verification scope
+        run: python3 tools/verify_dcf3b0cc.py
+      - name: Fail if the committed pages differ from a rebuild
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "dcf3b0cc/ is in sync with its data"
+          else
+            echo "::error::committed pages differ from a rebuild - commit the output of tools/compute_dcf3b0cc.py and tools/build_dcf3b0cc.py"
+            git diff --cached --stat
+            exit 1
+          fi
