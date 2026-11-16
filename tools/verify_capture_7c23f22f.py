@@ -39,7 +39,7 @@ def main() -> int:
         check(False, "manifest data/capture_manifest.csv exists")
         return report()
     with manifest.open(newline="", encoding="utf-8") as fh:
-        reader = csv.reader(fh)
+        reader = csv.reader(fh, delimiter="|")
         header = next(reader, [])
         rows = [dict(zip(header, r)) for r in reader]
     check(header == cap.MANIFEST_FIELDS, f"manifest header matches the capture tool ({len(rows)} rows)")

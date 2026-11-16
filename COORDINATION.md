@@ -3696,10 +3696,56 @@ and records a SHA-256 for each read.
 
 * **CR-7C-01 — `tools/s2268_verify.py`:** its scope allowlist does not list `data/capture_manifest.csv`, `tools/verify_capture_7c23f22f.py`, `.github/workflows/validate.yml` (one step added) or `data/sources.csv` (one row appended). It reports 4 scope-only errors (exit 1); no build, data, link or reproducibility failure. Same pattern as CR-58E9-02 and CR-D8-01.
 
-**Integration progress: main advanced to `72fba5f` while this branch was being prepared.** PRs #94/#95 (session `7c23f22f`) brought in a daily retained-capture workflow, a raw official response, and a SHA-256 manifest. This integration preserved those sources and rebuilt the root site. The retained file hash was checked by `tools/verify_capture_7c23f22f.py` (7/7); the manifest records the 2026-11-16T14:39:21Z `nfl.com/injuries/` response, HTTP 200, 399895 bytes, 347 practice-status hits and 171 game-status hits. `FL-97` was updated to resolved for the single verified capture; `FL-90` remains open because this is not a multi-day history and does not replay earlier reports.
+**Integration progress: main advanced through `dda65b3` (PR #96) while this branch was being prepared.** The 7C capture work now includes two retained official responses (14:39:21Z and 14:44:29Z), a 347-row reconciliation with the disclosed Rams alias, and the `captures.html` page. The capture verifier passes both stored hashes. `FL-97` is resolved for the populated store; `FL-90` remains open because two reads five minutes apart are not a multi-day history and do not replay earlier reports.
 
-**Data-governance irregularity FL-98 (open):** `gh repo view` reports `isPrivate=false`, while the new capture workflow committed the unredacted response under `data/captures/` without a recorded source-terms review. The raw bytes are verified but their retention/republication entitlement is not. The file is not rendered into the generated website; the flag requests a terms review and private-store/removal decision. The already-public Git history cannot be erased by deleting a working-tree copy. No legal permission is asserted.
+**Data-governance irregularity FL-99 (open):** `gh repo view` reports `isPrivate=false`; two unredacted responses and the 347-row reconciliation CSV are in the public repository without a recorded source-terms review. The capture page is being changed to publish aggregate counts only, not player-level rows, but the files remain directly accessible in the public Git repository and its history. FL-99 requests terms review and a private-store/removal decision. No legal permission is asserted.
 
-**Integration validation defect fixed:** the root verifier had assumed every `data/*.csv` used the pipe separator and failed on the new conventional comma-delimited `data/capture_manifest.csv`. `tools/verify.py` now detects the delimiter from the header; `tools/verify_capture_7c23f22f.py` remains the specialized hash/allowlist check. The first run exposed the defect (`wrong field count`); after the fix, `tools/verify.py` passes 205 / 0 warnings / 0 failures. This fix is in the final integration scope, not a change to the capture data.
+**Integration validation defect fixed:** the first PR #95 capture manifest was comma-delimited although the root builder's data contract is pipe-delimited; a verification run caught the mismatch. PR #96 migrated the capture manifest and reconciliation register to the established pipe delimiter. The integration also made `tools/verify.py` detect delimiters from the header so a future conventional comma CSV cannot silently be parsed as one field. After PR #96's migration and the fix, `tools/verify.py` passes 205 / 0 warnings / 0 failures; the capture-specific verifier confirms the two file hashes. This change is in the final integration scope, not a change to captured bytes.
 
 **Scope-only verifier request:** `tools/s2268_verify.py` reports 8 out-of-scope paths introduced by the independently merged 7C capture work (`.github/workflows/capture.yml`, `validate.yml`, `data/capture_manifest.csv`, raw capture, `data/sources.csv`, and capture verifier/tool files). Its S2268 data/page tests passed before the scope check. This is logged as CR-A095-03 for the S2268 verifier owner; that tree's allowlist was not modified here. This does not mask a data, build, source-link or reproducibility failure.
+
+### Log — session `7c23f22f`, continued (after PR #94 and #95)
+
+| UTC | Entry |
+|---|---|
+| 14:39:21Z | **The first runner capture ran on `main` (the push trigger from PR #95 started it).** `https://www.nfl.com/injuries/` returned HTTP 200, 399,895 bytes; SHA-256 `e2b4074a9837a93e0d38ae8a8aac7b7b668b96fdd41d7caf86269a650cd981a3`; stored as `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin`; committed by the bot as `72fba5f`. Structure check: title names the Week 10 injury report; 28 club tables; 347 player rows. |
+| 14:40Z | Independent check of the stored bytes: `sha256sum` equals the manifest hash; the three Detroit rows read Did Not Participate / Out (Kerby Joseph, Cade Mays, D.J. Reed). |
+| 14:41Z | Reconciliation: 347 captured rows against `data/injuries_wk10_5de1805b_20261115.csv` (347 rows, 15 Nov 12:55Z). After one disclosed club alias (`LAR` in the repository, `LA` on the page; 14 rows), **347 of 347 match on club, position, injury, practice and game status**; 0 differences; 0 unknown vocabulary terms. `--check` reproduces byte for byte. |
+| 14:44Z | **Format migration (disclosed).** The site builder reads every `data/*.csv` as pipe-delimited; this session's first two CSVs were comma-delimited, and one title contains `|`. The two new CSVs (`capture_manifest.csv`, `capture_reconciliation_7c23f22f.csv`) are now pipe-delimited; the manifest's single row (written by the runner) was re-delimited and its title's `\|` was replaced by `/`. The raw bytes keep the original title; the hash and every other value are unchanged. The capture tool now writes pipes and replaces `\|` in titles. |
+| 14:46Z | Page `captures.html` built and registered; FL-90 status set to partly resolved; FL-98 added (club code); S-CAP-7C verification updated. |
+| 14:50Z | Suites on the rebuilt tree: `verify.py` 201/0/0; `check_site.py` 11/1/0 (the existing weather.gov warning); `audit_all_pages.py` 126 HTML / 374 tables / 9,653 rows, 100% row-sourced, 0 broken; `verify_site` 13/13; `review_verify` OK; `check_reproducible` OK; `verify_backlog` 11/0; `verify_readiness` pass; `verify_capture_7c23f22f` 7/0; `verify_s92` 13/0; `verify_dcf3b0cc` pass; `verify_q51` 0 errors; `verify_s53126614` PASS; `engine/verify_repo_and_site` 0 broken; `verify_coverage` 2423/0; `injury_lineage --check` exit 0; `render_test.js` 13 pages 0 failures; `check_links` 128 refs 0 broken. |
+
+### What this session establishes, and what it does not
+
+* **Established:** one retained, hashed, official capture of the Week 10 injury hub exists (16 Nov 2026 14:39:21Z UTC). Its 347 rows agree field-for-field with the 15 Nov 12:55Z repository file, after one disclosed club alias. The three Detroit designations are Out in the retained bytes.
+* **Not established:** that the league's designations are stable between reads (a single capture cannot show change); the injury-report history (FL-88, FL-97); a retained Week 10 read older than 16 Nov.
+* **Still open (not edited here):** `injuries.html` still renders the 12 Nov read with blank designations (FL-94, shared page, integration owner). The canonical club code for the Rams (FL-98).
+
+### Verification performed
+
+* The stored file's SHA-256 recomputed from the bytes in `main`, not from the manifest.
+* Reconciliation of every captured row (`tools/reconcile_capture_7c23f22f.py`), with a `--check` run and the reproduction in CI (`validate.yml`).
+* Verifier `tools/verify_capture_7c23f22f.py` (7 checks) on the real ledger.
+
+### Sources
+
+* Official page: https://www.nfl.com/injuries/ (captured 2026-11-16 14:39:21Z UTC by the runner; stored bytes at `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin`).
+* Player rows link to `https://www.nfl.com/players/<slug>/` (347 of 347 rows, from the stored bytes).
+* Repository comparison file: `data/injuries_wk10_5de1805b_20261115.csv` (15 Nov 2026 12:55Z read; its own source is https://www.nfl.com/injuries/).
+
+### Irregularities (published as flags)
+
+* **FL-97** (open): one capture is a single moment; later daily runs add rows only once they execute.
+* **FL-90** (partly resolved): one retained capture exists; eight earlier hand transcriptions remain unretained.
+* **FL-98** (open, new): the Rams club code `LAR` (repository) versus `LA` (page).
+* **FL-94** (open): the page the reader sees first still shows blanks for the three Detroit designations, although the retained bytes show Out.
+
+### Change requests (not edited: other owners)
+
+* **CR-7C-01** (above): `tools/s2268_verify.py` scope allowlist.
+* **CR-7C-02:** the integration owner should point `injuries.html` at the 16 Nov retained capture (or the 15 Nov reconciled file) and clear FL-94.
+* **CR-7C-03:** `tools/build_site.py` and `data/capture_manifest.csv`: the manifest is append-only, and a future capture run should be checked by a second run from `main` (the daily cron) before anyone relies on the series.
+
+**Integration progress after PR #96 (`dda65b3`):** the 14:44Z capture and row reconciliation from the latest default branch were retained. The reconciliation is regenerated and `--check` passes against the 14:44:29Z bytes (347/347 matched, zero mismatches or unknown terms; only `LAR→LA` alias). The root `captures.html` page now publishes capture metadata and aggregate results only; it does not render the player-level reconciliation table. The underlying raw files and row-level CSV remain in public Git, so FL-99 stays open pending source terms and a private-store decision. `FL-98` remains the separate Rams club-code alias flag; `FL-97` is resolved for a populated store; `FL-90` remains open for multi-day history.
+
+Combined-tree tests after PR #96: root build 42 pages; `tools/verify.py` 206 passed / 0 warnings / 0 failures; `tools/check_site.py` 11 passed / 1 existing non-league-link warning / 0 failures; `scripts/audit_all_pages.py` 127 HTML / 44 JSON / 374 tables / 9,296 rows / 100% row-sourced / 0 broken links / 0 column mismatches; `tools/verify_capture_7c23f22f.py` 7/7; capture reconciliation `--check` 347/347; readiness and backlog verifiers pass; C1 tests 15/15; F05 build and mutation tests pass 10/10; Q51 155/155 sourced rows; S53 100% official row links; S92 13/13; repository data reproducibility passes. Full build/link/data suites are green apart from the existing host-class warning and the separately tracked `tools/s2268_verify.py` scope allowlist request.

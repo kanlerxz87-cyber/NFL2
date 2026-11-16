@@ -14,7 +14,9 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
 | `data/sources.csv` | {{metric sources}} | source | — |
-| `data/capture_manifest.csv` | one row per fetch of an official page (append-only) | fetch — UTC time, URL, HTTP status, bytes, SHA-256, stored file, schema check | S-CAP-7C-20261116 (nfl.com/injuries/); tool `tools/capture_official.py`, session 7c23f22f; FL-98 flags that the raw response is in a public repository pending terms review |
+| `data/capture_manifest.csv` | one row per fetch of an official page (append-only) | fetch — UTC time, URL, HTTP status, bytes, SHA-256, stored file, schema check | S-CAP-7C (nfl.com/injuries/); tool `tools/capture_official.py`, session 7c23f22f; raw-body/public-repository rights gap is FL-99 |
+| `data/availability_fingerprints.csv` | {{metric fingerprint_runs}} | one metadata-only fetch attempt: exact raw-response digest, schema digest, aggregate injury counts, change/conflict flags; no raw body or player rows | [NFL injury hub](https://www.nfl.com/injuries/); C1 monitor records `raw_retained=no` |
+| `data/capture_reconciliation_7c23f22f.csv` | one row per captured or repository player (347 + 0 when they agree) | club × player: capture vocabulary, repository vocabulary, match and differing fields; capture SHA-256 and official player link | S-CAP-7C (nfl.com/injuries/, the retained capture) and the repository file data/injuries_wk10_5de1805b_20261115.csv |
 | `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows; requirements and gate mappings are project design, not NFL facts | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | internal design rows and validation rules; thresholds are project policy, not NFL standards | S-DESIGN |
@@ -56,7 +58,6 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/hub_new_rows_8dee7df7.csv` | 51 | one player who is on the 15 Nov read and not on the 13 Nov read | S-INJ-8DEE |
 | `data/availability_watch_practice_deltas_c3ec1487.csv` | 49 | one player whose practice code changed between the two dated reads, and the direction | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/availability_watch_gates_c3ec1487.csv` | 4 | one availability readiness gate, its measured value, and why it passes or fails | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
-| `data/availability_fingerprints.csv` | {{metric fingerprint_runs}} | one metadata-only fetch attempt: exact raw-response digest, table-header schema digest, aggregate injury counts, change/conflict flags; no raw body or player rows | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/computed_availability_watch_c3ec1487.csv` | 12 | one derived availability metric, how it is computed, and what it means | S-CALC |
 | `data/reverification_c3ec1487.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
 
@@ -259,6 +260,7 @@ means an agent fetched the page that day and recorded what it showed, `not re-re
 was not fetched and no claim is made, and `no official source exists` means the league does not
 publish the thing the directive needs. A directive the brief itself rejects carries kind
 `rejected` and status `rejected` so it cannot be re-proposed as open.
+
 ### `data/availability_fingerprints.csv` — session C1 metadata-only injury-hub monitor
 
 | Column | Type | Meaning |
@@ -279,4 +281,4 @@ publish the thing the directive needs. A directive the brief itself rejects carr
 | `capture_status` | enum | `ok`, `schema_drift`, or `failed`; body changes with a valid schema are informational |
 | `error` | code | fixed safe error category; arbitrary exception text and response content are not persisted |
 
-A SHA-256 identifies response bytes but cannot reconstruct them. This metadata ledger does not satisfy G-03 or authorize any model input; private retention remains blocked pending Q-50/Q-51 review.
+A SHA-256 identifies response bytes but cannot reconstruct them. This metadata-only ledger does not satisfy point-in-time replay gate G-03 or authorize model input.
