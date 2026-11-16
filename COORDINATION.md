@@ -4019,3 +4019,11 @@ content altered):**
 | Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
 | Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
+
+## Session `8d1069e1` (`arena/8d1069e1-nfl2`) — claim: republish the Week 10 injury table from the pinned 16 Nov official capture (closes FL-94)
+
+**Claimed 2026-11-16 at branch base `cd83a7a`.** Parallel-session check: `origin/main` = `cd83a7a`, no other open claim on this branch.
+
+- **Task T-8D1-01:** replace the published Week 10 injury table `data/injuries_2026_wk10.csv` (12 Nov read, 254 rows / 24 clubs) with the pinned official capture `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin` (sha256 `e2b4074a…81a3`, 347 rows / 28 clubs), parsed by `tools/reconcile_capture_7c23f22f.py`. The superseded table is kept verbatim under `data/archive/`.
+- **Files touched:** `data/injuries_2026_wk10.csv`, `data/archive/injuries_2026_wk10_superseded_12nov.csv` (new), `data/injuries_wk10_hub_20261116.csv` (new, row-level parse with source link + capture clock), derived tables that join the injury file (`data/computed_depth_reach.csv`, `data/personnel_relief_*`), `content/*.md` prose counts that quote the old 254/24, `data/flags.csv`, `COORDINATION.md`, generated HTML.
+- **Out of scope:** no change to any official value; no inferred designation; no change to the 15 Nov or 16 Nov transcription files owned by earlier sessions.
