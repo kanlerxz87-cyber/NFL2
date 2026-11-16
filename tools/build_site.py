@@ -326,6 +326,11 @@ SITE_TREES = [
      "deltas against the 13 Nov and 12 Nov reads, the November reserve-list/trades re-read that widens FL-96 to a "
      "class of ten (FL-104) and finds traded players placed inconsistently (FL-105), and the FL-97..103 promotion of "
      "the dcf3b0cc flags into the canonical register"),
+    ("dbccb97d", "`dbccb97d`", "*this PR*", "current",
+     "sixth dated injury-hub read 2026-11-16T18:05Z (347 rows, zero drift against the 15:07Z and 14:44Z registers), "
+     "the venue of every Week 11 fixture transcribed from its own official game centre (FL-115 naming discrepancies "
+     "against the schedule page's parameters), the extended FL-116 block-misplacement sighting, and the FL-111 "
+     "schedule-release date re-read"),
 ]
 
 
