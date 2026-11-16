@@ -4019,3 +4019,28 @@ content altered):**
 | Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
 | Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
+
+---
+
+## Session `3e77121b` (`arena/3e77121b-nfl2`) — Week 11 fixture venues from the official game centre, and a per-team decision view
+
+**Session ID:** `3e77121b` · **Branch:** `arena/3e77121b-nfl2` · **Claimed:** 2026-11-16T18:03Z · **Base:** `cd83a7a` (= `origin/main`, PR #105; 0 behind at claim)
+
+**Parallel-session check at claim time:** `git fetch` shows `origin/main` at `cd83a7a`; no other `arena/*` branch has commits ahead of main; no open claim on this board is in progress. The Arena branch note fixes this session to `arena/3e77121b-nfl2`, so the `session-<id>/<task>` branch naming in the standing brief is not used here.
+
+**Scope honesty.** The standing brief asks for ~100 items. Most are already in `data/requirements.csv` (46 rows) and `data/brief_traceability.csv`, and many are blocked by inputs no session can reach (licensed market prices, prospective results, Game Books, the Texans depth image, roughly two weeks of daily captures). This session takes the two items that are still open and reachable from official pages:
+
+### Tasks claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| 3E-01 | Transcribe the venue (location and stadium) of every Week 11 fixture from its official nfl.com game-centre page, with the clock time of each read, and publish it. The Week 11 schedule file's `site` column reads "not published" on 12 of 13 rows | in progress | `3e77121b` | `data/venues_wk11_3e77121b.csv` (new), `content/fixture-venues.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
+| 3E-02 | Per-team decision view: one row per club (32), with designated players from the newest official hub read, the net change against the 13 Nov read, starters out only where a depth source supports it, and replacements only where the league names them. Anything not published stays blank | in progress | `3e77121b` | `data/team_view_3e77121b.csv` (new), `content/teams.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
+| 3E-03 | Integration: rebuild, run every verifier in `validate.yml`, check_site, link check, PR to `main`, merge with `--merge`, confirm the Pages deploy, record it here | in progress | `3e77121b` | generated root `*.html`, this section |
+
+### Not claimed here (left open, with reasons)
+
+- Texans depth as an image (needs an authorised structured source; not transcribed by eye).
+- Multi-day immutable capture, daily from Wednesday to kickoff: needs a scheduled job running over several days, and the existing `capture.yml` covers it. Not changed here.
+- Strategies, prices, control baselines, CLV, Brier skill and any leaderboard entry: no tracked bets and no licensed price series exist, so nothing can be scored. Unchanged.
+- Parlay/prop joint-probability gate, roof/wind overlay, snap counts and inactive lists: open per the register (see `data/requirements.csv` R-43 and the Information Gaps page).
