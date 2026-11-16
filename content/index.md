@@ -140,17 +140,19 @@ The Week 10 hub, the Week 10 results, the standings and the whole Week 11 slate 
 2. **The results feed caught up with the games, without breaking the pre-registration.** Thirteen Week 10 finals were verified on two official pages each and published with their game-centre links on the [Re-Verification](reverification.html) page; the append-only results file now holds all thirteen (the parallel results-feed session appended the twelve Sunday finals and re-pinned the settled-file hash under a **dated amendment that preserves the decision-time hash**). One governance question remains open on the [Flagged for Review](flagged-for-review.html) page: [FL-114](flagged-for-review.html), the owner's ratification of that append protocol. The Monday game is recorded nowhere — it is not final.
 3. **The standings delta closes for all 32 clubs — and the refresh is cross-validated.** The 16 November read equals the 13 November snapshot plus exactly each club's Sunday result on wins, losses, ties and points; two independent reads seven minutes apart (14:50Z and 14:57Z) agree cell for cell on all 32 clubs × 8 fields, which is what makes the table's refresh to the newer read safe to publish. How often cumulative tables move is still [Q-40](questions.html).
 
-## Latest official reads — 13 November 2026
+## Latest official reads (retained captures)
 
-The time labels now identify different source snapshots rather than one global “last updated” date:
+The time labels identify different source snapshots rather than one global “last updated” date; each read is kept under its own capture date and none is overwritten.
 
 | Read | Capture time (UTC) | What it represents |
 | --- | --- | --- |
 | Primary Week 10 injury file | 2026-11-12 04:45 | Original player-filing snapshot; not the later hub states |
 | Full injury-hub re-read | 2026-11-12 22:35 | 279 rows across 26 clubs with filed rows |
 | Settled-game injury recheck | 2026-11-13 06:52 | Only the 20 WAS–NYG rows; **not** a full hub re-read |
-| Latest full injury-hub snapshot in this tree | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
+| Latest full injury-hub snapshot | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
 | Latest injury-hub read (15 Nov, row-level, hand-transcribed, FL-82) | 2026-11-15 12:51 | 347 filings covering all of the 28 clubs on the slate; Chargers and Ravens now have rows (FL-81); 51 new players and no removals against the 13 Nov file. See [Injury Hub delta](hub-delta.html) |
+| Full hub re-read (retained machine capture) | 2026-11-16 14:39 / 14:44 | 347 filings across every club on the 28-club slate; cell-for-cell identical to the 15 Nov read; raw bytes retained under `data/captures/injuries_hub/` with per-response SHA-256 (FL-90 partly resolved; FL-97 — one capture is not a series) |
+| Independent standings re-read | 2026-11-16 14:50 | 32 clubs × 8 fields; identical cell-for-cell to the 14:57Z snapshot published the same day (cross-validated on [Re-Verification](reverification.html)) |
 | NFL division standings | **2026-11-13 12:53** | 32 clubs × W/L/T/PCT/PF/PA/NET PTS/STREAK: **256/256 values matched** the independent saved re-read; no standings value changed |
 
 The standings timestamp appears in the site-wide source-read banner and on each standings row. `tools/verify.py` checks it against the latest registered NFL standings source and compares every value against [`data/standings_recheck_20261113.csv`](data/standings_recheck_20261113.csv) on each run. The injury times above are intentionally separate; they describe different data snapshots and coverage, not a shared live refresh.

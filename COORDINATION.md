@@ -4020,6 +4020,33 @@ content altered):**
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
 | Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
 
+## Session `92779734-nfl2` — final state refresh, executive summary and landing page to current state, verification, PR and Pages confirmation
+
+**Session ID:** `92779734` · **Branch:** `arena/92779734-nfl2` (Arena-fixed session branch; it IS the task branch) · **Base:** `cd83a7a1f2e0a79cd32289a81c0bad5d57d05915` (merge of PR #105, current `main` tip) · **Claimed:** 2026-11-16
+
+This session adds no analytical opinion and edits no other session's tree. Its scope is the shared outputs that only an integration pass may touch: `content/executive-summary.md`, root `EXECUTIVE_SUMMARY.md`, `content/index.md` (current-state section only), the regenerated root HTML, `data/build_manifest.json`, and this coordination file.
+
+| # | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 92779734-T01 | Claim block, committed and pushed before any other edit | in progress | 92779734 | COORDINATION.md |
+| 92779734-T02 | Fresh same-day official reads: Week 11 schedule page and the injury hub, to confirm the current official state this site describes | in progress | 92779734 | evidence only; no register row added unless a read contradicts the merged tree |
+| 92779734-T03 | Refresh `content/executive-summary.md` to current state: 46 requirements (37 done / 5 partial / 3 specified / 1 in progress), 15 gates incl. G-15 demotion, 114 flags (85 open / 11 needs review), 64 questions (22 P0), 72 suggestions, 45 pages; open Q-01/Q-02 price-feed and player-data entitlement blocking G-01/G-06/G-07/G-12; FL-114 append-protocol ratification | unclaimed → in progress | 92779734 | content/executive-summary.md, root EXECUTIVE_SUMMARY.md |
+| 92779734-T04 | Refresh `content/index.md` so its received-state and workstreams sections describe the merged tree rather than the 12 November receipt | unclaimed → in progress | 92779734 | content/index.md |
+| 92779734-T05 | Full verification suite (build, verify, check_site, readiness) green; commit; push | pending | 92779734 | all of the above + generated HTML |
+| 92779734-T06 | PR #106 `arena/92779734-nfl2` → `main`, merge --merge without waiting, confirm GitHub Pages deploy, record PR link/merge/Pages in this block | pending | 92779734 | PR, main, Pages |
+
+## Session `92779734-nfl2` — completion record (2026-11-16)
+
+| # | Task | Status | Result |
+|---|---|---|---|
+| 92779734-T01 | Claim block, committed and pushed before any other edit | done | commit `9b2514d`, pushed to `arena/92779734-nfl2` |
+| 92779734-T02 | Fresh official reads: Week 11 schedule page and injury hub | done | Week 11 schedule (3 chunks, https://www.nfl.com/schedules/2026/by-week/week-11): 13 fixtures confirmed — IND@HOU Thu 19 Nov 8:15 PM PRIME (NRG Stadium); MIA@BUF, BAL@CAR, NO@CHI, TEN@DAL, TB@DET Sun 22 Nov 1:00 PM (CBS/FOX/FOX/FOX/FOX); AZ@KC, PIT@PHI 1:00 PM CBS; NYJ@LAC 4:05 PM FOX; JAX@NYG, LV@DEN 4:25 PM CBS; MIN@SF 8:20 PM NBC neutral Mexico City; CIN@WAS Mon 23 Nov 8:15 PM ESPN (FedEx Field); byes ATL, CLE, GB, LAR, NE, SEA. Stadium names appear only in hotel-link parameters → venue cells stay `not published`; parameter transcription held in FL-112 (FedEx Field verbatim, may not be current sponsored name). Injury hub: chunk read shows the series still moving (designations populating for WAS/NYG/NE/DET/KC); latest retained capture 16 Nov 14:44Z, SHA-256 2877f2c8…, cell-identical to 15 Nov 12:55Z (347 rows, 171 designations: 70 Out, 90 Questionable, 11 Doubtful). |
+| 92779734-T03 | Executive summary refresh to current state | done | `content/executive-summary.md` rewritten (46 requirements / 15 gates incl. G-15 demotion / 114 flags / 64 questions / 72 suggestions / 99 sources, 63 tier A / 45 pages / 754 tracked files); root `EXECUTIVE_SUMMARY.md` header, bottom line and a current-state section brought to 16 Nov; historical addenda retained |
+| 92779734-T04 | Landing page refresh | done | `content/index.md`: 16 Nov retained-capture rows added to the official-reads table; venue caveat (FL-112) carried onto the page; stale "received on 12 November 2026" framing superseded by the page's existing 16 Nov "What changed" section |
+| 92779734-T05 | Full verification suite | done | `tools/build_site.py`: 45 pages, 5298 blank cells as `not published`; `tools/verify.py`: **223 passed · 0 warnings · 0 failures**; `tools/check_site.py`: **11 passed · 1 disclosed warning · 0 failures** (non-league hosts on registry/research pages only); `tools/verify_readiness_ac2dd497.py`: PASS (46 requirements render once, in register order); `tools/verify_flags_4e475b8b.py`: ALL CHECKS PASSED (1049 FL references, 0 unresolved; every flag source is https) |
+| 92779734-T06 | PR #106 → merge → Pages confirm | in progress | see deployment record below |
+
+No register file (`data/*.csv`) was modified. Root `*.html` changes are build output only, regenerated by `tools/build_site.py`. `git pull --rebase` is not used on this branch once a merge commit exists (it flattens upstream merge history); `git fetch` + `git merge origin/main` + plain `git push` is the pattern.
 ## Session `arena-8b31a714` — line-origination consistency audit
 
 | ID | Task | Status | Owner | File scope |
