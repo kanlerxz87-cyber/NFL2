@@ -1,0 +1,14 @@
+game_id|away|home|game_slug|location|stadium|read_utc|source_url
+W11-01|IND|HOU|colts-at-texans-2026-reg-11|HOUSTON, TX|RELIANT STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/colts-at-texans-2026-reg-11
+W11-02|MIA|BUF|dolphins-at-bills-2026-reg-11|ORCHARD PARK, NY|HIGHMARK STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+W11-03|BAL|CAR|ravens-at-panthers-2026-reg-11|CHARLOTTE, NC|BANK OF AMERICA STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/ravens-at-panthers-2026-reg-11
+W11-04|NO|CHI|saints-at-bears-2026-reg-11|CHICAGO, IL|SOLDIER FIELD|2026-11-16T18:05Z|https://www.nfl.com/games/saints-at-bears-2026-reg-11
+W11-05|TEN|DAL|titans-at-cowboys-2026-reg-11|ARLINGTON, TX|AT&T STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/titans-at-cowboys-2026-reg-11
+W11-06|TB|DET|buccaneers-at-lions-2026-reg-11|DETROIT, MI|FORD FIELD|2026-11-16T18:05Z|https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+W11-07|AZ|KC|cardinals-at-chiefs-2026-reg-11|KANSAS CITY, MO|ARROWHEAD STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11
+W11-08|PIT|PHI|steelers-at-eagles-2026-reg-11|PHILADELPHIA, PA|LINCOLN FINANCIAL FIELD|2026-11-16T18:05Z|https://www.nfl.com/games/steelers-at-eagles-2026-reg-11
+W11-09|NYJ|LAC|jets-at-chargers-2026-reg-11|INGLEWOOD, CA|SOFI STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/jets-at-chargers-2026-reg-11
+W11-10|LV|DEN|raiders-at-broncos-2026-reg-11|DENVER, CO|EMPOWER FIELD AT MILE HIGH|2026-11-16T18:05Z|https://www.nfl.com/games/raiders-at-broncos-2026-reg-11
+W11-11|JAX|NYG|jaguars-at-giants-2026-reg-11|EAST RUTHERFORD, NJ|METLIFE STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/jaguars-at-giants-2026-reg-11
+W11-12|MIN|SF|vikings-at-49ers-2026-reg-11|MEXICO CITY|ESTADIO BANORTE|2026-11-16T18:05Z|https://www.nfl.com/games/vikings-at-49ers-2026-reg-11
+W11-13|CIN|WAS|bengals-at-commanders-2026-reg-11|LANDOVER, MD|NORTHWEST STADIUM|2026-11-16T18:05Z|https://www.nfl.com/games/bengals-at-commanders-2026-reg-11

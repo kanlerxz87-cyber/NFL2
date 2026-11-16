@@ -1,0 +1,23 @@
+kind|season|month|chain_pages_fetched|distinct_rows|last_page_rows|last_page_next_link|coverage_status|source|source_url|note
+reserve_list|2026|2026-01|2|40|15|no|complete|S-6E-RES-01|https://www.nfl.com/transactions/league/reserve-list/2026/01|last page holds 15 rows (< 25) and no Next Page link
+reserve_list|2026|2026-02|1|2|2|no|complete|S-6E-RES-02|https://www.nfl.com/transactions/league/reserve-list/2026/02|last page holds 2 rows (< 25) and no Next Page link
+reserve_list|2026|2026-03|1|5|5|no|complete|S-6E-RES-03|https://www.nfl.com/transactions/league/reserve-list/2026/03|last page holds 5 rows (< 25) and no Next Page link
+reserve_list|2026|2026-04|1|2|2|no|complete|S-6E-RES-04|https://www.nfl.com/transactions/league/reserve-list/2026/04|last page holds 2 rows (< 25) and no Next Page link
+reserve_list|2026|2026-05|1|9|9|no|complete|S-6E-RES-05|https://www.nfl.com/transactions/league/reserve-list/2026/05|last page holds 9 rows (< 25) and no Next Page link
+reserve_list|2026|2026-06|1|8|8|no|complete|S-6E-RES-06|https://www.nfl.com/transactions/league/reserve-list/2026/06|last page holds 8 rows (< 25) and no Next Page link
+reserve_list|2026|2026-07|1|9|9|no|complete|S-6E-RES-07|https://www.nfl.com/transactions/league/reserve-list/2026/07|last page holds 9 rows (< 25) and no Next Page link
+reserve_list|2026|2026-08|12|75|25|yes|incomplete|S-6E-RES-08|https://www.nfl.com/transactions/league/reserve-list/2026/08|chain still open at MAX_PAGES=12: the Next Page cursor returned repeated page bytes, and the last fetched page is full with a Next link (FL-121)
+reserve_list|2026|2026-09|12|75|25|yes|incomplete|S-6E-RES-09|https://www.nfl.com/transactions/league/reserve-list/2026/09|chain still open at MAX_PAGES=12: the Next Page cursor returned repeated page bytes, and the last fetched page is full with a Next link (FL-121)
+reserve_list|2026|2026-10|12|25|25|yes|incomplete|S-6E-RES-10|https://www.nfl.com/transactions/league/reserve-list/2026/10|chain still open at MAX_PAGES=12: the Next Page cursor returned repeated page bytes, and the last fetched page is full with a Next link (FL-121)
+reserve_list|2026|2026-11|12|25|25|yes|incomplete|S-6E-RES-11|https://www.nfl.com/transactions/league/reserve-list/2026/11|chain still open at MAX_PAGES=12: the Next Page cursor returned repeated page bytes, and the last fetched page is full with a Next link (FL-121)
+trades|2026|2026-01|1|0|0|no|complete_empty_month|S-6E-TRD-01|https://www.nfl.com/transactions/league/trades/2026/01|official 'No Transactions Available' block; zero rows printed
+trades|2026|2026-02|1|0|0|no|complete_empty_month|S-6E-TRD-02|https://www.nfl.com/transactions/league/trades/2026/02|official 'No Transactions Available' block; zero rows printed
+trades|2026|2026-03|1|22|22|no|complete|S-6E-TRD-03|https://www.nfl.com/transactions/league/trades/2026/03|last page holds 22 rows (< 25) and no Next Page link
+trades|2026|2026-04|1|8|8|no|complete|S-6E-TRD-04|https://www.nfl.com/transactions/league/trades/2026/04|last page holds 8 rows (< 25) and no Next Page link
+trades|2026|2026-05|1|1|1|no|complete|S-6E-TRD-05|https://www.nfl.com/transactions/league/trades/2026/05|last page holds 1 rows (< 25) and no Next Page link
+trades|2026|2026-06|1|4|4|no|complete|S-6E-TRD-06|https://www.nfl.com/transactions/league/trades/2026/06|last page holds 4 rows (< 25) and no Next Page link
+trades|2026|2026-07|1|0|0|no|complete_empty_month|S-6E-TRD-07|https://www.nfl.com/transactions/league/trades/2026/07|official 'No Transactions Available' block; zero rows printed
+trades|2026|2026-08|2|27|2|no|complete|S-6E-TRD-08|https://www.nfl.com/transactions/league/trades/2026/08|last page holds 2 rows (< 25) and no Next Page link
+trades|2026|2026-09|1|1|1|no|complete|S-6E-TRD-09|https://www.nfl.com/transactions/league/trades/2026/09|last page holds 1 rows (< 25) and no Next Page link
+trades|2026|2026-10|1|6|6|no|complete|S-6E-TRD-10|https://www.nfl.com/transactions/league/trades/2026/10|last page holds 6 rows (< 25) and no Next Page link
+trades|2026|2026-11|1|12|12|no|complete|S-6E-TRD-11|https://www.nfl.com/transactions/league/trades/2026/11|last page holds 12 rows (< 25) and no Next Page link

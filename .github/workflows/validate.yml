@@ -30,6 +30,8 @@ jobs:
         run: |
           python3 tools/verify_capture_7c23f22f.py
           python3 tools/reconcile_capture_7c23f22f.py --check
+      - name: Drift alarm for the roster-event pipeline (BL-64; session 6eeab460)
+        run: python3 tools/drift_alarm_6eeab460.py
       - name: Fail if the Week 10 injury lineage drifts from its input files (session d8372691)
         run: python3 scripts/injury_lineage_d8372691.py --check
       - name: Audit the site (links, empty cells, template markers, official source coverage)

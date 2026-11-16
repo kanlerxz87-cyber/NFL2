@@ -1,0 +1,53 @@
+name: dbccb97d dated captures
+
+# Self-contained scope check for the `dbccb97d` tree. Added as a new file so no
+# other session's workflow needs to be edited: it runs only when this session's
+# captures, verifier, builder or pages change. See COORDINATION.md, session
+# `dbccb97d`.
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "dbccb97d/**"
+      - "tools/dbccb97d_capture.py"
+      - "tools/build_dbccb97d.py"
+      - "tools/verify_dbccb97d.py"
+      - "data/hub_read_dbccb97d_20261116.csv"
+      - "data/venues_week11_dbccb97d_20261116.csv"
+      - "data/reverification_dbccb97d.csv"
+      - ".github/workflows/dbccb97d.yml"
+  pull_request:
+    paths:
+      - "dbccb97d/**"
+      - "tools/dbccb97d_capture.py"
+      - "tools/build_dbccb97d.py"
+      - "tools/verify_dbccb97d.py"
+      - "data/hub_read_dbccb97d_20261116.csv"
+      - "data/venues_week11_dbccb97d_20261116.csv"
+      - "data/reverification_dbccb97d.csv"
+      - ".github/workflows/dbccb97d.yml"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Regenerate the captures and fail on any drift
+        run: python3 tools/dbccb97d_capture.py
+      - name: Verify the dated captures (rows, codes, sources, determinism, flags)
+        run: python3 tools/verify_dbccb97d.py
+      - name: Rebuild the dashboard
+        run: python3 tools/build_dbccb97d.py
+      - name: Fail if the committed pages differ from a rebuild
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "dbccb97d/ is in sync with its data"
+          else
+            echo "::error::committed pages differ from a rebuild - commit the output of tools/build_dbccb97d.py"
+            git diff --cached --stat
+            exit 1
+          fi

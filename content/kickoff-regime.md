@@ -23,7 +23,7 @@ position for a possession. That assumption expired in March 2026.
 
 ## The register
 
-{{csv data/kickoff_regime_0a28b225.csv;;cols=id:ID,rule:Rule,element:Element,rule_text_as_published:Rule text as published,prior_regime:Prior regime,why_it_moves_a_total:Why it moves a total;;source_col=source;;caption=The four rows sourced to the rulebook are the four entries in its own 2026 Rule Changes table. KR-05 is the fifth rule in the league's approved playing-rules summary, which the rulebook table does not list — published as FL-116 rather than dropped.}}
+{{csv data/kickoff_regime_0a28b225.csv;;cols=id:ID,rule:Rule,element:Element,rule_text_as_published:Rule text as published,prior_regime:Prior regime,why_it_moves_a_total:Why it moves a total;;source_col=source;;caption=The four rows sourced to the rulebook are the four entries in its own 2026 Rule Changes table. KR-05 is the fifth rule in the league's approved playing-rules summary, which the rulebook table does not list — published as a finding rather than dropped.}}
 
 ## The disagreement this settles
 

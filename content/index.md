@@ -144,7 +144,7 @@ to buy snap counts ([Q-45](questions.html)).
    BL-69 closed. Rule 6-1-6 lets any club declare an onside kick at any time, regardless of score — the
    official rulebook and NFL.com agree, and several third-party summaries say otherwise. No success-rate
    prior is published, because the widely quoted recovery percentages are not on any official page.
-   One new source conflict ([FL-121](flagged-for-review.html)): the official rulebook's own 2026 Rule
+   One new source conflict ([FL-130](flagged-for-review.html)): the official rulebook's own 2026 Rule
    Changes table lists four rules and omits the fifth rule the league's approved summary passed.
 3. **A weekly diff is published instead of only snapshots** ([weekly diff](weekly-diff.html)): the change
    between the 13 and 16 November standings reads for all 32 clubs. Eight clubs changed division rank, and
@@ -221,6 +221,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 15 gates, pass criteria, what each one blocks |
+| Data | [Roster events (official, dated)](roster-events.html) | every 2026 reserve placement and trade on the official pages, coverage per month, the Week 10 availability join (BL-65), and the depth rows a roster event may supersede (BL-34, BL-47) |
 | Data | [Week 10 injury report](injuries.html) | all 347 official rows of the pinned 16 Nov capture (the canonical table), per-row source links; the 12 Nov 254-row read is kept as an archived file; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
 | Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
