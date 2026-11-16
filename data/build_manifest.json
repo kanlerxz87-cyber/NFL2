@@ -1,7 +1,7 @@
 {
   "blank_cells_rendered_as_not_published": 4169,
   "data_fetched_utc": "2026-11-12 04:45 UTC",
-  "inputs_sha256": "7b6f07f58ef3b14c0f77b2bdf42f1f239c80ad13ee9f73cd0fba9e72d3f1e79d",
+  "inputs_sha256": "d2e3936e9ad7eea6de43d3f7a985ec241c95a01c0dee429f2e3521985164097d",
   "metrics": {
     "avail_clubs": 26,
     "avail_designations": 8,
@@ -50,7 +50,7 @@
     "d_rows_15": 347,
     "d_rows_added": 51,
     "d_unchanged": 14,
-    "data_files": 115,
+    "data_files": 118,
     "deficiency_first_string": 8,
     "deficiency_rows": 18,
     "depth_rows": 227,
@@ -59,7 +59,7 @@
     "dtr_rows": 13,
     "empty_club_count": 4,
     "empty_clubs": "BAL, CIN, LAC, SEA",
-    "flags": 96,
+    "flags": 105,
     "fresh_behind": 6,
     "fresh_pages": 19,
     "fresh_withheld_max": 93,
