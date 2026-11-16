@@ -3543,3 +3543,13 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 |---|---|---|
 | A095-BL20-1 | done | `docs/PRICE-DATA-POLICY.md` |
 | A095-BL20-2 | done | `docs/PRICE-DATA-POLICY.md`, `COORDINATION.md` |
+
+## Session `a095be15` — final integration claim (PR #71, PR #84, price-policy publication)
+
+**Integration claim before shared-output edits.** The independent task work on PRs #71 (`arena/1ef36c55-nfl2`) and #84 (`arena/f05c00f2-nfl2`) has completed its recorded checks; both remain open and both now report `CONFLICTING` against `main` after later integrations. This session claims the final integration scope on the fixed branch `arena/a095be15-nfl2`; it will preserve both sides, rebuild generated files from the merged canonical sources, and re-run the repository verification suite. No other source branch will be pushed or rewritten.
+
+| Task | Status | Scope |
+|---|---|---|
+| A095-INT-1 | in progress | Integrate PR #71 and #84 work into this branch; preserve both coordination histories and source/tool changes |
+| A095-INT-2 | in progress | Rebuild canonical root site and reconcile `content/price-archive.md` with adopted P-PRICE-01; link the policy |
+| A095-INT-3 | in progress | Full data, link, reproducibility, scope, PR, merge and Pages verification; record integration results |
