@@ -1,2 +1,2 @@
-fetch_utc,slug,source_url,http_status,bytes,sha256,stored_path,new_content,title,title_has_injury_report,practice_status_hits,game_status_hits,table_tags,schema_ok,note
-2026-11-16T14:39:21Z,injuries_hub,https://www.nfl.com/injuries/,200,399895,e2b4074a9837a93e0d38ae8a8aac7b7b668b96fdd41d7caf86269a650cd981a3,data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin,yes,Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com,yes,347,171,28,yes,
+fetch_utc|slug|source_url|http_status|bytes|sha256|stored_path|new_content|title|title_has_injury_report|practice_status_hits|game_status_hits|table_tags|schema_ok|note
+2026-11-16T14:39:21Z|injuries_hub|https://www.nfl.com/injuries/|200|399895|e2b4074a9837a93e0d38ae8a8aac7b7b668b96fdd41d7caf86269a650cd981a3|data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin|yes|Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season / NFL.com|yes|347|171|28|yes|

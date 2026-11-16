@@ -3543,7 +3543,10 @@ and records a SHA-256 for each read.
 | 7C-T4 | Run the workflow with `gh workflow run`, read the result, and record whether nfl.com answered from the runner | in progress (dispatch moved to `main` after merge) | `7c23f22f` | `data/capture_manifest.csv`, `data/captures/**` |
 | 7C-T5 | `tools/verify_capture_7c23f22f.py`: each manifest row's hash matches its file, no file is overwritten, every row has an official `https://www.nfl.com/` URL | done (wired into `validate.yml`) | `7c23f22f` | `tools/verify_capture_7c23f22f.py` (new) |
 | 7C-T6 | Flags and sources for what the capture does and does not prove; FL-90 status note | done (FL-97 open, S-CAP-7C; FL-90 stays open until a runner capture exists) | `7c23f22f` | `data/flags.csv` (append only), `data/sources.csv` (append only) |
-| 7C-T7 | Full suite, PR to `main`, merge `--merge`, confirm Pages, record here | unclaimed → in progress at integration | `7c23f22f` | this section |
+| 7C-T7 | `tools/reconcile_capture_7c23f22f.py`: row-by-row reconciliation of the retained capture against `data/injuries_wk10_5de1805b_20261115.csv`, club key from the page's own logo codes (28 pairs, required), vocabulary mapped only from the register's codes, `--check` mode | done | `7c23f22f` | `tools/reconcile_capture_7c23f22f.py` (new), `data/capture_reconciliation_7c23f22f.csv` (new) |
+| 7C-T8 | Site page `captures.html` (Data group): manifest, reconciliation, open items; registered in `tools/build_site.py` NAV and page-kind map (one line each) | done | `7c23f22f` | `content/captures.md` (new), `tools/build_site.py` (two lines), generated `captures.html` |
+| 7C-T9 | Register rows: FL-90 status, FL-98 (LAR/LA club code), S-CAP-7C verification, data-dictionary rows; pipe-delimited migration of the two new CSVs (disclosed below) | done | `7c23f22f` | `data/flags.csv` (FL-90 cell, FL-98 appended), `data/sources.csv` (S-CAP-7C cells), `content/data-dictionary.md` (two rows) |
+| 7C-T10 | Full suite, PR to `main`, merge `--merge`, confirm Pages, record here | in progress | `7c23f22f` | this section |
 
 ### Not in this session's scope (explicitly not done here)
 
@@ -3584,3 +3587,45 @@ and records a SHA-256 for each read.
 ### Change requests (not edited: other owners)
 
 * **CR-7C-01 — `tools/s2268_verify.py`:** its scope allowlist does not list `data/capture_manifest.csv`, `tools/verify_capture_7c23f22f.py`, `.github/workflows/validate.yml` (one step added) or `data/sources.csv` (one row appended). It reports 4 scope-only errors (exit 1); no build, data, link or reproducibility failure. Same pattern as CR-58E9-02 and CR-D8-01.
+
+### Log — session `7c23f22f`, continued (after PR #94 and #95)
+
+| UTC | Entry |
+|---|---|
+| 14:39:21Z | **The first runner capture ran on `main` (the push trigger from PR #95 started it).** `https://www.nfl.com/injuries/` returned HTTP 200, 399,895 bytes; SHA-256 `e2b4074a9837a93e0d38ae8a8aac7b7b668b96fdd41d7caf86269a650cd981a3`; stored as `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin`; committed by the bot as `72fba5f`. Structure check: title names the Week 10 injury report; 28 club tables; 347 player rows. |
+| 14:40Z | Independent check of the stored bytes: `sha256sum` equals the manifest hash; the three Detroit rows read Did Not Participate / Out (Kerby Joseph, Cade Mays, D.J. Reed). |
+| 14:41Z | Reconciliation: 347 captured rows against `data/injuries_wk10_5de1805b_20261115.csv` (347 rows, 15 Nov 12:55Z). After one disclosed club alias (`LAR` in the repository, `LA` on the page; 14 rows), **347 of 347 match on club, position, injury, practice and game status**; 0 differences; 0 unknown vocabulary terms. `--check` reproduces byte for byte. |
+| 14:44Z | **Format migration (disclosed).** The site builder reads every `data/*.csv` as pipe-delimited; this session's first two CSVs were comma-delimited, and one title contains `|`. The two new CSVs (`capture_manifest.csv`, `capture_reconciliation_7c23f22f.csv`) are now pipe-delimited; the manifest's single row (written by the runner) was re-delimited and its title's `\|` was replaced by `/`. The raw bytes keep the original title; the hash and every other value are unchanged. The capture tool now writes pipes and replaces `\|` in titles. |
+| 14:46Z | Page `captures.html` built and registered; FL-90 status set to partly resolved; FL-98 added (club code); S-CAP-7C verification updated. |
+| 14:50Z | Suites on the rebuilt tree: `verify.py` 201/0/0; `check_site.py` 11/1/0 (the existing weather.gov warning); `audit_all_pages.py` 126 HTML / 374 tables / 9,653 rows, 100% row-sourced, 0 broken; `verify_site` 13/13; `review_verify` OK; `check_reproducible` OK; `verify_backlog` 11/0; `verify_readiness` pass; `verify_capture_7c23f22f` 7/0; `verify_s92` 13/0; `verify_dcf3b0cc` pass; `verify_q51` 0 errors; `verify_s53126614` PASS; `engine/verify_repo_and_site` 0 broken; `verify_coverage` 2423/0; `injury_lineage --check` exit 0; `render_test.js` 13 pages 0 failures; `check_links` 128 refs 0 broken. |
+
+### What this session establishes, and what it does not
+
+* **Established:** one retained, hashed, official capture of the Week 10 injury hub exists (16 Nov 2026 14:39:21Z UTC). Its 347 rows agree field-for-field with the 15 Nov 12:55Z repository file, after one disclosed club alias. The three Detroit designations are Out in the retained bytes.
+* **Not established:** that the league's designations are stable between reads (a single capture cannot show change); the injury-report history (FL-88, FL-97); a retained Week 10 read older than 16 Nov.
+* **Still open (not edited here):** `injuries.html` still renders the 12 Nov read with blank designations (FL-94, shared page, integration owner). The canonical club code for the Rams (FL-98).
+
+### Verification performed
+
+* The stored file's SHA-256 recomputed from the bytes in `main`, not from the manifest.
+* Reconciliation of every captured row (`tools/reconcile_capture_7c23f22f.py`), with a `--check` run and the reproduction in CI (`validate.yml`).
+* Verifier `tools/verify_capture_7c23f22f.py` (7 checks) on the real ledger.
+
+### Sources
+
+* Official page: https://www.nfl.com/injuries/ (captured 2026-11-16 14:39:21Z UTC by the runner; stored bytes at `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin`).
+* Player rows link to `https://www.nfl.com/players/<slug>/` (347 of 347 rows, from the stored bytes).
+* Repository comparison file: `data/injuries_wk10_5de1805b_20261115.csv` (15 Nov 2026 12:55Z read; its own source is https://www.nfl.com/injuries/).
+
+### Irregularities (published as flags)
+
+* **FL-97** (open): one capture is a single moment; later daily runs add rows only once they execute.
+* **FL-90** (partly resolved): one retained capture exists; eight earlier hand transcriptions remain unretained.
+* **FL-98** (open, new): the Rams club code `LAR` (repository) versus `LA` (page).
+* **FL-94** (open): the page the reader sees first still shows blanks for the three Detroit designations, although the retained bytes show Out.
+
+### Change requests (not edited: other owners)
+
+* **CR-7C-01** (above): `tools/s2268_verify.py` scope allowlist.
+* **CR-7C-02:** the integration owner should point `injuries.html` at the 16 Nov retained capture (or the 15 Nov reconciled file) and clear FL-94.
+* **CR-7C-03:** `tools/build_site.py` and `data/capture_manifest.csv`: the manifest is append-only, and a future capture run should be checked by a second run from `main` (the daily cron) before anyone relies on the series.
