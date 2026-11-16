@@ -25,14 +25,15 @@ This is the **practice** report, not an availability answer. The headline count 
 
 **How to read the codes.** `Full` / `Limited` / `Did not practice` map to the league's strings "Full Participation in Practice", "Limited Participation in Practice" and "Did Not Participate In Practice". `Out` / `Questionable` are the filed game statuses. Position is the league's abbreviation. Every player name links to that player's official page; every row's Source cell links the official hub page it was transcribed from.
 
-{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;group=game;;caption=Grouped by game in the schedule's fixture order (data/schedule_2026_wk10.csv). The game key was renumbered to that convention on 15 November 2026 (S-65; FL-61 and FL-64 resolved): every club under every id now names the fixture it actually plays, checked against the official game-centre pages, and tools/verify.py fails the build on any recurrence. Club abbreviations are the league's own. Player rows are stored verbatim; nothing was added or removed and no player value changed - only the game key and the row order. Club coverage is stated in the table above the find-out list; SEA, CIN and IND are partial or absent, a collection gap published as FL-24 rather than a claim that those clubs are healthy.}}
+{{csv data/injuries_2026_wk10_superseded_12nov.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;group=game;;caption=Archived 12 November read (superseded; kept verbatim, not used by any join). Grouped by game in the schedule's fixture order (data/schedule_2026_wk10.csv). The game key was renumbered to that convention on 15 November 2026 (S-65; FL-61 and FL-64 resolved): every club under every id now names the fixture it actually plays, checked against the official game-centre pages, and tools/verify.py fails the build on any recurrence. Club abbreviations are the league's own. Player rows are stored verbatim; nothing was added or removed and no player value changed - only the game key and the row order. Club coverage is stated in the table above the find-out list; SEA, CIN and IND are partial or absent, a collection gap published as FL-24 rather than a claim that those clubs are healthy.}}
 
 ## What this snapshot already tells us
 
 | Finding | Number behind it | Consequence for a model |
 | --- | --- | --- |
-| Designations published at fetch time | 6 of 254 (2 Commanders OUT, 1 Giant QUESTIONABLE, 3 Patriots OUT) | availability features must be built on participation *trend*, not on the status column, until designations land |
-| Injury detail published in the hub table | 6 of 254 | body-part features have to come from the prose feed with an explicit join, not from this table |
+| Designations on the 12 Nov read (archived) | 6 of 254 (2 Commanders OUT, 1 Giant QUESTIONABLE, 3 Patriots OUT) | availability features must be built on participation *trend*, not on the status column, until designations land |
+| Designations on the pinned 16 Nov capture (canonical table) | {{metric d_pub_desig}} of {{metric d_pub_rows}} rows (70 OUT, 90 Q, 11 D) | the canonical table is the 16 Nov capture; read the newest designations table above, not the 12 Nov history |
+| Injury detail published in the hub table (12 Nov read) | 6 of 254 | body-part features have to come from the prose feed with an explicit join, not from this table |
 | Clubs with no row in this snapshot | {{metric injury_clubs_missing}} of the {{metric injury_clubs_playing}} playing Week 10 — {{metric empty_clubs}} | must be read as "not published", never as "healthy". LAC and BAL show "No Injuries Reported" on the hub; SEA and CIN publish full blocks and their rows are a known gap here ([FL-24](flagged-for-review.html)) |
 | Rows marked "did not practice" | {{metric dnp}} | the single strongest pre-designation availability signal we can compute today |
 | Rows marked "limited" | {{metric limited}} | the ambiguous middle; the transition matters more than the level ([SIG-02](signals.html)) |
@@ -43,6 +44,6 @@ This is the **practice** report, not an availability answer. The headline count 
 
 {{team_availability}}
 
-## The six designations that were published
+## The six designations on the 12 November read (archived)
 
-{{csv data/injuries_2026_wk10.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;filter=status=*;;caption=Every row the league had designated at fetch time. Three of the five are Patriots rule-outs for the Munich game, which is the whole reason that game's total is fragile.}}
+{{csv data/injuries_2026_wk10_superseded_12nov.csv;;cols=game:Game,team:Club,player:Player,pos:Pos,injury:Injury,practice:Practice:practice,status:Game status:status;;source=S-INJ;;link_player=1;;filter=status=*;;caption=Every row the 12 November read designated (6 at that fetch). Historical only: the 16 November read carries 171 designations, see the newest read above.}}

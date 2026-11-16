@@ -7,7 +7,9 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 
 | File | Rows | Grain | Source of record |
 | --- | --- | --- | --- |
-| `data/injuries_2026_wk10.csv` | 254 | one player × game × filing | S-INJ |
+| `data/injuries_2026_wk10.csv` | 347 | one player × game × filing, the pinned 16 Nov 14:39Z official capture | S-INJ |
+| `data/injuries_wk10_hub_20261116.csv` | 347 | the same capture, row by row, with raw page vocabulary, normalised codes, source link and capture hash | S-INJ |
+| `data/injuries_2026_wk10_superseded_12nov.csv` | 254 | the superseded 12 Nov read, kept verbatim for history (not used by any join) | S-INJ |
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
 | `data/snapcount_source_eval_1e97e798.csv` | 11 | one candidate official or third-party source, or derived route verdict, per row; the official-source test is applied per row | NFL.com gamebook and inactives pages (`S-GAMEBOOK-NESEA-653B`, `S-GAMEBOOK-NYGWAS-653B`, `S-NFL-INACT-W8-1E97`, `S-NFL-NGS-OPS-1E97`); third-party rows marked rejected or unverified |
 | `data/standings_2026.csv` | 32 | club × season-to-date, with read timestamp per row | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
@@ -21,7 +23,7 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | internal design rows and validation rules; thresholds are project policy, not NFL standards | S-DESIGN |
 | `data/computed_fair_lines.csv` | 14 | one Week 10 fixture; stages 1–2 of the origination pipeline | S-CALC |
 | `data/computed_correlation.csv` | 2 | one pair class with a measured Pearson r | S-CALC |
-| `data/computed_depth_reach.csv` | 18 | one position group where the 1st string is unavailable, for charted clubs | S-CALC |
+| `data/computed_depth_reach.csv` | 16 | one position group where the 1st string is unavailable, for charted clubs | S-CALC |
 | `data/computed_vig.csv` / `computed_parlays.csv` / `computed_sample_sizes.csv` / `computed_luck.csv` | 5 / 10 / 5 / 8 | closed-form exhibits, no market data | S-CALC |
 | `data/build_manifest.json` | — | build output, counts, allowlist | generated |
 | `data/brief_traceability.csv` | 84 | one clause of the owner brief, traced to the register row that owns it, its coverage class, the in-repo evidence and one `https://` source | S-BRIEF (project design, not NFL facts) |
@@ -237,7 +239,7 @@ without the hash in `data/s2268_preregistration.json` being deliberately re-cut.
 | --- | --- | --- | --- |
 | `data/s2268_injuries_wk10_20261113.csv` | 295 | one player × club, transcribed from the live hub at 12:40Z | S-2268-01 |
 | `data/s2268_coverage_20261113.csv` | 28 | club × Week 10 game, rows published by the hub | S-2268-01, S-2268-02 |
-| `data/s2268_injury_delta_20261113.csv` | 154 | one difference against each of the two Week 10 registers already in the repository | S-2268-01 |
+| `data/s2268_injury_delta_20261113.csv` | 315 | one difference against each of the two Week 10 registers already in the repository | S-2268-01 |
 | `data/s2268_gameid_collisions.csv` | 14 | Week 10 game id × whether the two published files agree on the fixture it names | S-2268-02 |
 | `data/s2268_depth_chains_20261113.csv` | 26 | one player × position group the club prints him in, with the club's own next man up | S-2268-04, S-2268-05 |
 | `data/s2268_strategy_register.csv` | 10 | pre-registered strategy, with its selection and abstention rule | S-2268-PRE |

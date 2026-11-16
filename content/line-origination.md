@@ -9,7 +9,7 @@ To originate means: we produce a distribution over scoring outcomes for each gam
 | --- | --- | --- | --- | --- |
 | 1 | Team baseline strength | season-to-date scoring, reconciled standings | two efficiency ratings on a points scale | inputs exist ([standings](league-data.html)); estimator unwritten |
 | 2 | Rest, travel and venue context | official kickoff times and venue cities | an additive adjustment, prior pinned at zero | buildable now from `data/schedule_2026_wk10.csv` |
-| 3 | Availability state | roster status, practice participation, designations, IR and return designations | a probability distribution over lineups, per club per game | half-built: [254 rows](injuries.html) held, one filing not three ([FL-09](flagged-for-review.html)) |
+| 3 | Availability state | roster status, practice participation, designations, IR and return designations | a probability distribution over lineups, per club per game | half-built: [347 rows](injuries.html) held (16 Nov capture), one filing not three ([FL-09](flagged-for-review.html)) |
 | 4 | Unit-level deficiency | stage 3 plus position groups | separate adjustments for base front, base back, nickel, goal-line, short-yardage | blocked — no official depth chart, no snaps ([FL-06](flagged-for-review.html)) |
 | 5 | Game scoring process | stages 1–4 | joint distribution of the two team scores | unwritten by choice: it would be unvalidateable without prices |
 | 6 | Player production process | stage 5 conditioned on play counts | distributions for each prop we price | blocked on Q-02 |

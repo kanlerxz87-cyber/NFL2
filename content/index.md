@@ -189,7 +189,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 15 gates, pass criteria, what each one blocks |
-| Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
+| Data | [Week 10 injury report](injuries.html) | all 347 official rows of the pinned 16 Nov capture (the canonical table), per-row source links; the 12 Nov 254-row read is kept as an archived file; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
 | Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
 | Data | [Personnel Relief](personnel-relief.html) | **new 13 Nov** — the verified join: {{metric pr_resolved}} of {{metric pr_rows}} listed players resolved to a 1st/2nd/3rd/4th string on their own club's published chart, with the next man the club names, and {{metric pr_first_dnp}} 1st-string non-participants across {{metric pr_charts}} clubs |

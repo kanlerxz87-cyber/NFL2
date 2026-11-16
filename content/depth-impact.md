@@ -36,13 +36,14 @@ available to start, which is deliberately conservative — a limited participant
 
 {{csv data/computed_depth_reach.csv;;cols=club:Club,unit:Unit,position_group:Position,depth_reached:String reached,projected_starter:Projected starter,starter_practice:Starter status,next_man_up:Next man up,next_man_practice:His status,chain_length:Chain,players_skipped:Skipped,chart_source:Club chart:url;;source=S-CALC;;caption=Recomputed from data/depth_charts.json and data/injuries_2026_wk10.csv on every build, and re-derived independently by tools/verify.py, which fails if any row stops reproducing. The chart column links each club's own published depth chart.}}
 
-### The three cases that reach a third string
+### The cases that reach a third string (16 November official read)
+
+Session `8d1069e1` re-ran the join on the pinned 16 November official capture (FL-115). On the 12 November table this page previously showed three third-string cases. On the 16 November read **two** remain: Zaire Franklin's GB linebacker chain now stops at Ty'Ron Hopper, who is listed Full Participation, so that case is a second-string replacement, not a third-string one. The earlier version had Hopper limited (12 November file).
 
 | Club | Position | What happened | What it means |
 | --- | --- | --- | --- |
-| **NE** | RB | Rhamondre Stevenson did not practise and 2nd-string TreVeyon Henderson did not practise, so the next available back is **3rd-string Corey Kiner** on a four-deep chain | the clearest "down to a third-stringer" case in the dataset, and it is on offence where the requirement specifically asks |
+| **NE** | RB | Rhamondre Stevenson was limited (Questionable, knee) and 2nd-string TreVeyon Henderson is Out (illness, did not practise), so the next back is **3rd-string Corey Kiner** on a four-deep chain (on the 12 November read Stevenson did not practise) | the clearest "down to a third-stringer" case in the dataset, and it is on offence where the requirement specifically asks |
 | **GB** | LG | Aaron Banks was limited and 2nd-string Travis Glover was limited, so **3rd-string Donovan Jennings** is the next man up | same shape on the offensive line — the position group where a replacement degrades every other player's numbers |
-| **GB** | LB | Zaire Franklin did not practise and 2nd-string Ty'Ron Hopper was limited, so **3rd-string Kristian Welch** is next | the defensive counterpart; this is a second-level defender, which is the R-20 case |
 
 Two more are worth naming because they are one injury away from a cascade: **DET CB_1** and **GB RB** each
 have a four-deep chain where only the starter is down, so the backup is a genuine 2nd string and not a
@@ -52,8 +53,7 @@ two-deep chain with a limited one, and that distinction is now measurable rather
 ### The vacancy, which is worse than a third stringer
 
 One case does not fit the "next man up" shape at all. **New England at left guard**: the starter Ben Brown
-did not practise and is listed **Out**, and the 2nd-string Walter Rouse also did not practise. Nobody on the
-published two-deep is available. That is a **vacancy**, not a third-string replacement, and the first version
+did not practise and is listed **Out**. The 2nd-string Walter Rouse is not a full participant either: he was limited (Questionable, concussion). That is a **vacancy**, not a third-string replacement, and the first version
 of this table silently dropped it because the loop only recorded cases where *someone* was available.
 
 It is published now, marked `vacant`, with the next-man-up column deliberately empty — filling in a name
