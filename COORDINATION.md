@@ -3519,3 +3519,34 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+
+## Session `7c23f22f` (`arena/7c23f22f-nfl2`) — retained, hashed official injury-hub captures (FL-88 / FL-90)
+
+**Claimed:** 2026-11-16 UTC, before any file was created. Status: `in progress`. Base: `main` at `a2de786`.
+
+### Why this session exists
+
+FL-90 records that no Week 10 injury file in the repository is a retained raw response with a recorded
+hash, and that the sandbox cannot reach `www.nfl.com`. FL-88 records that 17 players and 51 status values
+moved between reads with no capture to separate league changes from transcription. The sandbox's own
+`curl` returns HTTP 000 for `https://www.nfl.com/injuries/`, while GitHub-hosted runners have ordinary
+outbound access. This session therefore builds a capture that runs on the runner, stores the raw bytes,
+and records a SHA-256 for each read.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 7C-T1 | Claim and log (this section) | done | `7c23f22f` | `COORDINATION.md` |
+| 7C-T2 | `tools/capture_official.py`: fetch the official URLs, store the raw bytes once per distinct SHA-256 under `data/captures/`, append a manifest row (UTC fetch time, URL, HTTP status, bytes, SHA-256, path, drift counts); never overwrite; fail loudly if the expected structure is missing | in progress | `7c23f22f` | `tools/capture_official.py` (new), `data/captures/**` (new), `data/capture_manifest.csv` (new) |
+| 7C-T3 | `.github/workflows/capture.yml`: scheduled daily + `workflow_dispatch`, commits only `data/captures/**` and `data/capture_manifest.csv` | in progress | `7c23f22f` | `.github/workflows/capture.yml` (new) |
+| 7C-T4 | Run the workflow on this branch with `gh workflow run`, read the result, and record whether nfl.com answered from the runner | in progress | `7c23f22f` | `data/capture_manifest.csv`, `data/captures/**` |
+| 7C-T5 | `tools/verify_capture_7c23f22f.py`: each manifest row's hash matches its file, no file is overwritten, every row has an official `https://www.nfl.com/` URL | in progress | `7c23f22f` | `tools/verify_capture_7c23f22f.py` (new) |
+| 7C-T6 | Flags and sources for what the capture does and does not prove; FL-90 status note | in progress | `7c23f22f` | `data/flags.csv` (append only), `data/sources.csv` (append only) |
+| 7C-T7 | Full suite, PR to `main`, merge `--merge`, confirm Pages, record here | unclaimed → in progress at integration | `7c23f22f` | this section |
+
+### Not in this session's scope (explicitly not done here)
+
+* Re-transcribing or re-ranking any Week 10 row. Captures are stored as received; no row is edited.
+* Editing `injuries.html` or any other shared page (FL-94 remains open for the page owner).
+* The sandbox-side `curl` path. It is unreachable and is not used.
