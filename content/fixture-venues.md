@@ -1,7 +1,7 @@
 # Week 11 venues, read from the official game centres
 > Thirteen fixtures, 19 to 23 November 2026. Each venue is the stadium and location printed in the Game Info block of that game's own nfl.com game centre, read on 16 November 2026 between 18:02 and 18:06 UTC. Nothing is inferred. A game whose page printed no stadium would be left blank.
 
-{{csv data/venues_wk11_3e77121b.csv;;cols=game_id:Game,date:Date,kickoff_et:Kickoff (ET),away:Away,home:Home,location_as_printed:Location (as printed),stadium_as_printed:Stadium (as printed),network_as_printed:Broadcaster,fl112_cross_check:Cross-check against FL-112,source:Official game centre:urls;;source_col=source;;show_source=0;;caption=Source for every row is that game's own nfl.com game centre. The FL-112 column compares this reading with the venue names session f3ec0ff8 transcribed from the schedule page's hotel-link parameters. Where they disagree the game centre is shown and the difference is flagged (FL-118), not resolved.}}
+{{csv data/venues_wk11_3e77121b.csv;;cols=game_id:Game,date:Date,kickoff_et:Kickoff (ET),away:Away,home:Home,location_as_printed:Location (as printed),stadium_as_printed:Stadium (as printed),network_as_printed:Broadcaster,fl112_cross_check:Cross-check against FL-112;;source_col=source;;caption=Source for every row is that game's own nfl.com game centre. The FL-112 column compares this reading with the venue names session f3ec0ff8 transcribed from the schedule page's hotel-link parameters. Where they disagree the game centre is shown and the difference is flagged (FL-118), not resolved.}}
 
 ## What this page settles, and what it does not
 
