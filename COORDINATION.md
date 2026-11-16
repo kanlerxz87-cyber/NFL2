@@ -4019,3 +4019,43 @@ content altered):**
 | Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
 | Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
+
+## Session `0a28b225` (`arena/0a28b225-nfl2`) — claim: fixture-context features, venue/stadium register, 2026 kickoff regime, weekly what-changed diff
+
+**Session ID:** `0a28b225` · **Branch:** `arena/0a28b225-nfl2` · **Base:** `cd83a7a` (PR #105 merge = `origin/main` tip)
+**Claimed:** 2026-11-16T18:15Z · **Parallel-session check at claim time:** `git fetch --all --prune` →
+remote holds only `origin/main`. No live `arena/*` branch exists. Two PRs are open but abandoned
+and their head branches no longer exist on the remote: **#71** `arena/1ef36c55-nfl2`
+(metadata-only injury fingerprint monitor, last commit 2026-11-15T12:48Z) and **#84**
+`arena/f05c00f2-nfl2` (strategy falsification review, last commit 2026-11-15T13:21Z,
+`mergeable: CONFLICTING`, `mergeStateStatus: DIRTY`). Both claims are >60 minutes old with no
+commits and no branch, so under this board's stale-claim rule they are lapsed. **Handoff note:**
+this session does not merge or close them (they are another session's artefacts), and it does not
+re-do #84's task — the two-sided falsifier register it asked for already ships as
+`data/wwcm_d304c6fe.csv` / `demotion-gates.html`. Both are recorded here so the owner can close
+them. Nothing from either PR is taken over or discarded.
+
+### Tasks claimed (non-overlapping)
+
+| ID | Task | Backlog line | Status | Owner | File scope (all new, disjoint) |
+|---|---|---|---|---|---|
+| A1 | Board claim, repo/branch state review, stale-PR triage | — | in progress | `0a28b225` | this section of `COORDINATION.md` only |
+| A2 | Fixture-context feature set built **only** from published schedule facts (rest, bye-return, divisional, kickoff window, body-clock, travel, short week) | BL-14 | in progress | `0a28b225` | `data/fixture_context_0a28b225.csv`, `tools/build_0a28b225.py` |
+| A3 | Stadium / venue profile register: roof class, playing surface, venue — one row per home club, each row citing the official page it was read from | BL-59 | in progress | `0a28b225` | `data/stadium_profile_0a28b225.csv` |
+| A4 | 2026 kickoff and declared-onside-kick regime priors, verified on `operations.nfl.com` | BL-69 | in progress | `0a28b225` | `data/kickoff_regime_0a28b225.csv` |
+| A5 | Weekly "what changed" diff register (rank / rating / availability change per club, week over week) | BL-62 | in progress | `0a28b225` | `data/weekly_diff_0a28b225.csv` |
+| A6 | Site pages for A2–A5 + integration into nav, page map, data dictionary | — | in progress | `0a28b225` | `content/fixture-context.md`, `content/venue-weather.md`, `content/kickoff-regime.md`, `content/weekly-diff.md` + generated HTML; **shared-file edits** (logged below): `tools/build_site.py` (NAV + PAGE_KIND), `content/index.md`, `content/data-dictionary.md`, `data/sources.csv` (append), `data/flags.csv` (append), `data/brief_backlog_58e9c708.csv` (status cells only) |
+| A7 | Full verifier suite on the integrated tree, PR → merge → Pages confirm | integration | pending | `0a28b225` | generated HTML, `data/build_manifest.json`, this section |
+
+### Files this session will NOT touch
+
+Any pre-registered artefact (`data/prereg_*`, `data/originated_lines_*`) is immutable input.
+Another session's namespaced tree (`portal/`, `engine/`, `analytics/`, `crosscheck/`, `q51/`,
+`s53/`, `s92/`, `s2268/`, `dcf3b0cc/`, `4e475b8b/`, `docs/`, `archive/`, `review/`, `research/`,
+`site/`, `pipeline/`) is read-only; nothing is deleted, renamed or rewritten there.
+
+### Log — session `0a28b225`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16T18:15Z | Repo reviewed at `cd83a7a`. `tools/verify.py` 223/0/0 and `tools/check_site.py` 11/1/0 pass on the base tree. Remote holds only `origin/main`; PRs #71 and #84 lapsed (branches deleted, >24h idle). Claimed A1–A7 with the scope above. |
