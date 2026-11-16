@@ -50,7 +50,8 @@ NAV = [
                    ("suggestions", "Suggestion Register"),
                    ("suggestion-review", "Suggestion Review Console"),
                    ("backlog", "Brief Backlog (71 lines)"),
-                   ("flagged-for-review", "Flagged for Review")]),
+                   ("flagged-for-review", "Flagged for Review"),
+                   ("official-verification-20261116", "Fresh Official Verification (16 Nov)")]),
     ("Origination", [("line-origination", "Originate Our Own Lines"), ("signals", "Signal Catalogue"),
                      ("correlation", "Correlation"), ("bet-types", "Bet Types"),
                      ("skill-vs-luck", "Removing Luck"),
@@ -1011,6 +1012,7 @@ PAGE_KIND = {
     "backlog": ("decision", "Awaiting owner review"),
     "brief-coverage": ("program", "Traceability"),
     "reverification": ("measured", "Dated verification"),
+    "official-verification-20261116": ("measured", "Dated verification"),
 }
 
 CSS_HREF = "assets/style.css"
