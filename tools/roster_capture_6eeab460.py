@@ -104,6 +104,36 @@ def fetch(url: str) -> tuple[int, bytes, str]:
     return 0, b"", f"no response after {RETRIES} attempts ({last_note})"
 
 
+def parse_rows(text: str) -> list[tuple[str, str, str, str, str]]:
+    """Every populated transaction row as (from_club, to_club, date_as_printed, player, transaction).
+    Club slugs come from the team links; the player is the link text. Used for the coverage test only;
+    the published tables are built by tools/roster_parse_6eeab460.py from the same bytes."""
+    out = []
+    for body in TBODY_RE.findall(text):
+        for row in ROW_RE.findall(body):
+            cells = re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)
+            if len(cells) < 6:
+                continue
+            frm = re.search(r'href="/teams/([^/"]+)/?"', cells[0])
+            to = re.search(r'href="/teams/([^/"]+)/?"', cells[1])
+            name = re.search(r">([^<]+)</a>", cells[3])
+            date = re.sub(r"<[^>]+>", "", cells[2]).strip()
+            tx = re.sub(r"<[^>]+>", "", cells[5]).strip()
+            nm = name.group(1).strip() if name else re.sub(r"<[^>]+>", "", cells[3]).strip()
+            out.append((frm.group(1) if frm else "", to.group(1) if to else "", date, nm, tx))
+    return out
+
+
+def month_union(kind: str, month: int) -> set:
+    """Distinct rows already held in retained bytes for this kind and month."""
+    keys: set = set()
+    folder = CAPTURE_DIR / kind / f"{SEASON}-{month:02d}"
+    if folder.exists():
+        for path in folder.glob("*.bin"):
+            keys |= set(parse_rows(path.read_bytes().decode("utf-8", errors="replace")))
+    return keys
+
+
 def next_href(text: str, base_url: str) -> str:
     """Absolute URL of the Next Page link, or '' when this is the last page of the table."""
     from urllib.parse import urljoin
@@ -166,6 +196,9 @@ def migrate_manifest_v1() -> None:
 
 
 def run(months: list[int], dry_run: bool) -> int:
+    """Fetch every month's pages. Page 1 is stored whenever its bytes are new. A later page is stored only
+    when it adds rows that no retained capture of that month holds, and the chain stops at the first page
+    that adds none. This bounds storage: the 25-row cursor returns repeats for some months (see FL-R2)."""
     if not dry_run:
         migrate_manifest_v1()
     rows_before = read_manifest()
@@ -174,9 +207,10 @@ def run(months: list[int], dry_run: bool) -> int:
     failures = 0
 
     for kind, month, base_url in page_urls(months):
+        union = month_union(kind, month)
         url = base_url
         seq = 0
-        while url:
+        while url and seq < MAX_PAGES:
             seq += 1
             fetched_at = utc_now()
             status, raw, note = fetch(url)
@@ -195,9 +229,13 @@ def run(months: list[int], dry_run: bool) -> int:
             text = raw.decode("utf-8", errors="replace")
             facts = inspect(text)
             nxt = next_href(text, base_url)
+            page_rows = set(parse_rows(text))
+            added = page_rows - union
+            union |= page_rows
             already = (url, digest) in seen
+            store = (not already) and (seq == 1 or bool(added))
             stored = ""
-            if not already and not dry_run:
+            if store and not dry_run:
                 folder = CAPTURE_DIR / kind / f"{SEASON}-{month:02d}"
                 folder.mkdir(parents=True, exist_ok=True)
                 stamp = fetched_at.replace(":", "").replace("-", "")
@@ -208,24 +246,37 @@ def run(months: list[int], dry_run: bool) -> int:
                 stored = path.relative_to(ROOT).as_posix()
                 seen.add((url, digest))
 
-            chain_open = bool(nxt) and seq >= MAX_PAGES
-            ok = facts["schema_ok"] and not chain_open
+            chain_stopped = seq > 1 and not added
+            ok = facts["schema_ok"]
+            if not ok:
+                failures += 1
+            if chain_stopped:
+                note_txt = "cursor returned no row absent from retained captures; chain stopped (FL-R2)"
+            elif not facts["schema_ok"]:
+                note_txt = "expected title, six-column header with rows and player links, or the empty-state block"
+            else:
+                note_txt = f"distinct rows in month after this page: {len(union)}"
             row.update({
-                "sha256": digest, "stored_path": stored, "new_content": "no" if already else "yes",
+                "sha256": digest, "stored_path": stored,
+                "new_content": "yes" if store else "no",
                 "title": facts["title"], "header_ok": "yes" if facts["header_ok"] else "no",
                 "tbody_rows": str(facts["tbody_rows"]), "player_links": str(facts["player_links"]),
                 "empty_state": "yes" if facts["empty_state"] else "no", "next_href": nxt,
-                "schema_ok": "yes" if ok else "no",
-                "note": "" if ok else ("pagination chain still open at MAX_PAGES" if chain_open else
-                                       "expected title, six-column header with rows and player links, or the empty-state block"),
+                "schema_ok": "yes" if ok else "no", "note": note_txt,
             })
-            if not ok:
-                failures += 1
-            print(f"{kind} {SEASON}/{month:02d} p{seq}: {len(raw)} bytes sha256={digest[:12]} "
-                  f"rows={facts['tbody_rows']} players={facts['player_links']} empty={row['empty_state']} "
-                  f"next={'yes' if nxt else 'no'} schema_ok={row['schema_ok']} new={row['new_content']}")
+            print(f"{kind} {SEASON}/{month:02d} p{seq}: {len(raw)} bytes sha256={digest[:12]} rows={facts['tbody_rows']} "
+                  f"players={facts['player_links']} added={len(added)} stored={'yes' if store else 'no'} "
+                  f"next={'yes' if nxt else 'no'} schema_ok={row['schema_ok']}")
             new_rows.append(row)
-            url = nxt if (nxt and seq < MAX_PAGES) else ""
+            if chain_stopped or not nxt:
+                break
+            url = nxt
+        else:
+            if url:  # loop exited because MAX_PAGES was reached with a Next link still open
+                failures += 1
+                new_rows[-1]["schema_ok"] = "no"
+                new_rows[-1]["note"] = "pagination chain still open at MAX_PAGES"
+                print(f"OPEN {kind} {SEASON}/{month:02d}: chain still open at MAX_PAGES={MAX_PAGES}")
 
     if not dry_run and new_rows:
         write_header = not MANIFEST.exists()
@@ -244,8 +295,12 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--months", type=str, default="1,2,3,4,5,6,7,8,9,10,11",
                     help="comma-separated month numbers of the season year (default: all of 1-11)")
+    ap.add_argument("--current-month", action="store_true",
+                    help="scheduled mode: only the current UTC month of the season year")
     args = ap.parse_args(argv)
     months = [int(x) for x in args.months.split(",") if x.strip()]
+    if args.current_month:
+        months = [datetime.now(timezone.utc).month]
     return run(months, args.dry_run)
 
 

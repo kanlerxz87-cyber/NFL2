@@ -5,8 +5,9 @@ name: Official roster-event capture (6eeab460)
 # 2026 month) under data/captures/<kind>/<YYYY-MM>/ with SHA-256 and appends one row per fetch to
 # data/roster_capture_manifest_6eeab460.csv. Nothing else in the repository is written here.
 #
-# Schedule note: GitHub runs `schedule` only on the default branch. Until this workflow is merged
-# it runs by push (only when this file or its tools change) and by workflow_dispatch.
+# Schedule note: GitHub runs `schedule` only on the default branch. Scheduled runs fetch the current
+# month only (bounded storage); manual and push runs fetch every 2026 month (1-11). Until this workflow
+# is merged it runs by push (only when this file or its tool change) and by workflow_dispatch.
 
 on:
   schedule:
@@ -35,7 +36,10 @@ jobs:
 
       - name: Fetch official transaction pages, store raw bytes, append manifest
         id: capture
-        run: python3 tools/roster_capture_6eeab460.py
+        run: |
+          args=""
+          if [ "${GITHUB_EVENT_NAME}" = "schedule" ]; then args="--current-month"; fi
+          python3 tools/roster_capture_6eeab460.py $args
 
       - name: Commit only the capture outputs
         if: always()
