@@ -3735,3 +3735,116 @@ and records a SHA-256 for each read.
 3. **FL-99 / FL-88:** the series owner decides that change detection uses parsed rows, and defines the change rule (not built here).
 4. **Schedule evidence:** the daily runs must be read on 17 Nov and after; until three or more are present, FL-97 stays open.
 5. **Other captures named in the brief** (depth-chart pages, transactions / reserve list, inactive lists): their official URLs have not been read in this session, so no capture was made, and none is claimed.
+
+---
+
+## Session `d304c6fe` (`arena/d304c6fe-nfl2`) — claim: dated official re-verification, reserve-list capture, and open-gate close-out (2026-11-16)
+
+**Task status:** in progress · **Owner:** `d304c6fe` · **Branch:** `arena/d304c6fe-nfl2` · **Claimed:** 2026-11-16
+**Parallel-session check:** `git fetch --prune` at claim time shows no other `arena/*-nfl2` branches on the
+remote; `origin/main` is at `a2de786` (PR #93). No claim on this board is in progress, so nothing is
+taken over. This session will also act as the final integration session for shared files
+(`COORDINATION.md`, `data/flags.csv`, NAV/build wiring) at integration time, per the board's rule
+that shared outputs change only in the integration session.
+
+### File scope (non-overlapping; no other session active)
+
+| Path | Contents |
+|---|---|
+| `data/*_d304c6fe.*` | new captures: official reserve list / transactions, Week 11 verified results, dated injury-hub re-read, schedule-announcement record |
+| `data/demotion_gates_d304c6fe.csv`, `data/wwcm_d304c6fe.csv` | demotion-gate register (BL-08, FL-86) and two-sided "what would change our mind" fields (BL-17) |
+| `content/reserve-list.md`, `content/demotion-gates.md` | new site pages for the above |
+| `docs/PRICE-DATA-POLICY-d304c6fe.md` | BL-20 price-data policy decision |
+| `scripts/*_d304c6fe.py`, `tools/verify_d304c6fe.py` | capture/verification tooling for this session's files |
+| shared files at integration only | `tools/build_site.py` (NAV), `content/index.md`, `data/flags.csv`, `data/brief_backlog_58e9c708.csv` (status updates), `COORDINATION.md` |
+
+### Planned tasks
+
+| ID | Task | Brief line | Status |
+|---|---|---|---|
+| D1 | Capture the official transactions hub + dated Reserve List as a first-class dataset; cross-check FL-52 IR placements and Malik Willis | BL-65, BL-13, BL-47, FL-95 | in progress |
+| D2 | Flag stale depth rows against the captured transactions log (BAL QB1/QB2, IND WR trades) | BL-47, BL-34 | in progress |
+| D3 | Verified Week 11 results feed rows with official game-centre URLs | BL-02, BL-19 | in progress |
+| D4 | Publish the league's dated 2026 schedule announcement beside the live schedule page | BL-24 | in progress |
+| D5 | Define the demotion gate (two-sided gates; live → paper) and pre-register it | BL-08, FL-86 | in progress |
+| D6 | Decide and publish the price-data policy before any backtest is published | BL-20 | in progress |
+| D7 | Two-sided "what would change our mind" field for every strategy entry | BL-17 | in progress |
+| D8 | Dated 2026-11-16 injury-hub re-read with clock time; publish delta, not level | BL-21, BL-55, BL-56 | in progress |
+| D9 | Full verifier suite on the integrated tree, PR → merge → Pages confirm | integration | pending |
+
+### Log — session `d304c6fe`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16 | Repo reviewed at `a2de786` (30+ prior sessions, PRs through #93, 96 flags, 71-line brief backlog). Parallel check clean. Claimed D1–D9 with the scope above. |
+
+### Close-out — session `d304c6fe` (2026-11-16)
+
+**Tasks D1–D8: done.** D9 (integration) proceeds immediately after this entry.
+
+**Official sources read and transcribed on 2026-11-16** (all registered in `data/sources.csv`):
+
+| Source | URL | What was taken from it |
+|---|---|---|
+| Reserve List — November 2026 | https://www.nfl.com/transactions/league/reserve-list/2026/11 | 35 rows, 11/03–11/14; read twice + tail read, all agree |
+| Reserve List — October 2026 | https://www.nfl.com/transactions/league/reserve-list/2026/10 | 25 rows, 10/24–10/31 (older rows not returned by the extractor — FL-109) |
+| Trades — November 2026 | https://www.nfl.com/transactions/league/trades/2026/11 | 12 rows, complete month |
+| Week 10 scores | https://www.nfl.com/scores/2026/week-10 | 13 finals with game-centre URLs; W10-14 MNF pending at capture |
+| Injury hub (Week 10) | https://www.nfl.com/injuries/ | named-row deltas only (Lions trio Out; Henderson Out + reserve-list conflict) |
+| Week 11 Schedule Change (9 Nov 2026) | https://www.nfl.com/news/week-11-schedule-change | dated announcement register (BL-24) |
+| 2026 schedule release | https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week | registered; date left blank (FL-111) |
+
+**Verification performed on the integrated tree (`1c59bef`):**
+`tools/verify.py` 208 passed / 0 warnings / 0 failures · `tools/check_site.py` 11/1/0 ·
+`tools/verify_backlog_58e9c708.py` 11/0/0 (rebuild byte-identical after the builder-source edit) ·
+`tools/verify_readiness_ac2dd497.py` PASS · `scripts/check_reproducible.py` all reproduce ·
+`scripts/audit_all_pages.py` 128 HTML / 44 JSON / 381 tables / 9,413 rows / 100% row-sourced / 0 broken ·
+`tools/verify_coverage_f34622dd.py` 2,423 checks / 0 failures · `tools/verify_dcf3b0cc.py` 18,941 / 0 ·
+`scripts/verify_q51.py` 0 errors + 36 unit tests OK · `scripts/verify_s53126614.py` PASS ·
+`tools/verify_s92.py` 13/0/0 · `engine/verify_repo_and_site.py` 0 broken across 3,518 links ·
+`node scripts/render_test.js` 13 pages / 0 failures · `tools/review_verify.py` OK ·
+`tools/review_build_site.py` rebuilt clean · `scripts/injury_lineage_d8372691.py --check` OK ·
+`tools/s2268_verify.py` 1,004 checks / 0 errors (run post-commit on a clean tree) · `git diff --check` clean.
+
+**CR-58E9-02 resolved:** `tools/s2268_verify.py`'s scope check is a dirty-tree self-audit ("nothing outside
+this session's namespace unless logged"); it fires only on uncommitted changes and every close-out that ran
+it after committing got 0 errors. No tool change needed; the fix is procedural (run it post-commit).
+
+
+**Merge-conflict log (2026-11-16, PR #99):** while this session worked, session `7c23f22f` merged
+PRs #94–#98 into `main`. `git merge origin/main` into `arena/d304c6fe-nfl2` conflicted on the
+generated root HTML, the two build manifests, `data/flags.csv`, `data/sources.csv`,
+`tools/build_site.py` and this file. Resolution, without discarding anyone's work: the generated
+products were taken from `main` and regenerated from the merged registers; `data/sources.csv` is
+main's rows plus this session's eight `S-D304-*` rows; `tools/build_site.py` keeps both NAV and
+PAGE_KIND additions (their `captures` page, this session's three pages); this file is main's
+content with this session's blocks appended. **Flag-id collision (CR-58E9-07 recurrence, twice):** in
+the first race both this session and `7c23f22f` allocated FL-97/FL-98/FL-99 from their own branch
+bases; their rows reached `main` first and kept the ids, so this session's rows were renumbered once.
+A second race followed: session `4e475b8b` merged PR #100 allocating FL-100..FL-108 from its own
+branch base (the same pattern), so this session's three rows were allocated again from `origin/main`'s
+live maximum at merge time (108 -> **FL-109, FL-110, FL-111**), which is where they ship everywhere
+they are referenced. A deterministic flag-id allocator remains the fix (CR-58E9-06 open).
+
+**Register changes made at the builder source (not hand-edited):** the 13 brief-backlog status updates
+were applied to `ITEMS` in `tools/build_backlog_58e9c708.py` and the register regenerated byte-identically,
+so the verifier's replay check stays honest. Note for register owners: the same clobber hazard recorded for
+`data/s745_information_gaps.csv` applies to any hand edit of `data/brief_backlog_58e9c708.csv`.
+
+**Irregularities flagged by this session** (published on the Flagged for Review page):
+FL-109 (the reserve capture is a window, not a season — Aug/Sep/early-Oct uncaptured; BL-13 sweep partial) ·
+FL-110 (three reads of the November reserve page all end at 11/03; absence of 11/01–11/02 rows is an absence
+in our capture, not proven on the page) ·
+FL-111 (the schedule-release article's publication date unverified; left blank, not guessed).
+Also live-confirmed, not resolved: FL-96 (TreVeyon Henderson is Out on the hub and on Reserve/Injured the
+same week — both official states recorded in `data/hub_delta_d304c6fe.csv`), and FL-36's reconciliation
+stands (the league moved two Week 11 broadcasts between 9 and 13 November).
+
+**Brief-backlog movement (71-line register):** done 2 → 9 (BL-08, BL-17, BL-20, BL-24, BL-47, BL-49, BL-65 added);
+partial 24 → 25 (BL-02, BL-13, BL-21, BL-55, BL-56 updated in place); not started 40 → 32.
+
+### PR & Pages record — session `d304c6fe`
+
+- PR: _recorded in the follow-up deployment entry below_
+- Merge result: _recorded in the follow-up deployment entry below_
+- Pages deploy: _recorded in the follow-up deployment entry below_

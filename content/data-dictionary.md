@@ -37,6 +37,15 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/measured_correlations_a392.csv` | 8 | one measured pair (rho or phi) with a seeded bootstrap interval and parlay arithmetic | S-GAMES26 |
 | `data/rest_and_hfa_2026_a392.csv` | 3 | rest bucket × mean home margin, the decomposition behind M-05 | S-GAMES26 |
 | `data/originated_lines_wk10_a392.csv` | 14 | Week 10 fixture × our line, the archived line where one exists, availability load by side | S-GAMES26, S-NFLDATA-ARCHIVE |
+| `data/week10_results_d304c6fe.csv` | 14 | one Week 10 game from the official scores page read 2026-11-16T14:40Z: final score or an explicit not-played status, capture time and the game-centre URL per row | S-D304-SCORES-W10 (per-row game-centre URL) |
+| `data/reserve_list_20261116_d304c6fe.csv` | 60 | one reserve-list transaction row from the official wire (Nov 11/03-11/14 and Oct 10/24-10/31 windows): date, club, player, transaction, capture time | S-D304-RES-NOV, S-D304-RES-OCT |
+| `data/trades_20261116_d304c6fe.csv` | 12 | one November 2026 trade row from the official wire: date, from club, to club, player | S-D304-TRADES-NOV |
+| `data/reserve_coverage_d304c6fe.csv` | 4 | one month of the 2026 league year: what the reserve capture covers, what it does not, and how it was read | S-D304-RES-NOV, S-D304-RES-OCT, S-D304-RESERVE-HUB |
+| `data/stale_depth_d304c6fe.csv` | 8 | one depth or availability claim the official transaction wire proves stale, with the verdict dated from the transaction | S-D304-RES-NOV, S-D304-TRADES-NOV |
+| `data/hub_delta_d304c6fe.csv` | 5 | one named-row delta from the dated 2026-11-16 hub re-read: value now, prior value, prior read time (delta, never level) | S-D304-INJ-16 |
+| `data/schedule_announcement_d304c6fe.csv` | 2 | one league schedule announcement: its date where verified, what it publishes, and its official URL | S-D304-SCHED-CHG, S-D304-SCHED-REL |
+| `data/demotion_gates_d304c6fe.csv` | 6 | one demotion-gate rule (project design): direction, trigger, window, evidence required | S-BRIEF (project design, not NFL facts) |
+| `data/wwcm_d304c6fe.csv` | 15 | one registered strategy with its two-sided falsifier fields (project design) | S-BRIEF (project design, not NFL facts) |
 | `data/games_2026_wk10_played.csv` | 1 | Week 10 game whose result is official. Append-only: the weeks 1–9 backtest corpus is deliberately left byte-identical so no existing grade is re-baselined (S-26) | S-SCORES-1113, S-GAME-W1001 |
 | `data/settled_wk10_5f16dcc6.csv` | 4 | settled game × predictor: the published line, the official result, and the absolute error of each | S-CALC-5F16 |
 | `data/computed_settled_5f16dcc6.csv` | 17 | one derived metric, its value, the method that produced it, and the read | S-CALC-5F16 |
