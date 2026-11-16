@@ -280,8 +280,14 @@ def coverage_rows(reserve: list[dict], trades: list[dict]) -> list[dict]:
                     status, note = "complete", f"last page holds {last['tbody_rows']} rows (< {PAGE_SIZE}) and no Next Page link"
             else:
                 status = "incomplete"
-                note = ("cursor repeated: the Next Page link returned no row absent from the retained captures"
-                        if last["page_seq"] != "1" else f"page 1 holds {PAGE_SIZE} rows and the chain was not followed further")
+                # 12 = roster_capture_6eeab460.MAX_PAGES (the cap the capture tool enforces)
+                if last["page_seq"] == "1":
+                    note = f"page 1 holds {PAGE_SIZE} rows and the chain was not followed further"
+                elif int(last["page_seq"]) >= 12:
+                    note = ("chain still open at MAX_PAGES=12: the Next Page cursor returned repeated page bytes, "
+                            "and the last fetched page is full with a Next link (FL-120)")
+                else:
+                    note = f"last fetched page (p{last['page_seq']}) is full ({PAGE_SIZE} rows) and has a Next Page link"
             out.append({"kind": kind, "season": str(SEASON), "month": f"{SEASON}-{month}",
                         "chain_pages_fetched": str(len(chain)), "distinct_rows": str(distinct),
                         "last_page_rows": last["tbody_rows"] if last else "",
