@@ -24,6 +24,8 @@ jobs:
         run: python tools/verify_coverage_f34622dd.py
       - name: Audit the data (official sources, reconciliations, no fabricated results)
         run: python tools/verify.py
+      - name: Verify the Week 11 venues and the per-team view against their sources (session 3e77121b)
+        run: python3 tools/verify_3e77121b.py
       - name: Verify the official capture store (hashes, no overwrite, official URLs; session 7c23f22f)
         run: |
           python3 tools/verify_capture_7c23f22f.py

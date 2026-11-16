@@ -243,6 +243,38 @@ def main():
     check("weekly diff: the rendered source cell names both reads, in order",
           all(r["source"] == r["source_before"] + "::" + r["source_after"] for r in w))
 
+    # ---- independent second read of the same official pages ---------------
+    # Session 3e77121b transcribed the same 13 Week 11 game centres at 18:02-18:06Z; this
+    # session transcribed them again at 18:40Z without seeing that file. Two independent reads
+    # of the same official page agreeing is evidence; disagreeing is a finding. Either way the
+    # check belongs here, not in a narrative. Their file is the published one - this session's
+    # page was withdrawn rather than ship two competing venue pages.
+    cross = os.path.join(DATA, "venues_wk11_3e77121b.csv")
+    if not os.path.exists(cross):
+        check("cross-session venue read: 3e77121b's file is present to compare against", False,
+              "data/venues_wk11_3e77121b.csv missing")
+    else:
+        theirs = {r["game_id"]: r for r in read("venues_wk11_3e77121b.csv")}
+        mine = {r["game_id"]: r for r in v}
+        check("cross-session venue read: both reads cover the same 13 fixtures",
+              set(theirs) == set(mine) == set(wk11), "%d vs %d" % (len(theirs), len(mine)))
+        mismatch = []
+        norm = lambda t: " ".join(str(t).upper().split())
+        for gid in sorted(mine):
+            a, b = mine[gid], theirs[gid]
+            if norm(a["venue_city"]) != norm(b["location_as_printed"].split(",")[0]):
+                mismatch.append(gid + "/city")
+            if norm(a["stadium_game_centre"]) != norm(b["stadium_as_printed"]):
+                mismatch.append(gid + "/stadium")
+        check("cross-session venue read: the two independent reads agree on city and stadium "
+              "for all 13 fixtures",
+              not mismatch, "disagreements: " + ", ".join(mismatch[:6]) if mismatch
+              else "18:02-18:06Z read vs 18:40Z read, 13/13 identical")
+        check("cross-session venue read: this read is registered as an independent second read, "
+              "not as a competing page",
+              "venue-register" not in open(os.path.join(ROOT, "tools", "build_site.py"),
+                                           encoding="utf-8").read())
+
     # ---- kickoff regime --------------------------------------------------
     k = read("kickoff_regime_0a28b225.csv")
     check("kickoff regime: five rows, one per 2026 rule change that moves a total",

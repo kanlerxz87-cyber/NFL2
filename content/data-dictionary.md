@@ -7,7 +7,9 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 
 | File | Rows | Grain | Source of record |
 | --- | --- | --- | --- |
-| `data/injuries_2026_wk10.csv` | 254 | one player × game × filing | S-INJ |
+| `data/injuries_2026_wk10.csv` | 347 | one player × game × filing, the pinned 16 Nov 14:39Z official capture | S-INJ |
+| `data/injuries_wk10_hub_20261116.csv` | 347 | the same capture, row by row, with raw page vocabulary, normalised codes, source link and capture hash | S-INJ |
+| `data/injuries_2026_wk10_superseded_12nov.csv` | 254 | the superseded 12 Nov read, kept verbatim for history (not used by any join) | S-INJ |
 | `data/depth_changes_2026_wk10.csv` | 227 | one roster or availability event per club | S-ROUNDUP, S-DARNOLD, S-WILLIS, S-JACKSON, S-NOV5, S-NOV6, S-HUNTLEY |
 | `data/snapcount_source_eval_1e97e798.csv` | 11 | one candidate official or third-party source, or derived route verdict, per row; the official-source test is applied per row | NFL.com gamebook and inactives pages (`S-GAMEBOOK-NESEA-653B`, `S-GAMEBOOK-NYGWAS-653B`, `S-NFL-INACT-W8-1E97`, `S-NFL-NGS-OPS-1E97`); third-party rows marked rejected or unverified |
 | `data/standings_2026.csv` | 32 | club × season-to-date, with read timestamp per row | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
@@ -16,12 +18,15 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/sources.csv` | {{metric sources}} | source | — |
 | `data/capture_manifest.csv` | one row per fetch of an official page (append-only) | fetch — UTC time, URL, HTTP status, bytes, SHA-256, stored file, schema check | S-CAP-7C (nfl.com/injuries/); tool `tools/capture_official.py`, session 7c23f22f |
 | `data/capture_reconciliation_7c23f22f.csv` | one row per captured or repository player (347 + 0 when they agree) | club × player: capture vocabulary, repository vocabulary, match and differing fields; capture SHA-256 and official player link | S-CAP-7C (nfl.com/injuries/, the retained capture) and the repository file data/injuries_wk10_5de1805b_20261115.csv |
+| `data/live_spotcheck_6b5607fd_20261116.csv` | 50 | one player row as displayed on the first chunk of the live nfl.com/injuries page, read 2026-11-16 at about 18:05Z (chunk 0 of 8), with the page's own wording for practice and game status | S-INJ-6B56 (nfl.com/injuries/) |
+| `data/live_spotcheck_6b5607fd_compare.csv` | 50 | one live row compared cell by cell with the repository's 14:44Z read (injury text, practice code, game status); a difference in any cell is a MISMATCH | S-INJ-6B56; compared with the repository's 14:44Z read `data/injuries_wk10_4e475b8b_20261116.csv` (source S-INJ-REG10 for the page itself) |
+| `data/repo_review_6b5607fd_20261116.csv` | 10 | one repo-review check with the command run, its result, its status and its evidence path | the source of each check is in its source_url cell (nfl.com/injuries/ and this repository) |
 | `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows; requirements and gate mappings are project design, not NFL facts | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | internal design rows and validation rules; thresholds are project policy, not NFL standards | S-DESIGN |
 | `data/computed_fair_lines.csv` | 14 | one Week 10 fixture; stages 1–2 of the origination pipeline | S-CALC |
 | `data/computed_correlation.csv` | 2 | one pair class with a measured Pearson r | S-CALC |
-| `data/computed_depth_reach.csv` | 18 | one position group where the 1st string is unavailable, for charted clubs | S-CALC |
+| `data/computed_depth_reach.csv` | 16 | one position group where the 1st string is unavailable, for charted clubs | S-CALC |
 | `data/computed_vig.csv` / `computed_parlays.csv` / `computed_sample_sizes.csv` / `computed_luck.csv` | 5 / 10 / 5 / 8 | closed-form exhibits, no market data | S-CALC |
 | `data/build_manifest.json` | — | build output, counts, allowlist | generated |
 | `data/brief_traceability.csv` | 84 | one clause of the owner brief, traced to the register row that owns it, its coverage class, the in-repo evidence and one `https://` source | S-BRIEF (project design, not NFL facts) |
@@ -47,6 +52,8 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/demotion_gates_d304c6fe.csv` | 6 | one demotion-gate rule (project design): direction, trigger, window, evidence required | S-BRIEF (project design, not NFL facts) |
 | `data/wwcm_d304c6fe.csv` | 15 | one registered strategy with its two-sided falsifier fields (project design) | S-BRIEF (project design, not NFL facts) |
 | `data/games_2026_wk10_played.csv` | 13 | Week 10 game whose result is official. Append-only: the weeks 1–9 backtest corpus is deliberately left byte-identical so no existing grade is re-baselined (S-26). Twelve results appended 2026-11-16T14:41Z; MNF LAC at BAL was not yet played and is not in the file | S-SCORES-1113, S-SCORES-F3EC |
+| `data/verify_reads_20261116_4540f880.csv` | 3 | same-day fresh read of three official pages: injury hub, standings, Week 11 schedule, with capture clock per row | S-INJ-4540f880, S-STAND-4540f880, S-WK11-4540f880 |
+| `data/reverification_4540f880.csv` | 46 | one row per check comparing today's official reads to the published tables: 32 clubs x 8 standings fields, 13 Week 11 fixtures, injury-hub coverage | S-INJ-4540f880, S-STAND-4540f880, S-WK11-4540f880 |
 | `data/settled_wk10_5f16dcc6.csv` | 52 | settled game × predictor: the published line, the official result, and the absolute error of each (13 settled games × 4 predictors) | S-CALC-5F16 |
 | `data/computed_settled_5f16dcc6.csv` | 25 | one derived metric, its value, the method that produced it, and the read (17 W10-01 rows plus the 8-row thirteen-game aggregate added 2026-11-16) | S-CALC-5F16 |
 | `data/reverification_5f16dcc6.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
@@ -237,7 +244,7 @@ without the hash in `data/s2268_preregistration.json` being deliberately re-cut.
 | --- | --- | --- | --- |
 | `data/s2268_injuries_wk10_20261113.csv` | 295 | one player × club, transcribed from the live hub at 12:40Z | S-2268-01 |
 | `data/s2268_coverage_20261113.csv` | 28 | club × Week 10 game, rows published by the hub | S-2268-01, S-2268-02 |
-| `data/s2268_injury_delta_20261113.csv` | 154 | one difference against each of the two Week 10 registers already in the repository | S-2268-01 |
+| `data/s2268_injury_delta_20261113.csv` | 315 | one difference against each of the two Week 10 registers already in the repository | S-2268-01 |
 | `data/s2268_gameid_collisions.csv` | 14 | Week 10 game id × whether the two published files agree on the fixture it names | S-2268-02 |
 | `data/s2268_depth_chains_20261113.csv` | 26 | one player × position group the club prints him in, with the club's own next man up | S-2268-04, S-2268-05 |
 | `data/s2268_strategy_register.csv` | 10 | pre-registered strategy, with its selection and abstention rule | S-2268-PRE |
@@ -300,10 +307,19 @@ verified by `tools/verify_flags_4e475b8b.py`.
 rows the fetch tool split across chunk boundaries are spliced positionally and asserted in
 `4e475b8b/build.py`; unknown vocabulary or a row-count change fails the build loudly.
 
-| `data/venue_register_0a28b225.csv` | 13 | one Week 11 fixture: the official game centre's own Location (city, state) and Stadium fields, transcribed verbatim, beside the schedule page's hotel-link parameter reading published under FL-112. The two official readings are never reconciled into one another | per-row `nfl.com/games/` page (`S-WK11-GC-0A28`) |
+### Files added by session `3e77121b` (16 November 2026)
+
+| File | Rows | Grain | Source of record |
+| --- | --- | --- | --- |
+| `data/venues_wk11_3e77121b.csv` | 13 | one Week 11 fixture: stadium and location as printed on its own game centre, the broadcaster on that page, and a cross-check column against the FL-112 parameter readings | S-VEN-3E77 (per-row game-centre URL) |
+| `data/team_view_3e77121b.csv` | 32 | one NFL club: counts from the 16 Nov injury-hub read (blank for the four Week 10 byes), the November reserve-list names, and any league-named starter change | S-INJ-E632, S-D304-RES-NOV (per-row NFL.com URLs) |
+
+The two tables are generated by `tools/team_view_3e77121b.py` from the checked-in hub read and reserve-list capture, and checked by `tools/verify_3e77121b.py`. The venue table is typed from the game centres and checked against the schedule file. Blank cells mean the official page did not print the value, not zero.
+
+| `data/venue_register_0a28b225.csv` | 13 | an **independent second read** of the official Week 11 game centres (18:40Z), published beside session 3e77121b's 18:06Z read in `data/venues_wk11_3e77121b.csv`; `tools/verify_0a28b225.py` proves the two agree cell for cell on all 13 fixtures. Kept as evidence, not as a competing page — the published venue page is [fixture-venues.html](fixture-venues.html) | per-row `nfl.com/games/` page (`S-WK11-GC-0A28`) |
 | `data/fixture_context_0a28b225.csv` | 26 | one club-fixture side: rest days, bye, short week, mirrored opponent rest and rest edge, divisional and conference flags, the venue's ET offset, the local body-clock kickoff and the kickoff window — every one derived from a published date, kickoff, venue or result | per-row `nfl.com/games/` page (`S-WK11-GC-0A28`); divisions from `S-STAND-F3EC` |
-| `data/kickoff_regime_0a28b225.csv` | 5 | one 2026 rule change that moves a game total: rule number, text as the league publishes it, the prior regime, and why it moves the number. Four rows are the rulebook's own change table; KR-05 is the rule the table omits (FL-116) | `S-RULEBOOK-0A28`, `S-RULES26-0A28` |
-| `data/weekly_diff_0a28b225.csv` | 32 | one club, differenced between two dated independent transcriptions of the official standings page (13 Nov `S-STAND-653B` and 16 Nov `S-STAND-F3EC`): W/L/T, points for and against, net, and within-division rank on each read and the change. The window is a date window, not a week number — the Thursday and Monday Week 10 games fall outside it | [NFL standings](https://www.nfl.com/standings/) (`S-STAND-653B`, `S-STAND-F3EC`) |
+| `data/weekly_diff_0a28b225.csv` | 32 | one club, differenced between two dated independent transcriptions of the official standings page (13 Nov `S-STAND-653B`, 16 Nov `S-STAND-F3EC`): W/L/T, points for and against, net, within-division rank on each read and the change | [NFL standings](https://www.nfl.com/standings/) (`S-STAND-653B`, `S-STAND-F3EC`) |
+| `data/kickoff_regime_0a28b225.csv` | 5 | one 2026 rule change that moves a game total: rule number, text as the league publishes it, the prior regime, and why it moves the number. Four rows are the rulebook's own change table; KR-05 is the rule the table omits (FL-121) | `S-RULEBOOK-0A28`, `S-RULES26-0A28` |
 
 `et_offset_hours` in the fixture-context file is a static geographic constant keyed on the venue's state
 (0 Eastern, -1 Central, -2 Mountain, -3 Pacific; Mexico City -1), valid for every date in this file

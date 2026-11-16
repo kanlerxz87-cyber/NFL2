@@ -134,56 +134,55 @@ to buy snap counts ([Q-45](questions.html)).
 
 ## What changed on 16 November 2026
 
-### What changed on 16 November 2026, later — venues, fixture context and the kickoff regime
+### What changed on 16 November 2026, later — fixture context, the kickoff regime, and a weekly diff
 
-Three backlog lines that had never been started are now published, and one open flag is closed at source.
-
-1. **The venue of every Week 11 fixture is now transcribed from its official game centre** — all thirteen,
-   each row carrying its own game page ([venue register](venue-register.html)). The Week 11 schedule table
-   had carried `not published` in its venue column because the schedule page only names a stadium inside a
-   hotel-link parameter, which [FL-112](flagged-for-review.html) left as an owner decision. The game centre
-   prints a **Location** and a **Stadium** field for every fixture, so the blanks can now be filled from a
-   page that displays the value rather than from a URL parameter.
-2. **The two official pages disagree on three venues**, and both readings are published side by side
-   rather than reconciled ([FL-115](flagged-for-review.html)): the game centre prints *RELIANT STADIUM*
-   for the Texans and *NORTHWEST STADIUM* for the Commanders, where the schedule page's parameter says
-   NRG Stadium and FedEx Field — names those venues stopped using. It also names *ESTADIO BANORTE* for the
-   neutral-site fixture in Mexico City, which is the one venue fact FL-112 could not settle.
-3. **Fixture context is now a first-class dataset** ([fixture context](fixture-context.html)): 26 rows,
+1. **Fixture context is now a first-class dataset** ([fixture context](fixture-context.html)): 26 rows,
    BL-14 closed. Four clubs are off a bye with a +7 day rest edge; two clubs are on a six-day week because
    of the Monday night game; and the largest edges on the slate (+3) are not byes but the two clubs whose
    Week 10 game fell on a Thursday.
-4. **The 2026 kickoff and onside-kick regime is pre-registered as a prior** ([kickoff regime](kickoff-regime.html)),
+2. **The 2026 kickoff and onside-kick regime is published as a prior** ([kickoff regime](kickoff-regime.html)),
    BL-69 closed. Rule 6-1-6 lets any club declare an onside kick at any time, regardless of score — the
    official rulebook and NFL.com agree, and several third-party summaries say otherwise. No success-rate
    prior is published, because the widely quoted recovery percentages are not on any official page.
-5. **One new source conflict** ([FL-116](flagged-for-review.html)): the official rulebook's own 2026 Rule
+   One new source conflict ([FL-121](flagged-for-review.html)): the official rulebook's own 2026 Rule
    Changes table lists four rules and omits the fifth rule the league's approved summary passed.
-6. **A weekly diff is now published instead of only snapshots** ([weekly diff](weekly-diff.html)): the
-   change between the 13 and 16 November standings reads for all 32 clubs. Eight clubs changed division
-   rank, and two of the four that moved down — Chicago and Denver — did not play in the window, which is
-   the clearest argument for publishing a diff rather than a level.
+3. **A weekly diff is published instead of only snapshots** ([weekly diff](weekly-diff.html)): the change
+   between the 13 and 16 November standings reads for all 32 clubs. Eight clubs changed division rank, and
+   two of the four that moved down — Chicago and Denver — did not play in the window.
+4. **Two lapsed pull requests from 15 November, #71 and #84**, are recorded on the coordination board;
+   their head branches no longer exist on the remote and neither has been merged or closed by this session.
 
-Two lapsed pull requests from 15 November, **#71** and **#84**, are recorded on the coordination board;
-their head branches no longer exist on the remote and neither has been merged or closed by this session.
+### What changed on 16 November 2026, later — fixture context, the kickoff regime, and a weekly diff
 
-The Week 10 hub, the Week 10 results, the standings and the whole Week 11 slate were re-read line by line against the live official pages, and the [Re-Verification register](reverification.html) publishes every check with its page. Three findings matter:
+1. **Fixture context is now a first-class dataset** ([fixture context](fixture-context.html)): 26 rows,
+   BL-14 closed. Four clubs are off a bye with a +7 day rest edge; two clubs are on a six-day week because
+   of the Monday night game; and the largest edges on the slate (+3) are not byes but the two clubs whose
+   Week 10 game fell on a Thursday.
+2. **The 2026 kickoff and onside-kick regime is published as a prior** ([kickoff regime](kickoff-regime.html)),
+   BL-69 closed. Rule 6-1-6 lets any club declare an onside kick at any time, regardless of score — the
+   official rulebook and NFL.com agree, and several third-party summaries say otherwise. No success-rate
+   prior is published, because the widely quoted recovery percentages are not on any official page.
+   One new source conflict ([FL-121](flagged-for-review.html)): the official rulebook's own 2026 Rule
+   Changes table lists four rules and omits the fifth rule the league's approved summary passed.
+3. **A weekly diff is published instead of only snapshots** ([weekly diff](weekly-diff.html)): the change
+   between the 13 and 16 November standings reads for all 32 clubs. Eight clubs changed division rank, and
+   two of the four that moved down — Chicago and Denver — did not play in the window.
+4. **Two lapsed pull requests from 15 November, #71 and #84**, are recorded on the coordination board;
+   their head branches no longer exist on the remote and neither has been merged or closed by this session.
 
-1. **The injury hub is frozen and provably so.** The full re-read matches both 15 November reads cell for cell — zero additions, zero removals, zero changed designations across the slate — which is what a weekly report should do and one more reason it cannot be read as a live feed.
-2. **The results feed caught up with the games, without breaking the pre-registration.** Thirteen Week 10 finals were verified on two official pages each and published with their game-centre links on the [Re-Verification](reverification.html) page; the append-only results file now holds all thirteen (the parallel results-feed session appended the twelve Sunday finals and re-pinned the settled-file hash under a **dated amendment that preserves the decision-time hash**). One governance question remains open on the [Flagged for Review](flagged-for-review.html) page: [FL-114](flagged-for-review.html), the owner's ratification of that append protocol. The Monday game is recorded nowhere — it is not final.
-3. **The standings delta closes for all 32 clubs — and the refresh is cross-validated.** The 16 November read equals the 13 November snapshot plus exactly each club's Sunday result on wins, losses, ties and points; two independent reads seven minutes apart (14:50Z and 14:57Z) agree cell for cell on all 32 clubs × 8 fields, which is what makes the table's refresh to the newer read safe to publish. How often cumulative tables move is still [Q-40](questions.html).
+## Latest official reads (retained captures)
 
-## Latest official reads — 13 November 2026
-
-The time labels now identify different source snapshots rather than one global “last updated” date:
+The time labels identify different source snapshots rather than one global “last updated” date; each read is kept under its own capture date and none is overwritten.
 
 | Read | Capture time (UTC) | What it represents |
 | --- | --- | --- |
 | Primary Week 10 injury file | 2026-11-12 04:45 | Original player-filing snapshot; not the later hub states |
 | Full injury-hub re-read | 2026-11-12 22:35 | 279 rows across 26 clubs with filed rows |
 | Settled-game injury recheck | 2026-11-13 06:52 | Only the 20 WAS–NYG rows; **not** a full hub re-read |
-| Latest full injury-hub snapshot in this tree | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
+| Latest full injury-hub snapshot | 2026-11-13 12:46 | 296 filings across 26 clubs with rows; the two explicit “No Injuries Reported” blocks remain distinct |
 | Latest injury-hub read (15 Nov, row-level, hand-transcribed, FL-82) | 2026-11-15 12:51 | 347 filings covering all of the 28 clubs on the slate; Chargers and Ravens now have rows (FL-81); 51 new players and no removals against the 13 Nov file. See [Injury Hub delta](hub-delta.html) |
+| Full hub re-read (retained machine capture) | 2026-11-16 14:39 / 14:44 | 347 filings across every club on the 28-club slate; cell-for-cell identical to the 15 Nov read; raw bytes retained under `data/captures/injuries_hub/` with per-response SHA-256 (FL-90 partly resolved; FL-97 — one capture is not a series) |
+| Independent standings re-read | 2026-11-16 14:50 | 32 clubs × 8 fields; identical cell-for-cell to the 14:57Z snapshot published the same day (cross-validated on [Re-Verification](reverification.html)) |
 | NFL division standings | **2026-11-13 12:53** | 32 clubs × W/L/T/PCT/PF/PA/NET PTS/STREAK: **256/256 values matched** the independent saved re-read; no standings value changed |
 
 The standings timestamp appears in the site-wide source-read banner and on each standings row. `tools/verify.py` checks it against the latest registered NFL standings source and compares every value against [`data/standings_recheck_20261113.csv`](data/standings_recheck_20261113.csv) on each run. The injury times above are intentionally separate; they describe different data snapshots and coverage, not a shared live refresh.
@@ -222,14 +221,18 @@ The eighteen depth cascades on this site were checked player by player against t
 | Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 15 gates, pass criteria, what each one blocks |
-| Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
+| Data | [Week 10 injury report](injuries.html) | all 347 official rows of the pinned 16 Nov capture (the canonical table), per-row source links; the 12 Nov 254-row read is kept as an archived file; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
 | Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
+| Data | [Week 11 venues (game centre)](fixture-venues.html) | the stadium printed on each of the 13 Week 11 game centres, read 16 Nov, with the 3 disagreements with the schedule parameter flagged ([FL-118](flagged-for-review.html)) |
+| Data | [Team decision view (32 clubs)](teams.html) | one row per club: injury-hub counts from the 16 Nov read, the November reserve list, league-named starter changes, and the Week 10 byes left blank |
 | Data | [Personnel Relief](personnel-relief.html) | **new 13 Nov** — the verified join: {{metric pr_resolved}} of {{metric pr_rows}} listed players resolved to a 1st/2nd/3rd/4th string on their own club's published chart, with the next man the club names, and {{metric pr_first_dnp}} 1st-string non-participants across {{metric pr_charts}} clubs |
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Origination | [Fixture context (computed)](fixture-context.html) | **new 16 Nov** — 26 club-fixture sides of the Week 11 slate: rest, bye, short week, mirrored rest edge, divisional flag, the venue's body-clock kickoff and the kickoff window, every column derived from a published schedule fact and re-derived on every build |
 | Origination | [Kickoff regime 2026](kickoff-regime.html) | **new 16 Nov** — the five 2026 rule changes that move a game total, including 6-1-6: any club may now declare an onside kick at any time, regardless of score. Sourced to the official rulebook and NFL.com because third-party summaries contradict each other |
-| Data | [Week 11 venue register](venue-register.html) | **new 16 Nov** — the venue of every Week 11 fixture transcribed from that fixture's official game centre, which settles FL-112 and exposes three venue-name disagreements between two official pages |
+| Data | [Weekly what-changed diff](weekly-diff.html) | **new 16 Nov** — the change between two dated official standings reads rather than a snapshot: W/L/T, points, net and within-division rank movement for all 32 clubs, with the two Week 10 games that fall outside the window named rather than folded in |
+| Origination | [Fixture context (computed)](fixture-context.html) | **new 16 Nov** — 26 club-fixture sides of the Week 11 slate: rest, bye, short week, mirrored rest edge, divisional flag, the venue's body-clock kickoff and the kickoff window, every column derived from a published schedule fact and re-derived on every build |
+| Origination | [Kickoff regime 2026](kickoff-regime.html) | **new 16 Nov** — the five 2026 rule changes that move a game total, including 6-1-6: any club may now declare an onside kick at any time, regardless of score. Sourced to the official rulebook and NFL.com because third-party summaries contradict each other |
 | Data | [Weekly what-changed diff](weekly-diff.html) | **new 16 Nov** — the change between two dated official standings reads rather than a snapshot: W/L/T, points, net and within-division rank movement for all 32 clubs, with the two Week 10 games that fall outside the window named rather than folded in |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |

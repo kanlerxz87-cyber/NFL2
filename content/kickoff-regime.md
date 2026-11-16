@@ -64,7 +64,7 @@ project cannot source is a number this project leaves blank.
 
 - **No success-rate prior.** Not published by an official source, so it stays blank.
 - **No roof or surface.** That is BL-59 and it stays open; see the
-  [venue register](venue-register.html) for what is now in place as a join key.
+  [fixture venues](fixture-venues.html) page for the published venue register.
 - **No claim that this regime has been measured.** These are priors to pre-register, not findings. The
   [pre-registration lock](preregistration.html) is the mechanism that keeps it that way.
 

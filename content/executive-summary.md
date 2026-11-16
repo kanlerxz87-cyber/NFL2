@@ -1,232 +1,106 @@
-# Executive Summary
-> Current through the 2026-11-13T12:53Z official standings read. Injury snapshots have their own dates; no one timestamp implies every dataset is live.
+# Executive Summary — NFL 2026 verified analytics
 
-## The one-paragraph version
+**Current through:** official reads of 2026-11-16 (Week 11 schedule page; Week 10 injury hub re-read; November reserve-list and trades tabs). Generated site: 45 pages + 404, every page regenerated from `content/` and `data/` on each build, served from GitHub Pages (source `main /`).
 
-The collection layer is real but time-sliced: the original Week 10 injury file has 254 rows across 24 of 28 clubs (2026-11-12 04:45Z); a full hub re-read held 279 rows across 26 clubs (22:35Z); and the latest full hub snapshot in this tree has 296 filings across 26 clubs with rows, plus the two explicit “No Injuries Reported” blocks (2026-11-13 12:46Z). A settled-game-only 20-row recheck at 06:52Z is a different, narrower read. The 32-club standings were independently re-read at 12:53Z: all eight published fields match for all 32 clubs (256/256 values), with no change to the standings cells. Those source times are rendered separately in the site banner. Published facts retain their official links; unverified cells stay blank rather than inferred.
+> **Bottom line up front:** every number on this site either traces to an official NFL page, linked row by row, or is left blank and flagged. The dataset is verified, the build is deterministic and byte-reproducible, and **no strategy has passed its validation gates — no edge is claimed.** The input that blocks everything money-related — a licensed, timestamped price feed with book identity — is an open owner decision (Q-01/Q-02, priority P0), not a modelled assumption.
 
-The analysis layer now includes a 136-game walk-forward ratings study, eight measured correlation rows, and a pre-registered 13-line Week 11 sample—but **no strategy has passed its validation gates**. Only one Week 10 game is settled and the Week 11 sample remains ungraded; a one-point MAE difference requires roughly 1,382–1,607 observations, depending on the metric, at the stated power target. Licensed market data and player-level participation/snap data are still missing or not entitled, so market-relative EV/CLV and player-prop pricing are not established. Two official gamebooks show actual starters and explicit game-day status for two games, but do not establish 2nd/3rd/4th-string rank or snap counts. Their NFL use notice requires written permission for other use, so bulk reuse is blocked by Q-50. The honest conclusion is measured research and a running process—not evidence of a profitable betting edge.
+## 1. The register at a glance (counted from its own file on every build)
 
-## Update — 15 November 2026, 12:51Z (session `8dee7df7`)
+| Measure | Value | File |
+| --- | --- | --- |
+| Traced requirements | 46 — 37 done, 5 partial, 3 specified, 1 in progress | `data/requirements.csv` |
+| Validation gates | 15 — G-01…G-15, including G-15 demotion to paper (defined 16 Nov) | `data/gates.csv` |
+| Registered flags | 114 — 85 open, 11 needs review, remainder resolved/closed/superseded | `data/flags.csv` |
+| Open questions | 64 — 22 P0, 35 P1, 7 P2 | `data/questions.csv` |
+| Suggestions | 72 | `data/suggestions.csv` |
+| Registered official reads | 99 — 63 tier A (official league), 18 B, 9 C, 9 D | `data/sources.csv` |
+| Brief clauses traced | 84 | `data/brief_traceability.csv` |
+| Generated pages | 45 + 404 | `tools/build_site.py` |
+| Tracked files | 754 | `git` |
 
-Read this as a diff against the 13 November sections below. It changes one standing statement and adds one dated read.
+Each page carries a badge: **measured** (generated from `data/`, official link on every row), **specified** (design, not a result), **decision** (register awaiting the owner), or **program** (policy/process).
 
-| What changed | Earlier statement | Now (sourced) | What it means for a decision |
+## 2. What is verified — and what each verification does not establish
+
+### Standings (official, re-read 16 Nov)
+
+All 32 clubs × 8 published fields (W/L/T/PCT/PF/PA/net/streak) match an independent transcription; two reads seven minutes apart on 16 Nov (14:50Z and 14:57Z) agree cell for cell, so the published refresh to the newer read is cross-validated, not asserted. League identities hold: wins = losses, two ties, points for = points against.
+
+Does not establish: split-record columns the league omits — nothing is inferred to fill them.
+
+### Week 11 fixture slate (official schedule page, read 16 Nov)
+
+Thirteen fixtures confirmed against https://www.nfl.com/schedules/2026/by-week/week-11: Indianapolis at Houston (Thu Nov 19, 8:15 PM, PRIME); Miami at Buffalo, Baltimore at Carolina, New Orleans at Chicago, Tennessee at Dallas and Tampa Bay at Detroit (Sun Nov 22, 1:00 PM); Arizona at Kansas City and Pittsburgh at Philadelphia (Sun Nov 22, 1:00 PM, CBS); Jets at Chargers (4:05 PM, FOX); Jaguars at Giants and Raiders at Broncos (4:25 PM, CBS); Vikings at 49ers in Mexico City (Sun 8:20 PM, NBC, neutral site); Bengals at Commanders (Mon Nov 23, 8:15 PM, ESPN). Six clubs on bye: Atlanta, Cleveland, Green Bay, LA Rams, New England, Seattle.
+
+Venues: the official page prints stadium names only inside its own hotel-link parameters, not as visible text. Per the blank policy the site's venue cells stay `not published`; the parameter transcription (NRG Stadium, Highmark Stadium, Bank of America Stadium, Soldier Field, AT&T Stadium, Ford Field, Arrowhead, Lincoln Financial, SoFi, Empower Field at Mile High, MetLife; FedEx Field carried verbatim for Cincinnati at Washington — may not be the current sponsored name) is held in [FL-112](flagged-for-review.html), not in a data cell. Source: https://www.nfl.com/schedules/2026/by-week/week-11.
+
+Does not establish: anything about venues beyond what the page displays.
+
+### Week 10 results (official scores page, read 16 Nov)
+
+Thirteen of fourteen Week 10 games are final and verified against official game-centre pages, each row linked to its own game page. The fourteenth — Chargers at Ravens, Monday night — is recorded nowhere: it is not final and not guessed. The twelve Sunday finals were appended to the append-only played file under a dated pre-registration amendment that preserves the decision-time hash; the grader recomputes every hash before grading and refuses to grade if any pinned artefact changes. The remaining governance question is [FL-114](flagged-for-review.html): the owner's ratification of that append protocol. Sources: https://www.nfl.com/scores/2026/week-10 plus the per-row game-centre links.
+
+### Injury hub — a series, not a snapshot (nfl.com/injuries/)
+
+The official Week 10 page keeps filing between reads, so the site keeps every read, dated, and publishes deltas:
+
+| Read | Rows | Clubs | Game-status designations |
 | --- | --- | --- | --- |
-| Chargers and Ravens on the Week 10 hub | Both clubs answer "No Injuries Reported" ([FL-01](flagged-for-review.html)); the executive summary's finding 2 below says so | On 15 Nov the official page lists **19 Chargers rows** and **10 Ravens rows** ([FL-81](flagged-for-review.html)) | "No Injuries Reported" was true on its read date and is now superseded. Do not carry LAC or BAL as healthy from the 13 Nov file |
-| Designations on the slate | 9 in the 13 Nov file | **171** on the 15 Nov read: 70 Out, 90 Questionable, 11 Doubtful ([FL-83](flagged-for-review.html)) | the 9 was a collection gap, not a level. Only the change between dated reads counts as a signal |
-| Players on the record | 296 on 13 Nov | **347** on 15 Nov, covering all of the 28 clubs on the slate; 51 added, none removed ([Injury Hub delta](hub-delta.html)) | the hub still only grows |
-| Practice codes on shared players | not measured | **102** of 296 shared players changed code between the two reads | the delta is the surprise signal; the level alone tells us little |
+| Primary Week 10 file | 254 | 24 | 6 (12 Nov 04:45Z) |
+| Full hub re-read | 279 | 26 | not published at that read (12 Nov 22:35Z) |
+| Full-hub snapshot | 296 | 26 | 9 (13 Nov 12:46Z) |
+| Full hub re-read | 347 | 28 | 171 — 70 Out, 90 Questionable, 11 Doubtful (15 Nov 12:55Z) |
+| Full hub re-read (retained capture) | 347 | 28 | 171, cell-for-cell identical to 15 Nov (16 Nov 14:44Z) |
 
-**Limit on this read.** The 15 November rows were copied by hand from the rendered official page. The Chargers and Ravens block was read a second time on the same day and matched name for name, but no raw capture with a stored hash exists yet ([FL-82](flagged-for-review.html)). The machine capture is open pull request #71, which belongs to another session.
+The live page keeps moving: a chunk read this session on 16 Nov shows designations populating for Washington, the Giants, New England, Detroit and Kansas City rows — the signal is the change between reads, never the level. Two retained raw captures exist (14:39:21Z SHA-256 e2b4074a…; 14:44:29Z SHA-256 2877f2c8…); one capture is not a series ([FL-97](flagged-for-review.html)), and the eight earlier hand transcriptions remain unretained ([FL-90](flagged-for-review.html)). [FL-94](flagged-for-review.html) — the Lions designations (Kerby Joseph, Cade Mays, D.J. Reed, all Out) now publish on the page a reader reaches first — is resolved; [FL-96](flagged-for-review.html) (TreVeyon Henderson on both the hub and the Reserve/Injured list in the same week) stays open.
 
-## Latest verification and open decisions — 13 November 2026, 12:53Z
+Does not establish: a stable practice-to-designation model input — that play rate per designation is what inactive-list joins would measure, and inactive lists do not exist in this repo ([Q-07](questions.html), [C-29 uncovered](backlog.html)).
 
-| Area | Verified state | What it does **not** establish |
+### Reserve list and trades (official transactions hub, read 16 Nov)
+
+November 2026 reserve list: 25 dated Reserve/Injured rows, read in full — the four placements [FL-52](flagged-for-review.html) could previously source only to news articles now have league rows (resolved in this build). November trades: 12 rows. The reserve-list capture is a window (Aug/Sep/early-Oct not yet returned by the extractor — [FL-109](flagged-for-review.html)), so "not listed" still cannot be read as "available" outside the window. Sources: https://www.nfl.com/transactions/league/reserve-list/2026/11 ; https://www.nfl.com/transactions/league/trades/2026/11.
+
+### Depth — no official league depth chart exists
+
+nfl.com/teams/<club>/depth-chart returns the league's 404 page; every club chart is club-published and labelled unofficial, most without a date. Four club charts are transcribed and verified (Kansas City, Green Bay, New England, Detroit); a separate register transcribes 31 of 32 club charts ([FL-60](flagged-for-review.html): Houston's chart is a single image). No snap counts and no official inactive lists are stored anywhere ([C-29 uncovered](backlog.html)); two official game books (NE at SEA Week 1, NYG at WAS Week 5) were inspected for structure only — each carries an NFL notice requiring written permission for other use, so no game-book data is stored and bulk reuse stays blocked ([Q-50](questions.html), [S-58](suggestions.html)).
+
+## 3. What the analysis layer shows (computed from official results, never market-priced)
+
+- **136-game walk-forward ratings study** (weeks 1–9 official results): originated spread MAE 9.278 vs 10.455 do-nothing baseline; paired against the archived third-party price +0.295 pts with a bootstrap CI spanning zero — no provable edge, none claimed. Originated totals MAE 11.165 vs 11.078 league mean — worse than do-nothing, published as diagnostic only ([S-37](suggestions.html)).
+- **Home field on 2026 games**: +0.50 pts, 95% CI [−1.80, +2.80]. The customary +2.5 prior sits outside the interval, but 149 games cannot settle it — the model prints +0.50 with its interval wherever it appears.
+- **Correlations**, computed only from officially sourced inputs with n and interval beside each value: same-game holdout pairings up to φ = 0.945 (one bet sold twice); prop-level correlations are blank — no prop-line archive exists ([Q-12](questions.html)).
+- **Leaderboard**: empty by design. Zero strategies carry stakes; ranking is proper-score (Brier skill with a game-cluster lower bound and multiplicity adjustment); control baselines (random picks, favorites only) are scored in every run; the best raw hit rate (79.2% on 24 decisions) is published in full and deliberately not promoted. Signal and staking are separate columns; staking allocation exists as a column family but carries no allocation until [G-14](validation-gates.html).
+- **Pre-registration**: hash-stamped ledger; the Week 11 fair lines were hashed before kickoff and the grader recomputes every hash before grading — tested, a one-cell edit reports BROKEN and exits 1. The forward grade stays empty until games settle.
+
+## 4. What is blocked — owner decisions, not code gaps
+
+| Block | Missing input | Decision needed |
 | --- | --- | --- |
-| Standings | Official division-page read at `2026-11-13T12:53Z`; 32/32 clubs × eight published fields matched the independently transcribed snapshot (256/256). No standings value changed. See [Standings](league-data.html) and the [source record](sources.html). | NFL’s omitted split-record columns; no values were inferred. |
-| Injury-read lineage | Initial Week 10 file: `2026-11-12 04:45Z`; full-hub re-read: `2026-11-12 22:35Z`; settled WAS–NYG-only check: `2026-11-13 06:52Z`; latest full-hub snapshot in this tree: `2026-11-13 12:46Z`. | These are different coverage snapshots, not one table refreshed at one time. |
-| Official Game Books | NFL game centers link to [NE at SEA, Week 1](https://www.nfl.com/games/patriots-at-seahawks-2026-reg-1) and [NYG at WAS, Week 5](https://www.nfl.com/games/giants-at-commanders-2026-reg-5); both PDFs contain lineup, substitution, Did Not Play, Not Active, and player-stat sections. | Two games do not provide league-wide coverage, ordinal 2nd/3rd/4th-string rank, or snap counts. Each PDF restricts other use without written NFL permission; no extracted book data is stored here. |
+| [Q-01](questions.html), P0 | Price feed: vendor tier, latency, licence cost | Choose among the three documented paths in [`docs/PRICE-DATA-POLICY-d304c6fe.md`](docs/PRICE-DATA-POLICY-d304c6fe.md); none is chosen ([S-29](suggestions.html)) |
+| [Q-02](questions.html), P0 | Player-level entitlement (snaps, routes, targets) | Compare Next Gen Stats terms against open alternatives; version the pick |
+| [Q-07](questions.html) / [C-29](backlog.html) | Official inactive lists and snap counts | Decide entitlement and source before any depth model ships |
+| [Q-40](questions.html) | Injury-hub read cadence | Wednesday-to-kickoff series with fetch time on every read |
+| [Q-42](questions.html) | Canonical injury register | Which dated read is canonical while the page moves intra-week |
+| [CR-58E9-04](https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md) | Pre-registration append protocol ratification | Dated amendment vs prefix-hash pin — this is [FL-114](flagged-for-review.html) |
+| [CR-58E9-06](https://github.com/kanlerxz87-cyber/NFL2/blob/main/COORDINATION.md) | Deterministic flag-id allocator | Next-free-id so concurrent sessions stop colliding on flag numbers |
 
-**Current suggestion state.** S-43 is partly adopted: standings rows and the site banner now carry a source-read time, and `tools/verify.py` checks the 256-value re-read. The refresh cadence remains the owner-only choice in [Q-40](questions.html). S-44 and S-45 are already adopted upstream (automatic grading and the required-sample denominator). The injury-snapshot canonicalization remains open to the owner ([Q-42](questions.html) / [S-46](suggestions.html)); use of gamebooks is separately blocked pending rights review ([Q-50](questions.html) / [S-58](suggestions.html)). Neither choice is presumed or implemented here. Older dated updates below are retained as historical records; this section is the latest status.
+## 5. Flagged and published — never silently fixed
 
-## Update — 13 November 2026, 12:45Z (session `c3ec1487`)
+85 flags are open and 11 need review on the [Flagged for Review page](flagged-for-review.html), each with its source link. Notable open items: [FL-01](flagged-for-review.html) (LAC/BAL read "No Injuries Reported" while SEA/CIN publish full blocks — absence is a collection gap, not health); [FL-10](flagged-for-review.html) / [FL-21](flagged-for-review.html) (the price archive is a historical exhibit, not a price source); [FL-60](flagged-for-review.html) (Houston depth chart image untranscribed); [FL-112](flagged-for-review.html) (venue names exist only in link parameters); [FL-114](flagged-for-review.html) (pre-registration append protocol awaiting owner ratification). Flags do not block a merge; the build fails on any unsourced row, any stale output, or a drifted manifest.
 
-Read this section as a diff against the rest of the page, not a replacement: the numbers below are the
-ones that moved, and everything the page says about the *design* still stands.
+## 6. Earlier dated reads (retained as history)
 
-| What changed | Yesterday | Today (sourced) | What it means for a decision |
-| --- | --- | --- | --- |
-| Injury coverage of the Week 10 slate | {{metric injury_coverage}} clubs (SEA and CIN absent from our file — [FL-24](flagged-for-review.html)) | **28 of 28** clubs: the league now publishes full SEA and CIN blocks, and answers "No Injuries Reported" for LAC and BAL | the collection gap closed at the source; [FL-37](flagged-for-review.html) is now the only problem, because the older register still says 24 |
-| Player rows in the record | 254 (12 Nov 04:45Z) → 279 (12 Nov 22:35Z) | **{{metric aw_rows}}** (13 Nov 12:45Z) | the hub only ever grew: 17 players added, none removed |
-| Game-status designations | 6 | **{{metric aw_designations}}** — three Detroit players (Kerby Joseph, Cade Mays, D.J. Reed) are now OUT | a starting safety and a starting centre can be priced as unavailable instead of questionable |
-| Practice codes that moved between reads | not measured | **{{metric aw_practice_changes}}** of 277 shared players changed code in 14 hours — 37 toward full, 12 away | the availability signal is the delta, not the level ([S-47](suggestions.html), [FL-38](flagged-for-review.html)) |
-| Settled Week 10 games | 1 (WAS 24, NYG 21) | 1 — **unchanged** | no second grade is possible today; the [settled page](week10-settled.html) cannot gain a row until 15–16 November |
-| Standings | 1 game stale, corrected | **32 of 32 rows × eight published fields match live nfl.com** on the 2026-11-13T12:53Z read; 6,291 PF = 6,291 PA | the 12:53Z read is rendered and machine-checked; refresh cadence remains open to the owner ([Q-40](questions.html)) |
-| Week 11 broadcasters | two cells disagree with nfl.com ([FL-36](flagged-for-review.html)) | **still disagree**, on a second read a day later: MIA at BUF is CBS, TB at DET is FOX | a second independent read makes a transcription swap the likely explanation, but it stays flagged, not edited |
+All reads below remain in the repo under their capture dates; none was overwritten.
 
-**The decision this update creates.** Four registers now ask the owner for the same kind of choice, and
-three of them are about the availability data specifically: which injury register is canonical
-([Q-42](questions.html) / [S-46](suggestions.html)), how often the hub must be read for a delta to mean
-anything ([Q-43](questions.html) / [S-47](suggestions.html)), and what replaces depth rank now that the
-league publishes none ([Q-44](questions.html) / [S-48](suggestions.html)). Each is cheap and reversible
-except the third. The one I would take first is **Q-42**: the site currently publishes two sourced
-coverage answers, and a reader cannot tell which is current.
+| What | Capture | Rows | Clubs | Designations |
+| --- | --- | --- | --- | --- |
+| Week 10 primary injury file | 2026-11-12 04:45Z | 254 | 24 | 6 |
+| Full hub re-read | 2026-11-12 22:35Z | 279 | 26 | not published |
+| Full-hub snapshot | 2026-11-13 12:46Z | 296 | 26 | 9 |
+| Full hub re-read | 2026-11-15 12:55Z | 347 | 28 | 171 |
+| Full hub re-read (retained capture) | 2026-11-16 14:44Z | 347 | 28 | 171 (cell-identical to 15 Nov) |
+| Standings re-read | 2026-11-16 14:50Z | 32 clubs × 8 fields | — | identical to the 14:57Z snapshot |
 
-**The finding worth keeping.** Across every session so far, the failures that actually mattered were
-never arithmetic — they were **stale state that looked current**: a standings table one game old, a
-coverage figure that said 24 of 28 after the source had published 28, a leaderboard that reads as empty
-because no strategy was pre-registered. The fixed cost of preventing that class is small: put the read
-time on every cumulative table ([S-43](suggestions.html)) and make every derived count come from the file
-([S-31](suggestions.html), already adopted). Both are done on the [Availability Watch](availability-watch.html)
-page, which prints its read time and derives every count.
+## Delivery
 
-## What is verified and how we know
-
-| Dataset | Volume | Official source | Reconciliation performed |
-| --- | --- | --- | --- |
-| Week 10 practice snapshot | 254 rows / 24 clubs | [nfl.com/injuries](https://www.nfl.com/injuries/) | transcribed row by row from the rendered table; participation strings mapped to three codes; no cell backfilled |
-| Game-status designations | {{metric designations}} rows populated | [nfl.com/injuries](https://www.nfl.com/injuries/), [week-10 report](https://www.nfl.com/news/nfl-week-10-injury-report-2026-season) | the two official pages agree on every one; the remaining rows are blank in the source, which is not the same as zero |
-| Roster / depth / IR events | 227 rows | [Wed 11-Nov roundup](https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11) | per-team blocks transcribed; typos in the source preserved and annotated |
-| Completed results, weeks 1–9 | {{metric games_log}} games | [nfl.com/schedules](https://www.nfl.com/schedules/2026/REG/) plus one [official game page](https://www.nfl.com/games/) per row | imported from a parallel session and re-audited here: every row cites its own game page, and the recount matches the standings row for **{{metric games_log_reconciled}} of 32 clubs** on W, L, T, PF and PA — the strongest independent check available in this repo |
-| Standings | 32 rows; captured 2026-11-13T12:53Z | [nfl.com/standings](https://www.nfl.com/standings/) | independent row-by-row comparison: 32/32 clubs × W/L/T/PCT/PF/PA/NET PTS/STREAK exact (256 values); winning pct and net arithmetic also rechecked, ΣPF ({{metric league_pf}}) = ΣPA ({{metric league_pf}}) and Σnet = 0. The saved official transcription is checked by `tools/verify.py`. |
-| Week 10 schedule | 14 games | [week-10 report](https://www.nfl.com/news/nfl-week-10-injury-report-2026-season) | venues, kickoff times and network match the injury hub's own headers |
-| Quarterback chain changes | 5 quarterback depth items: 3 confirmed starting changes, 1 coach declining to commit, 1 backup assignment | [roundup](https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11), [Darnold article](https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again) | each is a direct coach or league statement, not a report about a report |
-
-## Five findings that matter for decisions
-
-1. **The injury hub is a practice document, not an availability answer.** On the day we fetched, only {{metric designations}} of {{metric injury_rows}} rows carried a game status, and the Injury column was populated for {{metric injury_detail_cells}} — the same six filings. Anyone modelling availability off this table without the prose feed is modelling an empty column. ([FL-02](flagged-for-review.html), [FL-08](flagged-for-review.html))
-2. **"No Injuries Reported" is a data state, not a health statement — and so is a missing club.** The live Week 10 hub labels only two clubs that way (LAC, BAL). Two more of the 28 playing clubs are simply absent from our file (SEA, CIN), which is a collection gap and not a claim those clubs are healthy. A third (IND) is partial. Reading any of the three states as zero is the most likely silent error in this system, so the snapshot now reports coverage as `{{metric injury_coverage}}` and refuses to phrase it as a sentence. ([FL-01](flagged-for-review.html), [FL-24](flagged-for-review.html))
-3. **There is no official depth chart to buy or scrape.** The obvious URL is a 400-style error page, so the requirement about second, third and fourth-stringers has to be met by reconstruction — roster status, participation, designations, then actual playing time. That is a build item, not a lookup. ([FL-06](flagged-for-review.html))
-4. **Roster churn in 2026 is large enough to break joins.** Players appear on clubs a naive pipeline would flag as errors; four of the surprising cases are independently confirmed by the same official page. We transcribed everything as published and made the 32-team roster sweep a gate (G-02) rather than quietly "fixing" the league's own data. ([FL-03](flagged-for-review.html))
-5. **The parlay and prop-combo problem is a correlation problem before it is a pricing problem.** Same-game legs share a cause; independent-leg multiplication overstates parlay value; and the one piece of public research quantifying a cross-game parlay markup has an openly disputed matching method. We therefore publish the framework and the signs we can defend, leave every rho value blank, and publish the two correlations that *can* be measured from real game scores — C-07 at r = +0.076 and C-08 at r = −0.161 — both with intervals that include zero. ([correlation](correlation.html))
-
-## What the system can and cannot do today
-
-| Capability | Today | Earliest realistic state |
-| --- | --- | --- |
-| Answer "who is hurt and who is starting instead" for the current week | **yes for {{metric pr_charts}} charted clubs** — {{metric pr_resolved}} of {{metric pr_rows}} listed players resolve to a string on their own club's chart, each with the club URL; blank and flagged for the other 18 clubs playing ([Personnel Relief](personnel-relief.html)) | improves immediately with the 32-club sweep; S-47 costs it |
-| Detect availability surprise (trend → designation) | no — needs three dated filings per week | after point-in-time storage lands (G-03) |
-| Originate a number | **yes, stages 1–2** — 14 Week 10 fair totals and spreads, fully reproducible | stage 3 onward needs player data (Q-02) |
-| Publish the residual against the market | no — no prices, so a residual would be invented | needs a price feed; 1 gate (G-01) and 1 vendor decision (Q-01) |
-| Score a strategy on the leaderboard | no — zero tracked bets, by design | first week of forward tracking after pre-registration |
-| Quantify replacement cost in points | no — needs snaps | after Q-02 closes |
-| Prove an edge is not luck | protocol ready, no sample | 400 bets for the gate, 1,000 for promotion (S-08) |
-
-## The four decisions to make now
-
-1. Choose the price tier we originate against and start ingesting three seasons (unblocks 9 of 14 gates).
-2. Approve the pre-registration rule that backtest numbers never appear on the leaderboard (S-04) — this is the decision that keeps the competition honest.
-3. Decide whether v1 scope is spreads/totals/ML plus game props only (S-05), or the wider market set with a longer gate build.
-4. Decide what the leaderboard actually pays (S-25); until then it is a readiness board, which is what we published.
-
-## What the 12 November re-verification changed
-
-This session did not take the previous build's word for anything. It re-fetched the official standings,
-the Week 10 fixture list and all seven rendered chunks of the injury hub, and compared them row by row
-against `data/`. The result is worth stating plainly because it cuts both ways.
-
-**What held up exactly.** All **32 of 32** standings rows matched the live NFL page on wins, losses, ties,
-winning percentage, points for, points against, net points and streak. All **14 of 14** Week 10 fixtures
-matched on date, kickoff time, broadcaster and venue. Every one of the 254 injury rows that *is* in the file
-matched the league's own table on name, position and practice status — there is no fabricated row anywhere.
-
-**What did not hold up.** The published prose claimed more than the data supported, in four places:
-
-| Claim | Reality | Now |
-| --- | --- | --- |
-| The snapshot covers `28 clubs` | it holds **24** of the 28 playing | reported as `{{metric injury_coverage}}`, derived from the fixture list |
-| Empty blocks are **SEA, CIN, LAC, BAL** | only **LAC and BAL** say "No Injuries Reported"; SEA and CIN publish full blocks we never ingested | [FL-24](flagged-for-review.html) published, the stale assertion in [FL-01](flagged-for-review.html) corrected |
-| **25** suggestions / **28** questions / **15** flags | 29 / 29 / 22 registers actually hold | all corrected, and now guarded by an audit |
-| the repository holds **1 tracked file** | it holds **384** across seven merged sessions | the landing page states the real inventory |
-
-The mechanism matters more than the errors. `tools/build_site.py` had **hard-coded** the empty-club list and
-the `28 clubs` subtitle, so both were immune to the truth of the file next to them. Eight passing audit
-suites never caught it, because every one of them compares the *site* to `data/` and none compares `data/`
-to the *league*. That gap is now closed for these cases: the club set is derived from the fixture list, and
-two new checks fail the build rather than warn. Both were tested with negative controls, which is recorded
-on the [verification method](methodology.html) page.
-
-**The lesson, for whoever runs next.** A number a file can be asked about must either be measured from that
-file on every build or be absent. Prose counts rot silently, and a green audit suite is not evidence that
-the data is still true — only that the site still agrees with it.
-
-## What the 13 November settlement changed
-
-One Week 10 game became official after the previous build — **Washington 24, NY Giants 21** on Thursday 12 November — and it is the first result any line on this site has been measured against. It is worth reading carefully, because it is a small sample that produces one flattering number and one unflattering one.
-
-| What we published | What happened | Read |
-| --- | --- | --- |
-| Our spread, NYG −2.5 | Giants lost by 3 | **5.50 pts of error.** A predictor that wrote the league average of 0.00 every week was off by 3.00. Our lean cost 2.5 points against knowing nothing. |
-| Our total, 45.5 | Actual total 45 | **0.50 pts of error** — the best number on the site, and the least meaningful. |
-| Archived community price, 40.5 | Actual total 45 | 4.50 pts of error. We beat it by 4.0, but the league mean is 45.93, so the archive was the outlier. |
-| Points-only fair line, NYG −5.0 / 48.0 | — | 8.00 and 3.00 pts of error. The simplest model here is also the worst on this game. |
-
-The reason the 0.5 does not mean what it looks like is on the [Settled Week 10](week10-settled.html) page: this game's total landed 0.93 points from the league mean, and only **8 of the 136** verified games are that average or closer. A near-average game hands every predictor a cheap win. Detecting a 1.0-point difference in mean absolute error at 80% power needs roughly **1,400–1,600 games**; one settled game is 0.07% of that.
-
-Two consequences for the programme:
-
-1. **The standings refresh exposed a process gap, not a data one.** NYG and WAS were each one game stale. The two rows are corrected, but no cumulative table on this site states when it was read, so the next staleness will be just as invisible. That is [FL-35](flagged-for-review.html), [Q-40](questions.html) and [S-43](suggestions.html).
-2. **The backtest corpus is now explicitly frozen.** The weeks 1–9 file keeps its published SHA-256 (`f0dffce0…6f33`) and week 10 results go into a separate append-only file, so no grade already published is silently re-baselined by a refresh.
-
-The settlement pipeline works end to end. That is genuinely new and genuinely useful — it is the mechanism the leaderboard needs. It is not evidence that the model works, and nothing yet published could be.
-
-## What the 13 November forward sample changed
-
-The settlement above produced one graded game. A settlement cannot be a *forecast* — the line and the result were both published after the fact, so the only thing it proves is that the arithmetic runs. This session therefore built the thing that makes a forecast possible: **thirteen Week 11 lines, published and hashed before any of those games was played.**
-
-| What changed | The measured result | Where |
-| --- | --- | --- |
-| **The competition has a forward sample.** Thirteen lines for 19–23 November, each with the model inputs beside it, published with a decision timestamp of 2026-11-13T12:39Z and a SHA-256 over the lines file, the frozen corpus, the settled-games file and the generator itself. | 13 lines, 4 artefacts hashed | [Week 11 lines](week11-originated.html) |
-| **The model is proved to be the same model.** `tools/originate_week11.py` re-implements the published ratings model, so it re-derives all **fourteen** already-published Week 10 lines from the frozen corpus and compares every spread and total cell before it writes anything. It matched 14 of 14. `tools/verify.py` re-runs that guard on every verification. | 14/14 lines re-derived exactly | [verification](methodology.html) |
-| **The pre-registration is a mechanism, not a promise.** Editing one spread in the pre-registered file from 5.5 to 1.5 makes the grader report `BROKEN`, withhold the grade and exit non-zero. Restoring it returns `intact`. | tamper test passed | [Week 11 lines](week11-originated.html) |
-| **Two suggestions became reality.** S-44 (auto-grade every line against the settled result) and S-45 (publish the required-sample number beside every performance figure) are now implemented and verified on every run. | 95 verifier checks pass | [suggestions](suggestions.html) |
-| **One flag was closed with two dated official sources.** The two Week 11 broadcaster cells that disagreed with the official page are explained: the league's own announcement of 9 November matches the repository's transcription cell for cell, so the league moved the two broadcasts between 9 and 13 November. | FL-36 resolved | [FL-36](flagged-for-review.html) |
-
-What the forward sample says about the lines themselves is on the [Week 11 page](week11-originated.html), and the finding is worth one line here: **our spreads sit on average 3.5 points closer to a pick'em than the community archive's do** — our fitted home-field coefficient is 0.18 points, the archive's widest lines are 14 and 16.5 points. Our totals are the weak half, exactly as the lab already measured.
-
-The measurement apparatus now exists and is proven. Whether the lines are any good is a question the next eleven days answer, and thirteen observations cannot answer it.
-
-## What the 13 November personnel pass changed (session `83246f00`)
-
-The brief's depth question — *which 2nd, 3rd or 4th-string player is replacing a starter, on offence and on defence* — now has an answer for a third of the league instead of an eighth. Ten clubs' own published depth charts were transcribed from the clubs' own pages and joined to the same day's official injury hub. The join is on the [Personnel Relief](personnel-relief.html) page, and it is the first page on this site that answers that question with a string in the cell rather than a justification for leaving it blank.
-
-| What changed | Before this pass | After |
-| --- | --- | --- |
-| Clubs with a transcribed depth chart | 4 of 32 (KC, GB, NE, DET) | **{{metric pr_charts}}** (adds WAS, NYG, MIA, SEA, BAL, LAC) |
-| Injury-hub filings on record | 279 rows at the 12 Nov evening read | **{{metric pr_hub_rows}}** at the 13 Nov read, in its own dated file |
-| Listed players that resolve to a 1st/2nd/3rd/4th string | 17 cascades across 2 clubs | **{{metric pr_resolved}} of {{metric pr_rows}}**, each carrying the club-chart URL it came from |
-| 1st-string players who did not practise, both sides of the ball | not measurable at scale | **{{metric pr_first_dnp}}** ({{metric pr_offence_first_dnp}} offence, {{metric pr_defence_first_dnp}} defence) |
-| Position units where *no* published rung is clean | not measurable | **{{metric pr_full_unit_units}}** — {{metric pr_full_unit_list}} |
-
-**The finding, stated narrowly.** Two clubs have a guard spot where the club's own published 1st and 2nd string are both on the report: New England (Ben Brown did not practise, Walter Rouse limited) and Seattle (Quenton Nelson did not practise, Anthony Bradford limited). That is a two-rung deficiency read off the clubs' own documents. It is **not** a claim that either club will lose yards, it moves no line, and no strategy consumes it — the availability signals stay behind [G-03](validation-gates.html) because a one-day register cannot be a point-in-time backtest.
-
-**Three things this pass established that change other decisions.**
-
-1. **The site's own coverage claim was too generous and is now measured.** It said the depth join covered 4 clubs; it covered two clubs' chains. The uncovered set is now a generated table, not a sentence ([FL-40](flagged-for-review.html)).
-2. **A club's depth chart can be stale in a way nothing warns you about.** Nine of ten clubs print no date on it, and the Chargers' chart still lists a player an official 10 November roundup reports traded to Denver ([FL-39](flagged-for-review.html)). A string and a practice code therefore look equally fresh in a table when only one is.
-3. **"The sandbox cannot reach nfl.com" was wrong, and half the repository's plan rests on it.** Raw shell HTTPS does fail, but the agent's page-fetch path reaches nfl.com and the club sites, which is how this pass was done at all. [Q-24](questions.html) has to be split into "a CI job cannot fetch" and "a session can" ([FL-37](flagged-for-review.html)).
-
-**What it did not do, and why.** Eighteen clubs remain uncovered. They are cheap in principle — ten charts took twelve minutes of reading — but the clubs use incompatible position vocabularies (WAS prints `DL` where SEA prints `DT` and `NT`) and a fast transcription of eighteen charts is how a confident wrong string gets published. [S-47](suggestions.html) turns that into a costed backlog rather than a caveat.
-
-## Standing risk to name plainly
-
-Everything on the blue pages is a specification written before the data existed. Specifications are cheap in this domain and the record of betting models is poor; the gates and the negative controls (ST-12 do-nothing, ST-13 public-news echo) exist precisely so that a specification has to survive contact with results. Until then the correct posture toward any number on the origination pages is scepticism, and the site is built so that the blanks are visible rather than hidden.
-
-
----
-
-## Added in the second verification pass, 12 Nov 2026 22:35–23:30Z (session `a392a193`)
-
-The site you are reading was re-checked against the live official pages rather than against its own notes. Four things changed as a result, and all four are decision-relevant.
-
-| What changed | The measured result | Where |
-| --- | --- | --- |
-| **The injury register is a timestamp, and it had moved.** A second read of the same official hub 18 hours later held 279 rows instead of 254, 26 clubs with entries instead of 24, and 15 re-filed practice codes. No row was withdrawn, no player URL key changed, and the six game-status designations were identical. | 0 retracted rows · 25 added · 15 re-coded | [Depth deficiencies](deficiencies.html), [FL-27](flagged-for-review.html) |
-| **Standings and the Week 10 slate re-verified clean.** 32 clubs × 8 published columns matched the live page exactly, including streaks; all 14 fixtures, dates and kickoff times matched the hub's own slate headers. | 9 re-verification checks, 0 mismatches | [data/reverification_a392.csv](https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/reverification_a392.csv) |
-| **Origination stopped being a specification.** A ridge ratings model fitted only on the officially sourced 136-game log, walked forward week by week, beats every no-information baseline on spreads and does not beat the archived price by enough to call either way: paired error +0.295 pts (CI −0.409 to +1.011) on spreads, +0.847 (CI +0.153 to +1.580) on totals. Totals are therefore published as a diagnostic, not a line. | spread MAE 9.278 vs 10.455 baseline vs 8.983 archived price | [Fair-Line Lab](model-lab.html) |
-| **Correlations became numbers.** Eight measurements with seeded bootstrap intervals, including the same-game coupling a parlay is priced on: against the archived lines, home-spread-cover and game-over have a phi of −0.241, and a ticket priced by multiplying the marginals overstates the joint hit rate by 42.4%. Home-field advantage this season is 0.50 pts with an interval spanning zero, so the conventional 2.5 is now visibly a prior rather than a measurement. | [Measured correlations](measured-correlations.html) | |
-
-Two defects found while doing it are worth reading before any next step, because both are the kind that survive a passing test:
-
-- **A cross-source join silently dropped a whole club.** The community archive writes `ARI` and `LA` where the league writes `AZ` and `LAR`; without an alias table the join loses all nine Arizona games and the model still reports an error rate ([FL-28](flagged-for-review.html), [S-36](suggestions.html)).
-- **The register asserted something the repository contradicted.** "No price data of any kind" sat next to 20,490 rows of vendored prices, and the file named `closing_lines.csv` stops in 2018 while the only 2026 prices live in `games.csv`. The upstream schema that is supposed to define those columns was last edited 13 May 2020 and never says whether the price is an open or a close ([FL-29](flagged-for-review.html), [FL-30](flagged-for-review.html), [Price archive](price-archive.html)).
-
-**The requirement that is still not met, stated plainly:** 2nd/3rd/4th-string deficiency tracking works — for two clubs. The join pattern is proven end to end on Seattle and Los Angeles (a first-string quarterback out with a limited second-stringer and an unreserved third-stringer behind him; a second-string nose tackle out and a third in; a long snapper with no backup listed on the club's own chart), and it produces the deficiency signal the standings cannot see. Scaling it is a transcription cadence decision ([Q-37](questions.html), [S-39](suggestions.html)), not a research problem.
-
-**What to decide now, in order:** (1) start the daily stored injury snapshot so availability signals have a history — it is worth more every day it runs and it unblocks the largest part of the brief ([S-35](suggestions.html), [Q-36](questions.html)); (2) adopt the alias table plus a join-row-count check ([S-36](suggestions.html)); (3) admit the paired-error rule to the gates so a strategy cannot promote itself on an easy slate ([S-38](suggestions.html)); (4) decide the price-vintage question, because it changes the wording of every CLV claim in the project ([Q-35](questions.html)).
-
-## Added in the third verification pass, 13 Nov 2026 12:45Z (session `66faefac`)
-
-The same official hub, read a third time, plus the first prediction this site has locked before a
-result existed. Four things moved, and none of them is a correction of the pages below: those snapshots
-stay byte-frozen so the drift stays measurable.
-
-| What changed | The measured result | Where |
-| --- | --- | --- |
-| **The register grew again, and nothing shrank.** A third read of the Week 10 hub 14 hours after the second holds 296 rows instead of 279, across all 28 playing clubs: 26 with names, two publishing `No Injuries Reported`. Ten clubs gained rows, eighteen were unchanged, none lost one. | 254 · 279 · 296 rows | [Week 10 availability](availability-1113.html), [FL-57](flagged-for-review.html) |
-| **Availability now joins to a depth chart, for four clubs.** Eighteen unavailable players are read against the column they hold on their club's own published order, and eight of them sit in a 1st-string column: Green Bay lost a running back, a centre, a middle linebacker and a first-string nickel to non-participation in one block, while Detroit's starting centre and starting corner are both ruled out. | 18 joined rows · 8 first-string · 3 exhausted chains | [availability_deficiency_66faefac.csv](https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/availability_deficiency_66faefac.csv) |
-| **The first locked decision.** ST-15 takes the healthier club when the availability load differs by four or more, was written at 12:45Z with a SHA-256 committed, and called 2 of the 13 un-played fixtures. Every other fixture is recorded as a no-call rather than dropped, and every stake is zero because gate G-07 is not passed. | 14 fixtures · 2 calls · 0 units staked | [Pre-registration lock](preregistration.html) |
-| **One hub row contradicts itself, in the open.** Detroit's Kerby Joseph carries a full practice and an `OUT` designation in the same row, which breaks any feature that reads only one column. It is published as a conflict, not resolved. | 1 of 9 designations | [FL-58](flagged-for-review.html), [Q-52](questions.html) |
-
-**The limitation that decides what this is worth:** the load is a sum of two published counts, so a player in both columns is counted twice. Only Washington, New England and Detroit carry both columns today, and de-duplicating those three changes no locked call. The arithmetic on required sample does not move either: 1,382 games to detect a 1.0-point error difference, 400 settled bets before any leaderboard claim. Two calls is not evidence of anything except that the mechanism runs.
+This summary is rendered from `content/executive-summary.md`; nothing in it is typed into HTML by hand. Every factual claim above names its source page; anything that cannot be confirmed from an official source is blank on the site and listed on Flagged for Review. No manual input from the owner was required to produce it.
