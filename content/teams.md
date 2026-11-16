@@ -17,4 +17,4 @@ It does not rank clubs. It does not order depth, and it does not estimate who re
 
 Week 11 byes (Atlanta, Cleveland, Green Bay, LA Rams, New England, Seattle) are not verified against an official Week 11 bye list and are not shown on this page.
 
-The reserve list prints the Rams as "LA". This table uses the injury hub's "LAR" code, and the mapping is logged as FL-116.
+The reserve list prints the Rams as "LA". This table uses the injury hub's "LAR" code, and the mapping is logged as FL-119.

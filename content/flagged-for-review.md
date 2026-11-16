@@ -25,3 +25,9 @@ The brief said: if a value cannot be confirmed from an official source, leave it
 | Our number, the consensus close, the residual | [line origination](line-origination.html) | a price feed (Q-01) — this is the whole objective, currently un-earnable |
 | Tracked bets, CLV, ROI, drawdown on the leaderboard | [leaderboard](leaderboard.html) | forward tracking after pre-registration; nothing is back-filled from a backtest by rule (S-04) |
 | Seven official standings columns | [standings](league-data.html) | field names from the underlying data source; guessing column order was refused (FL-07) |
+
+## Repo review and live spot-check, 16 November 2026 (session `6b5607fd`)
+
+Ten checks were run against this tree and against the live official page. Nine passed or are open, and one is blocked by an owner decision. The spot-check read 50 rows from the live [injury hub](https://www.nfl.com/injuries/) at about 18:05 UTC and matched the repository's 14:44 UTC read on injury, practice code and game status for every row. The three new flags (FL-115 to FL-117) are in the table above. The 50-row comparison is in `data/live_spotcheck_6b5607fd_compare.csv` and the reproducer is `tools/review_6b5607fd.py`.
+
+{{csv data/repo_review_6b5607fd_20261116.csv;;cols=id:ID,area:Area,check:Check,result:Result,status:Status,evidence:Evidence,source_url:Sources:urls;;source=S-REPO;;caption=Each check states its method in the data file. Source links are the official league page where the check reads it, or the repository file where the check is about our build.}}
