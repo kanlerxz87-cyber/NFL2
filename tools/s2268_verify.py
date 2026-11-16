@@ -69,6 +69,8 @@ ALLOWED_SHARED = {
     "tools/republish_injuries_8d1069e1.py",
     "content/executive-summary.md", "content/line-origination.md", "content/index.md",
     "tools/verify.py",
+    # merged from origin/main (session 4540f880, PRs #113/#115): its logged scope, same practice as CR-58E9-02
+    "content/official-verification-20261116.md", "data/reverification_4540f880.csv", "data/verify_reads_20261116_4540f880.csv",
     "tools/verify_s92.py",  # session 8d1069e1: reads the archived 12 Nov table for its 12 Nov snapshot diff
     # merged from origin/main (sessions 6b5607fd and 3e77121b, PRs #106-#111): their logged scope, listed here so this
     # guard does not report another session's merged work as trespass (same practice as CR-58E9-02)

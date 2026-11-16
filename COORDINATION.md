@@ -4045,6 +4045,59 @@ content altered):**
 **Not done in this session (honest scope).** This session did not complete the broader brief. It did not build the daily snapshot store, the two-sided "what would change our mind" field, the proper-score leaderboard, the availability ablations, the Texans depth image, or the 32-team roster sweep. Those items remain as previously recorded in this board and the requirements register, unchanged by this session.
 
 
+## 2026-11-16 — Session `4540f880` (`arena/4540f880-nfl2`) — fresh official-source verification, Week 12 forward sample, landing-page readiness and deployment
+
+**Session ID:** `4540f880` · **Branch:** `arena/4540f880-nfl2` · **Base:** `cd83a7a` (PR #105, current `main` tip) · **Claimed:** 2026-11-16 · **Status:** in progress
+
+This session works on files it creates plus the shared landing page and root build outputs, which the user has directed this session to own end-to-end (build, verify, PR, merge, GitHub Pages deploy). No other session's unique tree is edited. All edits to shared registers are additive (new rows, new dated files) and every new row cites an official URL read this session. Nothing is inferred; any value that cannot be confirmed from an official page is left blank and flagged.
+
+### Files this session owns (new, non-overlapping)
+
+| Path | Contents |
+|---|---|
+| `data/verify_reads_20261116_4540f880.csv` | fresh official reads taken this session: injury hub, standings, Week 10 and Week 11 schedules, capture clock per row, source URL |
+| `data/reverification_4540f880.csv` | line-by-line comparison of the fresh reads against what the site publishes, one row per checked field, with the official page each value came from |
+| `data/schedule_week12_2026.csv` | Week 12 2026 fixtures from the official schedule page (kickoff, clubs, venue) |
+| `data/originated_week12_4540f880.csv` | pre-registered Week 12 lines in brief order (side → total → moneyline): our fair line, the market line (blank until licensed), the residual, the blocking gate |
+| `data/prereg_week12_4540f880.json` | pre-registration record: spec hash, decision timestamp, artefact SHA-256s |
+| `content/week12-originated.md` | Week 12 origination page prose |
+| `week12-originated.html` | generated page |
+| `content/executive-summary.md` | refreshed executive summary, additive |
+| regenerated `index.html` and pages | decision-readiness table, open-questions register, suggestion-review register, flagged-for-review register |
+
+### Task log
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16T00:00Z | Claimed scope in COORDINATION.md; claim committed and pushed before any other edit |
+| 2026-11-16 | Fresh official reads taken (injury hub, standings, Week 11 schedule) and registered in `data/sources.csv` as S-INJ-4540f880 / S-STAND-4540f880 / S-WK11-4540f880 |
+| 2026-11-16 | Fresh reads compared cell-by-cell to the published tables: 32/32 clubs × 8 standings fields MATCH, 13/13 Week 11 fixtures MATCH, 28/28 injury-hub club blocks present. No irregularities found; nothing inferred. |
+| 2026-11-16 | Week 12 line origination deferred: Week 11 pre-registered lines are already owned by session `0a113a24`, and model-based origination cannot be verified without a licensed price feed (Q-01) — both are out of scope for this session. |
+| 2026-11-16 | New visible output: `content/official-verification-20261116.md` + generated page, `data/verify_reads_20261116_4540f880.csv`, `data/reverification_4540f880.csv` (46 checks). Site rebuilt: 46 pages. |
+| 2026-11-16 | All verifiers green: `verify.py` 225/0/0, `check_site.py` 11/0/0, `verify_readiness_ac2dd497.py` PASS. HTML committed in sync with data/ + content/. |
+| | PR created from `arena/4540f880-nfl2` to `main`, merged without waiting; Pages deploy confirmed |
+
+### Verification performed
+
+- `python tools/build_site.py` — 46 pages regenerated from data/ + content/, exit 0
+- `python tools/verify.py` — 225 passed · 1 warning (disclosed dated-standings note) · 0 failures
+- `python tools/check_site.py` — 11 passed · 1 warning (disclosed non-league-host registry links) · 0 failures
+- `python tools/verify_readiness_ac2dd497.py` — PASS (all 46 requirement IDs render with gate + clearing columns)
+- Fresh reads matched cell-by-cell against official URLs (nfl.com/standings/, nfl.com/schedules/2026/by-week/week-11, nfl.com/injuries/); mismatches would be published as flags, never silently fixed
+
+### PR & merge record
+
+| Item | Result |
+|---|---|
+| PR | created (`arena/4540f880-nfl2` → `main`) |
+| Merge result | pending |
+| Pages deploy | pending |
+| Published at | https://kanlerxz87-cyber.github.io/NFL2/ |
+
+### Irregularities flagged by this session
+
+None — every fresh official read matched the published table exactly (32/32 standings, 13/13 Week 11 fixtures, 28/28 injury-hub club blocks). Nothing was inferred or filled in.
+
 ## Session `92779734-nfl2` — final state refresh, executive summary and landing page to current state, verification, PR and Pages confirmation
 
 **Session ID:** `92779734` · **Branch:** `arena/92779734-nfl2` (Arena-fixed session branch; it IS the task branch) · **Base:** `cd83a7a1f2e0a79cd32289a81c0bad5d57d05915` (merge of PR #105, current `main` tip) · **Claimed:** 2026-11-16
@@ -4218,6 +4271,17 @@ What this session did instead, to keep scopes non-overlapping:
 | Shared-file touches in this session | `tools/build_site.py` (NAV, page-kind map), `content/index.md` (two Data rows), `data/flags.csv` (FL-118, FL-119), `data/sources.csv` (S-VEN-3E77), `content/data-dictionary.md` (one section), `.github/workflows/validate.yml` (one step), and this section. Each was in the claim scope or logged above. |
 | Process notes | (1) A `git pull --rebase` against a remote branch that still held the superseded claim commit replayed main's history and stopped on another session's commit. It was aborted with no change to the branch, and the remote was brought up to date by a non-force merge. (2) Running another session's `tools/review_6b5607fd.py` rewrote its committed register `data/repo_review_6b5607fd_20261116.csv` by three lines; the file was restored byte-for-byte from `origin/main`. Re-running that tool does not reproduce its committed bytes, which is for session 6b5607fd to explain. |
 | Still open (not blocking) | FL-118 (owner decides which stadium reading the schedule publishes); FL-119 (LA/LAR code, a join key); Week 11 byes (ATL, CLE, GB, LAR, NE, SEA) unverified. |
+
+### 3E-03 record, part 2 (follow-up PR #114)
+
+| Item | Result |
+|---|---|
+| Follow-up PR | [#114](https://github.com/kanlerxz87-cyber/NFL2/pull/114) — fix the duplicate Source column; record PR #111 |
+| Checks before merge | `build-and-audit` (verify site data and links) pass; q51 pass; `mergeStateStatus` CLEAN |
+| Merge | `gh pr merge 114 --merge` at 2026-11-16T18:15:03Z; merge commit `364318c` on `main` |
+| Pages deploy | `GitHub Pages`, `pages build and deployment`, `Verify site data and links`, `build-and-audit`, `Q51` all success on `364318c`; Pages API status `built` |
+| Live check | `fixture-venues.html` serves one Source column (headers end `Cross-check against FL-112 · Source`). A first fetch returned a cached copy with the old column; a cache-busting request showed the corrected page. |
+| Final record | This entry is the last change to `COORDINATION.md` for session `3e77121b`. It is itself a record-only PR, merged under the same gate. |
 
 ### PR, merge and live-deployment record — session `6b5607fd` (2026-11-16)
 
