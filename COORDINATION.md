@@ -3968,3 +3968,13 @@ content altered):**
 - FL-112 (renumbered from FL-112-candidate FL-98 at merge; ids FL-97/98/99 belonged to main's 7c23f22f/4e475b8b rows) — Week 11 venue names exist on the official schedule page only as hotel-link URL parameters; "FedEx Field" carried verbatim and flagged as possibly not the venue's current sponsored name. The live table keeps main's `not published` sites; this session's parameter transcription is preserved inside FL-112.
 - FL-113 (renumbered from FL-99-candidate at merge) — the hub's game-day read still places players under other clubs' blocks (Njoku/Mitchell/Waxter under LAC; Walker III/Woods under KC; Lawrence under CIN; Donald/Garrett under LAR; Evans under SF; Nelson under SEA), extending FL-93. The club column stores the block as printed.
 - The official page renders the same player under two spellings across reads (Okonkwo/Hummel/Curl) — recorded in the S-INJ-F3EC registry row; a future join key must be the player slug, never the printed string.
+
+### Session `f3ec0ff8` — deployment record (2026-11-16 ~16:30Z)
+
+| Step | Result |
+|---|---|
+| PR | [#102](https://github.com/kanlerxz87-cyber/NFL2/pull/102) — merged 2026-11-16T15:22:30Z, merge commit `8b35b22` (merge without waiting, per the board rule) |
+| CI on the merge commit | `build-and-audit` success · `Verify site data and links` success · `dcf3b0cc dated re-verification` success · `GitHub Pages` success (all four completed) |
+| Pages | live at https://kanlerxz87-cyber.github.io/NFL2/ — injuries.html confirmed serving the 16 Nov build (newest-read lead + FL-94 note + reserve section) |
+| Post-merge flag re-check (CR-58E9-07) | `origin/main` `data/flags.csv`: 113 unique FL ids, 0 duplicates |
+| MNF watch | W10-14 LAC@BAL kicks 01:15 UTC 17 Nov; when Final, the played file, standings, settled aggregates and prereg settled-games hash need the next dated refresh under the same append-only rules |
