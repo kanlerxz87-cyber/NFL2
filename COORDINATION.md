@@ -3519,3 +3519,45 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+
+---
+
+## Session `d304c6fe` (`arena/d304c6fe-nfl2`) — claim: dated official re-verification, reserve-list capture, and open-gate close-out (2026-11-16)
+
+**Task status:** in progress · **Owner:** `d304c6fe` · **Branch:** `arena/d304c6fe-nfl2` · **Claimed:** 2026-11-16
+**Parallel-session check:** `git fetch --prune` at claim time shows no other `arena/*-nfl2` branches on the
+remote; `origin/main` is at `a2de786` (PR #93). No claim on this board is in progress, so nothing is
+taken over. This session will also act as the final integration session for shared files
+(`COORDINATION.md`, `data/flags.csv`, NAV/build wiring) at integration time, per the board's rule
+that shared outputs change only in the integration session.
+
+### File scope (non-overlapping; no other session active)
+
+| Path | Contents |
+|---|---|
+| `data/*_d304c6fe.*` | new captures: official reserve list / transactions, Week 11 verified results, dated injury-hub re-read, schedule-announcement record |
+| `data/demotion_gates_d304c6fe.csv`, `data/wwcm_d304c6fe.csv` | demotion-gate register (BL-08, FL-86) and two-sided "what would change our mind" fields (BL-17) |
+| `content/reserve-list.md`, `content/demotion-gates.md` | new site pages for the above |
+| `docs/PRICE-DATA-POLICY-d304c6fe.md` | BL-20 price-data policy decision |
+| `scripts/*_d304c6fe.py`, `tools/verify_d304c6fe.py` | capture/verification tooling for this session's files |
+| shared files at integration only | `tools/build_site.py` (NAV), `content/index.md`, `data/flags.csv`, `data/brief_backlog_58e9c708.csv` (status updates), `COORDINATION.md` |
+
+### Planned tasks
+
+| ID | Task | Brief line | Status |
+|---|---|---|---|
+| D1 | Capture the official transactions hub + dated Reserve List as a first-class dataset; cross-check FL-52 IR placements and Malik Willis | BL-65, BL-13, BL-47, FL-95 | in progress |
+| D2 | Flag stale depth rows against the captured transactions log (BAL QB1/QB2, IND WR trades) | BL-47, BL-34 | in progress |
+| D3 | Verified Week 11 results feed rows with official game-centre URLs | BL-02, BL-19 | in progress |
+| D4 | Publish the league's dated 2026 schedule announcement beside the live schedule page | BL-24 | in progress |
+| D5 | Define the demotion gate (two-sided gates; live → paper) and pre-register it | BL-08, FL-86 | in progress |
+| D6 | Decide and publish the price-data policy before any backtest is published | BL-20 | in progress |
+| D7 | Two-sided "what would change our mind" field for every strategy entry | BL-17 | in progress |
+| D8 | Dated 2026-11-16 injury-hub re-read with clock time; publish delta, not level | BL-21, BL-55, BL-56 | in progress |
+| D9 | Full verifier suite on the integrated tree, PR → merge → Pages confirm | integration | pending |
+
+### Log — session `d304c6fe`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16 | Repo reviewed at `a2de786` (30+ prior sessions, PRs through #93, 96 flags, 71-line brief backlog). Parallel check clean. Claimed D1–D9 with the scope above. |
