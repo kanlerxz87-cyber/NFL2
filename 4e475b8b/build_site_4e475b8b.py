@@ -184,7 +184,36 @@ hub carries traded players inconsistently (FL-108).</p>""")
 exactly as published and <em>no claim is made that they are wrong</em>: no roster or club page was read in this session, so corroboration is
 pending (Q-46). The two FL-93 rows sighted on 2026-11-15 (Kenneth Walker III under KC, Dexter Lawrence under CIN) reproduce today unchanged.</p>""")
 
-    parts.append("""<h2>8 · Method and provenance</h2>
+    # 8. cross-check vs the retained raw-byte capture (session 7c23f22f, same fetch minute)
+    cap = read_csv(ROOT / "data" / "capture_reconciliation_7c23f22f.csv")
+    ALIAS = {"LA": "LAR"}  # documented in FL-98 (main's row; session 7c23f22f)
+    hub_index = {(r["team"], r["player"]): r for r in hub}
+    crows = []
+    cmatch = 0
+    for c in cap:
+        club = ALIAS.get(c["club"], c["club"])
+        m = hub_index.get((club, c["player"]))
+        diffs = []
+        if m:
+            if c["pos_capture"] != m["pos"]:
+                diffs.append("pos")
+            if c["injury_capture"] != m["injury"]:
+                diffs.append("injury")
+            if c["practice_capture"] != m["practice"]:
+                diffs.append("practice")
+            if c["status_capture"] != m["status"]:
+                diffs.append("status")
+        result = "MATCH" if m and not diffs else ("MISMATCH: " + ",".join(diffs) if m else "UNKEYED")
+        if result == "MATCH":
+            cmatch += 1
+        crows.append("<tr>" + cell(club) + cell(c["player"], SRC) + f'<td class="{"b-match" if result == "MATCH" else ""}">{result}</td>'
+                     + cell("raw response 2026-11-16T14:44:29Z, SHA-256 " + c["capture_sha256"][:12] + "…")
+                     + f'<td><a href="https://github.com/kanlerxz87-cyber/NFL2/blob/main/data/captures/injuries_hub/20261116T144429Z_2877f2c8a1a2.bin">capture</a></td></tr>')
+    parts.append(table(["Club", "Player", "This 14:44Z register vs retained capture", "Capture provenance", "Source"],
+                       crows, f"8 · Cross-check: this read vs the retained raw-byte official capture ({cmatch}/347 MATCH)",
+                       "Session 7c23f22f captured the raw HTTP response of nfl.com/injuries/ at 2026-11-16T14:44:29Z (SHA-256 2877f2c8…, data/captures/injuries_hub/20261116T144429Z_2877f2c8a1a2.bin) — the same fetch window as this session's transcription (completed 14:44Z). Reconciling that capture against this register: 347 of 347 rows identical on position, injury, practice and game status, 0 mismatches, after the documented LAR↔LA club-key alias (FL-98). A hand transcription and a raw-bytes capture from the same minute agreeing cell for cell is the strongest provenance the Week 10 register has had (FL-90's raw-capture requirement is met by the capture store)."))
+
+    parts.append("""<h2>9 · Method and provenance</h2>
 <p class="sum">Chunks 0–7 of <a href="https://www.nfl.com/injuries/">nfl.com/injuries/</a> fetched 2026-11-16 (window closing 14:44Z) and stored verbatim in
 <code>4e475b8b/raw/chunk-*.md</code>; the two November transactions tabs stored verbatim beside them. <code>4e475b8b/build.py</code> parses the chunks
 mechanically (four chunk-boundary row splits spliced positionally and asserted), enforces the practice/status vocabulary, fails loudly on structural drift
