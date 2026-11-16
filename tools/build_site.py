@@ -313,6 +313,11 @@ SITE_TREES = [
     ("review", "`01b698ef`", "#9 #11", "as authored", "verification-review dashboard and the 423-row register"),
     ("docs", "`85d79210`", "#4 #5", "superseded", "the earliest category dashboard; kept for provenance"),
     ("archive/session-009ec582", "`009ec582`", "#6 #7", "archived", "first 12-page build, kept intact by request"),
+    ("4e475b8b", "`4e475b8b`", "*this PR*", "current",
+     "fourth dated injury-hub read 2026-11-16T14:44Z: 347 rows reproduced cell for cell against the 15 Nov read, "
+     "deltas against the 13 Nov and 12 Nov reads, the November reserve-list/trades re-read that widens FL-96 to a "
+     "class of ten (FL-104) and finds traded players placed inconsistently (FL-105), and the FL-97..103 promotion of "
+     "the dcf3b0cc flags into the canonical register"),
 ]
 
 

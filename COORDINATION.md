@@ -3519,7 +3519,75 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+## Session `4e475b8b` (`arena/4e475b8b-nfl2`) — fourth dated full-hub injury read, dcf3b0cc flag promotion, flag-register verifier
 
+**Session ID:** `4e475b8b` · **Branch:** `arena/4e475b8b-nfl2` (Arena-fixed session branch; it IS the task branch) · **Base:** `a2de786` (merge of PR #93, current `origin/main` tip) · **Started:** 2026-11-16T14:4xZ. Claim committed and pushed before any other file was touched.
+
+**Live-scope watch.** PR #71 (`arena/1ef36c55-nfl2`, open) owns `availability_monitor/**`, `.github/workflows/availability-fingerprint.yml`, `content/availability-fingerprints.md`, `content/index.md`, `content/data-dictionary.md`, `data/availability_fingerprints.csv`, `tools/build_site.py`, `tools/verify.py` and regenerated root HTML. PR #84 (`arena/f05c00f2`, open) owns `audits/f05c00f2/**`. None of those paths is edited by this session. Root `*.html` are build products only; whichever PR lands second rebases and rebuilds.
+
+### Tasks claimed
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| H1 | Fourth dated row-level read of the live `nfl.com/injuries/` Week 10 hub (all 8 chunks, 28 clubs), on 2026-11-16, continuing the series 12 Nov ×2 → 13 Nov → 15 Nov ×2 | in progress | `4e475b8b` | `data/injuries_wk10_4e475b8b_20261116.csv` (new) |
+| H2 | Row-level delta of H1 against the 15 Nov 12:55Z read (`data/injuries_wk10_5de1805b_20261115.csv`) and against the 13 Nov read (`data/injuries_wk10_83246f00.csv`); every changed cell published, nothing silently fixed | in progress | `4e475b8b` | `data/reverification_4e475b8b_20261116.csv` (new) |
+| H3 | Same-day re-read of the official transactions hub (reserve list + trades, November 2026 tabs) to test FL-95 and FL-96 against today's pages | in progress | `4e475b8b` | `data/transactions_read_4e475b8b_20261116.csv` (new) |
+| H4 | **CR-D1 (dcf3b0cc)**: promote the seven `FL-DCF-01..07` findings into the canonical `data/flags.csv` as the next free ids `FL-106..FL-106` (append-only; each row carries its FL-DCF id in the evidence so the mapping stays explicit), plus any new flags arising from H2/H3 as `FL-107+` | in progress | `4e475b8b` | `data/flags.csv` (append-only) |
+| H5 | **CR-58E9-06 / CR-58E9-07 without touching `tools/verify.py`** (PR #71's file): new standalone flag-register verifier — duplicate-id check, https-source check, FL-reference resolution across the shared registers, deterministic next-id allocator computed from `origin/main` | in progress | `4e475b8b` | `tools/verify_flags_4e475b8b.py` (new) |
+| H6 | Self-contained dated dashboard `4e475b8b/index.html` for the new read (static HTML, own table, official source link on every row; no `tools/build_site.py` edit) | in progress | `4e475b8b` | `4e475b8b/**` (new) |
+| H7 | Full verifier suite, PR → `main`, merge without waiting, confirm GitHub Pages deploy, record results here | pending | `4e475b8b` | `COORDINATION.md`, PR only |
+
+**Not touched:** `data/requirements.csv`, `data/questions.csv`, `data/suggestions.csv`, `data/sources.csv`, `content/*.md`, `tools/build_site.py`, `tools/verify.py`, `.github/workflows/**`, `scripts/audit_all_pages.py` (registration of `4e475b8b/` in the auditor walk and the landing-page tree map is logged below as a change request instead of an edit).
+
+### Change requests logged by this session
+
+* **CR-4E47-01** — to the owner of `scripts/audit_all_pages.py`: add `4e475b8b/` to the page walk (one list entry).
+* **CR-4E47-02** — to the owner of `tools/build_site.py` (`SITE_TREES`, PR #71's file): register `4e475b8b/` in the landing-page tree map once PR #71 lands.
+* **CR-4E47-03** — carry CR-58E9-02 unchanged: `tools/s2268_verify.py`'s historical scope allowlist now also reports scope-only notices for this session's new files; no build, data, link or reproducibility defect is reported.
+
+### Log — session `4e475b8b`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16T14:4xZ | Branch at `a2de786` == `origin/main` tip (PR #93 merged 2026-11-15T13:49Z). Two open PRs inspected (#71, #84) and their file lists recorded; scopes avoided. Claimed H1–H7; this claim pushed before any data work. |
+
+
+
+### Session `4e475b8b` — results, merge-conflict record and close-out (2026-11-16)
+
+| # | Task | Status | Files |
+|---|---|---|---|
+| H1 | Fourth dated full-hub read (8 chunks, 28 clubs, 347 rows, fetch completed 2026-11-16T14:44Z) | done | `data/injuries_wk10_4e475b8b_20261116.csv`, raw chunks in `4e475b8b/raw/chunk-0..7.md` |
+| H2 | Row-level delta vs the 15 Nov and 13 Nov reads (694 comparison rows) | done | `data/reverification_4e475b8b_20261116.csv` |
+| H3 | Same-day transactions re-read (reserve list 25 rows + trades 12 rows, 14:46Z) | done | `data/transactions_read_4e475b8b_20261116.csv` |
+| H4 | CR-D1 promotion + two new flags | done | `data/flags.csv` (append-only; ids renumbered at merge, see below) |
+| H5 | Standalone flag-register verifier (CR-58E9-06/07 without touching `tools/verify.py`) | done | `tools/verify_flags_4e475b8b.py` |
+| H6 | Self-contained dated dashboard | done | `4e475b8b/index.html` (builder `4e475b8b/build_site_4e475b8b.py`) |
+| H7 | Full suite, merge, PR, Pages confirm | done | `COORDINATION.md` |
+
+### What the fourth read found
+
+1. **The game-weekend page is stable.** The 2026-11-16T14:44Z read reproduces the 15 Nov 12:55Z read cell for cell on all 347 rows and 171 designations (70 Out, 90 Questionable, 11 Doubtful). It still differs from the 13 Nov read on 194 rows (102 identical, 51 only on the page) and from the canonical 12 Nov table rendered on `injuries.html` on 177 of 254 shared rows with 93 rows missing (FL-94/FL-100/FL-102 refreshed).
+2. **FL-96 is a class of ten, not one** (new FL-107): all nine 11/14 Reserve/Injured placements (Miller NO, Henderson NE, Burton CLE, Alie-Cox IND, Davis-Gaither IND, Skoronski TEN, Townsend TEN, Goodson DAL, Whyle GB) plus Puka Nacua (11/12) appear on the Week 10 report read today — nine with DNP + Out, Nacua with DNP and no designation; 15 of the 25 reserve placements do not appear. The FL-95 assumption that reserve-listed players are absent from the weekly report is contradicted for this class.
+3. **Traded players are placed inconsistently** (new FL-108): Bates and Davis (traded 11/10) are listed under their NEW club JAX; Henley (traded 11/10 LAC→DEN) is listed under his OLD club LAC in the W10-14 block. FL-95's five named facts re-confirmed today against both transactions tabs.
+4. **FL-DCF-01…07 promoted** into the canonical register as FL-100…FL-106 (CR-D1 closed), each row naming its FL-DCF id in the evidence; `dcf3b0cc/flagged.html` remains the historical record.
+5. **Strongest provenance yet:** session `7c23f22f` captured the raw HTTP response of the hub at 2026-11-16T14:44:29Z (SHA-256 2877f2c8…). Reconciled against this session's independent hand transcription (completed 14:44Z): **347/347 rows identical on pos/injury/practice/status, 0 mismatches**, after the documented LAR↔LA club-key alias (FL-98). Published as section 8 of `4e475b8b/index.html`.
+
+### Merge-conflict record (honest account, per board rules)
+
+`origin/main` advanced through PRs #94–#98 (`7c23f22f`, capture store) while this branch worked; 45 paths conflicted. Resolution: build products (`*.html`, `data/build_manifest.json`, `data/verification-report.json`, `datasets/e143a7ca/verification_manifest.json`) taken from main and regenerated once on top; `content/data-dictionary.md` auto-merged; `COORDINATION.md` union-merged (both sections kept; the two remaining `<<<<<<<` strings are historical prose, not markers). **`data/flags.csv` was first mis-resolved:** this session's union script consumed only the first conflict hunk and briefly rewrote the file as 12 rows, losing the header and FL-01…FL-96. The new flag-register verifier caught it on the next run; the file was reconstructed from `origin/main`'s complete register plus this session's nine rows renumbered **FL-100…FL-108** (main had taken FL-97…FL-99; CR-58E9-07 discipline). Repaired in commit `fb2e638`; nothing was discarded, no work from `7c23f22f` was lost, and their FL-97…FL-99 ids are unchanged.
+
+### Verification performed on the merged tree (all re-runnable)
+
+`tools/verify.py` 204/0/0 · `tools/check_site.py` 11/1/0 (pre-existing non-league registry links) · `tools/verify_flags_4e475b8b.py` 108 unique contiguous ids, next free FL-109, 975 references checked, 0 unresolved · `scripts/audit_all_pages.py` 126 HTML / 374 tables / 9,667 rows, 100% row-sourced, 0 broken · `scripts/check_reproducible.py` exact · `engine/verify_repo_and_site.py` PASS · `scripts/verify_s53126614.py` 188 pages, 0 broken · `tools/verify_s92.py` 13/0/0 · `tools/verify_dcf3b0cc.py` 18,941/0 · `tools/verify_readiness_ac2dd497.py` PASS · `tools/verify_backlog_58e9c708.py` 11/0/0 · `tools/verify_coverage_f34622dd.py` 2,423/0 · `scripts/verify_q51.py` 0 errors · Q51 unit tests 36 OK · `node scripts/render_test.js` 0 failures · `scripts/injury_lineage_d8372691.py --check` OK · `tools/review_verify.py` OK · `tools/s2268_verify.py` nested suites PASS with 7 scope-only notices (2 pre-existing; 5 for this session's new files, CR-4E47-03) · `git diff --check` clean.
+
+### Sources read on 2026-11-16
+
+[NFL injury hub](https://www.nfl.com/injuries/) (8 chunks, completed 14:44Z) · [Reserve list, November 2026](https://www.nfl.com/transactions/league/reserve-list/2026/11) (25 rows, 14:46Z) · [Trades, November 2026](https://www.nfl.com/transactions/league/trades/2026/11) (12 rows, 14:46Z) · retained raw capture `data/captures/injuries_hub/20261116T144429Z_2877f2c8a1a2.bin` (session `7c23f22f`, same minute). No NFL fact asserted without an official page or retained capture behind it.
+
+### Handoff state
+
+H1–H7 done. Open owner decisions unchanged: Q-42 canonical injury display, Q-64 schedule-source rule, Q-65 participation timing, Q-50/Q-51 raw retention, FL-85's uncovered brief lines, FL-86's one-sided gates. New for owners: FL-107 (reserve/report overlap class), FL-108 (traded-player placement rule), CR-4E47-01/02 (register `4e475b8b/` in the auditor walk — partially done via SITE_TREES — and confirm the auditor picks it up), CR-4E47-03 (s2268 scope allowlist). The flag-register verifier (H5) now guards the shared register every session appends to.
 ## Session `7c23f22f` (`arena/7c23f22f-nfl2`) — retained, hashed official injury-hub captures (FL-88 / FL-90)
 
 **Claimed:** 2026-11-16 UTC, before any file was created. Status: `in progress`. Base: `main` at `a2de786`.
