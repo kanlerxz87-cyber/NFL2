@@ -3622,3 +3622,11 @@ This session first attempted to claim the requirements readiness matrix and a No
 | Pages | Not deployed by this PR; final integration should verify deployment after the integration merge. |
 
 **Integration progress: PR #84 source branch integrated locally, not yet published to `main`.** Its only merge conflict was the append-only coordination board; the full F05 claim, findings, verification and change-request record is preserved alongside the current integration history. The five standalone audit files were added intact. F05 builder check passed (15 strategy IDs, two-sided criteria, source labels, 30 local links, deterministic output); mutation tests passed 10/10. The PR's CR-F05-02 exposed an additional project-policy defect: `s2268/competition.html` currently publishes retrospective holdout metrics under the title “Leaderboard & rewards.” The user’s no-backtest-on-leaderboard rule requires a separate integration correction; task scope will be claimed before that edit.
+
+### A095-INT-4 claim — remove retrospective scores from leaderboard presentation
+
+**Claimed before this edit:** CR-F05-02 and the brief's standing rule require retrospective holdout results not to appear on any page titled or framed as a leaderboard. The S2268 root-tree page is presently titled “Leaderboard & rewards” despite being scored only on a retrospective weeks 5–9 holdout. This integration task will reclassify that page as a historical research report, remove its rank/reward/stake presentation, preserve the pre-registered result metrics only as an explicitly retrospective research table, and rebuild it from its canonical source. Scope: `tools/s2268_build_site.py` (page presentation only), generated `s2268/competition.html`, and this coordination record. No S2268 input data, model definitions, scores, preregistration, or other page/tree is changed.
+
+| Task | Status | Scope |
+|---|---|---|
+| A095-INT-4 | in progress | `tools/s2268_build_site.py`, generated `s2268/competition.html`, `COORDINATION.md` |
