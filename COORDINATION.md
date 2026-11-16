@@ -4064,9 +4064,9 @@ This session works on files it creates plus the shared landing page and root bui
 
 | Item | Result |
 |---|---|
-| PR | created (`arena/4540f880-nfl2` → `main`) |
-| Merge result | pending |
-| Pages deploy | pending |
+| PR | [#113](https://github.com/kanlerxz87-cyber/NFL2/pull/113) (`arena/4540f880-nfl2` → `main`) |
+| Merge result | Merged (merge commit `198ad953a1e839dd8c3fb5969eaa5d018c80b669`, 2026-11-16T18:18Z); no conflicts after `git fetch` + `git merge origin/main`; resolved additively, no session's data discarded |
+| Pages deploy | Built — GitHub Pages status `built`, no error, source `main /`; live at `https://kanlerxz87-cyber.github.io/NFL2/`; live spot-check of `official-verification-20261116.html` confirmed served with all MATCH results |
 | Published at | https://kanlerxz87-cyber.github.io/NFL2/ |
 
 ### Irregularities flagged by this session
