@@ -3519,3 +3519,38 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+
+## Session `e632af20` (`arena/e632af20-nfl2`) — dated 2026-11-16 live re-verification, integration CR close-out, final PR & Pages record
+
+**Session ID:** `e632af20` · **Branch:** `arena/e632af20-nfl2` · **Branch base:** `a2de786` (merge of PR #93) · **Started:** 2026-11-16
+**Role:** verification + final integration session. No other session holds an open claim at start
+(`git log` tip `a2de786`, 2026-11-15; board reviewed line by line before claiming).
+
+### Tasks claimed (status: in progress)
+
+| # | Task | Status | Owner | Files touched | Sources / verification | Irregularities |
+|---|---|---|---|---|---|---|
+| E632-1 | Board claim + session log | in progress | e632af20 | `COORDINATION.md` | board read in full before claim | — |
+| E632-2 | Dated 2026-11-16 full-hub injury re-read: snapshot + row/count delta vs the 15 Nov reads | in progress | e632af20 | `data/hub_read_e632af20_20261116.csv` (new) | live fetch of `nfl.com/injuries/`, all 8 chunks, capture clock recorded | — |
+| E632-3 | Line-by-line dated re-verification register vs official pages (Week 10 slate incl. venue + final scores where the league publishes them, Week 11 published facts, standings, source spot-checks) | in progress | e632af20 | `data/reverification_e632af20.csv` (new), `content/reverification.md` (new), `reverification.html` (generated) | every check row carries its official URL and fetch time | — |
+| E632-4 | Integration CR close-out: CR-58E9-02 (`s2268_verify` scope allowlist), CR-58E9-03 (landing pointer to the 71 brief lines), CR-58E9-06 (duplicate-id check on `data/flags.csv`), CR-58E9-07 (new flag ids read from `origin/main` max) | in progress | e632af20 | `tools/s2268_verify.py`, `content/index.md`, `tools/verify.py` | each fix re-verified by the suite that raised the CR | — |
+| E632-5 | Full-suite verification of the combined tree + rebuild + drift check | in progress | e632af20 | regenerated root HTML | CI matrix run locally (validate.yml + verify.yml + q51 + s92 + engine + review suites) | — |
+| E632-6 | PR → `main`, merge, GitHub Pages deploy confirm, record here | unclaimed→queued | e632af20 | `COORDINATION.md` | `gh pr` + `gh api …/pages` + live fetch | — |
+
+### Files this session owns or is authorized to change
+
+New: `data/reverification_e632af20.csv`, `data/hub_read_e632af20_20261116.csv`,
+`content/reverification.md`, generated `reverification.html`.
+Authorized shared changes (each is the execution of a change request already logged on this board,
+so no other session's claim is taken over): `content/index.md` (CR-58E9-03), `tools/verify.py`
+(CR-58E9-06), `tools/s2268_verify.py` (CR-58E9-02), `tools/build_site.py` (NAV entry for the new
+page only), `data/flags.csv` (append-only, new ids from `FL-97` up, max id read from
+`origin/main` per CR-58E9-07), plus the regenerated HTML that the build derives from them.
+
+### Rules adopted for this session
+
+* Never mark anything verified without a fetch of the official page in this session, with the URL and
+  the fetch clock in the row.
+* Values that cannot be confirmed from an official page stay blank and carry a flag.
+* Week 10's Monday game (LAC @ BAL, 16 Nov) is not final at session start — no result is recorded
+  for it and nothing is graded from it.
