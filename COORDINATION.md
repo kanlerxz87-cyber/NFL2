@@ -3519,3 +3519,25 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+
+## Session `f3ec0ff8` — fresh official reads, FL-94, BF-02, reserve list (C-30), demotion gate (C-14)
+
+**Session ID:** `f3ec0ff8` · **Branch:** `arena/f3ec0ff8-nfl2` · **Started:** 2026-11-16T14:36Z
+**Branch base:** `a2de786` (= `origin/main` tip, PR #93 merge; 0 behind, 0 ahead at start)
+
+### Tasks claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| F1 | Board claim + repo state review | in progress | `f3ec0ff8` | `COORDINATION.md` (own section only) |
+| F2 | Fresh clock-timestamped official reads: injury hub, Week 10 scores (append-only), Week 11 schedule venues, reserve list + trades | in progress | `f3ec0ff8` | `data/reads_20261116_f3ec0ff8.csv`, `data/reserve_list_capture_f3ec0ff8.csv`, `data/trades_capture_f3ec0ff8.csv`, `data/games_2026_wk10_played.csv` (append-only rows), `data/schedule_week11_2026.csv` (`site` column only) |
+| F3 | Resolve FL-94: republish the injuries page from the newest verified read in the repository | in progress | `f3ec0ff8` | `content/injuries.md`, `data/flags.csv` (FL-94 row status only) |
+| F4 | C-14 demotion gate: additive register rows so a live strategy has a documented path back to paper | in progress | `f3ec0ff8` | `data/gates.csv` (append rows), `data/brief_traceability.csv` (C-14 row only), `content/validation-gates.md` |
+| F5 | Rebuild + full verification suites + PR → main + merge + Pages confirm | in progress | `f3ec0ff8` | generated HTML, `data/build_manifest.json`, this section |
+
+No other session's claim is taken over. Files owned by other sessions are only appended to
+(`games_2026_wk10_played.csv`, `data/gates.csv`, `data/brief_traceability.csv`, `data/flags.csv`)
+or minimally edited in the named column (`schedule_week11_2026.csv` `site`), per this board's
+claim table. Pre-registered artefacts (`data/prereg_*`, `data/originated_lines_*`) are treated as
+immutable inputs; nothing in this session writes to them.
+
