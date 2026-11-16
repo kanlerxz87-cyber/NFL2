@@ -7,6 +7,7 @@ What it does, per run:
   3. Stores the raw bytes under data/captures/<slug>/ ONLY when that SHA-256 has not been stored
      before for that URL. Files are named by UTC time and hash prefix and are never overwritten.
   4. Appends one row per fetch to data/capture_manifest.csv (append-only; the file is never rewritten).
+  The manifest is pipe-delimited like every register in data/. A '|' inside a page title is written as '/'.
   5. Checks the response for the structure it expects (title + practice-status vocabulary). If the
      structure is missing the run exits 1 and the row says schema_ok=no, so a changed page fails loudly
      instead of publishing a blank.
@@ -87,7 +88,7 @@ def read_manifest() -> list[dict]:
     if not MANIFEST.exists():
         return []
     with MANIFEST.open(newline="", encoding="utf-8") as fh:
-        return list(csv.DictReader(fh))
+        return list(csv.DictReader(fh, delimiter="|"))
 
 
 def stored_hashes(slug: str, rows: list[dict]) -> set[str]:
@@ -115,7 +116,8 @@ def run(dry_run: bool = False) -> int:
 
         digest = hashlib.sha256(raw).hexdigest()
         text = raw.decode("utf-8", errors="replace")
-        title = title_of(text)
+        # The register is pipe-delimited, so a '|' in a title is shown as '/'. The raw bytes keep the original.
+        title = title_of(text).replace("|", "/")
         practice_hits = len(PRACTICE_VOCAB.findall(text))
         game_hits = len(GAME_VOCAB.findall(text))
         table_tags = text.count("<table") + len(re.findall(r"^\|.*\|\s*$", text, re.M))
@@ -156,7 +158,7 @@ def run(dry_run: bool = False) -> int:
     if not dry_run and new_rows:
         write_header = not MANIFEST.exists()
         with MANIFEST.open("a", newline="", encoding="utf-8") as fh:
-            w = csv.DictWriter(fh, fieldnames=MANIFEST_FIELDS)
+            w = csv.DictWriter(fh, fieldnames=MANIFEST_FIELDS, delimiter="|", lineterminator="\n")
             if write_header:
                 w.writeheader()
             w.writerows(new_rows)
