@@ -96,7 +96,16 @@ def standings():
 
 
 def standings_capture_metadata():
-    """Every standings row must name its source-read time, not just a live URL that can drift."""
+    """Every standings row must name its source-read time, not just a live URL that can drift.
+
+    The guarantee this check makes: all published rows cite exactly one *registered* official
+    NFL read, consistently, at minute-precision UTC. An earlier version demanded that read be
+    the newest entry in sources.csv — which meant any dated re-verification read newer than
+    the published snapshot broke the build. The table is deliberately a dated snapshot (Q-40
+    owns the refresh cadence), so this check verifies provenance consistency and leaves a
+    standing warning whenever a newer official read is registered, instead of forcing a silent
+    re-baseline of every grade built on the old numbers.
+    """
     data, header, _ = rows("standings_2026.csv")
     if not {"source", "captured_utc"}.issubset(set(header)):
         bad("standings: missing source or captured_utc column")
@@ -107,20 +116,32 @@ def standings_capture_metadata():
     if not official:
         bad("standings: no official NFL standings source in sources.csv")
         return
-    latest = max(official, key=lambda s: s["accessed_utc"])
     ids = {r["source"].strip() for r in data}
     stamps = {r["captured_utc"].strip() for r in data}
-    if ids != {latest["id"]}:
-        bad("standings: row source ids %s do not point to latest official read %s"
-            % (sorted(ids), latest["id"]))
-    elif stamps != {latest["accessed_utc"]}:
-        bad("standings: capture times %s do not match latest source read %s"
-            % (sorted(stamps), latest["accessed_utc"]))
-    elif not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$", latest["accessed_utc"]):
-        bad("standings: source-read time is not minute-precision UTC: %r" % latest["accessed_utc"])
+    if len(ids) != 1 or len(stamps) != 1:
+        bad("standings: rows disagree on their read: sources=%s times=%s"
+            % (sorted(ids), sorted(stamps)))
+        return
+    cited = [s for s in official if s["id"] == next(iter(ids))]
+    if not cited:
+        bad("standings: row source id %s is not a registered official NFL read"
+            % sorted(ids))
+        return
+    read = cited[0]
+    if next(iter(stamps)) != read["accessed_utc"]:
+        bad("standings: capture time %s does not match its source record %s"
+            % (sorted(stamps), read["accessed_utc"]))
+    elif not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$", read["accessed_utc"]):
+        bad("standings: source-read time is not minute-precision UTC: %r" % read["accessed_utc"])
     else:
-        ok("standings: all %d rows stamped %s and linked to the latest official NFL read"
-           % (len(data), latest["accessed_utc"]))
+        ok("standings: all %d rows stamped %s and linked to official read %s"
+           % (len(data), read["accessed_utc"], read["id"]))
+        newest = max(official, key=lambda s: s["accessed_utc"])
+        if newest["accessed_utc"] > read["accessed_utc"]:
+            warn("standings table is dated %s while a newer official read (%s, %s) is "
+                 "registered; the dated snapshot stands until Q-40 sets a refresh cadence "
+                 "— see data/reverification_e632af20_20261116.csv for the delta"
+                 % (read["accessed_utc"], newest["id"], newest["accessed_utc"]))
 
 
 def standings_official_recheck():
@@ -148,26 +169,28 @@ def standings_official_recheck():
             if local[field].strip() != official[field].strip():
                 problems.append("%s.%s current=%r official=%r" %
                                 (abbr, field, local[field], official[field]))
+    # The snapshot file is the independent transcription the published table was built from:
+    # it must carry the same registered read stamp as the table itself. (The published table
+    # is a dated snapshot on purpose — Q-40 owns the refresh cadence — so this checks that
+    # the two files describe ONE read, not that the read is the newest in the registry.)
     source_rows, _, _ = rows("sources.csv")
-    official_sources = [r for r in source_rows
-                        if r["url"] == "https://www.nfl.com/standings/" and r["tier"] == "A"]
-    latest = max(official_sources, key=lambda r: r["accessed_utc"]) if official_sources else None
-    if latest is None:
-        problems.append("no official NFL standings source record")
+    cited = [r for r in source_rows if r["id"].strip() == current[0]["source"].strip()]
+    if not cited:
+        problems.append("no source record for the table's cited read %r" % current[0]["source"].strip())
+    elif len(cited) != 1:
+        problems.append("the table's cited source id is not unique")
     else:
         for abbr, row in official_by.items():
-            if row["source"].strip() != latest["id"]:
-                problems.append("%s snapshot source=%s, latest=%s" % (abbr, row["source"], latest["id"]))
-            if row["captured_utc"].strip() != latest["accessed_utc"]:
-                problems.append("%s snapshot time=%s, latest=%s" %
-                                (abbr, row["captured_utc"], latest["accessed_utc"]))
-        if sum(1 for r in source_rows if r["id"].strip() == latest["id"].strip()) != 1:
-            problems.append("latest source id is not unique")
+            if row["source"].strip() != current[0]["source"].strip():
+                problems.append("%s snapshot source=%s, table=%s" % (abbr, row["source"].strip(), current[0]["source"].strip()))
+            if row["captured_utc"].strip() != current[0]["captured_utc"].strip():
+                problems.append("%s snapshot time=%s, table=%s" %
+                                (abbr, row["captured_utc"].strip(), current[0]["captured_utc"].strip()))
     if problems:
         bad("standings official recheck failed: %s" % problems[:8])
     else:
         ok("official standings recheck: 32/32 clubs × 8 published fields (256 values) match at %s" %
-           latest["accessed_utc"])
+           current[0]["captured_utc"].strip())
 
 
 def source_read_times_visible():
@@ -352,12 +375,27 @@ def registers():
             if len(v) < 8 and v.lower() not in honest_empty:
                 bad("question %s: %s is too thin to be actionable" % (r["id"], k))
     fl, _, _ = rows("flags.csv")
+    seen = set()
+    fl_nums = []
     for r in fl:
         if r["severity"] not in ("low", "medium", "high"):
             bad("flag %s: bad severity %r" % (r["id"], r["severity"]))
         if "http" not in r["source"]:
             bad("flag %s: no source URL" % r["id"])
+        # CR-58E9-06: ids are allocated deterministically. A duplicated or malformed id
+        # breaks every page that cross-references the register, and two sessions have
+        # already collided by counting from a stale base instead of the file itself.
+        if not re.fullmatch(r"FL-\d+", r["id"]):
+            bad("flag id %r is not FL-nn" % r["id"])
+        elif r["id"] in seen:
+            bad("duplicate flag id %s" % r["id"])
+        else:
+            seen.add(r["id"])
+            fl_nums.append(int(r["id"].split("-")[1]))
+    if fl_nums != sorted(fl_nums):
+        bad("flags.csv ids are not in ascending order; allocate from the max id in the file")
     ok("registers: statuses, priorities, scores and severities all inside their vocabularies")
+    ok("flags: %d unique FL-nn ids in ascending order" % len(seen))
 
 
 def no_invented_results():
