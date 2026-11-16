@@ -4041,3 +4041,25 @@ content altered):**
 | Pages deploy | GitHub Pages run [43925100561](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43925100561) succeeded; page source `main /`; Pages API reports `built` |
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/line-origination.html serves the corrected archive-only vs verified-benchmark distinction and separate model/archive/residual table references |
 | Remaining warning | GitHub Actions reports Node.js 20 deprecation and future ubuntu-latest image migration; deployment succeeded. `check_site.py` continues to report its existing eight non-league-host link warnings on research/registry pages; no data-page link failures. |
+
+## Session `6b5607fd` (`arena/6b5607fd-nfl2`) — claim (2026-11-16 ~18:05Z)
+
+**Why this session exists.** The owner's brief for this session re-lists most of the requirements already in this board (depth groups, snap-count route, Game Books, reserve list, drift alarms, public/private split, leaderboard divisions, controls). This session does not re-do them. It verifies what is current and adds only what is not yet on the board.
+
+**Branch rule.** The session runs on one branch, `arena/6b5607fd-nfl2`. The `session-<id>/<task>` names in the brief are not used, because the session-branch rule for this run requires the current branch.
+
+### Claimed scope (non-overlapping with every open claim on this board)
+
+| Path | Action |
+|---|---|
+| `COORDINATION.md` | append this claim and the session log only |
+| `data/live_spotcheck_6b5607fd_20261116.csv` | new: 50 rows transcribed from the live official hub, with source URL and fetch time |
+| `data/repo_review_6b5607fd_20261116.csv` | new: one row per repo-review check, with the command, result and source link |
+| `tools/review_6b5607fd.py` | new: reproduces the live-vs-repo comparison and the review register |
+| `data/flags.csv` | append only (new FL ids after FL-114) |
+| `data/sources.csv` | append only (one row per new official read) |
+| regenerated `*.html` | rebuild output only, from `tools/build_site.py` |
+
+**Not claimed and not touched:** every `content/*.md` file, every other `data/*` file, `tools/build_site.py`, `.github/workflows/*`, and the other site trees (`archive/`, `docs/`, `review/`, `q51/`, `analytics/`, `site/`, `portal/`, `engine/`, `crosscheck/`, `dcf3b0cc/`, `4e475b8b/`, `s2268/`, `s53/`, `s92/`).
+
+**Out of scope, and why.** NFL Game Book bulk collection is blocked by FL-55 and Q-50 (the owner's written-permission decision). Snap-count, weather and roof overlays, the leaderboard divisions, and the depth-chart sweep for the remaining clubs need data this repository does not yet hold, or owner decisions. They stay open on their existing rows.
