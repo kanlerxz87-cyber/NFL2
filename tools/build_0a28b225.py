@@ -15,6 +15,7 @@ Outputs
     data/venue_register_0a28b225.csv    13 rows, one Week 11 fixture
     data/fixture_context_0a28b225.csv   26 rows, one club-fixture side
     data/kickoff_regime_0a28b225.csv    5 rows, 2026 rule changes that move a total
+    data/weekly_diff_0a28b225.csv       32 rows, one club, between two dated official reads
 """
 import csv
 import datetime as dt
@@ -274,6 +275,50 @@ def main():
                 div, conf, window, neutral, GAME_URL.format(g["game_url"]),
             ])
     write("fixture_context_0a28b225.csv", fheader, frows)
+
+    # ---------------- weekly what-changed diff ----------------
+    # BL-62 asks for a weekly diff rather than a static snapshot. Two dated, independent
+    # transcriptions of the same official standings page exist in the repository: 13 Nov
+    # (S-STAND-653B) and 16 Nov (S-STAND-F3EC). The Week 10 slate sits between them, so the
+    # difference between the two reads is the Week 10 week, measured rather than asserted.
+    before = {r["abbr"]: r for r in read("standings_recheck_20261113.csv")}
+    after = {r["abbr"]: r for r in read("standings_2026.csv")}
+    assert len(before) == len(after) == 32
+
+    def div_rank(snapshot, clubs):
+        ordered = sorted(clubs, key=lambda a: (-float(snapshot[a]["pct"]),
+                                               -int(snapshot[a]["net"]), a))
+        return {a: i + 1 for i, a in enumerate(ordered)}
+
+    by_div = {}
+    for abbr, r in standings.items():
+        by_div.setdefault((r["conf"], r["div"]), []).append(abbr)
+    rank_before, rank_after = {}, {}
+    for key, clubs in by_div.items():
+        rank_before.update(div_rank(before, clubs))
+        rank_after.update(div_rank(after, clubs))
+
+    wheader = ["abbr", "team", "conf", "div", "games_before", "games_after", "games_played",
+               "w_before", "w_after", "w_delta", "l_delta", "t_delta",
+               "pf_before", "pf_after", "pf_delta", "pa_delta", "net_before", "net_after",
+               "net_delta", "div_rank_before", "div_rank_after", "div_rank_change",
+               "streak_before", "streak_after", "source_before", "source_after", "source"]
+    wrows = []
+    for abbr in sorted(after):
+        b_, a_ = before[abbr], after[abbr]
+        gb = int(b_["w"]) + int(b_["l"]) + int(b_["t"])
+        ga = int(a_["w"]) + int(a_["l"]) + int(a_["t"])
+        wrows.append([
+            abbr, a_["team"], a_["conf"], a_["div"], gb, ga, ga - gb,
+            b_["w"], a_["w"], int(a_["w"]) - int(b_["w"]),
+            int(a_["l"]) - int(b_["l"]), int(a_["t"]) - int(b_["t"]),
+            b_["pf"], a_["pf"], int(a_["pf"]) - int(b_["pf"]), int(a_["pa"]) - int(b_["pa"]),
+            b_["net"], a_["net"], int(a_["net"]) - int(b_["net"]),
+            rank_before[abbr], rank_after[abbr], rank_before[abbr] - rank_after[abbr],
+            b_["streak"], a_["streak"], "S-STAND-653B", "S-STAND-F3EC",
+            "S-STAND-653B::S-STAND-F3EC",
+        ])
+    write("weekly_diff_0a28b225.csv", wheader, wrows)
 
     # ---------------- kickoff regime ----------------
     kheader = ["id", "rule", "element", "rule_text_as_published", "prior_regime",

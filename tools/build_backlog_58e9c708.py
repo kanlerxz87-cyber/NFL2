@@ -535,11 +535,11 @@ ITEMS = [
      "Vig arithmetic is published from assumed prices. No market consensus exists to decompose, because no entitled price feed does."),
 
     ("", "Publish a weekly what-changed diff instead of a static snapshot",
-     "Reporting", "backlog", "not started", "G-03",
+     "Reporting", "backlog", "partial", "G-03",
      "Each weekly snapshot stored and a diff column rendered: rank change, rating change, availability change",
      INJ, READ,
-     "data/availability_watch_movement_c3ec1487.csv",
-     "Movement is computed once, between two reads. There is no recurring weekly diff published on a schedule."),
+     "data/weekly_diff_0a28b225.csv (32 clubs), data/standings_recheck_20261113.csv, data/standings_2026.csv",
+     "A dated diff is published on the weekly-diff page: all 32 clubs differenced between two independent official standings reads (13 Nov S-STAND-653B, 16 Nov S-STAND-F3EC) on W/L/T, points, net and within-division rank, with the two Week 10 games that fall outside the date window named rather than folded in. Still missing: the weekly snapshot store itself (BL-29, BL-30, BL-48 are not started), so a diff exists only when two reads happen to be on file, and the brief also asks for rating-change and availability-change columns, neither of which has a dated snapshot pair."),
 
     ("", "Publish every model total twice until one wins",
      "Modelling", "backlog", "not started", "G-06, G-10",

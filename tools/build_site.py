@@ -76,6 +76,7 @@ NAV = [
               ("deficiencies", "Depth Deficiencies by Side"),
               ("depth-cascades", "Depth Cascades (re-verified)"),
               ("venue-register", "Week 11 Venue Register"),
+              ("weekly-diff", "Weekly What-Changed Diff"),
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
                    ("brief-coverage", "Brief Coverage & Freshness"),
@@ -172,19 +173,29 @@ def urlify(cell):
     return " ".join(out)
 
 
-def source_ref(cell):
-    """Render whatever a row's source column holds: a registered source id, or a raw URL.
-
-    Raw URLs are allowed because a per-row game page is a stronger citation than a page-level
-    register entry, but the host is still judged by the same rule - anything that is not an
-    official league host is visibly marked non-official instead of being quietly trusted.
-    """
+def _source_one(cell):
     cell = (cell or "").strip()
     if cell.startswith("http://") or cell.startswith("https://"):
         host = re.sub(r"^https?://([^/]+).*", r"\1", cell)
         mark = "" if host in OFFICIAL_HOSTS else ' <span class="tier src-other">non-official</span>'
         return '<a class="src" href="%s" target="_blank" rel="noopener">%s</a>%s' % (cell, esc(host), mark)
     return source_link(cell)
+
+
+def source_ref(cell):
+    """Render whatever a row's source column holds: a registered source id, or a raw URL.
+
+    Raw URLs are allowed because a per-row game page is a stronger citation than a page-level
+    register entry, but the host is still judged by the same rule - anything that is not an
+    official league host is visibly marked non-official instead of being quietly trusted.
+
+    A cell may hold several of either, separated by "::" - a differenced row cites the read on
+    both sides of the window, and collapsing that to one id would hide half the provenance.
+    """
+    cell = (cell or "").strip()
+    if "::" not in cell:
+        return _source_one(cell)
+    return " + ".join(_source_one(part) for part in cell.split("::") if part.strip())
 
 
 def source_link(sid, tier_label=True):
@@ -1014,6 +1025,7 @@ PAGE_KIND = {
     "venue-register": ("measured", "Measured data"),
     "fixture-context": ("measured", "Computed result"),
     "kickoff-regime": ("measured", "Measured data"),
+    "weekly-diff": ("measured", "Dated delta"),
 }
 
 CSS_HREF = "assets/style.css"

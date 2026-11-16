@@ -175,6 +175,74 @@ def main():
     check("fixture context: every row cites its own official game page",
           all(r["source"].startswith("https://www.nfl.com/games/") for r in f))
 
+    # ---- weekly what-changed diff ---------------------------------------
+    w = read("weekly_diff_0a28b225.csv")
+    before = {r["abbr"]: r for r in read("standings_recheck_20261113.csv")}
+    after = {r["abbr"]: r for r in read("standings_2026.csv")}
+    check("weekly diff: one row per club",
+          len(w) == 32 == len(before) == len(after), "%d rows" % len(w))
+    check("weekly diff: every club in both dated reads appears exactly once",
+          {r["abbr"] for r in w} == set(before) == set(after))
+    bad_delta = []
+    for r in w:
+        b_, a_ = before[r["abbr"]], after[r["abbr"]]
+        for col, fld in (("w_delta", "w"), ("l_delta", "l"), ("t_delta", "t"),
+                         ("pf_delta", "pf"), ("pa_delta", "pa"), ("net_delta", "net")):
+            if int(r[col]) != int(a_[fld]) - int(b_[fld]):
+                bad_delta.append(r["abbr"] + "/" + col)
+        if (int(r["games_before"]), int(r["games_after"]), int(r["games_played"])) != (
+                int(b_["w"]) + int(b_["l"]) + int(b_["t"]),
+                int(a_["w"]) + int(a_["l"]) + int(a_["t"]),
+                sum(int(a_[k]) - int(b_[k]) for k in ("w", "l", "t"))):
+            bad_delta.append(r["abbr"] + "/games")
+        if (r["w_before"], r["pf_before"], r["net_before"], r["streak_before"]) != (
+                b_["w"], b_["pf"], b_["net"], b_["streak"]):
+            bad_delta.append(r["abbr"] + "/before")
+        if (r["w_after"], r["pf_after"], r["net_after"], r["streak_after"]) != (
+                a_["w"], a_["pf"], a_["net"], a_["streak"]):
+            bad_delta.append(r["abbr"] + "/after")
+    check("weekly diff: every level and every delta re-derives from the two dated reads",
+          not bad_delta, ", ".join(bad_delta[:5]))
+
+    by_div = {}
+    for abbr, r in after.items():
+        by_div.setdefault((r["conf"], r["div"]), []).append(abbr)
+    bad_rank = []
+    for key, clubs in by_div.items():
+        for snap, col in ((before, "div_rank_before"), (after, "div_rank_after")):
+            order = sorted(clubs, key=lambda a: (-float(snap[a]["pct"]), -int(snap[a]["net"]), a))
+            want = {a: i + 1 for i, a in enumerate(order)}
+            for a in clubs:
+                row = [x for x in w if x["abbr"] == a][0]
+                if int(row[col]) != want[a]:
+                    bad_rank.append(a)
+    check("weekly diff: division rank before and after re-derive from each read's own pct and net",
+          not bad_rank, ", ".join(sorted(set(bad_rank))[:5]))
+    bad_change = [r["abbr"] for r in w
+                  if int(r["div_rank_change"]) != int(r["div_rank_before"]) - int(r["div_rank_after"])]
+    check("weekly diff: rank change is before minus after (positive means the club moved up)",
+          not bad_change, ", ".join(bad_change[:5]))
+
+    # The two reads are 13 Nov and 16 Nov, so the window is NOT the whole of Week 10: the
+    # Thursday game (12 Nov) predates the first read and the Monday game (16 Nov, 20:15 ET)
+    # postdates the second. The register must agree with the games that actually settled in
+    # between, and the page says so.
+    win_start = max(d(r["captured_utc"][:10]) for r in before.values())
+    win_end = max(d(r["captured_utc"][:10]) for r in after.values())
+    in_window = [r for r in wk10_played if win_start < d(r["date"]) <= win_end]
+    check("weekly diff: total games played equals twice the results that settled inside the window",
+          sum(int(r["games_played"]) for r in w) == 2 * len(in_window),
+          "%d team-games vs %d settled games between %s and %s"
+          % (sum(int(r["games_played"]) for r in w), len(in_window), win_start, win_end))
+    check("weekly diff: clubs with zero games are byes plus the two clubs whose game is outside the window",
+          {r["abbr"] for r in w if r["games_played"] == "0"} ==
+          (set(after) - {t for r in in_window for t in (r["away"], r["home"])}),
+          "0-game clubs: " + ", ".join(sorted(r["abbr"] for r in w if r["games_played"] == "0")))
+    check("weekly diff: both dated reads are cited per row and both ids are registered",
+          all(r["source_before"] == "S-STAND-653B" and r["source_after"] == "S-STAND-F3EC" for r in w))
+    check("weekly diff: the rendered source cell names both reads, in order",
+          all(r["source"] == r["source_before"] + "::" + r["source_after"] for r in w))
+
     # ---- kickoff regime --------------------------------------------------
     k = read("kickoff_regime_0a28b225.csv")
     check("kickoff regime: five rows, one per 2026 rule change that moves a total",

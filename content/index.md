@@ -159,6 +159,10 @@ Three backlog lines that had never been started are now published, and one open 
    prior is published, because the widely quoted recovery percentages are not on any official page.
 5. **One new source conflict** ([FL-116](flagged-for-review.html)): the official rulebook's own 2026 Rule
    Changes table lists four rules and omits the fifth rule the league's approved summary passed.
+6. **A weekly diff is now published instead of only snapshots** ([weekly diff](weekly-diff.html)): the
+   change between the 13 and 16 November standings reads for all 32 clubs. Eight clubs changed division
+   rank, and two of the four that moved down — Chicago and Denver — did not play in the window, which is
+   the clearest argument for publishing a diff rather than a level.
 
 Two lapsed pull requests from 15 November, **#71** and **#84**, are recorded on the coordination board;
 their head branches no longer exist on the remote and neither has been merged or closed by this session.
@@ -226,6 +230,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Origination | [Fixture context (computed)](fixture-context.html) | **new 16 Nov** — 26 club-fixture sides of the Week 11 slate: rest, bye, short week, mirrored rest edge, divisional flag, the venue's body-clock kickoff and the kickoff window, every column derived from a published schedule fact and re-derived on every build |
 | Origination | [Kickoff regime 2026](kickoff-regime.html) | **new 16 Nov** — the five 2026 rule changes that move a game total, including 6-1-6: any club may now declare an onside kick at any time, regardless of score. Sourced to the official rulebook and NFL.com because third-party summaries contradict each other |
 | Data | [Week 11 venue register](venue-register.html) | **new 16 Nov** — the venue of every Week 11 fixture transcribed from that fixture's official game centre, which settles FL-112 and exposes three venue-name disagreements between two official pages |
+| Data | [Weekly what-changed diff](weekly-diff.html) | **new 16 Nov** — the change between two dated official standings reads rather than a snapshot: W/L/T, points, net and within-division rank movement for all 32 clubs, with the two Week 10 games that fall outside the window named rather than folded in |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |
 | Governance | [Re-Verification (16 Nov)](reverification.html) | the dated line-by-line re-read of the official pages behind every Week 10 number: the frozen hub delta, the thirteen final results with their game pages, the standings delta club by club, and the Week 11 slate |

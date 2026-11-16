@@ -4141,6 +4141,34 @@ base tree) · `tools/check_site.py` 11/1/0 (the one disclosed non-league-host wa
 `scripts/audit_all_pages.py` **133 HTML / 398 tables / 10,499 rows / 100% row-sourced / 0 broken** ·
 `git diff --check` clean · drift check: a fresh build of all three builders leaves the tree clean.
 
+#### Task A5 (BL-62, weekly what-changed diff) — added in the same pass
+
+| File | Rows | What it is |
+|---|---|---|
+| `data/weekly_diff_0a28b225.csv` | 32 | one club, differenced between the two dated independent transcriptions of the official standings page: 13 Nov (`S-STAND-653B`) and 16 Nov (`S-STAND-F3EC`) — W/L/T, points for and against, net, and within-division rank on each read with the change |
+| `content/weekly-diff.md` + `weekly-diff.html` | 1 | the page; BL-62 moves not started -> partial |
+
+The one thing worth recording is the trap in it. **A diff between two dated reads is a date window, not a
+week number.** The window 13 Nov -> 16 Nov contains **twelve** Week 10 games, not thirteen: Commanders at
+Giants was played on 12 November, before the first read, and Chargers at Ravens kicks at 20:15 ET on 16
+November, after the second. So Washington, the Giants, the Chargers and the Ravens all show **zero games
+played in the window** while four of them demonstrably played in Week 10. Publishing that as "Week 10
+movement" would have been wrong, so the page names all four clubs and the verifier proves the window:
+total games played across the 32 rows must equal twice the number of settled Week 10 results whose date
+falls strictly between the two read dates, and the zero-game clubs must be exactly the clubs absent from
+those results. Eight clubs changed division rank; two of the four that moved down — Chicago and Denver —
+did not play in the window at all.
+
+**Verified movement (71-line register):** not started 32 -> 28 · partial 25 -> 27 · done 9 -> 11
+(BL-14 and BL-69 done; BL-59 and BL-62 partial). The register was edited at its builder source
+(`ITEMS` in `tools/build_backlog_58e9c708.py`), never by hand — see the clobber note above.
+
+#### Additional cross-session change request
+
+| # | File | Change | Why |
+|---|---|---|---|
+| CR-0A28-06 | `tools/build_site.py` | `source_ref()` now renders a `::`-separated list of registered ids (each rendered by the same host rule) | a differenced row cites the read on **both** sides of the window; collapsing that to one id hides half the provenance. Behaviour for every existing single-value cell is unchanged (no `::` present anywhere else), and the check that every table declares a source is untouched. |
+
 ### PR, merge and live-deployment record — session `0a28b225`
 
 _recorded after merge_
