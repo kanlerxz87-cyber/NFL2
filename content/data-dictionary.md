@@ -14,6 +14,8 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
 | `data/sources.csv` | {{metric sources}} | source | — |
+| `data/capture_manifest.csv` | one row per fetch of an official page (append-only) | fetch — UTC time, URL, HTTP status, bytes, SHA-256, stored file, schema check | S-CAP-7C (nfl.com/injuries/); tool `tools/capture_official.py`, session 7c23f22f |
+| `data/capture_reconciliation_7c23f22f.csv` | one row per captured or repository player (347 + 0 when they agree) | club × player: capture vocabulary, repository vocabulary, match and differing fields; capture SHA-256 and official player link | S-CAP-7C (nfl.com/injuries/, the retained capture) and the repository file data/injuries_wk10_5de1805b_20261115.csv |
 | `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows; requirements and gate mappings are project design, not NFL facts | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | internal design rows and validation rules; thresholds are project policy, not NFL standards | S-DESIGN |
@@ -269,7 +271,7 @@ verified by `tools/verify_flags_4e475b8b.py`.
 | --- | --- | --- | --- |
 | `data/injuries_wk10_4e475b8b_20261116.csv` | 347 | one player-filing on the official Week 10 hub across all 28 listed clubs and 14 games, transcribed from the live page at 2026-11-16T14:44Z by session 4e475b8b — the fourth dated read of the series | [NFL injury hub](https://www.nfl.com/injuries/) |
 | `data/reverification_4e475b8b_20261116.csv` | 694 | one row of a prior dated read compared with the live page: 347 rows against the 15 November 12:55Z read (all identical) and 347 against the 13 November read (102 identical, 194 differing, 51 only on the page) | [NFL injury hub](https://www.nfl.com/injuries/) |
-| `data/transactions_read_4e475b8b_20261116.csv` | 37 | one Reserve/Injured placement (25) or trade (12) on the league's November 2026 transactions tabs, read 2026-11-16T14:46Z, joined against the injury register (FL-104, FL-105) | [Reserve list](https://www.nfl.com/transactions/league/reserve-list/2026/11), [Trades](https://www.nfl.com/transactions/league/trades/2026/11) |
+| `data/transactions_read_4e475b8b_20261116.csv` | 37 | one Reserve/Injured placement (25) or trade (12) on the league's November 2026 transactions tabs, read 2026-11-16T14:46Z, joined against the injury register (FL-107, FL-108) | [Reserve list](https://www.nfl.com/transactions/league/reserve-list/2026/11), [Trades](https://www.nfl.com/transactions/league/trades/2026/11) |
 
 `practice` holds F/L/D and `status` holds OUT/Q/D as in the 5de1805b register (FL-92). The four
 rows the fetch tool split across chunk boundaries are spliced positionally and asserted in

@@ -44,7 +44,7 @@ def main():
     rv = read_csv(RV)
     tx = read_csv(TX)
     flags = [r for r in read_csv(ROOT / "data" / "flags.csv") if r["id"] in
-             {f"FL-{n}" for n in range(97, 106)}]
+             {f"FL-{n}" for n in range(100, 109)}]
 
     designations = [r for r in hub if r["status"]]
     c15m = sum(1 for x in rv if x["scope"] == "15 Nov 12:55Z read" and x["result"] == "MATCH")
@@ -83,8 +83,8 @@ p.sum{background:#fff;padding:.9rem 1.1rem;border-left:4px solid #013369;font-si
 2026-11-15 12:55Z read cell for cell on all {len(hub)} rows and {len(designations)} designations ({sum(1 for r in hub if r['status']=='OUT')} Out,
 {sum(1 for r in hub if r['status']=='Q')} Questionable, {sum(1 for r in hub if r['status']=='D')} Doubtful). It still differs from the 13 November read on
 {c13x} rows (102 identical, {c13o} rows only on the page today) and from the 12 November canonical table rendered on injuries.html on 177 of 254 shared rows
-with 93 rows missing entirely (FL-94, FL-97, FL-99). The same-day transactions re-read widens FL-96 from one player to a class of ten (FL-104) and finds the
-hub carries traded players inconsistently (FL-105).</p>""")
+with 93 rows missing entirely (FL-94, FL-100, FL-102). The same-day transactions re-read widens FL-96 from one player to a class of ten (FL-107) and finds the
+hub carries traded players inconsistently (FL-108).</p>""")
 
     # 1. register
     rows = []
@@ -130,7 +130,7 @@ hub carries traded players inconsistently (FL-105).</p>""")
                      + f'<td>{on_hub}</td>' + cell(detail)
                      + f'<td><a href="{SRC_RES}">reserve list</a> · <a href="{SRC}">hub</a></td></tr>')
     parts.append(table(["IR date", "Player", "Club", "Transaction", "On weekly report?", "Report row (practice / status)", "Source"],
-                       orows, "3 · November Reserve List vs the Week 10 report — the FL-96 class is ten players (FL-104)",
+                       orows, "3 · November Reserve List vs the Week 10 report — the FL-96 class is ten players (FL-107)",
                        "The Reserve List names 25 Reserve/Injured placements for November 2026. Ten of those players also appear on the Week 10 injury hub — nine with Did Not Participate and game status Out (all dated 11/14), plus Puka Nacua (11/12, DNP, no designation). The other fifteen do not appear. Data: data/transactions_read_4e475b8b_20261116.csv."))
 
     # 4. trades join
@@ -146,7 +146,7 @@ hub carries traded players inconsistently (FL-105).</p>""")
                      + f'<td>{side or "not published"}</td>' + cell(detail)
                      + f'<td><a href="{SRC_TRD}">trades</a> · <a href="{SRC}">hub</a></td></tr>')
     parts.append(table(["Trade date", "Player", "Move", "Report lists", "Report placement", "Source"],
-                       trows, "4 · November trades vs the Week 10 report — traded players are placed inconsistently (FL-105)",
+                       trows, "4 · November trades vs the Week 10 report — traded players are placed inconsistently (FL-108)",
                        "Bates and Davis (traded 11/10) are listed under their new club Jacksonville; Henley (traded 11/10 LAC→DEN) is listed under his old club, the Chargers, in the W10-14 block. Nine traded players do not appear on the report at all."))
 
     # 5. FL-95 re-confirmation
@@ -172,8 +172,8 @@ hub carries traded players inconsistently (FL-105).</p>""")
                      + "".join(f'<td><a href="{html.escape(u, quote=True)}">source {i+1}</a></td>' for i, u in enumerate(r["source"].split(" :: ")))
                      + "</tr>")
     parts.append(table(["Id", "Type", "Severity", "Finding", "Decision impact", "Status", "Source"],
-                       frows, "6 · Flags appended to the canonical register by this session (FL-97…FL-105)",
-                       "FL-97…FL-103 promote the seven FL-DCF findings (change request CR-D1, logged by session dcf3b0cc on 2026-11-15) into data/flags.csv so they render on the canonical Flagged for Review page; each row names its FL-DCF id in the evidence cell, and dcf3b0cc/flagged.html remains the historical record. FL-104 and FL-105 are new findings of the 2026-11-16 read."))
+                       frows, "6 · Flags appended to the canonical register by this session (FL-100…FL-108)",
+                       "FL-100…FL-106 promote the seven FL-DCF findings (change request CR-D1, logged by session dcf3b0cc on 2026-11-15) into data/flags.csv so they render on the canonical Flagged for Review page; each row names its FL-DCF id in the evidence cell, and dcf3b0cc/flagged.html remains the historical record. FL-107 and FL-108 are new findings of the 2026-11-16 read."))
 
     # 7. faithful-transcription note
     parts.append(f"""<h2>7 · Faithful-transcription note (cross-club rows)</h2>
@@ -189,7 +189,7 @@ pending (Q-46). The two FL-93 rows sighted on 2026-11-15 (Kenneth Walker III und
 <code>4e475b8b/raw/chunk-*.md</code>; the two November transactions tabs stored verbatim beside them. <code>4e475b8b/build.py</code> parses the chunks
 mechanically (four chunk-boundary row splits spliced positionally and asserted), enforces the practice/status vocabulary, fails loudly on structural drift
 (347 rows / 28 clubs expected), and writes the register. <code>4e475b8b/build_transactions.py</code> parses the transactions pages and joins them against
-the register. <code>tools/verify_flags_4e475b8b.py</code> re-derives the flag register invariants (unique contiguous ids FL-01…FL-105, next free id,
+the register. <code>tools/verify_flags_4e475b8b.py</code> re-derives the flag register invariants (unique contiguous ids FL-01…FL-108, next free id,
 every row sourced, every FL-reference resolving: 911 references checked). Re-running all three reproduces every byte of this page's inputs.</p>
 <p class="note">Change requests logged rather than applied: CR-4E47-01 (add <code>4e475b8b/</code> to scripts/audit_all_pages.py's walk),
 CR-4E47-02 (register <code>4e475b8b/</code> in the landing-page tree map, owner tools/build_site.py — PR #71's file),
