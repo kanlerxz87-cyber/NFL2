@@ -4055,8 +4055,8 @@ content altered):**
 
 | ID | Task | Status | Owner | File scope |
 |---|---|---|---|---|
-| 3E-01 | Transcribe the venue (location and stadium) of every Week 11 fixture from its official nfl.com game-centre page, with the clock time of each read, and publish it. The Week 11 schedule file's `site` column reads "not published" on 12 of 13 rows | in progress | `3e77121b` | `data/venues_wk11_3e77121b.csv` (new), `content/fixture-venues.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
-| 3E-02 | Per-team decision view: one row per club (32), with designated players from the newest official hub read, the net change against the 13 Nov read, starters out only where a depth source supports it, and replacements only where the league names them. Anything not published stays blank | in progress | `3e77121b` | `data/team_view_3e77121b.csv` (new), `content/teams.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
+| 3E-01 | Transcribe the venue (location and stadium) of every Week 11 fixture from its official nfl.com game-centre page, with the clock time of each read, and publish it. The Week 11 schedule file's `site` column reads "not published" on 12 of 13 rows | done | `3e77121b` | `data/venues_wk11_3e77121b.csv` (new), `content/fixture-venues.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
+| 3E-02 | Per-team decision view: one row per club (32), with designated players from the newest official hub read, the net change against the 13 Nov read, starters out only where a depth source supports it, and replacements only where the league names them. Anything not published stays blank | done | `3e77121b` | `data/team_view_3e77121b.csv` (new), `content/teams.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
 | 3E-03 | Integration: rebuild, run every verifier in `validate.yml`, check_site, link check, PR to `main`, merge with `--merge`, confirm the Pages deploy, record it here | in progress | `3e77121b` | generated root `*.html`, this section |
 
 ### Not claimed here (left open, with reasons)
@@ -4065,3 +4065,39 @@ content altered):**
 - Multi-day immutable capture, daily from Wednesday to kickoff: needs a scheduled job running over several days, and the existing `capture.yml` covers it. Not changed here.
 - Strategies, prices, control baselines, CLV, Brier skill and any leaderboard entry: no tracked bets and no licensed price series exist, so nothing can be scored. Unchanged.
 - Parlay/prop joint-probability gate, roof/wind overlay, snap counts and inactive lists: open per the register (see `data/requirements.csv` R-43 and the Information Gaps page).
+
+### Overlap with session `f3ec0ff8` (F2), resolved
+
+Claiming 3E-01 without checking F2 was a process miss, and it is recorded here. On checking, F2 was **not stale**. It had been marked done at about 15:40Z, and it had already transcribed the Week 11 venues into `data/flags.csv` **FL-112** (the owner decides which reading the public schedule carries). Its schedule `site` column is still "not published" on `main`. Under the 60-minute rule nothing could be taken over, and F2's venue column is not this session's to change.
+
+What this session did instead, to keep scopes non-overlapping:
+
+- **Did not edit** `data/schedule_week11_2026.csv` or any F2 file.
+- Re-read the three disagreeing game centres (W11-01, W11-07, W11-13) directly before publishing, so the reading is not taken from memory. All 13 were read once in the 18:02–18:06Z window. The game centre prints RELIANT STADIUM, ARROWHEAD STADIUM and NORTHWEST STADIUM. FL-112 has NRG Stadium, GEHA Field at Arrowhead Stadium and FedEx Field, from hotel-link parameters.
+- Published the game-centre reading on its own page, `fixture-venues.html`, with a per-row cross-check against FL-112. Logged the disagreement as **FL-115** (low, open, owner decision). Nothing is resolved on the owner's behalf.
+
+### Close-out, session `3e77121b`
+
+| ID | Task | Status | Result |
+|---|---|---|---|
+| 3E-01 | Week 11 venues from game centres | done | `data/venues_wk11_3e77121b.csv` (13 rows, each with its game-centre URL, the location and stadium as printed, the broadcaster, and the FL-112 cross-check); `content/fixture-venues.md`. 9 of 13 agree with FL-112; 3 disagree (FL-115); W11-12 is Mexico City, neutral, not in FL-112. Verified by `tools/verify_3e77121b.py` against `data/schedule_week11_2026.csv` on date, kickoff, both clubs, broadcaster and game URL (13/13). Sources: S-VEN-3E77 and the 13 game-centre URLs, read 2026-11-16T18:02–18:06Z. |
+| 3E-02 | Per-team decision view (32 clubs) | done | `data/team_view_3e77121b.csv` (32 rows); `content/teams.md`. Counts computed by `tools/team_view_3e77121b.py` from `data/hub_read_e632af20_20261116.csv` (347 rows) and re-derived by the verifier: rows 347, Out 70, designated 171 (Out 70 + Questionable 90 + Doubtful 11), matching the published injury page. The four Week 10 byes (CHI, DEN, PHI, TB, from the official schedule page) have blank counts, not zero. |
+
+**Deviations from the claimed 3E-02 scope, stated plainly:**
+
+- **No "net change against the 13 Nov read".** The 13 Nov hub files are a collection gap (FL-83), so no net change is computed. The view shows the designated count on the newest read, and says so in its caption.
+- **No replacement fields.** The brief asks for replacements only where the league names them. The four league-named starter changes (SEA, MIA, CLE, AZ) are quoted from their NFL.com articles, which I fetched and checked on 16 Nov. No replacement is inferred from a chart. The personnel-chart join was not used for starters because it shows no first-string designation for SEA, which contradicts the league headline.
+- **Reserve-list code.** The capture prints the Rams as `LA`; the view maps `LA` to `LAR` for the reserve column only and logs this as **FL-116**.
+
+**Flags added:** FL-115 (venue disagreement, low, open) and FL-116 (LA/LAR code, low, open). Neither blocks the merge.
+
+**Sources added:** S-VEN-3E77 (one page-level register row; each venue row cites its own game-centre URL).
+
+**Build and verification (before PR):** `tools/build_site.py` built 47 pages (45 + 2), 5358 blank cells rendered as "not published". Every CI verifier passed: readiness; backlog 11/0; e632af20 11/0; coverage 2420/0; `verify.py` 225/0/0 (after the two new files were added to the data dictionary); capture 7/0; capture reconcile `--check` matched 347, 0 mismatched; injury-lineage `--check` 4 outputs match; `check_site` 11 passed, 1 warning (the same external-host warning as on main); `verify_3e77121b.py` 439/0.
+
+**CI change:** one step added to `.github/workflows/validate.yml` to run `tools/verify_3e77121b.py`. This is shared CI config and is logged here so the integration record is complete.
+
+**Not in this session:** Week 11 bye list verification (ATL, CLE, GB, LAR, NE, SEA remain unverified); any depth, snap or starter inference; any model, price or leaderboard change.
+
+**3E-03 integration:** PR to `main`, merge with `--merge`, and Pages confirmation are recorded below after they happen.
+

@@ -192,6 +192,8 @@ The eighteen depth cascades on this site were checked player by player against t
 | Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
 | Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |
+| Data | [Week 11 venues (game centre)](fixture-venues.html) | the stadium printed on each of the 13 Week 11 game centres, read 16 Nov, with the 3 disagreements with the schedule parameter flagged (FL-115) |
+| Data | [Team decision view (32 clubs)](teams.html) | one row per club: injury-hub counts from the 16 Nov read, the November reserve list, league-named starter changes, and the Week 10 byes left blank |
 | Data | [Personnel Relief](personnel-relief.html) | **new 13 Nov** — the verified join: {{metric pr_resolved}} of {{metric pr_rows}} listed players resolved to a 1st/2nd/3rd/4th string on their own club's published chart, with the next man the club names, and {{metric pr_first_dnp}} 1st-string non-participants across {{metric pr_charts}} clubs |
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
