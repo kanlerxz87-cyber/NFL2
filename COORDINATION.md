@@ -3528,3 +3528,18 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 |---|---|---|
 | A095-BL20-1 | in progress | Inspect repository's price sources and current admission status; write a conservative, operational policy in `docs/PRICE-DATA-POLICY.md` |
 | A095-BL20-2 | in progress | Check policy assertions against the repository's own source inventory and price archive; run relevant project validators without changing shared outputs |
+
+### A095-BL20 close-out — price-data admission policy
+
+**Decision recorded:** adopted policy `P-PRICE-01` v1.0 in `docs/PRICE-DATA-POLICY.md`. Effective 2026-11-16 for new admissions. The community `nfldata` archive stays research-only/quarantined from validated backtest, CLV, ROI, EV, leaderboard and promotion claims until source permission, vintage/timestamp semantics, schema and provenance are reviewed and admitted. File labels do not establish opening/closing semantics; missing price/time/rights fields remain missing. The policy does not assert that any provider has granted rights.
+
+**Repository evidence checked:** `data/price_archive_a392.csv` (5 inventory rows); `data/sources.csv` (S-NFLDATA-ARCHIVE, S-NFLDATA-SCHEMA, S-OPS); `pipeline/data/raw/{games,closing_lines,initial_lines,sc_lines}.csv` presence and schemas; `content/price-archive.md`; gates G-01, G-06 and G-07. The schema reference recorded in the source inventory is [nflverse/nfldata DATASETS.md](https://github.com/nflverse/nfldata/blob/master/DATASETS.md); the league price-source search recorded in the repo is [NFL Football Operations](https://operations.nfl.com/). This was a policy decision from repository evidence, not a fresh legal/terms determination or claim of official betting prices.
+
+**Verification:** policy-specific required-field/reference assertions PASS; `git diff --check` PASS; `tools/verify.py` 199 passed / 0 warnings / 0 failures; `tools/check_site.py` 11 passed / 1 existing non-league-link warning / 0 failures; `tools/verify_backlog_58e9c708.py` 11 passed / 0 warnings / 0 failures. No shared/generated site files were edited.
+
+**CR-A095-01 — final integration required (not done in this scope):** `content/price-archive.md` currently describes an archive-based walk-forward benchmark and price-derived comparisons. Final integration must link this policy on the public site and reconcile those existing claims with the newly adopted quarantine (label as exploratory or remove unsupported validated claims). Do not edit shared site/navigation files until the integration owner claims that scope. This request does not assert that the current page has been changed.
+
+| Task | Status | Scope |
+|---|---|---|
+| A095-BL20-1 | done | `docs/PRICE-DATA-POLICY.md` |
+| A095-BL20-2 | done | `docs/PRICE-DATA-POLICY.md`, `COORDINATION.md` |
