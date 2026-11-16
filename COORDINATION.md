@@ -4007,3 +4007,15 @@ content altered):**
 **Merge-conflict log (two merges).** First merge (`b39ed7a`, PRs #94–#101): generated products regenerated on the merged registers; `flags.csv` = main's rows + reallocated FL-112/113; `sources.csv` union. Second merge (`1e9caaa`, PRs #102–#103): same generated-products pattern; `tools/verify.py` hand-merged so `f3ec0ff8`'s snapshot discovery and this session's provenance semantics combine (the snapshot is selected by stamp match with the table, never by filename order alone — a second same-day read must not shadow the table's own transcription); `flags.csv` = main's 113 rows + FL-114; `sources.csv` repaired (main's last row lacked a trailing newline and fused with this session's first appended row — split back into two intact rows) and appended with the five `S-*-E632` reads (99 ids, unique); `COORDINATION.md` = main's content with this session's block appended.
 
 **Files changed (this session's scope).** New: `data/hub_read_e632af20_20261116.csv`, `data/standings_recheck_e632af20_20261116.csv`, `data/reverification_e632af20.csv`, `tools/verify_e632af20.py`, `content/reverification.md`, `reverification.html`. Appended: `data/sources.csv` (+5 rows), `data/flags.csv` (FL-114). Edited: `tools/verify.py` (CR-58E9-06 + standings-guard semantics), `tools/s2268_verify.py` (CR-58E9-02), `tools/build_site.py` (NAV + page class), `content/index.md` (what-changed + page map, incl. CR-58E9-03), `content/data-dictionary.md` (+3 rows at exact counts), `.github/workflows/validate.yml` (+1 verifier step), regenerated HTML and census manifests.
+
+### PR, merge and live-deployment record — session `e632af20` (2026-11-16)
+
+| Item | Result |
+|---|---|
+| PR | [#104](https://github.com/kanlerxz87-cyber/NFL2/pull/104) — Re-verification 16 Nov: frozen-hub proof, thirteen verified Week 10 results, dated standings delta, Week 11 slate — FL-114, CR fixes |
+| Pre-merge CI (head `695443a`) | `Row-level verification, link check and build reproducibility` pass · `audit` pass · `q51` pass · `verify` pass · `mergeable: MERGEABLE`, `mergeStateStatus: CLEAN` |
+| Merge | `gh pr merge 104 --merge` at 2026-11-16; merge commit recorded on `main` |
+| Post-merge CI | `GitHub Pages` success · `Verify site data and links` success · `Q51 evidence and engine verification` success |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
+| Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
+| Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
