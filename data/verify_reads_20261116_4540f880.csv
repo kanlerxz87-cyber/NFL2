@@ -1,0 +1,4 @@
+read_id|source_name|org|url|captured_utc|what_it_represents|items_read
+V4540-INJ|Official Latest NFL Injury Report — Week 10 2026 season|NFL.com|https://www.nfl.com/injuries/|2026-11-16T15:00Z|Week 10 practice participation and game-status designations; same-day fresh read|28 clubs
+V4540-STAND|2026 NFL Standings (division view, regular season)|NFL.com|https://www.nfl.com/standings/|2026-11-16T15:00Z|W-L-T, winning pct, PF, PA, net points, streak; same-day fresh read|32 clubs
+V4540-WK11|Week 11 2026 schedule|NFL.com|https://www.nfl.com/schedules/2026/by-week/week-11|2026-11-16T15:00Z|13 fixtures, kickoffs, networks, neutral-site flag, six byes; same-day fresh read|13 fixtures + 6 byes

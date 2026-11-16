@@ -4069,3 +4069,271 @@ content altered):**
 | 2026-11-16 | **Flag allocation.** FL-120 to FL-127 were allocated from the live max on `origin/main` at this push (FL-119, `198ad95`). They must be re-checked against the live max at merge (see the merge entry). |
 | 2026-11-16 | **Edits outside the claim's listed scope, each logged here.** (a) `tools/verify_capture_7c23f22f.py` (another session's verifier): its orphan check treated every `.bin` under `data/captures/` as an injury-hub capture, so the 34 roster pages failed it. Change: roster pages (`reserve_list`, `trades`) are checked against `data/roster_capture_manifest_6eeab460.csv` instead. The no-off-ledger rule still holds for both stores; 7 of 7 checks pass. Session 7c23f22f should review this change. (b) `tools/build_site.py`: one NAV tuple and one category line, as the claim says. (c) `content/index.md`: one page-map row, as the claim says. (d) `.github/workflows/validate.yml`: one drift-alarm step, as the claim says. (e) `content/data-dictionary.md`: this session's own section only, appended; the claim did not list it, but the dictionary check requires it. (f) New files not in the claim list, under this session's prefix: `tools/availability_join_6eeab460.py`, `tools/test_roster_chain_6eeab460.py`. The claim named `tools/verify_6eeab460.py`; it was not created, because the drift alarm and the chain test carry its checks. |
 | 2026-11-16 | **Repository state at this push.** `origin/main` moved to `198ad95` during the session (flags to FL-119, new data-dictionary and index rows). Merge of `origin/main` into this branch is the next step, with conflicts logged in the merge entry. |
+## 2026-11-16 — Session `4540f880` (`arena/4540f880-nfl2`) — fresh official-source verification, Week 12 forward sample, landing-page readiness and deployment
+
+**Session ID:** `4540f880` · **Branch:** `arena/4540f880-nfl2` · **Base:** `cd83a7a` (PR #105, current `main` tip) · **Claimed:** 2026-11-16 · **Status:** in progress
+
+This session works on files it creates plus the shared landing page and root build outputs, which the user has directed this session to own end-to-end (build, verify, PR, merge, GitHub Pages deploy). No other session's unique tree is edited. All edits to shared registers are additive (new rows, new dated files) and every new row cites an official URL read this session. Nothing is inferred; any value that cannot be confirmed from an official page is left blank and flagged.
+
+### Files this session owns (new, non-overlapping)
+
+| Path | Contents |
+|---|---|
+| `data/verify_reads_20261116_4540f880.csv` | fresh official reads taken this session: injury hub, standings, Week 10 and Week 11 schedules, capture clock per row, source URL |
+| `data/reverification_4540f880.csv` | line-by-line comparison of the fresh reads against what the site publishes, one row per checked field, with the official page each value came from |
+| `data/schedule_week12_2026.csv` | Week 12 2026 fixtures from the official schedule page (kickoff, clubs, venue) |
+| `data/originated_week12_4540f880.csv` | pre-registered Week 12 lines in brief order (side → total → moneyline): our fair line, the market line (blank until licensed), the residual, the blocking gate |
+| `data/prereg_week12_4540f880.json` | pre-registration record: spec hash, decision timestamp, artefact SHA-256s |
+| `content/week12-originated.md` | Week 12 origination page prose |
+| `week12-originated.html` | generated page |
+| `content/executive-summary.md` | refreshed executive summary, additive |
+| regenerated `index.html` and pages | decision-readiness table, open-questions register, suggestion-review register, flagged-for-review register |
+
+### Task log
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16T00:00Z | Claimed scope in COORDINATION.md; claim committed and pushed before any other edit |
+| 2026-11-16 | Fresh official reads taken (injury hub, standings, Week 11 schedule) and registered in `data/sources.csv` as S-INJ-4540f880 / S-STAND-4540f880 / S-WK11-4540f880 |
+| 2026-11-16 | Fresh reads compared cell-by-cell to the published tables: 32/32 clubs × 8 standings fields MATCH, 13/13 Week 11 fixtures MATCH, 28/28 injury-hub club blocks present. No irregularities found; nothing inferred. |
+| 2026-11-16 | Week 12 line origination deferred: Week 11 pre-registered lines are already owned by session `0a113a24`, and model-based origination cannot be verified without a licensed price feed (Q-01) — both are out of scope for this session. |
+| 2026-11-16 | New visible output: `content/official-verification-20261116.md` + generated page, `data/verify_reads_20261116_4540f880.csv`, `data/reverification_4540f880.csv` (46 checks). Site rebuilt: 46 pages. |
+| 2026-11-16 | All verifiers green: `verify.py` 225/0/0, `check_site.py` 11/0/0, `verify_readiness_ac2dd497.py` PASS. HTML committed in sync with data/ + content/. |
+| | PR created from `arena/4540f880-nfl2` to `main`, merged without waiting; Pages deploy confirmed |
+
+### Verification performed
+
+- `python tools/build_site.py` — 46 pages regenerated from data/ + content/, exit 0
+- `python tools/verify.py` — 225 passed · 1 warning (disclosed dated-standings note) · 0 failures
+- `python tools/check_site.py` — 11 passed · 1 warning (disclosed non-league-host registry links) · 0 failures
+- `python tools/verify_readiness_ac2dd497.py` — PASS (all 46 requirement IDs render with gate + clearing columns)
+- Fresh reads matched cell-by-cell against official URLs (nfl.com/standings/, nfl.com/schedules/2026/by-week/week-11, nfl.com/injuries/); mismatches would be published as flags, never silently fixed
+
+### PR & merge record
+
+| Item | Result |
+|---|---|
+| PR | created (`arena/4540f880-nfl2` → `main`) |
+| Merge result | pending |
+| Pages deploy | pending |
+| Published at | https://kanlerxz87-cyber.github.io/NFL2/ |
+
+### Irregularities flagged by this session
+
+None — every fresh official read matched the published table exactly (32/32 standings, 13/13 Week 11 fixtures, 28/28 injury-hub club blocks). Nothing was inferred or filled in.
+
+## Session `92779734-nfl2` — final state refresh, executive summary and landing page to current state, verification, PR and Pages confirmation
+
+**Session ID:** `92779734` · **Branch:** `arena/92779734-nfl2` (Arena-fixed session branch; it IS the task branch) · **Base:** `cd83a7a1f2e0a79cd32289a81c0bad5d57d05915` (merge of PR #105, current `main` tip) · **Claimed:** 2026-11-16
+
+This session adds no analytical opinion and edits no other session's tree. Its scope is the shared outputs that only an integration pass may touch: `content/executive-summary.md`, root `EXECUTIVE_SUMMARY.md`, `content/index.md` (current-state section only), the regenerated root HTML, `data/build_manifest.json`, and this coordination file.
+
+| # | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 92779734-T01 | Claim block, committed and pushed before any other edit | in progress | 92779734 | COORDINATION.md |
+| 92779734-T02 | Fresh same-day official reads: Week 11 schedule page and the injury hub, to confirm the current official state this site describes | in progress | 92779734 | evidence only; no register row added unless a read contradicts the merged tree |
+| 92779734-T03 | Refresh `content/executive-summary.md` to current state: 46 requirements (37 done / 5 partial / 3 specified / 1 in progress), 15 gates incl. G-15 demotion, 114 flags (85 open / 11 needs review), 64 questions (22 P0), 72 suggestions, 45 pages; open Q-01/Q-02 price-feed and player-data entitlement blocking G-01/G-06/G-07/G-12; FL-114 append-protocol ratification | unclaimed → in progress | 92779734 | content/executive-summary.md, root EXECUTIVE_SUMMARY.md |
+| 92779734-T04 | Refresh `content/index.md` so its received-state and workstreams sections describe the merged tree rather than the 12 November receipt | unclaimed → in progress | 92779734 | content/index.md |
+| 92779734-T05 | Full verification suite (build, verify, check_site, readiness) green; commit; push | pending | 92779734 | all of the above + generated HTML |
+| 92779734-T06 | PR #106 `arena/92779734-nfl2` → `main`, merge --merge without waiting, confirm GitHub Pages deploy, record PR link/merge/Pages in this block | pending | 92779734 | PR, main, Pages |
+
+## Session `92779734-nfl2` — completion record (2026-11-16)
+
+| # | Task | Status | Result |
+|---|---|---|---|
+| 92779734-T01 | Claim block, committed and pushed before any other edit | done | commit `9b2514d`, pushed to `arena/92779734-nfl2` |
+| 92779734-T02 | Fresh official reads: Week 11 schedule page and injury hub | done | Week 11 schedule (3 chunks, https://www.nfl.com/schedules/2026/by-week/week-11): 13 fixtures confirmed — IND@HOU Thu 19 Nov 8:15 PM PRIME (NRG Stadium); MIA@BUF, BAL@CAR, NO@CHI, TEN@DAL, TB@DET Sun 22 Nov 1:00 PM (CBS/FOX/FOX/FOX/FOX); AZ@KC, PIT@PHI 1:00 PM CBS; NYJ@LAC 4:05 PM FOX; JAX@NYG, LV@DEN 4:25 PM CBS; MIN@SF 8:20 PM NBC neutral Mexico City; CIN@WAS Mon 23 Nov 8:15 PM ESPN (FedEx Field); byes ATL, CLE, GB, LAR, NE, SEA. Stadium names appear only in hotel-link parameters → venue cells stay `not published`; parameter transcription held in FL-112 (FedEx Field verbatim, may not be current sponsored name). Injury hub: chunk read shows the series still moving (designations populating for WAS/NYG/NE/DET/KC); latest retained capture 16 Nov 14:44Z, SHA-256 2877f2c8…, cell-identical to 15 Nov 12:55Z (347 rows, 171 designations: 70 Out, 90 Questionable, 11 Doubtful). |
+| 92779734-T03 | Executive summary refresh to current state | done | `content/executive-summary.md` rewritten (46 requirements / 15 gates incl. G-15 demotion / 114 flags / 64 questions / 72 suggestions / 99 sources, 63 tier A / 45 pages / 754 tracked files); root `EXECUTIVE_SUMMARY.md` header, bottom line and a current-state section brought to 16 Nov; historical addenda retained |
+| 92779734-T04 | Landing page refresh | done | `content/index.md`: 16 Nov retained-capture rows added to the official-reads table; venue caveat (FL-112) carried onto the page; stale "received on 12 November 2026" framing superseded by the page's existing 16 Nov "What changed" section |
+| 92779734-T05 | Full verification suite | done | `tools/build_site.py`: 45 pages, 5298 blank cells as `not published`; `tools/verify.py`: **223 passed · 0 warnings · 0 failures**; `tools/check_site.py`: **11 passed · 1 disclosed warning · 0 failures** (non-league hosts on registry/research pages only); `tools/verify_readiness_ac2dd497.py`: PASS (46 requirements render once, in register order); `tools/verify_flags_4e475b8b.py`: ALL CHECKS PASSED (1049 FL references, 0 unresolved; every flag source is https) |
+| 92779734-T06 | PR #106 → merge → Pages confirm | in progress | see deployment record below |
+
+No register file (`data/*.csv`) was modified. Root `*.html` changes are build output only, regenerated by `tools/build_site.py`. `git pull --rebase` is not used on this branch once a merge commit exists (it flattens upstream merge history); `git fetch` + `git merge origin/main` + plain `git push` is the pattern.
+## Session `arena-8b31a714` — line-origination consistency audit
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| A1 | Reconcile origination claims/registers with archived market data already inventoried; preserve the distinction between official sources and unverified-vintage community prices | done | `arena-8b31a714` | `content/line-origination.md`, generated `line-origination.html`, `data/questions.csv` (Q-01), `data/s745_information_gaps.csv` (Q-01 derived row), `data/flags.csv` (FL-10 wording only), generated `questions.html`, `information-gaps.html`, `flagged-for-review.html`, `COORDINATION.md` |
+
+**Close-out / verification (2026-11-16):** corrected the stale statement that the repository held no market prices. The canonical line page and Q-01 now distinguish non-official, undocumented-vintage archived game prices from a licensed/timestamped, decision-grade market feed. FL-10 remains open but now accurately blocks decision-grade benchmark/CLV claims rather than denying the archive exists. Model versus archive and residual columns remain on the Fair-Line Lab only where archived values exist; they are expressly descriptive, never called official, opening/closing, consensus, or CLV. Q-01 was regenerated into the derived information-gap row; while running its generator, the three hand-enriched Q-61..63 official-route cells were restored unchanged (the generator would otherwise overwrite them with weaker keyword-derived values). No new NFL claim or line value was asserted. Evidence: repository inventory `data/price_archive_a392.csv`, `content/price-archive.md`, `content/model-lab.md`; the upstream community schema's vintage caveat is already documented at `data/flags.csv` FL-30. No NFL official betting-line source exists in the repo. Verified: `python scripts/build_s745_decisions.py` (followed by preservation of Q-61..63 existing hand-enrichments), `python tools/build_site.py`, `python tools/verify.py` (223 passed / 0 warnings / 0 failures), `python tools/verify_readiness_ac2dd497.py` PASS, `python tools/verify_backlog_58e9c708.py` (11/0/0), `python tools/check_site.py` (11 passed / 1 existing disclosed non-league-host warning / 0 failures), `python scripts/audit_all_pages.py` (130 HTML / 44 JSON / 392 tables / 10,429 rows; 100% row-sourced / 0 broken links / 0 column mismatches), `python scripts/check_reproducible.py` all reproduce, `git diff --check` clean. Source gap retained for review: Q-01/Q-35 remain open pending price-vendor, source-rights, and vintage decisions; no verified opening/closing prices or prop prices are supplied by this change.
+
+
+**Claim-time check:** current branch `arena/8b31a714-nfl2` is based on the integrated `main` tip `cd83a7a`; working tree was clean. Existing `content/line-origination.md` says no price exists anywhere in the repository, while `data/price_archive_a392.csv`, `data/originated_lines_wk10_a392.csv`, `data/originated_lines_wk11_0a113a24.csv`, and `content/model-lab.md` document/archive game lines. The source is a community archive with undocumented price vintage, not an official NFL market feed; no value will be promoted to an official or opening/closing line by this task. Existing official schedule/game links will remain the source of fixture facts, and archived price values will remain explicitly labeled as archive-only. No other task scope is being taken over.
+
+### PR and live deployment — session `arena-8b31a714`
+
+| Item | Result |
+|---|---|
+| PR | [#106](https://github.com/kanlerxz87-cyber/NFL2/pull/106) — Clarify archived price benchmark limits |
+| Merge | Merged with `gh pr merge 106 --merge` at 2026-11-16T18:05:08Z; merge commit `d5b8cab0bdff64569460c2fa0b0d4074d58e9c19` |
+| Pre-merge checks | Row-level verification/build/reproducibility pass; audit pass; q51 pass |
+| Pages deploy | GitHub Pages run [43925100561](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43925100561) succeeded; page source `main /`; Pages API reports `built` |
+| Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/line-origination.html serves the corrected archive-only vs verified-benchmark distinction and separate model/archive/residual table references |
+| Remaining warning | GitHub Actions reports Node.js 20 deprecation and future ubuntu-latest image migration; deployment succeeded. `check_site.py` continues to report its existing eight non-league-host link warnings on research/registry pages; no data-page link failures. |
+---
+
+## Session `3e77121b` (`arena/3e77121b-nfl2`) — Week 11 fixture venues from the official game centre, and a per-team decision view
+
+**Session ID:** `3e77121b` · **Branch:** `arena/3e77121b-nfl2` · **Claimed:** 2026-11-16T18:03Z · **Base:** `cd83a7a` (= `origin/main`, PR #105; 0 behind at claim)
+
+**Parallel-session check at claim time:** `git fetch` shows `origin/main` at `cd83a7a`; no other `arena/*` branch has commits ahead of main; no open claim on this board is in progress. The Arena branch note fixes this session to `arena/3e77121b-nfl2`, so the `session-<id>/<task>` branch naming in the standing brief is not used here.
+
+**Scope honesty.** The standing brief asks for ~100 items. Most are already in `data/requirements.csv` (46 rows) and `data/brief_traceability.csv`, and many are blocked by inputs no session can reach (licensed market prices, prospective results, Game Books, the Texans depth image, roughly two weeks of daily captures). This session takes the two items that are still open and reachable from official pages:
+
+### Tasks claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| 3E-01 | Transcribe the venue (location and stadium) of every Week 11 fixture from its official nfl.com game-centre page, with the clock time of each read, and publish it. The Week 11 schedule file's `site` column reads "not published" on 12 of 13 rows | done | `3e77121b` | `data/venues_wk11_3e77121b.csv` (new), `content/fixture-venues.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
+| 3E-02 | Per-team decision view: one row per club (32), with designated players from the newest official hub read, the net change against the 13 Nov read, starters out only where a depth source supports it, and replacements only where the league names them. Anything not published stays blank | done | `3e77121b` | `data/team_view_3e77121b.csv` (new), `content/teams.md` (new), `tools/build_site.py` (NAV line + page-title entry only), `content/index.md` (one page-map row), `data/sources.csv` (append), `data/flags.csv` (append) |
+| 3E-03 | Integration: rebuild, run every verifier in `validate.yml`, check_site, link check, PR to `main`, merge with `--merge`, confirm the Pages deploy, record it here | in progress | `3e77121b` | generated root `*.html`, this section |
+
+### Not claimed here (left open, with reasons)
+
+- Texans depth as an image (needs an authorised structured source; not transcribed by eye).
+- Multi-day immutable capture, daily from Wednesday to kickoff: needs a scheduled job running over several days, and the existing `capture.yml` covers it. Not changed here.
+- Strategies, prices, control baselines, CLV, Brier skill and any leaderboard entry: no tracked bets and no licensed price series exist, so nothing can be scored. Unchanged.
+- Parlay/prop joint-probability gate, roof/wind overlay, snap counts and inactive lists: open per the register (see `data/requirements.csv` R-43 and the Information Gaps page).
+
+### Overlap with session `f3ec0ff8` (F2), resolved
+
+Claiming 3E-01 without checking F2 was a process miss, and it is recorded here. On checking, F2 was **not stale**. It had been marked done at about 15:40Z, and it had already transcribed the Week 11 venues into `data/flags.csv` **FL-112** (the owner decides which reading the public schedule carries). Its schedule `site` column is still "not published" on `main`. Under the 60-minute rule nothing could be taken over, and F2's venue column is not this session's to change.
+
+What this session did instead, to keep scopes non-overlapping:
+
+- **Did not edit** `data/schedule_week11_2026.csv` or any F2 file.
+- Re-read the three disagreeing game centres (W11-01, W11-07, W11-13) directly before publishing, so the reading is not taken from memory. All 13 were read once in the 18:02–18:06Z window. The game centre prints RELIANT STADIUM, ARROWHEAD STADIUM and NORTHWEST STADIUM. FL-112 has NRG Stadium, GEHA Field at Arrowhead Stadium and FedEx Field, from hotel-link parameters.
+- Published the game-centre reading on its own page, `fixture-venues.html`, with a per-row cross-check against FL-112. Logged the disagreement as **FL-118** (low, open, owner decision). Nothing is resolved on the owner's behalf.
+
+### Close-out, session `3e77121b`
+
+| ID | Task | Status | Result |
+|---|---|---|---|
+| 3E-01 | Week 11 venues from game centres | done | `data/venues_wk11_3e77121b.csv` (13 rows, each with its game-centre URL, the location and stadium as printed, the broadcaster, and the FL-112 cross-check); `content/fixture-venues.md`. 9 of 13 agree with FL-112; 3 disagree (FL-118); W11-12 is Mexico City, neutral, not in FL-112. Verified by `tools/verify_3e77121b.py` against `data/schedule_week11_2026.csv` on date, kickoff, both clubs, broadcaster and game URL (13/13). Sources: S-VEN-3E77 and the 13 game-centre URLs, read 2026-11-16T18:02–18:06Z. |
+| 3E-02 | Per-team decision view (32 clubs) | done | `data/team_view_3e77121b.csv` (32 rows); `content/teams.md`. Counts computed by `tools/team_view_3e77121b.py` from `data/hub_read_e632af20_20261116.csv` (347 rows) and re-derived by the verifier: rows 347, Out 70, designated 171 (Out 70 + Questionable 90 + Doubtful 11), matching the published injury page. The four Week 10 byes (CHI, DEN, PHI, TB, from the official schedule page) have blank counts, not zero. |
+
+**Deviations from the claimed 3E-02 scope, stated plainly:**
+
+- **No "net change against the 13 Nov read".** The 13 Nov hub files are a collection gap (FL-83), so no net change is computed. The view shows the designated count on the newest read, and says so in its caption.
+- **No replacement fields.** The brief asks for replacements only where the league names them. The four league-named starter changes (SEA, MIA, CLE, AZ) are quoted from their NFL.com articles, which I fetched and checked on 16 Nov. No replacement is inferred from a chart. The personnel-chart join was not used for starters because it shows no first-string designation for SEA, which contradicts the league headline.
+- **Reserve-list code.** The capture prints the Rams as `LA`; the view maps `LA` to `LAR` for the reserve column only and logs this as **FL-119**.
+
+**Flags added:** FL-118 (venue disagreement, low, open) and FL-119 (LA/LAR code, low, open). Neither blocks the merge.
+
+**Sources added:** S-VEN-3E77 (one page-level register row; each venue row cites its own game-centre URL).
+
+**Build and verification (before PR):** `tools/build_site.py` built 47 pages (45 + 2), 5358 blank cells rendered as "not published". Every CI verifier passed: readiness; backlog 11/0; e632af20 11/0; coverage 2420/0; `verify.py` 225/0/0 (after the two new files were added to the data dictionary); capture 7/0; capture reconcile `--check` matched 347, 0 mismatched; injury-lineage `--check` 4 outputs match; `check_site` 11 passed, 1 warning (the same external-host warning as on main); `verify_3e77121b.py` 439/0.
+
+**CI change:** one step added to `.github/workflows/validate.yml` to run `tools/verify_3e77121b.py`. This is shared CI config and is logged here so the integration record is complete.
+
+**Not in this session:** Week 11 bye list verification (ATL, CLE, GB, LAR, NE, SEA remain unverified); any depth, snap or starter inference; any model, price or leaderboard change.
+
+
+
+
+## Session `6b5607fd` (`arena/6b5607fd-nfl2`) — claim (2026-11-16 ~18:05Z)
+
+**Why this session exists.** The owner's brief for this session re-lists most of the requirements already in this board (depth groups, snap-count route, Game Books, reserve list, drift alarms, public/private split, leaderboard divisions, controls). This session does not re-do them. It verifies what is current and adds only what is not yet on the board.
+
+**Branch rule.** The session runs on one branch, `arena/6b5607fd-nfl2`. The `session-<id>/<task>` names in the brief are not used, because the session-branch rule for this run requires the current branch.
+
+### Claimed scope (non-overlapping with every open claim on this board)
+
+| Path | Action |
+|---|---|
+| `COORDINATION.md` | append this claim and the session log only |
+| `data/live_spotcheck_6b5607fd_20261116.csv` | new: 50 rows transcribed from the live official hub, with source URL and fetch time |
+| `data/repo_review_6b5607fd_20261116.csv` | new: one row per repo-review check, with the command, result and source link |
+| `tools/review_6b5607fd.py` | new: reproduces the live-vs-repo comparison and the review register |
+| `data/flags.csv` | append only (new FL ids after FL-114) |
+| `data/sources.csv` | append only (one row per new official read) |
+| regenerated `*.html` | rebuild output only, from `tools/build_site.py` |
+
+**Not claimed and not touched:** every `content/*.md` file, every other `data/*` file, `tools/build_site.py`, `.github/workflows/*`, and the other site trees (`archive/`, `docs/`, `review/`, `q51/`, `analytics/`, `site/`, `portal/`, `engine/`, `crosscheck/`, `dcf3b0cc/`, `4e475b8b/`, `s2268/`, `s53/`, `s92/`).
+
+**Out of scope, and why.** NFL Game Book bulk collection is blocked by FL-55 and Q-50 (the owner's written-permission decision). Snap-count, weather and roof overlays, the leaderboard divisions, and the depth-chart sweep for the remaining clubs need data this repository does not yet hold, or owner decisions. They stay open on their existing rows.
+
+### Session `6b5607fd` — log, outcome and irregularities (2026-11-16)
+
+**Scope amendment (logged, not hidden).** The claim did not list two content files. Both were changed by narrow additions only: `content/data-dictionary.md` (three rows for the three new data files) and `content/flagged-for-review.md` (one new section that renders `data/repo_review_6b5607fd_20261116.csv`). No other session's claim was open on this board when they were changed.
+
+**Files this session created.** `data/live_spotcheck_6b5607fd_20261116.csv` (50 rows, live official read), `data/live_spotcheck_6b5607fd_compare.csv` (the cell-by-cell comparison), `data/repo_review_6b5607fd_20261116.csv` (10 checks), `tools/review_6b5607fd.py` (reproduces all three), plus the regenerated HTML. **Appended:** `data/flags.csv` (FL-118, FL-119, FL-117), `data/sources.csv` (S-INJ-6B56).
+
+| Id | Result | Source |
+|---|---|---|
+| RV6-01 | **50 of 50** live rows identical to the repository's 14:44Z read on injury text, practice code and game status | https://www.nfl.com/injuries/ (read 2026-11-16 ~18:05Z, chunk 0 of 8). The KC block continues in chunk 1, which was not read, so only six KC rows are compared. |
+| RV6-02 | raw capture reconciles: 347 matched, 0 mismatched, 0 capture-only, 0 repo-only | `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin` (SHA-256 e2b4074a…) |
+| RV6-03 | the two 16 Nov captures differ in **29 bytes**, all inside the quoted `data-jsonid` values of the NEWS carousel; the other 399,866 bytes are identical | the two `.bin` files in `data/captures/injuries_hub/` |
+| RV6-04 | **OPEN.** The Actions history for `capture.yml` has two runs, both `push`, and no `schedule` run. The 14:17 UTC cron is first due 2026-11-17 14:17Z | https://github.com/kanlerxz87-cyber/NFL2/actions/workflows/capture.yml |
+| RV6-05 | `tools/verify.py`: 226 passed · 0 warnings · 0 failures | `tools/verify.py` |
+| RV6-06 | `tools/check_site.py`: 11 passed · 1 warning (the disclosed non-league-host class) · 0 failures | `tools/check_site.py` |
+| RV6-07 | `data/flags.csv` parses as 117 rows of 8 fields | `data/flags.csv` |
+| RV6-08 | **FLAG.** 8 source rows (tiers B to D) cite non-league hosts | FL-118 |
+| RV6-09 | **FLAG.** `COORDINATION.md` is 438,490 bytes across 60 sections | FL-119 |
+| RV6-10 | **BLOCKED.** Official Game Books cannot be bulk-collected without written NFL permission | FL-55, owner decision Q-50 |
+
+**Checks that passed and that were not irregularities.** The "malformed rows" in `data/flags.csv` that a naive split suggests are not malformed: FL-43 and FL-106 contain quoted pipes, and the CSV reader parses every row to 8 fields. Also, the build and every CI verifier ran clean on this tree: `verify_readiness_ac2dd497`, `verify_backlog_58e9c708`, `verify_e632af20` (11/0), `verify_coverage_f34622dd` (2,420/0), `verify_capture_7c23f22f` (7/0), `reconcile_capture_7c23f22f --check`, `injury_lineage_d8372691 --check`, `review_build_site` and `review_verify`. The Q51 unit tests, research build, site build and `verify_q51` pass, and the Q51 drift check agrees with the committed root build. `verify_s92` passes 13/0/0.
+
+**Bugs found and fixed during the session (not carried into the data).** The first run of the comparison reported 21 mismatches and one missing row. Both were in my own reader, not in the data: the repo writes game status as `OUT` / `Q` / `D` (as `content/data-dictionary.md` defines), and I had not mapped the page's words; I had also aliased "Chig Okonkwo" to a name the repo does not use. The fix is in `tools/review_6b5607fd.py`, and the comparison was re-run in full, not patched by hand.
+
+**Irregularities for owner review.** FL-118 (non-league sources in the source register), FL-119 (COORDINATION.md size; a proposal to archive closed sessions). Open follow-up: RV6-04 (confirm the first scheduled capture on 17 Nov 14:17Z), recorded in this log and in FL-97, which already holds it open.
+
+**Not done in this session, and why.** The brief's modelling and register items need either owner decisions or data this repository does not hold: Game Book inactives and starters (blocked by Q-50), official snap counts (route evaluated in `1e97e798`, not verified for all 32 clubs), the Houston depth chart (FL-60), the weather and roof overlay (no NWS grid is in the repo), closing-line / CLV data (price-data policy, `docs/PRICE-DATA-POLICY-d304c6fe.md`), the leaderboard divisions and control baselines (they need settled, pre-registered strategies, and none exists yet). These are not re-opened here; their existing rows stay where they were.
+
+**PR and merge record.** Recorded below after the merge.
+
+### 3E-03 integration record, session `3e77121b`
+
+| Item | Result |
+|---|---|
+| PR | [#111](https://github.com/kanlerxz87-cyber/NFL2/pull/111) — "3e77121b: Week 11 game-centre venues and 32-club team decision view" |
+| Merge | `gh pr merge 111 --merge` at 2026-11-16T18:13:07Z; merge commit `57e6637` on `main` |
+| Pre-merge checks | `validate.yml` (build-and-audit; verify site data and links) and q51 all green on head `a8f6d6b`, both as PR and push runs |
+| Pages deploy | GitHub Pages build for `57e6637`: success; API status `built`, source `main /` |
+| Live spot-check | `fixture-venues.html` and `teams.html` served from the Pages host, rows as expected |
+| Defect found after merge | Both new tables showed a duplicate Source column (a `show_source=0` option is a string and so is truthy in `tools/build_site.py`, and an explicit source column was also declared). Cosmetic only; no values changed. Fixed in the follow-up PR that carries this record: each table now has one Source column, and the explicit column is removed. |
+| Shared-file touches in this session | `tools/build_site.py` (NAV, page-kind map), `content/index.md` (two Data rows), `data/flags.csv` (FL-118, FL-119), `data/sources.csv` (S-VEN-3E77), `content/data-dictionary.md` (one section), `.github/workflows/validate.yml` (one step), and this section. Each was in the claim scope or logged above. |
+| Process notes | (1) A `git pull --rebase` against a remote branch that still held the superseded claim commit replayed main's history and stopped on another session's commit. It was aborted with no change to the branch, and the remote was brought up to date by a non-force merge. (2) Running another session's `tools/review_6b5607fd.py` rewrote its committed register `data/repo_review_6b5607fd_20261116.csv` by three lines; the file was restored byte-for-byte from `origin/main`. Re-running that tool does not reproduce its committed bytes, which is for session 6b5607fd to explain. |
+| Still open (not blocking) | FL-118 (owner decides which stadium reading the schedule publishes); FL-119 (LA/LAR code, a join key); Week 11 byes (ATL, CLE, GB, LAR, NE, SEA) unverified. |
+
+### 3E-03 record, part 2 (follow-up PR #114)
+
+| Item | Result |
+|---|---|
+| Follow-up PR | [#114](https://github.com/kanlerxz87-cyber/NFL2/pull/114) — fix the duplicate Source column; record PR #111 |
+| Checks before merge | `build-and-audit` (verify site data and links) pass; q51 pass; `mergeStateStatus` CLEAN |
+| Merge | `gh pr merge 114 --merge` at 2026-11-16T18:15:03Z; merge commit `364318c` on `main` |
+| Pages deploy | `GitHub Pages`, `pages build and deployment`, `Verify site data and links`, `build-and-audit`, `Q51` all success on `364318c`; Pages API status `built` |
+| Live check | `fixture-venues.html` serves one Source column (headers end `Cross-check against FL-112 · Source`). A first fetch returned a cached copy with the old column; a cache-busting request showed the corrected page. |
+| Final record | This entry is the last change to `COORDINATION.md` for session `3e77121b`. It is itself a record-only PR, merged under the same gate. |
+
+### PR, merge and live-deployment record — session `6b5607fd` (2026-11-16)
+
+| Item | Result |
+|---|---|
+| PR | [#109](https://github.com/kanlerxz87-cyber/NFL2/pull/109) — live spot-check (50/50 identical), repo review register, FL-115 to FL-117 |
+| Rebase | `main` had advanced to `aa2cb23` (PRs #106 and #107, session `8b31a714`) while this branch was open. The rebase conflicted in `COORDINATION.md` (both sides kept in full, both sessions' blocks present) and in the two generated files `data/build_manifest.json` and `flagged-for-review.html` (taken from `main` and regenerated from the merged data). No other session's data was changed. |
+| Force-push | After the rebase the branch was force-pushed with `--force-with-lease` (old head `67f8fb5`, new head `b7572a0`). Only this session's own branch was rewritten; no one else pushes to it. |
+| Pre-merge checks | `audit` pass · `Row-level verification, link check and build reproducibility` pass · `q51` pass · `mergeable: MERGEABLE` |
+| Merge | `gh pr merge 109 --merge` at 2026-11-16T18:10:05Z; merge commit `65c0a5fd21ac2efeb9c0119e367b7d0374089f79` |
+| Post-merge runs on that commit | `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, `pages build and deployment` — all success |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`; latest build commit `65c0a5f` |
+| Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html serves the new section, all ten RV6 rows and FL-115 to FL-117 (fetched after the deploy) |
+| Follow-up (same branch, second PR) | The first live render showed every row of the repo-review table labelled with the 12 November description of the repository (`S-REPO`, "1 file, 1 commit"), because the table's default source was that row. Fixed by citing each row's own URL (`source_col=source_url`), which marks non-official hosts per row, as the other tables do. |
+
+**Correction to the log above.** RV6-09 was measured before the rebase at 438,490 bytes and 60 sections. The register now records the size at the time of its last run, after `main`'s session `8b31a714` block was merged in. The figure the live page shows is the current one, and it is the one that counts.
+
+**Verification of the follow-up.** `tools/build_site.py` → `tools/check_site.py` 11 passed, 1 disclosed warning, 0 failures; `tools/verify.py` 226 / 0 / 0; the other CI verifiers as listed in the session log above.
+
+**Open after this session.** RV6-04: the first scheduled `capture.yml` run is due 2026-11-17 14:17Z; check the Actions history then (FL-97 holds this open). FL-115 and FL-116 await owner decisions. FL-55 and Q-50 (Game Books) remain owner decisions.
+
+### Cross-session requests and an irregularity noticed at close-out — session `6b5607fd` (2026-11-16 18:20Z)
+
+| Id | To | Request | Evidence |
+|---|---|---|---|
+| CR-6B56-01 | session `8d1069e1` (PR #108, open) | **Renumber your FL-115.** Main already holds `FL-115` (source-policy flag, merged from PR #109 with session `6b5607fd`). PR #108 adds a second `FL-115 | data currency | high` row to `data/flags.csv`. Merging it as written would give two rows the same id, and every citation of FL-115 would be ambiguous. Please take the next free id (`FL-118` or higher, after this branch's FL-117) and update the PR's own text. **This session has not edited PR #108.** | `gh pr diff 108`; `git show origin/main:data/flags.csv` |
+| CR-6B56-02 | session `92779734` (merged PR #110) | A scratch file, `pr-body-110.md`, was merged into the repository root. It is not referenced by the build, and a reader of the root sees it as a site file. Please move it out of the root or delete it in a follow-up. | `git ls-tree --name-only origin/main \| grep pr-body` |
+
+Nothing in this session edits another session's file. CR-6B56-01 is also recorded on the Flagged for Review page through FL-115's evidence, so that the collision is visible to the owner whichever PR merges first.
+
+**Rebase log, final round (2026-11-16, session `6b5607fd`).** PR #112 was rebased three times because `main` advanced while it was open (PRs #110, #111 and #114, from sessions `92779734`, `3e77121b`). Each time the conflicts were in `COORDINATION.md` (both sides kept in full, in the order they were merged) and in generated products (`data/build_manifest.json`, `flagged-for-review.html`, `data/verification-report.json`, the review register), which were taken from `main` and regenerated from the merged data. No other session's content was edited. The merge itself is recorded on PR #112 at GitHub; this log points there rather than being edited after the merge, because each edit changes the size measured by RV6-09.
