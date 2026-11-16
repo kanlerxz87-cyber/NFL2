@@ -5,14 +5,14 @@
 ## What this session found
 
 - **The Week 10 injury hub has not moved since 15 November.** The full row-level re-read (347 rows, transcribed to `data/hub_read_e632af20_20261116.csv`) matches both 15 November reads cell for cell: zero additions, zero removals, zero changed designations, zero changed practice codes. The Friday report was frozen through Sunday's games and into Monday. One transcription error in this session's own first draft was caught by that same cell-for-cell comparison and corrected against the fetched page before anything was published.
-- **Thirteen Week 10 games are final and the repository has ingested one of them.** The two official score pages agree line for line. The hold-up is structural, not clerical: the pre-registration hash gate treats any append to the results file as tampering. The twelve un-ingested results are published here with their official game pages so ingestion needs no second transcription once an owner approves an append protocol ([FL-97](flagged-for-review.html), [FL-98](flagged-for-review.html)).
+- **Thirteen Week 10 games are final and the repository has ingested one of them.** The two official score pages agree line for line. The hold-up is structural, not clerical: the pre-registration hash gate treats any append to the results file as tampering. The twelve un-ingested results are published here with their official game pages (the parallel 16 November capture session publishes the same thirteen on the [Results feed](results-feed.html) page from its own read) so ingestion needs no second transcription once an owner approves an append protocol ([FL-112](flagged-for-review.html), [FL-113](flagged-for-review.html)).
 - **The standings delta closes exactly.** For all 32 clubs, today's official read equals the repository's 13 November snapshot plus exactly that club's Sunday result — wins, losses, ties, points for and points against, recomputed by `tools/verify_e632af20.py`. There is no unexplained cell on either side.
 - **The Henderson reserve-list conflict is still live** ([FL-96](flagged-for-review.html)). Two days on, the hub still lists TreVeyon Henderson with game status Out while its own news block carries the league's article placing him on injured reserve.
 - **The whole Week 11 slate matches the published schedule file** — clubs, dates, kickoffs and broadcasters — including the two fixtures whose broadcasters moved between the league's 9 November schedule-change article and the live page (the repository already carries the current values). Two fixture rows fell in a gap between page chunks of the schedule fetch and were verified on their own official game pages instead, which also name their stadiums.
 
 ## The register — every check, with its official page
 
-{{csv data/reverification_e632af20.csv;;cols=id:ID,check:Check,scope:Scope,published_value:What the repository publishes,official_value:What the official pages showed on 16 Nov,result:Result,note:Note;;source_col=source;;caption=One row per check, written only after the official page was read in this session. Results: MATCH means the repository and the official page agree; NOT INGESTED means the fact is verified and published here but not yet in the results file the models read (FL-97); PENDING means the league publishes no result yet and none is recorded; FLAGGED means the row is on the Flagged for Review page with its decision.}}
+{{csv data/reverification_e632af20.csv;;cols=id:ID,check:Check,scope:Scope,published_value:What the repository publishes,official_value:What the official pages showed on 16 Nov,result:Result,note:Note;;source_col=source;;caption=One row per check, written only after the official page was read in this session. Results: MATCH means the repository and the official page agree; NOT INGESTED means the fact is verified and published here but not yet in the results file the models read (FL-112); PENDING means the league publishes no result yet and none is recorded; FLAGGED means the row is on the Flagged for Review page with its decision.}}
 
 ## Standings: the dated delta, club by club
 
@@ -27,18 +27,18 @@ Thirteen final, one pending. Every score below was read on both the official sco
 | Game | Fixture | Official result at read time | Ingested in the results file |
 | --- | --- | --- | --- |
 | W10-01 | WAS at NYG | [WAS 24 – NYG 21](https://www.nfl.com/games/commanders-at-giants-2026-reg-10) FINAL | yes |
-| W10-02 | NE at DET (Munich) | [NE 10 – DET 35](https://www.nfl.com/games/patriots-at-lions-2026-reg-10) FINAL | no (FL-97) |
-| W10-03 | KC at ATL | [KC 35 – ATL 13](https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10) FINAL | no (FL-97) |
-| W10-04 | MIN at GB | [MIN 30 – GB 10](https://www.nfl.com/games/vikings-at-packers-2026-reg-10) FINAL | no (FL-97) |
-| W10-05 | JAX at TEN | [JAX 40 – TEN 23](https://www.nfl.com/games/jaguars-at-titans-2026-reg-10) FINAL | no (FL-97) |
-| W10-06 | MIA at IND | [MIA 22 – IND 24](https://www.nfl.com/games/dolphins-at-colts-2026-reg-10) FINAL | no (FL-97) |
-| W10-07 | CAR at NO | [CAR 20 – NO 17](https://www.nfl.com/games/panthers-at-saints-2026-reg-10) FINAL | no (FL-97) |
-| W10-08 | BUF at NYJ | [BUF 31 – NYJ 12](https://www.nfl.com/games/bills-at-jets-2026-reg-10) FINAL | no (FL-97) |
-| W10-09 | HOU at CLE | [HOU 24 – CLE 27](https://www.nfl.com/games/texans-at-browns-2026-reg-10) FINAL | no (FL-97) |
-| W10-10 | LAR at AZ | [LAR 34 – AZ 6](https://www.nfl.com/games/rams-at-cardinals-2026-reg-10) FINAL | no (FL-97) |
-| W10-11 | SEA at LV | [SEA 21 – LV 13](https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10) FINAL | no (FL-97) |
-| W10-12 | SF at DAL | [SF 46 – DAL 40](https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10) FINAL | no (FL-97) |
-| W10-13 | PIT at CIN | [PIT 18 – CIN 38](https://www.nfl.com/games/steelers-at-bengals-2026-reg-10) FINAL | no (FL-97) |
+| W10-02 | NE at DET (Munich) | [NE 10 – DET 35](https://www.nfl.com/games/patriots-at-lions-2026-reg-10) FINAL | no (FL-112) |
+| W10-03 | KC at ATL | [KC 35 – ATL 13](https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10) FINAL | no (FL-112) |
+| W10-04 | MIN at GB | [MIN 30 – GB 10](https://www.nfl.com/games/vikings-at-packers-2026-reg-10) FINAL | no (FL-112) |
+| W10-05 | JAX at TEN | [JAX 40 – TEN 23](https://www.nfl.com/games/jaguars-at-titans-2026-reg-10) FINAL | no (FL-112) |
+| W10-06 | MIA at IND | [MIA 22 – IND 24](https://www.nfl.com/games/dolphins-at-colts-2026-reg-10) FINAL | no (FL-112) |
+| W10-07 | CAR at NO | [CAR 20 – NO 17](https://www.nfl.com/games/panthers-at-saints-2026-reg-10) FINAL | no (FL-112) |
+| W10-08 | BUF at NYJ | [BUF 31 – NYJ 12](https://www.nfl.com/games/bills-at-jets-2026-reg-10) FINAL | no (FL-112) |
+| W10-09 | HOU at CLE | [HOU 24 – CLE 27](https://www.nfl.com/games/texans-at-browns-2026-reg-10) FINAL | no (FL-112) |
+| W10-10 | LAR at AZ | [LAR 34 – AZ 6](https://www.nfl.com/games/rams-at-cardinals-2026-reg-10) FINAL | no (FL-112) |
+| W10-11 | SEA at LV | [SEA 21 – LV 13](https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10) FINAL | no (FL-112) |
+| W10-12 | SF at DAL | [SF 46 – DAL 40](https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10) FINAL | no (FL-112) |
+| W10-13 | PIT at CIN | [PIT 18 – CIN 38](https://www.nfl.com/games/steelers-at-bengals-2026-reg-10) FINAL | no (FL-112) |
 | W10-14 | LAC at BAL | [no result published at read time](https://www.nfl.com/games/chargers-at-ravens-2026-reg-10) — kickoff 8:15 PM ET tonight | no (pending) |
 
 ## Method
@@ -49,8 +49,8 @@ Thirteen final, one pending. Every score below was read on both the official sco
 
 ## What this page does not establish
 
-- **It does not grade anything.** The settled table still grades one game; extending it is blocked on the append protocol in [FL-97](flagged-for-review.html), not on missing evidence — every result it needs is in the table above.
+- **It does not grade anything.** The settled table still grades one game; extending it is blocked on the append protocol in [FL-112](flagged-for-review.html), not on missing evidence — every result it needs is in the table above.
 - **It does not refresh the site's cumulative tables.** The standings, ratings and fair-line tables keep their dated snapshots until [Q-40](questions.html) sets a cadence; this page publishes the delta beside them instead.
 - **It is transcription, not byte capture.** The rows were transcribed from the rendered pages and then verified by the arithmetic above and by cross-reading two official pages per result. A raw capture with stored hashes is still the missing infrastructure ([FL-82](flagged-for-review.html)).
 
-Flags for this page: [FL-96](flagged-for-review.html) (the Henderson conflict, re-verified here), [FL-97](flagged-for-review.html) (the results-feed growth gate), [FL-98](flagged-for-review.html) (the one-game settle sample). The hub's own history is on the [Injury Hub delta](hub-delta.html) and [Availability Watch](availability-watch.html) pages; the pre-registered lines that will be graded against these results are on [Settled Week 10](week10-settled.html) and [Week 11 Lines](week11-originated.html).
+Flags for this page: [FL-96](flagged-for-review.html) (the Henderson conflict, re-verified here), [FL-112](flagged-for-review.html) (the results-feed growth gate), [FL-113](flagged-for-review.html) (the one-game settle sample). The hub's own history is on the [Injury Hub delta](hub-delta.html) and [Availability Watch](availability-watch.html) pages; the pre-registered lines that will be graded against these results are on [Settled Week 10](week10-settled.html) and [Week 11 Lines](week11-originated.html).

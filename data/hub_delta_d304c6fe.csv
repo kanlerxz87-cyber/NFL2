@@ -1,0 +1,6 @@
+id|club|player|field|value_2026_11_16|prior_value|prior_read_utc|delta|source
+HD-01|DET|Kerby Joseph|Game Status|Out|not published (blank cell)|2026-11-15T12:56Z|designated Out (Knee) on the live hub; BL-49 case 1 of 3 now published by the league|S-D304-INJ-16
+HD-02|DET|Cade Mays|Game Status|Out|not published (blank cell)|2026-11-15T12:56Z|designated Out (Ankle) on the live hub; BL-49 case 2 of 3|S-D304-INJ-16
+HD-03|DET|D.J. Reed|Game Status|Out|not published (blank cell)|2026-11-15T12:56Z|designated Out (Hip) on the live hub; BL-49 case 3 of 3|S-D304-INJ-16
+HD-04|NE|TreVeyon Henderson|Game Status and roster state|Out (Illness) on the hub and Reserve/Injured on the wire|Out (Illness); reserve state unknown in the repo|2026-11-15T12:56Z|both official states visible in one read; FL-96 conflict confirmed live, not resolved|S-D304-INJ-16
+HD-05|league|hub week selector|Week shown|WEEK 10|WEEK 10|2026-11-15T12:56Z|no change: the hub still publishes Week 10 on 2026-11-16; Week 11 participation is not yet published anywhere official|S-D304-INJ-16

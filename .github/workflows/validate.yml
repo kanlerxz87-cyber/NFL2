@@ -22,6 +22,10 @@ jobs:
         run: python tools/verify_coverage_f34622dd.py
       - name: Audit the data (official sources, reconciliations, no fabricated results)
         run: python tools/verify.py
+      - name: Verify the official capture store (hashes, no overwrite, official URLs; session 7c23f22f)
+        run: |
+          python3 tools/verify_capture_7c23f22f.py
+          python3 tools/reconcile_capture_7c23f22f.py --check
       - name: Fail if the Week 10 injury lineage drifts from its input files (session d8372691)
         run: python3 scripts/injury_lineage_d8372691.py --check
       - name: Audit the site (links, empty cells, template markers, official source coverage)

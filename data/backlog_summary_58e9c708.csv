@@ -13,10 +13,10 @@ theme|Reporting|1|1.4
 theme|Results|2|2.8
 theme|Venue|3|4.2
 status|blocked|1|1.4
-status|done|2|2.8
+status|done|9|12.7
 status|in progress|1|1.4
-status|not started|40|56.3
-status|partial|24|33.8
+status|not started|32|45.1
+status|partial|25|35.2
 status|rejected|2|2.8
 status|specified|1|1.4
 total|directives on this register|71|100.0
