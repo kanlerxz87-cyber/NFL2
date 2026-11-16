@@ -1,0 +1,57 @@
+name: Official injury-hub capture (retained, hashed)
+
+# Session 7c23f22f (FL-88 / FL-90). GitHub-hosted runners can reach www.nfl.com; the
+# analysis sandbox cannot. Each run stores the raw response bytes under data/captures/
+# with a SHA-256, and appends one row per fetch to data/capture_manifest.csv.
+# Nothing else in the repository is written by this workflow.
+
+on:
+  schedule:
+    - cron: "17 14 * * *"   # daily, 14:17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]        # runs once whenever the capture code itself lands on main
+    paths:
+      - ".github/workflows/capture.yml"
+      - "tools/capture_official.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-capture
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+
+      - name: Fetch official pages, store raw bytes, append manifest
+        id: capture
+        run: python3 tools/capture_official.py
+
+      - name: Commit only the capture outputs
+        if: always()
+        run: |
+          git add data/captures data/capture_manifest.csv
+          if git diff --cached --quiet; then
+            echo "no new capture rows or files"
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "capture: official injury hub $(date -u +%Y-%m-%dT%H:%MZ) (7c23f22f)"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:"${GITHUB_REF_NAME}"; then exit 0; fi
+            git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}" || exit 1
+          done
+          exit 1
+
+      - name: Fail the run if the capture failed or the page structure changed
+        if: steps.capture.outcome == 'failure'
+        run: |
+          echo "::error::capture failed or the expected official structure is missing; see data/capture_manifest.csv"
+          exit 1

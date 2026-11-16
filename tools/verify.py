@@ -22,8 +22,14 @@ FAIL, WARN, PASS = [], [], []
 
 
 def rows(name):
-    with open(os.path.join(DATA, name), encoding="utf-8") as fh:
-        raw = list(csv.reader(fh, delimiter="|"))
+    with open(os.path.join(DATA, name), encoding="utf-8", newline="") as fh:
+        header = fh.readline()
+        # The original project uses pipe-delimited registers. Official-capture manifests
+        # are conventional comma-delimited CSV; detect the separator from the header rather
+        # than silently miscounting their fields or reading the whole row as one cell.
+        delimiter = "|" if "|" in header else ","
+        fh.seek(0)
+        raw = list(csv.reader(fh, delimiter=delimiter))
     hdr = raw[0]
     return [dict(zip(hdr, r)) for r in raw[1:]], hdr, raw
 
