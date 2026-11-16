@@ -31,6 +31,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import html
 import re
 import sys
 import time
@@ -54,6 +55,7 @@ TIMEOUT_S = 60
 RETRIES = 3
 
 MAX_PAGES = 12
+PAGE_SIZE = 25  # official tables hold 25 rows per page; a shorter page is the last page of the table
 
 MANIFEST_FIELDS = [
     "fetch_utc", "kind", "season", "month", "page_seq", "source_url", "http_status", "bytes", "sha256",
@@ -117,9 +119,9 @@ def parse_rows(text: str) -> list[tuple[str, str, str, str, str]]:
             frm = re.search(r'href="/teams/([^/"]+)/?"', cells[0])
             to = re.search(r'href="/teams/([^/"]+)/?"', cells[1])
             name = re.search(r">([^<]+)</a>", cells[3])
-            date = re.sub(r"<[^>]+>", "", cells[2]).strip()
-            tx = re.sub(r"<[^>]+>", "", cells[5]).strip()
-            nm = name.group(1).strip() if name else re.sub(r"<[^>]+>", "", cells[3]).strip()
+            date = html.unescape(re.sub(r"<[^>]+>", "", cells[2])).strip()
+            tx = html.unescape(re.sub(r"<[^>]+>", "", cells[5])).strip()
+            nm = html.unescape(name.group(1).strip() if name else re.sub(r"<[^>]+>", "", cells[3]).strip())
             out.append((frm.group(1) if frm else "", to.group(1) if to else "", date, nm, tx))
     return out
 
@@ -196,18 +198,26 @@ def migrate_manifest_v1() -> None:
 
 
 def run(months: list[int], dry_run: bool) -> int:
-    """Fetch every month's pages. Page 1 is stored whenever its bytes are new. A later page is stored only
-    when it adds rows that no retained capture of that month holds, and the chain stops at the first page
-    that adds none. This bounds storage: the 25-row cursor returns repeats for some months (see FL-R2)."""
+    """Fetch every month's pages and follow the Next link.
+
+    The cursor is not a clean sequence (FL-120): on Aug and Sep it interleaves repeated bytes with pages that
+    add rows (Aug p7; Sep p5), so no repeat-based stop is safe. The chain therefore ends only when a page
+    is short (fewer than PAGE_SIZE rows, the table's last page), when no Next link is present, or at MAX_PAGES.
+    A chain still open at MAX_PAGES is recorded as INCOMPLETE in the manifest note; the coverage register
+    reads it as incomplete. It is not a run failure, because the cursor's end is not under our control.
+
+    Storage is keyed on bytes: a page is stored only when its SHA-256 is new for that kind and month AND it
+    adds rows that no retained capture holds. Repeated bytes are never stored twice."""
     if not dry_run:
         migrate_manifest_v1()
     rows_before = read_manifest()
-    seen = {(r["source_url"], r["sha256"]) for r in rows_before if r.get("stored_path")}
+    stored_keys = {(r["kind"], r["month"], r["sha256"]) for r in rows_before if r.get("stored_path")}
     new_rows: list[dict] = []
     failures = 0
 
     for kind, month, base_url in page_urls(months):
         union = month_union(kind, month)
+        chain_digests: set = set()
         url = base_url
         seq = 0
         while url and seq < MAX_PAGES:
@@ -232,8 +242,10 @@ def run(months: list[int], dry_run: bool) -> int:
             page_rows = set(parse_rows(text))
             added = page_rows - union
             union |= page_rows
-            already = (url, digest) in seen
-            store = (not already) and (seq == 1 or bool(added))
+            repeat = digest in chain_digests
+            chain_digests.add(digest)
+            key = (kind, f"{month:02d}", digest)
+            store = (key not in stored_keys) and (seq == 1 or bool(added))
             stored = ""
             if store and not dry_run:
                 folder = CAPTURE_DIR / kind / f"{SEASON}-{month:02d}"
@@ -244,18 +256,20 @@ def run(months: list[int], dry_run: bool) -> int:
                     raise SystemExit(f"refusing to overwrite {path}")
                 path.write_bytes(raw)
                 stored = path.relative_to(ROOT).as_posix()
-                seen.add((url, digest))
+                stored_keys.add(key)
 
-            chain_stopped = seq > 1 and not added
+            short_page = facts["tbody_rows"] < PAGE_SIZE
             ok = facts["schema_ok"]
             if not ok:
                 failures += 1
-            if chain_stopped:
-                note_txt = "cursor returned no row absent from retained captures; chain stopped (FL-R2)"
-            elif not facts["schema_ok"]:
+            if not facts["schema_ok"]:
                 note_txt = "expected title, six-column header with rows and player links, or the empty-state block"
             else:
                 note_txt = f"distinct rows in month after this page: {len(union)}"
+                if repeat:
+                    note_txt += "; bytes identical to an earlier page of this chain (FL-120)"
+                if short_page:
+                    note_txt += "; short page: last page of the table"
             row.update({
                 "sha256": digest, "stored_path": stored,
                 "new_content": "yes" if store else "no",
@@ -268,15 +282,13 @@ def run(months: list[int], dry_run: bool) -> int:
                   f"players={facts['player_links']} added={len(added)} stored={'yes' if store else 'no'} "
                   f"next={'yes' if nxt else 'no'} schema_ok={row['schema_ok']}")
             new_rows.append(row)
-            if chain_stopped or not nxt:
+            if short_page or not nxt:
                 break
             url = nxt
         else:
             if url:  # loop exited because MAX_PAGES was reached with a Next link still open
-                failures += 1
-                new_rows[-1]["schema_ok"] = "no"
-                new_rows[-1]["note"] = "pagination chain still open at MAX_PAGES"
-                print(f"OPEN {kind} {SEASON}/{month:02d}: chain still open at MAX_PAGES={MAX_PAGES}")
+                new_rows[-1]["note"] += f"; INCOMPLETE: pagination chain still open at MAX_PAGES={MAX_PAGES} (FL-120)"
+                print(f"OPEN {kind} {SEASON}/{month:02d}: chain still open at MAX_PAGES={MAX_PAGES}; month incomplete")
 
     if not dry_run and new_rows:
         write_header = not MANIFEST.exists()
