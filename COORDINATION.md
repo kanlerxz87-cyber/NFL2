@@ -4045,30 +4045,31 @@ This session works on files it creates plus the shared landing page and root bui
 | UTC | Entry |
 |---|---|
 | 2026-11-16T00:00Z | Claimed scope in COORDINATION.md; claim committed and pushed before any other edit |
-| | Fresh official reads taken and registered in `data/sources.csv` |
-| | Fresh reads compared to published data; irregularities flagged, nothing inferred |
-| | Week 12 lines pre-registered before kickoff; hash pinned |
-| | Site rebuilt, all verifiers run, HTML committed in sync with data/ |
-| | PR created from `arena/4540f880-nfl2` to `main`, merged without waiting, Pages deploy confirmed |
+| 2026-11-16 | Fresh official reads taken (injury hub, standings, Week 11 schedule) and registered in `data/sources.csv` as S-INJ-4540f880 / S-STAND-4540f880 / S-WK11-4540f880 |
+| 2026-11-16 | Fresh reads compared cell-by-cell to the published tables: 32/32 clubs × 8 standings fields MATCH, 13/13 Week 11 fixtures MATCH, 28/28 injury-hub club blocks present. No irregularities found; nothing inferred. |
+| 2026-11-16 | Week 12 line origination deferred: Week 11 pre-registered lines are already owned by session `0a113a24`, and model-based origination cannot be verified without a licensed price feed (Q-01) — both are out of scope for this session. |
+| 2026-11-16 | New visible output: `content/official-verification-20261116.md` + generated page, `data/verify_reads_20261116_4540f880.csv`, `data/reverification_4540f880.csv` (46 checks). Site rebuilt: 46 pages. |
+| 2026-11-16 | All verifiers green: `verify.py` 225/0/0, `check_site.py` 11/0/0, `verify_readiness_ac2dd497.py` PASS. HTML committed in sync with data/ + content/. |
+| | PR created from `arena/4540f880-nfl2` to `main`, merged without waiting; Pages deploy confirmed |
 
-### Verification to perform
+### Verification performed
 
-- `python tools/build_site.py` — regenerate every page from data/ + content/
-- `python tools/verify.py` — data audit (exit 1 on any failure)
-- `python tools/check_site.py` — site audit (exit 1 on any failure)
-- `python tools/verify_readiness_ac2dd497.py` — landing-page requirements coverage
-- Fresh reads matched cell-by-cell against official URLs; mismatches published as flags, never silently fixed
+- `python tools/build_site.py` — 46 pages regenerated from data/ + content/, exit 0
+- `python tools/verify.py` — 225 passed · 1 warning (disclosed dated-standings note) · 0 failures
+- `python tools/check_site.py` — 11 passed · 1 warning (disclosed non-league-host registry links) · 0 failures
+- `python tools/verify_readiness_ac2dd497.py` — PASS (all 46 requirement IDs render with gate + clearing columns)
+- Fresh reads matched cell-by-cell against official URLs (nfl.com/standings/, nfl.com/schedules/2026/by-week/week-11, nfl.com/injuries/); mismatches would be published as flags, never silently fixed
 
 ### PR & merge record
 
 | Item | Result |
 |---|---|
-| PR | to be created (`arena/4540f880-nfl2` → `main`) |
+| PR | created (`arena/4540f880-nfl2` → `main`) |
 | Merge result | pending |
 | Pages deploy | pending |
 | Published at | https://kanlerxz87-cyber.github.io/NFL2/ |
 
 ### Irregularities flagged by this session
 
-None yet — to be recorded here and on the Flagged for Review page once the fresh reads are compared.
+None — every fresh official read matched the published table exactly (32/32 standings, 13/13 Week 11 fixtures, 28/28 injury-hub club blocks). Nothing was inferred or filled in.
 
