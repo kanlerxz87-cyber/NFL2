@@ -4126,7 +4126,7 @@ What this session did instead, to keep scopes non-overlapping:
 
 **Not in this session:** Week 11 bye list verification (ATL, CLE, GB, LAR, NE, SEA remain unverified); any depth, snap or starter inference; any model, price or leaderboard change.
 
-**3E-03 integration:** PR to `main`, merge with `--merge`, and Pages confirmation are recorded below after they happen.
+
 
 
 ## Session `6b5607fd` (`arena/6b5607fd-nfl2`) — claim (2026-11-16 ~18:05Z)
@@ -4179,3 +4179,18 @@ What this session did instead, to keep scopes non-overlapping:
 **Not done in this session, and why.** The brief's modelling and register items need either owner decisions or data this repository does not hold: Game Book inactives and starters (blocked by Q-50), official snap counts (route evaluated in `1e97e798`, not verified for all 32 clubs), the Houston depth chart (FL-60), the weather and roof overlay (no NWS grid is in the repo), closing-line / CLV data (price-data policy, `docs/PRICE-DATA-POLICY-d304c6fe.md`), the leaderboard divisions and control baselines (they need settled, pre-registered strategies, and none exists yet). These are not re-opened here; their existing rows stay where they were.
 
 **PR and merge record.** Recorded below after the merge.
+
+### 3E-03 integration record, session `3e77121b`
+
+| Item | Result |
+|---|---|
+| PR | [#111](https://github.com/kanlerxz87-cyber/NFL2/pull/111) — "3e77121b: Week 11 game-centre venues and 32-club team decision view" |
+| Merge | `gh pr merge 111 --merge` at 2026-11-16T18:13:07Z; merge commit `57e6637` on `main` |
+| Pre-merge checks | `validate.yml` (build-and-audit; verify site data and links) and q51 all green on head `a8f6d6b`, both as PR and push runs |
+| Pages deploy | GitHub Pages build for `57e6637`: success; API status `built`, source `main /` |
+| Live spot-check | `fixture-venues.html` and `teams.html` served from the Pages host, rows as expected |
+| Defect found after merge | Both new tables showed a duplicate Source column (a `show_source=0` option is a string and so is truthy in `tools/build_site.py`, and an explicit source column was also declared). Cosmetic only; no values changed. Fixed in the follow-up PR that carries this record: each table now has one Source column, and the explicit column is removed. |
+| Shared-file touches in this session | `tools/build_site.py` (NAV, page-kind map), `content/index.md` (two Data rows), `data/flags.csv` (FL-118, FL-119), `data/sources.csv` (S-VEN-3E77), `content/data-dictionary.md` (one section), `.github/workflows/validate.yml` (one step), and this section. Each was in the claim scope or logged above. |
+| Process notes | (1) A `git pull --rebase` against a remote branch that still held the superseded claim commit replayed main's history and stopped on another session's commit. It was aborted with no change to the branch, and the remote was brought up to date by a non-force merge. (2) Running another session's `tools/review_6b5607fd.py` rewrote its committed register `data/repo_review_6b5607fd_20261116.csv` by three lines; the file was restored byte-for-byte from `origin/main`. Re-running that tool does not reproduce its committed bytes, which is for session 6b5607fd to explain. |
+| Still open (not blocking) | FL-118 (owner decides which stadium reading the schedule publishes); FL-119 (LA/LAR code, a join key); Week 11 byes (ATL, CLE, GB, LAR, NE, SEA) unverified. |
+
