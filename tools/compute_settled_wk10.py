@@ -149,9 +149,10 @@ def main():
     sd_t, sd_m = st.stdev(totals), st.stdev(margins)
 
     comp = [
-        ("settled week 10 games", "1",
-         "official Week 10 scores page, read %s" % g["captured_utc"],
-         "only the Thursday-night game is Final; the other 13 kick off 15-16 November", S_SCORES),
+        ("settled week 10 games", "%d of 14" % len(played),
+         "official Week 10 scores page, last read 2026-11-16T14:41Z",
+         "%d results appended to the played file; MNF LAC at BAL (W10-14) was not yet played and is not graded"
+         % len(played), S_SCORES),
         ("official result, W10-01",
          "%s %d at %s %d (home margin %+d, total %d)"
          % (g["away"], away_pts, g["home"], home_pts, act_margin, act_total),
@@ -215,12 +216,72 @@ def main():
         ("games needed to detect a 1.0-pt spread-MAE difference", "%.0f" % n_needed(sd_m, 1.0),
          "n = (z_a + z_b)^2 * SD^2 / delta^2 with SD = %.4f, 80%% power, two-sided 5%%" % sd_m,
          "one settled game is %.2f%% of that" % (100.0 / n_needed(sd_m, 1.0)), S_SCORES),
-        ("verdict", "n=1 establishes nothing",
-         "one settled observation against a required sample of about %.0f games"
-         % n_needed(sd_m, 1.0),
+        ("verdict", "n=%d establishes little" % len(played),
+         "%d settled observation(s) against a required sample of about %.0f games"
+         % (len(played), n_needed(sd_m, 1.0)),
          "the honest reading of this page is that the pipeline ran end to end and produced a "
          "number - it is not evidence that the number means anything yet", S_SCORES),
     ]
+
+    # ---- aggregate over every settled game (added 2026-11-16, f3ec0ff8: 12 further results) ----
+    # The rows above tell the W10-01 story the page was written around. The rows below are the
+    # aggregate the page's own design promises: "as the rest of Week 10 settles, this page
+    # re-scores itself". Mean absolute error per predictor over every settled game where that
+    # predictor published a value; the archived price keeps its own n because it is blank on
+    # fixtures it never covered.
+    by_pred = {}
+    for r in rows:
+        by_pred.setdefault(r["predictor"], []).append(r)
+
+    def mae(pred, col):
+        errs = [float(r[col]) for r in by_pred.get(pred, []) if r[col].strip()]
+        return (sum(errs) / len(errs), len(errs)) if errs else (None, 0)
+
+    our_m_s, our_n_s = mae("our origination (a392 lab)", "spread_abs_error")
+    our_m_t, our_n_t = mae("our origination (a392 lab)", "total_abs_error")
+    dn_m_s, _ = mae("do-nothing season mean", "spread_abs_error")
+    dn_m_t, _ = mae("do-nothing season mean", "total_abs_error")
+    fl_m_s, _ = mae("points-only fair line", "spread_abs_error")
+    fl_m_t, _ = mae("points-only fair line", "total_abs_error")
+    ar_m_s, ar_n_s = mae("archived community price", "spread_abs_error")
+    ar_m_t, ar_n_t = mae("archived community price", "total_abs_error")
+    if our_m_s is not None and dn_m_s is not None:
+        comp += [
+            ("our spread MAE, all settled games (pts)", "%.2f (n=%d)" % (our_m_s, our_n_s),
+             "mean absolute error of our published spread over every settled Week 10 game",
+             "the aggregate the single-game rows above cannot give", S_SCORES),
+            ("our total MAE, all settled games (pts)", "%.2f (n=%d)" % (our_m_t, our_n_t),
+             "mean absolute error of our published total over every settled Week 10 game",
+             "still far below the sample the arithmetic on this page demands", S_SCORES),
+            ("do-nothing season-mean MAE, all settled games (pts)",
+             "spread %.2f / total %.2f" % (dn_m_s, dn_m_t),
+             "mean absolute error of the weeks 1-9 season mean over the same settled games",
+             "the bar our model has to clear on the aggregate, not on one game", S_SCORES),
+            ("points-only fair-line MAE, all settled games (pts)",
+             "spread %.2f / total %.2f" % (fl_m_s, fl_m_t),
+             "mean absolute error of the points-only fair line on the same games",
+             "the simplest model on the site, scored properly", S_SCORES),
+            ("our spread vs the do-nothing baseline, aggregate",
+             "%+.2f pts (ours is %s)" % (our_m_s - dn_m_s, "better" if our_m_s < dn_m_s else "worse"),
+             "our spread MAE minus the do-nothing spread MAE over the same settled games",
+             "a negative number here is the only thing that would begin to justify the model",
+             S_SCORES),
+            ("our total vs the do-nothing baseline, aggregate",
+             "%+.2f pts (ours is %s)" % (our_m_t - dn_m_t, "better" if our_m_t < dn_m_t else "worse"),
+             "our total MAE minus the do-nothing total MAE over the same settled games",
+             "same rule as the spread aggregate", S_SCORES),
+            ("archived community price MAE, all settled games (pts)",
+             ("spread %.2f / total %.2f (n=%d/%d)" % (ar_m_s, ar_m_t, ar_n_s, ar_n_t))
+             if ar_m_s is not None and ar_m_t is not None else "not published (no archived price)",
+             "mean absolute error of the archived price where it covered a settled game",
+             "the archive keeps its own n; blank coverage is never zero", S_SCORES),
+            ("verdict (all settled games)",
+             "n=%d of a required ~%.0f games" % (our_n_s, n_needed(sd_m, 1.0)),
+             "settled count against the required-sample arithmetic above",
+             "nobody may call this an edge; it is the first honest multi-game look at the "
+             "originated lines", S_SCORES),
+        ]
+
     with open(os.path.join(DATA, OUT_COMPUTED), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh, delimiter="|", lineterminator="\n")
         w.writerow(["metric", "value", "method", "read", "source"])

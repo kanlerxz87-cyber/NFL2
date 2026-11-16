@@ -1072,7 +1072,7 @@ def layout(slug, title, lead, kind_label, kind, body, ctx, toc):
            injury_subset=display_utc(source_read_utc("S-INJ-1113")),
            injury_latest=display_utc(source_read_utc("S-INJ-1246")),
            standings_read=display_utc(read_rows("standings_2026.csv")[0]["captured_utc"]),
-           injury_url=SOURCES["S-INJ"]["url"], standings_url=SOURCES["S-STAND-653B"]["url"], nav=navhtml,
+           injury_url=SOURCES["S-INJ"]["url"], standings_url=SOURCES["S-STAND-F3EC"]["url"], nav=navhtml,
            kind=kind, kind_label=esc(kind_label), toc=toc_html, body=body, prev=prevn, next=nextlink,
            flags=metric("flags"), sources=metric("sources"))
 

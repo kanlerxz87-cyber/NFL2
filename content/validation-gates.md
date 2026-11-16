@@ -1,5 +1,5 @@
 # Validation Gates
-> Fourteen gates every strategy must clear before it may be ranked, funded or trusted — with what each one tests, what it blocks, and what is missing that stops any of them from being passed today.
+> Fifteen gates every strategy must clear before it may be ranked, funded or trusted — with what each one tests, what it blocks, and what is missing that stops any of them from being passed today. Fourteen are promotion-side gates; G-15 is the demotion gate that sends a promoted strategy back to paper (the two-sided rule the brief demands; added 2026-11-16 as C-14 in the brief traceability register).
 
 A gate is not a formality. In this domain almost every failure looks like success at some point in the middle, so the gates exist to make "it looked good" insufficient. Each row states a *pass criterion* that can be checked by someone else, because a gate nobody can audit is a mood.
 
@@ -15,6 +15,17 @@ A gate is not a formality. In this domain almost every failure looks like succes
 | Model quality | G-06 | a validation set of settled outcomes joined to our own predictions | calibration, not accuracy — a model right 55% of the time with 60% stated confidence is broken |
 | Evidence | G-08, G-09, G-10, G-12 | forward tracking, and only forward | the sample-size arithmetic is on the [removing-luck page](skill-vs-luck.html) |
 | Governance | G-11, G-13, G-14 | registration discipline and a bankroll policy | the cheapest cluster to satisfy and the one most often skipped |
+| Demotion | G-15 | the way back down | fires only after promotion, which is why it has never run yet |
+
+## The demotion gate (G-15) — what sends a live strategy back to paper
+
+Every gate above is one-sided by construction: it states what earns promotion and says nothing about what revokes it. G-15 (added 2026-11-16, the register row behind brief item C-14) is the other side:
+
+- **Skill collapse.** Benchmark-relative Brier skill below 0 over the trailing window, with a one-sided 95% interval.
+- **Price decay.** Rolling 20-ticket mean closing line value below −0.5, with a 95% interval excluding 0.
+- **Repeated drawdown breach.** The G-14 drawdown limit breached twice inside a rolling 30-day window.
+
+Any one trigger with interval support demotes the strategy to paper until it re-qualifies through the promotion gates from G-08 onward, and the trigger, its interval and the demoted entry are published as register rows before any re-promotion. The gate is defined but untestable until something is promoted — and nothing is promoted, because the leaderboard is empty by design.
 
 ## Status, stated plainly
 

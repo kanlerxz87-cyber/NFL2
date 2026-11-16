@@ -124,13 +124,24 @@ def standings_capture_metadata():
 
 
 def standings_official_recheck():
-    """Compare every published standings field to the saved official-page transcription."""
+    """Compare every published standings field to the newest saved official-page transcription.
+
+    Each refresh saves a dated `standings_recheck_<yyyymmdd>.csv` alongside the published table;
+    the newest one by filename is the official snapshot this check compares against. The 13 Nov
+    file is never edited — a later read simply becomes the newest snapshot.
+    """
+    import glob as _glob
     fields = ("w", "l", "t", "pct", "pf", "pa", "net", "streak")
     current, current_header, _ = rows("standings_2026.csv")
-    snapshot, snapshot_header, _ = rows("standings_recheck_20261113.csv")
+    rechecks = sorted(_glob.glob(os.path.join(DATA, "standings_recheck_*.csv")))
+    if not rechecks:
+        bad("standings official recheck: no standings_recheck_*.csv snapshot exists in data/")
+        return
+    snapshot_name = os.path.basename(rechecks[-1])
+    snapshot, snapshot_header, _ = rows(snapshot_name)
     required = {"abbr", "source", "captured_utc", *fields}
     if not required.issubset(set(current_header)) or not required.issubset(set(snapshot_header)):
-        bad("standings recheck: current table or official snapshot is missing required columns")
+        bad("standings recheck (%s): current table or official snapshot is missing required columns" % snapshot_name)
         return
     problems = []
     local_by = {r["abbr"].strip(): r for r in current}
@@ -166,8 +177,8 @@ def standings_official_recheck():
     if problems:
         bad("standings official recheck failed: %s" % problems[:8])
     else:
-        ok("official standings recheck: 32/32 clubs × 8 published fields (256 values) match at %s" %
-           latest["accessed_utc"])
+        ok("official standings recheck: 32/32 clubs × 8 published fields (256 values) match %s at %s" %
+           (snapshot_name, latest["accessed_utc"]))
 
 
 def source_read_times_visible():
