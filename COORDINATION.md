@@ -4362,3 +4362,17 @@ What this session did instead, to keep scopes non-overlapping:
 Nothing in this session edits another session's file. CR-6B56-01 is also recorded on the Flagged for Review page through FL-115's evidence, so that the collision is visible to the owner whichever PR merges first.
 
 **Rebase log, final round (2026-11-16, session `6b5607fd`).** PR #112 was rebased three times because `main` advanced while it was open (PRs #110, #111 and #114, from sessions `92779734`, `3e77121b`). Each time the conflicts were in `COORDINATION.md` (both sides kept in full, in the order they were merged) and in generated products (`data/build_manifest.json`, `flagged-for-review.html`, `data/verification-report.json`, the review register), which were taken from `main` and regenerated from the merged data. No other session's content was edited. The merge itself is recorded on PR #112 at GitHub; this log points there rather than being edited after the merge, because each edit changes the size measured by RV6-09.
+
+### PR & deployment record — session `8d1069e1` (T-8D1-01, 2026-11-16)
+
+| Item | Result |
+|---|---|
+| PR | [#108](https://github.com/kanlerxz87-cyber/NFL2/pull/108) — Republish Week 10 injury table from the pinned 16 Nov official capture (FL-120) |
+| Head verified before merge | `e225eac`: `Row-level verification, link check and build reproducibility` pass · `audit` pass · `build-and-verify` pass · `q51` pass · `mergeable: MERGEABLE`, `mergeStateStatus: CLEAN` |
+| Merge | `gh pr merge 108 --merge` → `MERGED` 2026-11-16T18:23:07Z, merge commit `f37c1ad795d1a75fabe68d5ac87baf5028008675` |
+| Post-merge CI on `main` | `GitHub Pages`, `build-and-audit`, `Q51 evidence and engine verification`, `s92 evidence dashboard` all `success` |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
+| Live spot-check | `https://kanlerxz87-cyber.github.io/NFL2/injuries.html` serves the 347-row official read with the Detroit rows Out; `flagged-for-review.html` serves the current register |
+| Merge churn (for the record) | `main` advanced four times during this PR (merges #106/#107, #110, #111/#112, #113/#115). Each time the branch was re-merged, conflicts resolved (COORDINATION kept both logs, generated pages regenerated from merged sources, flag collision FL-115 → FL-120 renumbered), and the full verifier set re-run before pushing. |
+
+**Not part of this PR:** the broader brief (daily snapshot store, two-sided "change our mind" field, proper-score leaderboard divisions, availability ablations, Texans depth-image route, 32-team roster sweep) was not implemented in this session. Those items stay open on the board.
