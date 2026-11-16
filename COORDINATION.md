@@ -3629,3 +3629,20 @@ and records a SHA-256 for each read.
 * **CR-7C-01** (above): `tools/s2268_verify.py` scope allowlist.
 * **CR-7C-02:** the integration owner should point `injuries.html` at the 16 Nov retained capture (or the 15 Nov reconciled file) and clear FL-94.
 * **CR-7C-03:** `tools/build_site.py` and `data/capture_manifest.csv`: the manifest is append-only, and a future capture run should be checked by a second run from `main` (the daily cron) before anyone relies on the series.
+
+### Log — session `7c23f22f`, third round (after PR #96; second runner capture)
+
+| UTC | Entry |
+|---|---|
+| 14:44:29Z | **Second runner capture**, triggered by the merge of PR #96 (which edited `tools/capture_official.py`). HTTP 200, 399,895 bytes, SHA-256 `2877f2c8a1a28acb7024708cf103f2154d0d3f0231e9748b4b5d9480fec6c5fb`, stored as `data/captures/injuries_hub/20261116T144429Z_2877f2c8a1a2.bin`, committed as `dda65b3`. The ledger row was written **pipe-delimited by the runner**, which confirms the format change works on the runner. |
+| 14:47Z | **Same length, different hash.** `cmp` finds 29 differing bytes in one run, inside a carousel block (`data-jsonid`, a random identifier generated per render). No injury value differs. Recorded as **FL-99**: hashes identify a response, not a state; change detection must use parsed rows. |
+| 14:49Z | The second file reconciles **347 of 347** with the 15 Nov file (`--capture` summary run; nothing written). |
+| 14:50Z | **Two defects found in this session's own design before they broke `main`, and fixed:** (1) the reconciliation output pinned the *latest* capture, so each daily run would change its `capture_sha256` and fail `reconcile --check` in CI; it is now pinned to the 16 Nov 14:39Z capture (`PINNED_CAPTURE`), with `--capture` for summaries of other rows; (2) `captures.html` rendered the ledger, so each daily run would leave the committed HTML stale and fail the drift check on `main`; the page now links to the CSV and does not render it. |
+
+### Open items after this round
+
+* **FL-97 / FL-90:** two captures, five minutes apart, the same day. No daily series yet; the daily cron (14:17 UTC) will add rows from 17 Nov.
+* **FL-94:** still open; `injuries.html` not edited (integration owner; CR-7C-02).
+* **FL-98:** Rams club code (`LAR` / `LA`), owner decision.
+* **FL-99:** hash is per response; series analysis must compare parsed rows (owner decision for the series, FL-88).
+* **Not done in this session:** a per-club depth-chart capture, the transactions/reserve-list capture, and the inactive-list capture. Their official URLs have not been read in this session, so none is claimed.
