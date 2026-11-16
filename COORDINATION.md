@@ -4030,3 +4030,14 @@ content altered):**
 
 
 **Claim-time check:** current branch `arena/8b31a714-nfl2` is based on the integrated `main` tip `cd83a7a`; working tree was clean. Existing `content/line-origination.md` says no price exists anywhere in the repository, while `data/price_archive_a392.csv`, `data/originated_lines_wk10_a392.csv`, `data/originated_lines_wk11_0a113a24.csv`, and `content/model-lab.md` document/archive game lines. The source is a community archive with undocumented price vintage, not an official NFL market feed; no value will be promoted to an official or opening/closing line by this task. Existing official schedule/game links will remain the source of fixture facts, and archived price values will remain explicitly labeled as archive-only. No other task scope is being taken over.
+
+### PR and live deployment — session `arena-8b31a714`
+
+| Item | Result |
+|---|---|
+| PR | [#106](https://github.com/kanlerxz87-cyber/NFL2/pull/106) — Clarify archived price benchmark limits |
+| Merge | Merged with `gh pr merge 106 --merge` at 2026-11-16T18:05:08Z; merge commit `d5b8cab0bdff64569460c2fa0b0d4074d58e9c19` |
+| Pre-merge checks | Row-level verification/build/reproducibility pass; audit pass; q51 pass |
+| Pages deploy | GitHub Pages run [43925100561](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43925100561) succeeded; page source `main /`; Pages API reports `built` |
+| Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/line-origination.html serves the corrected archive-only vs verified-benchmark distinction and separate model/archive/residual table references |
+| Remaining warning | GitHub Actions reports Node.js 20 deprecation and future ubuntu-latest image migration; deployment succeeded. `check_site.py` continues to report its existing eight non-league-host link warnings on research/registry pages; no data-page link failures. |
