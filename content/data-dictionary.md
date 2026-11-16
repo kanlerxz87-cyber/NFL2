@@ -35,13 +35,13 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/measured_correlations_a392.csv` | 8 | one measured pair (rho or phi) with a seeded bootstrap interval and parlay arithmetic | S-GAMES26 |
 | `data/rest_and_hfa_2026_a392.csv` | 3 | rest bucket × mean home margin, the decomposition behind M-05 | S-GAMES26 |
 | `data/originated_lines_wk10_a392.csv` | 14 | Week 10 fixture × our line, the archived line where one exists, availability load by side | S-GAMES26, S-NFLDATA-ARCHIVE |
-| `data/games_2026_wk10_played.csv` | 1 | Week 10 game whose result is official. Append-only: the weeks 1–9 backtest corpus is deliberately left byte-identical so no existing grade is re-baselined (S-26) | S-SCORES-1113, S-GAME-W1001 |
-| `data/settled_wk10_5f16dcc6.csv` | 4 | settled game × predictor: the published line, the official result, and the absolute error of each | S-CALC-5F16 |
-| `data/computed_settled_5f16dcc6.csv` | 17 | one derived metric, its value, the method that produced it, and the read | S-CALC-5F16 |
+| `data/games_2026_wk10_played.csv` | 13 | Week 10 game whose result is official. Append-only: the weeks 1–9 backtest corpus is deliberately left byte-identical so no existing grade is re-baselined (S-26). Twelve results appended 2026-11-16T14:41Z; MNF LAC at BAL was not yet played and is not in the file | S-SCORES-1113, S-SCORES-F3EC |
+| `data/settled_wk10_5f16dcc6.csv` | 52 | settled game × predictor: the published line, the official result, and the absolute error of each (13 settled games × 4 predictors) | S-CALC-5F16 |
+| `data/computed_settled_5f16dcc6.csv` | 25 | one derived metric, its value, the method that produced it, and the read (17 W10-01 rows plus the 8-row thirteen-game aggregate added 2026-11-16) | S-CALC-5F16 |
 | `data/reverification_5f16dcc6.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
 | `data/schedule_week11_2026.csv` | 13 | one Week 11 fixture: date, kickoff, broadcaster, neutral-site flag and the official game URL | S-WK11-0A11 |
 | `data/originated_lines_wk11_0a113a24.csv` | 13 | one pre-registered Week 11 line: our spread and total, the model inputs beside them, and the non-official archive line it is compared against | S-CALC-0A11 |
-| `data/prereg_week11_0a113a24.csv` | 15 | one field of the pre-registration record: the decision timestamp, the SHA-256 of every artefact it covers, and what each one means | S-PREREG-0A11 |
+| `data/prereg_week11_0a113a24.csv` | 17 | one field of the pre-registration record: the decision timestamp, the SHA-256 of every artefact it covers, what each one means, and the two dated amendment rows added 2026-11-16 when the settled-games hash was refreshed | S-PREREG-0A11 |
 | `data/forward_grade_0a113a24.csv` | 13 | one pre-registered line against the official final score, with the do-nothing baseline error beside it | S-CALC-0A11 |
 | `data/forward_grade_summary_0a113a24.csv` | 10 | one derived metric of the forward grade: the hash checks, the settled count and the sample-size arithmetic | S-CALC-0A11 |
 | `data/games_week11_played.csv` | 0 | Week 11 game whose result is official. Append-only, like the Week 10 results file; empty until the games are played | S-SCORES-0A11 |
@@ -57,6 +57,12 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/availability_watch_gates_c3ec1487.csv` | 4 | one availability readiness gate, its measured value, and why it passes or fails | [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) |
 | `data/computed_availability_watch_c3ec1487.csv` | 12 | one derived availability metric, how it is computed, and what it means | S-CALC |
 | `data/reverification_c3ec1487.csv` | 13 | one check performed against a live official page on 2026-11-13, with its outcome | S-STAND-1113, S-SCORES-1113, S-WK11-1113, S-INJ-1113 |
+| `data/standings_recheck_20261116.csv` | 32 | the saved official-page transcription behind the 16 November standings refresh; verify.py compares the published table against this snapshot | S-STAND-F3EC |
+| `data/reserve_list_capture_f3ec0ff8.csv` | 25 | one dated Reserve/Injured placement on the official November 2026 reserve list, read in full on 2026-11-16T14:44Z (resolves FL-95's partial read) | S-RES-F3EC |
+| `data/trades_capture_f3ec0ff8.csv` | 12 | one dated November 2026 trade on the official transactions hub, read in full on 2026-11-16T14:45Z | S-TRD-F3EC |
+| `data/hub_read_f3ec0ff8_20261116.csv` | 347 | one player-filing on the official Week 10 page at the 2026-11-16T15:07Z game-day read: the Sunday point of the capture series, value-identical to the 15 Nov read on all 344 shared players | S-INJ-F3EC |
+| `data/announced_starters_f3ec0ff8.csv` | 5 | one dated league-published starter statement (Lock, Darnold, Watson, Beck, McCord) read as a headline on the official hub page | S-INJ-F3EC |
+| `data/reads_20261116_f3ec0ff8.csv` | 7 | one official-page read performed on 2026-11-16 by session f3ec0ff8: what was read, when, at what scope, and the file it is stored in | S-SCORES-F3EC, S-RES-F3EC, S-TRD-F3EC, S-WK11-F3EC, S-STAND-F3EC, S-INJ-F3EC |
 
 | `data/price_archive_a392.csv` | 5 | one price-bearing asset in the repository, what it proves and what it does not | S-NFLDATA-ARCHIVE, S-NFLDATA-SCHEMA |
 | `data/code_collision_a392.csv` | 2 | one cross-source join, how many games it silently dropped with and without the alias table | S-NFLDATA-ARCHIVE |

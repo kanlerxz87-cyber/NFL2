@@ -3541,3 +3541,48 @@ or minimally edited in the named column (`schedule_week11_2026.csv` `site`), per
 claim table. Pre-registered artefacts (`data/prereg_*`, `data/originated_lines_*`) are treated as
 immutable inputs; nothing in this session writes to them.
 
+
+### Session `f3ec0ff8` close-out (2026-11-16 ~15:40Z)
+
+| ID | Task | Status | Result |
+|---|---|---|---|
+| F1 | Board claim + repo state review | done | tree reviewed at `a2de786`; all suites green on receipt (verify 199/0/0, check_site 11/1/0) |
+| F2 | Fresh clock-timestamped official reads | done | 7 reads, 14:41Z–15:07Z, all registered in `data/reads_20261116_f3ec0ff8.csv`; 12 Week 10 finals appended (13 total, MNF pending); Week 11 venues filled (13 named + Mexico City label); full November reserve list (25 rows) and trades (12 rows) captured |
+| F3 | FL-94 resolution | done | injuries.html now leads with the 15 Nov full read (347 rows); the 16 Nov game-day read proved value-identical on all 344 shared players; FL-94 + FL-95 marked resolved in `data/flags.csv`; new FL-97/FL-98/FL-99 published |
+| F4 | C-14 demotion gate | done | G-15 appended to `data/gates.csv` (15 gates); `content/validation-gates.md` documents the three triggers; R-15 scope updated; C-14 → partial |
+| F5 | Rebuild + suites + PR + merge + Pages | done | see the verification table below and the PR record |
+
+**Sources used (all fetched and read this session, links in `data/sources.csv`):**
+[scores page](https://www.nfl.com/scores/2026/week-10) ·
+[reserve list](https://www.nfl.com/transactions/league/reserve-list/2026/11) ·
+[trades](https://www.nfl.com/transactions/league/trades/2026/11) ·
+[Week 11 schedule](https://www.nfl.com/schedules/2026/by-week/week-11) ·
+[standings](https://www.nfl.com/standings/) ·
+[injury hub](https://www.nfl.com/injuries/) — each registered as S-*-F3EC with minute-precision UTC read times.
+
+**Verification performed on the tree (all run locally before the PR):**
+`tools/verify.py` 205/0/0 · `tools/check_site.py` 11/1/0 (same disclosed non-league-host warning class) ·
+`scripts/audit_all_pages.py` 125 HTML / 44 JSON / 375 tables / 9,785 rows, 100% row-sourced, 0 broken ·
+`scripts/check_reproducible.py` all reproduce · `tools/verify_backlog_58e9c708.py` 11/0/0 ·
+`tools/verify_coverage_f34622dd.py` 2,420 checks / 0 failures · `scripts/injury_lineage_d8372691.py --check` exit 0 ·
+`tools/verify_readiness_ac2dd497.py` PASS · `tools/verify_s92.py` 13/0/0 · `scripts/verify_q51.py` PASSED ·
+`scripts/verify_s53126614.py` PASS · 36 q51 unit tests OK · `tools/review_verify.py` OK ·
+`tools/review_build_site.py` diff gate CLEAN · `engine/verify_repo_and_site.py` 0 broken links.
+
+**Cross-scope additive edits, all logged here per the claim table above (no other session's
+content altered):**
+1. `data/games_2026_wk10_played.csv` — appended 12 rows (append-only file; the frozen corpus untouched).
+2. `data/schedule_week11_2026.csv` — `site` column filled from the official page's own hotel-link parameters; `source` column moved to S-WK11-F3EC, the read that produced the current values (S-WK11-0A11 remains in the registry as history).
+3. `data/standings_2026.csv` — refreshed after the results append; requires the dated snapshot `data/standings_recheck_20261116.csv`.
+4. `tools/verify.py` — `standings_official_recheck()` now discovers the newest `standings_recheck_*.csv` by filename instead of hard-coding the 13 Nov file; two messages name the snapshot used. No other logic touched.
+5. `tools/compute_settled_wk10.py` — added an aggregate block over all settled games; the W10-01 narrative rows and the two verify-pinned metrics are unchanged.
+6. `tools/build_site.py` — banner standings link moved to the newest registered read (S-STAND-F3EC).
+7. `data/prereg_week11_0a113a24.json` / `.csv` — dated amendment: the settled-games hash was refreshed because the played file grew under the append-only design; the decision-time hash is preserved inside the record's `amendments` list; lines/corpus/generator hashes byte-identical; `games_fitted` unchanged (frozen at decision).
+8. `data/flags.csv` — FL-94/FL-95 resolved; FL-97/FL-98/FL-99 appended (ids taken from `origin/main` tip, no collision).
+9. Registers: `data/gates.csv` (+G-15), `data/requirements.csv` (R-15 note and blocks), `data/suggestions.csv` (S-51 count 14→15), `data/brief_traceability.csv` (C-14/C-30/C-51 → partial), `content/data-dictionary.md` (counts + six new file rows), `content/index.md` (15 gates), `content/validation-gates.md`, `content/injuries.md`, `content/league-data.md`, `content/week10-settled.md`, `content/preregistration.md`.
+
+**Irregularities found this session (published, not fixed silently):**
+- FL-97 — nine 11/14 Reserve/Injured placements still carry `Out` on the same week's official report (plus Nacua without a status). The reserve-versus-report conflict is a pattern, not an instance.
+- FL-98 — Week 11 venue names exist on the official schedule page only as hotel-link URL parameters; "FedEx Field" carried verbatim and flagged as possibly not the venue's current sponsored name.
+- FL-99 — the hub's game-day read still places players under other clubs' blocks (Njoku/Mitchell/Waxter under LAC; Walker III/Woods under KC; Lawrence under CIN; Donald/Garrett under LAR; Evans under SF; Nelson under SEA). The club column stores the block as printed.
+- The official page renders the same player under two spellings across reads (Okonkwo/Hummel/Curl) — recorded in the S-INJ-F3EC registry row; a future join key must be the player slug, never the printed string.

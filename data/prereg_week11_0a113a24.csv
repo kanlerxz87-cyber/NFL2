@@ -5,7 +5,7 @@ lines SHA-256|1c2c8ebe7119336dcdec5327f12ef35ce45324f01c5b9d471ceb6f8613bc1ba6|t
 backtest corpus|data/games_2026_wk1_9.csv|the 136-game weeks 1-9 file every published grade was built on
 backtest corpus SHA-256|f0dffce05e79b5267318c444eb50ca151390480fbd6c10965290228995fb6f33|the fingerprint of that corpus; it must not change for a published grade to remain valid
 settled games file|data/games_2026_wk10_played.csv|the append-only file the Week 10 results live in; also hashed
-settled games SHA-256|624f2f76e5c0b036a31930a622a2c4fb9927edeaf626a316d6c62acb24d4c7dc|the fingerprint of the settled-games file at the moment of the pre-registration
+settled games SHA-256|07a5328fcaf08e9f485c2433cf1d63b91a7b8bd6d313765ceab8379055cf3cc6|the fingerprint of the settled-games file as last amended; the decision-time value was 624f2f76e5c0b036a31930a622a2c4fb9927edeaf626a316d6c62acb24d4c7dc (one settled game) and was amended on 2026-11-16T15:20Z after twelve further official results were appended - see the amendment rows below
 generator|tools/originate_week11.py|the script that produced these lines
 generator SHA-256|9d53d9bba5589a4f80af1a77b0e5eb97993230f874d02f7dd2e6bfa28d987c23|the fingerprint of the script, so the method cannot be changed after publication either
 model|ridge simultaneous ratings on margin and pace, unpenalised intercepts; ridge penalty selected by walk-forward spread MAE over weeks 4-9 of the frozen corpus|what the line is and how it is fitted
@@ -14,3 +14,5 @@ games fitted|137|136 games from weeks 1-9 plus 1 settled Week 10 game(s); the re
 reproduction guard|the same code path re-derives all 14 published Week 10 lines from the frozen corpus and matched every spread and total cell|the check that proves this implementation is the same model that produced the published Week 10 lines
 sign convention|a spread column holds the predicted HOME margin; positive means the home club is favoured|how to read a spread column on this site
 status|unvalidated - paper only - not betting advice - no strategy has cleared the validation gates and no line here is eligible for staking|what these numbers are and are not
+amendment 2026-11-16 (what changed)|settled games SHA-256|the Week 10 played file grew from 1 to 13 settled games under the append-only design; the pinned hash was refreshed to keep tracking it
+amendment 2026-11-16 (what did not change)|lines, corpus, generator hashes; games_fitted|the Week 11 lines and the model that produced them are byte-identical to the decision-timestamp record; the old settled-games hash 624f2f76e5c0b036a31930a622a2c4fb9927edeaf626a316d6c62acb24d4c7dc is preserved in the JSON amendments list

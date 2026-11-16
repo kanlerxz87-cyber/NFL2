@@ -1,11 +1,11 @@
 # Settled Week 10 — the first out-of-sample grade
-> One game has finished. Every line this site originated for it can now be scored against the official result. This page is where we find out whether the pipeline produces a number — and, more importantly, whether that number means anything yet.
+> Thirteen of the fourteen Week 10 games have finished. Every line this site originated for them is now scored against the official results, game by game and in aggregate. This page is where we find out whether the pipeline produces a number — and, more importantly, whether that number means anything yet.
 
-**Status at 2026-11-13T06:55Z:** 1 of 14 Week 10 games is Final. The Thursday-night fixture, **Washington 24 – NY Giants 21**, is the first result any line on this site has been measured against. The other 13 kick off 15–16 November.
+**Status at 2026-11-16T14:41Z:** 13 of 14 Week 10 games are Final. The Thursday-night fixture, **Washington 24 – NY Giants 21**, was the first result any line on this site was measured against; the twelve results that settled on 15 November were appended to the played file from the official scores page, and the Monday-night game (Chargers at Ravens) kicks off tonight and is not graded here.
 
-## The result, and the four predictions it settles
+## The results, and the four predictions each one settles
 
-{{csv data/settled_wk10_5f16dcc6.csv;;cols=predictor:Predictor,predicted_spread_home:Predicted spread (home),spread_abs_error:Spread error (pts),predicted_total:Predicted total,total_abs_error:Total error (pts),prediction_origin:Where the prediction came from;;source_col=source;;caption=Actual result: WAS 24 at NYG 21, so the home margin was −3 and the total was 45. A spread column holds the predicted HOME margin, so +2.5 means the Giants were favoured by 2.5 at home. Error is absolute, in points, against the official final score. The last row is a predictor that knows nothing about either team — it writes the weeks 1-9 league average every time, and it is the bar the other three have to clear.}}
+{{csv data/settled_wk10_5f16dcc6.csv;;cols=predictor:Predictor,predicted_spread_home:Predicted spread (home),spread_abs_error:Spread error (pts),predicted_total:Predicted total,total_abs_error:Total error (pts),prediction_origin:Where the prediction came from;;source_col=source;;group=game_id;;caption=Thirteen settled games × four predictors. A spread column holds the predicted HOME margin. Error is absolute, in points, against the official final score. The do-nothing predictor writes the weeks 1-9 league average every time, and it is the bar the others have to clear. The first game (WAS 24 at NYG 21) is the one the narrative below was written around.}}
 
 Read the table in this order:
 
@@ -17,6 +17,14 @@ Read the table in this order:
 ## What the arithmetic says
 
 {{csv data/computed_settled_5f16dcc6.csv;;cols=metric:Metric,value:Value,method:How it is computed,read:Read;;source_col=source;;caption=Recomputed on every build by tools/compute_settled_wk10.py from data/games_2026_wk10_played.csv, data/originated_lines_wk10_a392.csv, data/computed_fair_lines.csv and the frozen weeks 1-9 corpus. The null distribution is the 136 verified games; no game outside that corpus is used.}}
+
+## The thirteen-game aggregate — the first honest multi-game look
+
+The same computed register now carries an aggregate block over all thirteen settled games, recomputed on every build. Read it against the same arithmetic:
+
+- **Spread: our origination MAE 10.35 points vs 13.54 for knowing nothing — 3.19 points better over 13 games**, and 0.46 better than the archived community price (10.81, n=13).
+- **Total: our origination MAE 9.85 points vs 8.61 for knowing nothing — 1.24 points worse**, and 1.27 worse than the archive (8.58, n=13).
+- **n=13 of the ~1,382 games the spread comparison requires.** One good week is exactly as uninformative as one bad week; the leaderboard stays empty and nothing here is a claim of skill.
 
 ## The one finding worth acting on
 
@@ -36,7 +44,7 @@ The 136-game log gives a standard deviation of 14.31 points on game totals and 1
 | Totals | **1,607** | about ten NFL seasons |
 | Spreads | **1,382** | about nine NFL seasons |
 
-One settled game is **0.07%** of that. Gate G-08 on this site sets n ≥ 400 for any strategy claim; this page is the arithmetic underneath it, measured rather than asserted.
+One settled game is **0.07%** of that; the thirteen settled so far are **0.94%** of it. Gate G-08 on this site sets n ≥ 400 for any strategy claim; this page is the arithmetic underneath it, measured rather than asserted.
 
 ## What this page does not do
 

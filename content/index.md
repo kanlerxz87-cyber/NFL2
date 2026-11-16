@@ -73,7 +73,7 @@ data — the counts, the club coverage and one flag — and those are corrected 
 | Line origination | **computed** — walk-forward ridge ratings on 136 official games: spread MAE 9.278 vs a 10.455 do-nothing baseline, paired +0.295 pts against the archived price | [Fair-Line Lab](model-lab.html), `data/model_backtest_2026_a392.csv` | totals are worse than a league mean and are published as a diagnostic, not a line (S-37, FL-32) |
 | Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
 | Strategy registry | {{metric strategies}} entries; **1 locked before its slate (ST-15)**, none ranked | `data/strategies.csv`, `data/prereg_wk10_66faefac.csv` | tracking ledger + settled volume (G-08) |
-| Validation gates | 14 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |
+| Validation gates | 15 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |
 | Correlation | method defined; 12 pair classes; **no rho asserted**; 2 measured as Pearson *r* on game scores | `data/correlation.csv`, `data/computed_correlation.csv` | joint bet-settlement data (Q-12) for any rho |
 | Skill-vs-luck protocol | derived and computed in-repo | `content/skill-vs-luck.md` | sample must still be collected |
 | Competition and rewards | tiers and rules written; payout mechanism unfunded | `content/leaderboard.md` | owner decision (Q-26) |
@@ -82,7 +82,7 @@ data — the counts, the club coverage and one flag — and those are corrected 
 
 Four items sit in front of almost everything else. They are decisions and access, not coding:
 
-1. **Prices.** Without an opening and closing price per market there is no vig to strip, no fair value to deviate from, no CLV to measure skill with, and no way to know whether a line we originate is right. This is [Q-01](questions.html) and it blocks 9 of 14 gates.
+1. **Prices.** Without an opening and closing price per market there is no vig to strip, no fair value to deviate from, no CLV to measure skill with, and no way to know whether a line we originate is right. This is [Q-01](questions.html) and it blocks 9 of 15 gates.
 2. **Player-level entitlement.** Snaps, routes and targets are what turn "a starter is out" into "the replacement costs 2.1 yards per carry". This is [Q-02](questions.html).
 3. **A defensible depth answer.** The league publishes no depth chart, so "2nd/3rd/4th string replacing a starter" must be reconstructed from roster status, participation, designations and actual playing time ([S-06](suggestions.html), [FL-06](flagged-for-review.html)).
 4. **Point-in-time storage.** Three filings a week and a dated event log, or the availability signals cannot be built at all ([FL-09](flagged-for-review.html)).
@@ -179,7 +179,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Availability | [Pre-registration lock](preregistration.html) | the first prediction pinned before kickoff: one rule, one threshold, fourteen fixtures, a hash, and the grading tool that fails if the file is touched |
 | Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
-| Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
+| Competition | [Validation gates](validation-gates.html) | 15 gates, pass criteria, what each one blocks |
 | Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
 | Data | [Availability Watch (dated)](availability-watch.html) | {{metric aw_rows}} player rows across 28 of 28 clubs, read at 12:45Z on 13 November, the movement since the previous read, and the 4 readiness gates — 1 pass, 3 fails, each with the number that decides it |
 | Data | [Depth & deficiencies](depth-impact.html) | who is replacing whom, and what we cannot yet quantify |

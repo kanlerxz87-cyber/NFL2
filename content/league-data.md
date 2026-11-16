@@ -5,9 +5,11 @@ Standings rows are not simply copied — they were recomputed. Winning percentag
 
 The official standings page renders multiple value columns without a full column-header row in the fetched table. Eight fields have unambiguous meaning from the NFL legend and arithmetic—W, L, T, PCT, PF, PA, NET PTS and STREAK—and are published; the remaining split-record columns are **omitted rather than guessed** ([FL-07](flagged-for-review.html)). `captured_utc` is our source-read time, not an NFL-published timestamp.
 
-On **13 November 2026 at 12:53 UTC**, all 32 club rows were re-read from the official division standings page and transcribed independently to `data/standings_recheck_20261113.csv`. The machine check compares every club and each of the eight published fields—W/L/T/PCT/PF/PA/NET PTS/STREAK—and reports **32/32 clubs, 256/256 values exact**. No standings value changed; this is a new source-read timestamp, not an NFL publication time. Each displayed row links to the official NFL read in the source registry.
+On **13 November 2026 at 12:53 UTC**, all 32 club rows were re-read from the official division standings page and transcribed independently to `data/standings_recheck_20261113.csv`. The machine check compares every club and each of the eight published fields—W/L/T/PCT/PF/PA/NET PTS/STREAK—and reports **32/32 clubs, 256/256 values exact**. Each displayed row links to the official NFL read in the source registry.
 
-{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak,captured_utc:Read UTC;;source_col=source;;caption=Official division-view standings, captured at 2026-11-13T12:53Z. All 32 clubs and eight published fields matched the saved official re-read; capture time is not the NFL's publication time. Earlier staleness and correction are documented in FL-35.}}
+On **16 November 2026 at 14:57 UTC** (session `f3ec0ff8`), the table was refreshed from the same official page after twelve Week 10 results settled: `data/standings_recheck_20261116.csv` is the new saved official snapshot. The refresh reconciles three ways — every club's new row equals its 13 November row plus the official Week 10 result (bye clubs and the two Monday-night clubs unchanged), league wins equal losses (148 each), and ΣPF = ΣPA = 6,880 with net points summing to zero. `tools/verify.py` compares the published table against the newest dated snapshot on every build.
+
+{{csv data/standings_2026.csv;;cols=team:Club,abbr:Abbr,conf:Conf,div:Div,w:W,l:L,t:T,pct:Pct,pf:PF,pa:PA,net:Net,streak:Streak,captured_utc:Read UTC;;source_col=source;;caption=Official division-view standings, captured at 2026-11-16T14:57Z (S-STAND-F3EC), refreshed after twelve Week 10 results settled; the two Monday-night clubs and the four bye clubs match the 13 November read exactly. Capture time is not the NFL's publication time. Earlier staleness and correction are documented in FL-35.}}
 
 ## Completed results, weeks 1–9
 
@@ -26,6 +28,14 @@ The reconciliation is computed on every build by `tools/verify.py`, including th
 ## Week 10 slate
 
 {{csv data/schedule_2026_wk10.csv;;cols=game_id:ID,date:Date,kickoff_et:Kickoff ET,away:Away,home:Home,venue:Venue,tv:Broadcast,game_url:Game page:urls;;source=S-WK10REP;;show_source=0;;caption=Game page links are the league's own URLs for each fixture, as published in the official week-10 report.}}
+
+## Week 10 settled results (append-only)
+
+{{csv data/games_2026_wk10_played.csv;;cols=game_id:ID,date:Date,away:Away,away_pts:A,home:Home,home_pts:H,neutral:Ntr,captured_utc:Captured UTC;;source_col=source;;group=game_id;;caption=Every Week 10 game whose result is official, appended only after the league page shows Final. Thirteen rows as of the 2026-11-16T14:41Z read; the Monday-night fixture (W10-14, LAC at BAL) had not been played and is not here. Each row links the official game-centre page its score was read from. This file is deliberately separate from the frozen weeks 1-9 corpus (S-26).}}
+
+## Every official read this project made on 16 November 2026
+
+{{csv data/reads_20261116_f3ec0ff8.csv;;cols=read_id:Read,read_utc:Read time (UTC),page:Official page,scope:Scope,stored_in:Stored in,what_it_establishes:What it establishes;;source_col=source;;caption=The 16 November point-in-time ledger (session f3ec0ff8): one row per official page read, with the clock time, the scope, and the repository file the transcription is stored in. Each row links the page it was read from. Earlier reads are registered in the sources registry and the injury lineage.}}
 
 ## What the schedule itself contributes as a feature
 
