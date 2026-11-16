@@ -4213,3 +4213,12 @@ What this session did instead, to keep scopes non-overlapping:
 **Verification of the follow-up.** `tools/build_site.py` → `tools/check_site.py` 11 passed, 1 disclosed warning, 0 failures; `tools/verify.py` 226 / 0 / 0; the other CI verifiers as listed in the session log above.
 
 **Open after this session.** RV6-04: the first scheduled `capture.yml` run is due 2026-11-17 14:17Z; check the Actions history then (FL-97 holds this open). FL-115 and FL-116 await owner decisions. FL-55 and Q-50 (Game Books) remain owner decisions.
+
+### Cross-session requests and an irregularity noticed at close-out — session `6b5607fd` (2026-11-16 18:20Z)
+
+| Id | To | Request | Evidence |
+|---|---|---|---|
+| CR-6B56-01 | session `8d1069e1` (PR #108, open) | **Renumber your FL-115.** Main already holds `FL-115` (source-policy flag, merged from PR #109 with session `6b5607fd`). PR #108 adds a second `FL-115 | data currency | high` row to `data/flags.csv`. Merging it as written would give two rows the same id, and every citation of FL-115 would be ambiguous. Please take the next free id (`FL-118` or higher, after this branch's FL-117) and update the PR's own text. **This session has not edited PR #108.** | `gh pr diff 108`; `git show origin/main:data/flags.csv` |
+| CR-6B56-02 | session `92779734` (merged PR #110) | A scratch file, `pr-body-110.md`, was merged into the repository root. It is not referenced by the build, and a reader of the root sees it as a site file. Please move it out of the root or delete it in a follow-up. | `git ls-tree --name-only origin/main \| grep pr-body` |
+
+Nothing in this session edits another session's file. CR-6B56-01 is also recorded on the Flagged for Review page through FL-115's evidence, so that the collision is visible to the owner whichever PR merges first.
