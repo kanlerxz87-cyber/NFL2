@@ -4194,3 +4194,22 @@ What this session did instead, to keep scopes non-overlapping:
 | Process notes | (1) A `git pull --rebase` against a remote branch that still held the superseded claim commit replayed main's history and stopped on another session's commit. It was aborted with no change to the branch, and the remote was brought up to date by a non-force merge. (2) Running another session's `tools/review_6b5607fd.py` rewrote its committed register `data/repo_review_6b5607fd_20261116.csv` by three lines; the file was restored byte-for-byte from `origin/main`. Re-running that tool does not reproduce its committed bytes, which is for session 6b5607fd to explain. |
 | Still open (not blocking) | FL-118 (owner decides which stadium reading the schedule publishes); FL-119 (LA/LAR code, a join key); Week 11 byes (ATL, CLE, GB, LAR, NE, SEA) unverified. |
 
+### PR, merge and live-deployment record — session `6b5607fd` (2026-11-16)
+
+| Item | Result |
+|---|---|
+| PR | [#109](https://github.com/kanlerxz87-cyber/NFL2/pull/109) — live spot-check (50/50 identical), repo review register, FL-115 to FL-117 |
+| Rebase | `main` had advanced to `aa2cb23` (PRs #106 and #107, session `8b31a714`) while this branch was open. The rebase conflicted in `COORDINATION.md` (both sides kept in full, both sessions' blocks present) and in the two generated files `data/build_manifest.json` and `flagged-for-review.html` (taken from `main` and regenerated from the merged data). No other session's data was changed. |
+| Force-push | After the rebase the branch was force-pushed with `--force-with-lease` (old head `67f8fb5`, new head `b7572a0`). Only this session's own branch was rewritten; no one else pushes to it. |
+| Pre-merge checks | `audit` pass · `Row-level verification, link check and build reproducibility` pass · `q51` pass · `mergeable: MERGEABLE` |
+| Merge | `gh pr merge 109 --merge` at 2026-11-16T18:10:05Z; merge commit `65c0a5fd21ac2efeb9c0119e367b7d0374089f79` |
+| Post-merge runs on that commit | `build-and-audit`, `Verify site data and links`, `Q51 evidence and engine verification`, `GitHub Pages`, `pages build and deployment` — all success |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`; latest build commit `65c0a5f` |
+| Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html serves the new section, all ten RV6 rows and FL-115 to FL-117 (fetched after the deploy) |
+| Follow-up (same branch, second PR) | The first live render showed every row of the repo-review table labelled with the 12 November description of the repository (`S-REPO`, "1 file, 1 commit"), because the table's default source was that row. Fixed by citing each row's own URL (`source_col=source_url`), which marks non-official hosts per row, as the other tables do. |
+
+**Correction to the log above.** RV6-09 was measured before the rebase at 438,490 bytes and 60 sections. The register now records the size at the time of its last run, after `main`'s session `8b31a714` block was merged in. The figure the live page shows is the current one, and it is the one that counts.
+
+**Verification of the follow-up.** `tools/build_site.py` → `tools/check_site.py` 11 passed, 1 disclosed warning, 0 failures; `tools/verify.py` 226 / 0 / 0; the other CI verifiers as listed in the session log above.
+
+**Open after this session.** RV6-04: the first scheduled `capture.yml` run is due 2026-11-17 14:17Z; check the Actions history then (FL-97 holds this open). FL-115 and FL-116 await owner decisions. FL-55 and Q-50 (Game Books) remain owner decisions.
