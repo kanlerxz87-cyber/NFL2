@@ -3735,3 +3735,15 @@ and records a SHA-256 for each read.
 3. **FL-99 / FL-88:** the series owner decides that change detection uses parsed rows, and defines the change rule (not built here).
 4. **Schedule evidence:** the daily runs must be read on 17 Nov and after; until three or more are present, FL-97 stays open.
 5. **Other captures named in the brief** (depth-chart pages, transactions / reserve list, inactive lists): their official URLs have not been read in this session, so no capture was made, and none is claimed.
+
+### Session `4e475b8b` — PR & live-deployment record (H7 done)
+
+| Item | Result |
+|---|---|
+| PR | [#100](https://github.com/kanlerxz87-cyber/NFL2/pull/100) — fourth dated hub read, capture-corroborated register, FL-96 widened to ten (FL-107), traded-player inconsistency (FL-108), FL-100…106 promotion, flag-register verifier |
+| Merge | `gh pr merge 100 --merge` at 2026-11-16T15:0xZ without waiting; mergeable: MERGEABLE / state: CLEAN; merge commit `300faad` |
+| Post-merge CI (300faad) | `GitHub Pages` run 43891608500 success · `pages build and deployment` run 43891605300 success · `Verify site data and links` success · `build-and-audit` success · `Q51` success |
+| Pages API | `status: built`, source `main:/` |
+| Live checks (fetched 2026-11-16 after deploy) | [4e475b8b/index.html](https://kanlerxz87-cyber.github.io/NFL2/4e475b8b/index.html) serves the 347-row register with per-row source links and the 347/347 capture cross-check; [flagged-for-review.html](https://kanlerxz87-cyber.github.io/NFL2/flagged-for-review.html) renders FL-100…FL-108 including the two new source conflicts |
+
+**Branch state:** H1–H7 all done; nothing left in progress on `arena/4e475b8b-nfl2`.
