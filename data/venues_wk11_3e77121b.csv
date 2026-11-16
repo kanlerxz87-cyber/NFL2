@@ -1,0 +1,14 @@
+game_id|date|kickoff_et|away|home|location_as_printed|stadium_as_printed|network_as_printed|read_window_utc|source|fl112_cross_check
+W11-01|2026-11-19|20:15|IND|HOU|HOUSTON, TX|RELIANT STADIUM|Prime Video|2026-11-16T18:02Z-18:03Z|https://www.nfl.com/games/colts-at-texans-2026-reg-11|"DISAGREES: FL-112 reads ""NRG Stadium"""
+W11-02|2026-11-22|13:00|MIA|BUF|ORCHARD PARK, NY|HIGHMARK STADIUM|CBS|2026-11-16T18:03Z-18:04Z|https://www.nfl.com/games/dolphins-at-bills-2026-reg-11|agrees
+W11-03|2026-11-22|13:00|BAL|CAR|CHARLOTTE, NC|BANK OF AMERICA STADIUM|FOX|2026-11-16T18:03Z-18:04Z|https://www.nfl.com/games/ravens-at-panthers-2026-reg-11|agrees
+W11-04|2026-11-22|13:00|NO|CHI|CHICAGO, IL|SOLDIER FIELD|FOX|2026-11-16T18:03Z-18:04Z|https://www.nfl.com/games/saints-at-bears-2026-reg-11|agrees
+W11-05|2026-11-22|13:00|TEN|DAL|ARLINGTON, TX|AT&T STADIUM|FOX|2026-11-16T18:03Z-18:04Z|https://www.nfl.com/games/titans-at-cowboys-2026-reg-11|agrees
+W11-06|2026-11-22|13:00|TB|DET|DETROIT, MI|FORD FIELD|FOX|2026-11-16T18:03Z-18:04Z|https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11|agrees
+W11-07|2026-11-22|13:00|AZ|KC|KANSAS CITY, MO|ARROWHEAD STADIUM|CBS|2026-11-16T18:03Z-18:04Z|https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11|"DISAGREES: FL-112 reads ""GEHA Field at Arrowhead Stadium"""
+W11-08|2026-11-22|13:00|PIT|PHI|PHILADELPHIA, PA|LINCOLN FINANCIAL FIELD|CBS|2026-11-16T18:04Z-18:06Z|https://www.nfl.com/games/steelers-at-eagles-2026-reg-11|agrees
+W11-09|2026-11-22|16:05|NYJ|LAC|INGLEWOOD, CA|SOFI STADIUM|FOX|2026-11-16T18:04Z-18:06Z|https://www.nfl.com/games/jets-at-chargers-2026-reg-11|agrees
+W11-10|2026-11-22|16:25|LV|DEN|DENVER, CO|EMPOWER FIELD AT MILE HIGH|CBS|2026-11-16T18:04Z-18:06Z|https://www.nfl.com/games/raiders-at-broncos-2026-reg-11|agrees
+W11-11|2026-11-22|16:25|JAX|NYG|EAST RUTHERFORD, NJ|METLIFE STADIUM|CBS|2026-11-16T18:04Z-18:06Z|https://www.nfl.com/games/jaguars-at-giants-2026-reg-11|agrees
+W11-12|2026-11-22|20:20|MIN|SF|MEXICO CITY|ESTADIO BANORTE|NBC|2026-11-16T18:04Z-18:06Z|https://www.nfl.com/games/vikings-at-49ers-2026-reg-11|not in FL-112 list (Mexico City; FL-112 does not list this game)
+W11-13|2026-11-23|20:15|CIN|WAS|LANDOVER, MD|NORTHWEST STADIUM|ESPN|2026-11-16T18:04Z-18:06Z|https://www.nfl.com/games/bengals-at-commanders-2026-reg-11|"DISAGREES: FL-112 reads ""FedEx Field"""

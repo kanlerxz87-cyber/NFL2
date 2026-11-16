@@ -1,8 +1,8 @@
 # Executive summary — NFL 2026 verified analytics
 
-**Built:** 2026-11-12 · **Updated:** 2026-11-13 (session `0a113a24`) · **Data through:** Week 9 results, Week 10 injury reports
+**Built:** 2026-11-12 · **Updated:** 2026-11-16 (session `92779734`) · **Data through:** Week 10 results (13 of 14 finals verified; Monday not final), Week 10 injury hub (latest retained capture 16 Nov 14:44Z), Week 11 fixture slate (verified 16 Nov)
 
-> **Current summary:** the site's [executive summary](executive-summary.html) is the maintained version. As of 13 Nov 2026 it adds a pre-registered Week 11 forward sample: 13 lines hashed before kickoff, a grader that refuses edited lines, and a 102-row re-verification register (95 match, 2 explained mismatches under FL-36, 5 not checked). The Week 11 games have not been played; no performance claim is made.
+> **Current summary:** the site's [executive summary](executive-summary.html) is the maintained version. As of 16 Nov 2026 it reports 46 traced requirements (37 done), 15 validation gates including G-15 demotion to paper, 114 registered flags (85 open, 11 needs review), 64 open questions (22 P0), 72 suggestions, 99 registered official reads (63 tier A), and 45 generated pages. **No strategy has passed its validation gates; no edge is claimed.** The input that blocks everything money-related — a licensed, timestamped price feed with book identity — is an open owner decision (Q-01/Q-02, P0), not a modelled assumption.
 **Live site:** https://kanlerxz87-cyber.github.io/NFL2/
 **Code and data:** https://github.com/kanlerxz87-cyber/NFL2
 
@@ -252,6 +252,15 @@ betting.
 
 ---
 
+## Current state (2026-11-16)
+
+- 46 traced requirements: 37 done, 5 partial, 3 specified, 1 in progress (`data/requirements.csv`, rendered on the landing page's decision-readiness table).
+- 15 validation gates (G-01…G-15); G-15 demotion to paper defined 16 Nov. Promotion gates G-01, G-06, G-07, G-12 are blocked on the price-feed and player-data entitlement decisions (Q-01/Q-02, both P0).
+- 114 registered flags: 85 open, 11 needs review, remainder resolved/closed/superseded — all published on Flagged for Review with source links; none blocks a merge.
+- 64 open questions (22 P0), 72 suggestions, 99 registered official reads (63 tier A official league), 45 generated pages, 754 tracked files.
+- Official reads this session (all 16 Nov): Week 11 schedule page (13 fixtures, dates, kickoffs, broadcasters confirmed), Week 10 injury hub (latest retained capture 14:44Z: 347 rows, 171 designations, cell-identical to 15 Nov), November reserve list (25 rows) and trades (12 rows).
+- Site: https://kanlerxz87-cyber.github.io/NFL2/ — generated, audited (223 verify checks, 0 failures) and served from GitHub Pages, source `main /`.
+
 ## Bottom line
 
 The dataset is verified to a standard that lets you check it yourself. The modelling is deterministic
@@ -261,6 +270,5 @@ for twenty-eight rather than quietly fabricated. Two official tables are withhel
 prove what their columns mean.
 
 The most useful thing this build demonstrates is not a prediction. It is that a project can publish
-its own failures — nine irregularities, five withheld datasets, three soft verification failures,
-zero validated strategies — and still be worth reading, because everything it does claim is
-checkable.
+its own failures — 85 open flags, 11 needs-review flags, zero validated strategies — and still be
+worth reading, because everything it does claim is checkable.

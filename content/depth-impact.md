@@ -38,7 +38,7 @@ available to start, which is deliberately conservative — a limited participant
 
 ### The cases that reach a third string (16 November official read)
 
-Session `8d1069e1` re-ran the join on the pinned 16 November official capture (FL-115). On the 12 November table this page previously showed three third-string cases. On the 16 November read **two** remain: Zaire Franklin's GB linebacker chain now stops at Ty'Ron Hopper, who is listed Full Participation, so that case is a second-string replacement, not a third-string one. The earlier version had Hopper limited (12 November file).
+Session `8d1069e1` re-ran the join on the pinned 16 November official capture (FL-120). On the 12 November table this page previously showed three third-string cases. On the 16 November read **two** remain: Zaire Franklin's GB linebacker chain now stops at Ty'Ron Hopper, who is listed Full Participation, so that case is a second-string replacement, not a third-string one. The earlier version had Hopper limited (12 November file).
 
 | Club | Position | What happened | What it means |
 | --- | --- | --- | --- |
