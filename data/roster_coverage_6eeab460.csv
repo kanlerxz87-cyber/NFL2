@@ -6,10 +6,10 @@ reserve_list|2026|2026-04|1|2|2|no|complete|S-6E-RES-04|https://www.nfl.com/tran
 reserve_list|2026|2026-05|1|9|9|no|complete|S-6E-RES-05|https://www.nfl.com/transactions/league/reserve-list/2026/05|last page holds 9 rows (< 25) and no Next Page link
 reserve_list|2026|2026-06|1|8|8|no|complete|S-6E-RES-06|https://www.nfl.com/transactions/league/reserve-list/2026/06|last page holds 8 rows (< 25) and no Next Page link
 reserve_list|2026|2026-07|1|9|9|no|complete|S-6E-RES-07|https://www.nfl.com/transactions/league/reserve-list/2026/07|last page holds 9 rows (< 25) and no Next Page link
-reserve_list|2026|2026-08|2|75|25|yes|incomplete|S-6E-RES-08|https://www.nfl.com/transactions/league/reserve-list/2026/08|cursor repeated: the Next Page link returned no row absent from the retained captures
-reserve_list|2026|2026-09|2|75|25|yes|incomplete|S-6E-RES-09|https://www.nfl.com/transactions/league/reserve-list/2026/09|cursor repeated: the Next Page link returned no row absent from the retained captures
-reserve_list|2026|2026-10|2|25|25|yes|incomplete|S-6E-RES-10|https://www.nfl.com/transactions/league/reserve-list/2026/10|cursor repeated: the Next Page link returned no row absent from the retained captures
-reserve_list|2026|2026-11|2|25|25|yes|incomplete|S-6E-RES-11|https://www.nfl.com/transactions/league/reserve-list/2026/11|cursor repeated: the Next Page link returned no row absent from the retained captures
+reserve_list|2026|2026-08|12|75|25|yes|incomplete|S-6E-RES-08|https://www.nfl.com/transactions/league/reserve-list/2026/08|cursor repeated: the Next Page link returned no row absent from the retained captures
+reserve_list|2026|2026-09|12|75|25|yes|incomplete|S-6E-RES-09|https://www.nfl.com/transactions/league/reserve-list/2026/09|cursor repeated: the Next Page link returned no row absent from the retained captures
+reserve_list|2026|2026-10|12|25|25|yes|incomplete|S-6E-RES-10|https://www.nfl.com/transactions/league/reserve-list/2026/10|cursor repeated: the Next Page link returned no row absent from the retained captures
+reserve_list|2026|2026-11|12|25|25|yes|incomplete|S-6E-RES-11|https://www.nfl.com/transactions/league/reserve-list/2026/11|cursor repeated: the Next Page link returned no row absent from the retained captures
 trades|2026|2026-01|1|0|0|no|complete_empty_month|S-6E-TRD-01|https://www.nfl.com/transactions/league/trades/2026/01|official 'No Transactions Available' block; zero rows printed
 trades|2026|2026-02|1|0|0|no|complete_empty_month|S-6E-TRD-02|https://www.nfl.com/transactions/league/trades/2026/02|official 'No Transactions Available' block; zero rows printed
 trades|2026|2026-03|1|22|22|no|complete|S-6E-TRD-03|https://www.nfl.com/transactions/league/trades/2026/03|last page holds 22 rows (< 25) and no Next Page link
