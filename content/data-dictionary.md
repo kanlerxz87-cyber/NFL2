@@ -350,3 +350,14 @@ the three keys whose printed display name differs from an earlier register's pla
 form (Chig/Chigoziem Okonkwo, Jacob/Jake Hummel, Kam/Kamren Curl) are documented as name
 variants, not drift. The hub read is byte-for-byte stable against both prior registers
 (0 mismatched, 0 new, 0 missing on 347 shared keys).
+
+| `data/venue_register_0a28b225.csv` | 13 | an **independent second read** of the official Week 11 game centres (18:40Z), published beside session 3e77121b's 18:06Z read in `data/venues_wk11_3e77121b.csv`; `tools/verify_0a28b225.py` proves the two agree cell for cell on all 13 fixtures. Kept as evidence, not as a competing page — the published venue page is [fixture-venues.html](fixture-venues.html) | per-row `nfl.com/games/` page (`S-WK11-GC-0A28`) |
+| `data/fixture_context_0a28b225.csv` | 26 | one club-fixture side: rest days, bye, short week, mirrored opponent rest and rest edge, divisional and conference flags, the venue's ET offset, the local body-clock kickoff and the kickoff window — every one derived from a published date, kickoff, venue or result | per-row `nfl.com/games/` page (`S-WK11-GC-0A28`); divisions from `S-STAND-F3EC` |
+| `data/weekly_diff_0a28b225.csv` | 32 | one club, differenced between two dated independent transcriptions of the official standings page (13 Nov `S-STAND-653B`, 16 Nov `S-STAND-F3EC`): W/L/T, points for and against, net, within-division rank on each read and the change | [NFL standings](https://www.nfl.com/standings/) (`S-STAND-653B`, `S-STAND-F3EC`) |
+| `data/kickoff_regime_0a28b225.csv` | 5 | one 2026 rule change that moves a game total: rule number, text as the league publishes it, the prior regime, and why it moves the number. Four rows are the rulebook's own change table; KR-05 is the rule the table omits | `S-RULEBOOK-0A28`, `S-RULES26-0A28` |
+
+`et_offset_hours` in the fixture-context file is a static geographic constant keyed on the venue's state
+(0 Eastern, -1 Central, -2 Mountain, -3 Pacific; Mexico City -1), valid for every date in this file
+because all of them fall after the 2026 US daylight change on 1 November. It is a documented mapping in
+`tools/build_site.py`'s sibling `tools/build_0a28b225.py`, not an NFL-published fact, and the verifier
+re-derives it rather than trusting the stored value.

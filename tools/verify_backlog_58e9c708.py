@@ -68,7 +68,7 @@ CLUB_HOSTS = {
     "buccaneers.com", "tennesseetitans.com", "commanders.com",
 }
 NAMED_NON_LEAGUE = {"www.weather.gov": "US National Weather Service, federal official, not a league source"}
-VERIFICATION_VOCAB = {"re-read 2026-11-15", "not re-read today", "no official source exists"}
+VERIFICATION_VOCAB = {"re-read 2026-11-15", "read 2026-11-16", "not re-read today", "no official source exists"}
 
 
 class TableParser(HTMLParser):

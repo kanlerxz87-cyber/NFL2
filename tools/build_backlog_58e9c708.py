@@ -39,6 +39,11 @@ RESERVE = "https://www.nfl.com/transactions/league/reserve-list/2026/11"
 TRADES = "https://www.nfl.com/transactions/league/trades/2026/11"
 STAND = "https://www.nfl.com/standings/"
 OPS = "https://operations.nfl.com/"
+# Fetched 2026-11-16 by session 0a28b225. Kept as its own constant because the 2026
+# rulebook is a specific page, not the Football Operations front door.
+RULEBOOK26 = "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+RULESNEWS26 = ("https://www.nfl.com/news/nfl-oks-1-year-rule-allowing-replay-center-"
+               "to-correct-mistakes-by-potential-replacement-refs")
 GB = "https://www.packers.com/team/depth-chart"
 HOU = "https://www.houstontexans.com/team/depth-chart"
 SEA = "https://www.seahawks.com/team/depth-chart/"
@@ -50,6 +55,9 @@ NWS = "https://www.weather.gov/"
 GAMECENTRE = "https://www.nfl.com/games/commanders-at-giants-2026-reg-10"
 
 READ = "re-read 2026-11-15"
+# Session 0a28b225 fetched official pages on 2026-11-16. The register dates its read
+# claims, so a 16 November read is recorded as 16 November, not folded into the 15th.
+READ16 = "read 2026-11-16"
 NOTREAD = "not re-read today"
 NONE = "no official source exists"
 
@@ -191,11 +199,11 @@ ITEMS = [
      "IR sweep started 2026-11-16: 60 official wire rows captured for two windows (Nov 11/03-11/14, Oct 10/24-10/31). August, September and 10/01-10/23 are not captured (FL-109); no team-level model may treat the sweep as complete."),
 
     ("", "Add a fixture-context feature set built only from published schedule facts",
-     "Origination", "backlog", "not started", "G-01, G-03",
+     "Origination", "backlog", "done", "G-01, G-03",
      "A named feature set whose every column is a field the official schedule page publishes, with the page cited per column",
-     SCHED11, READ,
-     "data/schedule_2026_wk10.csv, data/schedule_week11_2026.csv",
-     "The Week 10 schedule carries date, kickoff, venue and broadcast. The Week 11 file carries site as not published, so the same feature set is not yet buildable for the live week."),
+     SCHED11, READ16,
+     "data/fixture_context_0a28b225.csv (26 club-fixture sides), data/schedule_2026_wk10.csv, data/schedule_week11_2026.csv, data/standings_2026.csv",
+     "Built for the live week and published on the fixture-context page: rest days, bye, short week, mirrored opponent rest and rest edge, divisional and conference flags, the venue ET offset, the local body-clock kickoff and the kickoff window. Every column is derived from a published date, kickoff, venue or result and is re-derived from the checked-in files on every build by tools/verify_0a28b225.py (30 checks). The Week 10 file still carries site as the injury-report article prints it; only Week 11 has a game-centre venue."),
 
     ("", "Store every model output as a probability plus its inputs, not just a pick",
      "Modelling", "backlog", "not started", "G-04, G-06",
@@ -506,11 +514,11 @@ ITEMS = [
      "Two controls are registered, ST-12 do-nothing and ST-13 public-news echo. Neither is a random or favourites-only control, and neither has been scored on a run."),
 
     ("", "Stadium roof and surface with NWS hourly wind and precipitation overlay",
-     "Venue", "backlog", "not started", "G-01, G-03",
+     "Venue", "backlog", "partial", "G-01, G-03",
      "Each fixture joined to an official stadium roof and surface designation and to the NWS hourly grid for its kickoff hour",
      NWS, NOTREAD,
-     "data/schedule_2026_wk10.csv",
-     "The schedule carries a venue but no roof or surface field. weather.gov is a federal official source, not a league source, so this site's host rule tags it non-official."),
+     "data/venue_register_0a28b225.csv (13 Week 11 fixtures), data/schedule_2026_wk10.csv",
+     "The venue half is done: every Week 11 fixture now carries an official venue name and location transcribed from its own game centre (S-WK11-GC-0A28), which is the join key a roof, surface or weather overlay needs and which also settles FL-112. Roof class, playing surface and every NWS value remain blank: the game centre publishes none of them, no league-operated source for them was reachable, and weather.gov is a federal official source rather than a league source, so this site host rule tags it non-official."),
 
     ("", "Two-Stage Skill Leaderboard: proper-score qualification then prospective CLV and ROI escrow",
      "Leaderboard", "backlog", "not started", "G-06, G-08, G-12",
@@ -527,11 +535,11 @@ ITEMS = [
      "Vig arithmetic is published from assumed prices. No market consensus exists to decompose, because no entitled price feed does."),
 
     ("", "Publish a weekly what-changed diff instead of a static snapshot",
-     "Reporting", "backlog", "not started", "G-03",
+     "Reporting", "backlog", "partial", "G-03",
      "Each weekly snapshot stored and a diff column rendered: rank change, rating change, availability change",
      INJ, READ,
-     "data/availability_watch_movement_c3ec1487.csv",
-     "Movement is computed once, between two reads. There is no recurring weekly diff published on a schedule."),
+     "data/weekly_diff_0a28b225.csv (32 clubs), data/standings_recheck_20261113.csv, data/standings_2026.csv",
+     "A dated diff is published on the weekly-diff page: all 32 clubs differenced between two independent official standings reads (13 Nov S-STAND-653B, 16 Nov S-STAND-F3EC) on W/L/T, points, net and within-division rank, with the two Week 10 games that fall outside the date window named rather than folded in. Still missing: the weekly snapshot store itself (BL-29, BL-30, BL-48 are not started), so a diff exists only when two reads happen to be on file, and the brief also asks for rating-change and availability-change columns, neither of which has a dated snapshot pair."),
 
     ("", "Publish every model total twice until one wins",
      "Modelling", "backlog", "not started", "G-06, G-10",
@@ -576,11 +584,11 @@ ITEMS = [
      "Two weeks are hash-locked. Ten of the fifteen registered strategies have no registration record."),
 
     ("", "2026 Kickoff and Declared Onside-Kick Regime Priors Filter",
-     "Origination", "backlog", "not started", "G-01, G-03",
+     "Origination", "backlog", "done", "G-01, G-03",
      "Kickoff and onside-kick regime priors read from the official rulebook and applied to totals and fourth-quarter win-probability curves",
-     OPS, NOTREAD,
-     "data/nfl-rules-operations-2026.json",
-     "A 2026 rules file is registered in the repo. No kickoff or onside-kick regime prior has been extracted from it."),
+     RULEBOOK26, READ16,
+     "data/kickoff_regime_0a28b225.csv (5 rows), data/nfl-rules-operations-2026.json",
+     "Published on the kickoff-regime page and sourced to the official 2026 rulebook and NFL.com, never to a third-party summary: rule 6-1-6 permits the kicking team to declare an onside kick at any time during the game, regardless of score. Third-party summaries contradict each other on whether a leading club may declare, which is why only the league own pages were used. No onside-kick success-rate prior is published because no official page carries one."),
 
     ("", "Freeze a rule before it sees data: commit the rule text, sample window and gates before the evaluation window opens",
      "Governance", "backlog", "partial", "G-11",
@@ -661,6 +669,7 @@ FINDINGS = [
 # "re-read 2026-11-15" if its dependency is one of these, so the register cannot drift into
 # claiming reads nobody performed.
 FETCHED = {INJ, SCORES10, SCHED11, TXN, TRADES, RESERVE, GB, HOU}
+FETCHED_16 = {SCHED11, RULEBOOK26, RULESNEWS26}
 
 
 def check_gates():
@@ -695,6 +704,9 @@ def main():
                 raise SystemExit("newline in backlog cell: %r" % value)
         if verified == READ and dep not in FETCHED:
             raise SystemExit("%s claims a 2026-11-15 read of %s, which was not fetched"
+                             % ("BL-%02d" % i, dep))
+        if verified == READ16 and dep not in FETCHED_16:
+            raise SystemExit("%s claims a 2026-11-16 read of %s, which was not fetched"
                              % ("BL-%02d" % i, dep))
         rows.append({
             "id": "BL-%02d" % i,

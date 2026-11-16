@@ -1,0 +1,27 @@
+side_id|game_id|week|date|kickoff_et|team|opponent|home_away|venue_city|venue_state|et_offset_hours|local_kickoff|prev_game_id|prev_game_date|prev_game_status|rest_days|off_bye|short_week|opp_rest_days|rest_edge_days|divisional_game|conference_game|kickoff_window|neutral_site|source
+W11-01-IND|W11-01|11|2026-11-19|20:15|IND|HOU|away|HOUSTON|TX|-1|19:15|W10-06|2026-11-15|Final|4|no|yes|4|0|yes|yes|Thursday|no|https://www.nfl.com/games/colts-at-texans-2026-reg-11
+W11-01-HOU|W11-01|11|2026-11-19|20:15|HOU|IND|home|HOUSTON|TX|-1|19:15|W10-09|2026-11-15|Final|4|no|yes|4|0|yes|yes|Thursday|no|https://www.nfl.com/games/colts-at-texans-2026-reg-11
+W11-02-MIA|W11-02|11|2026-11-22|13:00|MIA|BUF|away|ORCHARD PARK|NY|0|13:00|W10-06|2026-11-15|Final|7|no|no|7|0|yes|yes|Sunday early|no|https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+W11-02-BUF|W11-02|11|2026-11-22|13:00|BUF|MIA|home|ORCHARD PARK|NY|0|13:00|W10-08|2026-11-15|Final|7|no|no|7|0|yes|yes|Sunday early|no|https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+W11-03-BAL|W11-03|11|2026-11-22|13:00|BAL|CAR|away|CHARLOTTE|NC|0|13:00|W10-14|2026-11-16|scheduled, not final at read time|6|no|yes|7|-1|no|no|Sunday early|no|https://www.nfl.com/games/ravens-at-panthers-2026-reg-11
+W11-03-CAR|W11-03|11|2026-11-22|13:00|CAR|BAL|home|CHARLOTTE|NC|0|13:00|W10-07|2026-11-15|Final|7|no|no|6|1|no|no|Sunday early|no|https://www.nfl.com/games/ravens-at-panthers-2026-reg-11
+W11-04-NO|W11-04|11|2026-11-22|13:00|NO|CHI|away|CHICAGO|IL|-1|12:00|W10-07|2026-11-15|Final|7|no|no|14|-7|no|yes|Sunday early|no|https://www.nfl.com/games/saints-at-bears-2026-reg-11
+W11-04-CHI|W11-04|11|2026-11-22|13:00|CHI|NO|home|CHICAGO|IL|-1|12:00|W9-TB@CHI|2026-11-08|Final|14|yes|no|7|7|no|yes|Sunday early|no|https://www.nfl.com/games/saints-at-bears-2026-reg-11
+W11-05-TEN|W11-05|11|2026-11-22|13:00|TEN|DAL|away|ARLINGTON|TX|-1|12:00|W10-05|2026-11-15|Final|7|no|no|7|0|no|no|Sunday early|no|https://www.nfl.com/games/titans-at-cowboys-2026-reg-11
+W11-05-DAL|W11-05|11|2026-11-22|13:00|DAL|TEN|home|ARLINGTON|TX|-1|12:00|W10-12|2026-11-15|Final|7|no|no|7|0|no|no|Sunday early|no|https://www.nfl.com/games/titans-at-cowboys-2026-reg-11
+W11-06-TB|W11-06|11|2026-11-22|13:00|TB|DET|away|DETROIT|MI|0|13:00|W9-TB@CHI|2026-11-08|Final|14|yes|no|7|7|no|yes|Sunday early|no|https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+W11-06-DET|W11-06|11|2026-11-22|13:00|DET|TB|home|DETROIT|MI|0|13:00|W10-02|2026-11-15|Final|7|no|no|14|-7|no|yes|Sunday early|no|https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+W11-07-AZ|W11-07|11|2026-11-22|13:00|AZ|KC|away|KANSAS CITY|MO|-1|12:00|W10-10|2026-11-15|Final|7|no|no|7|0|no|no|Sunday early|no|https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11
+W11-07-KC|W11-07|11|2026-11-22|13:00|KC|AZ|home|KANSAS CITY|MO|-1|12:00|W10-03|2026-11-15|Final|7|no|no|7|0|no|no|Sunday early|no|https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11
+W11-08-PIT|W11-08|11|2026-11-22|13:00|PIT|PHI|away|PHILADELPHIA|PA|0|13:00|W10-13|2026-11-15|Final|7|no|no|14|-7|no|no|Sunday early|no|https://www.nfl.com/games/steelers-at-eagles-2026-reg-11
+W11-08-PHI|W11-08|11|2026-11-22|13:00|PHI|PIT|home|PHILADELPHIA|PA|0|13:00|W9-NYG@PHI|2026-11-08|Final|14|yes|no|7|7|no|no|Sunday early|no|https://www.nfl.com/games/steelers-at-eagles-2026-reg-11
+W11-09-NYJ|W11-09|11|2026-11-22|16:05|NYJ|LAC|away|INGLEWOOD|CA|-3|13:05|W10-08|2026-11-15|Final|7|no|no|6|1|no|yes|Sunday late|no|https://www.nfl.com/games/jets-at-chargers-2026-reg-11
+W11-09-LAC|W11-09|11|2026-11-22|16:05|LAC|NYJ|home|INGLEWOOD|CA|-3|13:05|W10-14|2026-11-16|scheduled, not final at read time|6|no|yes|7|-1|no|yes|Sunday late|no|https://www.nfl.com/games/jets-at-chargers-2026-reg-11
+W11-10-LV|W11-10|11|2026-11-22|16:25|LV|DEN|away|DENVER|CO|-2|14:25|W10-11|2026-11-15|Final|7|no|no|14|-7|yes|yes|Sunday late|no|https://www.nfl.com/games/raiders-at-broncos-2026-reg-11
+W11-10-DEN|W11-10|11|2026-11-22|16:25|DEN|LV|home|DENVER|CO|-2|14:25|W9-DEN@CAR|2026-11-08|Final|14|yes|no|7|7|yes|yes|Sunday late|no|https://www.nfl.com/games/raiders-at-broncos-2026-reg-11
+W11-11-JAX|W11-11|11|2026-11-22|16:25|JAX|NYG|away|EAST RUTHERFORD|NJ|0|16:25|W10-05|2026-11-15|Final|7|no|no|10|-3|no|no|Sunday late|no|https://www.nfl.com/games/jaguars-at-giants-2026-reg-11
+W11-11-NYG|W11-11|11|2026-11-22|16:25|NYG|JAX|home|EAST RUTHERFORD|NJ|0|16:25|W10-01|2026-11-12|Final|10|no|no|7|3|no|no|Sunday late|no|https://www.nfl.com/games/jaguars-at-giants-2026-reg-11
+W11-12-MIN|W11-12|11|2026-11-22|20:20|MIN|SF|away|MEXICO CITY||-1|19:20|W10-04|2026-11-15|Final|7|no|no|7|0|no|yes|Sunday night|yes|https://www.nfl.com/games/vikings-at-49ers-2026-reg-11
+W11-12-SF|W11-12|11|2026-11-22|20:20|SF|MIN|home|MEXICO CITY||-1|19:20|W10-12|2026-11-15|Final|7|no|no|7|0|no|yes|Sunday night|yes|https://www.nfl.com/games/vikings-at-49ers-2026-reg-11
+W11-13-CIN|W11-13|11|2026-11-23|20:15|CIN|WAS|away|LANDOVER|MD|0|20:15|W10-13|2026-11-15|Final|8|no|no|11|-3|no|no|Monday|no|https://www.nfl.com/games/bengals-at-commanders-2026-reg-11
+W11-13-WAS|W11-13|11|2026-11-23|20:15|WAS|CIN|home|LANDOVER|MD|0|20:15|W10-01|2026-11-12|Final|11|no|no|8|3|no|no|Monday|no|https://www.nfl.com/games/bengals-at-commanders-2026-reg-11

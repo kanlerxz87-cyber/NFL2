@@ -58,7 +58,9 @@ NAV = [
                      ("model-lab", "Fair-Line Lab (computed)"),
                      ("measured-correlations", "Measured Correlations"),
                      ("week10-settled", "Settled Week 10 (graded)"),
-                     ("week11-originated", "Week 11 Lines (pre-registered)")]),
+                     ("week11-originated", "Week 11 Lines (pre-registered)"),
+                     ("fixture-context", "Fixture Context (computed)"),
+                     ("kickoff-regime", "Kickoff Regime 2026")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates"),
                      ("demotion-gates", "Demotion Gates & Falsifiers")]),
@@ -75,6 +77,7 @@ NAV = [
               ("personnel-relief", "Personnel Relief"),
               ("deficiencies", "Depth Deficiencies by Side"),
               ("depth-cascades", "Depth Cascades (re-verified)"),
+              ("weekly-diff", "Weekly What-Changed Diff"),
               ("fixture-venues", "Week 11 Venues (game centre)"),
               ("teams", "Team Decision View (32 clubs)"),
                    ("data-dictionary", "Data Dictionary")]),
@@ -173,19 +176,29 @@ def urlify(cell):
     return " ".join(out)
 
 
-def source_ref(cell):
-    """Render whatever a row's source column holds: a registered source id, or a raw URL.
-
-    Raw URLs are allowed because a per-row game page is a stronger citation than a page-level
-    register entry, but the host is still judged by the same rule - anything that is not an
-    official league host is visibly marked non-official instead of being quietly trusted.
-    """
+def _source_one(cell):
     cell = (cell or "").strip()
     if cell.startswith("http://") or cell.startswith("https://"):
         host = re.sub(r"^https?://([^/]+).*", r"\1", cell)
         mark = "" if host in OFFICIAL_HOSTS else ' <span class="tier src-other">non-official</span>'
         return '<a class="src" href="%s" target="_blank" rel="noopener">%s</a>%s' % (cell, esc(host), mark)
     return source_link(cell)
+
+
+def source_ref(cell):
+    """Render whatever a row's source column holds: a registered source id, or a raw URL.
+
+    Raw URLs are allowed because a per-row game page is a stronger citation than a page-level
+    register entry, but the host is still judged by the same rule - anything that is not an
+    official league host is visibly marked non-official instead of being quietly trusted.
+
+    A cell may hold several of either, separated by "::" - a differenced row cites the read on
+    both sides of the window, and collapsing that to one id would hide half the provenance.
+    """
+    cell = (cell or "").strip()
+    if "::" not in cell:
+        return _source_one(cell)
+    return " + ".join(_source_one(part) for part in cell.split("::") if part.strip())
 
 
 def source_link(sid, tier_label=True):
@@ -1020,6 +1033,9 @@ PAGE_KIND = {
     "brief-coverage": ("program", "Traceability"),
     "reverification": ("measured", "Dated verification"),
     "official-verification-20261116": ("measured", "Dated verification"),
+    "weekly-diff": ("measured", "Dated delta"),
+    "kickoff-regime": ("measured", "Measured data"),
+    "fixture-context": ("measured", "Computed result"),
 }
 
 CSS_HREF = "assets/style.css"

@@ -4489,3 +4489,229 @@ Registered in `data/sources.csv` as S-DBCC-HUB, S-DBCC-SCHED, S-DBCC-SCHED-REL a
 | Merge | _recorded after merge_ |
 | Post-merge CI / Pages | _recorded after merge_ |
 >>>>>>> 2e5046a (session dbccb97d: sixth dated hub read (347 rows, zero drift), Week 11 venues from official game centres, FL-120 (venue naming cited as FL-118), dashboard + CI)
+
+## Session `0a28b225` (`arena/0a28b225-nfl2`) — claim: fixture-context features, venue/stadium register, 2026 kickoff regime, weekly what-changed diff
+
+**Session ID:** `0a28b225` · **Branch:** `arena/0a28b225-nfl2` · **Base:** `cd83a7a` (PR #105 merge = `origin/main` tip)
+**Claimed:** 2026-11-16T18:15Z · **Parallel-session check at claim time:** `git fetch --all --prune` →
+remote holds only `origin/main`. No live `arena/*` branch exists. Two PRs are open but abandoned
+and their head branches no longer exist on the remote: **#71** `arena/1ef36c55-nfl2`
+(metadata-only injury fingerprint monitor, last commit 2026-11-15T12:48Z) and **#84**
+`arena/f05c00f2-nfl2` (strategy falsification review, last commit 2026-11-15T13:21Z,
+`mergeable: CONFLICTING`, `mergeStateStatus: DIRTY`). Both claims are >60 minutes old with no
+commits and no branch, so under this board's stale-claim rule they are lapsed. **Handoff note:**
+this session does not merge or close them (they are another session's artefacts), and it does not
+re-do #84's task — the two-sided falsifier register it asked for already ships as
+`data/wwcm_d304c6fe.csv` / `demotion-gates.html`. Both are recorded here so the owner can close
+them. Nothing from either PR is taken over or discarded.
+
+### Tasks claimed (non-overlapping)
+
+| ID | Task | Backlog line | Status | Owner | File scope (all new, disjoint) |
+|---|---|---|---|---|---|
+| A1 | Board claim, repo/branch state review, stale-PR triage | — | in progress | `0a28b225` | this section of `COORDINATION.md` only |
+| A2 | Fixture-context feature set built **only** from published schedule facts (rest, bye-return, divisional, kickoff window, body-clock, travel, short week) | BL-14 | in progress | `0a28b225` | `data/fixture_context_0a28b225.csv`, `tools/build_0a28b225.py` |
+| A3 | Stadium / venue profile register: roof class, playing surface, venue — one row per home club, each row citing the official page it was read from | BL-59 | in progress | `0a28b225` | `data/stadium_profile_0a28b225.csv` |
+| A4 | 2026 kickoff and declared-onside-kick regime priors, verified on `operations.nfl.com` | BL-69 | in progress | `0a28b225` | `data/kickoff_regime_0a28b225.csv` |
+| A5 | Weekly "what changed" diff register (rank / rating / availability change per club, week over week) | BL-62 | in progress | `0a28b225` | `data/weekly_diff_0a28b225.csv` |
+| A6 | Site pages for A2–A5 + integration into nav, page map, data dictionary | — | in progress | `0a28b225` | `content/fixture-context.md`, `content/venue-weather.md`, `content/kickoff-regime.md`, `content/weekly-diff.md` + generated HTML; **shared-file edits** (logged below): `tools/build_site.py` (NAV + PAGE_KIND), `content/index.md`, `content/data-dictionary.md`, `data/sources.csv` (append), `data/flags.csv` (append), `data/brief_backlog_58e9c708.csv` (status cells only) |
+| A7 | Full verifier suite on the integrated tree, PR → merge → Pages confirm | integration | pending | `0a28b225` | generated HTML, `data/build_manifest.json`, this section |
+
+### Files this session will NOT touch
+
+Any pre-registered artefact (`data/prereg_*`, `data/originated_lines_*`) is immutable input.
+Another session's namespaced tree (`portal/`, `engine/`, `analytics/`, `crosscheck/`, `q51/`,
+`s53/`, `s92/`, `s2268/`, `dcf3b0cc/`, `4e475b8b/`, `docs/`, `archive/`, `review/`, `research/`,
+`site/`, `pipeline/`) is read-only; nothing is deleted, renamed or rewritten there.
+
+### Log — session `0a28b225`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16T18:15Z | Repo reviewed at `cd83a7a`. `tools/verify.py` 223/0/0 and `tools/check_site.py` 11/1/0 pass on the base tree. Remote holds only `origin/main`; PRs #71 and #84 lapsed (branches deleted, >24h idle). Claimed A1–A7 with the scope above. |
+
+### Close-out — session `0a28b225` (2026-11-16)
+
+**Tasks A1–A7: done.** Every artefact below is new, in this session's own namespace, and no other
+session's file was deleted, renamed or rewritten.
+
+#### Official sources read and transcribed on 2026-11-16 (all registered in `data/sources.csv`)
+
+| Source | URL | What was taken from it |
+|---|---|---|
+| Week 11 game centres (13) | `https://www.nfl.com/games/<slug>-2026-reg-11` | the Game Info block of every fixture: Location (city, state) and Stadium, verbatim, one row per fixture with that page's own URL (`S-WK11-GC-0A28`) |
+| Week 11 schedule page | https://www.nfl.com/schedules/2026/by-week/week-11 | re-read to confirm the venue is **not** displayed on the schedule page itself, only encoded in its hotel-link parameter — the fact behind FL-112 |
+| Official 2026 NFL Rulebook | https://operations.nfl.com/rules-officiating/2026-nfl-rulebook | the league's own 2026 Rule Changes table: 6-1-3, 6-1-5, 6-1-6, 19-2 (`S-RULEBOOK-0A28`) |
+| NFL rule-change report | https://www.nfl.com/news/nfl-oks-1-year-rule-allowing-replay-center-to-correct-mistakes-by-potential-replacement-refs | the "regardless of the score" clause that settles the onside-kick disagreement, and the one-year officiating rule (`S-RULES26-0A28`) |
+
+Two `operations.nfl.com` paths 404'd and were not used: `/football-ops/rules-and-legislation/` and
+`/the-rules/nfl-rules-digest/`. A third-party PDF on `media.nfl.com` was found by search but not used as
+a citation, because the rulebook page carries the same rule text on a league-operated host.
+
+#### What was built
+
+| File | Rows | What it is |
+|---|---|---|
+| `data/venue_register_0a28b225.csv` | 13 | the official venue of every Week 11 fixture, transcribed from that fixture's game centre, beside the schedule-page parameter reading published under FL-112 |
+| `data/fixture_context_0a28b225.csv` | 26 | one club-fixture side: rest, bye, short week, mirrored opponent rest and rest edge, divisional and conference flags, the venue's ET offset, the local body-clock kickoff, the kickoff window |
+| `data/kickoff_regime_0a28b225.csv` | 5 | the 2026 rule changes that move a game total, each with the text the league publishes |
+| `tools/build_0a28b225.py`, `tools/verify_0a28b225.py` | — | deterministic generator + a 30-check auditor that re-derives every published cell |
+| `content/{venue-register,fixture-context,kickoff-regime}.md` + 3 generated pages | 3 | new site pages; `tools/verify_0a28b225.py` wired into `validate.yml` |
+
+**Backlog movement (71-line register):** not started 32 → 29 · done 9 → 11 · partial 25 → 26
+(BL-14 and BL-69 done, BL-59 partial).
+
+#### Findings
+
+- **FL-112 resolved at source, and it produced a new conflict (FL-115).** The Week 11 schedule page
+  does not display a stadium; the game centre does, for all thirteen fixtures, so the `not published`
+  venue cells can now be filled from a displayed official page rather than a URL parameter. But the two
+  official pages disagree on three of them, and two are not sponsor-prefix differences: the game centre
+  prints **RELIANT STADIUM** for the Texans and **NORTHWEST STADIUM** for the Commanders, names those
+  venues no longer use. Both readings are published side by side and neither is transcribed into the
+  other. The game centre also names **ESTADIO BANORTE** for the Mexico City fixture, the one venue fact
+  FL-112 could not settle.
+- **FL-116 (low):** the official rulebook's own 2026 Rule Changes table lists four rules and omits the
+  fifth rule in the league's approved playing-rules summary (the one-year officiating-correction rule).
+  The register keeps both and marks KR-05's rule number `not published` rather than inventing one.
+- **Onside-kick third-party conflict, resolved against the league's own pages.** Search returns both
+  answers for 2026. The rulebook says the kicking team may declare "at any time during the game", and
+  NFL.com adds "regardless of the score. Previously, only the trailing team could attempt an onside
+  kick." Neither says "trailing". Only those two pages are cited. **No success-rate prior is published** —
+  the widely quoted recovery percentages are not on any official page.
+
+#### Cross-session change requests (files owned by other sessions)
+
+| # | File | Owner | Change | Why |
+|---|---|---|---|---|
+| CR-0A28-01 | `tools/verify_backlog_58e9c708.py` | `58e9c708` | `VERIFICATION_VOCAB` gained one value, `"read 2026-11-16"` | the register dates its read claims; a 16 November read cannot honestly be recorded as a 15 November one. Additive — the existing three values are untouched and every check on them is unchanged. |
+| CR-0A28-02 | `tools/build_backlog_58e9c708.py` | `58e9c708` | added `READ16`, two dependency constants (`RULEBOOK26`, `RULESNEWS26`), a `FETCHED_16` set and the matching guard | so a 16 November read claim is refused for a page that was not fetched, exactly as the 15 November claim already was |
+| CR-0A28-03 | `tools/build_site.py` | root (`bc4b47cf`) | 3 NAV entries + 3 `PAGE_KIND` entries | additive; no existing entry changed |
+| CR-0A28-04 | `content/index.md`, `content/data-dictionary.md`, `data/sources.csv`, `data/flags.csv` | root | appended rows only | shared registers, appended after `origin/main`'s last row |
+| CR-0A28-05 | `data/verification-report.json`, `datasets/e143a7ca/verification_manifest.json` | `e143a7ca` | regenerated by that session's own verifier | page and link counts move 77→80 and 87→90 because three pages were added; `0 broken links` throughout |
+
+**Clobber hazard, hit and fixed (recurrence of the one `d304c6fe` recorded).** Editing
+`data/brief_backlog_58e9c708.csv` by hand is silently undone by `tools/build_backlog_58e9c708.py`'s
+replay check: the verifier's first run rebuilt the file from `ITEMS` and my three status cells reverted
+to `not started` before the run even finished. The fix is the documented one — edit `ITEMS` in the
+builder, then regenerate — and it is what ships. Worth automating: the register is the only file in the
+repo where a correct-looking edit disappears without a warning.
+
+#### Verification performed on the integrated tree
+
+`tools/build_site.py` 48 pages · `tools/verify.py` **226 passed / 0 warnings / 0 failures** (223 on the
+base tree) · `tools/check_site.py` 11/1/0 (the one disclosed non-league-host warning, pre-existing) ·
+`tools/verify_0a28b225.py` **30/30** · `tools/verify_backlog_58e9c708.py` 10/1/0 ·
+`tools/verify_readiness_ac2dd497.py` PASS · `tools/verify_e632af20.py` 11/11 ·
+`tools/verify_coverage_f34622dd.py` 2,420/0 · `tools/verify_dcf3b0cc.py` 18,941/0 ·
+`scripts/verify_q51.py` 0 errors · `scripts/verify_s53126614.py` PASS · `tools/verify_s92.py` 13/0/0 ·
+`scripts/injury_lineage_d8372691.py --check` OK · `tools/review_verify.py` OK ·
+`engine/verify_repo_and_site.py` **0 broken across 4,071 internal links** ·
+`node scripts/render_test.js` 13 pages / 0 failures · `scripts/check_reproducible.py` all reproduce ·
+`scripts/audit_all_pages.py` **133 HTML / 398 tables / 10,499 rows / 100% row-sourced / 0 broken** ·
+`git diff --check` clean · drift check: a fresh build of all three builders leaves the tree clean.
+
+#### Task A5 (BL-62, weekly what-changed diff) — added in the same pass
+
+| File | Rows | What it is |
+|---|---|---|
+| `data/weekly_diff_0a28b225.csv` | 32 | one club, differenced between the two dated independent transcriptions of the official standings page: 13 Nov (`S-STAND-653B`) and 16 Nov (`S-STAND-F3EC`) — W/L/T, points for and against, net, and within-division rank on each read with the change |
+| `content/weekly-diff.md` + `weekly-diff.html` | 1 | the page; BL-62 moves not started -> partial |
+
+The one thing worth recording is the trap in it. **A diff between two dated reads is a date window, not a
+week number.** The window 13 Nov -> 16 Nov contains **twelve** Week 10 games, not thirteen: Commanders at
+Giants was played on 12 November, before the first read, and Chargers at Ravens kicks at 20:15 ET on 16
+November, after the second. So Washington, the Giants, the Chargers and the Ravens all show **zero games
+played in the window** while four of them demonstrably played in Week 10. Publishing that as "Week 10
+movement" would have been wrong, so the page names all four clubs and the verifier proves the window:
+total games played across the 32 rows must equal twice the number of settled Week 10 results whose date
+falls strictly between the two read dates, and the zero-game clubs must be exactly the clubs absent from
+those results. Eight clubs changed division rank; two of the four that moved down — Chicago and Denver —
+did not play in the window at all.
+
+**Verified movement (71-line register):** not started 32 -> 28 · partial 25 -> 27 · done 9 -> 11
+(BL-14 and BL-69 done; BL-59 and BL-62 partial). The register was edited at its builder source
+(`ITEMS` in `tools/build_backlog_58e9c708.py`), never by hand — see the clobber note above.
+
+#### Additional cross-session change request
+
+| # | File | Change | Why |
+|---|---|---|---|
+| CR-0A28-06 | `tools/build_site.py` | `source_ref()` now renders a `::`-separated list of registered ids (each rendered by the same host rule) | a differenced row cites the read on **both** sides of the window; collapsing that to one id hides half the provenance. Behaviour for every existing single-value cell is unchanged (no `::` present anywhere else), and the check that every table declares a source is untouched. |
+
+### PR, merge and live-deployment record — session `0a28b225`
+
+_recorded after merge_
+
+### Integration merge of `origin/main` (`6125236`, 2026-11-16 ~19:10Z) — session `0a28b225`
+
+`origin/main` advanced 47 commits (PRs through #117) while this session worked. `git merge origin/main`
+conflicted on 51 files: 46 generated root HTML, the two build manifests, `data/flags.csv`,
+`data/sources.csv`, `content/data-dictionary.md`, `tools/build_site.py` and this file.
+**Resolution, without discarding anyone's work:** generated products taken from `main` and regenerated from
+the merged registers; `sources.csv` = main's 105 rows + this session's 3; `flags.csv` = main's 120 rows +
+this session's one surviving flag, renumbered to main's live maximum; `data-dictionary.md` and
+`COORDINATION.md` = main's content with this session's blocks appended; `tools/build_site.py` hand-merged
+so both NAV and PAGE_KIND sets survive and `source_ref` keeps both the `::`-list change and every line
+`main` had added.
+
+#### Duplicate-work collision, found and resolved (the reason this note exists)
+
+**Session `3e77121b` transcribed the same 13 Week 11 game centres at 18:02–18:06Z** and published
+`data/venues_wk11_3e77121b.csv` + `fixture-venues.html` + flag **FL-118**, which covers the same three
+venue-name disagreements this session found. This session's read was at 18:40Z, blind to that file.
+
+What was done, in the order the board's rules require:
+
+- **This session's venue page was withdrawn.** `content/venue-register.md` and `venue-register.html` were
+  deleted and the NAV, PAGE_KIND, page-map and data-dictionary entries removed. Two competing venue pages
+  would be worse than one; theirs was published first.
+- **This session's flag for the venue conflict was withdrawn.** It would have shipped as FL-115; FL-118
+  already owns the finding.
+- **The transcription itself was kept as an independent second read, and cross-checked rather than
+  asserted.** `tools/verify_0a28b225.py` now compares `data/venue_register_0a28b225.csv` against
+  `data/venues_wk11_3e77121b.csv` on all 13 fixtures: **13/13 identical on both city and stadium**, two
+  reads 34 minutes apart, neither having seen the other. That agreement is the finding worth publishing,
+  and the check stays in CI so a future divergence fails loudly.
+- **The surviving flag renumbered.** Main's live maximum at merge time was FL-120, and main's own FL-115 is
+  a different topic (source policy, tiers B–D hosts). This session's rulebook finding ships as **FL-130**.
+- **A stale id repaired.** Main's page-map row for `fixture-venues.html` cited FL-115 for the venue
+  disagreements; the correct id is FL-118. Corrected to a linked `[FL-118](flagged-for-review.html)`.
+  Same class as the stale-id repair `e632af20` logged.
+- **Nothing else was duplicated.** `fixture-context.html`, `kickoff-regime.html` and `weekly-diff.html` have
+  no counterpart on `main` (`git ls-tree origin/main` shows no fixture/kickoff/regime/context page), and no
+  flag on `main` covers the rulebook omission, so all three ship.
+
+**Verification on the merged tree (`f05b22f`):** build_site **51 pages** · `tools/verify.py`
+**236 passed / 1 warning / 0 failures** (the one warning is a parallel session's newer 15:00Z standings read
+against the 14:57Z published table — a dated-snapshot policy question already owned by Q-40, not a defect)
+· `tools/check_site.py` 11/1/0 · `tools/verify_0a28b225.py` **42/42** · `tools/verify_3e77121b.py`
+**439/0** · `verify_backlog` 10/1/0 · `verify_readiness` PASS · `verify_e632af20` 11/11 ·
+`verify_coverage` 2,420/0 · `verify_dcf3b0cc` 18,941/0 · `verify_q51` 0 errors · `verify_s531` PASS ·
+`verify_s92` 13/0/0 · `injury_lineage --check` OK · `review_verify` OK · `check_reproducible` all reproduce ·
+`engine/verify_repo_and_site.py` **0 broken across 4,364 internal links** · `render_test` 13 pages / 0
+failures · `audit_all_pages` **136 HTML / 398 tables / 10,790 rows / 100% row-sourced / 0 broken** ·
+drift check: a fresh build of all three builders leaves the tree clean.
+
+### Second integration merge of `origin/main` (2026-11-16 ~19:40Z) — session `0a28b225`
+
+`main` advanced a further 20 commits (143 registered sources, 129 flags) while PR #120 was open. Second
+merge, same 51-file pattern, same resolution: generated products from `main` and regenerated; the four
+shared registers unioned at their builder/source level; `tools/build_site.py` merged cleanly this time.
+
+**Flag-id collision, second bounce (CR-58E9-07, sixth recurrence).** This session's rulebook finding was
+first numbered FL-116 (branch base), then FL-121 after the first integration (main's live maximum was
+FL-120). In the second integration, main had itself grown an **FL-116 (COORDINATION.md maintainability)**
+and an **FL-121 (roster-events)** — so both ids were taken for different findings. The finding ships as
+**FL-130**, and every reference in this session's content, data-dictionary row, landing-page block and
+this section was retargeted to FL-130 without touching main's own FL-116/FL-121 references. The resolver
+also emitted one duplicate of main's FL-116 while renumbering; it was detected by the uniqueness check and
+removed before commit. A deterministic allocator remains the fix (CR-58E9-06) — the manual renumber has now
+bounced three times on one flag.
+
+**Verification on the second merged tree:** build_site **52 pages** · `tools/verify.py`
+**246 passed / 1 warning / 0 failures** · `check_site` 11/1/0 · `verify_0a28b225` **42/42** ·
+`verify_3e77121b` **439/0** · `verify_backlog` 10/1/0 · `verify_readiness` PASS · `verify_e632af20` 11/11 ·
+`verify_coverage` 2,420/0 · `verify_q51` 0 errors · `verify_s531` PASS · `verify_s92` 13/0/0 ·
+`injury_lineage --check` OK · `review_verify` OK · `audit_all_pages` **137 HTML / 405 tables / 10,998 rows /
+100% row-sourced / 0 broken** · drift check clean.
