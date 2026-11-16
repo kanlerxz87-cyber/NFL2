@@ -76,6 +76,7 @@ NAV = [
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
                    ("brief-coverage", "Brief Coverage & Freshness"),
+                   ("reverification", "Re-Verification (16 Nov)"),
                    ("sources", "Source Registry")]),
     # Availability read through a depth chart, and the first decision this site has
     # locked before the games it predicts happened.
@@ -1006,6 +1007,7 @@ PAGE_KIND = {
     "suggestion-review": ("decision", "Awaiting owner review"),
     "backlog": ("decision", "Awaiting owner review"),
     "brief-coverage": ("program", "Traceability"),
+    "reverification": ("measured", "Dated verification"),
 }
 
 CSS_HREF = "assets/style.css"

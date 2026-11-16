@@ -132,6 +132,14 @@ Four new decisions came out of it — which register is canonical ([Q-42](questi
 hub must be read ([Q-43](questions.html)), what replaces depth rank ([Q-44](questions.html)), and whether
 to buy snap counts ([Q-45](questions.html)).
 
+## What changed on 16 November 2026
+
+The Week 10 hub, the Week 10 results, the standings and the whole Week 11 slate were re-read line by line against the live official pages, and the [Re-Verification register](reverification.html) publishes every check with its page. Three findings matter:
+
+1. **The injury hub is frozen and provably so.** The full re-read matches both 15 November reads cell for cell — zero additions, zero removals, zero changed designations across the slate — which is what a weekly report should do and one more reason it cannot be read as a live feed.
+2. **The results feed caught up with the games, without breaking the pre-registration.** Thirteen Week 10 finals were verified on two official pages each and published with their game-centre links on the [Re-Verification](reverification.html) page; the append-only results file now holds all thirteen (the parallel results-feed session appended the twelve Sunday finals and re-pinned the settled-file hash under a **dated amendment that preserves the decision-time hash**). One governance question remains open on the [Flagged for Review](flagged-for-review.html) page: [FL-114](flagged-for-review.html), the owner's ratification of that append protocol. The Monday game is recorded nowhere — it is not final.
+3. **The standings delta closes for all 32 clubs — and the refresh is cross-validated.** The 16 November read equals the 13 November snapshot plus exactly each club's Sunday result on wins, losses, ties and points; two independent reads seven minutes apart (14:50Z and 14:57Z) agree cell for cell on all 32 clubs × 8 fields, which is what makes the table's refresh to the newer read safe to publish. How often cumulative tables move is still [Q-40](questions.html).
+
 ## Latest official reads — 13 November 2026
 
 The time labels now identify different source snapshots rather than one global “last updated” date:
@@ -169,6 +177,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Decisions | [Open questions](questions.html) | {{metric questions}} questions with what we have / what we lack / how to close |
 | Decisions | [Suggestion register](suggestions.html) | {{metric suggestions}} suggestions with impact, effort, risk, reversibility — pick a path |
 | Decisions | [Flagged for review](flagged-for-review.html) | {{metric flags}} irregularities and unverifiable items, with source links |
+| Decisions | [Brief backlog](backlog.html) | the brief's line-item directives the requirement register never tracked, each with the gate that blocks it, the number that clears it and the official page it needs |
 | Origination | [Originate our own lines](line-origination.html) | model architecture, inputs, no-vig math, publication of residuals |
 | Origination | [Signals](signals.html) | 18 signal families with decay, capacity and blocking gate |
 | Origination | [Correlation](correlation.html) | 12 pair classes, sign arguments, estimation method, blank rhos, and 2 measured from the game log |
@@ -187,6 +196,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Data | [Standings, schedule & game log](league-data.html) | 32 reconciled rows, the Week 10 slate, and a {{metric games_log}}-game verified results log for weeks 1–9 |
 | Data | [Data dictionary](data-dictionary.html) | every column, its meaning, its source, its transform |
 | Governance | [Verification method](methodology.html) | the rules this project will not bend |
+| Governance | [Re-Verification (16 Nov)](reverification.html) | the dated line-by-line re-read of the official pages behind every Week 10 number: the frozen hub delta, the thirteen final results with their game pages, the standings delta club by club, and the Week 11 slate |
 | Governance | *Repository map* (below) | ten published trees, their owner sessions, their page counts and what each uniquely holds, generated at build time; only the game log was adopted into this register, after re-audit |
 | Governance | [Crosscheck: live re-verification](crosscheck/index.html) | A second, independent re-check against the official league pages on 12 November 2026: what still matches, what moved since the snapshot, a claim-by-claim audit of every tree in this repository, and the questions / information / suggestions register to review before anything is implemented. Every row carries its official source; anything unverifiable is published as flagged |
 | Governance | [Price archive](price-archive.html) | what market data the repository actually holds, what each column proves, and what it cannot be used for (FL-29, FL-30) |
