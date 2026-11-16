@@ -14,7 +14,7 @@ To originate means: we produce a distribution over scoring outcomes for each gam
 | 5 | Game scoring process | stages 1–4 | joint distribution of the two team scores | unwritten by choice: it would be unvalidateable without prices |
 | 6 | Player production process | stage 5 conditioned on play counts | distributions for each prop we price | blocked on Q-02 |
 | 7 | Market conversion | any distribution | spread, total, ML, team totals, props — each with a no-vig target and a price to quote | needs a vig convention (Q-09) |
-| 8 | Residual publication | stage 7 vs the consensus benchmark | our number, the market, the difference, and a verdict | needs prices (Q-01) — the single largest gap in the project |
+| 8 | Residual publication | stage 7 vs the consensus benchmark | our number, the market, the difference, and a verdict | an archive-only comparison is already published in the [Fair-Line Lab](model-lab.html); the archive has no verified open/close vintage, book, or capture timestamp (Q-01, Q-35), so a decision-grade market benchmark remains blocked |
 
 ## The lines themselves: stages 1–2, computed for all 14 Week 10 games
 
@@ -43,14 +43,18 @@ from two verified inputs only: the 136 settled results of weeks 1–9, and the W
 | --- | --- |
 | Arithmetic over 136 verified official results, reproducible byte for byte | a prediction anyone should bet on |
 | The first two stages of the documented pipeline, running end to end | the finished model — stages 3–8 are still absent |
-| Published so the residual can be computed the moment a price exists | a comparison to any sportsbook, because no price exists here ([FL-10](flagged-for-review.html)) |
+| Published in the [Fair-Line Lab](model-lab.html) as separate model-line, archived-line, and difference columns where the archive has a value | a verified opening/closing comparison to a named sportsbook or consensus feed: the in-repo 2026 archive is community-sourced and its line vintage is undocumented ([Price Archive](price-archive.html), [FL-30](flagged-for-review.html)) |
 
-**The residual column is absent on purpose.** The whole objective is to compare our number to the market
-and publish the difference even when it is negative. There is no market number in this repository — not
-one opening line, closing line, spread, total, moneyline or prop price — so a residual would have to be
-invented, and an invented residual is the single most damaging thing this project could publish. The
-column stays off the page until [Q-01](questions.html) closes. That is the honest state of the objective:
-**the machinery to originate a line exists and runs; the benchmark to beat it against does not.**
+**The archived residual is published, but it is not a verified market signal.** The repository does
+contain non-official historical prices: the [price archive inventory](price-archive.html) records
+community-source game lines, including sparse 2026 coverage, and the [Fair-Line Lab](model-lab.html)
+shows model line, archived line, and their difference in separate columns where available. These values
+are not NFL-published prices and do not establish an opening or closing number: the archive's capture
+vintage, sportsbook identity, and timestamp are undocumented ([FL-30](flagged-for-review.html),
+[Q-35](questions.html)). The archived residual is therefore descriptive only; it must not be called CLV,
+used as a verified consensus benchmark, or used to qualify a strategy. The price-feed and entitlement
+decision remains open under [Q-01](questions.html). The honest state is: **a model and archive-only
+comparison run; a time-stamped, decision-grade market benchmark does not.**
 
 **Two sanity checks a reviewer can run by hand.** Mean fair total across the 14 games is **48.64 points**,
 against a mean of **45.93** in the 136-game sample. That is a real and slightly uncomfortable result: with a
