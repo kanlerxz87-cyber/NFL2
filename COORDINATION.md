@@ -3848,3 +3848,21 @@ partial 24 → 25 (BL-02, BL-13, BL-21, BL-55, BL-56 updated in place); not star
 - PR: _recorded in the follow-up deployment entry below_
 - Merge result: _recorded in the follow-up deployment entry below_
 - Pages deploy: _recorded in the follow-up deployment entry below_
+
+### PR, merge and live-deployment record — session `d304c6fe` (2026-11-16)
+
+| Item | Result |
+|---|---|
+| PR | [#99](https://github.com/kanlerxz87-cyber/NFL2/pull/99) — dated official captures (reserve list, trades, Week 10 results), demotion gates, price-data policy |
+| Pre-merge CI (head `7a46311`) | `Row-level verification, link check and build reproducibility` pass · `audit` pass · `q51` pass · `mergeable: MERGEABLE`, `mergeStateStatus: CLEAN` |
+| Merge | `gh pr merge 99 --merge` at 2026-11-16; merge commit `db07fa7` on `main` |
+| Post-merge CI (`db07fa7`) | `GitHub Pages` success · `Verify site data and links` success |
+| Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
+| Live checks after deploy | [reserve-list.html](https://kanlerxz87-cyber.github.io/NFL2/reserve-list.html) renders all 35 November wire rows with official month-page links and the coverage register · [results-feed.html](https://kanlerxz87-cyber.github.io/NFL2/results-feed.html) renders the 14-row Week 10 feed (W10-14 blank, not guessed) and the dated schedule announcements · [demotion-gates.html](https://kanlerxz87-cyber.github.io/NFL2/demotion-gates.html) renders DG-01..DG-06 and the 15 two-sided falsifier rows |
+| Merge-conflict races | two, both resolved without discarding work and logged above (PRs #94–#98 from `7c23f22f`; PR #100 from `4e475b8b`); this session's flags ship as FL-109/FL-110/FL-111 |
+
+This record itself ships in the follow-up deployment PR from the same branch (which also fixes one
+rendering defect found in the live check above: the schedule-announcement table's Source column used
+one page-level source for both rows; it now cites each row's own official URL). That PR's own merge is
+confirmed by its CI being green at merge time and by the live checks listed here, which are performed
+against the deployed site after each merge.
