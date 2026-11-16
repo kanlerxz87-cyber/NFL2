@@ -4059,3 +4059,88 @@ Another session's namespaced tree (`portal/`, `engine/`, `analytics/`, `crossche
 | UTC | Entry |
 |---|---|
 | 2026-11-16T18:15Z | Repo reviewed at `cd83a7a`. `tools/verify.py` 223/0/0 and `tools/check_site.py` 11/1/0 pass on the base tree. Remote holds only `origin/main`; PRs #71 and #84 lapsed (branches deleted, >24h idle). Claimed A1–A7 with the scope above. |
+
+### Close-out — session `0a28b225` (2026-11-16)
+
+**Tasks A1–A7: done.** Every artefact below is new, in this session's own namespace, and no other
+session's file was deleted, renamed or rewritten.
+
+#### Official sources read and transcribed on 2026-11-16 (all registered in `data/sources.csv`)
+
+| Source | URL | What was taken from it |
+|---|---|---|
+| Week 11 game centres (13) | `https://www.nfl.com/games/<slug>-2026-reg-11` | the Game Info block of every fixture: Location (city, state) and Stadium, verbatim, one row per fixture with that page's own URL (`S-WK11-GC-0A28`) |
+| Week 11 schedule page | https://www.nfl.com/schedules/2026/by-week/week-11 | re-read to confirm the venue is **not** displayed on the schedule page itself, only encoded in its hotel-link parameter — the fact behind FL-112 |
+| Official 2026 NFL Rulebook | https://operations.nfl.com/rules-officiating/2026-nfl-rulebook | the league's own 2026 Rule Changes table: 6-1-3, 6-1-5, 6-1-6, 19-2 (`S-RULEBOOK-0A28`) |
+| NFL rule-change report | https://www.nfl.com/news/nfl-oks-1-year-rule-allowing-replay-center-to-correct-mistakes-by-potential-replacement-refs | the "regardless of the score" clause that settles the onside-kick disagreement, and the one-year officiating rule (`S-RULES26-0A28`) |
+
+Two `operations.nfl.com` paths 404'd and were not used: `/football-ops/rules-and-legislation/` and
+`/the-rules/nfl-rules-digest/`. A third-party PDF on `media.nfl.com` was found by search but not used as
+a citation, because the rulebook page carries the same rule text on a league-operated host.
+
+#### What was built
+
+| File | Rows | What it is |
+|---|---|---|
+| `data/venue_register_0a28b225.csv` | 13 | the official venue of every Week 11 fixture, transcribed from that fixture's game centre, beside the schedule-page parameter reading published under FL-112 |
+| `data/fixture_context_0a28b225.csv` | 26 | one club-fixture side: rest, bye, short week, mirrored opponent rest and rest edge, divisional and conference flags, the venue's ET offset, the local body-clock kickoff, the kickoff window |
+| `data/kickoff_regime_0a28b225.csv` | 5 | the 2026 rule changes that move a game total, each with the text the league publishes |
+| `tools/build_0a28b225.py`, `tools/verify_0a28b225.py` | — | deterministic generator + a 30-check auditor that re-derives every published cell |
+| `content/{venue-register,fixture-context,kickoff-regime}.md` + 3 generated pages | 3 | new site pages; `tools/verify_0a28b225.py` wired into `validate.yml` |
+
+**Backlog movement (71-line register):** not started 32 → 29 · done 9 → 11 · partial 25 → 26
+(BL-14 and BL-69 done, BL-59 partial).
+
+#### Findings
+
+- **FL-112 resolved at source, and it produced a new conflict (FL-115).** The Week 11 schedule page
+  does not display a stadium; the game centre does, for all thirteen fixtures, so the `not published`
+  venue cells can now be filled from a displayed official page rather than a URL parameter. But the two
+  official pages disagree on three of them, and two are not sponsor-prefix differences: the game centre
+  prints **RELIANT STADIUM** for the Texans and **NORTHWEST STADIUM** for the Commanders, names those
+  venues no longer use. Both readings are published side by side and neither is transcribed into the
+  other. The game centre also names **ESTADIO BANORTE** for the Mexico City fixture, the one venue fact
+  FL-112 could not settle.
+- **FL-116 (low):** the official rulebook's own 2026 Rule Changes table lists four rules and omits the
+  fifth rule in the league's approved playing-rules summary (the one-year officiating-correction rule).
+  The register keeps both and marks KR-05's rule number `not published` rather than inventing one.
+- **Onside-kick third-party conflict, resolved against the league's own pages.** Search returns both
+  answers for 2026. The rulebook says the kicking team may declare "at any time during the game", and
+  NFL.com adds "regardless of the score. Previously, only the trailing team could attempt an onside
+  kick." Neither says "trailing". Only those two pages are cited. **No success-rate prior is published** —
+  the widely quoted recovery percentages are not on any official page.
+
+#### Cross-session change requests (files owned by other sessions)
+
+| # | File | Owner | Change | Why |
+|---|---|---|---|---|
+| CR-0A28-01 | `tools/verify_backlog_58e9c708.py` | `58e9c708` | `VERIFICATION_VOCAB` gained one value, `"read 2026-11-16"` | the register dates its read claims; a 16 November read cannot honestly be recorded as a 15 November one. Additive — the existing three values are untouched and every check on them is unchanged. |
+| CR-0A28-02 | `tools/build_backlog_58e9c708.py` | `58e9c708` | added `READ16`, two dependency constants (`RULEBOOK26`, `RULESNEWS26`), a `FETCHED_16` set and the matching guard | so a 16 November read claim is refused for a page that was not fetched, exactly as the 15 November claim already was |
+| CR-0A28-03 | `tools/build_site.py` | root (`bc4b47cf`) | 3 NAV entries + 3 `PAGE_KIND` entries | additive; no existing entry changed |
+| CR-0A28-04 | `content/index.md`, `content/data-dictionary.md`, `data/sources.csv`, `data/flags.csv` | root | appended rows only | shared registers, appended after `origin/main`'s last row |
+| CR-0A28-05 | `data/verification-report.json`, `datasets/e143a7ca/verification_manifest.json` | `e143a7ca` | regenerated by that session's own verifier | page and link counts move 77→80 and 87→90 because three pages were added; `0 broken links` throughout |
+
+**Clobber hazard, hit and fixed (recurrence of the one `d304c6fe` recorded).** Editing
+`data/brief_backlog_58e9c708.csv` by hand is silently undone by `tools/build_backlog_58e9c708.py`'s
+replay check: the verifier's first run rebuilt the file from `ITEMS` and my three status cells reverted
+to `not started` before the run even finished. The fix is the documented one — edit `ITEMS` in the
+builder, then regenerate — and it is what ships. Worth automating: the register is the only file in the
+repo where a correct-looking edit disappears without a warning.
+
+#### Verification performed on the integrated tree
+
+`tools/build_site.py` 48 pages · `tools/verify.py` **226 passed / 0 warnings / 0 failures** (223 on the
+base tree) · `tools/check_site.py` 11/1/0 (the one disclosed non-league-host warning, pre-existing) ·
+`tools/verify_0a28b225.py` **30/30** · `tools/verify_backlog_58e9c708.py` 10/1/0 ·
+`tools/verify_readiness_ac2dd497.py` PASS · `tools/verify_e632af20.py` 11/11 ·
+`tools/verify_coverage_f34622dd.py` 2,420/0 · `tools/verify_dcf3b0cc.py` 18,941/0 ·
+`scripts/verify_q51.py` 0 errors · `scripts/verify_s53126614.py` PASS · `tools/verify_s92.py` 13/0/0 ·
+`scripts/injury_lineage_d8372691.py --check` OK · `tools/review_verify.py` OK ·
+`engine/verify_repo_and_site.py` **0 broken across 4,071 internal links** ·
+`node scripts/render_test.js` 13 pages / 0 failures · `scripts/check_reproducible.py` all reproduce ·
+`scripts/audit_all_pages.py` **133 HTML / 398 tables / 10,499 rows / 100% row-sourced / 0 broken** ·
+`git diff --check` clean · drift check: a fresh build of all three builders leaves the tree clean.
+
+### PR, merge and live-deployment record — session `0a28b225`
+
+_recorded after merge_

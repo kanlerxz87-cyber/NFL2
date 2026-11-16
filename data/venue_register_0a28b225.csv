@@ -1,0 +1,14 @@
+game_id|date|kickoff_et|away|home|neutral|venue_city|venue_state|stadium_game_centre|stadium_schedule_page_parameter|official_pages_agree|note|source
+W11-01|2026-11-19|20:15|IND|HOU|no|HOUSTON|TX|RELIANT STADIUM|NRG Stadium|conflict - different venue name|the two official pages name the venue differently; neither is transcribed into the other|https://www.nfl.com/games/colts-at-texans-2026-reg-11
+W11-02|2026-11-22|13:00|MIA|BUF|no|ORCHARD PARK|NY|HIGHMARK STADIUM|Highmark Stadium|match||https://www.nfl.com/games/dolphins-at-bills-2026-reg-11
+W11-03|2026-11-22|13:00|BAL|CAR|no|CHARLOTTE|NC|BANK OF AMERICA STADIUM|Bank of America Stadium|match||https://www.nfl.com/games/ravens-at-panthers-2026-reg-11
+W11-04|2026-11-22|13:00|NO|CHI|no|CHICAGO|IL|SOLDIER FIELD|Soldier Field|match||https://www.nfl.com/games/saints-at-bears-2026-reg-11
+W11-05|2026-11-22|13:00|TEN|DAL|no|ARLINGTON|TX|AT&T STADIUM|AT&T Stadium|match||https://www.nfl.com/games/titans-at-cowboys-2026-reg-11
+W11-06|2026-11-22|13:00|TB|DET|no|DETROIT|MI|FORD FIELD|Ford Field|match||https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11
+W11-07|2026-11-22|13:00|AZ|KC|no|KANSAS CITY|MO|ARROWHEAD STADIUM|GEHA Field at Arrowhead Stadium|conflict - sponsor prefix|the game centre prints the unsponsored name; the schedule page parameter carries the sponsor|https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11
+W11-08|2026-11-22|13:00|PIT|PHI|no|PHILADELPHIA|PA|LINCOLN FINANCIAL FIELD|Lincoln Financial Field|match||https://www.nfl.com/games/steelers-at-eagles-2026-reg-11
+W11-09|2026-11-22|16:05|NYJ|LAC|no|INGLEWOOD|CA|SOFI STADIUM|SoFi Stadium|match||https://www.nfl.com/games/jets-at-chargers-2026-reg-11
+W11-10|2026-11-22|16:25|LV|DEN|no|DENVER|CO|EMPOWER FIELD AT MILE HIGH|Empower Field at Mile High|match||https://www.nfl.com/games/raiders-at-broncos-2026-reg-11
+W11-11|2026-11-22|16:25|JAX|NYG|no|EAST RUTHERFORD|NJ|METLIFE STADIUM|MetLife Stadium|match||https://www.nfl.com/games/jaguars-at-giants-2026-reg-11
+W11-12|2026-11-22|20:20|MIN|SF|yes|MEXICO CITY||ESTADIO BANORTE||no parameter value|the Week 11 schedule page encodes no stadium for this fixture; the game centre names one|https://www.nfl.com/games/vikings-at-49ers-2026-reg-11
+W11-13|2026-11-23|20:15|CIN|WAS|no|LANDOVER|MD|NORTHWEST STADIUM|FedEx Field|conflict - different venue name|the two official pages name the venue differently; neither is transcribed into the other|https://www.nfl.com/games/bengals-at-commanders-2026-reg-11

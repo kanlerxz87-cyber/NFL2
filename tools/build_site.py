@@ -57,7 +57,9 @@ NAV = [
                      ("model-lab", "Fair-Line Lab (computed)"),
                      ("measured-correlations", "Measured Correlations"),
                      ("week10-settled", "Settled Week 10 (graded)"),
-                     ("week11-originated", "Week 11 Lines (pre-registered)")]),
+                     ("week11-originated", "Week 11 Lines (pre-registered)"),
+                     ("fixture-context", "Fixture Context (computed)"),
+                     ("kickoff-regime", "Kickoff Regime 2026")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
                      ("validation-gates", "Validation Gates"),
                      ("demotion-gates", "Demotion Gates & Falsifiers")]),
@@ -73,6 +75,7 @@ NAV = [
               ("personnel-relief", "Personnel Relief"),
               ("deficiencies", "Depth Deficiencies by Side"),
               ("depth-cascades", "Depth Cascades (re-verified)"),
+              ("venue-register", "Week 11 Venue Register"),
                    ("data-dictionary", "Data Dictionary")]),
     ("Governance", [("methodology", "Verification Method"), ("price-archive", "Price Archive"),
                    ("brief-coverage", "Brief Coverage & Freshness"),
@@ -1008,6 +1011,9 @@ PAGE_KIND = {
     "backlog": ("decision", "Awaiting owner review"),
     "brief-coverage": ("program", "Traceability"),
     "reverification": ("measured", "Dated verification"),
+    "venue-register": ("measured", "Measured data"),
+    "fixture-context": ("measured", "Computed result"),
+    "kickoff-regime": ("measured", "Measured data"),
 }
 
 CSS_HREF = "assets/style.css"

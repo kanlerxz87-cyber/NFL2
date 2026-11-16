@@ -299,3 +299,13 @@ verified by `tools/verify_flags_4e475b8b.py`.
 `practice` holds F/L/D and `status` holds OUT/Q/D as in the 5de1805b register (FL-92). The four
 rows the fetch tool split across chunk boundaries are spliced positionally and asserted in
 `4e475b8b/build.py`; unknown vocabulary or a row-count change fails the build loudly.
+
+| `data/venue_register_0a28b225.csv` | 13 | one Week 11 fixture: the official game centre's own Location (city, state) and Stadium fields, transcribed verbatim, beside the schedule page's hotel-link parameter reading published under FL-112. The two official readings are never reconciled into one another | per-row `nfl.com/games/` page (`S-WK11-GC-0A28`) |
+| `data/fixture_context_0a28b225.csv` | 26 | one club-fixture side: rest days, bye, short week, mirrored opponent rest and rest edge, divisional and conference flags, the venue's ET offset, the local body-clock kickoff and the kickoff window — every one derived from a published date, kickoff, venue or result | per-row `nfl.com/games/` page (`S-WK11-GC-0A28`); divisions from `S-STAND-F3EC` |
+| `data/kickoff_regime_0a28b225.csv` | 5 | one 2026 rule change that moves a game total: rule number, text as the league publishes it, the prior regime, and why it moves the number. Four rows are the rulebook's own change table; KR-05 is the rule the table omits (FL-116) | `S-RULEBOOK-0A28`, `S-RULES26-0A28` |
+
+`et_offset_hours` in the fixture-context file is a static geographic constant keyed on the venue's state
+(0 Eastern, -1 Central, -2 Mountain, -3 Pacific; Mexico City -1), valid for every date in this file
+because all of them fall after the 2026 US daylight change on 1 November. It is a documented mapping in
+`tools/build_0a28b225.py`, not an NFL-published fact, and the verifier re-derives it rather than trusting
+the stored value.
