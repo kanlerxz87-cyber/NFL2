@@ -4019,3 +4019,44 @@ content altered):**
 | Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
 | Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
+
+---
+
+## Session `6eeab460` (`arena/6eeab460-nfl2`) — official roster-event sweep, drift alarm, versioned depth (claim)
+
+**Session ID:** `6eeab460` · **Branch:** `arena/6eeab460-nfl2` (the one branch this session is assigned; no other branch is touched) · **Base:** `cd83a7a` (PR #105, current `origin/main` tip) · **Claimed:** 2026-11-16, before any file was created.
+
+**Parallel-session check at claim time:** open PRs #71 (`arena/1ef36c55-nfl2`, availability fingerprint monitor — owns BL-29/BL-30) and #84 (`arena/f05c00f2-nfl2`, falsification audit — owns `audits/f05c00f2/**`). Neither scope overlaps this claim. Both branches last updated 2026-11-15 and are left untouched.
+
+**Why this session exists.** Backlog items BL-13 (32-team roster and IR sweep: the brief's own note says August, September and 10/01–10/23 reserve windows were never captured), BL-34 (roster turnover as a first-class event — the Colts receiver trades and BAL QB rows), and BL-64 (drift alarm: parsers must fail loudly on a missing field, not publish a blank) are all "partial" or "not started" and can be advanced from official pages without a licence question. The sandbox cannot reach nfl.com directly, so raw bytes come from a GitHub-hosted runner exactly as `capture.yml` already does.
+
+**Exclusive file scope (new files):**
+- `.github/workflows/roster_capture_6eeab460.yml`
+- `tools/roster_capture_6eeab460.py`, `tools/roster_parse_6eeab460.py`, `tools/drift_alarm_6eeab460.py`, `tools/verify_6eeab460.py`
+- `data/captures/reserve_list/**`, `data/captures/trades/**` (raw bytes, never overwritten)
+- `data/roster_capture_manifest_6eeab460.csv` (own manifest; `data/capture_manifest.csv` is not touched)
+- `data/reserve_list_2026_6eeab460.csv`, `data/trades_2026_6eeab460.csv`, `data/roster_events_6eeab460.csv`, `data/depth_versioning_6eeab460.csv`
+- `content/roster-events.md`, `roster-events.html` (generated)
+
+**Shared files this session will edit (additive only; change requests logged in the log below):** `tools/build_site.py` (one NAV tuple), `content/index.md` (one page-map row), `.github/workflows/validate.yml` (one drift-alarm step), `data/flags.csv` and `data/sources.csv` (append rows only).
+
+**Not touched:** every other session's files, `data/capture_manifest.csv`, `tools/capture_official.py`, `data/brief_backlog_58e9c708.csv` (status updates are reported in this section instead).
+
+### Task board
+
+| ID | Task | Backlog | Status | Owner |
+|---|---|---|---|---|
+| R1 | Claim (this block) + baseline run of every existing verifier on `cd83a7a` | — | done at push | `6eeab460` |
+| R2 | Runner capture of the nfl.com reserve-list and trades pages for every 2026 month, raw bytes + SHA-256 + schema check | BL-13, BL-65 | pending | `6eeab460` |
+| R3 | Parse the captured pages into row-level CSVs (every row linked to its official page and capture hash); reconcile against the existing November transcriptions | BL-13, BL-34 | pending | `6eeab460` |
+| R4 | Roster-event register (trades + reserve/injured placements) with date and source per row | BL-34 | pending | `6eeab460` |
+| R5 | Versioned depth check: flag every depth-chart row whose named player had a later official roster event, against the chart's own read date; blanks where the chart date is not published | BL-34, BL-47 | pending | `6eeab460` |
+| R6 | Drift alarm: pinned header, row-count and required-field checks on every new capture; non-zero exit on drift | BL-64 | pending | `6eeab460` |
+| R7 | Publish `roster-events.html` (landing row, nav), flags for every irregularity, sources registered | BL-13, BL-34 | pending | `6eeab460` |
+| R8 | Full verifier suite, PR, merge, GitHub Pages confirmation, record here | integration | pending | `6eeab460` |
+
+### Log — session `6eeab460`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16 | Repo reviewed at `cd83a7a`. Claim R1–R8 written and pushed before any other file change. |
