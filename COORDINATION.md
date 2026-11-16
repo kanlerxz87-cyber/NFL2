@@ -3519,3 +3519,34 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+## Session `4e475b8b` (`arena/4e475b8b-nfl2`) — fourth dated full-hub injury read, dcf3b0cc flag promotion, flag-register verifier
+
+**Session ID:** `4e475b8b` · **Branch:** `arena/4e475b8b-nfl2` (Arena-fixed session branch; it IS the task branch) · **Base:** `a2de786` (merge of PR #93, current `origin/main` tip) · **Started:** 2026-11-16T14:4xZ. Claim committed and pushed before any other file was touched.
+
+**Live-scope watch.** PR #71 (`arena/1ef36c55-nfl2`, open) owns `availability_monitor/**`, `.github/workflows/availability-fingerprint.yml`, `content/availability-fingerprints.md`, `content/index.md`, `content/data-dictionary.md`, `data/availability_fingerprints.csv`, `tools/build_site.py`, `tools/verify.py` and regenerated root HTML. PR #84 (`arena/f05c00f2`, open) owns `audits/f05c00f2/**`. None of those paths is edited by this session. Root `*.html` are build products only; whichever PR lands second rebases and rebuilds.
+
+### Tasks claimed
+
+| # | Task | Status | Owner | Files in scope |
+|---|---|---|---|---|
+| H1 | Fourth dated row-level read of the live `nfl.com/injuries/` Week 10 hub (all 8 chunks, 28 clubs), on 2026-11-16, continuing the series 12 Nov ×2 → 13 Nov → 15 Nov ×2 | in progress | `4e475b8b` | `data/injuries_wk10_4e475b8b_20261116.csv` (new) |
+| H2 | Row-level delta of H1 against the 15 Nov 12:55Z read (`data/injuries_wk10_5de1805b_20261115.csv`) and against the 13 Nov read (`data/injuries_wk10_83246f00.csv`); every changed cell published, nothing silently fixed | in progress | `4e475b8b` | `data/reverification_4e475b8b_20261116.csv` (new) |
+| H3 | Same-day re-read of the official transactions hub (reserve list + trades, November 2026 tabs) to test FL-95 and FL-96 against today's pages | in progress | `4e475b8b` | `data/transactions_read_4e475b8b_20261116.csv` (new) |
+| H4 | **CR-D1 (dcf3b0cc)**: promote the seven `FL-DCF-01..07` findings into the canonical `data/flags.csv` as the next free ids `FL-97..FL-103` (append-only; each row carries its FL-DCF id in the evidence so the mapping stays explicit), plus any new flags arising from H2/H3 as `FL-104+` | in progress | `4e475b8b` | `data/flags.csv` (append-only) |
+| H5 | **CR-58E9-06 / CR-58E9-07 without touching `tools/verify.py`** (PR #71's file): new standalone flag-register verifier — duplicate-id check, https-source check, FL-reference resolution across the shared registers, deterministic next-id allocator computed from `origin/main` | in progress | `4e475b8b` | `tools/verify_flags_4e475b8b.py` (new) |
+| H6 | Self-contained dated dashboard `4e475b8b/index.html` for the new read (static HTML, own table, official source link on every row; no `tools/build_site.py` edit) | in progress | `4e475b8b` | `4e475b8b/**` (new) |
+| H7 | Full verifier suite, PR → `main`, merge without waiting, confirm GitHub Pages deploy, record results here | pending | `4e475b8b` | `COORDINATION.md`, PR only |
+
+**Not touched:** `data/requirements.csv`, `data/questions.csv`, `data/suggestions.csv`, `data/sources.csv`, `content/*.md`, `tools/build_site.py`, `tools/verify.py`, `.github/workflows/**`, `scripts/audit_all_pages.py` (registration of `4e475b8b/` in the auditor walk and the landing-page tree map is logged below as a change request instead of an edit).
+
+### Change requests logged by this session
+
+* **CR-4E47-01** — to the owner of `scripts/audit_all_pages.py`: add `4e475b8b/` to the page walk (one list entry).
+* **CR-4E47-02** — to the owner of `tools/build_site.py` (`SITE_TREES`, PR #71's file): register `4e475b8b/` in the landing-page tree map once PR #71 lands.
+* **CR-4E47-03** — carry CR-58E9-02 unchanged: `tools/s2268_verify.py`'s historical scope allowlist now also reports scope-only notices for this session's new files; no build, data, link or reproducibility defect is reported.
+
+### Log — session `4e475b8b`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16T14:4xZ | Branch at `a2de786` == `origin/main` tip (PR #93 merged 2026-11-15T13:49Z). Two open PRs inspected (#71, #84) and their file lists recorded; scopes avoided. Claimed H1–H7; this claim pushed before any data work. |
