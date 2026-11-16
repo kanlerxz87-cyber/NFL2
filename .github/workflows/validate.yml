@@ -12,6 +12,10 @@ jobs:
         with: { python-version: "3.11" }
       - name: Rebuild the site from data/ and content/
         run: python tools/build_site.py
+      - name: Rebuild and verify retrospective research-page boundary
+        run: |
+          python3 tools/s2268_build_site.py
+          python3 tools/verify_retrospective_boundary.py
       - name: Verify landing-page requirements coverage and source class
         run: python tools/verify_readiness_ac2dd497.py
       - name: Verify the brief-backlog register (gates, official dependencies, replay)

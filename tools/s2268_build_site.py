@@ -34,7 +34,7 @@ PAGES = [
     ("index.html", "Session overview", "Overview", "program"),
     ("refresh.html", "Live refresh: 13 Nov 2026", "Verification", "measured"),
     ("depth.html", "Depth & deficiencies", "Verification", "measured"),
-    ("competition.html", "Leaderboard & rewards", "Competition", "decision"),
+    ("competition.html", "Retrospective Strategy Audit (Research)", "Research", "measured"),
     ("forecast.html", "Forecast track", "Competition", "measured"),
     ("correlations.html", "Measured correlations", "Competition", "measured"),
     ("parlays.html", "Parlays & prop combos", "Competition", "design"),
@@ -400,61 +400,45 @@ def build_competition(comp):
     pd_hits, pd_n, pd_p = ps["P-PD"]["wins"], ps["P-PD"]["decisions"], ps["P-PD"]["binomial_p_two_sided"]
     ct_hits, ct_n = ps["P-CONTRA"]["wins"], ps["P-CONTRA"]["decisions"]
     lb = load("s2268_leaderboard.csv")
-    rewards = load("s2268_rewards.csv")
     reg = load("s2268_strategy_register.csv")
     body = f"""
-<blockquote><strong>Nothing on this leaderboard is a betting record.</strong> There is no price feed in
-this repository, so there is no closing line, no vig, no CLV and no return on investment. The competition
-ranks selection skill, which is measurable without a price, and it leaves every economics cell blank. The
-moment a price exists, the ROI column can be filled; until then, filling it would be invention.</blockquote>
+<blockquote><strong>Retrospective research only.</strong> These historical holdout results describe a
+fixed sample from weeks 5&ndash;9. They are neither a live record nor a prospective recommendation or
+evidence of betting profitability. No price feed is available, so monetary performance cannot be assessed.</blockquote>
 
-<h2 id="result">The result</h2>
-<p>Ten candidates were pre-registered &mdash; eight real signals and two deliberate negative controls
-&mdash; then scored on {comp['holdout_games']} holdout games (weeks 5&ndash;9) that no fitted coefficient
-ever saw. {comp['decisions_scored']} decisions were settled. {comp['survivors_fdr']} candidates survive a
-Benjamini&ndash;Hochberg correction at a 10% false-discovery rate; two of those are the negative controls
-doing their job in the wrong direction or the right one.</p>
-{table(lb, caption="Ranked by log loss, a proper scoring rule: it rewards being right and penalises being "
-                   "confidently wrong, so a lucky streak on few bets cannot top the table. The rank column "
-                   "reads &ldquo;unranked&rdquo; when no candidate clears the luck gate, because ranking "
-                   "noise is how a competition talks itself into a bad strategy.")}
+<h2 id="result">Historical holdout results</h2>
+<p>Ten candidates were pre-registered &mdash; eight signals and two deliberate negative controls &mdash; then
+scored on {comp['holdout_games']} historical holdout games (weeks 5&ndash;9) that no fitted coefficient
+ever saw. {comp['decisions_scored']} decisions were scored. {comp['survivors_fdr']} candidates pass the
+reported Benjamini&ndash;Hochberg correction at a 10% false-discovery rate; this is a retrospective statistical
+summary only.</p>
+{table(lb, cols=["id", "name", "bet_type", "decisions", "wins", "hit_rate", "log_loss", "binomial_p",
+                 "survives_fdr", "source_first_week", "source_last_week"],
+       caption="Historical holdout summary for research. Metrics describe this fixed sample only; no future performance is implied.")}
 
-<h2 id="read-this">How to read the hit rates</h2>
-<p>The favourite signal wins {pd_hits} of {pd_n} decisions, {round(int(pd_hits) / int(pd_n) * 100, 1)}%,
-with an exact binomial p of {pd_p}. Every fibre of a betting brain wants to call that an edge. It is not one: a team with the
+<h2 id="interpretation">Interpreting the retrospective metrics</h2>
+<p>The favourite signal won {pd_hits} of {pd_n} decisions, {round(int(pd_hits) / int(pd_n) * 100, 1)}%,
+with an exact binomial p of {pd_p}. This describes the historical sample, not an edge: a team with the
 better season point differential <em>is</em> the favourite, and winning two times in three is what being a
-favourite means. Whether that was already in the price is unknowable here, because there is no price. The
-one number that would settle it &mdash; the closing line &mdash; is the one number this repository does
-not have.</p>
-<p>The contrarian control wins {ct_hits} of {ct_n} on the same games, which is the exact complement. That is the
-point of including it: it prices the multiple-comparisons problem by showing what the mirror image of a
-real signal looks like to the same test.</p>
-
-<h2 id="rewards">Rewards</h2>
-<p>Five tiers, each with a stake multiplier and a list of gates that unlock it. Every tier above T0 is
-blocked, and the table says exactly which gate blocks it and why. Nothing is staked and nothing is earned
-until a licensed price feed exists and a forward track record has been paper-tracked and settled.</p>
-{table(rewards, caption="Stake multipliers are fractions of a notional reference unit, not recommendations. "
-                        "The reference unit is undefined until there is a bankroll policy, which is "
-                        "another open decision.")}
+favourite means. Whether that was already in the price is unknown. The contrarian control won {ct_hits} of
+{ct_n} on the same games, the exact complement and a diagnostic for the test procedure.</p>
 
 <h2 id="definitions">Pre-registered definitions</h2>
 <p>These ten rules were written down and hashed <em>before</em> any result was computed. The hash is
 <code>{comp['definitions_sha256'][:40]}&hellip;</code>, stored in
 <code>data/s2268_preregistration.json</code>. The scorer refuses to run if the definitions change and the
-hash is not deliberately re-cut, so adding a strategy after seeing the leaderboard is a visible act rather
-than a silent one.</p>
+hash is not deliberately re-cut. These definitions preserve auditability; they do not convert retrospective
+results into a prospective contest.</p>
 {table(reg, cols=["id", "name", "track", "market", "family", "selection_rule", "abstention_rule",
-                  "pre_registration_note", "source"],
+                  "source"],
        caption="These rows state rules, not league facts, so they carry no source link: there is nothing "
                "official to point at. The hash above is the provenance.")}
 """
-    return page("competition.html", "Leaderboard & rewards", "decision",
-                "Ten pre-registered candidates, scored out of sample, with every economics cell left "
-                "blank because there is no price.",
-                body, badge="decision",
-                toc=[("result", "The result"), ("read-this", "How to read the hit rates"),
-                     ("rewards", "Rewards"), ("definitions", "Pre-registered definitions")])
+    return page("competition.html", "Retrospective Strategy Audit (Research)", "measured",
+                "Historical holdout metrics for research only; no future performance is implied.",
+                body, badge="measured",
+                toc=[("result", "Historical holdout results"), ("interpretation", "Interpreting the metrics"),
+                     ("definitions", "Pre-registered definitions")])
 
 
 def build_forecast(comp):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Row-by-row reconciliation of a retained official capture against a repository file (session 7c23f22f).
 
-Input : the most recent manifest row with schema_ok = yes (data/capture_manifest.csv) and its stored bytes.
+Input : the pinned manifest row (PINNED_CAPTURE, 16 Nov 14:39:21Z) and its stored bytes; or --capture <path> for a summary of another row.
         The stored bytes are re-hashed and must equal the manifest hash, or the run fails.
 Parse : every club table of the nfl.com injury page. The club abbreviation comes from the same page:
         each matchup strip pairs a clubs/logos/<ABBR> image with 'Go to <Nickname> page'. Exactly 28 pairs
@@ -14,7 +14,8 @@ Join  : (club abbreviation, player name) against a repository file (default:
 Output: data/capture_reconciliation_7c23f22f.csv (pipe-delimited, like every register), one row per captured or repository player, with the
         capture SHA-256 and the official player link. Nothing is edited in the repository file.
 
-Usage: python3 tools/reconcile_capture_7c23f22f.py            (write the output)
+Usage: python3 tools/reconcile_capture_7c23f22f.py            (write the output for the pinned capture)
+       python3 tools/reconcile_capture_7c23f22f.py --capture data/captures/...bin  (summary only, nothing written)
        python3 tools/reconcile_capture_7c23f22f.py --check    (re-run and fail if the committed output differs)
 """
 from __future__ import annotations
@@ -52,12 +53,17 @@ FIELDS = [
 ]
 
 
-def latest_capture() -> dict:
+# The reconciliation is pinned to one stored capture, so that later daily captures do not change its output
+# (and do not make the committed --check fail). Later captures are reconciled with --capture <stored_path>.
+PINNED_CAPTURE = "data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin"
+
+
+def capture_row(stored_path: str) -> dict:
     with MANIFEST.open(newline="", encoding="utf-8") as fh:
-        rows = [r for r in csv.DictReader(fh, delimiter="|") if r.get("schema_ok") == "yes" and r.get("stored_path")]
-    if not rows:
-        raise SystemExit("no schema-valid capture in data/capture_manifest.csv")
-    return rows[-1]
+        rows = [r for r in csv.DictReader(fh, delimiter="|") if r.get("stored_path") == stored_path]
+    if len(rows) != 1 or rows[0].get("schema_ok") != "yes":
+        raise SystemExit(f"{stored_path} is not exactly one schema-valid row in data/capture_manifest.csv")
+    return rows[0]
 
 
 def club_map(text: str) -> dict[str, str]:
@@ -106,8 +112,8 @@ def repo_rows() -> dict[tuple[str, str], dict]:
     return keyed
 
 
-def build() -> tuple[list[dict], dict]:
-    cap = latest_capture()
+def build(stored_path: str = PINNED_CAPTURE) -> tuple[list[dict], dict]:
+    cap = capture_row(stored_path)
     path = ROOT / cap["stored_path"]
     raw = path.read_bytes()
     digest = hashlib.sha256(raw).hexdigest()
@@ -191,7 +197,10 @@ def render(rows: list[dict]) -> str:
 
 
 def main() -> int:
-    rows, s = build()
+    stored = PINNED_CAPTURE
+    if "--capture" in sys.argv:
+        stored = sys.argv[sys.argv.index("--capture") + 1]
+    rows, s = build(stored)
     text = render(rows)
     print(f"capture {s['capture']} sha256={s['sha256'][:12]} clubs={s['clubs']} captured_rows={s['captured']} repo_rows={s['repo']}")
     print(f"matched={s['matched']} mismatched_in_both={s['mismatched_in_both']} capture_only={s['capture_only']} repo_only={s['repo_only']}")
@@ -199,6 +208,9 @@ def main() -> int:
     if s["unknown_vocab"]:
         print("FAIL unknown vocabulary; not mapped by guess")
         return 1
+    if "--capture" in sys.argv:
+        print("--capture given: summary printed, nothing written (the committed output stays pinned)")
+        return 0
     if "--check" in sys.argv:
         if not OUT.exists() or OUT.read_text(encoding="utf-8") != text:
             print("FAIL committed reconciliation differs from a fresh run")

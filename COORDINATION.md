@@ -3610,7 +3610,7 @@ This session first attempted to claim the requirements readiness matrix and a No
 | Change request | Requested by | Owner | File | Request | Status |
 |---|---|---|---|---|---|
 | CR-F05-01 | `f05c00f2` | final integration session | `data/strategies.csv`, `content/strategies.md`, generated `strategies.html`, CI verifier, `content/index.md` / nav | Make positive-evidence and “what would change our mind” fields canonical for every strategy; add a root page-map link to this standalone review; preserve source-class distinctions and do not import backtests to the leaderboard. | pending — shared outputs remain integration-owned |
-| CR-F05-02 | `f05c00f2` | final integration session | `s2268/competition.html`, `tools/s2268_competition.py`, `data/s2268_leaderboard.csv`, `content/skill-vs-luck.md`, CI | Resolve the policy boundary between S-04's rule that backtests stay on research pages and the retrospective holdout scores/ranks shown on the S2268 page titled “Leaderboard & rewards” (currently labelled T0 research/unstaked). Safest resolution: move retrospective scores to a clearly titled research page, leave leaderboard/reward pages without backtest metrics, and add CI coverage. This is a project-design consistency issue, not an NFL-data finding; do not edit another session's tree in this task. | pending — cross-scope integration decision |
+| CR-F05-02 | `f05c00f2` | final integration session | `s2268/competition.html`, `tools/s2268_build_site.py`, `data/s2268_leaderboard.csv` (inputs unchanged), CI | Resolve the policy boundary between S-04's rule that backtests stay on research pages and the retrospective holdout scores previously shown on the S2268 page titled “Leaderboard & rewards.” The page is now titled “Retrospective Strategy Audit (Research),” shows historical metrics without rank/reward/stake/return fields, and is guarded by a CI boundary check. This is a project-design consistency issue, not an NFL-data finding. | resolved — retrospective results are research-only; CI enforces title, framing and column boundary |
 
 ### PR #84 handoff record — 2026-11-15
 
@@ -3749,3 +3749,49 @@ and records a SHA-256 for each read.
 **Integration progress after PR #96 (`dda65b3`):** the 14:44Z capture and row reconciliation from the latest default branch were retained. The reconciliation is regenerated and `--check` passes against the 14:44:29Z bytes (347/347 matched, zero mismatches or unknown terms; only `LAR→LA` alias). The root `captures.html` page now publishes capture metadata and aggregate results only; it does not render the player-level reconciliation table. The underlying raw files and row-level CSV remain in public Git, so FL-99 stays open pending source terms and a private-store decision. `FL-98` remains the separate Rams club-code alias flag; `FL-97` is resolved for a populated store; `FL-90` remains open for multi-day history.
 
 Combined-tree tests after PR #96: root build 42 pages; `tools/verify.py` 206 passed / 0 warnings / 0 failures; `tools/check_site.py` 11 passed / 1 existing non-league-link warning / 0 failures; `scripts/audit_all_pages.py` 127 HTML / 44 JSON / 374 tables / 9,296 rows / 100% row-sourced / 0 broken links / 0 column mismatches; `tools/verify_capture_7c23f22f.py` 7/7; capture reconciliation `--check` 347/347; readiness and backlog verifiers pass; C1 tests 15/15; F05 build and mutation tests pass 10/10; Q51 155/155 sourced rows; S53 100% official row links; S92 13/13; repository data reproducibility passes. Full build/link/data suites are green apart from the existing host-class warning and the separately tracked `tools/s2268_verify.py` scope allowlist request.
+
+### Log — session `7c23f22f`, third round (after PR #96; second runner capture)
+
+| UTC | Entry |
+|---|---|
+| 14:44:29Z | **Second runner capture**, triggered by the merge of PR #96 (which edited `tools/capture_official.py`). HTTP 200, 399,895 bytes, SHA-256 `2877f2c8a1a28acb7024708cf103f2154d0d3f0231e9748b4b5d9480fec6c5fb`, stored as `data/captures/injuries_hub/20261116T144429Z_2877f2c8a1a2.bin`, committed as `dda65b3`. The ledger row was written **pipe-delimited by the runner**, which confirms the format change works on the runner. |
+| 14:47Z | **Same length, different hash.** `cmp` finds 29 differing bytes in one run, inside a carousel block (`data-jsonid`, a random identifier generated per render). No injury value differs. Recorded as **FL-99**: hashes identify a response, not a state; change detection must use parsed rows. |
+| 14:49Z | The second file reconciles **347 of 347** with the 15 Nov file (`--capture` summary run; nothing written). |
+| 14:50Z | **Two defects found in this session's own design before they broke `main`, and fixed:** (1) the reconciliation output pinned the *latest* capture, so each daily run would change its `capture_sha256` and fail `reconcile --check` in CI; it is now pinned to the 16 Nov 14:39Z capture (`PINNED_CAPTURE`), with `--capture` for summaries of other rows; (2) `captures.html` rendered the ledger, so each daily run would leave the committed HTML stale and fail the drift check on `main`; the page now links to the CSV and does not render it. |
+
+### Open items after this round
+
+* **FL-97 / FL-90:** two captures, five minutes apart, the same day. No daily series yet; the daily cron (14:17 UTC) will add rows from 17 Nov.
+* **FL-94:** still open; `injuries.html` not edited (integration owner; CR-7C-02).
+* **FL-98:** Rams club code (`LAR` / `LA`), owner decision.
+* **FL-99:** hash is per response; series analysis must compare parsed rows (owner decision for the series, FL-88).
+* **Not done in this session:** a per-club depth-chart capture, the transactions/reserve-list capture, and the inactive-list capture. Their official URLs have not been read in this session, so none is claimed.
+
+### PR and merge record — session `7c23f22f`
+
+| PR | Title (short) | Merge | Merge commit | Checks before merge | Pages after merge |
+|---|---|---|---|---|---|
+| [#94](https://github.com/kanlerxz87-cyber/NFL2/pull/94) | Capture tool, runner workflow, verifier, FL-97, S-CAP-7C | `--merge`, 2026-11-16T14:38:07Z | `65fc38c0f77ca5f0ae2909a5d7b9513d8a279653` | row-level verification, audit, q51 — all pass | built |
+| [#95](https://github.com/kanlerxz87-cyber/NFL2/pull/95) | Push trigger for the capture workflow | `--merge` | `910e33852ce28c9c3abd4bb3f7397c7fa536a1ca` | all pass | built; **the push trigger ran the first runner capture** (`72fba5f`) |
+| [#96](https://github.com/kanlerxz87-cyber/NFL2/pull/96) | Reconciliation (347/347), Official Capture page, FL-90 partly resolved, FL-98 | `--merge` | `b9617d502c3d2a5584750ae257e689a82f2c3625` | all pass | `pages build and deployment` success; `gh api …/pages` → `built` |
+| [#97](https://github.com/kanlerxz87-cyber/NFL2/pull/97) | Pin reconciliation; captures page stops rendering the daily ledger; FL-99 | `--merge` | `4d9e4ca86cbfdacd4120a07c584e434feae7f573` | all pass | GitHub Pages success; `pages build and deployment` success; `built` |
+
+**Live check (fetched 2026-11-16 after the #97 deploy):** https://kanlerxz87-cyber.github.io/NFL2/captures.html serves the page, its 347-row table, and the second-capture paragraph.
+
+**Runner capture status on `main` at close-out:** two rows in `data/capture_manifest.csv` (`72fba5f` 14:39:21Z, `dda65b3` 14:44:29Z), both HTTP 200, both structure-checked (`schema_ok = yes`), both stored. The daily cron runs at 14:17 UTC (first scheduled run: 2026-11-17).
+
+### What is left for the next session (not claimed here)
+
+1. **FL-94 / CR-7C-02:** point `injuries.html` at the reconciled 16 Nov capture (integration owner).
+2. **FL-98:** the owner chooses one club code for the Rams.
+3. **FL-99 / FL-88:** the series owner decides that change detection uses parsed rows, and defines the change rule (not built here).
+4. **Schedule evidence:** the daily runs must be read on 17 Nov and after; until three or more are present, FL-97 stays open.
+5. **Other captures named in the brief** (depth-chart pages, transactions / reserve list, inactive lists): their official URLs have not been read in this session, so no capture was made, and none is claimed.
+
+### Final integration after origin/main PR #98 (`6339447`)
+
+PR #98's 7C close-out is preserved above. The current branch also keeps the upstream reconciliation pinned to the 14:39:21Z response so later daily runs cannot drift the committed CSV or fail CI; the 14:44:29Z comparison is a summary-only `--capture` run. Both retained responses are five minutes apart, not a multi-day history. `content/captures.md` now publishes only capture metadata and aggregate counts, explicitly states that the raw bodies and player-level reconciliation remain public pending terms review, and records the 29-byte carousel-ID hash variance. FL-99 combines both open governance points: public retention/republication terms are unreviewed, and byte hashes are not a valid measure of player-state changes. Hashes identify exact responses; parsed injury rows are required for series change comparisons. No legal permission is asserted, and existing public Git history cannot be erased by removing working-tree files.
+
+**CR-F05-02 resolved:** the S2268 page formerly titled “Leaderboard & rewards” is now generated as **Retrospective Strategy Audit (Research)**. It retains the historical sample's hit rate, log loss and significance summary, clearly labels them retrospective, and removes rank, tier, stake, reward, ROI, CLV and drawdown presentation. The pre-registered rules remain for reproducibility. `tools/verify_retrospective_boundary.py` enforces the title, retrospective/research framing, prohibited language and table-column boundary; `.github/workflows/validate.yml` rebuilds the S2268 page and runs this checker. The S2268 scope verifier's allowlist was extended only for this explicitly claimed final-integration work and its capture/governance inputs.
+
+Combined validation after these edits: root site rebuilt (42 pages); `tools/verify.py` 206 passed / 0 warnings / 0 failures; `tools/check_site.py` 11 passed / 1 existing non-league-link warning / 0 failures; `scripts/audit_all_pages.py` 127 HTML / 44 JSON / 372 tables / 9,289 rows / 100% row-sourced / 0 broken links / 0 column mismatches; capture verifier 7/7 and pinned reconciliation `--check` 347/347; retrospective boundary checker 4/4; S2268 verifier 1,024 checks / 0 errors; PR #84 audit tests 10/10; readiness, backlog, reproducibility, Q-51, S-53 and S-92 checks all pass. `tools/s2268_verify.py` scope allowlist now explicitly includes the final integration files and completes with zero errors. The one non-league-host warning is pre-existing. Do not claim deployment or live publication from this local integration.
