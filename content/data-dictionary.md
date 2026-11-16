@@ -314,12 +314,12 @@ Built by `tools/roster_parse_6eeab460.py` from the retained official transaction
 | `data/reserve_list_2026_6eeab460.csv` | 275 | one Reserve/Injured placement on the official reserve-list tab, per player per date | S-6E-RES-01..11 |
 | `data/trades_2026_6eeab460.csv` | 81 | one trade line on the official trades tab | S-6E-TRD-01..11 |
 | `data/roster_events_6eeab460.csv` | 356 | one roster event (275 reserve placements plus 81 trades), with date, club from and to, and capture hash | S-6E-RES-01..11, S-6E-TRD-01..11 |
-| `data/roster_coverage_6eeab460.csv` | 22 | one kind by month: pages followed, distinct rows, last-page rows, next-link flag, and a complete or incomplete verdict (FL-120) | S-6E-RES-01..11, S-6E-TRD-01..11 |
-| `data/depth_versioning_6eeab460.csv` | 1558 | one depth-register row checked against roster events; status is a candidate or a no-departure verdict, never a settled fact (FL-123, FL-124) | S-DEPTH-745, S-6E-RES-01..11 |
+| `data/roster_coverage_6eeab460.csv` | 22 | one kind by month: pages followed, distinct rows, last-page rows, next-link flag, and a complete or incomplete verdict (FL-121) | S-6E-RES-01..11, S-6E-TRD-01..11 |
+| `data/depth_versioning_6eeab460.csv` | 1558 | one depth-register row checked against roster events; status is a candidate or a no-departure verdict, never a settled fact (FL-124, FL-125) | S-DEPTH-745, S-6E-RES-01..11 |
 | `data/availability_join_6eeab460.csv` | 25 | one November 2026 reserve placement joined against the Week 10 hub read (14:44Z): hub listed or absent, and the delta. Each hub-listed row is checked against both raw captures; `raw_agrees_with_register` must be yes for every row (BL-65) | S-6E-RES-11 (placement); https://www.nfl.com/injuries/ (hub) |
 | `data/roster_capture_manifest_6eeab460.csv` | append-only; 118 rows at capture time (not row-checked: it grows with each scheduled run) | one fetch attempt of an official transaction page: URL, UTC stamp, SHA-256, schema check, stored path (empty when no new rows) | nfl.com transaction pages, via the capture run |
 
-`depth_versioning_6eeab460.csv` status values: `no_departure_in_captured_window`, `undated_chart_cannot_version`, `reserve_placed_before_chart_return_unverified`, `candidate_reserve_placed_after_chart`, `same_day_as_chart_unresolved`. Depth order is taken from the club's published chart only; jersey number, experience and salary are never used. The depth register has no Lamar Jackson or Tyler Huntley row, so the BAL-QB stale verdicts SD-01 and SD-02 are not re-verified here (FL-121).
+`depth_versioning_6eeab460.csv` status values: `no_departure_in_captured_window`, `undated_chart_cannot_version`, `reserve_placed_before_chart_return_unverified`, `candidate_reserve_placed_after_chart`, `same_day_as_chart_unresolved`. Depth order is taken from the club's published chart only; jersey number, experience and salary are never used. The depth register has no Lamar Jackson or Tyler Huntley row, so the BAL-QB stale verdicts SD-01 and SD-02 are not re-verified here (FL-122).
 ### Files added by session `3e77121b` (16 November 2026)
 
 | File | Rows | Grain | Source of record |

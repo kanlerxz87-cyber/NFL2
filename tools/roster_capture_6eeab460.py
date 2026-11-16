@@ -200,7 +200,7 @@ def migrate_manifest_v1() -> None:
 def run(months: list[int], dry_run: bool) -> int:
     """Fetch every month's pages and follow the Next link.
 
-    The cursor is not a clean sequence (FL-120): on Aug and Sep it interleaves repeated bytes with pages that
+    The cursor is not a clean sequence (FL-121): on Aug and Sep it interleaves repeated bytes with pages that
     add rows (Aug p7; Sep p5), so no repeat-based stop is safe. The chain therefore ends only when a page
     is short (fewer than PAGE_SIZE rows, the table's last page), when no Next link is present, or at MAX_PAGES.
     A chain still open at MAX_PAGES is recorded as INCOMPLETE in the manifest note; the coverage register
@@ -267,7 +267,7 @@ def run(months: list[int], dry_run: bool) -> int:
             else:
                 note_txt = f"distinct rows in month after this page: {len(union)}"
                 if repeat:
-                    note_txt += "; bytes identical to an earlier page of this chain (FL-120)"
+                    note_txt += "; bytes identical to an earlier page of this chain (FL-121)"
                 if short_page:
                     note_txt += "; short page: last page of the table"
             row.update({
@@ -287,7 +287,7 @@ def run(months: list[int], dry_run: bool) -> int:
             url = nxt
         else:
             if url:  # loop exited because MAX_PAGES was reached with a Next link still open
-                new_rows[-1]["note"] += f"; INCOMPLETE: pagination chain still open at MAX_PAGES={MAX_PAGES} (FL-120)"
+                new_rows[-1]["note"] += f"; INCOMPLETE: pagination chain still open at MAX_PAGES={MAX_PAGES} (FL-121)"
                 print(f"OPEN {kind} {SEASON}/{month:02d}: chain still open at MAX_PAGES={MAX_PAGES}; month incomplete")
 
     if not dry_run and new_rows:

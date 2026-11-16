@@ -285,7 +285,7 @@ def coverage_rows(reserve: list[dict], trades: list[dict]) -> list[dict]:
                     note = f"page 1 holds {PAGE_SIZE} rows and the chain was not followed further"
                 elif int(last["page_seq"]) >= 12:
                     note = ("chain still open at MAX_PAGES=12: the Next Page cursor returned repeated page bytes, "
-                            "and the last fetched page is full with a Next link (FL-120)")
+                            "and the last fetched page is full with a Next link (FL-121)")
                 else:
                     note = f"last fetched page (p{last['page_seq']}) is full ({PAGE_SIZE} rows) and has a Next Page link"
             out.append({"kind": kind, "season": str(SEASON), "month": f"{SEASON}-{month}",

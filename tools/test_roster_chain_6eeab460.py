@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Regression test for the pagination chain in tools/roster_capture_6eeab460.py (FL-120).
+"""Regression test for the pagination chain in tools/roster_capture_6eeab460.py (FL-121).
 
 Runs the real run() against a mocked fetch() in a temporary directory. The template is a real stored
 official page (25 rows, Next link present). Nothing outside the temp directory is written.
 
-Cases (FL-120: the Aug/Sep cursor interleaves repeated bytes with pages that add rows):
+Cases (FL-121: the Aug/Sep cursor interleaves repeated bytes with pages that add rows):
   1. A repeated page with different bytes does NOT stop the chain. The chain reaches a later page that adds
      a row, stores it, and ends at the page with no Next link.
   2. A stuck cursor (same bytes, same Next link) runs to MAX_PAGES, is recorded as INCOMPLETE, is not a run

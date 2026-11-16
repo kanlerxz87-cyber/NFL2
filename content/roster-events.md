@@ -3,9 +3,9 @@
 
 Every row is transcribed by a parser from the league's own transaction pages, retained as raw bytes with a SHA-256 and checked on every run by `tools/drift_alarm_6eeab460.py`. The capture is **not a full season sweep**: the coverage table says which months are complete. Where a month is incomplete, its counts are lower bounds.
 
-## Coverage — which months are complete (FL-120)
+## Coverage — which months are complete (FL-121)
 
-{{csv data/roster_coverage_6eeab460.csv;;cols=kind:Kind,month:Month,chain_pages_fetched:Pages fetched,distinct_rows:Distinct rows,last_page_rows:Last-page rows,coverage_status:Status,note:Note;;source_col=source_url;;caption=A month is complete only when its last fetched page is short (fewer than 25 rows, the table's page size) with no Next link. August to November are incomplete: the Next Page cursor returns repeated pages, and on August and September some later pages add rows. No chain is treated as complete (FL-120).}}
+{{csv data/roster_coverage_6eeab460.csv;;cols=kind:Kind,month:Month,chain_pages_fetched:Pages fetched,distinct_rows:Distinct rows,last_page_rows:Last-page rows,coverage_status:Status,note:Note;;source_col=source_url;;caption=A month is complete only when its last fetched page is short (fewer than 25 rows, the table's page size) with no Next link. August to November are incomplete: the Next Page cursor returns repeated pages, and on August and September some later pages add rows. No chain is treated as complete (FL-121).}}
 
 ## November 2026 — reserve placements joined to the Week 10 injury hub (BL-65)
 
@@ -13,7 +13,7 @@ Every row is transcribed by a parser from the league's own transaction pages, re
 
 ## November 2026 — reserve list (official rows)
 
-{{csv data/reserve_list_2026_6eeab460.csv;;cols=date_iso:Date,from_club:Club,player:Player,position:Pos,transaction:Transaction;;filter=month=2026-11;;source_col=source;;caption=Every November 2026 Reserve/Injured row on the official reserve-list pages, with the capture hash that holds it. Count: 25 distinct rows, identical to the rows in the retained runner bytes (FL-121 records a second transcription with 35 rows that the retained bytes do not reproduce).}}
+{{csv data/reserve_list_2026_6eeab460.csv;;cols=date_iso:Date,from_club:Club,player:Player,position:Pos,transaction:Transaction;;filter=month=2026-11;;source_col=source;;caption=Every November 2026 Reserve/Injured row on the official reserve-list pages, with the capture hash that holds it. Count: 25 distinct rows, identical to the rows in the retained runner bytes (FL-122 records a second transcription with 35 rows that the retained bytes do not reproduce).}}
 
 ## November 2026 — trades (official rows)
 
@@ -21,7 +21,7 @@ Every row is transcribed by a parser from the league's own transaction pages, re
 
 ## Depth rows a roster event may have superseded (BL-34, BL-47)
 
-{{csv data/depth_versioning_6eeab460.csv;;cols=club:Club,position_label:Position,depth:Depth,player:Player,chart_as_published:Chart as published,versioning_status:Versioning status;;filter=versioning_status=!no_departure;;source_col=chart_source;;caption=Only the rows that need a decision, and never a settled verdict. "Undated chart" means the club's chart prints no date, so the row cannot be versioned against a roster event (FL-123). "Candidate" means a reserve placement falls after a dated chart; reserve placements are not reversed in the wire, so the row is a candidate until an activation or a newer dated chart supersedes it (FL-124). Depth order comes from the club's published chart only, never from jersey number, experience or salary.}}
+{{csv data/depth_versioning_6eeab460.csv;;cols=club:Club,position_label:Position,depth:Depth,player:Player,chart_as_published:Chart as published,versioning_status:Versioning status;;filter=versioning_status=!no_departure;;source_col=chart_source;;caption=Only the rows that need a decision, and never a settled verdict. "Undated chart" means the club's chart prints no date, so the row cannot be versioned against a roster event (FL-124). "Candidate" means a reserve placement falls after a dated chart; reserve placements are not reversed in the wire, so the row is a candidate until an activation or a newer dated chart supersedes it (FL-125). Depth order comes from the club's published chart only, never from jersey number, experience or salary.}}
 
 ## Method and limits
 
@@ -29,4 +29,4 @@ Every row is transcribed by a parser from the league's own transaction pages, re
 - **Pagination:** the official tables show 25 rows per page and link the rest through a cursor. The capture follows that cursor to its end, or to a cap of 12 pages, and records an open chain as incomplete.
 - **Depth:** the depth register holds 1,558 rows across 31 club charts. Houston has no chart in this register; the backlog records that the club publishes its chart as an image with no HTML table (BL-32). 810 rows carry no printed chart date.
 - **Not claimed here:** a full-season roster sweep (BL-13), a team-level availability model, or any player's current health. Those need the complete months and a dated injury read for each week.
-- **Open items:** the chain-cursor behaviour for August to November (FL-120); the second November transcription that disagrees with the retained bytes (FL-121); the Colts depth chart, which the register does not date (FL-125).
+- **Open items:** the chain-cursor behaviour for August to November (FL-121); the second November transcription that disagrees with the retained bytes (FL-122); the Colts depth chart, which the register does not date (FL-126).
