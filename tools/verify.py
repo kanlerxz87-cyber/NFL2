@@ -145,13 +145,37 @@ def standings_capture_metadata():
 
 
 def standings_official_recheck():
-    """Compare every published standings field to the saved official-page transcription."""
+    """Compare every published standings field to the saved official-page transcription.
+
+    Each refresh saves a dated `standings_recheck_*.csv` alongside the published table; the
+    snapshot that describes THIS table is the one stamped with the table's own read (source id
+    and capture time). A second independent read of the same day may exist beside it (it is
+    evidence, not the table's snapshot), so the snapshot is selected by provenance match —
+    never by filename order alone.
+    """
+    import glob as _glob
     fields = ("w", "l", "t", "pct", "pf", "pa", "net", "streak")
     current, current_header, _ = rows("standings_2026.csv")
-    snapshot, snapshot_header, _ = rows("standings_recheck_20261113.csv")
+    rechecks = sorted(_glob.glob(os.path.join(DATA, "standings_recheck_*.csv")))
+    if not rechecks:
+        bad("standings official recheck: no standings_recheck_*.csv snapshot exists in data/")
+        return
+    table_source = current[0]["source"].strip()
+    table_time = current[0]["captured_utc"].strip()
+    matching = []
+    for path in rechecks:
+        data, _, _ = rows(os.path.basename(path))
+        if data and data[0]["source"].strip() == table_source and data[0]["captured_utc"].strip() == table_time:
+            matching.append(path)
+    if not matching:
+        bad("standings official recheck: no saved snapshot is stamped %s / %s — the table "
+            "claims a read no transcription describes" % (table_source, table_time))
+        return
+    snapshot_name = os.path.basename(matching[-1])
+    snapshot, snapshot_header, _ = rows(snapshot_name)
     required = {"abbr", "source", "captured_utc", *fields}
     if not required.issubset(set(current_header)) or not required.issubset(set(snapshot_header)):
-        bad("standings recheck: current table or official snapshot is missing required columns")
+        bad("standings recheck (%s): current table or official snapshot is missing required columns" % snapshot_name)
         return
     problems = []
     local_by = {r["abbr"].strip(): r for r in current}
@@ -189,8 +213,8 @@ def standings_official_recheck():
     if problems:
         bad("standings official recheck failed: %s" % problems[:8])
     else:
-        ok("official standings recheck: 32/32 clubs × 8 published fields (256 values) match at %s" %
-           current[0]["captured_utc"].strip())
+        ok("official standings recheck: 32/32 clubs × 8 published fields (256 values) match %s at %s"
+           % (snapshot_name, current[0]["captured_utc"].strip()))
 
 
 def source_read_times_visible():

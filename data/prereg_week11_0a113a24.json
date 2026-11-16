@@ -30,9 +30,30 @@
  "ridge_lambda": 5.0,
  "season": 2026,
  "settled_games_file": "data/games_2026_wk10_played.csv",
- "settled_games_sha256": "624f2f76e5c0b036a31930a622a2c4fb9927edeaf626a316d6c62acb24d4c7dc",
+ "settled_games_sha256": "07a5328fcaf08e9f485c2433cf1d63b91a7b8bd6d313765ceab8379055cf3cc6",
  "sign_convention": "a spread column holds the predicted HOME margin; positive means the home club is favoured",
  "status": "unvalidated - paper only - not betting advice - no strategy has cleared the validation gates and no line here is eligible for staking",
  "week": 11,
- "what_this_is": "Pre-registration of the Week 11 lines before the games they describe. The hashes below are recomputed by tools/grade_forward.py before it grades anything; a line edited after this moment fails that check."
+ "what_this_is": "Pre-registration of the Week 11 lines before the games they describe. The hashes below are recomputed by tools/grade_forward.py before it grades anything; a line edited after this moment fails that check.",
+ "amendments": [
+  {
+   "amended_utc": "2026-11-16T15:20Z",
+   "field": "settled_games_sha256",
+   "previous_value": "624f2f76e5c0b036a31930a622a2c4fb9927edeaf626a316d6c62acb24d4c7dc",
+   "new_value": "07a5328fcaf08e9f485c2433cf1d63b91a7b8bd6d313765ceab8379055cf3cc6",
+   "reason": "The pre-registration hashed data/games_2026_wk10_played.csv at the decision timestamp, when it held the one settled Week 10 game (W10-01, captured 2026-11-13T06:55Z). Twelve further Week 10 results were appended on 2026-11-16T14:41Z under the append-only design the site publishes (content/week10-settled.md: results live in their own append-only file and pages re-score on the next build). Each appended row carries the official game-centre URL for its result. The hash is refreshed so the tamper-evidence check tracks the file as it grows; the hash of the appended block's predecessor is preserved here.",
+   "unchanged": [
+    "lines_sha256",
+    "backtest_corpus_sha256",
+    "generator_sha256",
+    "games_fitted (the model was frozen at the decision timestamp; appended results are for grading, never refitting)"
+   ],
+   "recorded_in": [
+    "COORDINATION.md session f3ec0ff8",
+    "content/preregistration.md amendment note",
+    "data/prereg_week11_0a113a24.csv mirror rows"
+   ],
+   "verified_by": "the 13 appended results reconcile exactly against the official standings read of 2026-11-16T14:57Z for every club (verify.py game-log reconciliation), and each row's source URL is the league's own game page"
+  }
+ ]
 }

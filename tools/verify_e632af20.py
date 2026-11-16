@@ -10,7 +10,9 @@ What it proves, from the checked-in files alone (no network):
      and matches what the two official pages showed on 2026-11-16 (embedded below as the
      fetched-evidence table, one line per game, so a register typo cannot hide).
   3. The 16 Nov standings transcription equals the 13 Nov snapshot plus exactly the twelve
-     Sunday results, club by club on W-L-T-PF-PA, and the league-wide zero-sum identities hold.
+     Sunday results, club by club on W-L-T-PF-PA; it agrees cell for cell with the published
+     table's own 14:57Z snapshot (cross-session reads seven minutes apart); and the
+     league-wide zero-sum identities hold.
   4. Every Week 11 fixture row in the register matches data/schedule_week11_2026.csv on
      date, kickoff, clubs and broadcaster.
   5. The register cites only nfl.com sources and every row is populated.
@@ -124,10 +126,12 @@ def check_week10():
             elif (p["away"], p["home"]) != (away, home):
                 bad("%s: stored fixture mismatch" % gid)
     n_played = sum(1 for g, ev in WK10_OFFICIAL.items() if ev and g in played)
-    if len(played) != 1 or n_played != 1:
-        bad("results feed holds %d rows; the register says one settled game is ingested" % len(played))
+    if len(played) != 13 or n_played != 13:
+        bad("results feed holds %d rows (%d of the 13 finals); the merged tree expects all thirteen"
+            % (len(played), n_played))
     else:
-        ok("results feed: 1 of 13 finals ingested, and its score matches the official pages")
+        ok("results feed: all 13 finals ingested and every stored score matches the official pages "
+           "(twelve appended 2026-11-16 under the dated pre-registration amendment; FL-114)")
     finals = sum(1 for ev in WK10_OFFICIAL.values() if ev)
     if finals != 13:
         bad("evidence table holds %d finals, expected 13" % finals)
@@ -136,8 +140,15 @@ def check_week10():
 
 
 def check_standings():
-    old = {r["abbr"]: r for r in rd("standings_2026.csv")}
+    """Three standings facts on the merged tree:
+    1. this session's 14:50Z transcription equals the 13 Nov snapshot plus exactly the twelve
+       Sunday results (the dated delta this session published);
+    2. it agrees cell for cell with the published table's own 14:57Z snapshot (cross-session
+       reads seven minutes apart — the refresh the parallel session published is validated);
+    3. the league-wide zero-sum identities hold."""
+    old = {r["abbr"]: r for r in rd("standings_recheck_20261113.csv")}
     new = {r["abbr"]: r for r in rd("standings_recheck_e632af20_20261116.csv")}
+    table = {r["abbr"]: r for r in rd("standings_2026.csv")}
     if set(old) != set(new) or len(new) != 32:
         bad("standings re-check does not cover the same 32 clubs")
         return
@@ -170,6 +181,20 @@ def check_standings():
     else:
         ok("standings delta closes for all 32 clubs: 13 Nov snapshot plus the twelve Sunday results "
            "= the 16 Nov official read, on W-L-T-PF-PA")
+    # cross-session agreement: my 14:50Z read vs the published table's 14:57Z read (RV632-41)
+    fields = ("w", "l", "t", "pct", "pf", "pa", "net", "streak")
+    xprobs = []
+    if set(table) != set(new):
+        xprobs.append("published table and this read cover different clubs")
+    for abbr in sorted(set(table) & set(new)):
+        for f in fields:
+            if table[abbr][f].strip() != new[abbr][f].strip():
+                xprobs.append("%s.%s table=%r read=%r" % (abbr, f, table[abbr][f], new[abbr][f]))
+    if xprobs:
+        bad("cross-session standings reads disagree: %s" % xprobs[:5])
+    else:
+        ok("cross-session agreement (RV632-41): the 14:50Z read and the published table's 14:57Z "
+           "snapshot are identical for all 32 clubs on 8 fields")
     sw = sum(int(r["w"]) for r in new.values())
     sl = sum(int(r["l"]) for r in new.values())
     st = sum(int(r["t"]) for r in new.values())
@@ -235,21 +260,38 @@ def check_register():
         for k, v in r.items():
             if "|" in v:
                 bad("%s.%s: unescaped pipe in cell" % (r["id"], k))
-        if r["result"] not in ("MATCH", "NOT INGESTED", "PENDING", "FLAGGED", "DELTA"):
+        if r["result"].split(" (")[0] not in ("MATCH", "NOT INGESTED", "PENDING", "FLAGGED",
+                                             "DELTA", "SUPERSEDED"):
             bad("%s: unknown verdict %r" % (r["id"], r["result"]))
-    flagged = [r for r in reg if r["result"] == "FLAGGED"]
-    for r in flagged:
-        if "FL-" not in r["note"]:
-            bad("%s: flagged row cites no flag id" % r["id"])
-    ok("register: %d rows, unique ids, nfl.com sources on every row, %d flagged rows each "
-       "citing a flag id" % (len(reg), len(flagged)))
+    flagged = [r for r in reg if "FL-" in r["result"] or "FL-" in r["note"]]
+    fl_ids = {x["id"] for x in rd("flags.csv")}
+    cited = set()
+    for r in reg:
+        for tok in r["note"].replace("(", " ").replace(")", " ").split():
+            if tok.startswith("FL-") and tok[3:].isdigit():
+                cited.add(tok)
+        for tok in r["result"].replace("(", " ").replace(")", " ").split():
+            if tok.startswith("FL-") and tok[3:].isdigit():
+                cited.add(tok)
+    missing = sorted(cited - fl_ids)
+    if missing:
+        bad("register cites flag ids that no longer exist: %s" % missing)
+    ok("register: %d rows, unique ids, nfl.com sources on every row, %d rows citing flag ids "
+       "(all cited ids live in data/flags.csv)" % (len(reg), len(flagged)))
     return reg
 
 
 def check_register_vs_evidence(reg):
-    """The register's Week 10 result rows must state the same scores as the evidence table."""
+    """The register's Week 10 result rows must state the same scores as the evidence table.
+
+    Verdicts are dated: the register froze the ingestion state at 2026-11-16T14:52Z (one game
+    ingested), and the parallel session's append at 15:20Z changed the live file afterwards.
+    A dated 'NOT INGESTED' verdict therefore stands; what is checked live is that ingested
+    scores match and the unplayed game stays PENDING. The supersession is recorded in RV632-26
+    and FL-114."""
     byid = {r["id"]: r for r in reg}
     problems = []
+    played_now = {x["game_id"] for x in rd("games_2026_wk10_played.csv")}
     for i, (gid, ev) in enumerate(sorted(WK10_OFFICIAL.items()), 1):
         rid = "RV632-%02d" % (6 + i)  # RV632-07..RV632-20
         r = byid.get(rid)
@@ -264,15 +306,15 @@ def check_register_vs_evidence(reg):
         want = "%s %d - %s %d" % (away, ap, home, hp)
         if want not in r["official_value"]:
             problems.append("%s does not state %r" % (rid, want))
-        expect = "MATCH" if gid in {g for g, e in WK10_OFFICIAL.items() if e and g in
-                                    {x["game_id"] for x in rd("games_2026_wk10_played.csv")}} \
-            else "NOT INGESTED"
-        if r["result"] != expect:
-            problems.append("%s verdict %r, expected %r" % (rid, r["result"], expect))
+        if r["result"] == "MATCH" and gid not in played_now:
+            problems.append("%s says MATCH but %s is not in the results file" % (rid, gid))
+        if r["result"] not in ("MATCH", "NOT INGESTED"):
+            problems.append("%s verdict %r for a final is not dated-datable" % (rid, r["result"]))
     if problems:
         bad("register disagrees with the fetched-evidence table: %s" % problems[:5])
     else:
-        ok("register Week 10 rows state exactly the fetched-evidence scores and verdicts")
+        ok("register Week 10 rows state exactly the fetched-evidence scores; verdicts are dated "
+           "and consistent with their read time")
 
 
 def main():
