@@ -3540,13 +3540,13 @@ and records a SHA-256 for each read.
 | 7C-T1 | Claim and log (this section) | done | `7c23f22f` | `COORDINATION.md` |
 | 7C-T2 | `tools/capture_official.py`: fetch the official URLs, store the raw bytes once per distinct SHA-256 under `data/captures/`, append a manifest row (UTC fetch time, URL, HTTP status, bytes, SHA-256, path, drift counts); never overwrite; fail loudly if the expected structure is missing | done (fixture-tested) | `7c23f22f` | `tools/capture_official.py` (new), `data/captures/**` (new), `data/capture_manifest.csv` (new) |
 | 7C-T3 | `.github/workflows/capture.yml`: scheduled daily + `workflow_dispatch`, commits only `data/captures/**` and `data/capture_manifest.csv` | done (committed; not yet runnable until on `main`, see log) | `7c23f22f` | `.github/workflows/capture.yml` (new) |
-| 7C-T4 | Run the workflow with `gh workflow run`, read the result, and record whether nfl.com answered from the runner | in progress (dispatch moved to `main` after merge) | `7c23f22f` | `data/capture_manifest.csv`, `data/captures/**` |
+| 7C-T4 | Run the workflow and record whether nfl.com answered from the runner | done (the push trigger ran it on the merge of PR #95; two captures on 16 Nov, 14:39:21Z and 14:44:29Z; dispatch returned HTTP 403 from the sandbox token) | `7c23f22f` | `data/capture_manifest.csv`, `data/captures/**` |
 | 7C-T5 | `tools/verify_capture_7c23f22f.py`: each manifest row's hash matches its file, no file is overwritten, every row has an official `https://www.nfl.com/` URL | done (wired into `validate.yml`) | `7c23f22f` | `tools/verify_capture_7c23f22f.py` (new) |
 | 7C-T6 | Flags and sources for what the capture does and does not prove; FL-90 status note | done (FL-97 open, S-CAP-7C; FL-90 stays open until a runner capture exists) | `7c23f22f` | `data/flags.csv` (append only), `data/sources.csv` (append only) |
 | 7C-T7 | `tools/reconcile_capture_7c23f22f.py`: row-by-row reconciliation of the retained capture against `data/injuries_wk10_5de1805b_20261115.csv`, club key from the page's own logo codes (28 pairs, required), vocabulary mapped only from the register's codes, `--check` mode | done | `7c23f22f` | `tools/reconcile_capture_7c23f22f.py` (new), `data/capture_reconciliation_7c23f22f.csv` (new) |
 | 7C-T8 | Site page `captures.html` (Data group): manifest, reconciliation, open items; registered in `tools/build_site.py` NAV and page-kind map (one line each) | done | `7c23f22f` | `content/captures.md` (new), `tools/build_site.py` (two lines), generated `captures.html` |
 | 7C-T9 | Register rows: FL-90 status, FL-98 (LAR/LA club code), S-CAP-7C verification, data-dictionary rows; pipe-delimited migration of the two new CSVs (disclosed below) | done | `7c23f22f` | `data/flags.csv` (FL-90 cell, FL-98 appended), `data/sources.csv` (S-CAP-7C cells), `content/data-dictionary.md` (two rows) |
-| 7C-T10 | Full suite, PR to `main`, merge `--merge`, confirm Pages, record here | in progress | `7c23f22f` | this section |
+| 7C-T10 | Full suite, PR to `main`, merge `--merge`, confirm Pages, record here | done | `7c23f22f` | this section |
 
 ### Not in this session's scope (explicitly not done here)
 
@@ -3646,3 +3646,24 @@ and records a SHA-256 for each read.
 * **FL-98:** Rams club code (`LAR` / `LA`), owner decision.
 * **FL-99:** hash is per response; series analysis must compare parsed rows (owner decision for the series, FL-88).
 * **Not done in this session:** a per-club depth-chart capture, the transactions/reserve-list capture, and the inactive-list capture. Their official URLs have not been read in this session, so none is claimed.
+
+### PR and merge record — session `7c23f22f`
+
+| PR | Title (short) | Merge | Merge commit | Checks before merge | Pages after merge |
+|---|---|---|---|---|---|
+| [#94](https://github.com/kanlerxz87-cyber/NFL2/pull/94) | Capture tool, runner workflow, verifier, FL-97, S-CAP-7C | `--merge`, 2026-11-16T14:38:07Z | `65fc38c0f77ca5f0ae2909a5d7b9513d8a279653` | row-level verification, audit, q51 — all pass | built |
+| [#95](https://github.com/kanlerxz87-cyber/NFL2/pull/95) | Push trigger for the capture workflow | `--merge` | `910e33852ce28c9c3abd4bb3f7397c7fa536a1ca` | all pass | built; **the push trigger ran the first runner capture** (`72fba5f`) |
+| [#96](https://github.com/kanlerxz87-cyber/NFL2/pull/96) | Reconciliation (347/347), Official Capture page, FL-90 partly resolved, FL-98 | `--merge` | `b9617d502c3d2a5584750ae257e689a82f2c3625` | all pass | `pages build and deployment` success; `gh api …/pages` → `built` |
+| [#97](https://github.com/kanlerxz87-cyber/NFL2/pull/97) | Pin reconciliation; captures page stops rendering the daily ledger; FL-99 | `--merge` | `4d9e4ca86cbfdacd4120a07c584e434feae7f573` | all pass | GitHub Pages success; `pages build and deployment` success; `built` |
+
+**Live check (fetched 2026-11-16 after the #97 deploy):** https://kanlerxz87-cyber.github.io/NFL2/captures.html serves the page, its 347-row table, and the second-capture paragraph.
+
+**Runner capture status on `main` at close-out:** two rows in `data/capture_manifest.csv` (`72fba5f` 14:39:21Z, `dda65b3` 14:44:29Z), both HTTP 200, both structure-checked (`schema_ok = yes`), both stored. The daily cron runs at 14:17 UTC (first scheduled run: 2026-11-17).
+
+### What is left for the next session (not claimed here)
+
+1. **FL-94 / CR-7C-02:** point `injuries.html` at the reconciled 16 Nov capture (integration owner).
+2. **FL-98:** the owner chooses one club code for the Rams.
+3. **FL-99 / FL-88:** the series owner decides that change detection uses parsed rows, and defines the change rule (not built here).
+4. **Schedule evidence:** the daily runs must be read on 17 Nov and after; until three or more are present, FL-97 stays open.
+5. **Other captures named in the brief** (depth-chart pages, transactions / reserve list, inactive lists): their official URLs have not been read in this session, so no capture was made, and none is claimed.
