@@ -325,10 +325,13 @@ def injuries():
                 warn("slug/name mismatch worth a look: %s vs %s" % (r["player"], r["slug"]))
     ok("injuries: %d rows, codes valid, every club plays the fixture its game id names, no duplicates" % len(data))
     n = sum(1 for r in data if r["status"].strip())
-    if n != 6:
-        bad("injuries: %d published designations, expected 6 for this snapshot" % n)
+    # Session 8d1069e1 (T-8D1-01): the canonical table is the pinned 16 Nov official capture
+    # (sha256 e2b4074a...81a3, 347 rows). Its game-status cells are 70 OUT + 90 Q + 11 D = 171.
+    # The 12 Nov read, which held 6 designations, is kept verbatim in data/archive/.
+    if n != 171:
+        bad("injuries: %d published designations, expected 171 on the pinned 16 Nov capture" % n)
     else:
-        ok("injuries: 6 designations published, 248 rows honestly blank")
+        ok("injuries: 171 designations published on the pinned 16 Nov capture (%d rows)" % len(data))
 
 
 def depth():
@@ -780,6 +783,10 @@ def injury_coverage_is_measured_not_named():
                 continue
             # the corrected phrasing always qualifies the number against the full set
             if re.search(r"\b(24|25|26|27) of (the )?28\b|of the 28 clubs|of 28 clubs", sent):
+                continue
+            # session 8d1069e1: once the snapshot holds every playing club the claim is true; the
+            # guard is about a count that is short, so it is measured, not assumed to be 24.
+            if len(present) == len(playing):
                 continue
             bad("content/%s claims the injury snapshot covers 28 clubs; it holds %d of %d"
                 % (fn, len(present), len(playing)))

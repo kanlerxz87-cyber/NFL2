@@ -6,10 +6,10 @@
     "LAC",
     "BAL"
   ],
-  "rows_in_published_injuries_csv": 254,
+  "rows_in_published_injuries_csv": 347,
   "rows_in_hubrefresh_csv": 279,
-  "delta_vs_published": 85,
+  "delta_vs_published": 246,
   "delta_vs_hubrefresh": 69,
-  "game_id_disagreements": 3,
+  "game_id_disagreements": 0,
   "game_id_rotations": 0
 }
