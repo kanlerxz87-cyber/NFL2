@@ -9,6 +9,11 @@ on:
   schedule:
     - cron: "17 14 * * *"   # daily, 14:17 UTC
   workflow_dispatch:
+  push:
+    branches: [main]        # runs once whenever the capture code itself lands on main
+    paths:
+      - ".github/workflows/capture.yml"
+      - "tools/capture_official.py"
 
 permissions:
   contents: write
