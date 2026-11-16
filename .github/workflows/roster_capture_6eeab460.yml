@@ -1,0 +1,75 @@
+name: Official roster-event capture (6eeab460)
+
+# Session 6eeab460 (R2 / R6). GitHub-hosted runners can reach www.nfl.com; the analysis sandbox
+# cannot. Each run stores raw response bytes of the official reserve-list and trades pages (every
+# 2026 month) under data/captures/<kind>/<YYYY-MM>/ with SHA-256 and appends one row per fetch to
+# data/roster_capture_manifest_6eeab460.csv. Nothing else in the repository is written here.
+#
+# Schedule note: GitHub runs `schedule` only on the default branch. Scheduled runs fetch the current
+# month only (bounded storage); manual and push runs fetch every 2026 month (1-11). Until this workflow
+# is merged it runs by push (only when this file or its tool change) and by workflow_dispatch.
+
+on:
+  schedule:
+    - cron: "31 14 * * *"   # daily, 14:31 UTC (default branch only)
+  workflow_dispatch:
+  push:
+    branches: ["arena/6eeab460-nfl2"]
+    paths:
+      - ".github/workflows/roster_capture_6eeab460.yml"
+      - "tools/roster_capture_6eeab460.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: roster-capture-6eeab460
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+
+      - name: Fetch official transaction pages, store raw bytes, append manifest
+        id: capture
+        run: |
+          args=""
+          if [ "${GITHUB_EVENT_NAME}" = "schedule" ]; then args="--current-month"; fi
+          python3 tools/roster_capture_6eeab460.py $args
+
+      - name: Rebuild row-level outputs and run the drift alarm (BL-64)
+        if: always()
+        run: |
+          # The parser is idempotent. The alarm fails the run on stored-hash mismatch, a page that fails
+          # the structure check, a changed pinned header, a blank required field, a row count that differs
+          # from the distinct rows in the stored bytes, or a missing coverage verdict.
+          python3 tools/roster_parse_6eeab460.py
+          python3 tools/drift_alarm_6eeab460.py
+
+      - name: Commit only the capture outputs
+        if: always()
+        run: |
+          git add data/captures data/roster_capture_manifest_6eeab460.csv \
+            data/reserve_list_2026_6eeab460.csv data/trades_2026_6eeab460.csv data/roster_events_6eeab460.csv \
+            data/depth_versioning_6eeab460.csv data/roster_coverage_6eeab460.csv data/sources.csv
+          if git diff --cached --quiet; then
+            echo "no new capture rows, files or outputs"
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "capture: official transactions reserve-list/trades $(date -u +%Y-%m-%dT%H:%MZ) (6eeab460)"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:"${GITHUB_REF_NAME}"; then exit 0; fi
+            git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}" || exit 1
+          done
+          exit 1
+
+      - name: Fail the run if a capture failed or the page structure changed
+        if: steps.capture.outcome == 'failure'
+        run: |
+          echo "::error::roster capture failed or the expected official structure is missing; see data/roster_capture_manifest_6eeab460.csv"
+          exit 1

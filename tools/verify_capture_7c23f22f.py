@@ -79,9 +79,20 @@ def main() -> int:
     check(not bad_hash, f"every stored file's SHA-256 matches its row ({stored_rows} stored; {len(bad_hash)} bad)")
     check(not bad_name, f"every stored file name carries its hash prefix ({len(bad_name)} bad)")
 
-    on_disk = sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "data" / "captures").rglob("*.bin"))
-    orphans = [p for p in on_disk if p not in referenced]
-    check(not orphans, f"no orphan capture file without a manifest row ({len(orphans)} orphan, {len(on_disk)} on disk)")
+    # Roster-event pages (reserve_list, trades; session 6eeab460) keep their own ledger,
+    # data/roster_capture_manifest_6eeab460.csv. They are checked against that ledger instead, so the
+    # rule "nothing stored off-ledger" holds for both stores without this check counting them as orphans.
+    ROSTER_KINDS = ("reserve_list", "trades")
+    roster_referenced = set()
+    roster_manifest = ROOT / "data" / "roster_capture_manifest_6eeab460.csv"
+    if roster_manifest.exists():
+        with roster_manifest.open(newline="", encoding="utf-8") as fh:
+            roster_referenced = {r["stored_path"] for r in csv.DictReader(fh, delimiter="|") if r.get("stored_path")}
+    all_on_disk = sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "data" / "captures").rglob("*.bin"))
+    roster_disk = [p for p in all_on_disk if p.split("/")[2] in ROSTER_KINDS]
+    on_disk = [p for p in all_on_disk if p.split("/")[2] not in ROSTER_KINDS]
+    orphans = [p for p in on_disk if p not in referenced] + [p for p in roster_disk if p not in roster_referenced]
+    check(not orphans, f"no orphan capture file without a manifest row ({len(orphans)} orphan, {len(all_on_disk)} on disk; roster pages checked against the 6eeab460 ledger)")
 
     if not rows:
         print("NOTE  no capture rows yet: the runner workflow has not produced a capture")

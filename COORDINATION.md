@@ -4020,6 +4020,55 @@ content altered):**
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
 | Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
 
+---
+
+## Session `6eeab460` (`arena/6eeab460-nfl2`) — official roster-event sweep, drift alarm, versioned depth (claim)
+
+**Session ID:** `6eeab460` · **Branch:** `arena/6eeab460-nfl2` (the one branch this session is assigned; no other branch is touched) · **Base:** `cd83a7a` (PR #105, current `origin/main` tip) · **Claimed:** 2026-11-16, before any file was created.
+
+**Parallel-session check at claim time:** open PRs #71 (`arena/1ef36c55-nfl2`, availability fingerprint monitor — owns BL-29/BL-30) and #84 (`arena/f05c00f2-nfl2`, falsification audit — owns `audits/f05c00f2/**`). Neither scope overlaps this claim. Both branches last updated 2026-11-15 and are left untouched.
+
+**Why this session exists.** Backlog items BL-13 (32-team roster and IR sweep: the brief's own note says August, September and 10/01–10/23 reserve windows were never captured), BL-34 (roster turnover as a first-class event — the Colts receiver trades and BAL QB rows), and BL-64 (drift alarm: parsers must fail loudly on a missing field, not publish a blank) are all "partial" or "not started" and can be advanced from official pages without a licence question. The sandbox cannot reach nfl.com directly, so raw bytes come from a GitHub-hosted runner exactly as `capture.yml` already does.
+
+**Exclusive file scope (new files):**
+- `.github/workflows/roster_capture_6eeab460.yml`
+- `tools/roster_capture_6eeab460.py`, `tools/roster_parse_6eeab460.py`, `tools/drift_alarm_6eeab460.py`, `tools/verify_6eeab460.py`
+- `data/captures/reserve_list/**`, `data/captures/trades/**` (raw bytes, never overwritten)
+- `data/roster_capture_manifest_6eeab460.csv` (own manifest; `data/capture_manifest.csv` is not touched)
+- `data/reserve_list_2026_6eeab460.csv`, `data/trades_2026_6eeab460.csv`, `data/roster_events_6eeab460.csv`, `data/depth_versioning_6eeab460.csv`
+- `content/roster-events.md`, `roster-events.html` (generated)
+
+**Shared files this session will edit (additive only; change requests logged in the log below):** `tools/build_site.py` (one NAV tuple), `content/index.md` (one page-map row), `.github/workflows/validate.yml` (one drift-alarm step), `data/flags.csv` and `data/sources.csv` (append rows only).
+
+**Not touched:** every other session's files, `data/capture_manifest.csv`, `tools/capture_official.py`, `data/brief_backlog_58e9c708.csv` (status updates are reported in this section instead).
+
+### Task board
+
+| ID | Task | Backlog | Status | Owner |
+|---|---|---|---|---|
+| R1 | Claim (this block) + baseline run of every existing verifier on `cd83a7a` | — | done | `6eeab460` |
+| R2 | Runner capture of the nfl.com reserve-list and trades pages for every 2026 month, raw bytes + SHA-256 + schema check | BL-13, BL-65 | in progress: capture runs on `bd610ad` and the chain rule was revised after Aug/Sep evidence (FL-121); Aug–Nov incomplete | `6eeab460` |
+| R3 | Parse the captured pages into row-level CSVs (every row linked to its official page and capture hash); reconcile against the existing November transcriptions | BL-13, BL-34 | done: 275 reserve, 81 trades; Oct and Nov reconcile to retained bytes; 10 rows dated 11/03 to 11/07 in the d304c6fe transcription have no retained bytes (FL-122) | `6eeab460` |
+| R4 | Roster-event register (trades + reserve/injured placements) with date and source per row | BL-34 | done: 356 events, each with date, clubs and capture hash; coverage per month in `data/roster_coverage_6eeab460.csv` | `6eeab460` |
+| R5 | Versioned depth check: flag every depth-chart row whose named player had a later official roster event, against the chart's own read date; blanks where the chart date is not published | BL-34, BL-47 | done, provisional: candidates only (FL-124, FL-125); SD-01 and SD-02 not reproduced; the depth register has no Jackson or Huntley row | `6eeab460` |
+| R6 | Drift alarm: pinned header, row-count and required-field checks on every new capture; non-zero exit on drift | BL-64 | done: `tools/drift_alarm_6eeab460.py`, run after each capture and in `validate.yml`; negative tests fail as intended | `6eeab460` |
+| R7 | Publish `roster-events.html` (landing row, nav), flags for every irregularity, sources registered | BL-13, BL-34 | done: page, nav, index row, BL-65 availability join (`data/availability_join_6eeab460.csv`), flags FL-121 to FL-128 | `6eeab460` |
+| R8 | Full verifier suite, PR, merge, GitHub Pages confirmation, record here | integration | in progress: suites green locally; PR and merge follow this push | `6eeab460` |
+
+### Log — session `6eeab460`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16 | Repo reviewed at `cd83a7a`. Claim R1–R8 written and pushed before any other file change. |
+| 2026-11-16 | **R2 status and handoff.** Runner run 43925746792 at `bd610ad` concluded success and appended 28 manifest rows, none storing new bytes. Under the old rule the chains stopped at page 2 for Nov, Aug, Sep and Oct. Re-reading the stored bytes showed that rule unsafe: Aug p7 and Sep p5 are new pages with rows that a repeat-based stop would not reach. The capture tool at `bd610ad` is therefore superseded by the revision in this push (handoff: the workflow is unchanged; the tool changes, and the next runner run tests the revision). |
+| 2026-11-16 | **Chain safeguard decided.** A chain ends only on a short page (fewer than 25 rows, the table's last page), on no Next link, or at MAX_PAGES=12. A chain still open at MAX_PAGES is recorded as INCOMPLETE and is not a run failure, so the daily cron does not go red on the upstream cursor. Storage is keyed on the bytes, so no page is stored twice. `tools/test_roster_chain_6eeab460.py` (mocked fetch, 4 cases) passes. Aug–Nov remain incomplete in the coverage register (FL-121). |
+| 2026-11-16 | **Drift alarm (BL-64).** `tools/drift_alarm_6eeab460.py` checks stored-hash match, stored-page structure, pinned output headers, required fields, parsed-row count against stored distinct rows, and a coverage verdict for every kind and month. It runs after each capture in the capture workflow and in `validate.yml`. Negative tests (tampered page, dropped header) each exit 1. Row counts are not pinned, because a new capture legitimately changes them. |
+| 2026-11-16 | **Availability join (BL-65).** `tools/availability_join_6eeab460.py` joins the 25 November reserve placements to the Week 10 hub read (14:44Z). Result: 10 placements have a hub row, 15 are absent; placements with no hub row are marked not available, never healthy. Each join is checked against both raw official hub captures (`20261116T143921Z`, `20261116T144429Z`) by the player's profile-link markup, and agrees on all 25 rows. The hub register is another session's transcription, verified here by the raw captures. |
+| 2026-11-16 | **R3–R5 status.** Parser output: 275 reserve, 81 trades, 356 events, 1,558 depth rows. Depth versioning is provisional: 1,495 no departure in window; 50 undated (cannot version); 10 reserve placed before chart (return unverified); 2 candidate after chart (TEN LG Skoronski, GB TE Whyle); 1 same-day unresolved (SF LDT Halton). Houston has no chart in the register (BL-32). 810 depth rows carry no printed chart date. |
+| 2026-11-16 | **Verification of FL-121 to FL-128 (checked against the files before publishing).** The ten names in the d304c6fe-only set match exactly; the 25 runner rows are a subset of its 35. The 4e475b8b transactions file holds the same 25 November reserve names. The Colts 11/10 trades and the LAC Henley row are as stated. The depth statuses match the register. |
+| 2026-11-16 | **Flag allocation.** FL-121 to FL-128 were allocated from the live max on `origin/main` at this push (FL-119, `198ad95`). They must be re-checked against the live max at merge (see the merge entry). |
+| 2026-11-16 | **Edits outside the claim's listed scope, each logged here.** (a) `tools/verify_capture_7c23f22f.py` (another session's verifier): its orphan check treated every `.bin` under `data/captures/` as an injury-hub capture, so the 34 roster pages failed it. Change: roster pages (`reserve_list`, `trades`) are checked against `data/roster_capture_manifest_6eeab460.csv` instead. The no-off-ledger rule still holds for both stores; 7 of 7 checks pass. Session 7c23f22f should review this change. (b) `tools/build_site.py`: one NAV tuple and one category line, as the claim says. (c) `content/index.md`: one page-map row, as the claim says. (d) `.github/workflows/validate.yml`: one drift-alarm step, as the claim says. (e) `content/data-dictionary.md`: this session's own section only, appended; the claim did not list it, but the dictionary check requires it. (f) New files not in the claim list, under this session's prefix: `tools/availability_join_6eeab460.py`, `tools/test_roster_chain_6eeab460.py`. The claim named `tools/verify_6eeab460.py`; it was not created, because the drift alarm and the chain test carry its checks. |
+| 2026-11-16 | **Repository state at this push.** `origin/main` moved to `198ad95` during the session (flags to FL-119, new data-dictionary and index rows). Merge of `origin/main` into this branch is the next step, with conflicts logged in the merge entry. |
 ## Session `8d1069e1` (`arena/8d1069e1-nfl2`) — claim: republish the Week 10 injury table from the pinned 16 Nov official capture (closes FL-94)
 
 **Claimed 2026-11-16 at branch base `cd83a7a`.** Parallel-session check: `origin/main` = `cd83a7a`, no other open claim on this branch.
