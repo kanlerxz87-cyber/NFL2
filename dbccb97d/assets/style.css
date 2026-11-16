@@ -1,0 +1,36 @@
+/* session dbccb97d dashboard — clean, table-first, no framework */
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+       color: #1c2430; background: #f5f7fa; }
+header { background: #10233f; color: #fff; padding: 22px 28px; }
+header h1 { margin: 0 0 4px; font-size: 22px; }
+header p { margin: 0; color: #b9c8dc; font-size: 13px; }
+nav { background: #10233f; padding: 0 28px 14px; }
+nav a { color: #9fc1e8; margin-right: 16px; text-decoration: none; font-size: 14px; }
+nav a:hover { color: #fff; }
+main { max-width: 1180px; margin: 24px auto 60px; padding: 0 20px; }
+h2 { font-size: 19px; margin: 30px 0 10px; }
+h3 { font-size: 16px; margin: 22px 0 8px; }
+p.lede { font-size: 15px; color: #33415a; }
+.cards { display: flex; flex-wrap: wrap; gap: 14px; margin: 16px 0; }
+.card { background: #fff; border: 1px solid #dde4ee; border-radius: 10px;
+        padding: 14px 18px; min-width: 180px; flex: 1; }
+.card .n { font-size: 26px; font-weight: 700; color: #10233f; }
+.card .l { font-size: 12px; color: #5a6b85; text-transform: uppercase; letter-spacing: .04em; }
+table { border-collapse: collapse; width: 100%; background: #fff; margin: 12px 0 22px;
+        font-size: 13.5px; }
+th, td { border: 1px solid #dde4ee; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #eef2f8; font-size: 12px; text-transform: uppercase; letter-spacing: .03em;
+     color: #41536e; }
+tr:nth-child(even) td { background: #fafbfd; }
+td a { color: #14538c; }
+.tag { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11.5px;
+       font-weight: 600; }
+.match { background: #e3f4e8; color: #1c6b3a; }
+.mismatch { background: #fdeaea; color: #9c2b2b; }
+.partial { background: #fdf3e0; color: #8a5a12; }
+.finding { background: #e8f0fd; color: #14538c; }
+.scroll { max-height: 560px; overflow: auto; border: 1px solid #dde4ee; border-radius: 8px; }
+.note { background: #fff; border-left: 4px solid #14538c; padding: 10px 14px;
+        margin: 14px 0; font-size: 13.5px; color: #33415a; }
+footer { color: #71809a; font-size: 12px; padding: 0 28px 30px; }

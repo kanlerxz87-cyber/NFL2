@@ -1,0 +1,348 @@
+read_utc|source_url|club|player|pos|injury|practice|game_status
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|John Bates|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Treylon Burks|WR||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Jayden Daniels|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Matt Gulbin|C||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Chig Okonkwo|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Lucas Patrick|C|Concussion|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Amik Robertson|CB||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Shy Tuttle|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|WAS|Colson Yankoff|TE|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Abdul Carter|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Jermaine Eluemunor|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Malik Harrison|LB|Groin|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Colton Hood|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Theo Johnson|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Charlie Jones|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|J.J. McCarthy|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Darnell Mooney|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Malik Nabers|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Cam Skattebo|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYG|Andrew Thomas|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Ben Brown|C|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|A.J. Brown|WR|Ankle, Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Kevin Byard|S|Chest|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Carlton Davis III|CB|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Reggie Gilliam|FB|Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|TreVeyon Henderson|RB|Illness|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Hunter Henry|TE||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Cameron Latu|TE|Back|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Drake Maye|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Morgan Moses|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Walter Rouse|T|Concussion|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Brenden Schooler|S|Hamstring|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Rhamondre Stevenson|RB|Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Greg Van Roten|G|Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NE|Charles Woods|CB|Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|Brian Branch|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|Jared Goff|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|Kerby Joseph|S|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|Cade Mays|C|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|D.J. Reed|CB|Hip|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|Jacob Saylors|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|Amon-Ra St. Brown|WR|Rib|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|Sione Vaki|RB|Ankle|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DET|DJ Wonnum|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Jeffrey Bassa|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Mansoor Delane|CB|Shoulder|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Justin Fields|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Jaden Hicks|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Travis Kelce|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Patrick Mahomes|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Jaylon Moore|T|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Omarr Norman-Lott|DT|Knee|L|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Jaydn Ott|RB|Hamstring|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Rashee Rice|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Kenneth Walker III|RB|Groin|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Peter Woods|DT|Neck|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|KC|Xavier Worthy|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Zachariah Branch|WR|Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Kendal Daniels|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Divine Deablo|LB|Forearm|D|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Gervon Dexter Sr.|DT|Illness|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Jake Matthews|T||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Liam McCullough|LS||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|James Pearce Jr.|DE|Back|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Za'Darius Smith|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Jawaan Taylor|T||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Cameron Thomas|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|ATL|Josh Woods|LB|Ankle|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Jordan Addison|WR|Thumb|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Blake Cashman|LB|Concussion|L|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Christian Darrisaw|T||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|T.J. Hockenson|TE|Wrist, Chest|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Tyrion Ingram-Dawkins|DT|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Theo Jackson|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Jauan Jennings|WR|Calf|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Josh Metellus|S|Shoulder|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Kyler Murray|QB|Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Harrison Smith|S||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Kyle Van Noy|LB|Calf|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Jay Ward|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIN|Carson Wentz|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Aaron Banks|G||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Chris Brooks|RB|Ankle|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Javon Bullard|S|Ankle, Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Zaire Franklin|LB|Shin|D|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Travis Glover|G|Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Ty'Ron Hopper|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Josh Jacobs|RB|Finger|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Xavier McKinney|S|Foot|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Bo Melton|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Skyy Moore|WR|Ankle|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Micah Parsons|LB|Knee, Illness|L|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Sean Rhyan|C|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Trey Smack|K||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Lukas Van Ness|LB|Back|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Josh Whyle|TE|Concussion|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Savion Williams|WR||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|GB|Kevin Zeitler|G|Ankle, Triceps|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Jessie Bates|S|Not injury related - resting player|L|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Ezra Cleveland|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Branson Combs|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Jordan Davis|DT|Not injury related - resting player|L|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|BJ Green II|DE|Forearm|F|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Robert Hainsey|C|Concussion|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Antonio Johnson|S||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Jakobi Meyers|WR||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Chris Rodriguez Jr.|RB||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Bhayshul Tuten|RB||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|JAX|Travon Walker|DE||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Cody Barton|LB|Concussion|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|John Franklin-Myers|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Marcus Harris|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Anthony Hill Jr.|LB|Neck|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Jaylon Jones|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|JC Latham|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Tony Pollard|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Peter Skoronski|G|Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Tyjae Spears|RB|Knee|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Carnell Tate|WR|Shoulder|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Tommy Townsend|P|Knee, Achilles|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|TEN|Kevin Winston Jr.|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Alec Anderson|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Christian Benford|CB|Wrist|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Terrel Bernard|LB||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Spencer Brown|T|Ankle|D|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Dion Dawkins|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Sam Franklin Jr.|S|Shoulder|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Greg Gaines|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Jordan Hancock|CB|Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Dalton Kincaid|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Connor McGovern|C||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Ed Oliver|DE||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Ar'maj Reed-Adams|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|T.J. Sanders|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BUF|Tyrell Shavers|WR|Knee|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Jarvis Brownlee Jr.|CB|Illness|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Omar Cooper Jr.|WR|Ankle|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Adonai Mitchell|WR|Knee|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Joseph Ossai|DE|Ankle|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|VJ Payne|S|Knee|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Harrison Phillips|DT|Ankle|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Trevin Wallace|LB|Groin|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Garrett Wilson|WR|Concussion|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NYJ|Nahshon Wright|CB|Back|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Tucker Addington|LS||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Kaytron Allen|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Darrell Baker Jr.|CB|Knee|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Chris Bell|WR|Knee|D|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Aaron Brewer|C|Concussion|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Malik Herring|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Will Kacmarek|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Michael Taaffe|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Dante Trader Jr.|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Jared Wayne|WR|Quadricep|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|MIA|Jaylen Wright|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Mo Alie-Cox|TE|Groin|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|CJ Allen|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Jaylon Carlies|LB|Neck|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Akeem Davis-Gaither|LB|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|A.J. Haulcy|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Arden Key|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Will Mallory|TE|Hamstring|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Luke Rhodes|LS|Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Grover Stewart|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Jonathan Taylor|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Jerry Tillery|DT|Calf|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Jalen Travis|T|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Justin Walley|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|IND|Charvarius Ward|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Jonathon Brooks|RB|Groin|L|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Brady Christensen|G|Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Trevor Etienne|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Chuba Hubbard|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Lee Hunter|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Mike Jackson|CB|Groin|L|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Will Lee III|CB|Hamstring|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Xavier Legette|WR|Knee|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Damien Lewis|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Bobby Okereke|LB|Foot|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Jaelan Phillips|LB|Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CAR|Torricelli Simpkins III|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Kelvin Banks Jr.|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|CJ Donaldson|RB|Shoulder|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|David Edwards|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Martin Emerson|CB|Shin|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Travis Etienne|RB|Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Noah Fant|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Taliese Fuaga|T|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Alvin Kamara|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Erik McCoy|C|Biceps|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Christen Miller|DT|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Asim Richards|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|NO|Quincy Riley|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Azeez Al-Shaair|LB|Groin, Not injury related - personal matter|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Will Anderson Jr.|DE|Ankle|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Reed Blankenship|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Trent Brown|T|Wrist, Illness|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Tank Dell|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Blake Fisher|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Marvin Harrison Jr.|WR|Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Jacob Hummel|LB|Groin|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Danielle Hunter|DE|Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Brevin Jordan|TE|Finger, Foot|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Woody Marks|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|David Montgomery|RB|Groin|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Keylan Rutledge|G|Neck, Shoulder|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Jaylin Smith|CB|Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Wyatt Teller|G|Illness, Back|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|HOU|Tommy Togiai|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Austin Barber|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Denzel Boston|WR|Toe|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Michael Burton|FB|Calf|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Maliek Collins|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Harold Fannin Jr.|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Ronnie Hickman Jr.|S|Concussion|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Tytus Howard|T||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Elgton Jenkins|C||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Donovan McMillon|S||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Carson Schwesinger|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Denzel Ward|CB||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CLE|Quincy Williams|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Davis Allen|TE|Oblique|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Steve Avila|G|Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Joe Cardona|LS|Ankle|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Kam Curl|S|Toe|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Aaron Donald|DT||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Terrance Ferguson|TE|Ankle, Hamstring|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Braden Fiske|DT||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Myles Garrett|LB|Knee, Not injury related - resting player|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Tyler Higbee|TE||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Trent McDuffie|CB|Back|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Puka Nacua|WR||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Colby Parkinson|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Matthew Stafford|QB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAR|Byron Young|LB||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Budda Baker|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Zachary Carter|DT|Knee|L|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Hjalte Froholdt|C|Concussion|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Jon Gaines II|G|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Bam Knight|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Hunter Long|TE|Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Roy Lopez|DT|Toe, Ankle|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Max Melton|CB|Knee, Hand|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Darius Robinson|DT|Wrist|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Isaac Seumalo|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Dante Stills|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Josh Sweat|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Jayden Williams|T|Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Mack Wilson|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|AZ|Andrew Wingard|S|Groin|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|AJ Barner|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Anthony Bradford|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Charles Cross|T|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Sam Darnold|QB|Ribs, Quadricep|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Derick Hall|LB||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Drew Lock|QB||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Quenton Nelson|G|Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Uchenna Nwosu|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Patrick O'Connell|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Connor O'Toole|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Brandon Pili|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Jarran Reed|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Rashid Shaheed|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Jaxon Smith-Njigba|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SEA|Leonard Williams|DT|Stinger|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LV|Thomas Booker|DT|Ankle|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LV|Foley Fatukasi|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LV|Ian Thomas|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LV|Dont'e Thornton Jr.|WR|Back|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LV|Trey Zuhn III|C||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Mike Evans|WR|Achilles|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Renardo Green|CB|Back|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Dre Greenlaw|LB|Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Nate Hobbs|CB|Groin|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Deommodore Lenoir|CB|Foot|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Christian McCaffrey|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Siran Neal|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Demarcus Robinson|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Deebo Samuel Sr.|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Upton Stout|CB|Shoulder, Neck|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|C.J. West|DT|Knee|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|SF|Trent Williams|T|Shoulder|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|DaRon Bland|CB|Ankle|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Jonathan Bullard|DT|Calf|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Alijah Clark|S|Illness|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Donovan Ezeiruaku|LB|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Jake Ferguson|TE|Knee, Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Tyler Goodson|RB|Ankle, Knee|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Malik Hooker|S||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Marist Liufau|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|P.J. Locke|S|Concussion|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Von Miller|LB||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Jonathan Mingo|WR|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Devin Moore|CB|Hip|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|DeMarvion Overshown|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|George Pickens|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Joey Porter Jr.|CB|Ankle, Foot|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Luke Schoonmaker|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Brevyn Spann-Ford|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|Juanyeh Thomas|S|Hamstring|D|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|DAL|KaVontae Turpin|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|Brandin Echols|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|DeShon Elliott|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|Derrick Harmon|DT|Foot|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|Cameron Heyward|DT||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|Ben Skowronek|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|Doneiko Slaughter|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|Darnell Washington|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|PIT|T.J. Watt|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|Jonathan Allen|DT||L|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|Jalen Davis|CB|Hamstring|F|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|Kyle Dugger|S|Quadricep|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|Dylan Fairchild|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|B.J. Hill|DT||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|Andrei Iosivas|WR|Thumb|F|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|Dexter Lawrence|DT||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|Brian Parker II|G|Knee|F|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|CIN|DJ Turner II|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Kayode Awosika|G|Fibula|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Bud Dupree|DE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Justin Eboigbe|DE|Ankle|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Alex Harkey|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Tre Harris|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Cam Hart|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Daiyan Henley|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Deane Leonard|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Khalil Mack|LB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Ladd McConkey|WR|Back|D|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Keaton Mitchell|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|David Njoku|TE|Fibula|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Denzel Perryman|LB|Pectoral|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Trey Pipkins|T|Not injury related - personal matter, Knee|L|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Rodney Shelley|CB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Branson Taylor|G|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Brenen Thompson|WR|Hamstring|D|Doubtful
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Isas Waxter|CB|Ankle|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|LAC|Kendall Williamson|S|Calf|D|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Rasheen Ali|RB||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Rashod Bateman|WR||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Calais Campbell|DT||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Kyle Hamilton|S||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Jaylinn Hawkins|S|Knee|L|Out
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Matthew Hibner|TE||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Olaivavega Ioane|G||F|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Adam Randall|RB|Neck, Hamstring|F|Questionable
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Ronnie Stanley|T||D|
+2026-11-16T18:05Z|https://www.nfl.com/injuries/|BAL|Nate Wiggins|CB||F|

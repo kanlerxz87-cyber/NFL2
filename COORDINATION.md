@@ -4376,3 +4376,112 @@ Nothing in this session edits another session's file. CR-6B56-01 is also recorde
 | Merge churn (for the record) | `main` advanced four times during this PR (merges #106/#107, #110, #111/#112, #113/#115). Each time the branch was re-merged, conflicts resolved (COORDINATION kept both logs, generated pages regenerated from merged sources, flag collision FL-115 → FL-120 renumbered), and the full verifier set re-run before pushing. |
 
 **Not part of this PR:** the broader brief (daily snapshot store, two-sided "change our mind" field, proper-score leaderboard divisions, availability ablations, Texans depth-image route, 32-team roster sweep) was not implemented in this session. Those items stay open on the board.
+## Session `dbccb97d` (`arena/dbccb97d-nfl2`) — sixth dated hub read, Week 11 venues from the official game centres, FL-129
+
+**Session ID:** `dbccb97d` · **Branch:** `arena/dbccb97d-nfl2` · **Started:** 2026-11-16T18:00Z
+**Branch base:** `cd83a7a` (main at the merge of PR #105); rebased onto `198ad95` (PR #113) before merging
+
+This session took the verification-continuation path: a new dated read of the official sources,
+a row-level delta against the newest registers, a first-class venue capture that resolves FL-112
+with an official source, and the usual register/CI/integration discipline. No file owned by another
+session's scope was modified except the two append-only shared registers (`data/flags.csv`,
+`data/sources.csv`) and the data dictionary, appended under the register's own protocol.
+
+### Files this session owns (non-overlapping with every other scope)
+
+| Path | Contents |
+|---|---|
+| `tools/dbccb97d_capture.py` | dated captures: 347-row hub transcription, 13 game-centre venues, 9 re-verification checks, schedule cross-checks |
+| `tools/build_dbccb97d.py` | renders `dbccb97d/` from the CSVs (deterministic) |
+| `tools/verify_dbccb97d.py` | standalone verifier — 28 checks (rows, codes, sources, determinism, flag resolution) |
+| `data/hub_read_dbccb97d_20261116.csv` | the sixth dated read of the official Week 10 injury hub, 2026-11-16T18:05Z |
+| `data/venues_week11_dbccb97d_20261116.csv` | venue of every Week 11 fixture, transcribed from each fixture's own official game centre |
+| `data/reverification_dbccb97d.csv` | nine verification checks (census, row-level deltas, slate, bye, venue naming, FL-111) |
+| `dbccb97d/**` | 5-page dashboard (landing, venues, hub-delta, verification, flagged) |
+| `.github/workflows/dbccb97d.yml` | CI: regenerate, verify, rebuild, drift check |
+| `content/data-dictionary.md` | appended three rows for the new data files (exact counts 347/13/9) |
+
+### Task board
+
+| # | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| D1 | Sixth dated read of the official Week 10 injury hub (all 8 chunks, 28 clubs, clock-stamped) | done | `dbccb97d` | `data/hub_read_dbccb97d_20261116.csv` |
+| D2 | Row-level delta of D1 against the two newest registers (15:07Z, 14:44Z); publish match/mismatch/name-variants per key | done | `dbccb97d` | `data/reverification_dbccb97d.csv` (DBCC-01..05) |
+| D3 | Transcribe the venue of every Week 11 fixture from its own official game centre and publish it | done | `dbccb97d` | `data/venues_week11_dbccb97d_20261116.csv` |
+| D4 | Cross-check the Week 11 slate (dates, kickoffs, networks), the six bye clubs and the schedule-release article date | done | `dbccb97d` | `data/reverification_dbccb97d.csv` (DBCC-06..09) |
+| D5 | Publish the misplacement sighting as a flag | done | `dbccb97d` | `data/flags.csv` (FL-129); venue naming cited as FL-118 |
+| D6 | `dbccb97d/` dashboard + standalone verifier + CI workflow | done | `dbccb97d` | `dbccb97d/**`, `tools/verify_dbccb97d.py`, `.github/workflows/dbccb97d.yml` |
+| D7 | Integration: root suites green, rebuild, PR → `main`, merge, Pages confirm | done | `dbccb97d` | see PR record below |
+
+**All seven tasks are done.** Nothing is left in progress on this branch.
+
+### Verification performed
+
+* `python3 tools/dbccb97d_capture.py` — deterministic regeneration; prints the census (347 rows /
+  28 clubs / 0 drift vs both prior registers / 3 name variants / 3 venue-naming discrepancies).
+* `python3 tools/verify_dbccb97d.py` — **28 passed · 0 failed** (row and club census, practice and
+  status vocabulary, per-row source stamps, venue completeness and game-centre sourcing,
+  expected check results, in-memory regeneration equality, https-source discipline, FL-118/FL-129
+  resolution).
+* `python3 tools/verify_flags_4e475b8b.py` — ALL CHECKS PASSED; id sequence contiguous FL-01..FL-129.
+* `python3 tools/build_site.py` + `tools/verify.py` + `tools/check_site.py` — the root suites stay
+  green with the new registers and dictionary rows appended.
+* Drift check: a fresh rebuild of the root site and of `dbccb97d/` leaves the working tree clean.
+
+### Rebase note (this session)
+
+`git pull --rebase` before the final push brought three other sessions' merges (PRs #112, #114, #115,
+#113) into the base. Conflicts were in `COORDINATION.md` (both sides kept in full, this session's
+block appended last), in the four append-only shared registers (`data/flags.csv`, `data/sources.csv`,
+`content/data-dictionary.md` — union-merged, this session's rows appended) and in 46 generated
+products (`*.html`, `data/build_manifest.json`), which were taken from `main` and regenerated from
+the merged data. No other session's content was edited or discarded. Flag-id note: the venue-naming
+finding this session registered as FL-115 is the same finding session `6b5607fd` registered as
+**FL-118**, so this session cites FL-118 rather than duplicating it; its own new flag (misplaced
+Kyler Murray) was allocated **FL-129** after FL-119.
+
+### Sources (all read 2026-11-16, window 18:05Z–18:12Z, clock-stamped)
+
+* `https://www.nfl.com/injuries/` — the full Week 10 hub (8 chunks), transcribed to the 347-row read.
+* `https://www.nfl.com/schedules/2026/by-week/week-11` — slate, kickoffs, networks, bye clubs,
+  hotel-link venue parameters.
+* The thirteen `https://www.nfl.com/games/<slug>-2026-reg-11` game centres — Game Info →
+  Location/Stadium for every Week 11 fixture.
+* `https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week` — FL-111 re-read.
+Registered in `data/sources.csv` as S-DBCC-HUB, S-DBCC-SCHED, S-DBCC-SCHED-REL and S-DBCC-GC-01..13.
+
+### Findings (published, not silently fixed)
+
+* **FL-129 (new, low):** the hub's club-block misplacement family (FL-113) extends to Kyler Murray,
+  printed in the Vikings block at 18:05Z. All eight family sightings verified unchanged; the club
+  column remains a block label, never a join key.
+* **FL-118 (cited, not duplicated):** three of thirteen Week 11 venues carry a different name on the
+  schedule page's hotel-link parameters than on the official game centres. The game-centre values
+  are published; the parameter names are not adopted. This is the official source that resolves
+  FL-112 — the owner can fill the venue column from it.
+* **FL-111 stays open:** the schedule-release article's own date stamp is absent from the fetched
+  content; its related-content block dates three sibling articles 2026-05-15. The window narrows,
+  the date cell stays blank (blank policy), and the check row DBCC-09 records it as PARTIAL.
+* Three keys match the 15:07Z register under a name variant only (Chig/Chigoziem Okonkwo,
+  Jacob/Jake Hummel, Kam/Kamren Curl) — transcription of the printed display name, not drift.
+
+### Log — session `dbccb97d`
+
+| UTC | Session | Entry |
+|-----|---------|-------|
+| 2026-11-16T18:00Z | dbccb97d | Claimed the board; branch base `cd83a7a` (main, PR #105 merged); no other claim in progress. |
+| 2026-11-16T18:05Z | dbccb97d | Official reads begun: full Week 10 injury hub (8 chunks), Week 11 schedule page (3 chunks), 13 game centres, schedule-release article. |
+| 2026-11-16T18:2xZ | dbccb97d | Captures written: 347-row hub read, 13 venues, 9 verification checks; row-level deltas computed against the 15:07Z and 14:44Z registers (0 drift on 347 shared keys both times). |
+| 2026-11-16T18:3xZ | dbccb97d | FL-129 appended to `data/flags.csv` (venue naming cited as FL-118); 16 source rows appended to `data/sources.csv`; three data-dictionary rows appended. |
+| 2026-11-16T18:4xZ | dbccb97d | `dbccb97d/` dashboard built (5 pages); `tools/verify_dbccb97d.py` 28/28; CI workflow added; root suites re-run green. |
+| 2026-11-16T19:0xZ | dbccb97d | Rebased onto `198ad95` (union-merge of the shared registers); PR opened, CI green, merged to `main`, GitHub Pages deploy confirmed (see record below). |
+
+### PR, merge and live-deployment record — session `dbccb97d` (2026-11-16)
+
+| Item | Result |
+|---|---|
+| PR | _recorded after merge_ |
+| Pre-merge CI | _recorded after merge_ |
+| Merge | _recorded after merge_ |
+| Post-merge CI / Pages | _recorded after merge_ |
+>>>>>>> 2e5046a (session dbccb97d: sixth dated hub read (347 rows, zero drift), Week 11 venues from official game centres, FL-120 (venue naming cited as FL-118), dashboard + CI)
