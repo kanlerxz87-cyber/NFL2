@@ -31,6 +31,8 @@ A third panel answers a question a static site normally cannot: **how old is the
 
 ## Read this first
 
+> **Automated source-freshness monitor:** [Official Source Fingerprints](availability-fingerprints.html) (metadata only; not replayable).
+
 This site has two kinds of pages and they never mix on one page without a divider:
 
 - **Measured** (green badge) — tables generated from `data/*.csv`, every row carrying a link to the official league page it was transcribed from.
@@ -70,7 +72,7 @@ data — the counts, the club coverage and one flag — and those are corrected 
 | Depth, IR and roster events | running — 227 rows | `data/depth_changes_2026_wk10.csv` | no official depth chart exists (FL-06) |
 | Standings and schedule | 32 club rows × 8 published fields; official re-read captured at `2026-11-13T12:53Z`, exact match | `data/standings_2026.csv`, `data/standings_recheck_20261113.csv`, `data/schedule_2026_wk10.csv` | remaining split-record columns are omitted rather than inferred (FL-07) |
 | Depth deficiency by side of the ball | 26 clubs with two-sided counts off the official filing; the 13 November read joins an unavailable name to the column it holds on the club's own chart — **18 joined rows on the 13 November read, 8 of them 1st string** — for the 4 clubs this build transcribes | [Depth Deficiencies](deficiencies.html), [Week 10 availability](availability-1113.html), `data/availability_deficiency_66faefac.csv` | 28 club charts not transcribed (Q-37, S-39, S-61) |
-| Line origination | **computed** — walk-forward ridge ratings on 136 official games: spread MAE 9.278 vs a 10.455 do-nothing baseline, paired +0.295 pts against the archived price | [Fair-Line Lab](model-lab.html), `data/model_backtest_2026_a392.csv` | totals are worse than a league mean and are published as a diagnostic, not a line (S-37, FL-32) |
+| Line origination | **historical diagnostic only** — walk-forward ridge ratings on the 136-game official-results corpus; archive-relative values are exploratory, unvalidated and excluded from leaderboard/promotion under P-PRICE-01 | [Fair-Line Lab](model-lab.html), [price-data policy](https://github.com/kanlerxz87-cyber/NFL2/blob/main/docs/PRICE-DATA-POLICY.md), `data/model_backtest_2026_a392.csv` | no strategy has passed validation; totals remain diagnostics, not lines (S-37, FL-32) |
 | Signal catalogue | specified — 18 families, 5 blocked on data | `data/signals.csv` | entitlement + join keys (G-01, G-02) |
 | Strategy registry | {{metric strategies}} entries; **1 locked before its slate (ST-15)**, none ranked | `data/strategies.csv`, `data/prereg_wk10_66faefac.csv` | tracking ledger + settled volume (G-08) |
 | Validation gates | 14 gates defined; 0 strategies can pass any | `data/gates.csv` | see gate matrix |

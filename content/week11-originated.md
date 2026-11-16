@@ -53,7 +53,7 @@ This is the kind of episode the project wants on the page rather than in a commi
 
 ## What this page does not do
 
-- It does not stake anything, and it does not claim an edge. The model this line comes from has a spread mean absolute error of 9.28 points against 10.46 for a do-nothing baseline on 88 out-of-sample games, and a **paired** gap against the archived price that is *worse* by 0.295 points with a bootstrap interval that excludes zero. It is a better guess than nothing and a worse guess than the market.
+- It does not stake anything and does not claim an edge. The linked walk-forward model study is a research diagnostic, not a validated strategy. Its archived-price comparison is exploratory only: the 2026 quote vintage is undocumented, so it is excluded from leaderboard, promotion, CLV, ROI and EV evidence under [P-PRICE-01](https://github.com/kanlerxz87-cyber/NFL2/blob/main/docs/PRICE-DATA-POLICY.md). The archived quote cannot establish whether this is a better guess than the market.
 - It does not price availability. The league had not published Week 11 participation at the decision timestamp, so the column is blank rather than zero (FL-40, Q-65).
 - It does not use a price feed. The league publishes no betting lines; the archive it is compared against is non-official with an undocumented vintage (FL-29, FL-30).
 - It does not touch the frozen corpus. Week 11 results go to `data/games_week11_played.csv`, which is append-only and separate, exactly as week 10 results are (Q-41, S-26).

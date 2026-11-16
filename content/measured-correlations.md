@@ -1,7 +1,7 @@
 # Measured Correlations
 > The correlation values the brief asks for, computed on games this repository can actually verify — with intervals wide enough to be true, and an explicit statement of what a number this small cannot support.
 
-The design page ([Correlation](correlation.html)) lists twelve *pair classes* and publishes no rho, because fitting one requires joint-outcome data nobody had assembled here. This page is that assembly, done from the one corpus in the repository that survives a row-by-row source check: the [136 completed 2026 games](league-data.html), each linked to its official nfl.com game page. Nothing here is fitted on a model's own output except where the row says so.
+The design page ([Correlation](correlation.html)) lists twelve *pair classes* and publishes no rho, because fitting one requires joint-outcome data nobody had assembled here. This page is that assembly, done from the [136 completed 2026 games](league-data.html), each linked to its official nfl.com game page. The score-derived correlations use official results, but **market-price-based rows below use the quarantined community archive and are exploratory only**; the archive's 2026 quote vintage is undocumented, so those rows are not eligible evidence for a joint-probability model, CLV, EV, or strategy promotion under [P-PRICE-01](https://github.com/kanlerxz87-cyber/NFL2/blob/main/docs/PRICE-DATA-POLICY.md). Nothing here is fitted on a model's own output except where the row says so.
 
 ## The measurements
 

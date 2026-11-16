@@ -1,0 +1,18 @@
+# Official Availability Source Fingerprints
+> Scheduled, robots-aware checks of the official injury hub. The public ledger retains only fetch metadata, the exact response SHA-256, schema fingerprints and aggregate counts — never raw response bytes or player-level rows.
+
+**Ledger state:** {{metric fingerprint_runs}} capture attempts. Latest recorded attempt: **{{metric fingerprint_latest_utc}}**; status: **{{metric fingerprint_latest_status}}**. The first scheduled run is not asserted until it writes a row.
+
+## What the automated monitor records
+
+The GitHub Actions schedule runs on Wednesday through Saturday at 23:17 UTC and on Sunday at 12:17 UTC, with an agent-triggerable workflow dispatch for recovery. It fetches the [official NFL injury hub](https://www.nfl.com/injuries/) through the repository's existing robots-aware collector. Each attempt is appended to the hash ledger with the collector's UTC retrieval time, raw-response SHA-256, final URL, number of matching injury tables and aggregate rows, a schema SHA-256 over table-header/schema-shape metadata (never cell values), comparison to the prior read, explicit conflict flags, and capture status.
+
+A change to the response body is recorded as `body_changed`; it is not treated as an error because the injury hub is expected to change. Missing required injury-table headers, a row-width mismatch, a failed fetch, a conflicting hash for the same timestamp, or a final URL that changes from the preceding read is surfaced as a conflict and causes the capture workflow to fail and raise/update a GitHub issue. A raw hash is calculated from the HTTP response before the body is discarded. After the audits pass, a default-branch run commits only the ledger, build manifest and two generated metadata views, then dispatches the GitHub Pages workflow. No response body or player-level rows are uploaded as workflow artifacts.
+
+{{csv data/availability_fingerprints.csv;;cols=capture_id:Capture ID,retrieved_at_utc:Retrieved at (UTC),response_sha256:Raw response SHA-256,injury_table_count:Matching injury tables,injury_row_count:Aggregate injury rows,schema_sha256:Schema SHA-256,schema_status:Schema,previous_response_sha256:Prior response SHA-256,change_from_previous:Change,conflict_flags:Conflict flags,raw_retained:Raw body retained,capture_status:Capture status,error:Capture error;;source_col=source;;empty=No automated capture attempt is recorded yet. The next scheduled GitHub Actions run will append the first metadata row.;;caption=One row per attempt. The Source column links to the official NFL injury hub. No player names, row-level designations or response body are persisted in this public ledger.}}
+
+## Limits — not a replayable snapshot store
+
+This is a **metadata-only freshness and schema monitor**, not an immutable raw-data archive. `raw_retained` is always `no`. Raw retention remains blocked until a private storage destination and source-use terms are approved (Q-50/Q-51); this repository is public and neither condition has been met. SHA-256 plus aggregate counts cannot reconstruct the source page or support a row-level delta. The automated ledger therefore does **not** pass point-in-time replay gate G-03, and no model consumes it as an availability feature.
+
+The monitor does not collect club depth-chart pages, official inactive lists, gamebook data, roster/IR events, or snap counts. Those inputs remain blank or blocked in the [decision-readiness register](requirements.html), [open questions](questions.html), and [Flagged for Review](flagged-for-review.html). A failed capture is a source/access alert, never evidence that a team has no injuries.

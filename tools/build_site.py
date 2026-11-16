@@ -76,6 +76,7 @@ NAV = [
     # Availability read through a depth chart, and the first decision this site has
     # locked before the games it predicts happened.
     ("Availability", [("availability-1113", "Week 10 Availability (13 Nov)"),
+                      ("availability-fingerprints", "Official Source Fingerprints"),
                       ("preregistration", "Pre-Registration Lock")]),
 ]
 PAGES = [slug for _, items in NAV for slug, _ in items]
@@ -90,13 +91,27 @@ class BuildError(Exception):
     pass
 
 
+def read_header(name):
+    name = name.split("/")[-1] if name.startswith("data/") else name
+    path = os.path.join(DATA, name)
+    if not os.path.exists(path):
+        raise BuildError("missing data file: %s" % name)
+    with open(path, encoding="utf-8", newline="") as fh:
+        header = next(csv.reader(fh, delimiter="|"), None)
+    if not header:
+        raise BuildError("%s: missing header row" % name)
+    return header
+
+
 def read_rows(name):
     name = name.split("/")[-1] if name.startswith("data/") else name
     path = os.path.join(DATA, name)
     if not os.path.exists(path):
         raise BuildError("missing data file: %s" % name)
-    with open(path, encoding="utf-8") as fh:
+    with open(path, encoding="utf-8", newline="") as fh:
         raw = list(csv.reader(fh, delimiter="|"))
+    if not raw or not raw[0]:
+        raise BuildError("%s: missing header row" % name)
     header = raw[0]
     bad = [(i + 1, len(r)) for i, r in enumerate(raw[1:], start=1) if len(r) != len(header)]
     if bad:
@@ -444,6 +459,7 @@ def build_metrics():
     depth = read_rows("depth_changes_2026_wk10.csv")
     st = read_rows("standings_2026.csv")
     sched = read_rows("schedule_2026_wk10.csv")
+    fingerprints = read_rows("availability_fingerprints.csv")
     agg = team_availability(inj)
     # Which clubs should have an injury block is a fact about the Week 10 slate, so derive it from the
     # fixture list instead of naming clubs by hand. A hand-written list silently stops being true the
@@ -502,6 +518,16 @@ def build_metrics():
         "cov_matrix_rows": _safe_len("brief_traceability.csv"),
         "backlog_unmapped": sum(1 for r in _safe_rows("brief_backlog_58e9c708.csv")
                                 if not (r.get("coverage_matrix_id") or "").strip()),
+        "fingerprint_runs": len(fingerprints),
+        "fingerprint_latest_utc": max(
+            (r["retrieved_at_utc"] for r in fingerprints),
+            default="not published",
+        ),
+        "fingerprint_latest_status": max(
+            fingerprints,
+            key=lambda r: r["retrieved_at_utc"],
+            default={"capture_status": "not published"},
+        )["capture_status"],
         "gates": len(read_rows("gates.csv")),
         "signals": len(read_rows("signals.csv")),
         "strategies": len(read_rows("strategies.csv")),
@@ -794,24 +820,27 @@ def game_label(gid):
 def render_csv_table(body):
     name, opts = parse_opts(body)
     rows = read_rows(name)
+    headers = list(rows[0].keys()) if rows else read_header(name)
     cols = [c for c in opts.get("cols", "").split(",") if c]
     if not cols:
-        cols = list(rows[0].keys())
+        cols = headers
     specs = []
     for c in cols:
         parts = [x.strip() for x in c.split(":")]
         key = parts[0]
         label = parts[1] if len(parts) > 1 else key.replace("_", " ").title()
         fn = parts[2] if len(parts) > 2 else ""
-        if key not in rows[0]:
-            raise BuildError("%s has no column %r (columns: %s)" % (name, key, ", ".join(rows[0].keys())))
+        if key not in headers:
+            raise BuildError("%s has no column %r (columns: %s)" % (name, key, ", ".join(headers)))
         specs.append((key, label, fn))
     src_col = opts.get("source_col", "")
     src_default = opts.get("source", "")
     if not src_col and not src_default:
         raise BuildError("table %s declares no source; every row must cite one" % name)
-    if src_col and src_col not in rows[0]:
+    if src_col and src_col not in headers:
         raise BuildError("%s has no source column %r" % (name, src_col))
+    if not rows:
+        return '<div class="empty-state">%s</div>' % inline(opts.get("empty", "No rows are published yet."))
     group = opts.get("group", "")
     link_player = "link_player" in opts
     # A filter clause must be key=value. The old parser dropped anything else on the floor, which is
@@ -821,7 +850,7 @@ def render_csv_table(body):
     for f in raw_filters:
         if "=" not in f:
             raise BuildError("table %s: filter clause %r is not key=value and would be ignored" % (name, f))
-        if f.split("=", 1)[0].strip() not in rows[0]:
+        if f.split("=", 1)[0].strip() not in headers:
             raise BuildError("table %s: filter key %r is not a column of %s" % (name, f.split("=", 1)[0], name))
     filters = [f.split("=", 1) for f in raw_filters]
     for k, v in filters:
@@ -984,6 +1013,7 @@ PAGE_KIND = {
     "deficiencies": ("measured", "Measured data"), "depth-cascades": ("measured", "Measured data"), "price-archive": ("program", "Register"),
     "week10-settled": ("measured", "Computed result"),
     "availability-1113": ("measured", "Measured data"),
+    "availability-fingerprints": ("measured", "Metadata-only capture ledger"),
     "preregistration": ("measured", "Computed result"),
     "week11-originated": ("measured", "Computed result"),
     "personnel-relief": ("measured", "Measured data"),

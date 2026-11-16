@@ -1,7 +1,7 @@
 # Price Archive — what the repository actually holds
 > The register used to say there were no prices in this project. There are. This page states exactly what they are, what they prove, and what they still cannot be used for.
 
-The brief's central ask — *originate our own lines* — needs a benchmark, so the availability of price data is the single most decision-relevant fact in the project. The canonical flag on this used to read "no price data of any kind". That is no longer true and this page is the correction: `pipeline/data/raw/` (vendored and SHA-256 pinned by a parallel session) carries market prices, and a second tree in this repository has already run a calibration against them.
+The brief's central ask — *originate our own lines* — needs a benchmark, so the availability of price data is the single most decision-relevant fact in the project. The canonical flag on this used to read "no price data of any kind". That is no longer true: `pipeline/data/raw/` (vendored and SHA-256 pinned by a parallel session) carries market prices. However, these data are **research-only** under the [adopted price-data admission policy](https://github.com/kanlerxz87-cyber/NFL2/blob/main/docs/PRICE-DATA-POLICY.md): source permissions and the 2026 price-vintage semantics remain unresolved, so archive-derived comparisons are not approved validation, CLV, ROI, EV, leaderboard or promotion evidence.
 
 {{csv data/price_archive_a392.csv;;cols=asset:Asset,rows_2026:2026 rows,seasons:Seasons covered,what_it_proves:What it proves,what_it_does_not_prove:What it does not prove,official:Official?;;source_col=source;;caption=Inventory produced by reading the files themselves, not their names. The file called closing_lines.csv stops at 2018; the file called games.csv is the only one carrying a 2026 price, and it holds 163 of them.}}
 
@@ -13,9 +13,9 @@ The brief's central ask — *originate our own lines* — needs a benchmark, so 
 
 ## What the archive does unlock
 
-A **walk-forward benchmark**. The [origination lab](model-lab.html) scores our line and the archived line on the *same games*, which is the only comparison that survives the missing-price problem: 88 of 136 games carry an archived price, so the paired difference is reported instead of two unpaired means.
+A **research-only paired comparison**, not a validation benchmark. The [origination lab](model-lab.html) has displayed our line and the archived line on the same games; 88 of 136 games carry an archived price. Because the archive does not establish whether the 2026 quote is an open, close, or another vintage, this paired comparison cannot support CLV or performance claims and must not be treated as an eligible backtest. It remains visible only as an exploratory diagnostic pending the admission evidence listed in [P-PRICE-01](https://github.com/kanlerxz87-cyber/NFL2/blob/main/docs/PRICE-DATA-POLICY.md).
 
-It also unlocks a second, cheaper verification that matters more than it looks: the archive transcribed the same 136 results independently of the nfl.com game pages, and after the club-code alias is applied, **136 of 136 scores agree cell for cell, zero disagree**. Two transcriptions that never met each other agreeing on every final score is the strongest evidence in this repository that the game log everything else joins to is clean.
+The archive also carries an independent transcription of the 136 final scores. After the documented club-code alias is applied, its scores agree with the nfl.com game pages in 136 of 136 rows. This is a repository-reported cross-check, not evidence that the archive's price fields are valid or authorized.
 
 And it exposes a defect that would have been invisible: joining the two sources by team code without an alias table **silently drops all nine Arizona Cardinals games** (`ARI` vs `AZ`), and mis-keys the Rams (`LA` vs `LAR`). Any model trained that way loses a club and still prints an error rate. The fix and the check are in [FL-28](flagged-for-review.html) and [S-36](suggestions.html).
 

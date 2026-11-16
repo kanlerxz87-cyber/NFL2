@@ -1,7 +1,7 @@
 # Fair-Line Origination Lab
 > A model that originates our own spread and total, fitted only on data this repository transcribed from nfl.com, evaluated week by week as it would have been evaluated in real time — and then compared against the two things it has to beat.
 
-Everything on this page is **computed in this repository, from the 136 completed 2026 games in [the verified game log](league-data.html)**. It is not a specification: the numbers below came out of a script (`scripts/origination_lab.py`) that anyone can re-run. It is also not a claim of edge — it is the measurement that decides whether origination is worth funding.
+Everything on this page is **computed in this repository, from the 136 completed 2026 games in [the verified game log](league-data.html)**. It is not a specification: the numbers below came out of a script (`scripts/origination_lab.py`) that anyone can re-run. It is not a claim of edge. **Legacy-diagnostic notice:** the archived-price comparisons below are exploratory and unvalidated because the archive does not document its 2026 quote vintage; under [P-PRICE-01](https://github.com/kanlerxz87-cyber/NFL2/blob/main/docs/PRICE-DATA-POLICY.md) they are excluded from the leaderboard and cannot be used for strategy selection or promotion. Only the outcome-based research is described here as a diagnostic, not a validated strategy.
 
 {{csv data/model_verdict_2026_a392.csv;;cols=metric:Metric,value:Value,method:How it is computed,read:Read;;source_col=source;;caption=The four numbers a decision turns on. "MAE" is mean absolute error in points against the final score, so a smaller number is a better line; a push is impossible because every published line is rounded to a half point.}}
 
@@ -43,6 +43,6 @@ The game log this model is trained on was transcribed from nfl.com game pages by
 
 ## What a reader should conclude
 
-1. **Origination is feasible but not yet profitable.** We are within 0.3 points of the archived price on spreads with one season of training, and that gap is inside the noise. That is a *credible* result for a ratings model, not a green light.
-2. **The gap that matters is 2.92 points** — the average distance between our line and the archived line. Where we disagree by more than that, we have either found something or made an error, and this data cannot tell you which. Only a point-in-time price feed can ([Q-01](questions.html)).
+1. **This diagnostic does not establish profitability.** The archived price comparison is exploratory only: the quote vintage is undocumented, the sample is one season, and the result is not admitted evidence under P-PRICE-01.
+2. **Archived-line gaps are not actionable residuals.** The archive's 2026 price timing is unknown; only an admitted, timestamped, point-in-time market feed can support a valid market-relative residual ([Q-01](questions.html), [price-data policy](https://github.com/kanlerxz87-cyber/NFL2/blob/main/docs/PRICE-DATA-POLICY.md)).
 3. **Totals are the weakest leg and availability is the missing input.** The 2026 log has no injury history in it: the injury register starts at week 10, so *no* availability feature can be backtested today. That single gap blocks more of the brief than any modelling choice ([S-35](suggestions.html)).
