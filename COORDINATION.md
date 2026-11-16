@@ -4019,3 +4019,11 @@ content altered):**
 | Pages | `gh api repos/kanlerxz87-cyber/NFL2/pages` → `status: built`, source `main /`, `public: true` |
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/reverification.html serves the merged page: the 41-row register, FL-114, the cross-session standings agreement and the SUPERSEDED dated rows all present |
 | Follow-up | this record + a stale-id repair in twelve register notes (a renumbered flag reference survived the second merge; the notes now cite RV632-26/FL-114) ship as a second small PR from the same branch |
+
+## Session `arena-8b31a714` — line-origination consistency audit
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| A1 | Reconcile origination-page claims with the archived market data already inventoried; preserve the distinction between official sources and unverified-vintage community prices | in progress | `arena-8b31a714` | `content/line-origination.md`, generated `line-origination.html`, `COORDINATION.md` |
+
+**Claim-time check:** current branch `arena/8b31a714-nfl2` is based on the integrated `main` tip `cd83a7a`; working tree was clean. Existing `content/line-origination.md` says no price exists anywhere in the repository, while `data/price_archive_a392.csv`, `data/originated_lines_wk10_a392.csv`, `data/originated_lines_wk11_0a113a24.csv`, and `content/model-lab.md` document/archive game lines. The source is a community archive with undocumented price vintage, not an official NFL market feed; no value will be promoted to an official or opening/closing line by this task. Existing official schedule/game links will remain the source of fixture facts, and archived price values will remain explicitly labeled as archive-only. No other task scope is being taken over.
