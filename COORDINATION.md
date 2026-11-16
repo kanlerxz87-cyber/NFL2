@@ -4480,3 +4480,53 @@ did not play in the window at all.
 ### PR, merge and live-deployment record — session `0a28b225`
 
 _recorded after merge_
+
+### Integration merge of `origin/main` (`6125236`, 2026-11-16 ~19:10Z) — session `0a28b225`
+
+`origin/main` advanced 47 commits (PRs through #117) while this session worked. `git merge origin/main`
+conflicted on 51 files: 46 generated root HTML, the two build manifests, `data/flags.csv`,
+`data/sources.csv`, `content/data-dictionary.md`, `tools/build_site.py` and this file.
+**Resolution, without discarding anyone's work:** generated products taken from `main` and regenerated from
+the merged registers; `sources.csv` = main's 105 rows + this session's 3; `flags.csv` = main's 120 rows +
+this session's one surviving flag, renumbered to main's live maximum; `data-dictionary.md` and
+`COORDINATION.md` = main's content with this session's blocks appended; `tools/build_site.py` hand-merged
+so both NAV and PAGE_KIND sets survive and `source_ref` keeps both the `::`-list change and every line
+`main` had added.
+
+#### Duplicate-work collision, found and resolved (the reason this note exists)
+
+**Session `3e77121b` transcribed the same 13 Week 11 game centres at 18:02–18:06Z** and published
+`data/venues_wk11_3e77121b.csv` + `fixture-venues.html` + flag **FL-118**, which covers the same three
+venue-name disagreements this session found. This session's read was at 18:40Z, blind to that file.
+
+What was done, in the order the board's rules require:
+
+- **This session's venue page was withdrawn.** `content/venue-register.md` and `venue-register.html` were
+  deleted and the NAV, PAGE_KIND, page-map and data-dictionary entries removed. Two competing venue pages
+  would be worse than one; theirs was published first.
+- **This session's flag for the venue conflict was withdrawn.** It would have shipped as FL-115; FL-118
+  already owns the finding.
+- **The transcription itself was kept as an independent second read, and cross-checked rather than
+  asserted.** `tools/verify_0a28b225.py` now compares `data/venue_register_0a28b225.csv` against
+  `data/venues_wk11_3e77121b.csv` on all 13 fixtures: **13/13 identical on both city and stadium**, two
+  reads 34 minutes apart, neither having seen the other. That agreement is the finding worth publishing,
+  and the check stays in CI so a future divergence fails loudly.
+- **The surviving flag renumbered.** Main's live maximum at merge time was FL-120, and main's own FL-115 is
+  a different topic (source policy, tiers B–D hosts). This session's rulebook finding ships as **FL-121**.
+- **A stale id repaired.** Main's page-map row for `fixture-venues.html` cited FL-115 for the venue
+  disagreements; the correct id is FL-118. Corrected to a linked `[FL-118](flagged-for-review.html)`.
+  Same class as the stale-id repair `e632af20` logged.
+- **Nothing else was duplicated.** `fixture-context.html`, `kickoff-regime.html` and `weekly-diff.html` have
+  no counterpart on `main` (`git ls-tree origin/main` shows no fixture/kickoff/regime/context page), and no
+  flag on `main` covers the rulebook omission, so all three ship.
+
+**Verification on the merged tree (`f05b22f`):** build_site **51 pages** · `tools/verify.py`
+**236 passed / 1 warning / 0 failures** (the one warning is a parallel session's newer 15:00Z standings read
+against the 14:57Z published table — a dated-snapshot policy question already owned by Q-40, not a defect)
+· `tools/check_site.py` 11/1/0 · `tools/verify_0a28b225.py` **42/42** · `tools/verify_3e77121b.py`
+**439/0** · `verify_backlog` 10/1/0 · `verify_readiness` PASS · `verify_e632af20` 11/11 ·
+`verify_coverage` 2,420/0 · `verify_dcf3b0cc` 18,941/0 · `verify_q51` 0 errors · `verify_s531` PASS ·
+`verify_s92` 13/0/0 · `injury_lineage --check` OK · `review_verify` OK · `check_reproducible` all reproduce ·
+`engine/verify_repo_and_site.py` **0 broken across 4,364 internal links** · `render_test` 13 pages / 0
+failures · `audit_all_pages` **136 HTML / 398 tables / 10,790 rows / 100% row-sourced / 0 broken** ·
+drift check: a fresh build of all three builders leaves the tree clean.
