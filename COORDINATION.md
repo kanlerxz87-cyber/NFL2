@@ -3519,3 +3519,66 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+
+## Session `7c23f22f` (`arena/7c23f22f-nfl2`) — retained, hashed official injury-hub captures (FL-88 / FL-90)
+
+**Claimed:** 2026-11-16 UTC, before any file was created. Status: `in progress`. Base: `main` at `a2de786`.
+
+### Why this session exists
+
+FL-90 records that no Week 10 injury file in the repository is a retained raw response with a recorded
+hash, and that the sandbox cannot reach `www.nfl.com`. FL-88 records that 17 players and 51 status values
+moved between reads with no capture to separate league changes from transcription. The sandbox's own
+`curl` returns HTTP 000 for `https://www.nfl.com/injuries/`, while GitHub-hosted runners have ordinary
+outbound access. This session therefore builds a capture that runs on the runner, stores the raw bytes,
+and records a SHA-256 for each read.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 7C-T1 | Claim and log (this section) | done | `7c23f22f` | `COORDINATION.md` |
+| 7C-T2 | `tools/capture_official.py`: fetch the official URLs, store the raw bytes once per distinct SHA-256 under `data/captures/`, append a manifest row (UTC fetch time, URL, HTTP status, bytes, SHA-256, path, drift counts); never overwrite; fail loudly if the expected structure is missing | done (fixture-tested) | `7c23f22f` | `tools/capture_official.py` (new), `data/captures/**` (new), `data/capture_manifest.csv` (new) |
+| 7C-T3 | `.github/workflows/capture.yml`: scheduled daily + `workflow_dispatch`, commits only `data/captures/**` and `data/capture_manifest.csv` | done (committed; not yet runnable until on `main`, see log) | `7c23f22f` | `.github/workflows/capture.yml` (new) |
+| 7C-T4 | Run the workflow with `gh workflow run`, read the result, and record whether nfl.com answered from the runner | in progress (dispatch moved to `main` after merge) | `7c23f22f` | `data/capture_manifest.csv`, `data/captures/**` |
+| 7C-T5 | `tools/verify_capture_7c23f22f.py`: each manifest row's hash matches its file, no file is overwritten, every row has an official `https://www.nfl.com/` URL | done (wired into `validate.yml`) | `7c23f22f` | `tools/verify_capture_7c23f22f.py` (new) |
+| 7C-T6 | Flags and sources for what the capture does and does not prove; FL-90 status note | done (FL-97 open, S-CAP-7C; FL-90 stays open until a runner capture exists) | `7c23f22f` | `data/flags.csv` (append only), `data/sources.csv` (append only) |
+| 7C-T7 | Full suite, PR to `main`, merge `--merge`, confirm Pages, record here | unclaimed → in progress at integration | `7c23f22f` | this section |
+
+### Not in this session's scope (explicitly not done here)
+
+* Re-transcribing or re-ranking any Week 10 row. Captures are stored as received; no row is edited.
+* Editing `injuries.html` or any other shared page (FL-94 remains open for the page owner).
+* The sandbox-side `curl` path. It is unreachable and is not used.
+
+### Log — session `7c23f22f`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16 14:33Z | Repo reviewed at `a2de786`. Baseline green: `tools/verify.py` 199/0/0, `tools/check_site.py` 11/1/0, `scripts/check_links.py` 128 refs 0 broken, `tools/verify_readiness_ac2dd497.py` pass. |
+| 14:33Z | Official page read through the fetch tool (`https://www.nfl.com/injuries/`, 8 chunks; chunk 1 read). The sandbox's own `curl` returns HTTP 000 for the same URL (FL-90 confirmed again). The three Lions designations (Joseph, Mays, Reed: Did Not Participate / Out) are on the live page; the page the reader sees first still renders blanks (FL-94, not fixed here: shared page owned by the integration step). |
+| 14:35Z | Claimed and pushed (`9a6a60f`). |
+| 14:36Z | `tools/capture_official.py` written. Fixture test against a local HTTP server (127.0.0.1, not a league host): first fetch stored; repeat with identical bytes logged as `new_content = no` and not re-stored; changed bytes stored under a new hash; schema-failed page stored and flagged `schema_ok = no`; 404 and unreachable host both exit 1. |
+| 14:38Z | `.github/workflows/capture.yml` written (daily 14:17 UTC + `workflow_dispatch`, `contents: write`, commits only `data/captures/**` and `data/capture_manifest.csv`). `gh workflow run` on the branch returned HTTP 404: GitHub registers a new workflow for dispatch only once its file is on the default branch. The run is therefore made on `main` after this PR merges. |
+| 14:40Z | `tools/verify_capture_7c23f22f.py` written and tested on the fixture: a tampered stored file fails the hash and name checks; the real tree (empty manifest) passes with a vacuous-pass note. |
+| 14:42Z | Flag `FL-97` and source `S-CAP-7C` appended; `content/data-dictionary.md` row added (the dictionary check required it); `validate.yml` gains one step. Rebuilt site: `verify.py` 200/0/0, `check_site.py` 11/1/0, `verify_capture_7c23f22f.py` 7/0/0, `verify_readiness` pass, `verify_backlog` 11/0/0, `verify_coverage` 2423/0, `injury_lineage --check` exit 0, `verify_site` 13/13, `review_verify` OK, `verify_s92` 13/0, `audit_all_pages` 125 HTML / 9270 rows / 0 broken, `check_reproducible` OK, `verify_s53126614` PASS, `verify_q51` 0 errors, `verify_dcf3b0cc` 18,941/0. |
+
+### Verification performed
+
+* Fixture test and tamper test above (under `/tmp`, not committed; the local HTTP server was on 127.0.0.1 and is not a league host).
+* Every suite listed in the log, on the rebuilt tree.
+
+### Sources
+
+* Official page: https://www.nfl.com/injuries/ (read 2026-11-16 through the fetch tool; first chunk of 8; the page is labelled Week 10 of the 2026 season). Row-level evidence for the Lions designations is the page text in that read.
+* The tool and the runner workflow fetch the same URL; their output is the only retained capture evidence and will appear in `data/capture_manifest.csv` after the first runner run.
+
+### Irregularities (published as flags, not silently fixed)
+
+* **FL-97 (new, open):** no official response is retained yet. The sandbox cannot reach nfl.com; the runner has not run.
+* **FL-90 (open):** unchanged until a row with `schema_ok = yes` exists in the manifest.
+* **FL-94 (open, not this session's file):** `injuries.html` still renders the 12 November read with blank Lions designations.
+
+### Change requests (not edited: other owners)
+
+* **CR-7C-01 — `tools/s2268_verify.py`:** its scope allowlist does not list `data/capture_manifest.csv`, `tools/verify_capture_7c23f22f.py`, `.github/workflows/validate.yml` (one step added) or `data/sources.csv` (one row appended). It reports 4 scope-only errors (exit 1); no build, data, link or reproducibility failure. Same pattern as CR-58E9-02 and CR-D8-01.
