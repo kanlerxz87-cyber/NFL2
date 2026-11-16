@@ -7,9 +7,15 @@ The capture ran on a GitHub-hosted runner, because the analysis sandbox cannot r
 
 Source: [https://www.nfl.com/injuries/](https://www.nfl.com/injuries/) · the stored file is `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin` · the ledger is `data/capture_manifest.csv` (append-only).
 
-{{csv data/capture_manifest.csv;;cols=fetch_utc:Fetched (UTC),source_url:Official URL,http_status:HTTP,bytes:Bytes,sha256:SHA-256,stored_path:Stored file,title:Page title,schema_ok:Structure check;;source_col=source_url;;caption=One row per fetch. A repeat fetch whose bytes are identical is logged but not stored again. A page that answers but fails the structure check is kept as evidence and marked no.}}
+The ledger is [data/capture_manifest.csv](data/capture_manifest.csv): one row per fetch, append-only, pipe-delimited, with the UTC fetch time, the official URL, the HTTP status, the byte count, the SHA-256 and the stored file. A fetch whose bytes are identical to a stored one is logged but not stored again. A page that answers but fails the structure check is kept as evidence and marked `no`. This page does not render the ledger, so each daily run leaves the published page unchanged.
 
-## Row-by-row reconciliation with the 15 November file
+### A second capture, and why the hash is per response
+
+A second runner capture ran at **2026-11-16 14:44:29 UTC** (`data/captures/injuries_hub/20261116T144429Z_2877f2c8a1a2.bin`, SHA-256 `2877f2c8a1a28acb7024708cf103f2154d0d3f0231e9748b4b5d9480fec6c5fb`). Its length is the same, 399,895 bytes, but its hash is different. A byte-level comparison of the two files finds **29 differing bytes, all inside one block**: the `data-jsonid` attribute of a carousel module, which is a random identifier generated for each page render. No injury value differs. The hash therefore identifies one response, and two hashes do not by themselves show a change in the league's designations. The change evidence has to come from the parsed rows. The second capture's 347 rows also reconcile 347 of 347 with the 15 November file (summary run with `--capture`; the committed table below stays pinned to the first capture).
+
+
+
+## Row-by-row reconciliation with the 15 November file (first capture)
 
 The 347 rows of the retained bytes were compared with `data/injuries_wk10_5de1805b_20261115.csv` (the 15 November 12:55Z read, 347 rows). The comparison matches each player's club, position, injury, practice status and game status. The club key needed one alias, disclosed here: the repository writes the Los Angeles Rams as `LAR`, and the page's own logo code is `LA`. No other alias was used, and no value was changed.
 
@@ -31,6 +37,7 @@ Practice codes follow the league's own vocabulary: **F** = Full Participation in
 
 - **FL-94** — [injuries.html](injuries.html) still renders the 12 November read, in which the three Detroit designations are blank. The retained capture above shows all three as Out. The published page has not been changed by this session.
 - **FL-90** — stays open until more captures exist. One capture shows one moment; the daily workflow now adds one row per run, and the change between two runs is the evidence the project needs (FL-88).
-- **FL-97** — the workflow is scheduled daily at 14:17 UTC, and it also runs when the capture code itself changes on `main`. Its later runs are not yet in the ledger, so only one capture is retained.
+- **FL-97** — the workflow is scheduled daily at 14:17 UTC, and it also runs when the capture code itself changes on `main`. Two captures are retained so far, five minutes apart on the same day. No daily series exists yet.
+- **FL-99** — the byte hash changes between reads of the same content (the random carousel identifier above). Change detection has to compare parsed rows, not hashes.
 
-Flags: [Flagged for Review](flagged-for-review.html) (FL-90, FL-94, FL-97). Sources: [Source Registry](sources.html) (S-CAP-7C). Method: `tools/capture_official.py`, `tools/reconcile_capture_7c23f22f.py`, `tools/verify_capture_7c23f22f.py`.
+Flags: [Flagged for Review](flagged-for-review.html) (FL-90, FL-94, FL-97, FL-98, FL-99). Sources: [Source Registry](sources.html) (S-CAP-7C). Method: `tools/capture_official.py`, `tools/reconcile_capture_7c23f22f.py`, `tools/verify_capture_7c23f22f.py`.
