@@ -4194,6 +4194,17 @@ What this session did instead, to keep scopes non-overlapping:
 | Process notes | (1) A `git pull --rebase` against a remote branch that still held the superseded claim commit replayed main's history and stopped on another session's commit. It was aborted with no change to the branch, and the remote was brought up to date by a non-force merge. (2) Running another session's `tools/review_6b5607fd.py` rewrote its committed register `data/repo_review_6b5607fd_20261116.csv` by three lines; the file was restored byte-for-byte from `origin/main`. Re-running that tool does not reproduce its committed bytes, which is for session 6b5607fd to explain. |
 | Still open (not blocking) | FL-118 (owner decides which stadium reading the schedule publishes); FL-119 (LA/LAR code, a join key); Week 11 byes (ATL, CLE, GB, LAR, NE, SEA) unverified. |
 
+### 3E-03 record, part 2 (follow-up PR #114)
+
+| Item | Result |
+|---|---|
+| Follow-up PR | [#114](https://github.com/kanlerxz87-cyber/NFL2/pull/114) — fix the duplicate Source column; record PR #111 |
+| Checks before merge | `build-and-audit` (verify site data and links) pass; q51 pass; `mergeStateStatus` CLEAN |
+| Merge | `gh pr merge 114 --merge` at 2026-11-16T18:15:03Z; merge commit `364318c` on `main` |
+| Pages deploy | `GitHub Pages`, `pages build and deployment`, `Verify site data and links`, `build-and-audit`, `Q51` all success on `364318c`; Pages API status `built` |
+| Live check | `fixture-venues.html` serves one Source column (headers end `Cross-check against FL-112 · Source`). A first fetch returned a cached copy with the old column; a cache-busting request showed the corrected page. |
+| Final record | This entry is the last change to `COORDINATION.md` for session `3e77121b`. It is itself a record-only PR, merged under the same gate. |
+
 ### PR, merge and live-deployment record — session `6b5607fd` (2026-11-16)
 
 | Item | Result |
