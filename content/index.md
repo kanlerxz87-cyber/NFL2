@@ -179,7 +179,7 @@ The eighteen depth cascades on this site were checked player by player against t
 | Origination | [Settled Week 10 (graded)](week10-settled.html) | the first result any line here has been scored against: our spread, our total, the archived price and a do-nothing baseline, measured against WAS 24 – NYG 21 |
 | Availability | [Week 10 availability](availability-1113.html) | the 13 November hub read: 296 rows over the whole Week 10 slate, and every unavailable name from a transcribed chart joined to the column it leaves empty |
 | Availability | [Pre-registration lock](preregistration.html) | the first prediction pinned before kickoff: one rule, one threshold, fourteen fixtures, a hash, and the grading tool that fails if the file is touched |
-| Competition | [Strategy registry](strategies.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above |
+| Competition | [Strategy registry](strategies.html) · [Two-sided strategy falsifiers](audits/f05c00f2/index.html) | {{metric strategies}} entries including two negative controls, one of them the locked rule above; every registered strategy also has a separate falsification review, with unverified hypotheses clearly marked |
 | Competition | [Leaderboard & rewards](leaderboard.html) | ranking rules, tiers, reward mechanics, gate-readiness matrix |
 | Competition | [Validation gates](validation-gates.html) | 14 gates, pass criteria, what each one blocks |
 | Data | [Week 10 injury report](injuries.html) | all 254 official rows of the 12 Nov morning read, per-row source links; the hub has since grown to {{metric pr_hub_rows}} rows and the later reads are kept in their own dated files |
