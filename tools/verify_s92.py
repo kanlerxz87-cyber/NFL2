@@ -216,7 +216,9 @@ ok("every CSV is rectangular and non-empty")
 # 10. injury diff arithmetic reproduces --------------------------------------
 inj = read_json("injuries_official.json")
 repo = read_csv("../../data/injuries_2026_wk10.csv") if False else None
-repo_rows = list(csv.DictReader(open(os.path.join(ROOT, "data", "injuries_2026_wk10.csv"), encoding="utf-8"), delimiter="|"))
+# session 8d1069e1: this check reproduces the 12 Nov snapshot diff, so it reads the archived 12 Nov table,
+# byte-identical to the superseded canonical table; the canonical table is now the 16 Nov capture.
+repo_rows = list(csv.DictReader(open(os.path.join(ROOT, "data", "injuries_2026_wk10_superseded_12nov.csv"), encoding="utf-8"), delimiter="|"))
 if len(inj) != 277:
     fail("official injury rows changed: %d (expected 277 at the recorded fetch)" % len(inj))
 if len(repo_rows) != 254:
