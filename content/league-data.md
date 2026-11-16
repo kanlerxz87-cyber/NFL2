@@ -58,3 +58,7 @@ Two of these games are structural exceptions a model must not treat as ordinary,
 | Game log ({{metric games_log}} games) implies the standings table | pass — {{metric games_log_reconciled}} of 32 clubs identical on W-L-T, PF, PA |
 | Every game-log row cites an official game page | pass — {{metric games_log_links}} of {{metric games_log}} |
 | Neutral-site count agrees with the international slate | pass — {{metric games_log_neutral}} games |
+
+## The league's dated schedule announcements (BL-24)
+
+The live schedule above is a current-state table; the league also publishes **dated announcements** when it makes or changes a schedule. Both belong side by side, so a reader can hold a dated league statement against the current page and tell a transcription error from a genuine league move — the exact distinction FL-36 had to draw for two Week 11 broadcasts. The announcement register is published on the [Results Feed page](results-feed.html) beside the verified results it accompanies: the Week 11 Schedule Change article of 9 November 2026, and the league's full 2026 schedule-release announcement. When an announcement and the live page disagree, this project publishes both dates and flags the delta; it never overwrites a transcription that was correct when it was made.

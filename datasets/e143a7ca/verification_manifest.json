@@ -7,8 +7,8 @@
   "portalTableRowsVerified": 326,
   "portalRowsWithOfficialHttpsSource": 326,
   "portalStrictBlankCellsVerified": 293,
-  "wholeRepoHtmlPagesScanned": 82,
-  "wholeRepoInternalLinksVerified": 3243,
+  "wholeRepoHtmlPagesScanned": 86,
+  "wholeRepoInternalLinksVerified": 3620,
   "wholeRepoBrokenLinks": 0,
   "errors": []
 }

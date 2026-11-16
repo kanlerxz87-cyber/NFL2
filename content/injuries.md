@@ -11,9 +11,9 @@
 
 ## Who is not on the report at all — the official Reserve List (captured 16 November 2026)
 
-{{csv data/reserve_list_capture_f3ec0ff8.csv;;cols=date:Date,from_club:Club,player:Player,transaction:Transaction;;source_col=source;;caption=The official November 2026 Reserve List, read in full on 2026-11-16T14:44Z (S-RES-F3EC): 25 dated Reserve/Injured rows, the complete capture that FL-95 records as previously partial. The club abbreviations are the league's own; the Position cell is blank on the official page and stays blank here.}}
+{{csv data/reserve_list_capture_f3ec0ff8.csv;;cols=date:Date,club:Club,player:Player,transaction:Transaction;;source_col=source;;caption=The official November 2026 Reserve List, read in full on 2026-11-16T14:44Z (S-RES-F3EC): 25 dated Reserve/Injured rows, the complete capture that FL-95 records as previously partial. The club abbreviations are the league's own; the Position cell is blank on the official page and stays blank here.}}
 
-A player on this register **cannot play**, yet nine of the eleven placements dated 14 November still appear on the Week 10 report with a game status of Out, and Puka Nacua (Reserve/Injured 12 November) appears without a game status. That systematic disagreement is published as [FL-97](flagged-for-review.html). It is why "not listed on the injury report" has never meant "available" on this site, and why every availability feature must join the transactions register before it reads any designation as a playing probability.
+A player on this register **cannot play**, yet nine of the eleven placements dated 14 November still appear on the Week 10 report with a game status of Out, and Puka Nacua (Reserve/Injured 12 November) appears without a game status. That systematic disagreement is published as [FL-107](flagged-for-review.html), which extends [FL-96](flagged-for-review.html) to the whole class. It is why "not listed on the injury report" has never meant "available" on this site, and why every availability feature must join the transactions register before it reads any designation as a playing probability.
 
 ## First ingest — 12 November 2026, 04:40 UTC (254 rows)
 

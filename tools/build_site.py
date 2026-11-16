@@ -59,8 +59,12 @@ NAV = [
                      ("week10-settled", "Settled Week 10 (graded)"),
                      ("week11-originated", "Week 11 Lines (pre-registered)")]),
     ("Competition", [("strategies", "Strategy Registry"), ("leaderboard", "Leaderboard & Rewards"),
-                     ("validation-gates", "Validation Gates")]),
+                     ("validation-gates", "Validation Gates"),
+                     ("demotion-gates", "Demotion Gates & Falsifiers")]),
     ("Data", [("injuries", "Week 10 Injury Report"), ("injury-lineage", "Injury Read Lineage"),
+              ("reserve-list", "Reserve List & Roster Events"),
+              ("results-feed", "Results Feed (verified)"),
+              ("captures", "Official Capture (retained)"),
               ("depth-impact", "Depth & Deficiencies"),
               ("depth-deficiencies", "Depth Register (all 32 clubs)"),
               ("league-data", "Standings & Schedule"),
@@ -312,6 +316,11 @@ SITE_TREES = [
     ("review", "`01b698ef`", "#9 #11", "as authored", "verification-review dashboard and the 423-row register"),
     ("docs", "`85d79210`", "#4 #5", "superseded", "the earliest category dashboard; kept for provenance"),
     ("archive/session-009ec582", "`009ec582`", "#6 #7", "archived", "first 12-page build, kept intact by request"),
+    ("4e475b8b", "`4e475b8b`", "*this PR*", "current",
+     "fourth dated injury-hub read 2026-11-16T14:44Z: 347 rows reproduced cell for cell against the 15 Nov read, "
+     "deltas against the 13 Nov and 12 Nov reads, the November reserve-list/trades re-read that widens FL-96 to a "
+     "class of ten (FL-104) and finds traded players placed inconsistently (FL-105), and the FL-97..103 promotion of "
+     "the dcf3b0cc flags into the canonical register"),
 ]
 
 
@@ -976,7 +985,7 @@ PAGE_KIND = {
     "correlation": ("design", "Specification"), "bet-types": ("design", "Specification"),
     "skill-vs-luck": ("design", "Specification"), "strategies": ("design", "Specification"),
     "leaderboard": ("design", "Specification"), "validation-gates": ("design", "Specification"),
-    "injuries": ("measured", "Measured data"), "injury-lineage": ("measured", "Measured data"),
+    "injuries": ("measured", "Measured data"), "injury-lineage": ("measured", "Measured data"), "captures": ("measured", "Measured data"),
     "depth-impact": ("measured", "Measured data"),
     "league-data": ("measured", "Measured data"), "data-dictionary": ("measured", "Schema"),
     "methodology": ("program", "Policy"), "sources": ("program", "Register"),
@@ -987,6 +996,9 @@ PAGE_KIND = {
     "preregistration": ("measured", "Computed result"),
     "week11-originated": ("measured", "Computed result"),
     "personnel-relief": ("measured", "Measured data"),
+    "reserve-list": ("measured", "Measured data"),
+    "results-feed": ("measured", "Measured data"),
+    "demotion-gates": ("design", "Specification"),
     "availability-watch": ("measured", "Dated snapshot"),
     "hub-delta": ("measured", "Dated delta"),
     "depth-deficiencies": ("measured", "Measured data"),

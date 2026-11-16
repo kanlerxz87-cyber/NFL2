@@ -14,6 +14,8 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/standings_recheck_20261113.csv` | 32 | independent transcription of the 2026-11-13T12:53Z official read, used by `tools/verify.py` to compare all eight published standings fields against the current table | [NFL.com standings](https://www.nfl.com/standings/) (`S-STAND-653B`) |
 | `data/schedule_2026_wk10.csv` | 14 | game | S-WK10REP |
 | `data/sources.csv` | {{metric sources}} | source | — |
+| `data/capture_manifest.csv` | one row per fetch of an official page (append-only) | fetch — UTC time, URL, HTTP status, bytes, SHA-256, stored file, schema check | S-CAP-7C (nfl.com/injuries/); tool `tools/capture_official.py`, session 7c23f22f |
+| `data/capture_reconciliation_7c23f22f.csv` | one row per captured or repository player (347 + 0 when they agree) | club × player: capture vocabulary, repository vocabulary, match and differing fields; capture SHA-256 and official player link | S-CAP-7C (nfl.com/injuries/, the retained capture) and the repository file data/injuries_wk10_5de1805b_20261115.csv |
 | `data/requirements.csv` / `questions.csv` / `suggestions.csv` / `flags.csv` | {{metric requirements}} / {{metric questions}} / {{metric suggestions}} / {{metric flags}} | register rows; requirements and gate mappings are project design, not NFL facts | S-BRIEF, S-DESIGN, S-REPO |
 | `data/games_2026_wk1_9.csv` | {{metric games_log}} | completed results, weeks 1–9, imported from the parallel session and re-audited here | S-GAMES26 |
 | `data/gates.csv` / `signals.csv` / `strategies.csv` / `correlation.csv` / `leaderboard.csv` | {{metric gates}} / {{metric signals}} / {{metric strategies}} / {{metric correlation}} / 14 | internal design rows and validation rules; thresholds are project policy, not NFL standards | S-DESIGN |
@@ -35,6 +37,15 @@ All files are pipe-delimited CSV with a header row. The generator enforces the f
 | `data/measured_correlations_a392.csv` | 8 | one measured pair (rho or phi) with a seeded bootstrap interval and parlay arithmetic | S-GAMES26 |
 | `data/rest_and_hfa_2026_a392.csv` | 3 | rest bucket × mean home margin, the decomposition behind M-05 | S-GAMES26 |
 | `data/originated_lines_wk10_a392.csv` | 14 | Week 10 fixture × our line, the archived line where one exists, availability load by side | S-GAMES26, S-NFLDATA-ARCHIVE |
+| `data/week10_results_d304c6fe.csv` | 14 | one Week 10 game from the official scores page read 2026-11-16T14:40Z: final score or an explicit not-played status, capture time and the game-centre URL per row | S-D304-SCORES-W10 (per-row game-centre URL) |
+| `data/reserve_list_20261116_d304c6fe.csv` | 60 | one reserve-list transaction row from the official wire (Nov 11/03-11/14 and Oct 10/24-10/31 windows): date, club, player, transaction, capture time | S-D304-RES-NOV, S-D304-RES-OCT |
+| `data/trades_20261116_d304c6fe.csv` | 12 | one November 2026 trade row from the official wire: date, from club, to club, player | S-D304-TRADES-NOV |
+| `data/reserve_coverage_d304c6fe.csv` | 4 | one month of the 2026 league year: what the reserve capture covers, what it does not, and how it was read | S-D304-RES-NOV, S-D304-RES-OCT, S-D304-RESERVE-HUB |
+| `data/stale_depth_d304c6fe.csv` | 8 | one depth or availability claim the official transaction wire proves stale, with the verdict dated from the transaction | S-D304-RES-NOV, S-D304-TRADES-NOV |
+| `data/hub_delta_d304c6fe.csv` | 5 | one named-row delta from the dated 2026-11-16 hub re-read: value now, prior value, prior read time (delta, never level) | S-D304-INJ-16 |
+| `data/schedule_announcement_d304c6fe.csv` | 2 | one league schedule announcement: its date where verified, what it publishes, and its official URL | S-D304-SCHED-CHG, S-D304-SCHED-REL |
+| `data/demotion_gates_d304c6fe.csv` | 6 | one demotion-gate rule (project design): direction, trigger, window, evidence required | S-BRIEF (project design, not NFL facts) |
+| `data/wwcm_d304c6fe.csv` | 15 | one registered strategy with its two-sided falsifier fields (project design) | S-BRIEF (project design, not NFL facts) |
 | `data/games_2026_wk10_played.csv` | 13 | Week 10 game whose result is official. Append-only: the weeks 1–9 backtest corpus is deliberately left byte-identical so no existing grade is re-baselined (S-26). Twelve results appended 2026-11-16T14:41Z; MNF LAC at BAL was not yet played and is not in the file | S-SCORES-1113, S-SCORES-F3EC |
 | `data/settled_wk10_5f16dcc6.csv` | 52 | settled game × predictor: the published line, the official result, and the absolute error of each (13 settled games × 4 predictors) | S-CALC-5F16 |
 | `data/computed_settled_5f16dcc6.csv` | 25 | one derived metric, its value, the method that produced it, and the read (17 W10-01 rows plus the 8-row thirteen-game aggregate added 2026-11-16) | S-CALC-5F16 |
@@ -263,3 +274,20 @@ means an agent fetched the page that day and recorded what it showed, `not re-re
 was not fetched and no claim is made, and `no official source exists` means the league does not
 publish the thing the directive needs. A directive the brief itself rejects carries kind
 `rejected` and status `rejected` so it cannot be re-proposed as open.
+
+## Session `4e475b8b` — fourth dated injury-hub read and transactions re-read (added 16 November 2026)
+
+Three files from the 2026-11-16 read of the official Week 10 injury hub and the league's November
+transactions tabs. They are generated by `4e475b8b/build.py` and `4e475b8b/build_transactions.py`
+from verbatim fetch chunks stored in `4e475b8b/raw/`, rendered on `4e475b8b/index.html`, and
+verified by `tools/verify_flags_4e475b8b.py`.
+
+| File | Rows | Grain | Source |
+| --- | --- | --- | --- |
+| `data/injuries_wk10_4e475b8b_20261116.csv` | 347 | one player-filing on the official Week 10 hub across all 28 listed clubs and 14 games, transcribed from the live page at 2026-11-16T14:44Z by session 4e475b8b — the fourth dated read of the series | [NFL injury hub](https://www.nfl.com/injuries/) |
+| `data/reverification_4e475b8b_20261116.csv` | 694 | one row of a prior dated read compared with the live page: 347 rows against the 15 November 12:55Z read (all identical) and 347 against the 13 November read (102 identical, 194 differing, 51 only on the page) | [NFL injury hub](https://www.nfl.com/injuries/) |
+| `data/transactions_read_4e475b8b_20261116.csv` | 37 | one Reserve/Injured placement (25) or trade (12) on the league's November 2026 transactions tabs, read 2026-11-16T14:46Z, joined against the injury register (FL-107, FL-108) | [Reserve list](https://www.nfl.com/transactions/league/reserve-list/2026/11), [Trades](https://www.nfl.com/transactions/league/trades/2026/11) |
+
+`practice` holds F/L/D and `status` holds OUT/Q/D as in the 5de1805b register (FL-92). The four
+rows the fetch tool split across chunk boundaries are spliced positionally and asserted in
+`4e475b8b/build.py`; unknown vocabulary or a row-count change fails the build loudly.
