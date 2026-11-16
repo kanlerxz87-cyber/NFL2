@@ -4509,13 +4509,13 @@ them. Nothing from either PR is taken over or discarded.
 
 | ID | Task | Backlog line | Status | Owner | File scope (all new, disjoint) |
 |---|---|---|---|---|---|
-| A1 | Board claim, repo/branch state review, stale-PR triage | — | in progress | `0a28b225` | this section of `COORDINATION.md` only |
-| A2 | Fixture-context feature set built **only** from published schedule facts (rest, bye-return, divisional, kickoff window, body-clock, travel, short week) | BL-14 | in progress | `0a28b225` | `data/fixture_context_0a28b225.csv`, `tools/build_0a28b225.py` |
-| A3 | Stadium / venue profile register: roof class, playing surface, venue — one row per home club, each row citing the official page it was read from | BL-59 | in progress | `0a28b225` | `data/stadium_profile_0a28b225.csv` |
-| A4 | 2026 kickoff and declared-onside-kick regime priors, verified on `operations.nfl.com` | BL-69 | in progress | `0a28b225` | `data/kickoff_regime_0a28b225.csv` |
-| A5 | Weekly "what changed" diff register (rank / rating / availability change per club, week over week) | BL-62 | in progress | `0a28b225` | `data/weekly_diff_0a28b225.csv` |
-| A6 | Site pages for A2–A5 + integration into nav, page map, data dictionary | — | in progress | `0a28b225` | `content/fixture-context.md`, `content/venue-weather.md`, `content/kickoff-regime.md`, `content/weekly-diff.md` + generated HTML; **shared-file edits** (logged below): `tools/build_site.py` (NAV + PAGE_KIND), `content/index.md`, `content/data-dictionary.md`, `data/sources.csv` (append), `data/flags.csv` (append), `data/brief_backlog_58e9c708.csv` (status cells only) |
-| A7 | Full verifier suite on the integrated tree, PR → merge → Pages confirm | integration | pending | `0a28b225` | generated HTML, `data/build_manifest.json`, this section |
+| A1 | Board claim, repo/branch state review, stale-PR triage | — | **done** | `0a28b225` | this section of `COORDINATION.md` only |
+| A2 | Fixture-context feature set built **only** from published schedule facts (rest, bye-return, divisional, kickoff window, body-clock, travel, short week) | BL-14 | **done** | `0a28b225` | `data/fixture_context_0a28b225.csv`, `tools/build_0a28b225.py` |
+| A3 | Stadium / venue profile register: roof class, playing surface, venue. **Venue half done and kept as a cross-check of session `3e77121b`'s read; page withdrawn as a duplicate of `fixture-venues.html`. Roof/surface half not done — no official row-level source was reachable (NWS unreachable from this sandbox); the flag ships as FL-130's sibling** | BL-59 | **partial** | `0a28b225` | `data/stadium_profile_0a28b225.csv` |
+| A4 | 2026 kickoff and declared-onside-kick regime priors, verified on `operations.nfl.com` | BL-69 | **done** | `0a28b225` | `data/kickoff_regime_0a28b225.csv` |
+| A5 | Weekly "what changed" diff register (rank / rating / availability change per club, week over week) — **published from two dated official reads; rating and availability-change columns refuse; not yet a stored weekly series** | BL-62 | **partial** | `0a28b225` | `data/weekly_diff_0a28b225.csv` |
+| A6 | Site pages for A2–A5 + integration into nav, page map, data dictionary. **`content/venue-weather.md` never created** — `content/venue-register.md` was built then deleted as a duplicate | — | **done** | `0a28b225` | `content/fixture-context.md`, `content/venue-weather.md`, `content/kickoff-regime.md`, `content/weekly-diff.md` + generated HTML; **shared-file edits** (logged below): `tools/build_site.py` (NAV + PAGE_KIND), `content/index.md`, `content/data-dictionary.md`, `data/sources.csv` (append), `data/flags.csv` (append), `data/brief_backlog_58e9c708.csv` (status cells only) |
+| A7 | Full verifier suite on the integrated tree, PR → merge → Pages confirm | integration | **done** | `0a28b225` | generated HTML, `data/build_manifest.json`, this section |
 
 ### Files this session will NOT touch
 
@@ -4641,7 +4641,38 @@ did not play in the window at all.
 
 ### PR, merge and live-deployment record — session `0a28b225`
 
-_recorded after merge_
+**PR:** [#120](https://github.com/kanlerxz87-cyber/NFL2/pull/120) — "Fixture context, 2026 kickoff regime,
+weekly what-changed diff (BL-14/69/62); venue read kept as a cross-check (FL-130)".
+Opened from `arena/0a28b225-nfl2` to `main` at 18:38Z with all CI checks green and `MERGEABLE / CLEAN`.
+
+**Merge:** `gh pr merge 120 --merge` at **2026-11-16T18:42:54Z** → merge commit
+`623859e8ea13563103a331e92e33a46601b1db95`, state **MERGED**, no approval requested (per the brief).
+
+**Live deployment:** `pages build and deployment` run
+[43931728695](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43931728695) — **success**, 17s,
+built from `623859e8` (the merge commit). `gh api .../pages` → `status: built`,
+`html_url: https://kanlerxz87-cyber.github.io/NFL2/`, source `main / `/` .
+`gh api .../pages/builds/latest` → `status: built`, `commit: 623859e8`. Live:
+
+| Page | URL |
+| --- | --- |
+| Fixture context | https://kanlerxz87-cyber.github.io/NFL2/fixture-context.html |
+| Kickoff regime 2026 | https://kanlerxz87-cyber.github.io/NFL2/kickoff-regime.html |
+| Weekly what-changed diff | https://kanlerxz87-cyber.github.io/NFL2/weekly-diff.html |
+
+**Caveat on the confirmation:** the sandbox this session runs in has egress to `github.com` /
+`api.github.com` only, so `pages.github.io` could not be fetched directly to eyeball the rendered pages.
+The deployment is confirmed through the GitHub Pages API (`status: built` on the merge commit) plus the
+pre-merge link check (`engine/verify_repo_and_site.py` **0 broken across 4,364 internal links**) and
+`audit_all_pages` (**137 HTML / 405 tables / 10,998 rows / 100% row-sourced / 0 broken**) — not by an
+outbound `curl` of the live host. Anyone with unrestricted egress should spot-check the three URLs above;
+if any of them 404s while the API says `built`, that is a Pages routing issue and the retry loop in the
+brief applies.
+
+**Final state of the backlog line:** BL-14 and BL-69 **done**; BL-62 **partial** (published, series
+storage still open); BL-59 **partial** (venue half done, weather half blocked on NWS access).
+Backlog register `data/brief_backlog_58e9c708.csv` rebuilt: **28 not started / 27 partial / 11 done**.
+
 
 ### Integration merge of `origin/main` (`6125236`, 2026-11-16 ~19:10Z) — session `0a28b225`
 
