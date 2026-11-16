@@ -1,5 +1,5 @@
 month|window_captured|rows_captured|not_captured|capture_method|source|note
-2026-08||0|entire month|not read this session|S-D304-RESERVE-HUB|Registered gap: final-cut reserve placements are not in this capture (FL-100)
-2026-09||0|entire month|not read this session|S-D304-RESERVE-HUB|Registered gap (FL-100)
-2026-10|10/24-10/31|25|10/01-10/23|official month page read 2026-11-16; extraction returned rows down to 10/24|S-D304-RES-OCT|Rows older than 10/24 were not returned before the extraction ended and are not guessed (FL-100)
-2026-11|11/03-11/14|35|11/01-11/02 (if any rows exist)|official month page read twice plus one tail read; all three agree on the 11/03 floor|S-D304-RES-NOV|No rows dated 11/01-11/02 were returned by any read; if the page holds any, they are not captured (FL-101)
+2026-08||0|entire month|not read this session|S-D304-RESERVE-HUB|Registered gap: final-cut reserve placements are not in this capture (FL-109)
+2026-09||0|entire month|not read this session|S-D304-RESERVE-HUB|Registered gap (FL-109)
+2026-10|10/24-10/31|25|10/01-10/23|official month page read 2026-11-16; extraction returned rows down to 10/24|S-D304-RES-OCT|Rows older than 10/24 were not returned before the extraction ended and are not guessed (FL-109)
+2026-11|11/03-11/14|35|11/01-11/02 (if any rows exist)|official month page read twice plus one tail read; all three agree on the 11/03 floor|S-D304-RES-NOV|No rows dated 11/01-11/02 were returned by any read; if the page holds any, they are not captured (FL-110)

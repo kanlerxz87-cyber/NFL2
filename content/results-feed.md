@@ -15,7 +15,7 @@ The corpus rule stands: weeks 1–9 (136 games) remain the frozen backtest corpu
 
 ## The league's dated schedule announcements (BL-24)
 
-{{csv data/schedule_announcement_d304c6fe.csv;;cols=id:ID,date:Date,announcement:Announcement,publishes:Publishes,url:Official page,note:Note;;source=S-D304-SCHED-CHG;;caption=Published beside the live schedule so a reader can hold the league's dated announcement against the current page (the [standings & schedule page](league-data.html) carries the live slate). The Week 11 change article of 9 November is the dated evidence FL-36 reconciled: the league moved two broadcasts between 9 and 13 November, which is why a faithful transcription can disagree with the live page without either being wrong. The full schedule-release article is registered with its URL; its publication date was not verified in this session and is left blank (FL-102).}}
+{{csv data/schedule_announcement_d304c6fe.csv;;cols=id:ID,date:Date,announcement:Announcement,publishes:Publishes,url:Official page,note:Note;;source=S-D304-SCHED-CHG;;caption=Published beside the live schedule so a reader can hold the league's dated announcement against the current page (the [standings & schedule page](league-data.html) carries the live slate). The Week 11 change article of 9 November is the dated evidence FL-36 reconciled: the league moved two broadcasts between 9 and 13 November, which is why a faithful transcription can disagree with the live page without either being wrong. The full schedule-release article is registered with its URL; its publication date was not verified in this session and is left blank (FL-111).}}
 
 ## Capture discipline
 
