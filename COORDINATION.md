@@ -4480,8 +4480,9 @@ Registered in `data/sources.csv` as S-DBCC-HUB, S-DBCC-SCHED, S-DBCC-SCHED-REL a
 
 | Item | Result |
 |---|---|
-| PR | _recorded after merge_ |
-| Pre-merge CI | _recorded after merge_ |
-| Merge | _recorded after merge_ |
-| Post-merge CI / Pages | _recorded after merge_ |
->>>>>>> 2e5046a (session dbccb97d: sixth dated hub read (347 rows, zero drift), Week 11 venues from official game centres, FL-120 (venue naming cited as FL-118), dashboard + CI)
+| PR | **#118** — `https://github.com/kanlerxz87-cyber/NFL2/pull/118` (head `arena/dbccb97d-nfl2`) |
+| Pre-merge CI | all five workflows **pass** on the final head: build-and-verify, verify, audit, q51, and the session's own `dbccb97d dated captures` workflow |
+| Merge | **MERGED** 2026-11-16T18:31:13Z, squash-free merge commit `7fe89a9` (`Merge pull request #118`) |
+| Post-merge CI | `Verify site data and links` (43930166627) **success**; `dbccb97d dated captures` (43930165684) **success**; `build-and-audit` (43930165306) **success**; `Q51 evidence and engine verification` (43930165484) **success** |
+| GitHub Pages | **Deployed and live**: `https://kanlerxz87-cyber.github.io/NFL2/` — source `main`, status `built`; the `dbccb97d/` tree (index, venues, hub-delta, reverification, flagged + assets) is served from commit `88e4932` (verified via the repository contents API after the deploy) |
+| Note | The PR needed four rebases (PRs #112, #114, #115, #116 landed while it was open) plus two flag renumbers (my Kyler Murray sighting: FL-116 → FL-120 → FL-121 → **FL-129**) because `main` advanced between each push. All conflicts were union-merged without discarding any session's content; the `6eeab460` block's own FL-121 references were restored after an over-broad renumber. |
