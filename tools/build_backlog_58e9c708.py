@@ -188,7 +188,7 @@ ITEMS = [
      "All 32 clubs present in the roster and reserve read for the week, with any club that cannot be read named rather than assumed empty",
      RESERVE, READ,
      "data/reserve_list_20261116_d304c6fe.csv, data/reserve_coverage_d304c6fe.csv",
-     "IR sweep started 2026-11-16: 60 official wire rows captured for two windows (Nov 11/03-11/14, Oct 10/24-10/31). August, September and 10/01-10/23 are not captured (FL-97); no team-level model may treat the sweep as complete."),
+     "IR sweep started 2026-11-16: 60 official wire rows captured for two windows (Nov 11/03-11/14, Oct 10/24-10/31). August, September and 10/01-10/23 are not captured (FL-100); no team-level model may treat the sweep as complete."),
 
     ("", "Add a fixture-context feature set built only from published schedule facts",
      "Origination", "backlog", "not started", "G-01, G-03",
@@ -265,7 +265,7 @@ ITEMS = [
      "The dated announcement the league published, shown beside the live schedule it produced, with both dates visible",
      SCHED, NOTREAD,
      "data/schedule_announcement_d304c6fe.csv, content/results-feed.md, content/league-data.md",
-     "Published 2026-11-16 beside the live schedule: the Week 11 Schedule Change article of 2026-11-09 (the dated evidence FL-36 reconciled) and the league's full 2026 schedule-release announcement (publication date left blank, FL-99)."),
+     "Published 2026-11-16 beside the live schedule: the Week 11 Schedule Change article of 2026-11-09 (the dated evidence FL-36 reconciled) and the league's full 2026 schedule-release announcement (publication date left blank, FL-102)."),
 
     ("", "Use official NFL Game Books for actual starters and game-day status; do not infer depth rank or snaps",
      "Availability", "backlog", "not started", "G-02, G-03",
@@ -552,7 +552,7 @@ ITEMS = [
      "The official reserve list captured per week so a player absent from the injury report can be marked on reserve rather than healthy",
      RESERVE, READ,
      "data/reserve_list_20261116_d304c6fe.csv, data/reserve_coverage_d304c6fe.csv",
-     "Reserve list captured 2026-11-16 from the official transactions wire as a first-class dated dataset (60 rows: Nov 11/03-11/14 and Oct 10/24-10/31). Malik Willis (MIA 11/10) confirmed on reserve - the case the brief names. Season-wide sweep remains partial (FL-97)."),
+     "Reserve list captured 2026-11-16 from the official transactions wire as a first-class dated dataset (60 rows: Nov 11/03-11/14 and Oct 10/24-10/31). Malik Willis (MIA 11/10) confirmed on reserve - the case the brief names. Season-wide sweep remains partial (FL-100)."),
 
     ("SG-03", "Reject: ranking strategies by season-long ROI",
      "Rejected", "rejected", "rejected", "—",

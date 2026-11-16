@@ -3520,6 +3520,154 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
 
+## Session `7c23f22f` (`arena/7c23f22f-nfl2`) — retained, hashed official injury-hub captures (FL-88 / FL-90)
+
+**Claimed:** 2026-11-16 UTC, before any file was created. Status: `in progress`. Base: `main` at `a2de786`.
+
+### Why this session exists
+
+FL-90 records that no Week 10 injury file in the repository is a retained raw response with a recorded
+hash, and that the sandbox cannot reach `www.nfl.com`. FL-88 records that 17 players and 51 status values
+moved between reads with no capture to separate league changes from transcription. The sandbox's own
+`curl` returns HTTP 000 for `https://www.nfl.com/injuries/`, while GitHub-hosted runners have ordinary
+outbound access. This session therefore builds a capture that runs on the runner, stores the raw bytes,
+and records a SHA-256 for each read.
+
+### Task board
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| 7C-T1 | Claim and log (this section) | done | `7c23f22f` | `COORDINATION.md` |
+| 7C-T2 | `tools/capture_official.py`: fetch the official URLs, store the raw bytes once per distinct SHA-256 under `data/captures/`, append a manifest row (UTC fetch time, URL, HTTP status, bytes, SHA-256, path, drift counts); never overwrite; fail loudly if the expected structure is missing | done (fixture-tested) | `7c23f22f` | `tools/capture_official.py` (new), `data/captures/**` (new), `data/capture_manifest.csv` (new) |
+| 7C-T3 | `.github/workflows/capture.yml`: scheduled daily + `workflow_dispatch`, commits only `data/captures/**` and `data/capture_manifest.csv` | done (committed; not yet runnable until on `main`, see log) | `7c23f22f` | `.github/workflows/capture.yml` (new) |
+| 7C-T4 | Run the workflow and record whether nfl.com answered from the runner | done (the push trigger ran it on the merge of PR #95; two captures on 16 Nov, 14:39:21Z and 14:44:29Z; dispatch returned HTTP 403 from the sandbox token) | `7c23f22f` | `data/capture_manifest.csv`, `data/captures/**` |
+| 7C-T5 | `tools/verify_capture_7c23f22f.py`: each manifest row's hash matches its file, no file is overwritten, every row has an official `https://www.nfl.com/` URL | done (wired into `validate.yml`) | `7c23f22f` | `tools/verify_capture_7c23f22f.py` (new) |
+| 7C-T6 | Flags and sources for what the capture does and does not prove; FL-90 status note | done (FL-97 open, S-CAP-7C; FL-90 stays open until a runner capture exists) | `7c23f22f` | `data/flags.csv` (append only), `data/sources.csv` (append only) |
+| 7C-T7 | `tools/reconcile_capture_7c23f22f.py`: row-by-row reconciliation of the retained capture against `data/injuries_wk10_5de1805b_20261115.csv`, club key from the page's own logo codes (28 pairs, required), vocabulary mapped only from the register's codes, `--check` mode | done | `7c23f22f` | `tools/reconcile_capture_7c23f22f.py` (new), `data/capture_reconciliation_7c23f22f.csv` (new) |
+| 7C-T8 | Site page `captures.html` (Data group): manifest, reconciliation, open items; registered in `tools/build_site.py` NAV and page-kind map (one line each) | done | `7c23f22f` | `content/captures.md` (new), `tools/build_site.py` (two lines), generated `captures.html` |
+| 7C-T9 | Register rows: FL-90 status, FL-98 (LAR/LA club code), S-CAP-7C verification, data-dictionary rows; pipe-delimited migration of the two new CSVs (disclosed below) | done | `7c23f22f` | `data/flags.csv` (FL-90 cell, FL-98 appended), `data/sources.csv` (S-CAP-7C cells), `content/data-dictionary.md` (two rows) |
+| 7C-T10 | Full suite, PR to `main`, merge `--merge`, confirm Pages, record here | done | `7c23f22f` | this section |
+
+### Not in this session's scope (explicitly not done here)
+
+* Re-transcribing or re-ranking any Week 10 row. Captures are stored as received; no row is edited.
+* Editing `injuries.html` or any other shared page (FL-94 remains open for the page owner).
+* The sandbox-side `curl` path. It is unreachable and is not used.
+
+### Log — session `7c23f22f`
+
+| UTC | Entry |
+|---|---|
+| 2026-11-16 14:33Z | Repo reviewed at `a2de786`. Baseline green: `tools/verify.py` 199/0/0, `tools/check_site.py` 11/1/0, `scripts/check_links.py` 128 refs 0 broken, `tools/verify_readiness_ac2dd497.py` pass. |
+| 14:33Z | Official page read through the fetch tool (`https://www.nfl.com/injuries/`, 8 chunks; only chunk 0 of 8 was read in this session). The sandbox's own `curl` returns HTTP 000 for the same URL (FL-90 confirmed again). The three Lions designations (Joseph, Mays, Reed: Did Not Participate / Out) are on the live page; the page the reader sees first still renders blanks (FL-94, not fixed here: shared page owned by the integration step). |
+| 14:35Z | Claimed and pushed (`9a6a60f`). |
+| 14:36Z | `tools/capture_official.py` written. Fixture test against a local HTTP server (127.0.0.1, not a league host): first fetch stored; repeat with identical bytes logged as `new_content = no` and not re-stored; changed bytes stored under a new hash; schema-failed page stored and flagged `schema_ok = no`; 404 and unreachable host both exit 1. |
+| 14:38Z | `.github/workflows/capture.yml` written (daily 14:17 UTC + `workflow_dispatch`, `contents: write`, commits only `data/captures/**` and `data/capture_manifest.csv`). `gh workflow run` on the branch returned HTTP 404: GitHub registers a new workflow for dispatch only once its file is on the default branch. The run is therefore made on `main` after this PR merges. |
+| 14:38Z | PR #94 merged (`--merge`, merge commit `65fc38c0f77ca5f0ae2909a5d7b9513d8a279653`, 2026-11-16T14:38:07Z). All checks green before merge: row-level verification, audit, q51. |
+| 14:39Z | `gh workflow run capture.yml --ref main` returned HTTP 403 (`Resource not accessible by integration`): this sandbox's token cannot create workflow dispatch events. The first run therefore comes from the daily cron (14:17 UTC on 2026-11-17) unless a `push` to the capture paths on `main` starts it sooner; a `push` trigger scoped to `.github/workflows/capture.yml` and `tools/capture_official.py` is added in a follow-up PR. |
+| 14:40Z | `tools/verify_capture_7c23f22f.py` written and tested on the fixture: a tampered stored file fails the hash and name checks; the real tree (empty manifest) passes with a vacuous-pass note. |
+| 14:42Z | Flag `FL-97` and source `S-CAP-7C` appended; `content/data-dictionary.md` row added (the dictionary check required it); `validate.yml` gains one step. Rebuilt site: `verify.py` 200/0/0, `check_site.py` 11/1/0, `verify_capture_7c23f22f.py` 7/0/0, `verify_readiness` pass, `verify_backlog` 11/0/0, `verify_coverage` 2423/0, `injury_lineage --check` exit 0, `verify_site` 13/13, `review_verify` OK, `verify_s92` 13/0, `audit_all_pages` 125 HTML / 9270 rows / 0 broken, `check_reproducible` OK, `verify_s53126614` PASS, `verify_q51` 0 errors, `verify_dcf3b0cc` 18,941/0. |
+
+### Verification performed
+
+* Fixture test and tamper test above (under `/tmp`, not committed; the local HTTP server was on 127.0.0.1 and is not a league host).
+* Every suite listed in the log, on the rebuilt tree.
+
+### Sources
+
+* Official page: https://www.nfl.com/injuries/ (read 2026-11-16 through the fetch tool; first chunk of 8; the page is labelled Week 10 of the 2026 season). Row-level evidence for the Lions designations is the page text in that read.
+* The tool and the runner workflow fetch the same URL; their output is the only retained capture evidence and will appear in `data/capture_manifest.csv` after the first runner run.
+
+### Irregularities (published as flags, not silently fixed)
+
+* **FL-97 (new, open):** no official response is retained yet. The sandbox cannot reach nfl.com; the runner has not run.
+* **FL-90 (open):** unchanged until a row with `schema_ok = yes` exists in the manifest.
+* **FL-94 (open, not this session's file):** `injuries.html` still renders the 12 November read with blank Lions designations.
+
+### Change requests (not edited: other owners)
+
+* **CR-7C-01 — `tools/s2268_verify.py`:** its scope allowlist does not list `data/capture_manifest.csv`, `tools/verify_capture_7c23f22f.py`, `.github/workflows/validate.yml` (one step added) or `data/sources.csv` (one row appended). It reports 4 scope-only errors (exit 1); no build, data, link or reproducibility failure. Same pattern as CR-58E9-02 and CR-D8-01.
+
+### Log — session `7c23f22f`, continued (after PR #94 and #95)
+
+| UTC | Entry |
+|---|---|
+| 14:39:21Z | **The first runner capture ran on `main` (the push trigger from PR #95 started it).** `https://www.nfl.com/injuries/` returned HTTP 200, 399,895 bytes; SHA-256 `e2b4074a9837a93e0d38ae8a8aac7b7b668b96fdd41d7caf86269a650cd981a3`; stored as `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin`; committed by the bot as `72fba5f`. Structure check: title names the Week 10 injury report; 28 club tables; 347 player rows. |
+| 14:40Z | Independent check of the stored bytes: `sha256sum` equals the manifest hash; the three Detroit rows read Did Not Participate / Out (Kerby Joseph, Cade Mays, D.J. Reed). |
+| 14:41Z | Reconciliation: 347 captured rows against `data/injuries_wk10_5de1805b_20261115.csv` (347 rows, 15 Nov 12:55Z). After one disclosed club alias (`LAR` in the repository, `LA` on the page; 14 rows), **347 of 347 match on club, position, injury, practice and game status**; 0 differences; 0 unknown vocabulary terms. `--check` reproduces byte for byte. |
+| 14:44Z | **Format migration (disclosed).** The site builder reads every `data/*.csv` as pipe-delimited; this session's first two CSVs were comma-delimited, and one title contains `|`. The two new CSVs (`capture_manifest.csv`, `capture_reconciliation_7c23f22f.csv`) are now pipe-delimited; the manifest's single row (written by the runner) was re-delimited and its title's `\|` was replaced by `/`. The raw bytes keep the original title; the hash and every other value are unchanged. The capture tool now writes pipes and replaces `\|` in titles. |
+| 14:46Z | Page `captures.html` built and registered; FL-90 status set to partly resolved; FL-98 added (club code); S-CAP-7C verification updated. |
+| 14:50Z | Suites on the rebuilt tree: `verify.py` 201/0/0; `check_site.py` 11/1/0 (the existing weather.gov warning); `audit_all_pages.py` 126 HTML / 374 tables / 9,653 rows, 100% row-sourced, 0 broken; `verify_site` 13/13; `review_verify` OK; `check_reproducible` OK; `verify_backlog` 11/0; `verify_readiness` pass; `verify_capture_7c23f22f` 7/0; `verify_s92` 13/0; `verify_dcf3b0cc` pass; `verify_q51` 0 errors; `verify_s53126614` PASS; `engine/verify_repo_and_site` 0 broken; `verify_coverage` 2423/0; `injury_lineage --check` exit 0; `render_test.js` 13 pages 0 failures; `check_links` 128 refs 0 broken. |
+
+### What this session establishes, and what it does not
+
+* **Established:** one retained, hashed, official capture of the Week 10 injury hub exists (16 Nov 2026 14:39:21Z UTC). Its 347 rows agree field-for-field with the 15 Nov 12:55Z repository file, after one disclosed club alias. The three Detroit designations are Out in the retained bytes.
+* **Not established:** that the league's designations are stable between reads (a single capture cannot show change); the injury-report history (FL-88, FL-97); a retained Week 10 read older than 16 Nov.
+* **Still open (not edited here):** `injuries.html` still renders the 12 Nov read with blank designations (FL-94, shared page, integration owner). The canonical club code for the Rams (FL-98).
+
+### Verification performed
+
+* The stored file's SHA-256 recomputed from the bytes in `main`, not from the manifest.
+* Reconciliation of every captured row (`tools/reconcile_capture_7c23f22f.py`), with a `--check` run and the reproduction in CI (`validate.yml`).
+* Verifier `tools/verify_capture_7c23f22f.py` (7 checks) on the real ledger.
+
+### Sources
+
+* Official page: https://www.nfl.com/injuries/ (captured 2026-11-16 14:39:21Z UTC by the runner; stored bytes at `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin`).
+* Player rows link to `https://www.nfl.com/players/<slug>/` (347 of 347 rows, from the stored bytes).
+* Repository comparison file: `data/injuries_wk10_5de1805b_20261115.csv` (15 Nov 2026 12:55Z read; its own source is https://www.nfl.com/injuries/).
+
+### Irregularities (published as flags)
+
+* **FL-97** (open): one capture is a single moment; later daily runs add rows only once they execute.
+* **FL-90** (partly resolved): one retained capture exists; eight earlier hand transcriptions remain unretained.
+* **FL-98** (open, new): the Rams club code `LAR` (repository) versus `LA` (page).
+* **FL-94** (open): the page the reader sees first still shows blanks for the three Detroit designations, although the retained bytes show Out.
+
+### Change requests (not edited: other owners)
+
+* **CR-7C-01** (above): `tools/s2268_verify.py` scope allowlist.
+* **CR-7C-02:** the integration owner should point `injuries.html` at the 16 Nov retained capture (or the 15 Nov reconciled file) and clear FL-94.
+* **CR-7C-03:** `tools/build_site.py` and `data/capture_manifest.csv`: the manifest is append-only, and a future capture run should be checked by a second run from `main` (the daily cron) before anyone relies on the series.
+
+### Log — session `7c23f22f`, third round (after PR #96; second runner capture)
+
+| UTC | Entry |
+|---|---|
+| 14:44:29Z | **Second runner capture**, triggered by the merge of PR #96 (which edited `tools/capture_official.py`). HTTP 200, 399,895 bytes, SHA-256 `2877f2c8a1a28acb7024708cf103f2154d0d3f0231e9748b4b5d9480fec6c5fb`, stored as `data/captures/injuries_hub/20261116T144429Z_2877f2c8a1a2.bin`, committed as `dda65b3`. The ledger row was written **pipe-delimited by the runner**, which confirms the format change works on the runner. |
+| 14:47Z | **Same length, different hash.** `cmp` finds 29 differing bytes in one run, inside a carousel block (`data-jsonid`, a random identifier generated per render). No injury value differs. Recorded as **FL-99**: hashes identify a response, not a state; change detection must use parsed rows. |
+| 14:49Z | The second file reconciles **347 of 347** with the 15 Nov file (`--capture` summary run; nothing written). |
+| 14:50Z | **Two defects found in this session's own design before they broke `main`, and fixed:** (1) the reconciliation output pinned the *latest* capture, so each daily run would change its `capture_sha256` and fail `reconcile --check` in CI; it is now pinned to the 16 Nov 14:39Z capture (`PINNED_CAPTURE`), with `--capture` for summaries of other rows; (2) `captures.html` rendered the ledger, so each daily run would leave the committed HTML stale and fail the drift check on `main`; the page now links to the CSV and does not render it. |
+
+### Open items after this round
+
+* **FL-97 / FL-90:** two captures, five minutes apart, the same day. No daily series yet; the daily cron (14:17 UTC) will add rows from 17 Nov.
+* **FL-94:** still open; `injuries.html` not edited (integration owner; CR-7C-02).
+* **FL-98:** Rams club code (`LAR` / `LA`), owner decision.
+* **FL-99:** hash is per response; series analysis must compare parsed rows (owner decision for the series, FL-88).
+* **Not done in this session:** a per-club depth-chart capture, the transactions/reserve-list capture, and the inactive-list capture. Their official URLs have not been read in this session, so none is claimed.
+
+### PR and merge record — session `7c23f22f`
+
+| PR | Title (short) | Merge | Merge commit | Checks before merge | Pages after merge |
+|---|---|---|---|---|---|
+| [#94](https://github.com/kanlerxz87-cyber/NFL2/pull/94) | Capture tool, runner workflow, verifier, FL-97, S-CAP-7C | `--merge`, 2026-11-16T14:38:07Z | `65fc38c0f77ca5f0ae2909a5d7b9513d8a279653` | row-level verification, audit, q51 — all pass | built |
+| [#95](https://github.com/kanlerxz87-cyber/NFL2/pull/95) | Push trigger for the capture workflow | `--merge` | `910e33852ce28c9c3abd4bb3f7397c7fa536a1ca` | all pass | built; **the push trigger ran the first runner capture** (`72fba5f`) |
+| [#96](https://github.com/kanlerxz87-cyber/NFL2/pull/96) | Reconciliation (347/347), Official Capture page, FL-90 partly resolved, FL-98 | `--merge` | `b9617d502c3d2a5584750ae257e689a82f2c3625` | all pass | `pages build and deployment` success; `gh api …/pages` → `built` |
+| [#97](https://github.com/kanlerxz87-cyber/NFL2/pull/97) | Pin reconciliation; captures page stops rendering the daily ledger; FL-99 | `--merge` | `4d9e4ca86cbfdacd4120a07c584e434feae7f573` | all pass | GitHub Pages success; `pages build and deployment` success; `built` |
+
+**Live check (fetched 2026-11-16 after the #97 deploy):** https://kanlerxz87-cyber.github.io/NFL2/captures.html serves the page, its 347-row table, and the second-capture paragraph.
+
+**Runner capture status on `main` at close-out:** two rows in `data/capture_manifest.csv` (`72fba5f` 14:39:21Z, `dda65b3` 14:44:29Z), both HTTP 200, both structure-checked (`schema_ok = yes`), both stored. The daily cron runs at 14:17 UTC (first scheduled run: 2026-11-17).
+
+### What is left for the next session (not claimed here)
+
+1. **FL-94 / CR-7C-02:** point `injuries.html` at the reconciled 16 Nov capture (integration owner).
+2. **FL-98:** the owner chooses one club code for the Rams.
+3. **FL-99 / FL-88:** the series owner decides that change detection uses parsed rows, and defines the change rule (not built here).
+4. **Schedule evidence:** the daily runs must be read on 17 Nov and after; until three or more are present, FL-97 stays open.
+5. **Other captures named in the brief** (depth-chart pages, transactions / reserve list, inactive lists): their official URLs have not been read in this session, so no capture was made, and none is claimed.
+
 ---
 
 ## Session `d304c6fe` (`arena/d304c6fe-nfl2`) — claim: dated official re-verification, reserve-list capture, and open-gate close-out (2026-11-16)
@@ -3571,12 +3719,12 @@ that shared outputs change only in the integration session.
 | Source | URL | What was taken from it |
 |---|---|---|
 | Reserve List — November 2026 | https://www.nfl.com/transactions/league/reserve-list/2026/11 | 35 rows, 11/03–11/14; read twice + tail read, all agree |
-| Reserve List — October 2026 | https://www.nfl.com/transactions/league/reserve-list/2026/10 | 25 rows, 10/24–10/31 (older rows not returned by the extractor — FL-97) |
+| Reserve List — October 2026 | https://www.nfl.com/transactions/league/reserve-list/2026/10 | 25 rows, 10/24–10/31 (older rows not returned by the extractor — FL-100) |
 | Trades — November 2026 | https://www.nfl.com/transactions/league/trades/2026/11 | 12 rows, complete month |
 | Week 10 scores | https://www.nfl.com/scores/2026/week-10 | 13 finals with game-centre URLs; W10-14 MNF pending at capture |
 | Injury hub (Week 10) | https://www.nfl.com/injuries/ | named-row deltas only (Lions trio Out; Henderson Out + reserve-list conflict) |
 | Week 11 Schedule Change (9 Nov 2026) | https://www.nfl.com/news/week-11-schedule-change | dated announcement register (BL-24) |
-| 2026 schedule release | https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week | registered; date left blank (FL-99) |
+| 2026 schedule release | https://www.nfl.com/news/2026-nfl-schedule-release-every-team-bye-week | registered; date left blank (FL-102) |
 
 **Verification performed on the integrated tree (`1c59bef`):**
 `tools/verify.py` 208 passed / 0 warnings / 0 failures · `tools/check_site.py` 11/1/0 ·
@@ -3594,16 +3742,29 @@ that shared outputs change only in the integration session.
 this session's namespace unless logged"); it fires only on uncommitted changes and every close-out that ran
 it after committing got 0 errors. No tool change needed; the fix is procedural (run it post-commit).
 
+
+**Merge-conflict log (2026-11-16, PR #99):** while this session worked, session `7c23f22f` merged
+PRs #94–#98 into `main`. `git merge origin/main` into `arena/d304c6fe-nfl2` conflicted on the
+generated root HTML, the two build manifests, `data/flags.csv`, `data/sources.csv`,
+`tools/build_site.py` and this file. Resolution, without discarding anyone's work: the generated
+products were taken from `main` and regenerated from the merged registers; `data/sources.csv` is
+main's rows plus this session's eight `S-D304-*` rows; `tools/build_site.py` keeps both NAV and
+PAGE_KIND additions (their `captures` page, this session's three pages); this file is main's
+content with this session's blocks appended. **Flag-id collision (CR-58E9-07 recurrence):** both
+sessions allocated FL-97/FL-98/FL-99 from their own branch bases. Their rows reached `main` first
+and keep the ids; this session's rows are renumbered **FL-100, FL-101, FL-102** everywhere they
+are referenced. A deterministic flag-id allocator remains the fix (CR-58E9-06 open).
+
 **Register changes made at the builder source (not hand-edited):** the 13 brief-backlog status updates
 were applied to `ITEMS` in `tools/build_backlog_58e9c708.py` and the register regenerated byte-identically,
 so the verifier's replay check stays honest. Note for register owners: the same clobber hazard recorded for
 `data/s745_information_gaps.csv` applies to any hand edit of `data/brief_backlog_58e9c708.csv`.
 
 **Irregularities flagged by this session** (published on the Flagged for Review page):
-FL-97 (the reserve capture is a window, not a season — Aug/Sep/early-Oct uncaptured; BL-13 sweep partial) ·
-FL-98 (three reads of the November reserve page all end at 11/03; absence of 11/01–11/02 rows is an absence
+FL-100 (the reserve capture is a window, not a season — Aug/Sep/early-Oct uncaptured; BL-13 sweep partial) ·
+FL-101 (three reads of the November reserve page all end at 11/03; absence of 11/01–11/02 rows is an absence
 in our capture, not proven on the page) ·
-FL-99 (the schedule-release article's publication date unverified; left blank, not guessed).
+FL-102 (the schedule-release article's publication date unverified; left blank, not guessed).
 Also live-confirmed, not resolved: FL-96 (TreVeyon Henderson is Out on the hub and on Reserve/Injured the
 same week — both official states recorded in `data/hub_delta_d304c6fe.csv`), and FL-36's reconciliation
 stands (the league moved two Week 11 broadcasts between 9 and 13 November).

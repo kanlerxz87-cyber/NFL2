@@ -9,7 +9,7 @@ Every row on this page was transcribed on 2026-11-16 from the league's own trans
 
 ## October 2026 reserve list (10/24–10/31 captured)
 
-{{csv data/reserve_list_20261116_d304c6fe.csv;;cols=date:Date,club:Club,player:Player,transaction:Transaction,note:Note;;filter=month=2026-10;;source_col=source;;caption=25 rows from the official October reserve-list page. The extraction returned rows down to 10/24; rows dated 10/01–10/23 were not returned and are **not captured** (FL-97). C.J. Gardner-Johnson's row is a commissioner suspension placement, not an injury placement — it is kept so the ledger is complete.}}
+{{csv data/reserve_list_20261116_d304c6fe.csv;;cols=date:Date,club:Club,player:Player,transaction:Transaction,note:Note;;filter=month=2026-10;;source_col=source;;caption=25 rows from the official October reserve-list page. The extraction returned rows down to 10/24; rows dated 10/01–10/23 were not returned and are **not captured** (FL-100). C.J. Gardner-Johnson's row is a commissioner suspension placement, not an injury placement — it is kept so the ledger is complete.}}
 
 ## November 2026 trades (complete month)
 
