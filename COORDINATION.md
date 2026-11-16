@@ -4068,3 +4068,54 @@ No register file (`data/*.csv`) was modified. Root `*.html` changes are build ou
 | Pages deploy | GitHub Pages run [43925100561](https://github.com/kanlerxz87-cyber/NFL2/actions/runs/43925100561) succeeded; page source `main /`; Pages API reports `built` |
 | Live spot-check | https://kanlerxz87-cyber.github.io/NFL2/line-origination.html serves the corrected archive-only vs verified-benchmark distinction and separate model/archive/residual table references |
 | Remaining warning | GitHub Actions reports Node.js 20 deprecation and future ubuntu-latest image migration; deployment succeeded. `check_site.py` continues to report its existing eight non-league-host link warnings on research/registry pages; no data-page link failures. |
+
+## Session `6b5607fd` (`arena/6b5607fd-nfl2`) — claim (2026-11-16 ~18:05Z)
+
+**Why this session exists.** The owner's brief for this session re-lists most of the requirements already in this board (depth groups, snap-count route, Game Books, reserve list, drift alarms, public/private split, leaderboard divisions, controls). This session does not re-do them. It verifies what is current and adds only what is not yet on the board.
+
+**Branch rule.** The session runs on one branch, `arena/6b5607fd-nfl2`. The `session-<id>/<task>` names in the brief are not used, because the session-branch rule for this run requires the current branch.
+
+### Claimed scope (non-overlapping with every open claim on this board)
+
+| Path | Action |
+|---|---|
+| `COORDINATION.md` | append this claim and the session log only |
+| `data/live_spotcheck_6b5607fd_20261116.csv` | new: 50 rows transcribed from the live official hub, with source URL and fetch time |
+| `data/repo_review_6b5607fd_20261116.csv` | new: one row per repo-review check, with the command, result and source link |
+| `tools/review_6b5607fd.py` | new: reproduces the live-vs-repo comparison and the review register |
+| `data/flags.csv` | append only (new FL ids after FL-114) |
+| `data/sources.csv` | append only (one row per new official read) |
+| regenerated `*.html` | rebuild output only, from `tools/build_site.py` |
+
+**Not claimed and not touched:** every `content/*.md` file, every other `data/*` file, `tools/build_site.py`, `.github/workflows/*`, and the other site trees (`archive/`, `docs/`, `review/`, `q51/`, `analytics/`, `site/`, `portal/`, `engine/`, `crosscheck/`, `dcf3b0cc/`, `4e475b8b/`, `s2268/`, `s53/`, `s92/`).
+
+**Out of scope, and why.** NFL Game Book bulk collection is blocked by FL-55 and Q-50 (the owner's written-permission decision). Snap-count, weather and roof overlays, the leaderboard divisions, and the depth-chart sweep for the remaining clubs need data this repository does not yet hold, or owner decisions. They stay open on their existing rows.
+
+### Session `6b5607fd` — log, outcome and irregularities (2026-11-16)
+
+**Scope amendment (logged, not hidden).** The claim did not list two content files. Both were changed by narrow additions only: `content/data-dictionary.md` (three rows for the three new data files) and `content/flagged-for-review.md` (one new section that renders `data/repo_review_6b5607fd_20261116.csv`). No other session's claim was open on this board when they were changed.
+
+**Files this session created.** `data/live_spotcheck_6b5607fd_20261116.csv` (50 rows, live official read), `data/live_spotcheck_6b5607fd_compare.csv` (the cell-by-cell comparison), `data/repo_review_6b5607fd_20261116.csv` (10 checks), `tools/review_6b5607fd.py` (reproduces all three), plus the regenerated HTML. **Appended:** `data/flags.csv` (FL-115, FL-116, FL-117), `data/sources.csv` (S-INJ-6B56).
+
+| Id | Result | Source |
+|---|---|---|
+| RV6-01 | **50 of 50** live rows identical to the repository's 14:44Z read on injury text, practice code and game status | https://www.nfl.com/injuries/ (read 2026-11-16 ~18:05Z, chunk 0 of 8). The KC block continues in chunk 1, which was not read, so only six KC rows are compared. |
+| RV6-02 | raw capture reconciles: 347 matched, 0 mismatched, 0 capture-only, 0 repo-only | `data/captures/injuries_hub/20261116T143921Z_e2b4074a9837.bin` (SHA-256 e2b4074a…) |
+| RV6-03 | the two 16 Nov captures differ in **29 bytes**, all inside the quoted `data-jsonid` values of the NEWS carousel; the other 399,866 bytes are identical | the two `.bin` files in `data/captures/injuries_hub/` |
+| RV6-04 | **OPEN.** The Actions history for `capture.yml` has two runs, both `push`, and no `schedule` run. The 14:17 UTC cron is first due 2026-11-17 14:17Z | https://github.com/kanlerxz87-cyber/NFL2/actions/workflows/capture.yml |
+| RV6-05 | `tools/verify.py`: 226 passed · 0 warnings · 0 failures | `tools/verify.py` |
+| RV6-06 | `tools/check_site.py`: 11 passed · 1 warning (the disclosed non-league-host class) · 0 failures | `tools/check_site.py` |
+| RV6-07 | `data/flags.csv` parses as 117 rows of 8 fields | `data/flags.csv` |
+| RV6-08 | **FLAG.** 8 source rows (tiers B to D) cite non-league hosts | FL-115 |
+| RV6-09 | **FLAG.** `COORDINATION.md` is 438,490 bytes across 60 sections | FL-116 |
+| RV6-10 | **BLOCKED.** Official Game Books cannot be bulk-collected without written NFL permission | FL-55, owner decision Q-50 |
+
+**Checks that passed and that were not irregularities.** The "malformed rows" in `data/flags.csv` that a naive split suggests are not malformed: FL-43 and FL-106 contain quoted pipes, and the CSV reader parses every row to 8 fields. Also, the build and every CI verifier ran clean on this tree: `verify_readiness_ac2dd497`, `verify_backlog_58e9c708`, `verify_e632af20` (11/0), `verify_coverage_f34622dd` (2,420/0), `verify_capture_7c23f22f` (7/0), `reconcile_capture_7c23f22f --check`, `injury_lineage_d8372691 --check`, `review_build_site` and `review_verify`. The Q51 unit tests, research build, site build and `verify_q51` pass, and the Q51 drift check agrees with the committed root build. `verify_s92` passes 13/0/0.
+
+**Bugs found and fixed during the session (not carried into the data).** The first run of the comparison reported 21 mismatches and one missing row. Both were in my own reader, not in the data: the repo writes game status as `OUT` / `Q` / `D` (as `content/data-dictionary.md` defines), and I had not mapped the page's words; I had also aliased "Chig Okonkwo" to a name the repo does not use. The fix is in `tools/review_6b5607fd.py`, and the comparison was re-run in full, not patched by hand.
+
+**Irregularities for owner review.** FL-115 (non-league sources in the source register), FL-116 (COORDINATION.md size; a proposal to archive closed sessions). Open follow-up: RV6-04 (confirm the first scheduled capture on 17 Nov 14:17Z), recorded in this log and in FL-97, which already holds it open.
+
+**Not done in this session, and why.** The brief's modelling and register items need either owner decisions or data this repository does not hold: Game Book inactives and starters (blocked by Q-50), official snap counts (route evaluated in `1e97e798`, not verified for all 32 clubs), the Houston depth chart (FL-60), the weather and roof overlay (no NWS grid is in the repo), closing-line / CLV data (price-data policy, `docs/PRICE-DATA-POLICY-d304c6fe.md`), the leaderboard divisions and control baselines (they need settled, pre-registered strategies, and none exists yet). These are not re-opened here; their existing rows stay where they were.
+
+**PR and merge record.** Recorded below after the merge.
