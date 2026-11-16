@@ -3519,3 +3519,12 @@ D1b (s2268 refresh/prose/pages) and D2 (S-70) are **done**. S-65 decision field 
 * **CR-58E9-05** — consolidate this register with `data/brief_traceability.csv`; if one survives, the gate and clearing columns and the official-dependency links must move with it.
 * **CR-58E9-06** — `tools/verify.py`: add a duplicate-id check to `data/flags.csv`, and ideally a deterministic id allocator.
 * **CR-58E9-07** — every session appending to `data/flags.csv`: read the maximum id from `origin/main`, not from the branch base. Two collisions in one session.
+
+## Session `a095be15` — conservative price-data admission policy
+
+**Claim (before edits).** Fixed branch `arena/a095be15-nfl2`, base `a2de786`. Claim BL-20: decide and record the price-data policy before any leaderboard/backtest promotion. Exclusive task files: `docs/PRICE-DATA-POLICY.md` (new) and this claim/close-out section in `COORDINATION.md`. No edit to shared site/navigation, price registers, model outputs, or generated HTML. Existing price/archive and outcome data remain unmodified; open PRs #71 and #84 are not touched.
+
+| Task | Status | Scope |
+|---|---|---|
+| A095-BL20-1 | in progress | Inspect repository's price sources and current admission status; write a conservative, operational policy in `docs/PRICE-DATA-POLICY.md` |
+| A095-BL20-2 | in progress | Check policy assertions against the repository's own source inventory and price archive; run relevant project validators without changing shared outputs |
