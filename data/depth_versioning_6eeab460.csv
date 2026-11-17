@@ -8,7 +8,7 @@ DR-0006|BUF|offense|LG|LG|2|Austin Corbett|||no_departure_in_captured_window||ht
 DR-0007|BUF|offense|C|C|1|Connor McGovern|||no_departure_in_captured_window||https://www.buffalobills.com/team/depth-chart
 DR-0008|BUF|offense|C|C|2|Lloyd Cushenberry|||no_departure_in_captured_window||https://www.buffalobills.com/team/depth-chart
 DR-0009|BUF|offense|RG|RG|1|O'Cyrus Torrence|||no_departure_in_captured_window||https://www.buffalobills.com/team/depth-chart
-DR-0010|BUF|offense|RG|RG|2|Ar'maj Reed-Adams|||no_departure_in_captured_window||https://www.buffalobills.com/team/depth-chart
+DR-0010|BUF|offense|RG|RG|2|Ar'maj Reed-Adams|||undated_chart_cannot_version|EV2026-360|https://www.buffalobills.com/team/depth-chart
 DR-0011|BUF|offense|RT|RT|1|Spencer Brown|||no_departure_in_captured_window||https://www.buffalobills.com/team/depth-chart
 DR-0012|BUF|offense|RT|RT|2|Tylan Grable|||no_departure_in_captured_window||https://www.buffalobills.com/team/depth-chart
 DR-0013|BUF|offense|TE|TE|1|Dalton Kincaid|||no_departure_in_captured_window||https://www.buffalobills.com/team/depth-chart
@@ -75,9 +75,9 @@ DR-0073|MIA|offense|WR_2|WR|1|Malik Washington|||no_departure_in_captured_window
 DR-0074|MIA|offense|WR_2|WR|2|Kevin Coleman Jr.|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
 DR-0075|MIA|offense|WR_3|WR|1|Chris Bell|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
 DR-0076|MIA|offense|WR_3|WR|2|Jalen Tolbert|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
-DR-0077|MIA|defense|DT|DT|1|Jordan Phillips|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
+DR-0077|MIA|defense|DT|DT|1|Jordan Phillips|||undated_chart_cannot_version|EV2026-364|https://www.miamidolphins.com/team/depth-chart
 DR-0078|MIA|defense|DT|DT|2|Kenneth Grant|||undated_chart_cannot_version|EV2026-138|https://www.miamidolphins.com/team/depth-chart
-DR-0079|MIA|defense|DT_2|DT|1|Zeek Biggers|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
+DR-0079|MIA|defense|DT_2|DT|1|Zeek Biggers|||undated_chart_cannot_version|EV2026-366|https://www.miamidolphins.com/team/depth-chart
 DR-0080|MIA|defense|EDGE|EDGE|1|Chop Robinson|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
 DR-0081|MIA|defense|EDGE|EDGE|2|Malik Herring|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
 DR-0082|MIA|defense|EDGE|EDGE|3|Rodney McGraw|||no_departure_in_captured_window||https://www.miamidolphins.com/team/depth-chart
@@ -436,7 +436,7 @@ DR-0434|IND|defense|NT|NT|2|Jerry Tillery|Colts released their unofficial depth 
 DR-0435|IND|defense|NT|NT|3|Tim Smith|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
 DR-0436|IND|defense|DE_2|DE|1|Laiatu Latu|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
 DR-0437|IND|defense|DE_2|DE|2|Caden Curry|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
-DR-0438|IND|defense|WLB|WLB|1|Jaylon Carlies|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
+DR-0438|IND|defense|WLB|WLB|1|Jaylon Carlies|Colts released their unofficial depth chart for Week 10 (Tuesday)||undated_chart_cannot_version|EV2026-362|https://www.colts.com/team/depth-chart
 DR-0439|IND|defense|WLB|WLB|2|Bryce Boettcher|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
 DR-0440|IND|defense|WLB|WLB|3|Tahj Chambers|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
 DR-0441|IND|defense|MLB|MLB|1|Akeem Davis-Gaither|Colts released their unofficial depth chart for Week 10 (Tuesday)||undated_chart_cannot_version|EV2026-348|https://www.colts.com/team/depth-chart
@@ -517,7 +517,7 @@ DR-0515|TEN|offense|RG|RG|1|Atonio Mafi|UNOFFICIAL DEPTH CHART (as of 11/10/26)|
 DR-0516|TEN|offense|RG|RG|2|Garrett Dellinger|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0517|TEN|offense|RT|RT|1|JC Latham|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0518|TEN|offense|RT|RT|2|Brandon Crenshaw-Dickson|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
-DR-0519|TEN|offense|WR_2|WR|1|Wan'Dale Robinson|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
+DR-0519|TEN|offense|WR_2|WR|1|Wan'Dale Robinson|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|candidate_reserve_placed_after_chart|EV2026-365|https://www.tennesseetitans.com/team/depth-chart
 DR-0520|TEN|offense|WR_3|WR|1|Carnell Tate|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0521|TEN|offense|WR_3|WR|2|Elic Ayomanor|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0522|TEN|offense|QB|QB|1|Cam Ward|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
@@ -711,7 +711,7 @@ DR-0709|LAC|offense|WR|WR|2|Tre' Harris|||no_departure_in_captured_window||https
 DR-0710|LAC|offense|WR|WR|3|Derius Davis|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0711|LAC|offense|WR|WR|3|Theo Wease Jr.|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0712|LAC|offense|LT|LT|1|Travis Burke|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
-DR-0713|LAC|offense|LT|LT|2|Branson Taylor|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
+DR-0713|LAC|offense|LT|LT|2|Branson Taylor|||undated_chart_cannot_version|EV2026-357|https://www.chargers.com/team/depth-chart
 DR-0714|LAC|offense|LG|LG|1|Kayode Awosika|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0715|LAC|offense|LG|LG|2|Logan Taylor|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0716|LAC|offense|C|C|1|Jake Slaughter|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
@@ -1389,7 +1389,7 @@ DR-1387|AZ|defense|NT|NT|2|Andrew Billings|||no_departure_in_captured_window||ht
 DR-1388|AZ|defense|DT_2|DT|1|Walter Nolen III|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
 DR-1389|AZ|defense|DT_2|DT|2|L.J. Collier|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
 DR-1390|AZ|defense|OLB|OLB|1|Josh Sweat|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
-DR-1391|AZ|defense|OLB|OLB|2|Jordan Burch|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
+DR-1391|AZ|defense|OLB|OLB|2|Jordan Burch|||undated_chart_cannot_version|EV2026-363|https://www.azcardinals.com/team/depth-chart
 DR-1392|AZ|defense|OLB|OLB|3|Eku Leota|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
 DR-1393|AZ|defense|ILB|ILB|1|Jack Gibbens|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
 DR-1394|AZ|defense|ILB|ILB|2|Karson Sharar|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
@@ -1403,7 +1403,7 @@ DR-1401|AZ|defense|CB_2|CB|1|Max Melton|||no_departure_in_captured_window||https
 DR-1402|AZ|defense|CB_2|CB|2|Kei'Trel Clark|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
 DR-1403|AZ|defense|CB_3|CB|1|Kalen King|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
 DR-1404|AZ|defense|CB_3|CB|2|Garrett Williams|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
-DR-1405|AZ|defense|S|S|1|Andrew Wingard|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
+DR-1405|AZ|defense|S|S|1|Andrew Wingard|||undated_chart_cannot_version|EV2026-359|https://www.azcardinals.com/team/depth-chart
 DR-1406|AZ|defense|S|S|2|Kitan Crawford|||undated_chart_cannot_version|EV2026-001;EV2026-233|https://www.azcardinals.com/team/depth-chart
 DR-1407|AZ|defense|S_2|S|1|Budda Baker|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
 DR-1408|AZ|defense|S_2|S|2|Dadrion Taylor-Demerson|||no_departure_in_captured_window||https://www.azcardinals.com/team/depth-chart
