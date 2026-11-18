@@ -355,7 +355,7 @@ DR-0353|CLE|defense|FS|FS|2|Donovan McMillon|||no_departure_in_captured_window||
 DR-0354|PIT|offense|WR|WR|1|DK Metcalf|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0355|PIT|offense|WR|WR|2|Kaden Wetjen|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0356|PIT|offense|LT|LT|1|Troy Fautanu|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
-DR-0357|PIT|offense|LG|LG|1|Mason McCormick|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
+DR-0357|PIT|offense|LG|LG|1|Mason McCormick|||undated_chart_cannot_version|EV2026-370|https://www.steelers.com/team/depth-chart/
 DR-0358|PIT|offense|C|C|1|Zach Frazier|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0359|PIT|offense|C|C|2|Ryan McCollum|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0360|PIT|offense|RG|RG|1|Brock Hoffman|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
@@ -619,7 +619,7 @@ DR-0617|KC|offense|RT|RT|1|Jaylon Moore|||no_departure_in_captured_window||https
 DR-0618|KC|offense|RT|RT|2|Joshua Ezeudu|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0619|KC|offense|TE|TE|1|Travis Kelce|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0620|KC|offense|TE|TE|2|Noah Gray|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
-DR-0621|KC|offense|TE|TE|3|Jared Wiley|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
+DR-0621|KC|offense|TE|TE|3|Jared Wiley|||undated_chart_cannot_version|EV2026-369|https://www.chiefs.com/team/depth-chart
 DR-0622|KC|offense|TE|TE|4|Jake Briningstool|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0623|KC|offense|QB|QB|1|Patrick Mahomes|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0624|KC|offense|QB|QB|2|Justin Fields|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
@@ -1028,7 +1028,7 @@ DR-1026|DET|offense|QB|QB|2|Joshua Dobbs|2026 Unofficial Depth Chart Compiled by
 DR-1027|DET|offense|RB|RB|1|Jahmyr Gibbs|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1028|DET|offense|RB|RB|2|Sione Vaki|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1029|DET|offense|RB|RB|3|Jacob Saylors|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
-DR-1030|DET|defense|EDGE|EDGE|1|Aidan Hutchinson|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
+DR-1030|DET|defense|EDGE|EDGE|1|Aidan Hutchinson|2026 Unofficial Depth Chart Compiled by Lions Football Communications||undated_chart_cannot_version|EV2026-367|https://www.detroitlions.com/team/depth-chart
 DR-1031|DET|defense|EDGE|EDGE|2|Derrick Moore|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1032|DET|defense|EDGE|EDGE|3|Eric O'Neill|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1033|DET|defense|DL|DL|1|Alim McNeill|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
@@ -1140,7 +1140,7 @@ DR-1138|MIN|defense|DL_2|DL|2|Domonique Orange|2026 Unofficial Depth Chart||no_d
 DR-1139|MIN|defense|DL_3|DL|1|Tyrion Ingram-Dawkins|2026 Unofficial Depth Chart||no_departure_in_captured_window||https://www.vikings.com/team/depth-chart
 DR-1140|MIN|defense|DL_3|DL|2|Elijah Williams|2026 Unofficial Depth Chart||no_departure_in_captured_window||https://www.vikings.com/team/depth-chart
 DR-1141|MIN|defense|OLB_2|OLB|1|Andrew Van Ginkel|2026 Unofficial Depth Chart||no_departure_in_captured_window||https://www.vikings.com/team/depth-chart
-DR-1142|MIN|defense|OLB_2|OLB|2|Bo Richter|2026 Unofficial Depth Chart||no_departure_in_captured_window||https://www.vikings.com/team/depth-chart
+DR-1142|MIN|defense|OLB_2|OLB|2|Bo Richter|2026 Unofficial Depth Chart||undated_chart_cannot_version|EV2026-368|https://www.vikings.com/team/depth-chart
 DR-1143|MIN|defense|LB|LB|1|Blake Cashman|2026 Unofficial Depth Chart||no_departure_in_captured_window||https://www.vikings.com/team/depth-chart
 DR-1144|MIN|defense|LB|LB|2|Ivan Pace Jr.|2026 Unofficial Depth Chart||no_departure_in_captured_window||https://www.vikings.com/team/depth-chart
 DR-1145|MIN|defense|LB_2|LB|1|Eric Wilson|2026 Unofficial Depth Chart||no_departure_in_captured_window||https://www.vikings.com/team/depth-chart
