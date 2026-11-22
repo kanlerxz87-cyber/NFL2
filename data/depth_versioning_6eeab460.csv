@@ -290,7 +290,7 @@ DR-0288|CIN|defense|LB|LB|1|Barrett Carter|||no_departure_in_captured_window||ht
 DR-0289|CIN|defense|LB|LB|2|Joe Giles-Harris|||no_departure_in_captured_window||https://www.bengals.com/team/depth-chart
 DR-0290|CIN|defense|LB|LB|3|Jack Kiser|||no_departure_in_captured_window||https://www.bengals.com/team/depth-chart
 DR-0291|CIN|defense|LB_2|LB|1|Demetrius Knight Jr.|||no_departure_in_captured_window||https://www.bengals.com/team/depth-chart
-DR-0292|CIN|defense|LB_2|LB|2|Oren Burks|||no_departure_in_captured_window||https://www.bengals.com/team/depth-chart
+DR-0292|CIN|defense|LB_2|LB|2|Oren Burks|||undated_chart_cannot_version|EV2026-376|https://www.bengals.com/team/depth-chart
 DR-0293|CIN|defense|NCB|NCB|1|Dax Hill|||no_departure_in_captured_window||https://www.bengals.com/team/depth-chart
 DR-0294|CIN|defense|NCB|NCB|2|Josh Newton|||no_departure_in_captured_window||https://www.bengals.com/team/depth-chart
 DR-0295|CIN|defense|CB|CB|1|DJ Ivey|||no_departure_in_captured_window||https://www.bengals.com/team/depth-chart
@@ -523,7 +523,7 @@ DR-0521|TEN|offense|WR_3|WR|2|Elic Ayomanor|UNOFFICIAL DEPTH CHART (as of 11/10/
 DR-0522|TEN|offense|QB|QB|1|Cam Ward|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0523|TEN|offense|QB|QB|2|Mitchell Trubisky|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0524|TEN|offense|RB|RB|1|Tony Pollard|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
-DR-0525|TEN|offense|RB|RB|2|Tyjae Spears|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
+DR-0525|TEN|offense|RB|RB|2|Tyjae Spears|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|candidate_reserve_placed_after_chart|EV2026-378|https://www.tennesseetitans.com/team/depth-chart
 DR-0526|TEN|offense|RB|RB|2|Nick Singleton|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0527|TEN|offense|RB|RB|3|Julius Chestnut|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
 DR-0528|TEN|offense|RB|RB|3|Michael Carter|UNOFFICIAL DEPTH CHART (as of 11/10/26)|2026-11-10|no_departure_in_captured_window||https://www.tennesseetitans.com/team/depth-chart
@@ -756,7 +756,7 @@ DR-0754|LAC|defense|S_2|S|2|Genesis Smith|||no_departure_in_captured_window||htt
 DR-0755|LAC|defense|S_2|S|3|Kendall Williamson|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0756|LAC|defense|CB_2|CB|1|Donte Jackson|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0757|LAC|defense|CB_2|CB|2|Cam Hart|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
-DR-0758|LAC|defense|CB_2|CB|3|Rodney Shelley|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
+DR-0758|LAC|defense|CB_2|CB|3|Rodney Shelley|||undated_chart_cannot_version|EV2026-377|https://www.chargers.com/team/depth-chart
 DR-0759|DAL|offense|WR|WR|1|George Pickens|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
 DR-0760|DAL|offense|WR|WR|2|Camden Brown|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
 DR-0761|DAL|offense|LT|LT|1|Tyler Guyton|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
@@ -801,7 +801,7 @@ DR-0799|DAL|defense|CB|CB|1|Joey Porter Jr.|Unofficial 2026 Dallas Cowboys Depth
 DR-0800|DAL|defense|CB|CB|2|Shavon Revel Jr.|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
 DR-0801|DAL|defense|CB|CB|3|Ameer Speed|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
 DR-0802|DAL|defense|DB|DB|1|Caleb Downs|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
-DR-0803|DAL|defense|CB_2|CB|1|DaRon Bland|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
+DR-0803|DAL|defense|CB_2|CB|1|DaRon Bland|Unofficial 2026 Dallas Cowboys Depth Chart||undated_chart_cannot_version|EV2026-373|https://www.dallascowboys.com/team/depth-chart
 DR-0804|DAL|defense|CB_2|CB|2|Cobie Durant|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
 DR-0805|DAL|defense|S|S|1|P.J. Locke|Unofficial 2026 Dallas Cowboys Depth Chart||undated_chart_cannot_version|EV2026-268|https://www.dallascowboys.com/team/depth-chart
 DR-0806|DAL|defense|S|S|1|Markquese Bell|Unofficial 2026 Dallas Cowboys Depth Chart||no_departure_in_captured_window||https://www.dallascowboys.com/team/depth-chart
@@ -875,7 +875,7 @@ DR-0873|PHI|offense|TE|TE|2|Johnny Mundt|THE UNOFFICIAL DEPTH CHART IS COMPILED 
 DR-0874|PHI|offense|WR_2|WR|1|Makai Lemon|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0875|PHI|offense|WR_2|WR|2|Elijah Moore|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0876|PHI|offense|WR_2|WR|3|Britain Covey|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
-DR-0877|PHI|offense|WR_3|WR|1|Dontayvion Wicks|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
+DR-0877|PHI|offense|WR_3|WR|1|Dontayvion Wicks|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||undated_chart_cannot_version|EV2026-374|https://www.philadelphiaeagles.com/team/depth-chart
 DR-0878|PHI|offense|WR_3|WR|2|Darius Cooper|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0879|PHI|offense|RB|RB|1|Saquon Barkley|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0880|PHI|offense|QB|QB|1|Tanner McKee|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
@@ -891,7 +891,7 @@ DR-0889|PHI|defense|DT_3|DT|1|Moro Ojomo|THE UNOFFICIAL DEPTH CHART IS COMPILED 
 DR-0890|PHI|defense|EDGE_2|EDGE|1|Nolan Smith Jr.|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0891|PHI|defense|EDGE_2|EDGE|1|Jonathan Greenard|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0892|PHI|defense|EDGE_2|EDGE|2|A.J. Epenesa|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
-DR-0893|PHI|defense|LB|LB|1|Zack Baun|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
+DR-0893|PHI|defense|LB|LB|1|Zack Baun|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||undated_chart_cannot_version|EV2026-379|https://www.philadelphiaeagles.com/team/depth-chart
 DR-0894|PHI|defense|LB|LB|2|Smael Mondon Jr.|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0895|PHI|defense|LB_2|LB|1|Jihaad Campbell|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
 DR-0896|PHI|defense|LB_2|LB|2|Jeremiah Trotter Jr.|THE UNOFFICIAL DEPTH CHART IS COMPILED BY THE EAGLES' COMMUNICATIONS DEPARTMENT.||no_departure_in_captured_window||https://www.philadelphiaeagles.com/team/depth-chart
@@ -1011,7 +1011,7 @@ DR-1009|DET|offense|WR_2|WR|2|DeAndre Carter|2026 Unofficial Depth Chart Compile
 DR-1010|DET|offense|LT|LT|1|Penei Sewell|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1011|DET|offense|LG|LG|1|Christian Mahogany|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1012|DET|offense|LG|LG|2|Miles Frazier|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
-DR-1013|DET|offense|C|C|1|Cade Mays|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
+DR-1013|DET|offense|C|C|1|Cade Mays|2026 Unofficial Depth Chart Compiled by Lions Football Communications||undated_chart_cannot_version|EV2026-372|https://www.detroitlions.com/team/depth-chart
 DR-1014|DET|offense|C|C|2|Juice Scruggs|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1015|DET|offense|RG|RG|1|Tate Ratledge|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
 DR-1016|DET|offense|RG|RG|2|Seth McLaughlin|2026 Unofficial Depth Chart Compiled by Lions Football Communications||no_departure_in_captured_window||https://www.detroitlions.com/team/depth-chart
@@ -1255,7 +1255,7 @@ DR-1253|CAR|defense|S|S|1|Tre'von Moehrig|2026 Depth Chart||no_departure_in_capt
 DR-1254|CAR|defense|S|S|2|Zakee Wheatley|2026 Depth Chart||no_departure_in_captured_window||https://www.panthers.com/team/depth-chart
 DR-1255|CAR|defense|S_2|S|1|Nick Scott|2026 Depth Chart||no_departure_in_captured_window||https://www.panthers.com/team/depth-chart
 DR-1256|CAR|defense|S_2|S|2|Lathan Ransom|2026 Depth Chart||no_departure_in_captured_window||https://www.panthers.com/team/depth-chart
-DR-1257|CAR|defense|S_2|S|3|Isaiah Simmons|2026 Depth Chart||no_departure_in_captured_window||https://www.panthers.com/team/depth-chart
+DR-1257|CAR|defense|S_2|S|3|Isaiah Simmons|2026 Depth Chart||undated_chart_cannot_version|EV2026-375|https://www.panthers.com/team/depth-chart
 DR-1258|NO|offense|WR|WR|1|Chris Olave|New Orleans Saints Unofficial Depth Chart||no_departure_in_captured_window||https://www.neworleanssaints.com/team/depth-chart
 DR-1259|NO|offense|WR|WR|2|Barion Brown|New Orleans Saints Unofficial Depth Chart||no_departure_in_captured_window||https://www.neworleanssaints.com/team/depth-chart
 DR-1260|NO|offense|LT|LT|1|Kelvin Banks Jr.|New Orleans Saints Unofficial Depth Chart||undated_chart_cannot_version|EV2026-253|https://www.neworleanssaints.com/team/depth-chart
