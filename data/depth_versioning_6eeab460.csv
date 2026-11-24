@@ -435,7 +435,7 @@ DR-0433|IND|defense|NT|NT|1|Grover Stewart|Colts released their unofficial depth
 DR-0434|IND|defense|NT|NT|2|Jerry Tillery|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
 DR-0435|IND|defense|NT|NT|3|Tim Smith|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
 DR-0436|IND|defense|DE_2|DE|1|Laiatu Latu|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
-DR-0437|IND|defense|DE_2|DE|2|Caden Curry|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
+DR-0437|IND|defense|DE_2|DE|2|Caden Curry|Colts released their unofficial depth chart for Week 10 (Tuesday)||undated_chart_cannot_version|EV2026-381|https://www.colts.com/team/depth-chart
 DR-0438|IND|defense|WLB|WLB|1|Jaylon Carlies|Colts released their unofficial depth chart for Week 10 (Tuesday)||undated_chart_cannot_version|EV2026-362|https://www.colts.com/team/depth-chart
 DR-0439|IND|defense|WLB|WLB|2|Bryce Boettcher|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
 DR-0440|IND|defense|WLB|WLB|3|Tahj Chambers|Colts released their unofficial depth chart for Week 10 (Tuesday)||no_departure_in_captured_window||https://www.colts.com/team/depth-chart
@@ -627,7 +627,7 @@ DR-0625|KC|offense|QB|QB|3|Garrett Nussmeier|||no_departure_in_captured_window||
 DR-0626|KC|offense|RB|RB|1|Kenneth Walker|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0627|KC|offense|RB|RB|2|Emmett Johnson|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0628|KC|offense|RB|RB|3|Jaydn Ott|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
-DR-0629|KC|offense|FB|FB|1|Ben VanSumeren|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
+DR-0629|KC|offense|FB|FB|1|Ben VanSumeren|||undated_chart_cannot_version|EV2026-380|https://www.chiefs.com/team/depth-chart
 DR-0630|KC|offense|WR_2|WR|1|Xavier Worthy|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0631|KC|offense|WR_2|WR|2|Cyrus Allen|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
 DR-0632|KC|offense|WR_2|WR|3|Josh Downs|||no_departure_in_captured_window||https://www.chiefs.com/team/depth-chart
@@ -856,7 +856,7 @@ DR-0854|NYG|defense|SS|SS|2|Jason Pinnock|||no_departure_in_captured_window||htt
 DR-0855|NYG|defense|FS|FS|1|Jevon Holland|||no_departure_in_captured_window||https://www.giants.com/team/depth-chart
 DR-0856|NYG|defense|FS|FS|2|Ar'Darius Washington|||no_departure_in_captured_window||https://www.giants.com/team/depth-chart
 DR-0857|NYG|defense|FS|FS|3|Elijah Campbell|||no_departure_in_captured_window||https://www.giants.com/team/depth-chart
-DR-0858|NYG|defense|CB_2|CB|1|Greg Newsome II|||no_departure_in_captured_window||https://www.giants.com/team/depth-chart
+DR-0858|NYG|defense|CB_2|CB|1|Greg Newsome II|||undated_chart_cannot_version|EV2026-383|https://www.giants.com/team/depth-chart
 DR-0859|NYG|defense|CB_2|CB|2|Colton Hood|||no_departure_in_captured_window||https://www.giants.com/team/depth-chart
 DR-0860|NYG|defense|NB|NB|1|Dru Phillips|||no_departure_in_captured_window||https://www.giants.com/team/depth-chart
 DR-0861|NYG|defense|NB|NB|2|Nic Jones|||no_departure_in_captured_window||https://www.giants.com/team/depth-chart
@@ -1531,7 +1531,7 @@ DR-1529|SEA|offense|FB|FB|1|Brady Russell|||no_departure_in_captured_window||htt
 DR-1530|SEA|offense|RB|RB|1|Zach Charbonnet|||undated_chart_cannot_version|EV2026-038|https://www.seahawks.com/team/depth-chart/
 DR-1531|SEA|offense|RB|RB|2|Jadarian Price|||no_departure_in_captured_window||https://www.seahawks.com/team/depth-chart/
 DR-1532|SEA|offense|RB|RB|3|Emanuel Wilson|||no_departure_in_captured_window||https://www.seahawks.com/team/depth-chart/
-DR-1533|SEA|offense|RB|RB|4|George Holani|||no_departure_in_captured_window||https://www.seahawks.com/team/depth-chart/
+DR-1533|SEA|offense|RB|RB|4|George Holani|||undated_chart_cannot_version|EV2026-382|https://www.seahawks.com/team/depth-chart/
 DR-1534|SEA|defense|DT|DT|1|Leonard Williams|||no_departure_in_captured_window||https://www.seahawks.com/team/depth-chart/
 DR-1535|SEA|defense|DT|DT|2|Rylie Mills|||no_departure_in_captured_window||https://www.seahawks.com/team/depth-chart/
 DR-1536|SEA|defense|NT|NT|1|Byron Murphy II|||no_departure_in_captured_window||https://www.seahawks.com/team/depth-chart/
