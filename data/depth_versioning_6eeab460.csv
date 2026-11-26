@@ -365,7 +365,7 @@ DR-0363|PIT|offense|RT|RT|2|Dylan Cook|||no_departure_in_captured_window||https:
 DR-0364|PIT|offense|TE|TE|1|Pat Freiermuth|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0365|PIT|offense|TE|TE|1|Darnell Washington|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0366|PIT|offense|TE|TE|2|Robert Tonyan|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
-DR-0367|PIT|offense|WR_2|WR|1|Ben Skowronek|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
+DR-0367|PIT|offense|WR_2|WR|1|Ben Skowronek|||undated_chart_cannot_version|EV2026-386|https://www.steelers.com/team/depth-chart/
 DR-0368|PIT|offense|WR_2|WR|2|Brandon Smith|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0369|PIT|offense|WR_3|WR|1|Germie Bernard|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
 DR-0370|PIT|offense|QB|QB|1|Aaron Rodgers|||no_departure_in_captured_window||https://www.steelers.com/team/depth-chart/
@@ -581,7 +581,7 @@ DR-0579|DEN|defense|DE|DE|1|Zach Allen|||no_departure_in_captured_window||https:
 DR-0580|DEN|defense|DE|DE|2|Jordan Jackson|||no_departure_in_captured_window||https://www.denverbroncos.com/team/depth-chart/
 DR-0581|DEN|defense|DE|DE|3|Tyler Onyedim|||no_departure_in_captured_window||https://www.denverbroncos.com/team/depth-chart/
 DR-0582|DEN|defense|NT|NT|1|D.J. Jones|||no_departure_in_captured_window||https://www.denverbroncos.com/team/depth-chart/
-DR-0583|DEN|defense|NT|NT|2|Sai'vion Jones|||no_departure_in_captured_window||https://www.denverbroncos.com/team/depth-chart/
+DR-0583|DEN|defense|NT|NT|2|Sai'vion Jones|||undated_chart_cannot_version|EV2026-388|https://www.denverbroncos.com/team/depth-chart/
 DR-0584|DEN|defense|DE_2|DE|1|Malcolm Roach|||no_departure_in_captured_window||https://www.denverbroncos.com/team/depth-chart/
 DR-0585|DEN|defense|DE_2|DE|2|Eyioma Uwazurike|||undated_chart_cannot_version|EV2026-323|https://www.denverbroncos.com/team/depth-chart/
 DR-0586|DEN|defense|SLB|SLB|1|Nik Bonitto|||no_departure_in_captured_window||https://www.denverbroncos.com/team/depth-chart/
@@ -747,7 +747,7 @@ DR-0745|LAC|defense|LB_2|LB|1|Del'Shawn Phillips|||no_departure_in_captured_wind
 DR-0746|LAC|defense|LB_2|LB|2|Marlowe Wax|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0747|LAC|defense|CB|CB|1|Tarheeb Still|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0748|LAC|defense|CB|CB|2|Cam Hart|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
-DR-0749|LAC|defense|CB|CB|3|Deane Leonard|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
+DR-0749|LAC|defense|CB|CB|3|Deane Leonard|||undated_chart_cannot_version|EV2026-387|https://www.chargers.com/team/depth-chart
 DR-0750|LAC|defense|S|S|1|Derwin James Jr.|||undated_chart_cannot_version|EV2026-315|https://www.chargers.com/team/depth-chart
 DR-0751|LAC|defense|S|S|2|Tony Jefferson|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
 DR-0752|LAC|defense|S|S|3|RJ Mickens|||no_departure_in_captured_window||https://www.chargers.com/team/depth-chart
